@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Lib" pattern="file[Thoth]:include//*||file[Thoth]:src//*||file[Thoth]:tests//*||file[Thoth]:examples//*" />
+</component>
