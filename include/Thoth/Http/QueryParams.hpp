@@ -24,7 +24,7 @@ namespace Thoth::Http{
 
 
         //! @brief Create with an existing map.
-        explicit QueryParams(const std::map<QueryKey, QueryValues>& initAs);
+        explicit QueryParams(const MapType& initAs);
 
         QueryParams(const std::initializer_list<std::pair<const QueryKey, QueryValues>>& init);
 
@@ -99,7 +99,7 @@ namespace Thoth::Http{
         //! @return True if both queries match.
         bool operator==(const QueryParams& other) const;
     private:
-        std::map<QueryKey, QueryValues> _elements;
+        MapType _elements;
 
         friend struct std::formatter<QueryParams>;
     };

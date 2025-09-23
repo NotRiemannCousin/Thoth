@@ -14,7 +14,7 @@ namespace Thoth::Http {
 
     struct HttpUrl;
 
-    QueryParams::QueryParams(const std::map<QueryKey, QueryValues> &initAs): _elements{ initAs } { }
+    QueryParams::QueryParams(const MapType& initAs): _elements{ initAs } { }
 
     QueryParams::QueryParams(const std::initializer_list<std::pair<const QueryKey, QueryValues>> &init)
             : _elements{ init } {}
