@@ -87,7 +87,7 @@ void QueryParamsTests() {
 
 
     std::string_view encodedStr{ "name=John%20Doe&topic=C%2B%2B%20Programming" };
-    auto decodedOpt = QueryParams::ParseDecodified(encodedStr);
+    auto decodedOpt{ QueryParams::ParseDecodified(encodedStr) };
     Test("ParseDecodified optional", decodedOpt.has_value());
     if(decodedOpt) {
         Test("ParseDecodified space", decodedOpt->ValExists("name", "John Doe"));
@@ -96,7 +96,7 @@ void QueryParamsTests() {
 
 
 
-    auto formattedStr = std::format("{}", params1);
+    auto formattedStr{ std::format("{}", params1) };
     auto roundtripParams = QueryParams::Parse(formattedStr);
     Test("Format/Parse Round-trip", std::format("{}", roundtripParams) == formattedStr);
 }
@@ -105,38 +105,45 @@ void QueryParamsTests() {
 void HttpUrlTests() {
     TestBattery("HttpUrl");
 
-    auto url1_opt = HttpUrl::FromUrl("https://www.example.com/path/to/resource");
-    Test("Parse Simples opt", url1_opt.has_value());
-    if (url1_opt) {
-        Test("Simple scheme parse", url1_opt->scheme == "https");
-        Test("Simple host parse", url1_opt->host == "www.example.com");
-        Test("Simple path parse", url1_opt->path == "/path/to/resource");
-        Test("Simple port parse (default)", url1_opt->port == 0);
-        Test("Simple query parse (empty)", url1_opt->query.Empty());
+    const auto url1Opt{ HttpUrl::FromUrl("https://www.example.com/path/to/resource") };
+
+    Test("Parse Simples opt", url1Opt.has_value());
+    if (url1Opt) {
+        Test("Simple: scheme parse", url1Opt->scheme == "https");
+        Test("Simple: host parse", url1Opt->host == "www.example.com");
+        Test("Simple: path parse", url1Opt->path == "/path/to/resource");
+        Test("Simple: port parse (default)", url1Opt->port == 0);
+        Test("Simple: query parse (empty)", url1Opt->query.Empty());
+
+        Test("Simple: origin", std::format("{:o}", *url1Opt) == "https://www.example.com");
     }
 
 
 
-    auto url2_opt = HttpUrl::FromUrl("http://user:pass@localhost:8080/api/v1/data?id=123&type=json#details");
-    Test("Complex opt parse", url2_opt.has_value());
-    if (url2_opt) {
-        Test("Complex scheme parse", url2_opt->scheme == "http");
-        Test("Complex user parse", url2_opt->user == "user:pass");
-        Test("Complex host parse", url2_opt->host == "localhost");
-        Test("Complex port parse", url2_opt->port == 8080);
-        Test("Complex path parse", url2_opt->path == "/api/v1/data");
-        Test("Complex query parse", url2_opt->query == QueryParams::Parse("id=123&type=json"));
-        Test("Complex fragment parse", url2_opt->fragment == "details");
+    const auto url2Opt{ HttpUrl::FromUrl("http://user:pass@localhost:8080/api/v1/data?id=123&type=json#details") };
+
+    Test("Complex: opt parse", url2Opt.has_value());
+    if (url2Opt) {
+        Test("Complex: scheme parse", url2Opt->scheme == "http");
+        Test("Complex: user parse", url2Opt->user == "user:pass");
+        Test("Complex: host parse", url2Opt->host == "localhost");
+        Test("Complex: port parse", url2Opt->port == 8080);
+        Test("Complex: path parse", url2Opt->path == "/api/v1/data");
+        Test("Complex: query parse", url2Opt->query == QueryParams::Parse("id=123&type=json"));
+        Test("Complex: fragment parse", url2Opt->fragment == "details");
+
+        Test("Complex: origin", std::format("{:o}", *url2Opt) == "http://localhost:8080");
     }
 
 
 
-    auto url3_opt = HttpUrl::FromUrl("https://api.service.com/search?q=c%2B%2B%20programming");
-    Test("Parse Encoding opt", url3_opt.has_value());
-    if (url3_opt) {
-        Test("Parse encoding host", url3_opt->host == "api.service.com");
-        Test("Parse encoding path", url3_opt->path == "/search");
-        Test("Parse encoding query", url3_opt->query == QueryParams::Parse("q=c%2B%2B%20programming"));
+    const auto url3Opt{ HttpUrl::FromUrl("https://api.service.com/search?q=c%2B%2B%20programming") };
+
+    Test("Parse Encoding opt", url3Opt.has_value());
+    if (url3Opt) {
+        Test("Parse encoding host", url3Opt->host == "api.service.com");
+        Test("Parse encoding path", url3Opt->path == "/search");
+        Test("Parse encoding query", url3Opt->query == QueryParams::Parse("q=c%2B%2B%20programming"));
     }
 
 
@@ -150,12 +157,13 @@ void HttpUrlTests() {
 
 
 
-    std::string_view originalUrlStr = "https://user@example.com:8443/a/b?c=d#e";
-    auto parsedUrlOpt = HttpUrl::FromUrl(originalUrlStr);
+    constexpr std::string_view originalUrlStr{ "https://user@example.com:8443/a/b?c=d#e" };
+    const auto parsedUrlOpt{ HttpUrl::FromUrl(originalUrlStr) };
+
     Test("Round-trip parse", parsedUrlOpt.has_value());
     if (parsedUrlOpt) {
-        auto parsedUrlOpt2 = HttpUrl::FromUrl(std::format("{}", *parsedUrlOpt));
-        auto formattedStr = std::format("{}", *parsedUrlOpt2);
+        const auto parsedUrlOpt2{ HttpUrl::FromUrl(std::format("{}", *parsedUrlOpt)) };
+        const auto formattedStr{ std::format("{}", *parsedUrlOpt2) };
         Test("Format/Parse Round-trip", parsedUrlOpt == parsedUrlOpt2);
     }
 }
