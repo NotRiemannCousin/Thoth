@@ -15,6 +15,7 @@ namespace Thoth::Http{
         using QueryValueRef = const std::string&;
         using QueryValues   = std::vector<QueryValue>;
 
+        using QueryPair     = std::pair<const QueryKey, QueryValues>;
         using MapType       = std::map<QueryKey, QueryValues>;
 
         using IterType      = decltype(MapType().begin());
@@ -26,7 +27,7 @@ namespace Thoth::Http{
         //! @brief Create with an existing map.
         explicit QueryParams(const MapType& initAs);
 
-        QueryParams(const std::initializer_list<std::pair<const QueryKey, QueryValues>>& init);
+        QueryParams(const std::initializer_list<QueryPair>& init);
 
 
         //! @brief Parse the query as it is.
