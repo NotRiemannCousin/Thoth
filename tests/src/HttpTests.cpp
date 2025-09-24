@@ -29,77 +29,77 @@ void QueryParamsTests() {
     };
 
 
-    Test("Exists 1", params1.Exists("users"));
-    Test("Exists 2", params2.Exists("p-cresol:"));
-    Test("Exists false 1", !params1.Exists("paradichlorobenzene"));
-    Test("Exists false 2", !params2.Exists("antichlorobenzene"));
+    Test("Exists: 1", params1.Exists("users"));
+    Test("Exists: 2", params2.Exists("p-cresol:"));
+    Test("Exists: false 1", !params1.Exists("paradichlorobenzene"));
+    Test("Exists: false 2", !params2.Exists("antichlorobenzene"));
 
 
     auto paramsCpy1{ params1 };
     paramsCpy1["acid"] = {"dont mind"};
-    Test("operator[] assign", paramsCpy1.ValExists("acid", "dont mind"));
+    Test("operator[]: assign", paramsCpy1.ValExists("acid", "dont mind"));
 
 
     paramsCpy1.RemoveKey("acid");
-    Test("RemoveKey", !paramsCpy1.Exists("acid"));
+    Test("RemoveKey:", !paramsCpy1.Exists("acid"));
 
     auto paramsCpy2{ params1 };
-    Test("Add/Remove init", !paramsCpy2.ValExists("users", "Marcelo"));
+    Test("Add/Remove: init", !paramsCpy2.ValExists("users", "Marcelo"));
     paramsCpy2.Add("users", "Marcelo");
-    Test("Add check", paramsCpy2.ValExists("users", "Marcelo"));
+    Test("Add: check", paramsCpy2.ValExists("users", "Marcelo"));
     paramsCpy2.Remove("users", "Marcelo");
-    Test("Remove check", !paramsCpy2.ValExists("users", "Marcelo"));
+    Test("Remove: check", !paramsCpy2.ValExists("users", "Marcelo"));
 
     auto paramsCpy3{ params1 };
-    Test("SetIfNull existing", !paramsCpy3.SetIfNull("users", "NewValue"));
-    Test("SetIfNull new", paramsCpy3.SetIfNull("new_key", "FirstValue"));
-    Test("SetIfNull verify", paramsCpy3.ValExists("new_key", "FirstValue"));
+    Test("SetIfNull: existing", !paramsCpy3.SetIfNull("users", "NewValue"));
+    Test("SetIfNull: new", paramsCpy3.SetIfNull("new_key", "FirstValue"));
+    Test("SetIfNull: verify", paramsCpy3.ValExists("new_key", "FirstValue"));
 
     auto usersOpt{ params1.Get("users") };
-    Test("Get existing", usersOpt.has_value());
+    Test("Get: Existing", usersOpt.has_value());
     if (usersOpt)
-        Test("Get existing size", usersOpt->get().size() == 4);
+        Test("Get: Existing size", usersOpt->get().size() == 4);
 
 
     auto nullOpt{ params1.Get("dont hurt") };
-    Test("Get non-existent", !nullOpt.has_value());
+    Test("Get: Non-existent", !nullOpt.has_value());
 
 
 
     auto paramsCpy4{ params2 };
-    Test("Initial size", paramsCpy4.Size() == 10);
+    Test("Initial size:", paramsCpy4.Size() == 10);
     paramsCpy4.Clear();
-    Test("Clear size", paramsCpy4.Size() == 0);
-    Test("Clear check", !paramsCpy4.Exists("Sorry"));
+    Test("Clear: size", paramsCpy4.Size() == 0);
+    Test("Clear: check", !paramsCpy4.Exists("Sorry"));
 
 
 
     size_t count{};
     for (const auto& pair : params1) { (void)pair; count++; }
-    Test("Iterator count", count == params1.Size());
+    Test("Iterator: count", count == params1.Size());
 
 
 
     std::string_view queryStr{ "users=KG,AiKath,Kai,LastArchimedes&extensions=cxx,hs,py,rs" };
     auto parsedParams = QueryParams::Parse(queryStr);
-    Test("Parse size", parsedParams.Size() == 2);
-    Test("Parse value", parsedParams.ValExists("users", "Kai"));
+    Test("Parse: size", parsedParams.Size() == 2);
+    Test("Parse: value", parsedParams.ValExists("users", "Kai"));
 
 
 
     std::string_view encodedStr{ "name=John%20Doe&topic=C%2B%2B%20Programming" };
     auto decodedOpt{ QueryParams::ParseDecodified(encodedStr) };
-    Test("ParseDecodified optional", decodedOpt.has_value());
+    Test("ParseDecodified: optional", decodedOpt.has_value());
     if(decodedOpt) {
-        Test("ParseDecodified space", decodedOpt->ValExists("name", "John Doe"));
-        Test("ParseDecodified plus",  decodedOpt->ValExists("topic", "C++ Programming"));
+        Test("ParseDecodified: space", decodedOpt->ValExists("name", "John Doe"));
+        Test("ParseDecodified: plus",  decodedOpt->ValExists("topic", "C++ Programming"));
     }
 
 
 
     auto formattedStr{ std::format("{}", params1) };
     auto roundtripParams = QueryParams::Parse(formattedStr);
-    Test("Format/Parse Round-trip", std::format("{}", roundtripParams) == formattedStr);
+    Test("Round-trip Parse: Format", std::format("{}", roundtripParams) == formattedStr);
 }
 
 
@@ -108,7 +108,7 @@ void HttpUrlTests() {
 
     const auto url1Opt{ HttpUrl::FromUrl("https://www.example.com/path/to/resource") };
 
-    Test("Parse Simples opt", url1Opt.has_value());
+    Test("Simple: optional value", url1Opt.has_value());
     if (url1Opt) {
         Test("Simple: scheme parse", url1Opt->scheme == "https");
         Test("Simple: host parse", url1Opt->host == "www.example.com");
@@ -142,9 +142,9 @@ void HttpUrlTests() {
 
     Test("Parse Encoding opt", url3Opt.has_value());
     if (url3Opt) {
-        Test("Parse encoding host", url3Opt->host == "api.service.com");
-        Test("Parse encoding path", url3Opt->path == "/search");
-        Test("Parse encoding query", url3Opt->query == QueryParams::Parse("q=c%2B%2B%20programming"));
+        Test("Parse encoding: host", url3Opt->host == "api.service.com");
+        Test("Parse encoding: path", url3Opt->path == "/search");
+        Test("Parse encoding: query", url3Opt->query == QueryParams::Parse("q=c%2B%2B%20programming"));
     }
 
 
@@ -161,13 +161,14 @@ void HttpUrlTests() {
     constexpr std::string_view originalUrlStr{ "https://user@example.com:8443/a/b?c=d#e" };
     const auto parsedUrlOpt{ HttpUrl::FromUrl(originalUrlStr) };
 
-    Test("Round-trip parse", parsedUrlOpt.has_value());
+    Test("Round-trip parse: expected", parsedUrlOpt.has_value());
     if (parsedUrlOpt) {
         const auto parsedUrlOpt2{ HttpUrl::FromUrl(std::format("{}", *parsedUrlOpt)) };
         const auto formattedStr{ std::format("{}", *parsedUrlOpt2) };
-        Test("Format/Parse Round-trip", parsedUrlOpt == parsedUrlOpt2);
+        Test("Round-trip parse: Format", parsedUrlOpt == parsedUrlOpt2);
     }
 }
+
 
 void HttpHeadersTests() {
     TestBattery("HttpHeaders");
@@ -192,100 +193,100 @@ void HttpHeadersTests() {
     };
 
 
-    Test("Exists case insensitive 1", headers1.Exists("content-type"));
-    Test("Exists case insensitive 2", headers1.Exists("AUTHORIZATION"));
-    Test("Exists case insensitive 3", headers1.Exists("X-CUSTOM-HEADER"));
-    Test("Exists mixed case", headers1.Exists("Accept"));
-    Test("Exists false", !headers1.Exists("Non-Existent"));
+    Test("Exists: case insensitive 1", headers1.Exists("content-type"));
+    Test("Exists: case insensitive 2", headers1.Exists("AUTHORIZATION"));
+    Test("Exists: case insensitive 3", headers1.Exists("X-CUSTOM-HEADER"));
+    Test("Exists: mixed case", headers1.Exists("Accept"));
+    Test("Exists: false", !headers1.Exists("Non-Existent"));
 
 
-    Test("Exists pair exact", headers1.Exists("Content-Type", "application/json"));
-    Test("Exists pair case insensitive key", headers1.Exists("CONTENT-TYPE", "application/json"));
-    Test("Exists pair wrong value", !headers1.Exists("Content-Type", "text/plain"));
-    Test("Exists pair non-existent key", !headers1.Exists("Missing-Header", "some-value"));
+    Test("Exists: pair exact", headers1.Exists("Content-Type", "application/json"));
+    Test("Exists: pair case insensitive key", headers1.Exists("CONTENT-TYPE", "application/json"));
+    Test("Exists: pair wrong value", !headers1.Exists("Content-Type", "text/plain"));
+    Test("Exists: pair non-existent key", !headers1.Exists("Missing-Header", "some-value"));
 
 
     auto headersCpy1{ headers1 };
     headersCpy1.Add("X-Rate-Limit", "1000");
-    Test("Add new header", headersCpy1.Exists("x-rate-limit"));
-    Test("Add verify value", headersCpy1.Exists("X-Rate-Limit", "1000"));
+    Test("Add: new header", headersCpy1.Exists("x-rate-limit"));
+    Test("Add: verify value", headersCpy1.Exists("X-Rate-Limit", "1000"));
 
 
     headersCpy1.Add("Accept", "application/json");
     auto acceptValue{ headersCpy1.Get("accept") };
-    Test("Add comma separation", acceptValue.value_or(ref).get() == "text/html,application/xml, application/json");
+    Test("Add: comma separation", acceptValue.value_or(ref).get() == "text/html,application/xml, application/json");
 
 
     auto headersCpy2{ headers2 };
     headersCpy2.Add("Set-Cookie", "temp=xyz; Max-Age=3600");
     auto setCookies{ headersCpy2.GetSetCookie() };
-    Test("Add Set-Cookie count", setCookies.size() == 4);
-    Test("Add Set-Cookie contains new", std::ranges::find(setCookies, "temp=xyz; Max-Age=3600") != setCookies.end());
+    Test("Add Set-Cookie: count", setCookies.size() == 4);
+    Test("Add Set-Cookie: contains new", std::ranges::find(setCookies, "temp=xyz; Max-Age=3600") != setCookies.end());
 
 
     auto headersCpy3{ headers1 };
     headersCpy3.Set("Content-Type", "text/plain");
-    Test("Set replace existing", headersCpy3.Exists("Content-Type", "text/plain"));
-    Test("Set replace verify old gone", !headersCpy3.Exists("Content-Type", "application/json"));
+    Test("Set: replace existing", headersCpy3.Exists("Content-Type", "text/plain"));
+    Test("Set: replace verify old gone", !headersCpy3.Exists("Content-Type", "application/json"));
 
     headersCpy3.Set("New-Header", "new-value");
-    Test("Set add new", headersCpy3.Exists("new-header", "new-value"));
+    Test("Set: add new", headersCpy3.Exists("new-header", "new-value"));
 
 
     auto headersCpy4{ headers2 };
     headersCpy4.Set("Set-Cookie", "replaced=value");
     auto setCookiesAfterSet{ headersCpy4.GetSetCookie() };
-    Test("Set Set-Cookie replaces", setCookiesAfterSet.size() == 1);
+    Test("Set: Set-Cookie replaces", setCookiesAfterSet.size() == 1);
 
 
     auto headersCpy5{ headers1 };
-    Test("Remove existing", headersCpy5.Remove("Content-Type", "application/json"));
-    Test("Remove verify gone", !headersCpy5.Exists("Content-Type"));
-    Test("Remove non-existent pair", !headersCpy5.Remove("Content-Type", "wrong-value"));
-    Test("Remove non-existent header", !headersCpy5.Remove("Missing-Header", "any-value"));
+    Test("Remove: existing", headersCpy5.Remove("Content-Type", "application/json"));
+    Test("Remove: verify gone", !headersCpy5.Exists("Content-Type"));
+    Test("Remove: non-existent pair", !headersCpy5.Remove("Content-Type", "wrong-value"));
+    Test("Remove: non-existent header", !headersCpy5.Remove("Missing-Header", "any-value"));
 
 
     auto headersCpy6{ headers1 };
-    Test("Remove case insensitive", headersCpy6.Remove("AUTHORIZATION", "Bearer token123"));
-    Test("Remove case insensitive verify", !headersCpy6.Exists("authorization"));
+    Test("Remove: case insensitive", headersCpy6.Remove("AUTHORIZATION", "Bearer token123"));
+    Test("Remove: case insensitive verify", !headersCpy6.Exists("authorization"));
 
 
     auto headersCpy7{ headers1 };
-    Test("SetIfNull existing key", !headersCpy7.SetIfNull("Content-Type", "new-value"));
-    Test("SetIfNull existing unchanged", headersCpy7.Exists("Content-Type", "application/json"));
-    Test("SetIfNull new key", headersCpy7.SetIfNull("Fresh-Header", "fresh-value"));
-    Test("SetIfNull new verify", headersCpy7.Exists("fresh-header", "fresh-value"));
+    Test("SetIfNull: existing key", !headersCpy7.SetIfNull("Content-Type", "new-value"));
+    Test("SetIfNull: existing unchanged", headersCpy7.Exists("Content-Type", "application/json"));
+    Test("SetIfNull: new key", headersCpy7.SetIfNull("Fresh-Header", "fresh-value"));
+    Test("SetIfNull: new verify", headersCpy7.Exists("fresh-header", "fresh-value"));
 
 
-    Test("SetIfNull case insensitive existing", !headersCpy7.SetIfNull("CONTENT-TYPE", "another-value"));
+    Test("SetIfNull: case insensitive existing", !headersCpy7.SetIfNull("CONTENT-TYPE", "another-value"));
 
 
     auto contentTypeOpt{ headers1.Get("Content-Type") };
-    Test("Get existent", contentTypeOpt.value_or(ref).get() == "application/json");
+    Test("Get: existent", contentTypeOpt.value_or(ref).get() == "application/json");
 
     auto missingOpt{ headers1.Get("Missing-Header") };
-    Test("Get non-existent", !missingOpt.has_value());
+    Test("Get: non-existent", !missingOpt.has_value());
 
 
     auto authOpt{ headers1.Get("AUTHORIZATION") };
-    Test("Get case insensitive value", authOpt.value_or(ref).get() == "Bearer token123");
+    Test("Get: case insensitive value", authOpt.value_or(ref).get() == "Bearer token123");
 
 
     const HttpHeaders& constHeaders{ headers1 };
     auto constGetOpt{ constHeaders.Get("accept") };
-    Test("Const Get", constGetOpt.value_or(ref).get() == "text/html,application/xml");
+    Test("Get: Const Get", constGetOpt.value_or(ref).get() == "text/html,application/xml");
 
 
     auto setCookieValues{ headers2.GetSetCookie() };
-    Test("GetSetCookie count", setCookieValues.size() == 3);
-    Test("GetSetCookie contains session", std::ranges::find(setCookieValues, "session=abc123; Path=/") != setCookieValues.end());
-    Test("GetSetCookie contains user", std::ranges::find(setCookieValues, "user=john; Domain=.example.com") != setCookieValues.end());
-    Test("GetSetCookie contains theme", std::ranges::find(setCookieValues, "theme=dark; Secure") != setCookieValues.end());
+    Test("GetSetCookie: count", setCookieValues.size() == 3);
+    Test("GetSetCookie: contains session", std::ranges::find(setCookieValues, "session=abc123; Path=/") != setCookieValues.end());
+    Test("GetSetCookie: contains user", std::ranges::find(setCookieValues, "user=john; Domain=.example.com") != setCookieValues.end());
+    Test("GetSetCookie: contains theme", std::ranges::find(setCookieValues, "theme=dark; Secure") != setCookieValues.end());
 
 
     HttpHeaders headersNoSetCookie{ {"Content-Type", "text/html"} };
     auto emptySetCookies{ headersNoSetCookie.GetSetCookie() };
-    Test("GetSetCookie empty", emptySetCookies.empty());
+    Test("GetSetCookie: empty", emptySetCookies.empty());
 
 
     auto setCookieView{ headers2.GetSetCookieView() };
@@ -293,32 +294,32 @@ void HttpHeadersTests() {
     for (const auto& cookie : setCookieView)
         viewValues.emplace_back(cookie);
 
-    Test("GetSetCookieView count", viewValues.size() == 3);
+    Test("GetSetCookieView: count", viewValues.size() == 3);
 
 
     auto headersCpy8{ headers1 };
-    Test("operator[] existing", headersCpy8["content-type"] == "application/json");
-    Test("operator[] case insensitive", headersCpy8["ACCEPT"] == "text/html,application/xml");
+    Test("operator[]: existing", headersCpy8["content-type"] == "application/json");
+    Test("operator[]: case insensitive", headersCpy8["ACCEPT"] == "text/html,application/xml");
 
 
     auto& newValue{ headersCpy8["Brand-New-Header"] };
     newValue = "assigned-value";
-    Test("operator[] create new", headersCpy8.Exists("brand-new-header"));
-    Test("operator[] create value", headersCpy8.Exists("brand-new-header", "assigned-value"));
+    Test("operator[]: create new", headersCpy8.Exists("brand-new-header"));
+    Test("operator[]: create value", headersCpy8.Exists("brand-new-header", "assigned-value"));
 
 
-    Test("Size check", headers1.Size() == 4);
-    Test("Empty false", !headers1.Empty());
+    Test("Size: check", headers1.Size() == 4);
+    Test("Empty: false", !headers1.Empty());
 
     HttpHeaders emptyHeaders{};
-    Test("Empty true", emptyHeaders.Empty());
-    Test("Empty size zero", emptyHeaders.Size() == 0);
+    Test("Empty: true", emptyHeaders.Empty());
+    Test("Empty: size zero", emptyHeaders.Size() == 0);
 
     auto headersCpy9{ headers1 };
     headersCpy9.Clear();
-    Test("Clear size", headersCpy9.Size() == 0);
-    Test("Clear empty", headersCpy9.Empty());
-    Test("Clear no exists", !headersCpy9.Exists("Content-Type"));
+    Test("Clear: size", headersCpy9.Size() == 0);
+    Test("Clear: empty", headersCpy9.Empty());
+    Test("Clear: no exists", !headersCpy9.Exists("Content-Type"));
 
 
     size_t iterCount{};
@@ -326,7 +327,7 @@ void HttpHeadersTests() {
         (void)pair;
         iterCount++;
     }
-    Test("Iterator count", iterCount == headers1.Size());
+    Test("Iterator: count", iterCount == headers1.Size());
 
 
     bool allLowercase{ true };
@@ -339,14 +340,14 @@ void HttpHeadersTests() {
         }
         if (!allLowercase) break;
     }
-    Test("Iterator keys lowercase", allLowercase);
+    Test("Iterator: keys lowercase", allLowercase);
 
 
     HttpHeaders headers1Copy{ headers1 };
-    Test("Equality same", headers1 == headers1Copy);
+    Test("Equality: same", headers1 == headers1Copy);
 
     headers1Copy.Add("Extra-Header", "extra-value");
-    Test("Equality different", headers1 != headers1Copy);
+    Test("Equality: different", headers1 != headers1Copy);
 
 
     HttpHeaders::MapType vectorInit{
@@ -354,18 +355,18 @@ void HttpHeadersTests() {
             {"User-Agent", "TestClient/1.0"}
     };
     HttpHeaders headersFromVector{ vectorInit };
-    Test("Vector constructor size", headersFromVector.Size() == 2);
-    Test("Vector constructor keys lowercase", headersFromVector.Exists("host"));
-    Test("Vector constructor values", headersFromVector.Exists("user-agent", "TestClient/1.0"));
+    Test("Vector constructor: size", headersFromVector.Size() == 2);
+    Test("Vector constructor: keys lowercase", headersFromVector.Exists("host"));
+    Test("Vector constructor: values", headersFromVector.Exists("user-agent", "TestClient/1.0"));
 
 
     HttpHeaders headersWithEmpty{ {"Empty-Header", ""} };
-    Test("Empty value exists", headersWithEmpty.Exists("empty-header"));
-    Test("Empty value get", headersWithEmpty.Get("empty-header")->get().empty());
+    Test("Empty value: exists", headersWithEmpty.Exists("empty-header"));
+    Test("Empty value: get", headersWithEmpty.Get("empty-header")->get().empty());
 
 
     HttpHeaders headersWithSpaces{ {"Spaced-Header", "  value with spaces  "} };
-    Test("Spaced value exact", headersWithSpaces.Exists("spaced-header", "  value with spaces  "));
+    Test("Spaced value: exact", headersWithSpaces.Exists("spaced-header", "  value with spaces  "));
 
 
     HttpHeaders multipleHeaders{};
@@ -373,7 +374,7 @@ void HttpHeadersTests() {
     multipleHeaders.Add("Accept-Encoding", "deflate");
     multipleHeaders.Add("Accept-Encoding", "br");
     auto encodingOpt{ multipleHeaders.Get("accept-encoding") };
-    Test("Multiple same key", encodingOpt && encodingOpt->get() == "gzip, deflate, br");
+    Test("Add: Multiple same key", encodingOpt && encodingOpt->get() == "gzip, deflate, br");
 
 
 
@@ -382,14 +383,14 @@ void HttpHeadersTests() {
             {"server", "nginx/1.18"}
     };
     auto simpleFormatted{ std::format("{}", simpleHeaders) };
-    Test("Format exact simple", simpleFormatted == "content-type: text/html\r\nserver: nginx/1.18\r\n");
+    Test("Format: exact simple", simpleFormatted == "content-type: text/html\r\nserver: nginx/1.18\r\n");
 
     HttpHeaders repeatHeaders{
             {"accept-encoding", "gzip"},
             {"accept-encoding", "deflate"}
     };
     auto repeatFormatted{ std::format("{}", repeatHeaders) };
-    Test("Format exact repeat", repeatFormatted == "accept-encoding: gzip\r\naccept-encoding: deflate\r\n");
+    Test("Format: exact repeat", repeatFormatted == "accept-encoding: gzip\r\naccept-encoding: deflate\r\n");
 
 
     HttpHeaders setCookieHeaders{
@@ -397,7 +398,7 @@ void HttpHeadersTests() {
             {"set-cookie", "user=john"}
     };
     auto setCookieExactFormatted{ std::format("{}", setCookieHeaders) };
-    Test("Format exact set-cookie", setCookieExactFormatted == "set-cookie: session=abc123\r\nset-cookie: user=john\r\n");
+    Test("Format: exact set-cookie", setCookieExactFormatted == "set-cookie: session=abc123\r\nset-cookie: user=john\r\n");
 
 
 
@@ -434,12 +435,12 @@ void HttpHeadersTests() {
 
     HttpHeaders multipleAuthHeaders{};
     multipleAuthHeaders.Add("WWW-Authenticate", "Basic realm=\"Protected Area\"");
-    multipleAuthHeaders.Add("WWW-Authenticate", "Bearer realm=\"API\", error=\"invalid_token\"");
+    multipleAuthHeaders.Add("WWW-Authenticate", R"(Bearer realm="API", error="invalid_token")");
 
     auto formattedAuth = std::format("{}", multipleAuthHeaders);
-    Test("Add multiple-value (WWW-Authenticate) format check",
+    Test("Add: multiple-value (WWW-Authenticate) format check",
          formattedAuth == "www-authenticate: Basic realm=\"Protected Area\"\r\nwww-authenticate: Bearer realm=\"API\", error=\"invalid_token\"\r\n");
-    Test("Add multiple-value (WWW-Authenticate) size check", multipleAuthHeaders.Size() == 2);
+    Test("Add: multiple-value (WWW-Authenticate) size check", multipleAuthHeaders.Size() == 2);
 
 
     HttpHeaders cookieHeaders{};
@@ -448,10 +449,11 @@ void HttpHeadersTests() {
     cookieHeaders.Add("Cookie", "theme=dark");
 
     auto cookieValue = cookieHeaders.Get("Cookie");
-    Test("Add semicolon-separated (Cookie) value",
+    Test("Add: semicolon-separated (Cookie) value",
          cookieValue && cookieValue->get() == "sessionid=abcde12345; csrftoken=xyz987; theme=dark");
-    Test("Add semicolon-separated (Cookie) size check", cookieHeaders.Size() == 1);
+    Test("Add: semicolon-separated (Cookie) size check", cookieHeaders.Size() == 1);
 }
+
 
 void HttpRequestTests() {
 
