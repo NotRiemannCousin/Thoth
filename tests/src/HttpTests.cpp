@@ -172,6 +172,9 @@ void HttpUrlTests() {
 void HttpHeadersTests() {
     TestBattery("HttpHeaders");
 
+    string refString;
+    auto ref{ std::ref(refString) };
+
     HttpHeaders headers1{
             {"Content-Type", "application/json"},
             {"Authorization", "Bearer token123"},
@@ -210,7 +213,7 @@ void HttpHeadersTests() {
 
     headersCpy1.Add("Accept", "application/json");
     auto acceptValue{ headersCpy1.Get("accept") };
-    Test("Add comma separation", acceptValue && acceptValue->get().find("text/html,application/xml, application/json") != std::string::npos);
+    Test("Add comma separation", acceptValue.value_or(ref).get() == "text/html,application/xml, application/json");
 
 
     auto headersCpy2{ headers2 };
@@ -258,23 +261,19 @@ void HttpHeadersTests() {
 
 
     auto contentTypeOpt{ headers1.Get("Content-Type") };
-    Test("Get existing", contentTypeOpt.has_value());
-    if (contentTypeOpt)
-        Test("Get value correct", contentTypeOpt->get() == "application/json");
+    Test("Get existent", contentTypeOpt.value_or(ref).get() == "application/json");
 
     auto missingOpt{ headers1.Get("Missing-Header") };
     Test("Get non-existent", !missingOpt.has_value());
 
 
     auto authOpt{ headers1.Get("AUTHORIZATION") };
-    Test("Get case insensitive", authOpt.has_value());
-    if (authOpt)
-        Test("Get case insensitive value", authOpt->get() == "Bearer token123");
+    Test("Get case insensitive value", authOpt.value_or(ref).get() == "Bearer token123");
 
 
     const HttpHeaders& constHeaders{ headers1 };
     auto constGetOpt{ constHeaders.Get("accept") };
-    Test("Const Get", constGetOpt.has_value());
+    Test("Const Get", constGetOpt.value_or(ref).get() == "text/html,application/xml");
 
 
     auto setCookieValues{ headers2.GetSetCookie() };
@@ -409,7 +408,7 @@ void HttpHeadersTests() {
 
     std::string_view spaceAroundColon{ "set-cookie    :    session=abc123\r\ncontent-type: text/html\r\n" };
     auto parseSpaceColon{ HttpHeaders::Parse(spaceAroundColon) };
-    Test("Parse: space around key 2", !parseSpaceColon.has_value() && parseSpaceColon.error() == HttpStatusCodeEnum::BAD_REQUEST);
+    Test("Parse: space around key 2", parseSpaceColon.error_or({}) == HttpStatusCodeEnum::BAD_REQUEST);
 
 
     std::string_view whitespaceValue{ "content-type:          application/json       \r\nauthorization: Bearer token123\r\n" };
@@ -419,7 +418,7 @@ void HttpHeadersTests() {
 
     std::string_view mixedWhitespace{ "  host  :   example.com   \r\nuser-agent: TestClient/1.0\r\n" };
     auto parseMixedWhitespace{ HttpHeaders::Parse(mixedWhitespace) };
-    Test("Parse: space around key 3", !parseMixedWhitespace.has_value() && parseMixedWhitespace.error() == HttpStatusCodeEnum::BAD_REQUEST);
+    Test("Parse: space around key 3", parseMixedWhitespace.error_or({}) == HttpStatusCodeEnum::BAD_REQUEST);
 
 
     std::string_view tabWhitespace{ "Content-Type:\tapplication/json\r\nauthorization: Bearer token123\r\n" };
@@ -429,7 +428,29 @@ void HttpHeadersTests() {
 
     std::string_view emptyValue{ "CoNtEnT-tYpE:    \r\nauthorization: Bearer token123\r\n" };
     auto parseEmptyValue{ HttpHeaders::Parse(emptyValue) };
-    Test("Parse: empty value", !parseEmptyValue.has_value() && parseEmptyValue.error() == HttpStatusCodeEnum::BAD_REQUEST);
+    Test("Parse: empty value", parseEmptyValue.value_or(HttpHeaders{}).Exists("content-type"));
+
+
+
+    HttpHeaders multipleAuthHeaders{};
+    multipleAuthHeaders.Add("WWW-Authenticate", "Basic realm=\"Protected Area\"");
+    multipleAuthHeaders.Add("WWW-Authenticate", "Bearer realm=\"API\", error=\"invalid_token\"");
+
+    auto formattedAuth = std::format("{}", multipleAuthHeaders);
+    Test("Add multiple-value (WWW-Authenticate) format check",
+         formattedAuth == "www-authenticate: Basic realm=\"Protected Area\"\r\nwww-authenticate: Bearer realm=\"API\", error=\"invalid_token\"\r\n");
+    Test("Add multiple-value (WWW-Authenticate) size check", multipleAuthHeaders.Size() == 2);
+
+
+    HttpHeaders cookieHeaders{};
+    cookieHeaders.Add("Cookie", "sessionid=abcde12345");
+    cookieHeaders.Add("Cookie", "csrftoken=xyz987");
+    cookieHeaders.Add("Cookie", "theme=dark");
+
+    auto cookieValue = cookieHeaders.Get("Cookie");
+    Test("Add semicolon-separated (Cookie) value",
+         cookieValue && cookieValue->get() == "sessionid=abcde12345; csrftoken=xyz987; theme=dark");
+    Test("Add semicolon-separated (Cookie) size check", cookieHeaders.Size() == 1);
 }
 
 void HttpRequestTests() {

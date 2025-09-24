@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <bitset>
+#include <functional>
 #include <ranges>
 
 
@@ -11,18 +12,95 @@ namespace Thoth::Http {
     namespace rg = std::ranges;
     namespace vs = std::views;
 
-    struct HttpUrl;
-
-    constexpr char ToLower(char c) {
+#pragma region Util
+    constexpr int I_ToLower(char c) {
         if ('A' <= c && c <= 'Z')
             return c - 'A' + 'a';
         return c;
     }
 
-    constexpr auto inline HeaderSanitize    = vs::transform(ToLower);
-    constexpr auto inline HeaderSanitizeStr = HeaderSanitize | rg::to<string>();
-    // TODO: reduce string materialization                   like this ^^^
-    // ? Create a new comparable_view?
+    bool I_InsensitiveCmp(const string_view elem1, const string_view elem2) {
+        return rg::equal(elem1, elem2,
+                [](char a, char b) { return I_ToLower(a) == I_ToLower(b); }
+            );
+    }
+
+    bool I_UseSemicolon(string_view key) {
+        return I_InsensitiveCmp(key, string_view{"cookie"});
+    }
+
+    bool I_IsSingleValue(string_view key) {
+        constexpr string_view values[] {
+            // Date/Time Headers
+            "date",
+            "expires",
+            "last-modified",
+            "if-modified-since",
+            "if-unmodified-since",
+
+            // Numeric Headers
+            "age",
+            "content-length",
+            "max-forwards",
+
+            // Location/Redirect Headers
+            "location",
+            "refresh",
+
+            // Entity Headers
+            "etag",
+            "server",
+
+            // Authorization
+            "authorization",
+            "proxy-authorization"
+        };
+
+        return rg::any_of(values, std::bind_front(I_InsensitiveCmp, key));
+    }
+    bool I_CanMerge(string_view key) {
+        constexpr string_view values[] {
+            "set-cookie",
+            "www-authenticate",
+            "proxy-authenticate"
+        };
+
+        return rg::none_of(values, std::bind_front(I_InsensitiveCmp, key));
+    }
+
+
+    template<rg::input_range R, typename T>
+    [[nodiscard]] constexpr auto I_FindInsensitiveKey(R&& r, const T& key) {
+        const string_view keySv{ key };
+
+        const auto pred = [&](auto&& element) -> bool {
+            const string_view elemKeySv{ element.first };
+
+            return I_InsensitiveCmp(elemKeySv, keySv);
+        };
+
+        return rg::find_if(std::forward<R>(r), pred);
+    }
+
+    template<rg::input_range R, typename T>
+    [[nodiscard]] constexpr auto I_FindInsensitiveKeyWithPair(R&& r, const T& p) {
+        const string_view keySv{ p.first };
+        const string_view valueSv{ p.second };
+
+        const auto pred = [&](auto&& element) -> bool {
+            const string_view elemKeySv{ element.first };
+            const string_view elemValueSv{ element.second };
+
+            return I_InsensitiveCmp(keySv, elemKeySv) && rg::equal(valueSv, elemValueSv);
+        };
+
+        return rg::find_if(std::forward<R>(r), pred);
+    }
+
+    constexpr auto inline I_HeaderSanitizeStr = vs::transform(I_ToLower) | rg::to<string>();
+#pragma endregion
+
+
 
     HttpHeaders::HttpHeaders() = default;
 
@@ -30,17 +108,18 @@ namespace Thoth::Http {
         _headers.reserve(initAs.size());
 
         for (const auto& [key, val] : initAs)
-            _headers.emplace_back(key | HeaderSanitizeStr, val);
+            _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
     HttpHeaders::HttpHeaders(const std::initializer_list<HeaderPair> &init) {
         _headers.reserve(init.size());
 
         for (const auto& [key, val] : init)
-            _headers.emplace_back(key | HeaderSanitizeStr, val);
+            _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
-    WebResult<HttpHeaders> HttpHeaders::Parse(std::string_view headers) {
+
+    WebResult<HttpHeaders> HttpHeaders::Parse(string_view headers, size_t maxHeadersLength) {
         constexpr auto isCharAllowed = [](char c) {
             constexpr auto allowedChars = [] {
                 std::bitset<256> res{};
@@ -58,6 +137,9 @@ namespace Thoth::Http {
             return allowedChars[c];
         };
 
+        if (headers.size() > maxHeadersLength)
+            return std::unexpected{ HttpStatusCodeEnum::CONTENT_TOO_LARGE };
+
         constexpr string_view delimiter { "\r\n" };
 
         if (headers.ends_with(delimiter))
@@ -66,7 +148,7 @@ namespace Thoth::Http {
         HttpHeaders res;
 
         for (const auto& headerAux : headers | vs::split(delimiter)) {
-            const string_view header(&*headerAux.begin(), std::ranges::distance(headerAux));
+            const string_view header(&*headerAux.begin(), rg::distance(headerAux));
             // conversion needed to minimize copies, headerAux is continuous
 
             auto separator{ header.find(':') };
@@ -89,10 +171,12 @@ namespace Thoth::Http {
             if (endIdx != string::npos) val.remove_suffix(val.size() - endIdx - 1);
             if (startIdx != string::npos) val.remove_prefix(startIdx);
 
-            if (val.empty() || val[0] == ' ' || val[0] == '\t') // just whitespaces
+            if (val.empty())
                 return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+            if (val[0] == ' ' || val[0] == '\t') // empty, just whitespaces
+                val = "";
 
-            res.Add(key | HeaderSanitizeStr, val);
+            res.Add(key | I_HeaderSanitizeStr, val);
         }
 
 
@@ -102,11 +186,11 @@ namespace Thoth::Http {
 
 
     bool HttpHeaders::Exists(HeaderKeyRef key) const {
-        return rg::contains(_headers | vs::keys, key | HeaderSanitizeStr);
+        return I_FindInsensitiveKey(_headers, key) != _headers.end();
     }
 
     bool HttpHeaders::Exists(HeaderPairRef p) const {
-        return rg::contains(_headers, std::pair{ p.first | HeaderSanitizeStr, p.second });
+        return I_FindInsensitiveKeyWithPair(_headers, p) != _headers.end();
     }
 
     bool HttpHeaders::Exists(HeaderKeyRef key, HeaderValueRef val) const {
@@ -116,22 +200,24 @@ namespace Thoth::Http {
 
 
     void HttpHeaders::Add(HeaderPairRef p) {
-        auto key{ p.first | HeaderSanitizeStr };
+        if (I_IsSingleValue(p.first))
+            Set(p);
 
-        if (key != "set-cookie")
-            if (auto it{ rg::find(_headers, key, &HeaderPair::first) }; it != _headers.end()) {
+        string_view sep{ I_UseSemicolon(p.first) ? "; " : ", " };
+
+        if (I_CanMerge(p.first) )
+            if (auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {
 #ifdef __cpp_lib_ranges_concat
-
-                it->second = vs::concat(it->second, ", ", p.second);
+                it->second = vs::concat(it->second, sep, p.second);
 #else
-                it->second += ", ";
+                it->second += sep;
                 it->second += p.second;
 #endif
                 return;
             }
 
 
-        _headers.emplace_back(std::move(key), p.second);
+        _headers.emplace_back(p.first| I_HeaderSanitizeStr, p.second);
     }
 
     void HttpHeaders::Add(HeaderKeyRef key, HeaderValueRef val) {
@@ -139,15 +225,14 @@ namespace Thoth::Http {
     }
 
     void HttpHeaders::Set(HeaderPairRef p) {
-        auto key{ p.first | HeaderSanitizeStr };
-        if (key != "set-cookie")
-            if (auto it{ rg::find(_headers, key, &HeaderPair::first) }; it != _headers.end()) {
+        if (I_CanMerge(p.first))
+            if (const auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {
                 it->second = p.second;
                 return;
             }
 
 
-        _headers.emplace_back(std::move(key), p.second);
+        _headers.emplace_back(p.first | I_HeaderSanitizeStr, p.second);
     }
 
     void HttpHeaders::Set(HeaderKeyRef key, HeaderValueRef val) {
@@ -155,7 +240,7 @@ namespace Thoth::Http {
     }
 
     bool HttpHeaders::Remove(HeaderPairRef p) {
-        auto&& it{ rg::find(_headers, std::pair{ p.first | HeaderSanitizeStr, p.second }) };
+        auto&& it{ I_FindInsensitiveKeyWithPair(_headers,  p) };
         if (it == _headers.end())
             return false;
 
@@ -183,7 +268,7 @@ namespace Thoth::Http {
 
 
     std::optional<std::reference_wrapper<HttpHeaders::HeaderValue>> HttpHeaders::Get(HeaderKeyRef key) {
-        const auto it{  rg::find(_headers, key | HeaderSanitizeStr, &HeaderPair::first) };
+        const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
             return it->second;
@@ -192,7 +277,7 @@ namespace Thoth::Http {
     }
 
     std::optional<std::reference_wrapper<const HttpHeaders::HeaderValue>> HttpHeaders::Get(HeaderKeyRef key) const {
-        const auto it{  rg::find(_headers, key | HeaderSanitizeStr, &HeaderPair::first) };
+        const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
             return it->second;
@@ -234,11 +319,10 @@ namespace Thoth::Http {
 
 
     HttpHeaders::HeaderValue& HttpHeaders::operator[](HeaderKeyRef key) {
-        const auto newKey{ key | HeaderSanitizeStr };
-        if (const auto it{  rg::find(_headers, newKey, &HeaderPair::first) }; it != _headers.end())
+        if (const auto it{  I_FindInsensitiveKey(_headers, key) }; it != _headers.end())
             return it->second;
 
-        _headers.emplace_back(newKey, string{});
+        _headers.emplace_back(key | I_HeaderSanitizeStr, string{});
         return _headers.back().second;
     }
 

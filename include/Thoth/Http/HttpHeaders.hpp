@@ -6,6 +6,8 @@
 #include <string>
 
 namespace Thoth::Http {
+    //! @brief HttpHeaders is a dumb class that stores the headers. Although it can parse the raw headers from TCP,
+    //! the role of this class is just store it, so it can't check if the headers individually are well-formed.
     struct HttpHeaders {
         using HeaderKey      = std::string;
         using HeaderKeyRef   = std::string_view;
@@ -33,7 +35,12 @@ namespace Thoth::Http {
         HttpHeaders(const std::initializer_list<HeaderPair>& init);
 
 
-        static WebResult<HttpHeaders> Parse(std::string_view headers);
+        //! @brief Tries to parse the headers from the raw TCP string.
+        //! @param headers the headers separated by  "\r\n".
+        //! @param maxHeadersLength the max length that the headers can achieve.
+        //! @return A HttpHeaders if the parse success, @ref "bad request" HttpStatusCodeEnum::BAD_REQUEST if the parse
+        //! fails and @ref "content too large" HttpStatusCodeEnum::CONTENT_TOO_LARGE if the header is to long.
+        static WebResult<HttpHeaders> Parse(std::string_view headers, size_t maxHeadersLength = 1<<16);
 
 
         //! @brief check if a key exists.
