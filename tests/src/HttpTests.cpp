@@ -30,7 +30,7 @@ void QueryParamsTests() {
 
     Test("Exists 1", params1.Exists("users"));
     Test("Exists 2", params2.Exists("p-cresol:"));
-    Test("Exists false 1", !params1.Exists("parachlorobenzene"));
+    Test("Exists false 1", !params1.Exists("paradichlorobenzene"));
     Test("Exists false 2", !params2.Exists("antichlorobenzene"));
 
 
