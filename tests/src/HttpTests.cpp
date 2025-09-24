@@ -399,6 +399,37 @@ void HttpHeadersTests() {
     };
     auto setCookieExactFormatted{ std::format("{}", setCookieHeaders) };
     Test("Format exact set-cookie", setCookieExactFormatted == "set-cookie: session=abc123\r\nset-cookie: user=john\r\n");
+
+
+
+    std::string_view leadingSpaceKey{ "   content-type: application/json\r\nauthorization: Bearer token123\r\n" };
+    auto parseLeadingSpace{ HttpHeaders::Parse(leadingSpaceKey) };
+    Test("Parse: space around key 1", !parseLeadingSpace.has_value() && parseLeadingSpace.error() == HttpStatusCodeEnum::BAD_REQUEST);
+
+
+    std::string_view spaceAroundColon{ "set-cookie    :    session=abc123\r\ncontent-type: text/html\r\n" };
+    auto parseSpaceColon{ HttpHeaders::Parse(spaceAroundColon) };
+    Test("Parse: space around key 2", !parseSpaceColon.has_value() && parseSpaceColon.error() == HttpStatusCodeEnum::BAD_REQUEST);
+
+
+    std::string_view whitespaceValue{ "content-type:          application/json       \r\nauthorization: Bearer token123\r\n" };
+    auto parseWhitespaceValue{ HttpHeaders::Parse(whitespaceValue) };
+    Test("Parse: space around value", parseWhitespaceValue.value_or(HttpHeaders{}).Get("content-Type")->get() == "application/json");
+
+
+    std::string_view mixedWhitespace{ "  host  :   example.com   \r\nuser-agent: TestClient/1.0\r\n" };
+    auto parseMixedWhitespace{ HttpHeaders::Parse(mixedWhitespace) };
+    Test("Parse: space around key 3", !parseMixedWhitespace.has_value() && parseMixedWhitespace.error() == HttpStatusCodeEnum::BAD_REQUEST);
+
+
+    std::string_view tabWhitespace{ "Content-Type:\tapplication/json\r\nauthorization: Bearer token123\r\n" };
+    auto parseTabWhitespace{ HttpHeaders::Parse(tabWhitespace) };
+    Test("Parse: tab whitespace error", parseTabWhitespace.value_or(HttpHeaders{}).Get("CONTENT-TYPE")->get() == "application/json");
+
+
+    std::string_view emptyValue{ "CoNtEnT-tYpE:    \r\nauthorization: Bearer token123\r\n" };
+    auto parseEmptyValue{ HttpHeaders::Parse(emptyValue) };
+    Test("Parse: empty value", !parseEmptyValue.has_value() && parseEmptyValue.error() == HttpStatusCodeEnum::BAD_REQUEST);
 }
 
 void HttpRequestTests() {
