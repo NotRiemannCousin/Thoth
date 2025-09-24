@@ -24,6 +24,7 @@ add_library(Thoth SHARED
         include/Thoth/Http/HttpMethods/_base/HttpMethodBase.hpp
         src/Thoth/Http/HttpHeaders.cpp
         include/Thoth/Http/HttpHeaders.hpp
+        include/Thoth/Http/HttpStatusCodeEnum.hpp
 )
 
 target_include_directories(

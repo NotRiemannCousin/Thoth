@@ -1,4 +1,5 @@
 #pragma once
+#include <Thoth/Http/HttpStatusCodeEnum.hpp>
 #include <optional>
 #include <format>
 #include <vector>
@@ -7,10 +8,10 @@
 namespace Thoth::Http {
     struct HttpHeaders {
         using HeaderKey      = std::string;
-        using HeaderKeyRef   = const std::string&;
+        using HeaderKeyRef   = std::string_view;
 
         using HeaderValue    = std::string;
-        using HeaderValueRef = const std::string&;
+        using HeaderValueRef = std::string_view;
 
         // Well, it really maps to something, but isn't a map. The name will be maintained
         // to not break the naming convention of this lib.
@@ -24,13 +25,15 @@ namespace Thoth::Http {
         using CRIterType     = decltype(MapType{}.crbegin());
 
 
+        HttpHeaders();
+
         //! @brief Create with an existing vector.
         explicit HttpHeaders(const MapType& initAs);
 
         HttpHeaders(const std::initializer_list<HeaderPair>& init);
 
 
-        static std::optional<HttpHeaders> Parse(std::string_view headers);
+        static WebResult<HttpHeaders> Parse(std::string_view headers);
 
 
         //! @brief check if a key exists.
@@ -89,16 +92,16 @@ namespace Thoth::Http {
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
         //! @return std::reference_wrapper<const HeaderValue> if the key exists, std::nullopt otherwise.
-        std::optional<std::reference_wrapper<const HeaderValue>> Get(HeaderKeyRef key) const;
+        [[nodiscard]] std::optional<std::reference_wrapper<const HeaderValue>> Get(HeaderKeyRef key) const;
 
 
         //! @brief Get all Set-Cookie header values as they cannot be comma-separated.
         //! @return A readonly view of all Set-Cookie values. No Copies => risk of dangling reference, keep it in mind.
-        auto GetSetCookieView() const;
+        [[nodiscard]] auto GetSetCookieView() const;
 
         //! @brief Get all Set-Cookie header values as they cannot be comma-separated.
         //! @return Vector of all Set-Cookie values.
-        std::vector<HeaderValue> GetSetCookie() const;
+        [[nodiscard]] std::vector<HeaderValue> GetSetCookie() const;
 
 
 

@@ -1,6 +1,7 @@
 #include <Thoth/Http/HttpHeaders.hpp>
 
 #include <algorithm>
+#include <bitset>
 #include <ranges>
 
 
@@ -23,6 +24,8 @@ namespace Thoth::Http {
     // TODO: reduce string materialization                   like this ^^^
     // ? Create a new comparable_view?
 
+    HttpHeaders::HttpHeaders() = default;
+
     HttpHeaders::HttpHeaders(const MapType& initAs) {
         _headers.reserve(initAs.size());
 
@@ -37,6 +40,64 @@ namespace Thoth::Http {
             _headers.emplace_back(key | HeaderSanitizeStr, val);
     }
 
+    WebResult<HttpHeaders> HttpHeaders::Parse(std::string_view headers) {
+        constexpr auto isCharAllowed = [](char c) {
+            constexpr auto allowedChars = [] {
+                std::bitset<256> res{};
+
+                for (char c{'0'}; c <= '1'; c++) res.set(c);
+                for (char c{'a'}; c <= 'z'; c++) res.set(c);
+                for (char c{'A'}; c <= 'Z'; c++) res.set(c);
+
+                for (char c : "!#$%&\'*+-.^_`|~")
+                    res.set(c);
+
+                return res;
+            }();
+
+            return allowedChars[c];
+        };
+
+        constexpr string_view delimiter { "\r\n" };
+
+        if (headers.ends_with(delimiter))
+            headers.remove_suffix(4);
+
+        HttpHeaders res;
+
+        for (const auto& headerAux : headers | vs::split(delimiter)) {
+            const string_view header(&*headerAux.begin(), std::ranges::distance(headerAux));
+            // conversion needed to minimize copies, headerAux is continuous
+
+            auto separator{ header.find(':') };
+
+            if (header.empty() || separator == string::npos)
+                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+
+            string_view key{ header };
+            string_view val{ header };
+
+            key.remove_suffix(key.size() - separator);
+            val.remove_prefix(separator + 1);
+
+            if (!rg::all_of(key, isCharAllowed))
+                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+
+            const auto startIdx{ val.find_first_not_of(" \t" ) };
+            const auto endIdx{ val.find_last_not_of(" \t" ) };
+
+            if (endIdx != string::npos) val.remove_suffix(val.size() - endIdx - 1);
+            if (startIdx != string::npos) val.remove_prefix(startIdx);
+
+            if (val.empty() || val[0] == ' ' || val[0] == '\t') // just whitespaces
+                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+
+            res.Add(key | HeaderSanitizeStr, val);
+        }
+
+
+        return res;
+    }
 
 
 
@@ -53,15 +114,18 @@ namespace Thoth::Http {
     }
 
 
+
     void HttpHeaders::Add(HeaderPairRef p) {
         auto key{ p.first | HeaderSanitizeStr };
+
         if (key != "set-cookie")
             if (auto it{ rg::find(_headers, key, &HeaderPair::first) }; it != _headers.end()) {
 #ifdef __cpp_lib_ranges_concat
 
-                it->second = vs::concat(it->second, vs::single(", "), p.second);
+                it->second = vs::concat(it->second, ", ", p.second);
 #else
-                it->second += ", " + p.second;
+                it->second += ", ";
+                it->second += p.second;
 #endif
                 return;
             }
@@ -117,6 +181,7 @@ namespace Thoth::Http {
     }
 
 
+
     std::optional<std::reference_wrapper<HttpHeaders::HeaderValue>> HttpHeaders::Get(HeaderKeyRef key) {
         const auto it{  rg::find(_headers, key | HeaderSanitizeStr, &HeaderPair::first) };
 
@@ -134,6 +199,7 @@ namespace Thoth::Http {
 
         return std::nullopt;
     }
+
 
 
     std::vector<HttpHeaders::HeaderValue> HttpHeaders::GetSetCookie() const {
@@ -163,7 +229,7 @@ namespace Thoth::Http {
 
     size_t HttpHeaders::Size() const { return _headers.size(); }
 
-    bool HttpHeaders::Empty() const { return _headers.size() == 0; }
+    bool HttpHeaders::Empty() const { return _headers.empty(); }
 
 
 
@@ -172,7 +238,7 @@ namespace Thoth::Http {
         if (const auto it{  rg::find(_headers, newKey, &HeaderPair::first) }; it != _headers.end())
             return it->second;
 
-        _headers.emplace_back(std::move(newKey), string{});
+        _headers.emplace_back(newKey, string{});
         return _headers.back().second;
     }
 
