@@ -4,6 +4,7 @@
 int main() {
     QueryParamsTests();
     HttpUrlTests();
+    HttpHeadersTests();
     HttpRequestTests();
 
     return 0;
