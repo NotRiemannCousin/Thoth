@@ -241,7 +241,7 @@ std::string HttpUrl::Encode(std::string_view str) {
 }
 
 
-constexpr static auto hexCharToInt = [] {
+constexpr auto hexCharToInt = [] {
     std::array<int, 256> toHex{};
     for (char c{'0'}; c <= '9'; c++) toHex[c] = c - '0';
     for (char c{'a'}; c <= 'z'; c++) toHex[c] = c - 'a' + 10;
