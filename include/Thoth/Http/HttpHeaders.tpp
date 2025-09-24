@@ -25,5 +25,4 @@ inline auto Thoth::Http::HttpHeaders::GetSetCookieView() const {
     return _headers
             | std::views::filter(cmp)
             | std::views::transform(&HeaderPair::second);
-    // TODO: move to cpp?
 }

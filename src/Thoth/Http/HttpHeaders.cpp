@@ -119,17 +119,17 @@ namespace Thoth::Http {
     }
 
 
-    WebResult<HttpHeaders> HttpHeaders::Parse(string_view headers, size_t maxHeadersLength) {
-        constexpr auto isCharAllowed = [](char c) {
+    WebResult<HttpHeaders> HttpHeaders::Parse(string_view headers, const size_t maxHeadersLength) {
+        constexpr auto isCharAllowed = [](const char c) {
             constexpr auto allowedChars = [] {
                 std::bitset<256> res{};
 
-                for (char c{'0'}; c <= '1'; c++) res.set(c);
-                for (char c{'a'}; c <= 'z'; c++) res.set(c);
-                for (char c{'A'}; c <= 'Z'; c++) res.set(c);
+                for (char ch{'0'}; ch <= '1'; ch++) res.set(ch);
+                for (char ch{'a'}; ch <= 'z'; ch++) res.set(ch);
+                for (char ch{'A'}; ch <= 'Z'; ch++) res.set(ch);
 
-                for (char c : "!#$%&\'*+-.^_`|~")
-                    res.set(c);
+                for (char ch : "!#$%&\'*+-.^_`|~")
+                    res.set(ch);
 
                 return res;
             }();
@@ -168,13 +168,7 @@ namespace Thoth::Http {
             const auto startIdx{ val.find_first_not_of(" \t" ) };
             const auto endIdx{ val.find_last_not_of(" \t" ) };
 
-            if (endIdx != string::npos) val.remove_suffix(val.size() - endIdx - 1);
-            if (startIdx != string::npos) val.remove_prefix(startIdx);
-
-            if (val.empty())
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
-            if (val[0] == ' ' || val[0] == '\t') // empty, just whitespaces
-                val = "";
+            val = startIdx == string::npos ? "" : val.substr(startIdx, endIdx - startIdx + 1);
 
             res.Add(key | I_HeaderSanitizeStr, val);
         }
@@ -185,21 +179,21 @@ namespace Thoth::Http {
 
 
 
-    bool HttpHeaders::Exists(HeaderKeyRef key) const {
+    bool HttpHeaders::Exists(const HeaderKeyRef key) const {
         return I_FindInsensitiveKey(_headers, key) != _headers.end();
     }
 
-    bool HttpHeaders::Exists(HeaderPairRef p) const {
+    bool HttpHeaders::Exists(const HeaderPairRef p) const {
         return I_FindInsensitiveKeyWithPair(_headers, p) != _headers.end();
     }
 
-    bool HttpHeaders::Exists(HeaderKeyRef key, HeaderValueRef val) const {
+    bool HttpHeaders::Exists(const HeaderKeyRef key, const HeaderValueRef val) const {
         return Exists({key, val});
     }
 
 
 
-    void HttpHeaders::Add(HeaderPairRef p) {
+    void HttpHeaders::Add(const HeaderPairRef p) {
         if (I_IsSingleValue(p.first))
             Set(p);
 
@@ -220,26 +214,23 @@ namespace Thoth::Http {
         _headers.emplace_back(p.first| I_HeaderSanitizeStr, p.second);
     }
 
-    void HttpHeaders::Add(HeaderKeyRef key, HeaderValueRef val) {
+    void HttpHeaders::Add(const HeaderKeyRef key, const HeaderValueRef val) {
         Add({key, val});
     }
 
-    void HttpHeaders::Set(HeaderPairRef p) {
-        if (I_CanMerge(p.first))
-            if (const auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {
-                it->second = p.second;
-                return;
-            }
-
+    void HttpHeaders::Set(const HeaderPairRef p) {
+        std::erase_if(_headers, [&](const HeaderPair& current) {
+            return I_InsensitiveCmp(current.first, p.first);
+        });
 
         _headers.emplace_back(p.first | I_HeaderSanitizeStr, p.second);
     }
 
-    void HttpHeaders::Set(HeaderKeyRef key, HeaderValueRef val) {
+    void HttpHeaders::Set(const HeaderKeyRef key, const HeaderValueRef val) {
         Set({key, val});
     }
 
-    bool HttpHeaders::Remove(HeaderPairRef p) {
+    bool HttpHeaders::Remove(const HeaderPairRef p) {
         auto&& it{ I_FindInsensitiveKeyWithPair(_headers,  p) };
         if (it == _headers.end())
             return false;
@@ -249,7 +240,7 @@ namespace Thoth::Http {
         return true;
     }
 
-    bool HttpHeaders::Remove(HeaderKeyRef key, HeaderValueRef val) {
+    bool HttpHeaders::Remove(const HeaderKeyRef key, const HeaderValueRef val) {
         return Remove({key, val});
     }
 
@@ -261,7 +252,7 @@ namespace Thoth::Http {
         return true;
     }
 
-    bool HttpHeaders::SetIfNull(HeaderKeyRef key, HeaderValueRef val) {
+    bool HttpHeaders::SetIfNull(const HeaderKeyRef key, const HeaderValueRef val) {
         return SetIfNull({key, val});
     }
 

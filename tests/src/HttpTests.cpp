@@ -235,7 +235,7 @@ void HttpHeadersTests() {
     auto headersCpy4{ headers2 };
     headersCpy4.Set("Set-Cookie", "replaced=value");
     auto setCookiesAfterSet{ headersCpy4.GetSetCookie() };
-    Test("Set Set-Cookie adds not replaces", setCookiesAfterSet.size() == 4);
+    Test("Set Set-Cookie replaces", setCookiesAfterSet.size() == 1);
 
 
     auto headersCpy5{ headers1 };
