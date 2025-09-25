@@ -21,7 +21,7 @@ add_library(Thoth SHARED
         src/Thoth/Http/HttpUrl.cpp
         include/Thoth/Http/HttpUrl.hpp
         include/Thoth/Http/HttpUrl.tpp
-        include/Thoth/Http/HttpMethods/_base/HttpMethodBase.hpp
+        include/Thoth/Http/HttpMethods/_base/HttpMethodConcept.hpp
         src/Thoth/Http/HttpHeaders.cpp
         include/Thoth/Http/HttpHeaders.hpp
         include/Thoth/Http/HttpStatusCodeEnum.hpp

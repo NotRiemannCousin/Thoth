@@ -86,5 +86,5 @@ namespace Thoth::Http {
     using WebResult = std::expected<T, HttpStatusCodeEnum>;
 
 
-    using WebResultOper = std::optional<std::monostate>;
+    using WebResultOper = WebResult<std::monostate>;
 }
