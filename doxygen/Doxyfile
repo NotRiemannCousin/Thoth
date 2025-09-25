@@ -54,20 +54,20 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewers a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          =
+PROJECT_BRIEF          = A microframework for web development in C++26
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           =
+PROJECT_LOGO           = Thoth-logo.webp
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
 # directory.
 
-PROJECT_ICON           =
+PROJECT_ICON           = images/Thoth-logo-55px.webp
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
@@ -1207,7 +1207,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the Doxygen output.
 
-USE_MDFILE_AS_MAINPAGE =
+USE_MDFILE_AS_MAINPAGE = README.md
 
 # If the IMPLICIT_DIR_DOCS tag is set to YES, any README.md file found in sub-
 # directories of the project's root, is used as the documentation for that sub-
@@ -1456,7 +1456,7 @@ HTML_STYLESHEET        =
 # documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_STYLESHEET  = doxygen/styles.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1828,7 +1828,7 @@ PAGE_OUTLINE_PANEL     = YES
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-FULL_SIDEBAR           = NO
+FULL_SIDEBAR           = YES
 
 # The ENUM_VALUES_PER_LINE tag can be used to set the number of enum values that
 # Doxygen will group on one line in the generated HTML documentation.
