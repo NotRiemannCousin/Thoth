@@ -9,7 +9,10 @@ namespace std {
 
         auto format(const Thoth::Http::HttpHeaders &headers, std::format_context  &ctx) const {
             for (const auto& p : headers._headers)
-                format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
+                if (&p == &headers._headers.back())
+                    format_to(ctx.out(), "{}: {}",     p.first, p.second);
+                else
+                    format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
 
             return ctx.out();
         }
