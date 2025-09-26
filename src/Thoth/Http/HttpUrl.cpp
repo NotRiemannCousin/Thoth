@@ -109,6 +109,8 @@ std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
 
     // TODO: check chars from userinfo
 
+    port = scheme == "http" ? 80 : 443;
+
     auto portIdx{ hierPart.find(':') };
 
     if (portIdx == string_view::npos) // no port
