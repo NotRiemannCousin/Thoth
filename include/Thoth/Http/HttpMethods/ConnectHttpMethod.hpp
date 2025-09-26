@@ -14,7 +14,7 @@ namespace Thoth::Http {
         }
 
         static WebResultOper ValidateResponse(HttpStatusCodeEnum statusCode, string_view body, const HttpUrl& url, const HttpHeaders& headers) {
-            if (statusCode >= HttpStatusCodeEnum::OK && statusCode < HttpStatusCodeEnum::MULTIPLE_CHOICES)
+            if (GetStatusType(statusCode) == HttpStatusTypeEnum::SUCCESSFUL)
                 return {};
 
             if ((statusCode == HttpStatusCodeEnum::NO_CONTENT || statusCode == HttpStatusCodeEnum::NOT_MODIFIED) && !body.empty())

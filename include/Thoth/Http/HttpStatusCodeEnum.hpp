@@ -82,6 +82,21 @@ namespace Thoth::Http {
         NETWORK_AUTHENTICATION_REQUIRED  = 511,
     };
 
+
+    enum class HttpStatusTypeEnum {
+        INFORMATIONAL,
+        SUCCESSFUL,
+        REDIRECTION,
+        CLIENT_ERROR,
+        SERVER_ERROR
+    };
+
+    constexpr HttpStatusTypeEnum GetStatusType(HttpStatusCodeEnum code) {
+        return static_cast<HttpStatusTypeEnum>(static_cast<size_t>(code) / 100 - 1);
+    }
+
+
+
     template<class T>
     using WebResult = std::expected<T, HttpStatusCodeEnum>;
 

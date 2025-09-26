@@ -8,8 +8,6 @@ namespace Thoth::Http {
         static constexpr bool IsIdempotent() { return true; }
 
         static WebResultOper ValidateRequest(string_view body, const HttpUrl& url, const HttpHeaders& headers) {
-            if (body.empty())
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
             return {};
         }
 
