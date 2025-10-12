@@ -19,12 +19,17 @@ add_library(Thoth SHARED
         src/Thoth/Http/Request/HttpRequest.cpp
         src/Thoth/Http/QueryParams.cpp
         src/Thoth/Http/HttpUrl.cpp
-        include/Thoth/Http/HttpUrl.hpp
-        include/Thoth/Http/HttpUrl.tpp
+        include/Thoth/Http/Request/HttpUrl.hpp
+        include/Thoth/Http/Request/HttpUrl.tpp
         include/Thoth/Http/HttpMethods/_base/HttpMethodConcept.hpp
         src/Thoth/Http/HttpHeaders.cpp
         include/Thoth/Http/HttpHeaders.hpp
-        include/Thoth/Http/HttpStatusCodeEnum.hpp
+        include/Thoth/Http/Response/HttpStatusCodeEnum.hpp
+        include/Thoth/Http/Request/HttpRequest.tpp
+        include/Thoth/Http/HttpClient.hpp
+        include/Thoth/Http/HttpClient.tpp
+        src/Thoth/Http/Request/HttpClient.cpp
+        include/Thoth/Http/Response/HttpResponse.hpp
 )
 
 target_include_directories(

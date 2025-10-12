@@ -101,7 +101,6 @@ namespace Thoth::Http {
 #pragma endregion
 
 
-
     HttpHeaders::HttpHeaders() = default;
 
     HttpHeaders::HttpHeaders(const MapType& initAs) {
@@ -118,63 +117,12 @@ namespace Thoth::Http {
             _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
-
-    WebResult<HttpHeaders> HttpHeaders::Parse(string_view headers, const size_t maxHeadersLength) {
-        constexpr auto isCharAllowed = [](const char c) {
-            constexpr auto allowedChars = [] {
-                std::bitset<256> res{};
-
-                for (char ch{'0'}; ch <= '1'; ch++) res.set(ch);
-                for (char ch{'a'}; ch <= 'z'; ch++) res.set(ch);
-                for (char ch{'A'}; ch <= 'Z'; ch++) res.set(ch);
-
-                for (char ch : "!#$%&\'*+-.^_`|~")
-                    res.set(ch);
-
-                return res;
-            }();
-
-            return allowedChars[c];
+    HttpHeaders HttpHeaders::DefaultHeaders() {
+        return {
+            {"accept", "*/*"},
+            {"user-agent", "Thoth/0.1"},
+            {"accept encoding", "identity"}
         };
-
-        if (headers.size() > maxHeadersLength)
-            return std::unexpected{ HttpStatusCodeEnum::CONTENT_TOO_LARGE };
-
-        constexpr string_view delimiter { "\r\n" };
-
-        if (headers.ends_with(delimiter))
-            headers.remove_suffix(4);
-
-        HttpHeaders res;
-
-        for (const auto& headerAux : headers | vs::split(delimiter)) {
-            const string_view header(&*headerAux.begin(), rg::distance(headerAux));
-            // conversion needed to minimize copies, headerAux is continuous
-
-            auto separator{ header.find(':') };
-
-            if (header.empty() || separator == string::npos)
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
-
-            string_view key{ header };
-            string_view val{ header };
-
-            key.remove_suffix(key.size() - separator);
-            val.remove_prefix(separator + 1);
-
-            if (!rg::all_of(key, isCharAllowed))
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
-
-            const auto startIdx{ val.find_first_not_of(" \t" ) };
-            const auto endIdx{ val.find_last_not_of(" \t" ) };
-
-            val = startIdx == string::npos ? "" : val.substr(startIdx, endIdx - startIdx + 1);
-
-            res.Add(key | I_HeaderSanitizeStr, val);
-        }
-
-
-        return res;
     }
 
 
@@ -194,8 +142,10 @@ namespace Thoth::Http {
 
 
     void HttpHeaders::Add(const HeaderPairRef p) {
-        if (I_IsSingleValue(p.first))
+        if (I_IsSingleValue(p.first)) {
             Set(p);
+            return;
+        }
 
         string_view sep{ I_UseSemicolon(p.first) ? "; " : ", " };
 

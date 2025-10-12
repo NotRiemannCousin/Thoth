@@ -1,9 +1,10 @@
 #pragma once
-#include <Thoth/Http/HttpStatusCodeEnum.hpp>
+#include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
 #include <optional>
 #include <format>
 #include <vector>
 #include <string>
+#include <ranges>
 
 namespace Thoth::Http {
     //! @brief HttpHeaders is a dumb class that stores the headers. Although it can parse the raw headers from TCP,
@@ -40,7 +41,11 @@ namespace Thoth::Http {
         //! @param maxHeadersLength the max length that the headers can achieve.
         //! @return A HttpHeaders if the parse success, @ref "bad request" HttpStatusCodeEnum::BAD_REQUEST if the parse
         //! fails and @ref "content too large" HttpStatusCodeEnum::CONTENT_TOO_LARGE if the header is to long.
-        static WebResult<HttpHeaders> Parse(std::string_view headers, size_t maxHeadersLength = 1<<16);
+        template<std::ranges::input_range R>
+        static WebResult<HttpHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
+
+
+        static HttpHeaders DefaultHeaders();
 
 
         //! @brief check if a key exists.

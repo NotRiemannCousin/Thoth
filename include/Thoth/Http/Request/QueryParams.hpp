@@ -6,7 +6,6 @@
 #include <map>
 
 namespace Thoth::Http{
-
     struct QueryParams {
         using QueryKey      = std::string;
         using QueryKeyRef   = const std::string&;
@@ -107,4 +106,4 @@ namespace Thoth::Http{
 }
 
 
-#include <Thoth/Http/QueryParams.tpp>
+#include <Thoth/Http/Request/QueryParams.tpp>

@@ -1,0 +1,121 @@
+#pragma once
+#include <Thoth/Http/Response/HttpResponse.hpp>
+#include <Hermes/Utils/UntilMatch.hpp>
+#include <string_view>
+
+namespace Thoth::Http {
+    template<HttpMethodConcept Method>
+    expected<HttpResponse<Method>, string> HttpClient::Send(HttpRequest<Method> request) {
+        const auto endpointOpt{ Hermes::IpEndpoint::TryResolve(request.url.host, to_string(request.url.port)) };
+        if (!endpointOpt)
+            return std::unexpected{ "DNS Resolution Failed" };
+
+        HttpClientJanitor& janitor{ HttpClientJanitor::Instance() };
+        std::shared_ptr<HttpSocket> infoPtr;
+
+
+        {
+            std::lock_guard lock(janitor.poolMutex);
+
+            const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(*endpointOpt) };
+            if (connContainerIt != janitor.connectionPool.end()) {
+
+                infoPtr = std::move(connContainerIt->second.back());
+                connContainerIt->second.pop_back();
+            }
+        }
+
+
+
+        if (!infoPtr) {
+            auto newSocketResult{ Hermes::RawTcpClient::Connect(*endpointOpt) };
+            if (!newSocketResult)
+                return std::unexpected{ "Connection Failed" };
+
+            infoPtr = std::make_shared<HttpSocket>(std::move(*newSocketResult));
+        }
+
+
+        request.headers["host"] = request.url.host;
+        string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
+
+
+        const auto requestStr{ std::format(
+            "{} {} {}\r\n"
+            "{}\r\n"
+            "\r\n"
+            "{}",
+            Method::MethodName(), path, HttpVersionToString(request.version),
+            request.headers,
+            request.body
+        ) };
+
+        const auto sendRes{ infoPtr->socket.Send(requestStr) };
+
+        if (!sendRes)
+            return std::unexpected{ "Send Failed" };
+
+
+        // TODO: FUTURE: Implement with HTTP2 and 3
+
+        namespace rg = std::ranges;
+        namespace vs = std::views;
+
+        HttpVersion version{};
+        HttpStatusCodeEnum status{};
+        string statusMessage{};
+        HttpHeaders headers{};
+        string body{};
+
+        auto stream{ infoPtr->socket.RecvRange<char>() };
+
+        if (!rg::starts_with(stream, string_view{ "HTTP/1." }))
+            return std::unexpected{ "Invalid response" };
+
+        switch (*stream.begin()) {
+            case '0': version = HttpVersion::HTTP1_0; break;
+            case '1': version = HttpVersion::HTTP1_1; break;
+            default: return std::unexpected{ "Invalid version" };
+        }
+        ++stream.begin();
+
+        const auto arr{ Hermes::Utils::CopyTo<array<char, 5>>(stream) };
+
+        if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
+            return std::unexpected{ "Invalid response" };
+
+        status = static_cast<HttpStatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
+        statusMessage = stream | Hermes::Utils::UntilMatch(string_view{ "\r\n" }) | rg::to<string>();
+
+        auto rawHeaders{ stream | Hermes::Utils::UntilMatch(string_view{ "\r\n\r\n" }) };
+        const auto headersParseRes{ HttpHeaders::Parse(rawHeaders) };
+
+        if (!headersParseRes)
+            return std::unexpected{ "Invalid headers" };
+        headers = *headersParseRes;
+
+        if (auto contentSizeOpt{ headers.Get("content-length") }; contentSizeOpt) {
+            const auto temp{ (*contentSizeOpt).get() };// "3961"
+            size_t contentSize;
+
+            auto [_, ec] = std::from_chars(temp.data(), temp.data() + temp.size(), contentSize);
+
+            if (ec != std::errc())
+                return std::unexpected{ "Invalid response" };
+
+            body = stream | vs::take(contentSize) | rg::to<string>();
+        } else {
+            if (version == HttpVersion::HTTP1_0)
+                return std::unexpected{ "HTTP/1.0 needs content-length" };
+            // TODO: FUTURE: transfer-encoding
+        }
+
+        if (!stream.Error())
+                return std::unexpected{ "Something goes wrong when sending" };
+
+        std::lock_guard lock(janitor.poolMutex);
+        janitor.connectionPool[*endpointOpt].push_back(std::move(infoPtr));
+
+        return HttpResponse<Method>(version, status, statusMessage, headers, body);
+    }
+}

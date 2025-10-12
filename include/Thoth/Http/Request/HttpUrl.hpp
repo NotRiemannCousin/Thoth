@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <Thoth/Http/QueryParams.hpp>
+#include <Thoth/Http/Request/QueryParams.hpp>
 
 namespace Thoth::Http {
     using string_view = std::string_view;
@@ -51,4 +51,4 @@ namespace Thoth::Http {
 }
 
 
-#include <Thoth/Http/HttpUrl.tpp>
+#include <Thoth/Http/Request/HttpUrl.tpp>

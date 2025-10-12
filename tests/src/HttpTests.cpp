@@ -1,5 +1,5 @@
-#include <Thoth/Http/QueryParams.hpp>
-#include <Thoth/Http/HttpUrl.hpp>
+#include <Thoth/Http/Request/QueryParams.hpp>
+#include <Thoth/Http/Request/HttpUrl.hpp>
 #include <Thoth/Http/HttpHeaders.hpp>
 #include "../include/BaseTests.hpp"
 

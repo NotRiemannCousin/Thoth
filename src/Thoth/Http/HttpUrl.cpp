@@ -1,4 +1,4 @@
-#include <Thoth/Http/HttpUrl.hpp>
+#include <Thoth/Http/Request/HttpUrl.hpp>
 #include <algorithm>
 
 using Thoth::Http::HttpUrl;
@@ -68,13 +68,6 @@ std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
 #pragma region Scheme
 
     // scheme      = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
-
-    static auto const checkScheme = [](char c) {
-        return isalnum(c) || c == '+' ||  c == '-' || c == '.';
-    };
-
-    if (scheme.empty() || !isalnum(scheme[0]) || !rg::all_of(scheme, checkScheme))
-        return std::nullopt;
 
 #pragma endregion
 #pragma region Auth & UserInfo

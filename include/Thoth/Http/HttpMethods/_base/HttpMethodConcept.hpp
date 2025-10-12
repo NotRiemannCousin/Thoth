@@ -1,7 +1,7 @@
 #pragma once
-#include <Thoth/Http/HttpStatusCodeEnum.hpp>
+#include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
+#include <Thoth/Http/Request/HttpUrl.hpp>
 #include <Thoth/Http/HttpHeaders.hpp>
-#include <Thoth/Http/HttpUrl.hpp>
 
 #include <string_view>
 
