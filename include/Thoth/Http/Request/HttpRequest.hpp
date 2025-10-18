@@ -19,7 +19,7 @@ namespace Thoth::Http {
 		HttpUrl url;
 		string body{};
 		HttpVersion version{ HttpVersion::HTTP1_1 };
-		HttpHeaders headers{};
+		HttpHeaders headers{ HttpHeaders::DefaultHeaders() };
 	};
 };
 

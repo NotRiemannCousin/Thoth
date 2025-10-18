@@ -12,13 +12,17 @@ namespace Thoth::Http {
     struct HttpResponse;
 
     struct HttpSocket {
-        Hermes::RawTcpClient socket; // TODO: Union with UDP to implement HTTP3/Quic
+        // TODO: FUTURE
+        // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawTlsClient, Hermes::RawDtlsClient>;
+        // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawTlsClient>;
+        Hermes::RawTlsClient socket;
 
         std::chrono::steady_clock::time_point lastUsed;
     };
 
 
     struct HttpClientJanitor {
+
         static HttpClientJanitor& Instance();
         void JanitorLoop();
 
@@ -38,7 +42,19 @@ namespace Thoth::Http {
         static expected<HttpResponse<Method>, string> Send(HttpRequest<Method> request);
 
     private:
-        friend HttpClientJanitor;
+        // I will do it when... Idk
+        // template<HttpMethodConcept Method>
+        // static expected<HttpResponse<Method>, string> _Http1RawSend(HttpRequest<Method> request);
+
+        // template<HttpMethodConcept Method>
+        // static expected<HttpResponse<Method>, string> _Http1TlsSend(HttpRequest<Method> request);
+        //
+        // template<HttpMethodConcept Method>
+        // static expected<HttpResponse<Method>, string> _Http2TlsSend(HttpRequest<Method> request);
+        //
+        // template<HttpMethodConcept Method>
+        // static expected<HttpResponse<Method>, string> _Http3DlsSend(HttpRequest<Method> request);
+        // friend HttpClientJanitor;
     };
 }
 

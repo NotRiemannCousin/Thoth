@@ -55,7 +55,7 @@ set_target_properties(Thoth PROPERTIES
 add_executable(
         ThothExample
 
-        examples/main.cpp
+        examples/Basic1.cpp
 )
 
 target_link_libraries(

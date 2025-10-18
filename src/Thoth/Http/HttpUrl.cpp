@@ -269,6 +269,10 @@ std::optional<std::string> HttpUrl::TryDecode(std::string_view str) {
     return buffer;
 }
 
+bool HttpUrl::IsSecure() const {
+    return scheme == "https";
+}
+
 bool HttpUrl::operator==(const HttpUrl &) const = default;
 
 HttpUrl::HttpUrl() = default;

@@ -28,7 +28,7 @@ namespace Thoth::Http {
 
 
         if (!infoPtr) {
-            auto newSocketResult{ Hermes::RawTcpClient::Connect(*endpointOpt) };
+            auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ *endpointOpt, request.url.host }) };
             if (!newSocketResult)
                 return std::unexpected{ "Connection Failed" };
 
@@ -50,7 +50,7 @@ namespace Thoth::Http {
             request.body
         ) };
 
-        const auto sendRes{ infoPtr->socket.Send(requestStr) };
+        const auto [_, sendRes]{ infoPtr->socket.Send(requestStr) };
 
         if (!sendRes)
             return std::unexpected{ "Send Failed" };
@@ -95,7 +95,7 @@ namespace Thoth::Http {
         headers = *headersParseRes;
 
         if (auto contentSizeOpt{ headers.Get("content-length") }; contentSizeOpt) {
-            const auto temp{ (*contentSizeOpt).get() };// "3961"
+            const auto temp{ contentSizeOpt->get() };
             size_t contentSize;
 
             auto [_, ec] = std::from_chars(temp.data(), temp.data() + temp.size(), contentSize);
@@ -107,7 +107,34 @@ namespace Thoth::Http {
         } else {
             if (version == HttpVersion::HTTP1_0)
                 return std::unexpected{ "HTTP/1.0 needs content-length" };
-            // TODO: FUTURE: transfer-encoding
+
+            static string defaultValue{ "chunked" };
+            auto transferEncoding{ headers.Get("transfer-encoding")
+                    .value_or(std::ref(defaultValue)).get() };
+
+            if (transferEncoding == "chunked") {
+                string chunkLengthStr;
+                int chunkLength;
+                while (true) {
+                    chunkLengthStr = stream | Hermes::Utils::UntilMatch(string_view{ "\r\n" }) | rg::to<string>();
+                    auto [_, ec] {
+                        std::from_chars( chunkLengthStr.data(), chunkLengthStr.data() + chunkLengthStr.size(),
+                    chunkLength, 16)
+                    };
+
+                    if (ec != std::errc())
+                        return std::unexpected{ "Invalid response" };
+
+
+                    body.append_range(stream | vs::take(chunkLength));
+
+                    if (!rg::starts_with(stream, string_view{ "\r\n" }))
+                        return std::unexpected{ "Invalid response" };
+
+                    if (chunkLength == 0)
+                        break;
+                }
+            }
         }
 
         if (!stream.Error())

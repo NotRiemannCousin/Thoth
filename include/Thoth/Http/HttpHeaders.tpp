@@ -43,23 +43,16 @@ namespace Thoth::Http {
         HttpHeaders res;
 
         while (true) {
+            if (headers.begin() == headers.end())
+                break;
+
             auto headerRaw{ headers | Hermes::Utils::UntilMatch(delimiter) };
 
             auto headerKey{ headerRaw | vs::take_while(
-                [](const char c) { return c != ':'; }) | rg::to<string>() };
-
-            if (headerKey == "\r\n" && (headerRaw.begin() == headerRaw.end() || *headerRaw.begin() != ':'))
-                break;
-
-            if (*headerRaw.begin() != ':')
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+                    [](const char c) { return c != ':'; }) | rg::to<string>() };
             ++headerRaw.begin();
-
             auto headerVal{ headerRaw | vs::drop_while(
-                    [](const char c) { return c == ' ' || c == '\t'; }) | rg::to<string>() };
-            headerVal.pop_back(); // delimiter.size()
-            headerVal.pop_back();
-
+                    [](const char c) { return c == ' '; }) | rg::to<string>() };
 
             while (!headerKey.empty() && headerKey.back() == ' ')
                 headerKey.pop_back();
@@ -67,18 +60,13 @@ namespace Thoth::Http {
             while (!headerVal.empty() && headerVal.back() == ' ')
                 headerVal.pop_back();
 
-            if (headerKey.empty() || headerVal.empty())
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
 
-
-
-            if (!rg::all_of(headerKey, isCharAllowed))
+            if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, isCharAllowed))
                 return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
 
             rg::transform(headerKey, headerKey.begin(), toLower);
             res.Add(headerKey, headerVal);
         }
-
 
         return res;
     }

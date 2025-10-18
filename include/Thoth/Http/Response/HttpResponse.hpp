@@ -1,6 +1,5 @@
 #pragma once
 #include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
-#include <Thoth/Http/HttpClient.hpp>
 
 
 namespace Thoth::Http {

@@ -8,17 +8,10 @@
 namespace Http = Thoth::Http;
 
 int main() {
-    Thoth::Http::HttpRequest<Http::HttpGetMethod> request{
-        // *Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" }),
-        *Http::HttpUrl::FromUrl({ "http://neverssl.com" }),
-        {},
-        Http::HttpVersion::HTTP1_1,
-        Http::HttpHeaders{
-            { "Accept", "*/*" },
-            { "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0" },
-            { "Keep-Alive", "true" },
-            { "Accept-Encoding", "identity" }
-        },
+    Http::HttpRequest<Http::HttpGetMethod> request{
+        // *Http::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
+        *Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" }),
+        // It's a good practice to validate the Url outside
     };
 
     const auto response{ Http::HttpClient::Send(request) };
@@ -30,7 +23,7 @@ int main() {
             "body:\n"
             "{}",
             static_cast<int>(response->status), response->statusMessage, response->headers, response->body);
-    }else {
+    } else {
         std::print("{}", response.error());
 
         const int error{ WSAGetLastError() };

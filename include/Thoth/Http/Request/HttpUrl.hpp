@@ -40,6 +40,8 @@ namespace Thoth::Http {
         //! @return The string decoded if it succeeded, std::nullopt if it fails.
         static std::optional<string> TryDecode(string_view str);
 
+        //! @brief Check if the scheme is https.
+        bool IsSecure() const;
 
         bool operator==(const HttpUrl &) const;
 
