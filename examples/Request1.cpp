@@ -1,20 +1,16 @@
-# Thoth
-## An expressive, asynchronous C++26 web microframework
+#include <print>
+#include <Thoth/Json/Json.hpp>
 
-![](Thoth-logo.webp "Thoth, the Egyptian god of writing and wisdom")
-
-Thoth is a modern C++26 microframework for building both web servers and clients. Powered by the [Hermes](https://github.com/NotRiemannCousin/Hermes) library, Thoth is designed to harness the latest C++ features for creating robust, high-performance web applications.
-
-Inspired by the egyptian god of knowledge, magic and the moon, Thoth embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance. It heavily utilizes coroutines and functional programming concepts to offer a natural and expressive API for asynchronous tasks.
+#include <Thoth/Http/HttpClient.hpp>
 
 
-## Examples
-### Detailed Version
-```cpp
+namespace Http = Thoth::Http;
+namespace Json = Thoth::Json;
+
 std::expected<std::monostate, std::string> MakeRequest() {
-const Http::HttpRequest<Http::HttpGetMethod> request{
-*Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" })
-};
+    const Http::HttpRequest<Http::HttpGetMethod> request{
+        *Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" })
+    };
 
     const auto response{ Http::HttpClient::Send(request) };
 
@@ -46,9 +42,7 @@ const Http::HttpRequest<Http::HttpGetMethod> request{
 
     return {};
 }
-```
-### Simplified Version
-```cpp
+
 // Or if you are confident enough..
 // I's a good choice to call this function inside an try block
 std::expected<std::monostate, std::string> MakeRequestShortVersion() {
@@ -67,4 +61,17 @@ std::expected<std::monostate, std::string> MakeRequestShortVersion() {
     return {};
 }
 
-```
+
+int main() {
+
+    const auto res{ MakeRequest() };
+
+    if (!res) {
+        std::print("{}", res.error());
+
+        if (const int error{ WSAGetLastError() }; error != 0)
+            std::print("\nWSA error: {}", error);
+    }
+
+    return 0;
+}

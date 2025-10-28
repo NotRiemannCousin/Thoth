@@ -1,16 +1,12 @@
 #include <print>
-#include <Thoth/Http/Request/HttpRequest.hpp>
-#include <Thoth/Http/HttpMethods/GetHttpMethod.hpp>
-
 #include <Thoth/Http/HttpClient.hpp>
 
 
 namespace Http = Thoth::Http;
 
 int main() {
-    Http::HttpRequest<Http::HttpGetMethod> request{
-        // *Http::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
-        *Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" }),
+    const Http::HttpRequest<Http::HttpGetMethod> request{
+        *Http::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
         // It's a good practice to validate the Url outside
     };
 
@@ -26,12 +22,11 @@ int main() {
     } else {
         std::print("{}", response.error());
 
-        const int error{ WSAGetLastError() };
+        const int error{ WSAGetLastError() }; // ... Just in case
 
         if (error != 0)
             std::print("\n{}", error);
     }
-
 
     return 0;
 }

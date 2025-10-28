@@ -6,4 +6,9 @@ namespace Thoth::Http {
     HttpResponse<Method>::HttpResponse(HttpVersion version, HttpStatusCodeEnum status, string statusMessage,
             HttpHeaders headers, string body) : version{ version },  status{ status },
             statusMessage{ statusMessage },  headers{ headers }, body{ body } { }
+
+    template<HttpMethodConcept Method>
+    std::optional<Json::Json> HttpResponse<Method>::AsJson() const {
+        return Json::Json::Parse(body);
+    }
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
+#include <Thoth/Json/Json.hpp>
 
 
 namespace Thoth::Http {
@@ -13,12 +14,15 @@ namespace Thoth::Http {
 
         friend HttpClient;
 
+        std::optional<Json::Json> AsJson() const;
     private:
 
         HttpResponse(HttpVersion version, HttpStatusCodeEnum status,
-                string statusMessage, HttpHeaders headers, string body );
+                string statusMessage, HttpHeaders headers, string body);
     };
 }
+
+
 
 #include <Thoth/Http/Response/HttpResponse.tpp>
 

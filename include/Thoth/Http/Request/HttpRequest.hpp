@@ -1,8 +1,10 @@
 #pragma once
 #include <Hermes/Socket/ClientSocket.hpp>
-#include <Thoth/Http/Request/HttpUrl.hpp>
 
+#include <Thoth/Http/Request/HttpUrl.hpp>
 #include <Thoth/Http/HttpMethods/GetHttpMethod.hpp>
+
+#include <Thoth/Json/Json.hpp>
 
 namespace Thoth::Http {
 	enum class HttpVersion {
