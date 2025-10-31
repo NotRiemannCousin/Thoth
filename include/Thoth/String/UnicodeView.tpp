@@ -1,4 +1,5 @@
 #pragma once
+#include <bit>
 
 namespace Thoth::String {
     template<UnicodeCharConcept CharT>
