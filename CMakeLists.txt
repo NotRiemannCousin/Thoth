@@ -1,6 +1,30 @@
 cmake_minimum_required(VERSION 3.29.1)
 project(Thoth)
 
+
+add_compile_options(/favor:AMD64)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_compile_options(
+            /permissive-    # without MSVC madness
+            /O2             # Hard Optimization
+            /GL             # Link-time code generation
+            /arch:AVX2      # SIMD
+            /Oi             # Intrinsics
+            /Ot             # Speed
+            /GT             # Thread-safe static init
+            /Gw /Gy         # Delete unused
+            /Zc:inline      # inlining
+            /openmp:llvm    # OpenMP
+    )
+else()
+    add_link_options(
+            /LTCG           # Link-time optimization
+            /OPT:REF        # Delete unused
+            /OPT:ICF        # join equal functions
+    )
+endif()
+
 set(PROJECT_VERSION_NUMBER 0.2.0)
 set(PROJECT_VERSION_SUFFIX "alpha.1")
 
@@ -75,6 +99,8 @@ add_executable(ThothExampleJson1 examples/Json1.cpp)
 add_executable(ThothExampleEnv1 examples/Env1/Env.cpp)
 add_executable(ThothExampleEnv2 examples/Env2/Env.cpp)
 
+add_executable(VsNlohmann examples/VsNlohmann/main.cpp)
+
 
 target_link_libraries(ThothExampleRequest1 PUBLIC ThothHttp)
 target_link_libraries(ThothExampleRequest2 PUBLIC ThothHttp)
@@ -84,6 +110,7 @@ target_link_libraries(ThothExampleJson1 PUBLIC ThothJson)
 target_link_libraries(ThothExampleEnv1 PUBLIC ThothUtils)
 target_link_libraries(ThothExampleEnv2 PUBLIC ThothUtils)
 
+target_link_libraries(VsNlohmann PUBLIC ThothJson)
 
 #--------------------------------------------------------------------------------------------------------------
 #           Tests
