@@ -3,13 +3,13 @@
 namespace Thoth::Dsa {
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>::Cow(const Cow& other) {
-        _value = other.value;
+        _value = other._value;
         AsOwned();
     }
 
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::operator=(const Cow& other) {
-        _value = other.value;
+        _value = other._value;
         AsOwned();
         return *this;
     }
@@ -18,7 +18,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromRef(RefT ref) {
         Cow obj;
-        obj.value = ref;
+        obj._value = ref;
 
         return obj;
     }
@@ -33,7 +33,7 @@ namespace Thoth::Dsa {
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr bool Cow<RefT, OwnT>::IsRefType(const Cow& cow) {
-        return std::holds_alternative<RefT>(cow.value);
+        return std::holds_alternative<RefT>(cow._value);
     }
 
 
@@ -47,7 +47,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromOwned(const OwnT& own) {
         Cow obj;
-        obj.value = own;
+        obj._value = own;
 
         return obj;
     }
@@ -56,7 +56,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromOwned(OwnT &&own) {
         Cow obj;
-        obj.value = std::move(own);
+        obj._value = std::move(own);
 
         return obj;
     }
