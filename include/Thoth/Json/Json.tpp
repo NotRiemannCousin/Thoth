@@ -286,22 +286,6 @@ struct std::formatter<Thoth::Json::Json> {
         auto it{ ctx.out() };
         std::string tempOutBuffer;
 
-        namespace rg = std::ranges;
-        namespace vs = std::views;
-        using namespace Thoth::Json;
-
-        for (auto& val : json
-                | vs::values
-                | vs::filter(&Json::JsonVal::IsOfType<String>)
-                // | vs::transform(&Json::JsonVal::AsConstType<String>)
-                // | vs::filter(&String::IsRefType)) {
-                )
-                if (!val.As<String>().IsRef()) {
-                std::println("porra");
-
-                return it;
-            }
-
         Thoth::Json::detail::FormatJsonObj(json, pretty, std::string(indentLevel, ' '),
             0, it, tempOutBuffer);
 

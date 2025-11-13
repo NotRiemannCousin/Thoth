@@ -143,6 +143,7 @@ namespace Thoth::Http {
         std::lock_guard lock(janitor.poolMutex);
         janitor.connectionPool[*endpointOpt].push_back(std::move(infoPtr));
 
-        return HttpResponse<Method>(version, status, statusMessage, headers, body);
+        return HttpResponse<Method>{ version, status, std::move(statusMessage),
+            std::move(headers), std::move(body) };
     }
 }

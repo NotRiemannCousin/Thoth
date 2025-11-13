@@ -12,13 +12,13 @@ namespace Thoth::Http {
         HttpHeaders headers{};
         string body{};
 
-        friend HttpClient;
+        friend HttpClient; // who construct it
 
         std::optional<Json::Json> AsJson() const;
     private:
 
         HttpResponse(HttpVersion version, HttpStatusCodeEnum status,
-                string statusMessage, HttpHeaders headers, string body);
+                string&& statusMessage, HttpHeaders&& headers, string&& body);
     };
 }
 
