@@ -1,0 +1,128 @@
+Informal creation/dump benchmark. Results:
+
+         DEBUG
+
+Create
+Nlohmann-mean   : 0.82510s
+Thoth-mean      : 0.46141s
+
+Dump
+Nlohmann-mean   : 0.18366s
+Thoth-mean      : 0.20909s
+
+
+        RELEASE
+
+Create
+Nlohmann-mean   : 0.04447s
+Thoth-mean      : 0.02499s
+
+Dump
+Nlohmann-mean   : 0.03043s
+Thoth-mean      : 0.02066s
+
+
+-----------------  DEBUG  -----------------
+
+        Create
+
+nlohmann  : 0.79392s
+Thoth     : 0.45804s
+
+        Dump
+
+nlohmann  : 0.18037s
+Thoth     : 0.20500s
+
+
+
+
+        Create
+
+nlohmann  : 0.85155s
+Thoth     : 0.46943s
+
+        Dump
+
+nlohmann  : 0.18678s
+Thoth     : 0.21451s
+
+
+
+
+
+        Create
+
+nlohmann  : 0.82919s
+Thoth     : 0.46043s
+
+        Dump
+
+nlohmann  : 0.18075s
+Thoth     : 0.20536s
+
+
+
+
+
+        Create
+
+nlohmann  : 0.82572s
+Thoth     : 0.45774s
+
+        Dump
+
+nlohmann  : 0.18674s
+Thoth     : 0.21148s
+
+
+-----------------  RELEASE  -----------------
+
+        Create
+
+nlohmann  : 0.04493s
+Thoth     : 0.02403s
+
+        Dump
+
+nlohmann  : 0.02994s
+Thoth     : 0.01990s
+
+
+
+
+        Create
+
+nlohmann  : 0.04337s
+Thoth     : 0.02346s
+
+        Dump
+
+nlohmann  : 0.03098s
+Thoth     : 0.02070s
+
+
+
+
+        Create
+
+nlohmann  : 0.04514s
+Thoth     : 0.02815s
+
+        Dump
+
+nlohmann  : 0.03043s
+Thoth     : 0.02124s
+
+
+
+
+        Create
+
+nlohmann  : 0.04442s
+Thoth     : 0.02432s
+
+        Dump
+
+nlohmann  : 0.03035s
+Thoth     : 0.02079s

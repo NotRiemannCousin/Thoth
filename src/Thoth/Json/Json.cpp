@@ -1,74 +1,67 @@
-//
-// Created by MARCE on 18/10/2025.
-//
-
-#include <algorithm>
-#include <expected>
 #include <functional>
+#include <algorithm>
+#include <bitset>
+#include <expected>
 #include <ranges>
+
 #include <Thoth/Json/Json.hpp>
-
-#include <Thoth/Http/Request/HttpUrl.hpp>
-
 #include <Thoth/String/UnicodeView.hpp>
 
 using namespace Thoth::Json;
 
 
 #pragma region JsonVal
-
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(const Json &child) : value{ std::make_unique<Json>(child) } { }
-
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(Json &&child)  : value{ std::make_unique<Json>(child) } { }
-
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(Value &&newValue) : value{std::move(newValue)} { }
-
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(const Value& newValue) {
-    auto res { std::visit([]<class T>(this auto const& self, const T& value){
-        using Type = std::remove_cvref_t<T>;
-
-        if constexpr (std::same_as<Type, std::unique_ptr<Json>>)
-            return Value{ std::move(std::make_unique<Json>(*value)) };
+static Json::JsonVal::Value I_CloneValue(const Json::JsonVal::Value& v) {
+    return std::visit([]<typename Type>(Type const& x) -> Json::JsonVal::Value {
+        using T = std::remove_cvref_t<Type>;
+        if constexpr (std::same_as<T, std::unique_ptr<Json>>)
+            return Json::JsonVal::Value{ std::make_unique<Json>(*x) };
         else
-            return Value{ value };
-
-    }, newValue) };
-    value = std::move(res);
+            return Json::JsonVal::Value{ x };
+    }, v);
 }
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(JsonVal &&other) noexcept {
-    value = std::move(other.value);
-}
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::JsonVal(const JsonVal& other) : JsonVal(other.value) { }
+Json::JsonVal::JsonVal(Json&& child)      : value{ std::make_unique<Json>(std::move(child)) } { }
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal& Json::JsonVal::operator=(JsonVal && other) noexcept {
-    value = std::move(other.value);
-    return *this;
-}
-
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal& Json::JsonVal::operator=(const JsonVal &other) {
-    auto res { std::visit([]<class T>(this auto const& self, const T& value){
-        using Type = std::remove_cvref_t<T>;
-
-        if constexpr (std::same_as<Type, std::unique_ptr<Json>>)
-            return Value{ std::move(std::make_unique<Json>(*value)) };
-        else
-            return Value{ value };
-
-    }, other.value) };
-    value = std::move(res);
+Json::JsonVal::JsonVal(const Json& child) : value{ std::make_unique<Json>(child) } { }
 
 
-    return *this;
-}
+Json::JsonVal::JsonVal(Value&& newValue) noexcept : value{std::move(newValue) } { }
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::operator Value&() {
-    return value;
-}
+Json::JsonVal::JsonVal(const Value& newValue)     : value{I_CloneValue(newValue) } { }
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::operator const Value&() const {
-    return value;
+Json::JsonVal::JsonVal(JsonVal&& other) noexcept  : value{std::move(other.value) } { }
+
+Json::JsonVal::JsonVal(const JsonVal& other)      : value{I_CloneValue(other.value) } { }
+
+
+Json::JsonVal& Json::JsonVal::operator=(Json&& child) { value = std::make_unique<Json>(std::move(child)); return *this; } // Yes, 121 line width
+
+Json::JsonVal& Json::JsonVal::operator=(const Json& child) { value = std::make_unique<Json>(child);       return *this; }
+
+
+Json::JsonVal& Json::JsonVal::operator=(Value&& newValue) noexcept { value = std::move(newValue);       return *this; }
+
+Json::JsonVal& Json::JsonVal::operator=(const Value& newValue)     { value = I_CloneValue(newValue);    return *this; }
+
+Json::JsonVal& Json::JsonVal::operator=(JsonVal&& other) noexcept  { value = std::move(other.value);    return *this; }
+
+Json::JsonVal& Json::JsonVal::operator=(const JsonVal& other)      { value = I_CloneValue(other.value); return *this; }
+
+
+Json::JsonVal::operator Value&() { return value; }
+
+Json::JsonVal::operator const Value&() const { return value; }
+
+
+bool Json::JsonVal::operator==(const JsonVal& other) const {
+    return std::visit([&]<class T>(const T& val){
+            if constexpr (std::same_as<T, Object>)
+                return std::holds_alternative<T>(other.value)&&  *std::get<T>(other.value) == *val;
+            else
+                return std::holds_alternative<T>(other.value)&&  std::get<T>(other.value) == val;
+        }, value);
 }
 
 #pragma endregion
@@ -76,68 +69,88 @@ CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::JsonVal::operator const Value&() const 
 
 #pragma region Json
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::Json(MapType&& initAs) : pairs{ std::move(initAs) } { }
 
-CONSTEXPR_WHEN_MSVC_STARTS_WORKING Json::Json(const std::initializer_list<JsonPair> &init) : pairs(init) { }
+Json::Json(const Json &other) {
+    if (other.bufferView.data() == other.buffer.data())
+        bufferView = buffer = other.buffer;
+    else
+        bufferView = other.bufferView;
 
-constexpr bool IsWhitespace(const char c) {
-    return c == ' '
-            || c == '\t'
-            || c == '\n'
-            || c == '\r';
+    pairs = other.pairs;
+
+    namespace vs = std::views;
+    for (auto& val : pairs
+            | vs::values
+            | vs::filter(&JsonVal::IsOfType<String>)
+            | vs::transform(&JsonVal::AsType<String>)
+            | vs::filter(&String::IsRefType))
+        val.SetRef({ bufferView.data(), val.AsRef().size() });
 }
 
-constexpr bool IsNumber(const char c) {
-    return (c >= '0' && c <= '9')
-            || c == '.'
-            || c == '-'
-            || c == 'e'
-            || c == 'E';
-};
+Json& Json::operator=(const Json &other) {
+    if (other.bufferView.data() == other.buffer.data())
+        bufferView = buffer = other.buffer;
+    else
+        bufferView = other.bufferView;
 
+    pairs = other.pairs;
 
-std::optional<Json> Json::Parse(std::string_view text) {
-    if (!Thoth::String::Utf8View::IsValid(bit_cast<std::u8string_view>(text)))
+    namespace vs = std::views;
+    for (auto& val : pairs
+            | vs::values
+            | vs::filter(&JsonVal::IsOfType<String>)
+            | vs::transform(&JsonVal::AsType<String>)
+            | vs::filter(&String::IsRefType))
+        val.SetRef({ bufferView.data(), val.AsRef().size() });
+
+    return *this;
+}
+
+Json::Json(MapType&& initAs) : pairs{ std::move(initAs) } { }
+
+Json::Json(const std::initializer_list<JsonPair>& init) : pairs(init) { }
+
+#define ADVANCE_IF(predicate) do {                                         \
+        const char* ptr = input.data();                                    \
+        const char* end = ptr + input.size();                              \
+        while (ptr != end && (predicate)) ++ptr; /* SIMD someday */        \
+            if (ptr == end) [[unlikely]] return false;                     \
+            input.remove_prefix(static_cast<size_t>(ptr - input.data()));  \
+    } while (0)
+
+#define ADVANCE_IF_FUNC(func, predicate) do {                              \
+        const char* ptr = input.data();                                    \
+        const char* end = ptr + input.size();                              \
+        while (ptr != end && func(predicate)) ++ptr; /* SIMD someday */        \
+            if (ptr == end) [[unlikely]] return false;                     \
+            input.remove_prefix(static_cast<size_t>(ptr - input.data()));  \
+    } while (0)
+
+#define ADVANCE_SPACES() ADVANCE_IF(*ptr == ' ' || *ptr == '\t' || *ptr == '\n' || *ptr == '\r')
+
+std::optional<Json> Json::Parse(std::string_view text, bool copyData) {
+    Json json;
+
+    if (copyData)
+        json.bufferView = json.buffer = text;
+    else
+        json.bufferView = text;
+
+    std::string_view input{ json.bufferView };
+
+    if (!ParseUnchecked(input, json))
         return std::nullopt;
 
-    auto it{ text.cbegin() };
 
-    return ParseUnchecked(it, text.cend()).
-            and_then([&](const auto& json) -> std::optional<Json> {
-                return std::all_of(it, text.end(), IsWhitespace)
-                        ? std::optional{ json }
-                        :  std::nullopt;
-            });
+#define return break; // I hate to do it but performance matters
+    ADVANCE_SPACES();
+#undef return
+
+    if (!input.empty())
+        return json;
+
+    return std::nullopt;
 }
-
-
-
-#define CHECK_NULLOPT(EXTRA)     \
-    if (it == itEnd || (EXTRA))  \
-        return std::nullopt;     \
-
-std::optional<Json> Json::ParseUnchecked(
-    std::string_view::const_iterator &it,
-    const std::string_view::const_iterator& itEnd
-    ) {
-
-    char last{};
-    const auto ClosingKey = [&](auto c) {
-        if (last != '\\' && c == '"')
-            return false;
-
-        last = c;
-        return true;
-    };
-
-    const auto MatchIfNot = [&](auto pred) {
-        return std::find_if_not(it, itEnd, pred);
-    };
-
-
-     it = MatchIfNot(IsWhitespace);
-    CHECK_NULLOPT(*it != '{');
-    Json json;
 
 #pragma region I hate to love c preprocessor
 
@@ -148,146 +161,235 @@ std::optional<Json> Json::ParseUnchecked(
 #define CASE_OPEN_NULLABLE case 'n':
 #define CASE_OPEN_ARRAY    case '[':
 
+#pragma endregion
 
-    std::function<std::optional<JsonVal>()> ReadString, ReadNumber, ReadObject, ReadBoolean,
-            ReadNullable, ReadArray;
 
-    ReadString   = [&]() -> std::optional<JsonVal> {
-        const auto openValStr{ it };
-        CHECK_NULLOPT(*it++ != '"');
+#pragma region Read functions
 
-        const auto closeValStr{ it = MatchIfNot(ClosingKey) };
-        CHECK_NULLOPT(*it++ != '"');
+static bool I_ReadString(std::string_view& input, auto& val) {
+    if (*input.data() != '"')
+        return false;
+    input.remove_prefix(1);
 
-        return std::string{ openValStr + 1, closeValStr };
-    };
-    ReadNumber   = [&]() -> std::optional<JsonVal> {
-        const auto openValNumber{ &*it };
+    const auto start{ input.cbegin() };
 
-        it = MatchIfNot(IsNumber);
-        const auto closeValNumber{ &*it };
-        CHECK_NULLOPT(false);
 
-        long double number{};
+    size_t iterations{ 1 };
+    for (;; iterations++) {
+        ADVANCE_IF(*ptr != '\"' && *ptr != '\\');
 
-        auto [ptr, err] {
-            std::from_chars(
-                    &*openValNumber,
-                    &*closeValNumber,
-                    number
-                )};
-        if (err != std::errc{} || ptr != closeValNumber)
-            return std::nullopt;
+        if (input.empty()) [[unlikely]]
+            return false;
 
-        return number;
-    };
-    ReadObject   = [&]() -> std::optional<JsonVal> {
-        const auto res{ ParseUnchecked(it, itEnd) };
-        if (!res)
-            return std::nullopt;
+        if (*input.data() == '"')
+            break;
 
-        CHECK_NULLOPT(false);
-        return JsonVal{ *res };
-    };
-    ReadBoolean  = [&]() -> std::optional<JsonVal> {
-        auto view{ std::string_view{ it, itEnd } };
-        bool val{};
+        if (input.size() <= 2) // ignoring \*
+            return false;
+        input.remove_prefix(2);
+        // It doesn't matter which char is, discard the '\\' and what goes after it. The check will performed after.
+    }
+    std::string_view strRef{ &*start, &*input.begin() };
+    input.remove_prefix(1);
 
-        if (std::ranges::starts_with(view, std::string_view{ "true" }))
-            it += 4, val = true;
-        else if (std::ranges::starts_with(view, std::string_view{ "false" }))
-            it += 5, val = false;
-        else
-            return std::nullopt;
+    // Well, it doesn't make sense to check for all chars because just strings can have UTF-8 chars.
+    // Moreover, now the cache will not blame on me again.
+    if (std::ranges::any_of(strRef, [](const auto c){ return c & 0x80; }) &&
+        !Thoth::String::Utf8View::IsValid(std::bit_cast<std::u8string_view>(strRef)))
+        return false;
 
-        CHECK_NULLOPT(false);
-        return JsonVal::Value{ val };
-    };
-    ReadNullable = [&]() -> std::optional<JsonVal> {
-        const auto view{ std::string_view{ it, itEnd } };
-        if (std::ranges::starts_with(view, std::string_view{ "null" }))
-            it += 4;
-        else
-            return std::nullopt;
+    if (iterations == 1) {
+        val = String::FromRef(strRef);
+        return true;
+    }
 
-        CHECK_NULLOPT(false);
-        return NullV;
-    };
-    ReadArray    = [&]() -> std::optional<JsonVal> {
-        Array array{};
+    std::string str;
+    str.reserve(strRef.size());
 
-        static_assert(std::same_as<decltype(*it), const char&>);
-        while (*it != ']') {
-            ++it;
+    while (true) {
+        const size_t pos{ strRef.find('\\') };
 
-            it = MatchIfNot(IsWhitespace);
-            CHECK_NULLOPT(false);
+        if (pos == std::string::npos)
+            break;
 
-            std::optional<JsonVal> value;
-            switch (*it) {
-                CASE_OPEN_STRING   value = ReadString();   break;
-                CASE_OPEN_NUMBER   value = ReadNumber();   break;
-                CASE_OPEN_OBJECT   value = ReadObject();   break;
-                CASE_OPEN_BOOLEAN  value = ReadBoolean();  break;
-                CASE_OPEN_NULLABLE value = ReadNullable(); break;
-                CASE_OPEN_ARRAY    value = ReadArray();    break;
-                default: return std::nullopt;
-            }
-            if (!value)
-                return std::nullopt;
+        str.append_range(std::string_view{ strRef.data(), pos });
+        strRef.remove_prefix(pos);
 
-            array.emplace_back(*value);
 
-            it = MatchIfNot(IsWhitespace);
-            CHECK_NULLOPT(*it != ',' && *it != ']');
+        switch (*strRef.data()) {
+            case 'u' : break; // To implement, dont touch
+            case '\\':
+            case '"': str.push_back(*strRef.data());  break;
+            case 'n': str.push_back('\n');            break;
+            case 'r': str.push_back('\r');            break;
+            case 't': str.push_back('\t');            break;
+
+            default: return false;
         }
+    }
+    str.append_range(strRef);
 
-        ++it;
-        CHECK_NULLOPT(false);
-        return array;
-    };
+    val = String::FromOwned(std::move(str));
+    return true;
+}
+static bool I_ReadNumber(std::string_view& input, auto& val) {
+    const auto openValNumber{ input.data() };
+    constexpr auto validChars = []{
+        std::bitset<256> res{};
+
+        for (const char c :std::string_view{ "01234567899.-eE" })
+            res.set(c);
+
+        return res;
+    }();
+
+    ADVANCE_IF(validChars[*ptr]);
+
+
+    const auto closeValNumber{ input.data() };
+
+    long double number{};
+
+    auto [ptr, err] {
+        std::from_chars(
+        & *openValNumber,
+        & *closeValNumber,
+                number
+            )};
+    if (err != std::errc{} || ptr != closeValNumber)
+        return false;
+
+    val = number;
+    return true;
+};
+static bool I_ReadObject(std::string_view& input, auto& val) {
+    Json newJson;
+    if (!Json::ParseUnchecked(input, newJson))
+        return false;
+
+    if (input.empty())
+        return false;
+    val = std::move(newJson);
+    return true;
+}
+static bool I_ReadBool(std::string_view& input, auto& val) {
+    if (std::ranges::starts_with(input, std::string_view{ "true" }))
+        input.remove_prefix(4), val = true;
+    else if (std::ranges::starts_with(input, std::string_view{ "false" }))
+        input.remove_prefix(5), val = false;
+    else
+        return false;
+    return true;
+};
+static bool I_ReadNull(std::string_view& input, auto& val) {
+    if (std::ranges::starts_with(input, std::string_view{ "null" }))
+        input.remove_prefix(4);
+    else
+        return false;
+
+    val = NullV;
+    return true;
+};
+static bool I_ReadArray(std::string_view& input, auto& val) {
+    if (*input.data() != '[')
+        return false;
+
+    Array array{};
+
+    while (*input.data() != ']') {
+        input.remove_prefix(1);
+        ADVANCE_SPACES();
+
+        array.emplace_back(NullV);
+
+        bool success{};
+        switch (*input.data()) {
+            CASE_OPEN_STRING   success = I_ReadString(input, array.back()); break;
+            CASE_OPEN_NUMBER   success = I_ReadNumber(input, array.back()); break;
+            CASE_OPEN_OBJECT   success = I_ReadObject(input, array.back()); break;
+            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, array.back()); break;
+            CASE_OPEN_NULLABLE success = I_ReadNull(  input, array.back()); break;
+            CASE_OPEN_ARRAY    success = I_ReadArray( input, array.back()); break;
+            default: return false;
+        }
+        if (!success)
+            return false;
+
+        ADVANCE_SPACES();
+
+        if(*input.data() != ',' &&  *input.data() != ']')
+            return false;
+    }
+    input.remove_prefix(1);
+
+    val = std::move(array);
+    return true;
+}
 
 #pragma endregion
 
-    while (*it != '}') {
-        ++it;
 
-        const auto openKey{ it = MatchIfNot(IsWhitespace) };
-        CHECK_NULLOPT(*it++ != '"');
-        const auto closeKey{ it = MatchIfNot(ClosingKey) };
-        CHECK_NULLOPT(*it++ != '"');
-        const std::string_view key{ openKey + 1, closeKey };
+bool Json::ParseUnchecked(std::string_view& input, Json& json) {
 
-        it = MatchIfNot(IsWhitespace);
-        CHECK_NULLOPT(*it++ != ':');
+    ADVANCE_SPACES();
 
-        it = MatchIfNot(IsWhitespace);
-        CHECK_NULLOPT(false);
+    if (*input.data() != '{')
+        return false;
 
-        std::optional<JsonVal> value;
-        switch (*it) {
-            CASE_OPEN_STRING   value = ReadString();   break;
-            CASE_OPEN_NUMBER   value = ReadNumber();   break;
-            CASE_OPEN_OBJECT   value = ReadObject();   break;
-            CASE_OPEN_BOOLEAN  value = ReadBoolean();  break;
-            CASE_OPEN_NULLABLE value = ReadNullable(); break;
-            CASE_OPEN_ARRAY    value = ReadArray();    break;
-            default: return std::nullopt;
+    while (*input.data() != '}') {
+        input.remove_prefix(1);
+
+        ADVANCE_SPACES();
+
+        String key;
+        if (!I_ReadString(input, key))
+            return false;
+
+        ADVANCE_SPACES();
+
+        if (*input.data() != ':')
+            return false;
+        input.remove_prefix(1);
+
+        ADVANCE_SPACES();
+
+        auto [newItem, _]{ json.pairs.try_emplace(key.AsOwned(), NullV ) };
+
+        bool success{};
+        switch (*input.data()) {
+            CASE_OPEN_STRING   success = I_ReadString(input, newItem->second); break;
+            CASE_OPEN_NUMBER   success = I_ReadNumber(input, newItem->second); break;
+            CASE_OPEN_OBJECT   success = I_ReadObject(input, newItem->second); break;
+            CASE_OPEN_NULLABLE success = I_ReadNull(  input, newItem->second); break;
+            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, newItem->second); break;
+            CASE_OPEN_ARRAY    success = I_ReadArray( input, newItem->second); break;
+            default: return false;
         }
-        if (!value)
-            return std::nullopt;
+        if (!success)
+            return false;
 
-        json.pairs.emplace(key, *value);
+        ADVANCE_SPACES();
 
-        it = MatchIfNot(IsWhitespace);
-        CHECK_NULLOPT(*it != ',' && *it != '}');
+        if(*input.data() != ',' && *input.data() != '}')
+            return false;
     }
+    input.remove_prefix(1);
 
-    ++it;
-    return json;
+
+    return true;
 }
 
-#undef CHECK_NULLOPT
+
+#undef ADVANCE_IF
+#undef ADVANCE_IF_FUNC
+#undef ADVANCE_SPACES
+
+#undef CASE_OPEN_STRING
+#undef CASE_OPEN_NUMBER
+#undef CASE_OPEN_OBJECT
+#undef CASE_OPEN_BOOLEAN
+#undef CASE_OPEN_NULLABLE
+#undef CASE_OPEN_ARRAY
 
 bool Json::Exists(JsonKeyRef key) const {
     return pairs.contains(key);
@@ -300,7 +402,7 @@ bool Json::Exists(JsonPairRef p) const {
 bool Json::Exists(JsonKeyRef key, JsonValRef val) const {
     const auto it{ pairs.find(key) };
 
-    return it != pairs.end() && it->second == val;
+    return it != pairs.end()&& it->second == val;
 }
 
 void Json::Set(JsonPairRef p) {
@@ -308,9 +410,7 @@ void Json::Set(JsonPairRef p) {
 }
 
 void Json::Set(JsonKeyRef key, JsonValRef val) {
-    if (!Exists(key)) return;
-
-    pairs.emplace(key, val);
+    pairs.try_emplace(key, val);
 }
 
 bool Json::Remove(JsonKeyRef key) {
@@ -323,12 +423,12 @@ bool Json::SetIfNull(JsonPairRef p) {
 }
 
 bool Json::SetIfNull(JsonKeyRef key, JsonValRef val) {
-    auto [_, tookPlace]{ pairs.emplace(key, val) };
+    auto [_, tookPlace]{ pairs.try_emplace(key, val) };
 
     return tookPlace;
 }
 
-std::optional<std::reference_wrapper<Json::JsonVal>> Json::Get(JsonKeyRef key) {
+Json::OptRefValWrapper Json::Get(JsonKeyRef key) {
     const auto it{ pairs.find(key) };
 
     if (it == pairs.end())
@@ -336,7 +436,7 @@ std::optional<std::reference_wrapper<Json::JsonVal>> Json::Get(JsonKeyRef key) {
     return it->second;
 }
 
-std::optional<std::reference_wrapper<const Json::JsonVal>> Json::Get(JsonKeyRef key) const {
+Json::OptCRefValWrapper Json::Get(JsonKeyRef key) const {
     const auto it{ pairs.find(key) };
 
     if (it == pairs.end())
@@ -344,20 +444,8 @@ std::optional<std::reference_wrapper<const Json::JsonVal>> Json::Get(JsonKeyRef 
     return it->second;
 }
 
-std::expected<std::reference_wrapper<Json::JsonVal>, Null> Json::GetOrNull(JsonKeyRef key) {
-    const auto it{ pairs.find(key) };
-
-    if (it == pairs.end())
-        return std::unexpected{ NullV };
-    return it->second;
-}
-
-std::expected<std::reference_wrapper<const Json::JsonVal>, Null> Json::GetOrNull(JsonKeyRef key) const {
-    const auto it{ pairs.find(key) };
-
-    if (it == pairs.end())
-        return std::unexpected{ NullV };
-    return it->second;
+Json::CRefValWrapperOrNull Json::GetOrNull(JsonKeyRef key) const {
+    return Get(key).value_or(NullJ);
 }
 
 void Json::Clear() {
@@ -373,7 +461,7 @@ bool Json::Empty() const {
 }
 
 Json::JsonVal& Json::operator[](JsonKeyRef key) {
-    const auto [it, _]{ pairs.emplace(key, NullV) };
+    const auto [it, _]{ pairs.try_emplace(key, NullV) };
 
     return it->second;
 }
@@ -381,6 +469,10 @@ Json::JsonVal& Json::operator[](JsonKeyRef key) {
 const Json::JsonVal& Json::operator[](JsonKeyRef key) const {
     const auto it{ pairs.find(key) };
     return it != pairs.end() ? it->second : NullJ;
+}
+
+bool Json::operator==(const Json& other) const {
+    return pairs == other.pairs;
 }
 
 #pragma endregion
