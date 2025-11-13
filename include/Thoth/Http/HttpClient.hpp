@@ -12,10 +12,10 @@ namespace Thoth::Http {
     struct HttpResponse;
 
     struct HttpSocket {
-        // TODO: FUTURE
-        // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawTlsClient, Hermes::RawDtlsClient>;
-        // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawTlsClient>;
+        // TODO: FUTURE: Implement HTTP2 and Quic
+        // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawDtlsClient>;
         Hermes::RawTlsClient socket;
+        HttpVersion version;
 
         std::chrono::steady_clock::time_point lastUsed;
     };
