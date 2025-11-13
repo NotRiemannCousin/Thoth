@@ -146,7 +146,7 @@ std::optional<Json> Json::Parse(std::string_view text, bool copyData) {
     ADVANCE_SPACES();
 #undef return
 
-    if (!input.empty())
+    if (input.empty())
         return json;
 
     return std::nullopt;
@@ -213,11 +213,15 @@ static bool I_ReadString(std::string_view& input, auto& val) {
             break;
 
         str.append_range(std::string_view{ strRef.data(), pos });
-        strRef.remove_prefix(pos);
+        strRef.remove_prefix(pos + 1);
 
 
         switch (*strRef.data()) {
-            case 'u' : break; // To implement, dont touch
+            case 'u' :
+                // if (strRef.size() < 3)
+                //     return false;
+
+                break;
             case '\\':
             case '"': str.push_back(*strRef.data());  break;
             case 'n': str.push_back('\n');            break;
