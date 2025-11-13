@@ -1,10 +1,13 @@
 #pragma once
+#include <intrin.h>
 #include <bit>
 
 namespace Thoth::String {
     template<UnicodeCharConcept CharT>
-    UnicodeView<CharT>::Iterator::Iterator(StringViewType::const_iterator it, StringViewType::const_iterator end)
-        : _it{ it }, _end{ end } {
+    constexpr UnicodeView<CharT>::Iterator::Iterator(
+            const typename StringViewType::const_iterator it,
+            const typename StringViewType::const_iterator end
+        ) : _it{ it }, _end{ end } {
         if (_it == _end)
             return;
 
@@ -57,23 +60,20 @@ namespace Thoth::String {
             error_with_count: _accInvalid = count;
     }
 
-
     template<UnicodeCharConcept CharT>
-    bool UnicodeView<CharT>::Iterator::operator==(Iterator other) const {
+    constexpr bool UnicodeView<CharT>::Iterator::operator==(Iterator other) const {
         return _it == other._it && _accInvalid == other._accInvalid;
     }
 
-
     template<UnicodeCharConcept CharT>
-    typename UnicodeView<CharT>::Iterator::value_type UnicodeView<CharT>::Iterator::operator*() const {
+    constexpr UnicodeView<CharT>::Iterator::value_type UnicodeView<CharT>::Iterator::operator*() const {
         if (_accInvalid)
             return UnknownChar;
         return _curr;
     }
 
-
     template<UnicodeCharConcept CharT>
-    typename UnicodeView<CharT>::Iterator& UnicodeView<CharT>::Iterator::operator++() {
+    constexpr UnicodeView<CharT>::Iterator& UnicodeView<CharT>::Iterator::operator++() {
         if (_accInvalid) {
             --_accInvalid;
             return *this;
@@ -110,6 +110,7 @@ namespace Thoth::String {
 
             _curr = firstOct & (0xFF >> octCount); // cropping the 1's
 
+            __assume(octCount < 4); // time is passing MSVC, where is `assume` attribute? putting `__` is weird
 
             for (int i{ 1 }; i < octCount; i++) {
                 if (_it == _end || *_it >> 6 != 0b10) //* check continuation sequence
@@ -131,7 +132,7 @@ namespace Thoth::String {
     }
 
     template<UnicodeCharConcept CharT>
-    typename UnicodeView<CharT>::Iterator UnicodeView<CharT>::Iterator::operator++(int) {
+    constexpr UnicodeView<CharT>::Iterator UnicodeView<CharT>::Iterator::operator++(int) {
         auto old{ *this };
         ++*this;
 
@@ -139,8 +140,8 @@ namespace Thoth::String {
     }
 
     template<UnicodeCharConcept CharT>
-    bool UnicodeView<CharT>::IsValid(StringViewType str) {
-        for (const auto rune : UnicodeView{ str })
+    constexpr bool UnicodeView<CharT>::IsValid(StringViewType str) {
+        for (const auto& rune : UnicodeView{ str })
             if (rune == UnknownChar)
                 return false;
         return true;
@@ -148,7 +149,7 @@ namespace Thoth::String {
 
     template<UnicodeCharConcept CharT>
     template<UnicodeCharConcept NewCharT>
-    std::basic_string<NewCharT> UnicodeView<CharT>::ConvertTo(StringViewType str) {
+    constexpr std::basic_string<NewCharT> UnicodeView<CharT>::ConvertTo(StringViewType str) {
         return {};
     }
 }

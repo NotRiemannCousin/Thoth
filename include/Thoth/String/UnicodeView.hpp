@@ -11,7 +11,7 @@ namespace Thoth::String {
     struct UnicodeView {
         using  StringViewType = std::basic_string_view<CharT>;
 
-        explicit UnicodeView(StringViewType str) : _ref{ str } { }
+        constexpr explicit UnicodeView(StringViewType str) : _ref{ str } { }
 
 
         struct Iterator {
@@ -19,13 +19,13 @@ namespace Thoth::String {
             using value_type = Rune;
             using difference_type = std::ptrdiff_t;
 
-            Iterator() = default;
-            explicit Iterator(StringViewType::const_iterator it, StringViewType::const_iterator end);
+            constexpr Iterator() = default;
+            constexpr explicit Iterator(StringViewType::const_iterator it, StringViewType::const_iterator end);
 
-            [[nodiscard]] value_type operator*() const;
-            [[nodiscard]] bool operator==(Iterator) const;
-            Iterator& operator++();
-            Iterator operator++(int);
+            [[nodiscard]] constexpr value_type operator*() const;
+            [[nodiscard]] constexpr bool operator==(Iterator) const;
+            constexpr Iterator& operator++();
+            constexpr Iterator operator++(int);
 
         private:
             StringViewType::const_iterator _it{};
@@ -34,14 +34,14 @@ namespace Thoth::String {
             value_type _curr{};
         };
 
-        [[nodiscard]] Iterator begin() noexcept{   return Iterator{ _ref.begin(), _ref.end() }; }
-        [[nodiscard]] Iterator end() noexcept{     return Iterator{ _ref.end(), _ref.end() }; }
-        [[nodiscard]] Iterator cbegin() const noexcept{  return Iterator{ _ref.begin(), _ref.end() }; }
-        [[nodiscard]] Iterator cend() const noexcept{    return Iterator{ _ref.end(), _ref.end() }; }
+        [[nodiscard]] constexpr Iterator begin() noexcept{         return Iterator{ _ref.begin(), _ref.end() }; }
+        [[nodiscard]] constexpr Iterator end() noexcept{           return Iterator{ _ref.end(), _ref.end() }; }
+        [[nodiscard]] constexpr Iterator cbegin() const noexcept{  return Iterator{ _ref.begin(), _ref.end() }; }
+        [[nodiscard]] constexpr Iterator cend() const noexcept{    return Iterator{ _ref.end(), _ref.end() }; }
 
-        [[nodiscard]] static bool IsValid(StringViewType str);
+        [[nodiscard]] static constexpr bool IsValid(StringViewType str);
         template<UnicodeCharConcept NewCharT>
-        static std::basic_string<NewCharT> ConvertTo(StringViewType str);
+        constexpr static std::basic_string<NewCharT> ConvertTo(StringViewType str);
     private:
         StringViewType _ref{};
     };
