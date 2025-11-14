@@ -4,8 +4,10 @@
 
 
 namespace Thoth::Http {
-    template<HttpMethodConcept Method>
+    template<HttpMethodConcept Method = HttpGetMethod>
     struct HttpResponse {
+        using MethodType = Method;
+
         HttpVersion version{};
         HttpStatusCodeEnum status{};
         string statusMessage{};
@@ -14,12 +16,15 @@ namespace Thoth::Http {
 
         friend HttpClient; // who construct it
 
-        std::optional<Json::Json> AsJson() const;
+        [[nodiscard]] std::optional<Json::Json> AsJson() const;
     private:
 
         HttpResponse(HttpVersion version, HttpStatusCodeEnum status,
                 string&& statusMessage, HttpHeaders&& headers, string&& body);
     };
+
+    using GetResponse  = HttpResponse<>;
+    using PostResponse = HttpResponse<HttpPostMethod>;
 }
 
 

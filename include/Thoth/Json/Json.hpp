@@ -8,7 +8,6 @@
 #include <vector>
 #include <ranges>
 
-#include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Thoth/Dsa/LinearMap.hpp>
 #include <Thoth/Dsa/Cow.hpp>
 

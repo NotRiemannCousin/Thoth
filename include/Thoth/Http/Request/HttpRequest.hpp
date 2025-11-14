@@ -3,6 +3,7 @@
 
 #include <Thoth/Http/Request/HttpUrl.hpp>
 #include <Thoth/Http/HttpMethods/GetHttpMethod.hpp>
+#include <Thoth/Http/HttpMethods/PostHttpMethod.hpp>
 
 namespace Thoth::Http {
 	enum class HttpVersion {
@@ -14,19 +15,22 @@ namespace Thoth::Http {
 
 	std::string_view HttpVersionToString(HttpVersion version);
 
-	template<HttpMethodConcept Method>
+	template<HttpMethodConcept Method = HttpGetMethod>
 	struct HttpRequest {
+		using MethodType = Method;
+
 		HttpUrl url;
 		string body{};
 		HttpVersion version{ HttpVersion::HTTP1_1 };
 		HttpHeaders headers{ HttpHeaders::DefaultHeaders() };
 
-		template<class T>
+		template<class T = string_view>
 			requires requires (T t) { { std::format("{}", t) }; }
-		static std::optional<HttpRequest> FromUrl(string_view url, T&& body);
+		static std::optional<HttpRequest> FromUrl(string_view url, T&& body = {});
 	};
 
-	using GetRequest = HttpRequest<HttpGetMethod>;
+	using GetRequest  = HttpRequest<>;
+	using PostRequest = HttpRequest<HttpPostMethod>;
 };
 
 

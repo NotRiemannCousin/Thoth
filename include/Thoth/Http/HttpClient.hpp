@@ -38,7 +38,7 @@ namespace Thoth::Http {
 
 
     struct HttpClient {
-        template<HttpMethodConcept Method>
+        template<HttpMethodConcept Method = HttpGetMethod>
         static expected<HttpResponse<Method>, string> Send(HttpRequest<Method> request);
 
     private:
