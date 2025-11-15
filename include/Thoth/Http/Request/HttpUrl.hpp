@@ -14,6 +14,8 @@ namespace Thoth::Http {
         string user{};
         //! @brief the hostname of the url.
         string host{};
+        //! @brief the port of the url. Goes from 0 to 65.535.
+        int port{};
         //! @brief the path of the url.
         string path{};
         //! @brief the port of the url. Goes from 0 to 65.535.
