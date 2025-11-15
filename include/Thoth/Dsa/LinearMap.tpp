@@ -2,17 +2,18 @@
 #include <algorithm>
 #include <map>
 
+#include <Thoth/Utils/Hash.hpp>
 
 namespace Thoth::Dsa {
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-   constexpr  LinearMap<KeyT, ValT, Pred>::LinearMap(const key_compare& comp)
+   constexpr LinearMap<KeyT, ValT, Pred>::LinearMap(const key_compare& comp)
         : _compare(comp) {}
 
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-   constexpr  LinearMap<KeyT, ValT, Pred>::LinearMap(std::initializer_list<value_type> init, const key_compare& comp)
+   constexpr LinearMap<KeyT, ValT, Pred>::LinearMap(const std::initializer_list<value_type>& init, const key_compare& comp)
     : _data(init), _compare(comp) {
 
         auto pair_comp = [this](const value_type& a, const value_type& b) {
@@ -193,5 +194,26 @@ namespace Thoth::Dsa {
     constexpr bool LinearMap<KeyT, ValT, Pred>::contains(const LookupKeyT& key) const {
         return exists(key);
     }
+
+}
+
+
+namespace std {
+
+    template<class K, class V, class P>
+        requires requires(const K& k){ std::hash<K>{}(k); } && requires(const V& v){ std::hash<V>{}(v); }
+    struct hash<Thoth::Dsa::LinearMap<K,V,P>> {
+        size_t operator()(const Thoth::Dsa::LinearMap<K,V,P>& m) const noexcept {
+            using Thoth::Utils::HashCombine;
+            size_t seed = 1469598103934665603ULL;
+
+            for (const auto& p : m) {
+                HashCombine(seed, std::hash<K>{}(p.first));
+                HashCombine(seed, std::hash<V>{}(p.second));
+            }
+            HashCombine(seed, std::hash<size_t>{}(m.size()));
+            return seed;
+        }
+    };
 
 }

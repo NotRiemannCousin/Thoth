@@ -18,8 +18,6 @@ namespace Thoth::Http {
         int port{};
         //! @brief the path of the url.
         string path{};
-        //! @brief the port of the url. Goes from 0 to 65.535.
-        int port{};
         //! @brief the query of the url.
         QueryParams query{};
         //! @brief the fragment of the url. Normally ignored in server side.

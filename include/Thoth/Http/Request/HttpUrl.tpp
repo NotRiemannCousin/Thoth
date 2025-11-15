@@ -1,7 +1,19 @@
 #pragma once
 
 namespace std {
-    // TODO: hash
+    template<>
+    struct hash<Thoth::Http::HttpUrl> {
+        size_t operator()(const Thoth::Http::HttpUrl& url) const noexcept {
+            return
+                (hash<string>()(url.scheme)                  << 0) ^
+                (hash<string>()(url.user)                    << 1) ^
+                (hash<string>()(url.host)                    << 2) ^
+                (hash<int>()(url.port)                       << 3) ^
+                (hash<string>()(url.path)                    << 4) ^
+                (hash<Thoth::Http::QueryParams>()(url.query) << 5) ^
+                (hash<string>()(url.fragment)                << 6);
+        }
+    };
 
     template<>
     struct formatter<Thoth::Http::HttpUrl>{

@@ -59,7 +59,7 @@ namespace Thoth::Dsa {
         constexpr LinearMap(LinearMap&&) = default;
 
         constexpr explicit LinearMap(const key_compare& comp);
-        constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare());
+        constexpr LinearMap(const std::initializer_list<value_type>& init, const key_compare& comp = key_compare());
 
 
         constexpr LinearMap& operator=(const LinearMap&) = default;

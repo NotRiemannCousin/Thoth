@@ -111,14 +111,6 @@ namespace Thoth::Http {
 
     QueryParams::CIterType QueryParams::end() const { return _elements.cend(); }
 
-    QueryParams::RIterType QueryParams::rbegin() { return _elements.rbegin(); }
-
-    QueryParams::RIterType QueryParams::rend() { return _elements.rend(); }
-
-    QueryParams::CRIterType QueryParams::rbegin() const { return _elements.crbegin(); }
-
-    QueryParams::CRIterType QueryParams::rend() const { return _elements.crend(); }
-
     void QueryParams::Clear() { _elements.clear(); }
 
     size_t QueryParams::Size() const { return _elements.size(); }

@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 
+#include "Thoth/Dsa/LinearMap.hpp"
+
 namespace Thoth::Http{
     struct QueryParams {
         using QueryKey      = std::string;
@@ -16,11 +18,10 @@ namespace Thoth::Http{
 
         using QueryPair     = std::pair<const QueryKey, QueryValues>;
         using MapType       = std::map<QueryKey, QueryValues>;
+        // using MapType       = Dsa::LinearMap<QueryKey, QueryValues>;
 
         using IterType      = decltype(MapType().begin());
         using CIterType     = decltype(MapType().cbegin());
-        using RIterType     = decltype(MapType().rbegin());
-        using CRIterType    = decltype(MapType().crbegin());
 
 
         //! @brief Create with an existing map.
@@ -78,10 +79,6 @@ namespace Thoth::Http{
         [[nodiscard]] CIterType begin() const;
         [[nodiscard]] CIterType end() const;
 
-        RIterType rbegin();
-        RIterType rend();
-        [[nodiscard]] CRIterType rbegin() const;
-        [[nodiscard]] CRIterType rend() const;
 
         //! @brief Clear all keys.
         void Clear();
@@ -102,6 +99,7 @@ namespace Thoth::Http{
         MapType _elements;
 
         friend struct std::formatter<QueryParams>;
+        friend struct std::hash<QueryParams>;
     };
 }
 
