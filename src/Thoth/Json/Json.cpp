@@ -78,21 +78,24 @@ Json::JsonVal& Json::JsonVal::operator=(Value&& newValue) noexcept {
     return *this;
 }
 
-Json::JsonVal& Json::JsonVal::operator=(const Value& newValue)     {
+Json::JsonVal& Json::JsonVal::operator=(const Value& newValue) {
     _value = I_CloneValue(newValue);
     DEBUG_PRINT("JsonVal operator => const Value& newValue");
 
     return *this;
 }
 
-Json::JsonVal& Json::JsonVal::operator=(JsonVal&& other) noexcept  {
+Json::JsonVal& Json::JsonVal::operator=(JsonVal&& other) noexcept {
     _value = std::move(other._value);
     DEBUG_PRINT("JsonVal operator => JsonVal&& other");
 
     return *this;
 }
 
-Json::JsonVal& Json::JsonVal::operator=(const JsonVal& other)      {
+Json::JsonVal& Json::JsonVal::operator=(const JsonVal& other) {
+    if (this == &other)
+        return *this;
+
     _value = I_CloneValue(other._value);
     DEBUG_PRINT("JsonVal operator => const JsonVal& other");
 
@@ -140,6 +143,9 @@ Json::Json(Json&& other) noexcept : _buffer{ std::move(other._buffer) }, _buffer
 }
 
 Json& Json::operator=(const Json& other) {
+    if (this == &other)
+        return *this;
+
     DEBUG_PRINT("Json equals operator => const JsonVal& other");
     _pairs = other._pairs;
     _buffer = other._buffer;
@@ -488,19 +494,15 @@ bool Json::SetIfNull(JsonKeyRef key, JsonValRef val) {
 
 
 Json::OptRefValWrapper Json::Get(JsonKeyRef key) {
-    const auto it{ _pairs.find(key) };
-
-    if (it == _pairs.end())
-        return std::nullopt;
-    return it->second;
+    if (auto it{ _pairs.find(key) }; it != _pairs.end())
+        return it->second;
+    return std::nullopt;
 }
 
 Json::OptCRefValWrapper Json::Get(JsonKeyRef key) const {
-    const auto it{ _pairs.find(key) };
-
-    if (it == _pairs.end())
-        return std::nullopt;
-    return it->second;
+    if (auto it{ _pairs.find(key) }; it != _pairs.end())
+        return it->second;
+    return std::nullopt;
 }
 
 Json::CRefValWrapperOrNull Json::GetOrNull(JsonKeyRef key) const {
@@ -509,11 +511,9 @@ Json::CRefValWrapperOrNull Json::GetOrNull(JsonKeyRef key) const {
 
 
 Json::OptValWrapper Json::GetCopy(JsonKeyRef key) const {
-    const auto it{ _pairs.find(key) };
-
-    if (it == _pairs.end())
-        return std::nullopt;
-    return it->second;
+    if (auto it{ _pairs.find(key) }; it != _pairs.end())
+        return it->second;
+    return std::nullopt;
 }
 
 Json::ValWrapperOrNull Json::GetOrNullCopy(JsonKeyRef key) const {
@@ -522,15 +522,15 @@ Json::ValWrapperOrNull Json::GetOrNullCopy(JsonKeyRef key) const {
 
 
 Json::OptValWrapper Json::GetMove(JsonKeyRef key) && {
-    if (auto it = _pairs.find(key); it != _pairs.end())
+    if (auto it{ _pairs.find(key) }; it != _pairs.end())
         return std::move(it->second);
     return std::nullopt;
 }
 
 Json::ValWrapperOrNull Json::GetOrNullMove(JsonKeyRef key) && {
-    if (auto it = _pairs.find(key); it != _pairs.end())
+    if (auto it{ _pairs.find(key) }; it != _pairs.end())
         return std::move(it->second);
-    return std::unexpected{ NullV };
+    return NullJ;
 }
 
 

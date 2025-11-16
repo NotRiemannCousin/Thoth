@@ -103,12 +103,13 @@ std::expected<std::monostate, std::string> ShortRequest() {
 
     using std::string_literals::operator ""s;
 
-    const auto request{GetRequest::FromUrl("https://api.discogs.com/artists/4001234") };
-
-    const auto response{ *HttpClient::Send(*request) };
-    const auto json{ *response.AsJson() };
-
-    const auto& members{ json.Get("members")->get() };
+    const auto members{
+        GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+        .transform(Http::HttpClient::Send<>)
+        .transform(&Http::GetResponse::AsJson)
+        .transform(std::bind_back(&Json::Json::GetMove, "members"))
+        .value().value()
+    };
 
     for (const auto& member : members.As<Json::Array>())
         std::print("{}\n", (*member.As<Json::Object>())["name"]);
@@ -116,7 +117,7 @@ std::expected<std::monostate, std::string> ShortRequest() {
     return {};
 }
 
-std::expected<std::monostate, std::string> FunctionalShortRequest() {
+std::expected<std::monostate, std::string> ShortFunctionalRequest() {
     using namespace Thoth::Utils;
     using namespace Thoth::Http;
 
@@ -124,8 +125,8 @@ std::expected<std::monostate, std::string> FunctionalShortRequest() {
         GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
                 .transform(HttpClient::Send<>)
                 .transform(&GetResponse::AsJson)
-                .transform(std::bind_back(MutFn(&Json::Json::Get), "members"))
-                .value()->get()
+                .transform(std::bind_back(&Json::Json::GetMove, "members"))
+                .value().value()
     };
 
     for (const auto& member : members.As<Json::Array>())
@@ -136,7 +137,7 @@ std::expected<std::monostate, std::string> FunctionalShortRequest() {
 
 
 int main() {
-    const auto res{ FunctionalRequest() };
+    const auto res{ ShortFunctionalRequest() };
 
     if (!res) {
         std::print("{}", res.error());

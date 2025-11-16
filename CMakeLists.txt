@@ -62,7 +62,7 @@ add_library(ThothJson SHARED
         src/Thoth/Json/Json.cpp
 )
 
-# target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
+target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
 target_link_libraries(ThothJson PUBLIC ThothUtils)
 
 set_target_properties(ThothJson PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -104,7 +104,7 @@ add_executable(VsNlohmann examples/VsNlohmann/main.cpp)
 add_executable(YoutubeJson examples/YoutubeJson.cpp)
 
 
-#target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
+target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
 
 
 target_link_libraries(ThothExampleRequest1 PUBLIC ThothHttp)

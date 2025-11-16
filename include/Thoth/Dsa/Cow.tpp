@@ -9,6 +9,9 @@ namespace Thoth::Dsa {
 
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::operator=(const Cow& other) {
+        if (this == &other)
+            return *this;
+
         _value = other._value;
         AsOwned();
         return *this;
