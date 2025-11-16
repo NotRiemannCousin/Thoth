@@ -1,5 +1,4 @@
 #pragma once
-#include <print>
 #include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Thoth/Utils/Overloads.hpp>
 
@@ -21,30 +20,26 @@ namespace Thoth::Json {
     // }
     template<class T>
     bool Json::JsonVal::IsOfType(const JsonVal& val) {
-        return std::holds_alternative<T>(val.value);
+        return std::holds_alternative<T>(val._value);
     }
 
     template<class T>
     bool Json::JsonVal::IsOf() const {
-        return std::holds_alternative<T>(value);
+        return std::holds_alternative<T>(_value);
     }
 
     template<class T>
     T& Json::JsonVal::AsType(JsonVal& val) {
-        return std::get<T>(val.value);
-    }
-    template<class T>
-    const T& Json::JsonVal::AsConstType(const JsonVal& val) {
-        return std::get<T>(val.value);
+        return std::get<T>(val._value);
     }
 
     template<class T>
     T& Json::JsonVal::As() {
-        return std::get<T>(value);
+        return std::get<T>(_value);
     }
     template<class T>
     const T& Json::JsonVal::As() const {
-        return std::get<T>(value);
+        return std::get<T>(_value);
     }
 
 
@@ -101,6 +96,32 @@ namespace Thoth::Json {
         return NestedFind(keys).value_or(NullJ);
     }
 
+    template<std::ranges::range R>
+    Json::OptValWrapper Json::NestedFindCopy(R &&keys) const {
+        return NestedFind(std::forward<R>(keys)).
+                transform([](const auto& ref){ return ref.get(); });
+    }
+
+    template<std::ranges::range R>
+    Json::ValWrapperOrNull Json::NestedFindOrNullCopy(R &&keys) const {
+        return NestedFind(std::forward<R>(keys))
+                .transform(&OptRefValWrapper::value)
+                .value_or(Null{});
+    }
+
+    template<std::ranges::range R>
+    Json::OptValWrapper Json::NestedFindMove(R &&key) && {
+        return NestedFindOrNullMove(std::forward<R>(key))
+            .transform(&OptRefValWrapper::value)
+            .transform(&std::move)
+            .value_or(Null{});
+    }
+
+    template<std::ranges::range R>
+    Json::ValWrapperOrNull Json::NestedFindOrNullMove(R &&key) && {
+        return NestedFindOrNullMove(std::forward<R>(key))
+            .value_or(Null{});
+    }
 
 
     namespace detail {
@@ -222,7 +243,7 @@ namespace Thoth::Json {
                 [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it, tempOutBuffer); },
                 [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it, tempOutBuffer); },
                 [&](const Null&      ){ std::format_to(it, "null"); }
-            }, val.value);
+            }, static_cast<const Json::JsonVal::Value&>(val));
         }
     }
 }

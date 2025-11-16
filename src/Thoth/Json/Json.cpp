@@ -1,3 +1,5 @@
+// ReSharper disable CppPassValueParameterByConstReference
+
 #include <functional>
 #include <algorithm>
 #include <bitset>
@@ -8,6 +10,13 @@
 #include <Thoth/String/UnicodeView.hpp>
 
 using namespace Thoth::Json;
+
+
+#ifdef DENSE_DEBUG_JSON
+#define DEBUG_PRINT(MSG) std::println(MSG);
+#else
+#define DEBUG_PRINT(MSG)
+#endif
 
 
 #pragma region JsonVal
@@ -22,46 +31,91 @@ static Json::JsonVal::Value I_CloneValue(const Json::JsonVal::Value& v) {
 }
 
 
-Json::JsonVal::JsonVal(Json&& child)      : value{ std::make_unique<Json>(std::move(child)) } { }
+Json::JsonVal::JsonVal(Json&& child)      : _value{ std::make_unique<Json>(std::move(child)) } {
+    DEBUG_PRINT("JsonVal => Json&& child");
+ }
 
-Json::JsonVal::JsonVal(const Json& child) : value{ std::make_unique<Json>(child) } { }
-
-
-Json::JsonVal::JsonVal(Value&& newValue) noexcept : value{std::move(newValue) } { }
-
-Json::JsonVal::JsonVal(const Value& newValue)     : value{I_CloneValue(newValue) } { }
-
-Json::JsonVal::JsonVal(JsonVal&& other) noexcept  : value{std::move(other.value) } { }
-
-Json::JsonVal::JsonVal(const JsonVal& other)      : value{I_CloneValue(other.value) } { }
+Json::JsonVal::JsonVal(const Json& child) : _value{ std::make_unique<Json>(child) } {
+    DEBUG_PRINT("JsonVal => const Json& child");
+ }
 
 
-Json::JsonVal& Json::JsonVal::operator=(Json&& child) { value = std::make_unique<Json>(std::move(child)); return *this; } // Yes, 121 line width
+Json::JsonVal::JsonVal(Value&& newValue) noexcept : _value{ std::move(newValue) } {
+    DEBUG_PRINT("JsonVal => Value&& newValue");
+ }
 
-Json::JsonVal& Json::JsonVal::operator=(const Json& child) { value = std::make_unique<Json>(child);       return *this; }
+Json::JsonVal::JsonVal(const Value& newValue)     : _value{ I_CloneValue(newValue) } {
+    DEBUG_PRINT("JsonVal => const Value& newValue");
+ }
+
+Json::JsonVal::JsonVal(JsonVal&& other) noexcept  : _value{ std::move(other._value) } {
+    DEBUG_PRINT("JsonVal => JsonVal&& other");
+ }
+
+Json::JsonVal::JsonVal(const JsonVal& other)      : _value{ I_CloneValue(other._value) } {
+    DEBUG_PRINT("JsonVal => const JsonVal& other");
+ }
 
 
-Json::JsonVal& Json::JsonVal::operator=(Value&& newValue) noexcept { value = std::move(newValue);       return *this; }
+Json::JsonVal& Json::JsonVal::operator=(Json&& other) {
+    _value = std::make_unique<Json>(std::move(other));
+    DEBUG_PRINT("JsonVal operator => Json&& child");
+    return *this;
+}
 
-Json::JsonVal& Json::JsonVal::operator=(const Value& newValue)     { value = I_CloneValue(newValue);    return *this; }
+Json::JsonVal& Json::JsonVal::operator=(const Json& other) {
+    _value = std::make_unique<Json>(other);
+    DEBUG_PRINT("JsonVal operator => const Json& child");
 
-Json::JsonVal& Json::JsonVal::operator=(JsonVal&& other) noexcept  { value = std::move(other.value);    return *this; }
+    return *this;
+}
 
-Json::JsonVal& Json::JsonVal::operator=(const JsonVal& other)      { value = I_CloneValue(other.value); return *this; }
+
+Json::JsonVal& Json::JsonVal::operator=(Value&& newValue) noexcept {
+    _value = std::move(newValue);
+    DEBUG_PRINT("JsonVal operator => Value&& newValue");
+
+    return *this;
+}
+
+Json::JsonVal& Json::JsonVal::operator=(const Value& newValue)     {
+    _value = I_CloneValue(newValue);
+    DEBUG_PRINT("JsonVal operator => const Value& newValue");
+
+    return *this;
+}
+
+Json::JsonVal& Json::JsonVal::operator=(JsonVal&& other) noexcept  {
+    _value = std::move(other._value);
+    DEBUG_PRINT("JsonVal operator => JsonVal&& other");
+
+    return *this;
+}
+
+Json::JsonVal& Json::JsonVal::operator=(const JsonVal& other)      {
+    _value = I_CloneValue(other._value);
+    DEBUG_PRINT("JsonVal operator => const JsonVal& other");
+
+    return *this;
+}
 
 
-Json::JsonVal::operator Value&() { return value; }
+Json::JsonVal::operator Value&() { return _value; }
 
-Json::JsonVal::operator const Value&() const { return value; }
+Json::JsonVal::operator const Value&() const { return _value; }
 
 
 bool Json::JsonVal::operator==(const JsonVal& other) const {
     return std::visit([&]<class T>(const T& val){
             if constexpr (std::same_as<T, Object>)
-                return std::holds_alternative<T>(other.value)&&  *std::get<T>(other.value) == *val;
+                return std::holds_alternative<T>(other._value)&&  *std::get<T>(other._value) == *val;
             else
-                return std::holds_alternative<T>(other.value)&&  std::get<T>(other.value) == val;
-        }, value);
+                return std::holds_alternative<T>(other._value)&&  std::get<T>(other._value) == val;
+        }, _value);
+}
+
+Json::~Json() {
+    DEBUG_PRINT("~Json");
 }
 
 #pragma endregion
@@ -70,45 +124,41 @@ bool Json::JsonVal::operator==(const JsonVal& other) const {
 #pragma region Json
 
 
-Json::Json(const Json &other) {
-    if (other.bufferView.data() == other.buffer.data())
-        bufferView = buffer = other.buffer;
-    else
-        bufferView = other.bufferView;
-
-    pairs = other.pairs;
-
-    namespace vs = std::views;
-    for (auto& val : pairs
-            | vs::values
-            | vs::filter(&JsonVal::IsOfType<String>)
-            | vs::transform(&JsonVal::AsType<String>)
-            | vs::filter(&String::IsRefType))
-        val.SetRef({ bufferView.data(), val.AsRef().size() });
+Json::Json(const Json& other) {
+    DEBUG_PRINT("Json => const JsonVal& other");
+    _pairs = other._pairs;
+    _buffer = other._buffer;
+    _bufferView = other._bufferView;
+    // If the buffer isn't user managed carries the reference, so when you delete the parent but not the children the
+    // Cow still works. Yeah, given the necessity of `_bufferView` (user managed buffers) the `_buffer` itself it's
+    // kinda dummy, it just holds the reference.
 }
 
-Json& Json::operator=(const Json &other) {
-    if (other.bufferView.data() == other.buffer.data())
-        bufferView = buffer = other.buffer;
-    else
-        bufferView = other.bufferView;
+Json::Json(Json&& other) noexcept : _buffer{ std::move(other._buffer) }, _bufferView{ other._bufferView },
+    _pairs{ std::move(other._pairs) } {
+    DEBUG_PRINT("Json => JsonVal&& other");
+}
 
-    pairs = other.pairs;
-
-    namespace vs = std::views;
-    for (auto& val : pairs
-            | vs::values
-            | vs::filter(&JsonVal::IsOfType<String>)
-            | vs::transform(&JsonVal::AsType<String>)
-            | vs::filter(&String::IsRefType))
-        val.SetRef({ bufferView.data(), val.AsRef().size() });
+Json& Json::operator=(const Json& other) {
+    DEBUG_PRINT("Json equals operator => const JsonVal& other");
+    _pairs = other._pairs;
+    _buffer = other._buffer;
+    _bufferView = other._bufferView;
 
     return *this;
 }
 
-Json::Json(MapType&& initAs) : pairs{ std::move(initAs) } { }
+Json& Json::operator=(Json&& other) noexcept {
+    _pairs = std::move(other._pairs);
+    _buffer = std::move(other._buffer);
+    _bufferView = other._bufferView;
+    DEBUG_PRINT("Json equals operator => const JsonVal& other");
+    return *this;
+}
 
-Json::Json(const std::initializer_list<JsonPair>& init) : pairs(init) { }
+Json::Json(MapType&& initAs) : _pairs{ std::move(initAs) } { }
+
+Json::Json(const std::initializer_list<JsonPair>& init) : _pairs(init) { }
 
 #define ADVANCE_IF(predicate) do {                                         \
         const char* ptr = input.data();                                    \
@@ -131,16 +181,17 @@ Json::Json(const std::initializer_list<JsonPair>& init) : pairs(init) { }
 std::optional<Json> Json::Parse(std::string_view text, bool copyData) {
     Json json;
 
-    if (copyData)
-        json.bufferView = json.buffer = text;
-    else
-        json.bufferView = text;
+    if (!copyData)
+        json._bufferView = text;
+    else {
+        json._buffer = std::make_shared<std::string>(text);
+        json._bufferView = *json._buffer;
+    }
 
-    std::string_view input{ json.bufferView };
+    std::string_view input{ json._bufferView };
 
-    if (!ParseUnchecked(input, json))
+    if (!ParseUnchecked(input, json, json))
         return std::nullopt;
-
 
 #define return break; // I hate to do it but performance matters
     ADVANCE_SPACES();
@@ -218,15 +269,16 @@ static bool I_ReadString(std::string_view& input, auto& val) {
 
         switch (*strRef.data()) {
             case 'u' :
+                str += "\\u"; break;
                 // if (strRef.size() < 3)
                 //     return false;
 
-                break;
-            case '\\':
-            case '"': str.push_back(*strRef.data());  break;
-            case 'n': str.push_back('\n');            break;
-            case 'r': str.push_back('\r');            break;
-            case 't': str.push_back('\t');            break;
+                // break;
+            case '\\': str.push_back('\\'); break;
+            case '"' : str.push_back('\"'); break;
+            case 'n' : str.push_back('\n'); break;
+            case 'r' : str.push_back('\r'); break;
+            case 't' : str.push_back('\t'); break;
 
             default: return false;
         }
@@ -266,9 +318,9 @@ static bool I_ReadNumber(std::string_view& input, auto& val) {
     val = number;
     return true;
 };
-static bool I_ReadObject(std::string_view& input, auto& val) {
+static bool I_ReadObject(std::string_view& input, auto& val, const Json& parent) {
     Json newJson;
-    if (!Json::ParseUnchecked(input, newJson))
+    if (!Json::ParseUnchecked(input, newJson, parent))
         return false;
 
     if (input.empty())
@@ -294,7 +346,7 @@ static bool I_ReadNull(std::string_view& input, auto& val) {
     val = NullV;
     return true;
 };
-static bool I_ReadArray(std::string_view& input, auto& val) {
+static bool I_ReadArray(std::string_view& input, auto& val, const Json& parent) {
     if (*input.data() != '[')
         return false;
 
@@ -308,12 +360,12 @@ static bool I_ReadArray(std::string_view& input, auto& val) {
 
         bool success{};
         switch (*input.data()) {
-            CASE_OPEN_STRING   success = I_ReadString(input, array.back()); break;
-            CASE_OPEN_NUMBER   success = I_ReadNumber(input, array.back()); break;
-            CASE_OPEN_OBJECT   success = I_ReadObject(input, array.back()); break;
-            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, array.back()); break;
-            CASE_OPEN_NULLABLE success = I_ReadNull(  input, array.back()); break;
-            CASE_OPEN_ARRAY    success = I_ReadArray( input, array.back()); break;
+            CASE_OPEN_STRING   success = I_ReadString(input, array.back());         break;
+            CASE_OPEN_NUMBER   success = I_ReadNumber(input, array.back());         break;
+            CASE_OPEN_OBJECT   success = I_ReadObject(input, array.back(), parent); break;
+            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, array.back());         break;
+            CASE_OPEN_NULLABLE success = I_ReadNull(  input, array.back());         break;
+            CASE_OPEN_ARRAY    success = I_ReadArray( input, array.back(), parent); break;
             default: return false;
         }
         if (!success)
@@ -333,7 +385,7 @@ static bool I_ReadArray(std::string_view& input, auto& val) {
 #pragma endregion
 
 
-bool Json::ParseUnchecked(std::string_view& input, Json& json) {
+bool Json::ParseUnchecked(std::string_view& input, Json& json, const Json& parent) {
 
     ADVANCE_SPACES();
 
@@ -357,16 +409,16 @@ bool Json::ParseUnchecked(std::string_view& input, Json& json) {
 
         ADVANCE_SPACES();
 
-        auto [newItem, _]{ json.pairs.try_emplace(key.AsOwned(), NullV ) };
+        auto [newItem, _]{ json._pairs.try_emplace(key.AsOwned(), NullV ) };
 
         bool success{};
         switch (*input.data()) {
-            CASE_OPEN_STRING   success = I_ReadString(input, newItem->second); break;
-            CASE_OPEN_NUMBER   success = I_ReadNumber(input, newItem->second); break;
-            CASE_OPEN_OBJECT   success = I_ReadObject(input, newItem->second); break;
-            CASE_OPEN_NULLABLE success = I_ReadNull(  input, newItem->second); break;
-            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, newItem->second); break;
-            CASE_OPEN_ARRAY    success = I_ReadArray( input, newItem->second); break;
+            CASE_OPEN_STRING   success = I_ReadString(input, newItem->second);         break;
+            CASE_OPEN_NUMBER   success = I_ReadNumber(input, newItem->second);         break;
+            CASE_OPEN_OBJECT   success = I_ReadObject(input, newItem->second, parent); break;
+            CASE_OPEN_NULLABLE success = I_ReadNull(  input, newItem->second);         break;
+            CASE_OPEN_BOOLEAN  success = I_ReadBool(  input, newItem->second);         break;
+            CASE_OPEN_ARRAY    success = I_ReadArray( input, newItem->second, parent); break;
             default: return false;
         }
         if (!success)
@@ -378,6 +430,8 @@ bool Json::ParseUnchecked(std::string_view& input, Json& json) {
             return false;
     }
     input.remove_prefix(1);
+    json._bufferView = parent._bufferView;
+    json._buffer     = parent._buffer;
 
 
     return true;
@@ -396,7 +450,7 @@ bool Json::ParseUnchecked(std::string_view& input, Json& json) {
 #undef CASE_OPEN_ARRAY
 
 bool Json::Exists(JsonKeyRef key) const {
-    return pairs.contains(key);
+    return _pairs.contains(key);
 }
 
 bool Json::Exists(JsonPairRef p) const {
@@ -404,9 +458,9 @@ bool Json::Exists(JsonPairRef p) const {
 }
 
 bool Json::Exists(JsonKeyRef key, JsonValRef val) const {
-    const auto it{ pairs.find(key) };
+    const auto it{ _pairs.find(key) };
 
-    return it != pairs.end()&& it->second == val;
+    return it != _pairs.end()&& it->second == val;
 }
 
 void Json::Set(JsonPairRef p) {
@@ -414,11 +468,11 @@ void Json::Set(JsonPairRef p) {
 }
 
 void Json::Set(JsonKeyRef key, JsonValRef val) {
-    pairs.try_emplace(key, val);
+    _pairs.try_emplace(key, val);
 }
 
 bool Json::Remove(JsonKeyRef key) {
-    return pairs.erase(key);
+    return _pairs.erase(key);
 }
 
 
@@ -427,23 +481,24 @@ bool Json::SetIfNull(JsonPairRef p) {
 }
 
 bool Json::SetIfNull(JsonKeyRef key, JsonValRef val) {
-    auto [_, tookPlace]{ pairs.try_emplace(key, val) };
+    auto [_, tookPlace]{ _pairs.try_emplace(key, val) };
 
     return tookPlace;
 }
 
-Json::OptRefValWrapper Json::Get(JsonKeyRef key) {
-    const auto it{ pairs.find(key) };
 
-    if (it == pairs.end())
+Json::OptRefValWrapper Json::Get(JsonKeyRef key) {
+    const auto it{ _pairs.find(key) };
+
+    if (it == _pairs.end())
         return std::nullopt;
     return it->second;
 }
 
 Json::OptCRefValWrapper Json::Get(JsonKeyRef key) const {
-    const auto it{ pairs.find(key) };
+    const auto it{ _pairs.find(key) };
 
-    if (it == pairs.end())
+    if (it == _pairs.end())
         return std::nullopt;
     return it->second;
 }
@@ -452,31 +507,58 @@ Json::CRefValWrapperOrNull Json::GetOrNull(JsonKeyRef key) const {
     return Get(key).value_or(NullJ);
 }
 
+
+Json::OptValWrapper Json::GetCopy(JsonKeyRef key) const {
+    const auto it{ _pairs.find(key) };
+
+    if (it == _pairs.end())
+        return std::nullopt;
+    return it->second;
+}
+
+Json::ValWrapperOrNull Json::GetOrNullCopy(JsonKeyRef key) const {
+    return GetCopy(key).value_or(NullJ);
+}
+
+
+Json::OptValWrapper Json::GetMove(JsonKeyRef key) && {
+    if (auto it = _pairs.find(key); it != _pairs.end())
+        return std::move(it->second);
+    return std::nullopt;
+}
+
+Json::ValWrapperOrNull Json::GetOrNullMove(JsonKeyRef key) && {
+    if (auto it = _pairs.find(key); it != _pairs.end())
+        return std::move(it->second);
+    return std::unexpected{ NullV };
+}
+
+
 void Json::Clear() {
-    pairs.clear();
+    _pairs.clear();
 }
 
 size_t Json::Size() const {
-    return pairs.size();
+    return _pairs.size();
 }
 
 bool Json::Empty() const {
-    return pairs.empty();
+    return _pairs.empty();
 }
 
 Json::JsonVal& Json::operator[](JsonKeyRef key) {
-    const auto [it, _]{ pairs.try_emplace(key, NullV) };
+    const auto [it, _]{ _pairs.try_emplace(key, NullV) };
 
     return it->second;
 }
 
 const Json::JsonVal& Json::operator[](JsonKeyRef key) const {
-    const auto it{ pairs.find(key) };
-    return it != pairs.end() ? it->second : NullJ;
+    const auto it{ _pairs.find(key) };
+    return it != _pairs.end() ? it->second : NullJ;
 }
 
 bool Json::operator==(const Json& other) const {
-    return pairs == other.pairs;
+    return _pairs == other._pairs;
 }
 
 #pragma endregion

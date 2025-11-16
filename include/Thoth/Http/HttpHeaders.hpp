@@ -40,7 +40,7 @@ namespace Thoth::Http {
         //! @param headers the headers separated by  "\r\n".
         //! @param maxHeadersLength the max length that the headers can achieve.
         //! @return A HttpHeaders if the parse success, @ref "bad request" HttpStatusCodeEnum::BAD_REQUEST if the parse
-        //! fails and @ref "content too large" HttpStatusCodeEnum::CONTENT_TOO_LARGE if the header is to long.
+        //! fails and @ref "content too large" HttpStatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.
         template<std::ranges::input_range R>
         static WebResult<HttpHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
 

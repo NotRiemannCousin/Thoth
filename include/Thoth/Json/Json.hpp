@@ -1,4 +1,6 @@
 #pragma once
+#include <print>
+
 #include <format>
 #include <optional>
 #include <expected>
@@ -46,8 +48,8 @@ namespace Thoth::Json {
             //             std::is_constructible_v<Json::JsonVal::Value, T&&>)
             // JsonVal(T&& newValue);
 
-            JsonVal& operator=(const Json& child);
-            JsonVal& operator=(Json&& child);
+            JsonVal& operator=(const Json& other);
+            JsonVal& operator=(Json&& other);
 
             JsonVal& operator=(Value&& newValue) noexcept;
             JsonVal& operator=(const Value& newValue);
@@ -61,7 +63,7 @@ namespace Thoth::Json {
 
 
             operator Value&();
-            operator const Value&() const;
+            [[nodiscard]] operator const Value&() const;
             // NOLINTEND(*)
 
             template<class T>
@@ -72,15 +74,14 @@ namespace Thoth::Json {
             template<class T>
             static T& AsType(JsonVal& val);
             template<class T>
-            static const T& AsConstType(const JsonVal& val);
-            template<class T>
             T& As();
             template<class T>
-            const T& As() const;
+            [[nodiscard]] const T& As() const;
 
-            bool operator==(const JsonVal& other) const;
+            [[nodiscard]] bool operator==(const JsonVal& other) const;
 
-            Value value;
+        private:
+            Value _value{};
         };
 
         using JsonValRef = JsonVal&;
@@ -89,7 +90,7 @@ namespace Thoth::Json {
 
         using JsonPair    = std::pair<JsonKey, JsonVal>;
         using JsonPairRef = std::pair<JsonKeyRef, JsonValRef>;
-        using MapType     = Dsa::LinearMap<JsonKey, JsonVal, std::less<>>;
+        using MapType     = Dsa::LinearMap<JsonKey, JsonVal>;
         // using MapType     = std::map<JsonKey, JsonVal, std::less<>>;
 
         using IterType   = decltype(MapType{}.begin());
@@ -105,13 +106,23 @@ namespace Thoth::Json {
         using RefValWrapperOrNull = std::expected<RefValWrapper, Null>;
         using CRefValWrapperOrNull = std::expected<CRefValWrapper, Null>;
 
+        using ValWrapper = JsonVal;
+        using CValWrapper = const JsonVal;
+
+        using OptValWrapper = std::optional<ValWrapper>;
+        using OptCValWrapper = std::optional<CValWrapper>;
+
+        using ValWrapperOrNull = std::expected<ValWrapper, Null>;
+        using CValWrapperOrNull = std::expected<CValWrapper, Null>;
+
+        ~Json();
 
         Json() = default;
         Json(const Json& other);
-        Json(Json&& other) noexcept = default;
+        Json(Json&& other) noexcept;
 
         Json& operator=(const Json& other);
-        Json& operator=(Json&& other) noexcept = default;
+        Json& operator=(Json&& other) noexcept;
 
 
         //! @brief Create with an existing map.
@@ -194,10 +205,52 @@ namespace Thoth::Json {
         CRefValWrapperOrNull NestedFindOrNull(R&& keys) const;
 
 
-        IterType begin()                      { return pairs.begin(); }
-        IterType end()                        { return pairs.end(); }
-        [[nodiscard]] CIterType begin() const { return pairs.cbegin(); }
-        [[nodiscard]] CIterType end() const   { return pairs.cend(); }
+
+        //! @brief Copy of a value if it exists.
+        //! @param key The key.
+        //! @return std::reference_wrapper<const JsonVal> if the key exists, std::nullopt otherwise.
+        [[nodiscard]] OptValWrapper GetCopy(JsonKeyRef key) const;
+
+        //! @brief Copy of a value or return null if it not exists.
+        //! @param key The key.
+        //! @return std::reference_wrapper<const JsonVal> if the key exists, NullV otherwise.
+        [[nodiscard]] ValWrapperOrNull GetOrNullCopy(JsonKeyRef key) const;
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<std::ranges::range R>
+        OptValWrapper NestedFindCopy(R&& keys) const;
+
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<std::ranges::range R>
+        ValWrapperOrNull NestedFindOrNullCopy(R&& keys) const;
+
+
+
+
+        //! @brief Copy of a value if it exists.
+        //! @param key The key.
+        //! @return std::reference_wrapper<const JsonVal> if the key exists, std::nullopt otherwise.
+        OptValWrapper GetMove(JsonKeyRef key) &&;
+
+        //! @brief Copy of a value or return null if it not exists.
+        //! @param key The key.
+        //! @return std::reference_wrapper<const JsonVal> if the key exists, NullV otherwise.
+        ValWrapperOrNull GetOrNullMove(JsonKeyRef key) &&;
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<std::ranges::range R>
+        OptValWrapper NestedFindMove(R&& key) &&;
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<std::ranges::range R>
+        ValWrapperOrNull NestedFindOrNullMove(R&& key) &&;
+
+
+        IterType begin()                      { return _pairs.begin(); }
+        IterType end()                        { return _pairs.end(); }
+        [[nodiscard]] CIterType begin() const { return _pairs.cbegin(); }
+        [[nodiscard]] CIterType end() const   { return _pairs.cend(); }
 
 
 
@@ -222,12 +275,12 @@ namespace Thoth::Json {
         //! @return True if both jsons match.
         bool operator==(const Json& other) const;
 
-        static bool ParseUnchecked(std::string_view& input, Json& json);
+        static bool ParseUnchecked(std::string_view& input, Json& json, const Json& parent);
     private:
-        std::string buffer;
-        std::string_view bufferView;
+        std::shared_ptr<std::string> _buffer;
+        std::string_view _bufferView;
 
-        MapType pairs;
+        MapType _pairs;
 
         friend struct std::formatter<Json>;
     };
