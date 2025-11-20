@@ -1,28 +1,28 @@
-#include <Thoth/Json/Json.hpp>
+#include <Thoth/NJson/Json.hpp>
 
 
-namespace Json = Thoth::Json;
+namespace NJson = Thoth::NJson;
 
 int main() {
-    Json::Json sla{
-                {"info", Json::Array{
+    NJson::JsonObject sla{
+                {"info", NJson::Array{
                     "AiKatherine",
                     "KG/M",
                     "NB",
                     20,
                     1.71,
                     false,
-                    Json::NullV,
+                    NJson::NullV,
                }},
                 {"isAdmin", true},
                 {"isPremium", true},
-                {"links", Json::Json{
+                {"links", NJson::JsonObject{
                     {"youtube", "https://www.youtube.com/@LastArchimedes"},
                     {"github", "https://github.com/NotRiemannCousin"},
                 }}
     };
 
-    auto j = Json::Json::Parse(R"(
+    auto j = NJson::Parse(R"(
     {
         "info" : [
             "AiKatherine",

@@ -22,7 +22,7 @@ namespace std {
         constexpr auto parse(auto &ctx) {
             auto it{ ctx.begin() };
             if (it != ctx.end() && (*it == 'o' || *it == 'O'))
-                origin = true, it++;
+                origin = true, ++it;
             return it;
         }
 

@@ -2,15 +2,15 @@
 #include <Thoth/Http/HttpClient.hpp>
 
 
-namespace Http = Thoth::Http;
+namespace NHttp = Thoth::Http;
 
 int main() {
-    const Http::HttpRequest<Http::HttpGetMethod> request{
-        *Http::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
+    const NHttp::HttpRequest<NHttp::HttpGetMethod> request{
+        *NHttp::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
         // It's a good practice to validate the Url outside
     };
 
-    const auto response{ Http::HttpClient::Send(request) };
+    const auto response{ NHttp::HttpClient::Send(request) };
 
     if (response) {
         std::print("status: {} {}\n"

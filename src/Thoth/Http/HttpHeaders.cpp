@@ -1,7 +1,6 @@
 #include <Thoth/Http/HttpHeaders.hpp>
 
 #include <algorithm>
-#include <bitset>
 #include <functional>
 #include <ranges>
 
@@ -119,9 +118,9 @@ namespace Thoth::Http {
 
     HttpHeaders HttpHeaders::DefaultHeaders() {
         return {
-            {"accept", "*/*"},
-            {"user-agent", "Thoth/0.1"},
-            {"accept encoding", "identity"}
+            {"accept", "*/*" },
+            {"user-agent", "Thoth/0.1" },
+            {"accept encoding", "identity" }
         };
     }
 
@@ -150,7 +149,7 @@ namespace Thoth::Http {
         string_view sep{ I_UseSemicolon(p.first) ? "; " : ", " };
 
         if (I_CanMerge(p.first) )
-            if (auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {
+            if (const auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {
 #ifdef __cpp_lib_ranges_concat
                 it->second = vs::concat(it->second, sep, p.second);
 #else

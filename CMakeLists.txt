@@ -19,9 +19,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 else()
     add_link_options(
-            /LTCG           # Link-time optimization
-            /OPT:REF        # Delete unused
-            /OPT:ICF        # join equal functions
+#            /LTCG           # Link-time optimization
+#            /OPT:REF        # Delete unused
+#            /OPT:ICF        # join equal functions
     )
 endif()
 
@@ -59,10 +59,12 @@ set_target_properties(ThothUtils PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 
 add_library(ThothJson SHARED
-        src/Thoth/Json/Json.cpp
+        src/Thoth/NJson/Json.cpp
+        src/Thoth/NJson/JsonObject.cpp
+        src/Thoth/NJson/StringRef.cpp
 )
 
-target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
+#target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
 target_link_libraries(ThothJson PUBLIC ThothUtils)
 
 set_target_properties(ThothJson PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -104,7 +106,7 @@ add_executable(VsNlohmann examples/VsNlohmann/main.cpp)
 add_executable(YoutubeJson examples/YoutubeJson.cpp)
 
 
-target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
+#target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
 
 
 target_link_libraries(ThothExampleRequest1 PUBLIC ThothHttp)

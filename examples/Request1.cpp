@@ -5,16 +5,17 @@
 #include <Thoth/Utils/Functional.hpp>
 
 
-namespace Http = Thoth::Http;
-namespace Json = Thoth::Json;
+namespace NHttp = Thoth::Http;
+namespace NJson = Thoth::NJson;
+using NJson::Json;
 
 std::expected<std::monostate, std::string> Request() {
-    const auto request{ Http::GetRequest::FromUrl("https://api.discogs.com/artists/4001234") };
+    const auto request{ NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234") };
 
     if (!request)
         return std::unexpected{ "Can't connect to FromUrl" };
 
-    const auto response{ Http::HttpClient::Send(*request) };
+    const auto response{ NHttp::HttpClient::Send(*request) };
 
     if (!response)
         return std::unexpected{ response.error() };
@@ -31,14 +32,14 @@ std::expected<std::monostate, std::string> Request() {
 
     const auto& members{ membersOpt->get() };
 
-    if (!members.IsOf<Json::Array>())
+    if (!members.IsOf<NJson::Array>())
         return std::unexpected{ R"("members" isn't an array)" };
 
-    for (const auto& member : members.As<Json::Array>()) {
-        if (!member.IsOf<Json::Object>())
+    for (const auto& member : members.As<NJson::Array>()) {
+        if (!member.IsOf<NJson::Object>())
             return std::unexpected{ R"("members"'s child isn't an object)" };
 
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
+        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
         // or std::print("{}\n", (*member.As<Json::Object>())["name"].As<Json::String>().AsRef());
     }
 
@@ -46,49 +47,52 @@ std::expected<std::monostate, std::string> Request() {
 }
 
 std::expected<std::monostate, std::string> FunctionalRequest() {
+    using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 
-
-    using std::string_literals::operator ""s;
-
-
-    using Utils::ConstFn;
-
     const auto membersOrError {
-        Http::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-                .transform(Http::HttpClient::Send<>)
+        NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+                .transform(NHttp::HttpClient::Send<>)
                 .value_or(std::unexpected{ "Failed to connect." })
-                .transform(&Http::GetResponse::AsJson)
+                .transform(&NHttp::GetResponse::AsJson)
 #ifdef DENSE_DEBUG_JSON
                 // Enables DENSE_DEBUG_JSON at cmake to be able to see.
                 .transform([](auto&& val) {
                     std::print("\033[2J\033[H");
-                    std::print("Just calls after the parsing:\n\n\n");
+                    std::print("\nCalls after the parsing:\n\n");
                     return val;
                 })
 #endif
-                .and_then(Utils::ValueOrHof<std::optional<Json::Json>&&>("Cant convert to json."s))
-                .transform(std::bind_back(&Json::Json::GetMove, "members"))
-                // or `.transform(std::bind_back<Json::Json::GetMove>("members"))` with C++26.
-                // GetMove is &&-qualified: only rvalues can call it, so no copies are made.
+                .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+                .transform(std::bind_back(&Json::GetAndMove, "members" ))
+                // or `.transform(std::bind_back<Json::Json::GetAndMove>("members"))` with C++26.
+                // GetAndMove is &&-qualified: only rvalues can call it, so no copies are made.
                 // In chained calls the value is consumed at each step, so it's always a last use,
                 // making moves safe. If you need to avoid moving, use Get() or GetCopy() on a const&.
-                .and_then(Utils::ValueOrHof<Json::Json::OptValWrapper&&>(R"("members" doesn't exist.)"s))
+                .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>(R"("members" doesn't exist.)"s))
+                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>(R"("members" isn't an array.)"s))
     };
+
+    // Without comments:
+    // const auto membersOrError {
+    //     NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+    //             .transform(NHttp::HttpClient::Send<>)
+    //             .value_or(std::unexpected{ "Failed to connect." })
+    //             .transform(&NHttp::GetResponse::AsJson)
+    //             .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+    //             .transform(std::bind_back(&Json::GetAndMove, "members" ))
+    //             .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>(R"("members" doesn't exist.)"s))
+    //             .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>(R"("members" isn't an array.)"s))
+    // };
 
     if (!membersOrError)
         return std::unexpected{ membersOrError.error() };
 
-    const auto& members{ membersOrError.value() };
-
-    if (!members.IsOf<Json::Array>())
-        return std::unexpected{ R"("members" isn't an array)" };
-
-    for (const auto& member : members.As<Json::Array>()) {
-        if (!member.IsOf<Json::Object>())
+    for (const auto& member : membersOrError->As<NJson::Array>()) {
+        if (!member.IsOf<NJson::Object>())
             return std::unexpected{ R"(Value isn't an object)" };
 
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
+        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
     }
 
     return {};
@@ -105,39 +109,40 @@ std::expected<std::monostate, std::string> ShortRequest() {
 
     const auto members{
         GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-        .transform(Http::HttpClient::Send<>)
-        .transform(&Http::GetResponse::AsJson)
-        .transform(std::bind_back(&Json::Json::GetMove, "members"))
+        .transform(HttpClient::Send<>)
+        .transform(&GetResponse::AsJson)
+        .transform(std::bind_back(&Json::GetAndMove, "members"))
         .value().value()
     };
 
-    for (const auto& member : members.As<Json::Array>())
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
+    for (const auto& member : members.As<NJson::Array>())
+        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
 
     return {};
 }
 
-std::expected<std::monostate, std::string> ShortFunctionalRequest() {
+std::expected<std::monostate, std::string> OtherExample() {
     using namespace Thoth::Utils;
     using namespace Thoth::Http;
+    using std::string_literals::operator ""s;
 
-    const auto members{
-        GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+    const auto json{
+        GetRequest::FromUrl("https://api.jikan.moe/v4/anime/57555")
                 .transform(HttpClient::Send<>)
+                .value_or(std::unexpected{ "Failed to connect." })
                 .transform(&GetResponse::AsJson)
-                .transform(std::bind_back(&Json::Json::GetMove, "members"))
-                .value().value()
+                .and_then(ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
     };
 
-    for (const auto& member : members.As<Json::Array>())
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
+    if (!json)
+        return std::unexpected{ json.error() };
 
     return {};
 }
 
 
 int main() {
-    const auto res{ ShortFunctionalRequest() };
+    const auto res{ FunctionalRequest() };
 
     if (!res) {
         std::print("{}", res.error());

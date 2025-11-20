@@ -31,7 +31,7 @@ namespace Thoth::Http {
 
 	using GetRequest  = HttpRequest<>;
 	using PostRequest = HttpRequest<HttpPostMethod>;
-};
+}
 
 
 #include <Thoth/Http/Request/HttpRequest.tpp>

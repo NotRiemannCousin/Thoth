@@ -1,6 +1,6 @@
 #pragma once
 #include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
-#include <Thoth/Json/Json.hpp>
+#include <Thoth/NJson/Json.hpp>
 
 
 namespace Thoth::Http {
@@ -16,7 +16,7 @@ namespace Thoth::Http {
 
         friend HttpClient; // who construct it
 
-        [[nodiscard]] std::optional<Json::Json> AsJson() const;
+        [[nodiscard]] std::optional<NJson::Json> AsJson() const;
     private:
 
         HttpResponse(HttpVersion version, HttpStatusCodeEnum status,

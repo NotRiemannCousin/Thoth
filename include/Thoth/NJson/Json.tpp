@@ -1,133 +1,42 @@
 #pragma once
+#include <format>
+
 #include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Thoth/Utils/Overloads.hpp>
+#include <Thoth/NJson/JsonObject.hpp>
 
-// TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. Nested(json, "map", "continents", "countries"))?
+// TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. (json, "map", "continents", "countries"))?
 
-namespace Thoth::Json {
-
-    // template<class T>
-    //     requires(!std::same_as<std::remove_cvref_t<T>, Json::JsonVal> &&
-    //              std::is_constructible_v<Json::JsonVal::Value, T&&>)
-    // constexpr Json::JsonVal::JsonVal(T&& newValue) : value(std::forward<T>(newValue)) { }
-    //
-    // template<class T>
-    //     requires(!std::same_as<std::remove_cvref_t<T>, Json::JsonVal> &&
-    //              std::is_constructible_v<Json::JsonVal::Value, T&&>)
-    // constexpr Json::JsonVal& Json::JsonVal::operator=(T&& newValue) {
-    //     value = std::forward<T>(newValue); // Atribuição direta no variant
-    //     return *this;
-    // }
+// NOLINTNEXTLINE(*)
+namespace Thoth::NJson {
     template<class T>
-    bool Json::JsonVal::IsOfType(const JsonVal& val) {
+    bool Json::IsOfType(const Json& val) {
         return std::holds_alternative<T>(val._value);
     }
 
     template<class T>
-    bool Json::JsonVal::IsOf() const {
+    bool Json::IsOf() const {
         return std::holds_alternative<T>(_value);
     }
 
     template<class T>
-    T& Json::JsonVal::AsType(JsonVal& val) {
+    T& Json::AsType(Json& val) {
         return std::get<T>(val._value);
     }
 
     template<class T>
-    T& Json::JsonVal::As() {
+    T& Json::As() {
         return std::get<T>(_value);
     }
     template<class T>
-    const T& Json::JsonVal::As() const {
+    const T& Json::As() const {
         return std::get<T>(_value);
     }
-
-
-    template<std::ranges::range R>
-    Json::OptRefValWrapper Json::NestedFind(R&& keys) {
-        auto currJson = this;
-
-        auto it{ keys.begin() };
-        const auto itEnd{ keys.end() };
-        static JsonVal dummy{ NullV };
-        OptRefValWrapper child{ std::ref(dummy) };
-
-
-        while (it != itEnd) {
-            child = currJson->Get(*it);
-
-            if(!child || !child->get().IsOf<Object>())
-                return std::nullopt;
-
-            currJson = &*child->get().As<Object>();
-        }
-
-        return child;
-    }
-
-    template<std::ranges::range R>
-    Json::OptCRefValWrapper Json::NestedFind(R&& keys) const {
-        auto currJson = this;
-
-        auto it{ keys.begin() };
-        const auto itEnd{ keys.end() };
-        OptCRefValWrapper child{ NullJ };
-
-        while (it != itEnd) {
-            child = currJson->Get(*it);
-
-            if(!child || !child->get().IsOf<Object>())
-                return std::nullopt;
-
-            currJson = &*child->get().As<Object>();
-        }
-
-        return child;
-    }
-
-
-    template<std::ranges::range R>
-    Json::RefValWrapperOrNull Json::NestedFindOrNull(R&& keys) {
-        return NestedFind(keys).value_or(NullJ);
-    }
-
-    template<std::ranges::range R>
-    Json::CRefValWrapperOrNull Json::NestedFindOrNull(R&& keys) const {
-        return NestedFind(keys).value_or(NullJ);
-    }
-
-    template<std::ranges::range R>
-    Json::OptValWrapper Json::NestedFindCopy(R &&keys) const {
-        return NestedFind(std::forward<R>(keys)).
-                transform([](const auto& ref){ return ref.get(); });
-    }
-
-    template<std::ranges::range R>
-    Json::ValWrapperOrNull Json::NestedFindOrNullCopy(R &&keys) const {
-        return NestedFind(std::forward<R>(keys))
-                .transform(&OptRefValWrapper::value)
-                .value_or(Null{});
-    }
-
-    template<std::ranges::range R>
-    Json::OptValWrapper Json::NestedFindMove(R &&key) && {
-        return NestedFindOrNullMove(std::forward<R>(key))
-            .transform(&OptRefValWrapper::value)
-            .transform(&std::move)
-            .value_or(Null{});
-    }
-
-    template<std::ranges::range R>
-    Json::ValWrapperOrNull Json::NestedFindOrNullMove(R &&key) && {
-        return NestedFindOrNullMove(std::forward<R>(key))
-            .value_or(Null{});
-    }
-
 
     namespace detail {
         using OutIt =  std::format_context::iterator;
 
-        void FormatJsonVal(const Json::JsonVal& val, bool pretty, const std::string& indent,
+        void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
             size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
 
 
@@ -135,7 +44,7 @@ namespace Thoth::Json {
             tempOutBuffer = '"';
             tempOutBuffer.reserve(str.size());
 
-            for (char c : str) {
+            for (const char c : str) {
                 switch (c) {
                     case '"':  tempOutBuffer += R"(\")"; break;
                     case '\\': tempOutBuffer += R"(\\)"; break;
@@ -156,7 +65,7 @@ namespace Thoth::Json {
             std::format_to(it, "{}", tempOutBuffer);
         }
 
-        inline void FormatJsonObj(const Json& json, bool pretty, const std::string& indent,
+        inline void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent,
             size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
 
             std::format_to(it, "{{");
@@ -193,7 +102,7 @@ namespace Thoth::Json {
             std::format_to(it, "}}");
         }
 
-        inline void FormatJsonArr(const Json::Array& val, bool pretty, const std::string& indent,
+        inline void FormatJsonArr(const Array& val, bool pretty, const std::string& indent,
                 size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
             std::format_to(it, "[");
             bool first = true;
@@ -229,7 +138,7 @@ namespace Thoth::Json {
             std::format_to(it, "]");
         }
 
-        inline void FormatJsonVal(const Json::JsonVal& val, bool pretty, const std::string& indent,
+        inline void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
             const size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
             std::visit(Utils::Overloaded{
                 [&](const String& str){
@@ -243,14 +152,14 @@ namespace Thoth::Json {
                 [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it, tempOutBuffer); },
                 [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it, tempOutBuffer); },
                 [&](const Null&      ){ std::format_to(it, "null"); }
-            }, static_cast<const Json::JsonVal::Value&>(val));
+            }, static_cast<const Json::Value&>(val));
         }
     }
 }
 
 
 template<>
-struct std::formatter<Thoth::Json::Json::JsonVal> {
+struct std::formatter<Thoth::NJson::Json> {
     bool pretty{};
     size_t indentLevel{};
 
@@ -271,45 +180,12 @@ struct std::formatter<Thoth::Json::Json::JsonVal> {
         return it;
     }
 
-    auto format(const Thoth::Json::Json::JsonVal& val, std::format_context& ctx) const {
+    auto format(const Thoth::NJson::Json& val, std::format_context& ctx) const {
         auto it = ctx.out();
         std::string tempOutBuffer;
 
-        Thoth::Json::detail::FormatJsonVal(val, pretty, std::string(indentLevel, ' '),
+        Thoth::NJson::detail::FormatJsonVal(val, pretty, std::string(indentLevel, ' '),
             0, it, tempOutBuffer);
-        return it;
-    }
-};
-
-template<>
-struct std::formatter<Thoth::Json::Json> {
-    bool pretty{};
-    size_t indentLevel{};
-
-    auto parse(std::format_parse_context& ctx) {
-        auto it = ctx.begin();
-        if (it != ctx.end()) {
-            ++it;
-            pretty = true;
-            auto [_, err]{ std::from_chars(
-                &*ctx.begin(),
-                &*ctx.begin() + std::distance(ctx.begin(), ctx.end()),
-                indentLevel
-            ) };
-
-            if (err != std::errc{})
-                throw std::format_error("Invalid format specifier for JsonVal");
-        }
-        return it;
-    }
-
-    auto format(const Thoth::Json::Json& json, std::format_context& ctx) const {
-        auto it{ ctx.out() };
-        std::string tempOutBuffer;
-
-        Thoth::Json::detail::FormatJsonObj(json, pretty, std::string(indentLevel, ' '),
-            0, it, tempOutBuffer);
-
         return it;
     }
 };

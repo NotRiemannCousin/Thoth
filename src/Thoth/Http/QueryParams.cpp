@@ -19,7 +19,7 @@ namespace Thoth::Http {
     QueryParams::QueryParams(const std::initializer_list<QueryPair> &init)
             : _elements{ init } {}
 
-    QueryParams QueryParams::Parse(std::string_view str) {
+    QueryParams QueryParams::Parse(std::string_view paramsStr) {
         static auto const ToStr = [](auto&& r) -> std::string {
             return r | rg::to<std::string>();
         };
@@ -38,7 +38,7 @@ namespace Thoth::Http {
         };
 
         QueryParams params{};
-        for (const auto& rawParam : str | vs::split('&')){
+        for (const auto& rawParam : paramsStr | vs::split('&')){
             const auto [r, l] = splitParams(rawParam);
             params[r] = l;
         }

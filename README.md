@@ -3,66 +3,43 @@
 
 ![](Thoth-logo.webp "Thoth, the Egyptian god of writing and wisdom")
 
-Thoth is a modern C++26 microframework for building both web servers and clients. Powered by the [Hermes](https://github.com/NotRiemannCousin/Hermes) library, Thoth is designed to harness the latest C++ features for creating robust, high-performance web applications.
+Thoth is a modern C++26 lib and microframework for building both web servers and clients.
+Powered by the [Hermes](https://github.com/NotRiemannCousin/Hermes) library, Thoth is designed to harness the latest C++ features
+for creating robust, high-performance web applications.
 
-Inspired by the egyptian god of knowledge, magic and the moon, Thoth embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance. It heavily utilizes coroutines and functional programming concepts to offer a natural and expressive API for asynchronous tasks.
+Inspired by the egyptian god of knowledge, magic and the moon, Thoth embraces a philosophy of
+strong type safety and compile-time checks without sacrificing usability or elegance. It heavily
+utilizes coroutines and functional programming concepts to offer a natural and expressive API
+for asynchronous tasks.
 
 
 ## Examples
-### Detailed Version
+### Functional Version 1
 ```cpp
-std::expected<std::monostate, std::string> MakeRequest() {
-const Http::HttpRequest<Http::HttpGetMethod> request{
-*Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" })
-};
+std::expected<std::monostate, std::string> FunctionalRequest() {
+    using std::string_literals::operator ""s;
+    namespace Utils = Thoth::Utils;
 
-    const auto response{ Http::HttpClient::Send(request) };
-
-    if (!response)
-        return std::unexpected{ response.error() };
-
-    const auto json{ response->AsJson() };
-
-    if (!json)
-        return std::unexpected{ "Cannot parse json" };
-
-
-    const auto membersOpt{ json->Get("members") };
-    if (!membersOpt)
-        return std::unexpected{ "\"members\" doesn't exists" };
-
-    const auto& members{ membersOpt->get() };
-
-    if (!members.IsOf<Json::Array>())
-        return std::unexpected{ "\"members\" isn't an array" };
-
-    for (const auto& member : members.As<Json::Array>()) {
-        if (!member.IsOf<Json::Object>())
-            return std::unexpected{ "\"members\"'s child isn't an object" };
-
-
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
-    }
-
-    return {};
-}
-```
-### Simplified Version
-```cpp
-// Or if you are confident enough..
-// I's a good choice to call this function inside an try block
-std::expected<std::monostate, std::string> MakeRequestShortVersion() {
-    const Http::HttpRequest<Http::HttpGetMethod> request{
-        *Http::HttpUrl::FromUrl({ "https://api.discogs.com/artists/4001234" })
+    const auto membersOrError {
+        NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+                .transform(NHttp::HttpClient::Send<>)
+                .value_or(std::unexpected{ "Failed to connect." })
+                .transform(&NHttp::GetResponse::AsJson)
+                .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+                .transform(std::bind_back(&Json::GetAndMove, "members" ))
+                .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>("\"members\" doesn't exist."s))
+                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>("\"members\" isn't an array."s))
     };
 
-    const auto response{ *Http::HttpClient::Send(request) };
-    const auto json{ *response.AsJson() };
+    if (!membersOrError)
+        return std::unexpected{ membersOrError.error() };
 
-    const auto& members{ json.Get("members")->get() };
+    for (const auto& member : membersOrError->As<NJson::Array>()) {
+        if (!member.IsOf<NJson::Object>())
+            return std::unexpected{ "Value isn't an object" };
 
-    for (const auto& member : members.As<Json::Array>())
-        std::print("{}\n", (*member.As<Json::Object>())["name"]);
+        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
+    }
 
     return {};
 }

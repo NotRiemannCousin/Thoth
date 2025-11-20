@@ -16,7 +16,7 @@ namespace Thoth::Http {
         using std::string;
 
 
-        constexpr auto toLower = [](char c) -> char {
+        constexpr auto toLower = [](const unsigned char c) -> char {
             if ('A' <= c && c <= 'Z')
                 return c - 'A' + 'a';
             return c;
@@ -85,20 +85,18 @@ namespace Thoth::Http {
 }
 
 
-namespace std {
-    template<>
-    struct formatter<Thoth::Http::HttpHeaders>{
+template<>
+struct std::formatter<Thoth::Http::HttpHeaders>{
 
-        static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-        auto format(const Thoth::Http::HttpHeaders &headers, std::format_context  &ctx) const {
-            for (const auto& p : headers._headers)
-                if (&p == &headers._headers.back())
-                    format_to(ctx.out(), "{}: {}",     p.first, p.second);
-                else
-                    format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
+    static auto format(const Thoth::Http::HttpHeaders &headers, std::format_context  &ctx) {
+        for (const auto& p : headers._headers)
+            if (&p == &headers._headers.back())
+                format_to(ctx.out(), "{}: {}",     p.first, p.second);
+            else
+                format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
 
-            return ctx.out();
-        }
-    };
-}
+        return ctx.out();
+    }
+};

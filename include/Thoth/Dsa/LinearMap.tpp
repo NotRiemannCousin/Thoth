@@ -1,6 +1,5 @@
 #pragma once
 #include <algorithm>
-#include <map>
 
 #include <Thoth/Utils/Hash.hpp>
 
@@ -26,7 +25,7 @@ namespace Thoth::Dsa {
             return !std::invoke(_compare, a.first, b.first) && !std::invoke(_compare, b.first, a.first);
         };
 
-        auto last = std::unique(_data.begin(), _data.end(), key_equiv);
+        const auto last{ std::unique(_data.begin(), _data.end(), key_equiv) };
         _data.erase(last, _data.end());
     }
 
@@ -132,13 +131,13 @@ namespace Thoth::Dsa {
     template <typename LookupKeyT, typename MappedT>
     std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
    constexpr LinearMap<KeyT, ValT, Pred>::try_emplace(const LookupKeyT& key, MappedT&& val) {
-        iterator it = find_position(key);
+        const iterator it{ find_position(key) };
 
         if (is_equivalent(it, key)) {
             return {it, false};
         }
 
-        iterator new_it = _data.emplace(it, key, std::forward<MappedT>(val));
+        const iterator new_it{ _data.emplace(it, key, std::forward<MappedT>(val)) };
         return {new_it, true};
     }
 
@@ -147,7 +146,7 @@ namespace Thoth::Dsa {
     template <typename LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::size_type
    constexpr  LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
-        iterator it = find(key);
+        const iterator it{ find(key) };
         if (it == _data.end()) {
             return 0;
         }
@@ -162,7 +161,7 @@ namespace Thoth::Dsa {
     template <typename LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::iterator
    constexpr  LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) {
-        iterator it = find_position(key);
+        const iterator it{ find_position(key) };
         if (is_equivalent(it, key)) {
             return it;
         }
@@ -174,7 +173,7 @@ namespace Thoth::Dsa {
     template <typename LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::const_iterator
    constexpr  LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) const {
-        const_iterator it = find_position(key);
+        const_iterator it{ find_position(key) };
         if (is_equivalent(it, key)) {
             return it;
         }
@@ -198,22 +197,18 @@ namespace Thoth::Dsa {
 }
 
 
-namespace std {
+template<class K, class V, class P>
+    requires requires(const K& k){ std::hash<K>{}(k); } && requires(const V& v){ std::hash<V>{}(v); }
+struct std::hash<Thoth::Dsa::LinearMap<K,V,P>> {
+    size_t operator()(const Thoth::Dsa::LinearMap<K,V,P>& m) const noexcept {
+        using Thoth::Utils::HashCombine;
+        size_t seed{ 1469598103934665603ULL };
 
-    template<class K, class V, class P>
-        requires requires(const K& k){ std::hash<K>{}(k); } && requires(const V& v){ std::hash<V>{}(v); }
-    struct hash<Thoth::Dsa::LinearMap<K,V,P>> {
-        size_t operator()(const Thoth::Dsa::LinearMap<K,V,P>& m) const noexcept {
-            using Thoth::Utils::HashCombine;
-            size_t seed = 1469598103934665603ULL;
-
-            for (const auto& p : m) {
-                HashCombine(seed, std::hash<K>{}(p.first));
-                HashCombine(seed, std::hash<V>{}(p.second));
-            }
-            HashCombine(seed, std::hash<size_t>{}(m.size()));
-            return seed;
+        for (const auto& p : m) {
+            HashCombine(seed, std::hash<K>{}(p.first));
+            HashCombine(seed, std::hash<V>{}(p.second));
         }
-    };
-
-}
+        HashCombine(seed, std::hash<size_t>{}(m.size()));
+        return seed;
+    }
+};

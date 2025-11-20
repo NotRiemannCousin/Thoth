@@ -24,9 +24,9 @@ namespace Thoth::Http {
         string fragment{};
 
         //! @brief Tries to convert the given string into HttpUrl.
-        //! @param url the given url.
+        //! @param rawUrl the given url.
         //! @return The HttpUrl if succeeded, std::nullopt if it fails.
-        static std::optional<HttpUrl> FromUrl(string_view url);
+        static std::optional<HttpUrl> FromUrl(string_view rawUrl);
 
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
@@ -41,7 +41,7 @@ namespace Thoth::Http {
         static std::optional<string> TryDecode(string_view str);
 
         //! @brief Check if the scheme is https.
-        bool IsSecure() const;
+        [[nodiscard]] bool IsSecure() const;
 
         bool operator==(const HttpUrl &) const;
 

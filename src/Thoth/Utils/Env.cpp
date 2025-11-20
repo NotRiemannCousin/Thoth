@@ -18,11 +18,11 @@ static std::optional<string> S_Interpolate(const string& str) {
     constexpr auto execCommand = [](const std::string& command) -> string {
 #ifdef _WIN32
         const std::string cmd{ std::format(R"(powershell -NoProfile -Command "{}" 2>&1)", command) };
-        std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd.c_str(), "r"), _pclose);
-        // isso vai dar merda com o escaping de " mas tanto faz
+        const std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd.c_str(), "r"), _pclose);
+        // isso vai dar merda com o escaping de aspas mas tanto faz
 #else
         const std::string cmd{ std::format("{} 2>&1", command) };
-        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"), pclose);
+        const std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"), pclose);
 #endif
 
         if (!pipe) return {};

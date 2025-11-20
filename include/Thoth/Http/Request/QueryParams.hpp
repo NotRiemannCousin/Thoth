@@ -31,7 +31,7 @@ namespace Thoth::Http{
 
 
         //! @brief Parse the query as it is.
-        static QueryParams Parse(std::string_view str);
+        static QueryParams Parse(std::string_view paramsStr);
         //! @brief Tries to decode and then parse.
         static std::optional<QueryParams> ParseDecodified(std::string_view str);
 

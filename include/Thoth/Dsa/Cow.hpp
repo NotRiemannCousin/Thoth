@@ -36,13 +36,13 @@ namespace Thoth::Dsa {
 
         constexpr OwnT& AsOwned();
 
-        constexpr RefT AsRef() const;
+        [[nodiscard]] constexpr RefT AsRef() const;
 
         template<class Callable>
         constexpr decltype(auto) Visit(Callable&& callable);
 
         template<class Callable>
-        constexpr decltype(auto) Visit(Callable&& callable) const;
+        [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
     private:
         ValueType _value;
     };
