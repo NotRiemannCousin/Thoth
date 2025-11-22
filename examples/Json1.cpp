@@ -1,28 +1,30 @@
+#include <print>
 #include <Thoth/NJson/Json.hpp>
+#include <Thoth/NJson/Utils.hpp>
 
 
 namespace NJson = Thoth::NJson;
 
 int main() {
-    NJson::JsonObject sla{
-                {"info", NJson::Array{
+    const NJson::JsonObject obj{
+                {"info", NJson::MakeArray(
                     "AiKatherine",
                     "KG/M",
                     "NB",
                     20,
                     1.71,
                     false,
-                    NJson::NullV,
-               }},
+                    NJson::NullV
+               )},
                 {"isAdmin", true},
                 {"isPremium", true},
-                {"links", NJson::JsonObject{
+                {"links", {{
                     {"youtube", "https://www.youtube.com/@LastArchimedes"},
                     {"github", "https://github.com/NotRiemannCousin"},
-                }}
+                }}}
     };
 
-    auto j = NJson::Parse(R"(
+    const auto parsed = NJson::Json::Parse(R"(
     {
         "info" : [
             "AiKatherine",
@@ -41,6 +43,8 @@ int main() {
         }
     }
 )");
+
+    std::print("{}", parsed && *parsed == obj);
 
     return 0;
 }

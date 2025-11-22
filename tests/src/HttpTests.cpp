@@ -1,6 +1,6 @@
 #include <Thoth/Http/Request/QueryParams.hpp>
-#include <Thoth/Http/Request/HttpUrl.hpp>
-#include <Thoth/Http/HttpHeaders.hpp>
+#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/Headers.hpp>
 #include "../include/BaseTests.hpp"
 
 using namespace Thoth::Http;
@@ -103,10 +103,10 @@ void QueryParamsTests() {
 }
 
 
-void HttpUrlTests() {
-    TestBattery("HttpUrl");
+void UrlTests() {
+    TestBattery("Url");
 
-    const auto url1Opt{ HttpUrl::FromUrl("https://www.example.com/path/to/resource") };
+    const auto url1Opt{ Url::FromUrl("https://www.example.com/path/to/resource") };
 
     Test("Simple: optional value", url1Opt.has_value());
     if (url1Opt) {
@@ -121,7 +121,7 @@ void HttpUrlTests() {
 
 
 
-    const auto url2Opt{ HttpUrl::FromUrl("http://user:pass@localhost:8080/api/v1/data?id=123&type=json#details") };
+    const auto url2Opt{ Url::FromUrl("http://user:pass@localhost:8080/api/v1/data?id=123&type=json#details") };
 
     Test("Complex: opt parse", url2Opt.has_value());
     if (url2Opt) {
@@ -138,7 +138,7 @@ void HttpUrlTests() {
 
 
 
-    const auto url3Opt{ HttpUrl::FromUrl("https://api.service.com/search?q=c%2B%2B%20programming") };
+    const auto url3Opt{ Url::FromUrl("https://api.service.com/search?q=c%2B%2B%20programming") };
 
     Test("Parse Encoding opt", url3Opt.has_value());
     if (url3Opt) {
@@ -149,41 +149,41 @@ void HttpUrlTests() {
 
 
 
-    Test("Invalid parse: no scheme", !HttpUrl::FromUrl("www.google.com/imghp").has_value());
-    Test("Invalid parse: invalid scheme", !HttpUrl::FromUrl("ftp://a.com").has_value());
-    Test("Invalid parse: no authority", !HttpUrl::FromUrl("http:/path/to/file").has_value());
-    Test("Invalid parse: invalid port", !HttpUrl::FromUrl("http://localhost:xyz/").has_value());
-    Test("Invalid parse: to big port", !HttpUrl::FromUrl("https://localhost:65536/").has_value());
-    Test("Invalid parse: empty host", !HttpUrl::FromUrl("https://user@/path").has_value());
+    Test("Invalid parse: no scheme", !Url::FromUrl("www.google.com/imghp").has_value());
+    Test("Invalid parse: invalid scheme", !Url::FromUrl("ftp://a.com").has_value());
+    Test("Invalid parse: no authority", !Url::FromUrl("http:/path/to/file").has_value());
+    Test("Invalid parse: invalid port", !Url::FromUrl("http://localhost:xyz/").has_value());
+    Test("Invalid parse: to big port", !Url::FromUrl("https://localhost:65536/").has_value());
+    Test("Invalid parse: empty host", !Url::FromUrl("https://user@/path").has_value());
 
 
 
     constexpr std::string_view originalUrlStr{ "https://user@example.com:8443/a/b?c=d#e" };
-    const auto parsedUrlOpt{ HttpUrl::FromUrl(originalUrlStr) };
+    const auto parsedUrlOpt{ Url::FromUrl(originalUrlStr) };
 
     Test("Round-trip parse: expected", parsedUrlOpt.has_value());
     if (parsedUrlOpt) {
-        const auto parsedUrlOpt2{ HttpUrl::FromUrl(std::format("{}", *parsedUrlOpt)) };
+        const auto parsedUrlOpt2{ Url::FromUrl(std::format("{}", *parsedUrlOpt)) };
         const auto formattedStr{ std::format("{}", *parsedUrlOpt2) };
         Test("Round-trip parse: Format", parsedUrlOpt == parsedUrlOpt2);
     }
 }
 
 
-void HttpHeadersTests() {
-    TestBattery("HttpHeaders");
+void HeadersTests() {
+    TestBattery("Headers");
 
     string refString;
     auto ref{ std::ref(refString) };
 
-    HttpHeaders headers1{
+    Headers headers1{
             {"Content-Type", "application/json"},
             {"Authorization", "Bearer token123"},
             {"X-Custom-Header", "custom-value"},
             {"Accept", "text/html,application/xml"}
     };
 
-    HttpHeaders headers2{
+    Headers headers2{
             {"Set-Cookie", "session=abc123; Path=/"},
             {"Set-Cookie", "user=john; Domain=.example.com"},
             {"Set-Cookie", "theme=dark; Secure"},
@@ -272,7 +272,7 @@ void HttpHeadersTests() {
     Test("Get: case insensitive value", authOpt.value_or(ref).get() == "Bearer token123");
 
 
-    const HttpHeaders& constHeaders{ headers1 };
+    const Headers& constHeaders{ headers1 };
     auto constGetOpt{ constHeaders.Get("accept") };
     Test("Get: Const Get", constGetOpt.value_or(ref).get() == "text/html,application/xml");
 
@@ -284,7 +284,7 @@ void HttpHeadersTests() {
     Test("GetSetCookie: contains theme", std::ranges::find(setCookieValues, "theme=dark; Secure") != setCookieValues.end());
 
 
-    HttpHeaders headersNoSetCookie{ {"Content-Type", "text/html"} };
+    Headers headersNoSetCookie{ {"Content-Type", "text/html"} };
     auto emptySetCookies{ headersNoSetCookie.GetSetCookie() };
     Test("GetSetCookie: empty", emptySetCookies.empty());
 
@@ -311,7 +311,7 @@ void HttpHeadersTests() {
     Test("Size: check", headers1.Size() == 4);
     Test("Empty: false", !headers1.Empty());
 
-    HttpHeaders emptyHeaders{};
+    Headers emptyHeaders{};
     Test("Empty: true", emptyHeaders.Empty());
     Test("Empty: size zero", emptyHeaders.Size() == 0);
 
@@ -343,33 +343,33 @@ void HttpHeadersTests() {
     Test("Iterator: keys lowercase", allLowercase);
 
 
-    HttpHeaders headers1Copy{ headers1 };
+    Headers headers1Copy{ headers1 };
     Test("Equality: same", headers1 == headers1Copy);
 
     headers1Copy.Add("Extra-Header", "extra-value");
     Test("Equality: different", headers1 != headers1Copy);
 
 
-    HttpHeaders::MapType vectorInit{
+    Headers::MapType vectorInit{
             {"Host", "example.com"},
             {"User-Agent", "TestClient/1.0"}
     };
-    HttpHeaders headersFromVector{ vectorInit };
+    Headers headersFromVector{ vectorInit };
     Test("Vector constructor: size", headersFromVector.Size() == 2);
     Test("Vector constructor: keys lowercase", headersFromVector.Exists("host"));
     Test("Vector constructor: values", headersFromVector.Exists("user-agent", "TestClient/1.0"));
 
 
-    HttpHeaders headersWithEmpty{ {"Empty-Header", ""} };
+    Headers headersWithEmpty{ {"Empty-Header", ""} };
     Test("Empty value: exists", headersWithEmpty.Exists("empty-header"));
     Test("Empty value: get", headersWithEmpty.Get("empty-header")->get().empty());
 
 
-    HttpHeaders headersWithSpaces{ {"Spaced-Header", "  value with spaces  "} };
+    Headers headersWithSpaces{ {"Spaced-Header", "  value with spaces  "} };
     Test("Spaced value: exact", headersWithSpaces.Exists("spaced-header", "  value with spaces  "));
 
 
-    HttpHeaders multipleHeaders{};
+    Headers multipleHeaders{};
     multipleHeaders.Add("Accept-Encoding", "gzip");
     multipleHeaders.Add("Accept-Encoding", "deflate");
     multipleHeaders.Add("Accept-Encoding", "br");
@@ -378,14 +378,14 @@ void HttpHeadersTests() {
 
 
 
-    HttpHeaders simpleHeaders{
+    Headers simpleHeaders{
             {"content-type", "text/html"},
             {"server", "nginx/1.18"}
     };
     auto simpleFormatted{ std::format("{}", simpleHeaders) };
     Test("Format: exact simple", simpleFormatted == "content-type: text/html\r\nserver: nginx/1.18\r\n");
 
-    HttpHeaders repeatHeaders{
+    Headers repeatHeaders{
             {"accept-encoding", "gzip"},
             {"accept-encoding", "deflate"}
     };
@@ -393,7 +393,7 @@ void HttpHeadersTests() {
     Test("Format: exact repeat", repeatFormatted == "accept-encoding: gzip\r\naccept-encoding: deflate\r\n");
 
 
-    HttpHeaders setCookieHeaders{
+    Headers setCookieHeaders{
             {"set-cookie", "session=abc123"},
             {"set-cookie", "user=john"}
     };
@@ -403,37 +403,37 @@ void HttpHeadersTests() {
 
 
     std::string_view leadingSpaceKey{ "   content-type: application/json\r\nauthorization: Bearer token123\r\n" };
-    auto parseLeadingSpace{ HttpHeaders::Parse(leadingSpaceKey) };
-    Test("Parse: space around key 1", !parseLeadingSpace.has_value() && parseLeadingSpace.error() == HttpStatusCodeEnum::BAD_REQUEST);
+    auto parseLeadingSpace{ Headers::Parse(leadingSpaceKey) };
+    Test("Parse: space around key 1", !parseLeadingSpace.has_value() && parseLeadingSpace.error() == StatusCodeEnum::BAD_REQUEST);
 
 
     std::string_view spaceAroundColon{ "set-cookie    :    session=abc123\r\ncontent-type: text/html\r\n" };
-    auto parseSpaceColon{ HttpHeaders::Parse(spaceAroundColon) };
-    Test("Parse: space around key 2", parseSpaceColon.error_or({}) == HttpStatusCodeEnum::BAD_REQUEST);
+    auto parseSpaceColon{ Headers::Parse(spaceAroundColon) };
+    Test("Parse: space around key 2", parseSpaceColon.error_or({}) == StatusCodeEnum::BAD_REQUEST);
 
 
     std::string_view whitespaceValue{ "content-type:          application/json       \r\nauthorization: Bearer token123\r\n" };
-    auto parseWhitespaceValue{ HttpHeaders::Parse(whitespaceValue) };
-    Test("Parse: space around value", parseWhitespaceValue.value_or(HttpHeaders{}).Get("content-Type")->get() == "application/json");
+    auto parseWhitespaceValue{ Headers::Parse(whitespaceValue) };
+    Test("Parse: space around value", parseWhitespaceValue.value_or(Headers{}).Get("content-Type")->get() == "application/json");
 
 
     std::string_view mixedWhitespace{ "  host  :   example.com   \r\nuser-agent: TestClient/1.0\r\n" };
-    auto parseMixedWhitespace{ HttpHeaders::Parse(mixedWhitespace) };
-    Test("Parse: space around key 3", parseMixedWhitespace.error_or({}) == HttpStatusCodeEnum::BAD_REQUEST);
+    auto parseMixedWhitespace{ Headers::Parse(mixedWhitespace) };
+    Test("Parse: space around key 3", parseMixedWhitespace.error_or({}) == StatusCodeEnum::BAD_REQUEST);
 
 
     std::string_view tabWhitespace{ "Content-Type:\tapplication/json\r\nauthorization: Bearer token123\r\n" };
-    auto parseTabWhitespace{ HttpHeaders::Parse(tabWhitespace) };
-    Test("Parse: tab whitespace error", parseTabWhitespace.value_or(HttpHeaders{}).Get("CONTENT-TYPE")->get() == "application/json");
+    auto parseTabWhitespace{ Headers::Parse(tabWhitespace) };
+    Test("Parse: tab whitespace error", parseTabWhitespace.value_or(Headers{}).Get("CONTENT-TYPE")->get() == "application/json");
 
 
     std::string_view emptyValue{ "CoNtEnT-tYpE:    \r\nauthorization: Bearer token123\r\n" };
-    auto parseEmptyValue{ HttpHeaders::Parse(emptyValue) };
-    Test("Parse: empty value", parseEmptyValue.value_or(HttpHeaders{}).Exists("content-type"));
+    auto parseEmptyValue{ Headers::Parse(emptyValue) };
+    Test("Parse: empty value", parseEmptyValue.value_or(Headers{}).Exists("content-type"));
 
 
 
-    HttpHeaders multipleAuthHeaders{};
+    Headers multipleAuthHeaders{};
     multipleAuthHeaders.Add("WWW-Authenticate", "Basic realm=\"Protected Area\"");
     multipleAuthHeaders.Add("WWW-Authenticate", R"(Bearer realm="API", error="invalid_token")");
 
@@ -443,7 +443,7 @@ void HttpHeadersTests() {
     Test("Add: multiple-value (WWW-Authenticate) size check", multipleAuthHeaders.Size() == 2);
 
 
-    HttpHeaders cookieHeaders{};
+    Headers cookieHeaders{};
     cookieHeaders.Add("Cookie", "sessionid=abcde12345");
     cookieHeaders.Add("Cookie", "csrftoken=xyz987");
     cookieHeaders.Add("Cookie", "theme=dark");
@@ -455,6 +455,6 @@ void HttpHeadersTests() {
 }
 
 
-void HttpRequestTests() {
+void RequestTests() {
 
 }

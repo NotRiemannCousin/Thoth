@@ -1,11 +1,11 @@
-#include "include/HttpTests.hpp"
+#include "include/Tests.hpp"
 
 
 int main() {
     QueryParamsTests();
-    HttpUrlTests();
-    HttpHeadersTests();
-    HttpRequestTests();
+    UrlTests();
+    HeadersTests();
+    RequestTests();
 
     return 0;
 }

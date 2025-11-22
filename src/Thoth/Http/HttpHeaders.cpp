@@ -1,4 +1,4 @@
-#include <Thoth/Http/HttpHeaders.hpp>
+#include <Thoth/Http/Headers.hpp>
 
 #include <algorithm>
 #include <functional>
@@ -100,23 +100,23 @@ namespace Thoth::Http {
 #pragma endregion
 
 
-    HttpHeaders::HttpHeaders() = default;
+    Headers::Headers() = default;
 
-    HttpHeaders::HttpHeaders(const MapType& initAs) {
+    Headers::Headers(const MapType& initAs) {
         _headers.reserve(initAs.size());
 
         for (const auto& [key, val] : initAs)
             _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
-    HttpHeaders::HttpHeaders(const std::initializer_list<HeaderPair> &init) {
+    Headers::Headers(const std::initializer_list<HeaderPair> &init) {
         _headers.reserve(init.size());
 
         for (const auto& [key, val] : init)
             _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
-    HttpHeaders HttpHeaders::DefaultHeaders() {
+    Headers Headers::DefaultHeaders() {
         return {
             {"accept", "*/*" },
             {"user-agent", "Thoth/0.1" },
@@ -126,21 +126,21 @@ namespace Thoth::Http {
 
 
 
-    bool HttpHeaders::Exists(const HeaderKeyRef key) const {
+    bool Headers::Exists(const HeaderKeyRef key) const {
         return I_FindInsensitiveKey(_headers, key) != _headers.end();
     }
 
-    bool HttpHeaders::Exists(const HeaderPairRef p) const {
+    bool Headers::Exists(const HeaderPairRef p) const {
         return I_FindInsensitiveKeyWithPair(_headers, p) != _headers.end();
     }
 
-    bool HttpHeaders::Exists(const HeaderKeyRef key, const HeaderValueRef val) const {
+    bool Headers::Exists(const HeaderKeyRef key, const HeaderValueRef val) const {
         return Exists({key, val});
     }
 
 
 
-    void HttpHeaders::Add(const HeaderPairRef p) {
+    void Headers::Add(const HeaderPairRef p) {
         if (I_IsSingleValue(p.first)) {
             Set(p);
             return;
@@ -163,11 +163,11 @@ namespace Thoth::Http {
         _headers.emplace_back(p.first| I_HeaderSanitizeStr, p.second);
     }
 
-    void HttpHeaders::Add(const HeaderKeyRef key, const HeaderValueRef val) {
+    void Headers::Add(const HeaderKeyRef key, const HeaderValueRef val) {
         Add({key, val});
     }
 
-    void HttpHeaders::Set(const HeaderPairRef p) {
+    void Headers::Set(const HeaderPairRef p) {
         std::erase_if(_headers, [&](const HeaderPair& current) {
             return I_InsensitiveCmp(current.first, p.first);
         });
@@ -175,11 +175,11 @@ namespace Thoth::Http {
         _headers.emplace_back(p.first | I_HeaderSanitizeStr, p.second);
     }
 
-    void HttpHeaders::Set(const HeaderKeyRef key, const HeaderValueRef val) {
+    void Headers::Set(const HeaderKeyRef key, const HeaderValueRef val) {
         Set({key, val});
     }
 
-    bool HttpHeaders::Remove(const HeaderPairRef p) {
+    bool Headers::Remove(const HeaderPairRef p) {
         auto&& it{ I_FindInsensitiveKeyWithPair(_headers,  p) };
         if (it == _headers.end())
             return false;
@@ -189,11 +189,11 @@ namespace Thoth::Http {
         return true;
     }
 
-    bool HttpHeaders::Remove(const HeaderKeyRef key, const HeaderValueRef val) {
+    bool Headers::Remove(const HeaderKeyRef key, const HeaderValueRef val) {
         return Remove({key, val});
     }
 
-    bool HttpHeaders::SetIfNull(HeaderPairRef p) {
+    bool Headers::SetIfNull(HeaderPairRef p) {
         if (Exists(p.first))
             return false;
 
@@ -201,13 +201,13 @@ namespace Thoth::Http {
         return true;
     }
 
-    bool HttpHeaders::SetIfNull(const HeaderKeyRef key, const HeaderValueRef val) {
+    bool Headers::SetIfNull(const HeaderKeyRef key, const HeaderValueRef val) {
         return SetIfNull({key, val});
     }
 
 
 
-    std::optional<std::reference_wrapper<HttpHeaders::HeaderValue>> HttpHeaders::Get(HeaderKeyRef key) {
+    std::optional<std::reference_wrapper<Headers::HeaderValue>> Headers::Get(HeaderKeyRef key) {
         const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
@@ -216,7 +216,7 @@ namespace Thoth::Http {
         return std::nullopt;
     }
 
-    std::optional<std::reference_wrapper<const HttpHeaders::HeaderValue>> HttpHeaders::Get(HeaderKeyRef key) const {
+    std::optional<std::reference_wrapper<const Headers::HeaderValue>> Headers::Get(HeaderKeyRef key) const {
         const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
@@ -227,38 +227,38 @@ namespace Thoth::Http {
 
 
 
-    std::vector<HttpHeaders::HeaderValue> HttpHeaders::GetSetCookie() const {
+    std::vector<Headers::HeaderValue> Headers::GetSetCookie() const {
         return GetSetCookieView() | rg::to<std::vector>();
     }
 
 
-    HttpHeaders::IterType HttpHeaders::begin() { return _headers.begin(); }
+    Headers::IterType Headers::begin() { return _headers.begin(); }
 
-    HttpHeaders::IterType HttpHeaders::end() { return _headers.end(); }
+    Headers::IterType Headers::end() { return _headers.end(); }
 
-    HttpHeaders::CIterType HttpHeaders::begin() const { return _headers.cbegin(); }
+    Headers::CIterType Headers::begin() const { return _headers.cbegin(); }
 
-    HttpHeaders::CIterType HttpHeaders::end() const { return _headers.cend(); }
+    Headers::CIterType Headers::end() const { return _headers.cend(); }
 
-    HttpHeaders::RIterType HttpHeaders::rbegin() { return _headers.rbegin(); }
+    Headers::RIterType Headers::rbegin() { return _headers.rbegin(); }
 
-    HttpHeaders::RIterType HttpHeaders::rend() { return _headers.rend(); }
+    Headers::RIterType Headers::rend() { return _headers.rend(); }
 
-    HttpHeaders::CRIterType HttpHeaders::rbegin() const { return _headers.crbegin(); }
+    Headers::CRIterType Headers::rbegin() const { return _headers.crbegin(); }
 
-    HttpHeaders::CRIterType HttpHeaders::rend() const { return _headers.crend(); }
-
-
-
-    void HttpHeaders::Clear() { _headers.clear(); }
-
-    size_t HttpHeaders::Size() const { return _headers.size(); }
-
-    bool HttpHeaders::Empty() const { return _headers.empty(); }
+    Headers::CRIterType Headers::rend() const { return _headers.crend(); }
 
 
 
-    HttpHeaders::HeaderValue& HttpHeaders::operator[](HeaderKeyRef key) {
+    void Headers::Clear() { _headers.clear(); }
+
+    size_t Headers::Size() const { return _headers.size(); }
+
+    bool Headers::Empty() const { return _headers.empty(); }
+
+
+
+    Headers::HeaderValue& Headers::operator[](HeaderKeyRef key) {
         if (const auto it{  I_FindInsensitiveKey(_headers, key) }; it != _headers.end())
             return it->second;
 
@@ -266,5 +266,5 @@ namespace Thoth::Http {
         return _headers.back().second;
     }
 
-    bool HttpHeaders::operator==(const HttpHeaders& other) const = default;
+    bool Headers::operator==(const Headers& other) const = default;
 }

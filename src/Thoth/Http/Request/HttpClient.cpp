@@ -1,4 +1,4 @@
-#include <Thoth/Http/HttpClient.hpp>
+#include <Thoth/Http/Client.hpp>
 #include <ranges>
 
 
@@ -10,13 +10,13 @@ namespace vs = std::views;
 constexpr auto downTime{ std::chrono::seconds{60} };
 constexpr auto sleepTime{ std::chrono::seconds{30} };
 
-Thoth::Http::HttpClientJanitor & Thoth::Http::HttpClientJanitor::Instance() {
-    static HttpClientJanitor instance;
+Thoth::Http::ClientJanitor & Thoth::Http::ClientJanitor::Instance() {
+    static ClientJanitor instance;
 
     return instance;
 }
 
-void Thoth::Http::HttpClientJanitor::JanitorLoop() {
+void Thoth::Http::ClientJanitor::JanitorLoop() {
     while (_isRunning) {
         std::this_thread::sleep_for(sleepTime);
         std::lock_guard lock(poolMutex);
@@ -37,10 +37,10 @@ void Thoth::Http::HttpClientJanitor::JanitorLoop() {
 
 
 
-Thoth::Http::HttpClientJanitor::HttpClientJanitor() {
-    _janitorThread = std::jthread(&HttpClientJanitor::JanitorLoop, this);
+Thoth::Http::ClientJanitor::ClientJanitor() {
+    _janitorThread = std::jthread(&ClientJanitor::JanitorLoop, this);
 }
-Thoth::Http::HttpClientJanitor::~HttpClientJanitor() {
+Thoth::Http::ClientJanitor::~ClientJanitor() {
     _isRunning = false;
     _janitorThread.join();
 }

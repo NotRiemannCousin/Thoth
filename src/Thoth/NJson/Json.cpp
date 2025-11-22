@@ -38,7 +38,15 @@ Json::Json(JsonObject&& child)      : _value{ std::make_unique<JsonObject>(std::
     DEBUG_PRINT("JsonVal => Json&& child");
  }
 
-Json::Json() : _value{} {
+Json::Json(const Array& child) : _value{ child } {
+    DEBUG_PRINT("JsonVal => const Array& child");
+}
+
+Json::Json(Array&& child) : _value{ std::move(child) } {
+    DEBUG_PRINT("JsonVal => Array&& child");
+}
+
+Json::Json() {
     DEBUG_PRINT("JsonVal => Default");
 }
 
@@ -61,7 +69,13 @@ Json::Json(Json&& other) noexcept  : _value{ std::move(other._value) } {
 
 Json::Json(const Json& other)      : _value{ I_CloneValue(other._value) } {
     DEBUG_PRINT("JsonVal => const JsonVal& other");
- }
+}
+
+Json::Json(bool b) : _value{ b } {
+    DEBUG_PRINT("JsonVal => bool b");
+}
+
+
 
 
 Json& Json::operator=(JsonObject&& other) {
@@ -77,6 +91,19 @@ Json& Json::operator=(const JsonObject& other) {
     return *this;
 }
 
+Json & Json::operator=(const Array &child) {
+    _value = child;
+    DEBUG_PRINT("JsonVal operator => const array& child");
+
+    return *this;
+}
+
+Json & Json::operator=(Array &&child) {
+    _value = std::move(child);
+    DEBUG_PRINT("JsonVal operator => const array& child");
+
+    return *this;
+}
 
 Json& Json::operator=(Value&& newValue) noexcept {
     _value = std::move(newValue);
@@ -106,6 +133,11 @@ Json& Json::operator=(const Json& other) {
     _value = I_CloneValue(other._value);
     DEBUG_PRINT("JsonVal operator => const JsonVal& other");
 
+    return *this;
+}
+
+Json& Json::operator=(bool other) {
+    _value = other;
     return *this;
 }
 

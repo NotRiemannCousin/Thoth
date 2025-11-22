@@ -2,8 +2,8 @@
 
 namespace std {
     template<>
-    struct hash<Thoth::Http::HttpUrl> {
-        size_t operator()(const Thoth::Http::HttpUrl& url) const noexcept {
+    struct hash<Thoth::Http::Url> {
+        size_t operator()(const Thoth::Http::Url& url) const noexcept {
             return
                 (hash<string>()(url.scheme)                  << 0) ^
                 (hash<string>()(url.user)                    << 1) ^
@@ -16,7 +16,7 @@ namespace std {
     };
 
     template<>
-    struct formatter<Thoth::Http::HttpUrl>{
+    struct formatter<Thoth::Http::Url>{
         bool origin{};
 
         constexpr auto parse(auto &ctx) {
@@ -26,7 +26,7 @@ namespace std {
             return it;
         }
 
-        auto format(const Thoth::Http::HttpUrl &url, std::format_context &ctx) const {
+        auto format(const Thoth::Http::Url &url, std::format_context &ctx) const {
             format_to(ctx.out(), "{}://", url.scheme);
 
             if (!origin && !url.user.empty())

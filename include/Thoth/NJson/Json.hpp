@@ -77,19 +77,40 @@ namespace Thoth::NJson {
         Json(const JsonObject& child);
         Json(JsonObject&& child);
 
+        Json(const Array& child);
+        Json(Array&& child);
+
         Json(Value&& newValue) noexcept;
         Json(const Value& newValue);
         Json(Json&& other) noexcept;
         Json(const Json& other);
 
+        Json(bool other);
+        template<class T>
+            requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
+        Json(T other);
+        template<class T>
+            requires std::convertible_to<T, std::string>
+        Json(T&& other);
 
         Json& operator=(const JsonObject& other);
         Json& operator=(JsonObject&& other);
+
+        Json& operator=(const Array& child);
+        Json& operator=(Array&& child);
 
         Json& operator=(Value&& newValue) noexcept;
         Json& operator=(const Value& newValue);
         Json& operator=(Json&& other) noexcept;
         Json& operator=(const Json& other);
+
+        Json& operator=(bool other);
+        template<class T>
+            requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
+        Json& operator=(T other);
+        template<class T>
+            requires std::convertible_to<T, std::string>
+        Json& operator=(T&& other);
 
 
         operator Value&();

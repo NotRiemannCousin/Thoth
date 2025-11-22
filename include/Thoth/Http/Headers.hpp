@@ -1,5 +1,5 @@
 #pragma once
-#include <Thoth/Http/Response/HttpStatusCodeEnum.hpp>
+#include <Thoth/Http/Response/StatusCodeEnum.hpp>
 #include <optional>
 #include <format>
 #include <vector>
@@ -7,9 +7,9 @@
 #include <ranges>
 
 namespace Thoth::Http {
-    //! @brief HttpHeaders is a dumb class that stores the headers. Although it can parse the raw headers from TCP,
+    //! @brief Headers is a dumb class that stores the headers. Although it can parse the raw headers from TCP,
     //! the role of this class is just store it, so it can't check if the headers individually are well-formed.
-    struct HttpHeaders {
+    struct Headers {
         using HeaderKey      = std::string;
         using HeaderKeyRef   = std::string_view;
 
@@ -28,24 +28,24 @@ namespace Thoth::Http {
         using CRIterType     = decltype(MapType{}.crbegin());
 
 
-        HttpHeaders();
+        Headers();
 
         //! @brief Create with an existing vector.
-        explicit HttpHeaders(const MapType& initAs);
+        explicit Headers(const MapType& initAs);
 
-        HttpHeaders(const std::initializer_list<HeaderPair>& init);
+        Headers(const std::initializer_list<HeaderPair>& init);
 
 
         //! @brief Tries to parse the headers from the raw TCP string.
         //! @param headers the headers separated by  "\r\n".
         //! @param maxHeadersLength the max length that the headers can achieve.
-        //! @return A HttpHeaders if the parse success, @ref "bad request" HttpStatusCodeEnum::BAD_REQUEST if the parse
-        //! fails and @ref "content too large" HttpStatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.
+        //! @return A Headers if the parse success, @ref "bad request" StatusCodeEnum::BAD_REQUEST if the parse
+        //! fails and @ref "content too large" StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.
         template<std::ranges::input_range R>
-        static WebResult<HttpHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
+        static WebResult<Headers> Parse(R& headers, size_t maxHeadersLength = 1<<16);
 
 
-        static HttpHeaders DefaultHeaders();
+        static Headers DefaultHeaders();
 
 
         //! @brief check if a key exists.
@@ -145,12 +145,12 @@ namespace Thoth::Http {
         HeaderValue& operator[](HeaderKeyRef key);
 
         //! @return True if both headers match.
-        bool operator==(const HttpHeaders& other) const;
+        bool operator==(const Headers& other) const;
     private:
         MapType _headers;
 
-        friend struct std::formatter<HttpHeaders>;
+        friend struct std::formatter<Headers>;
     };
 }
 
-#include <Thoth/Http/HttpHeaders.tpp>
+#include <Thoth/Http/Headers.tpp>

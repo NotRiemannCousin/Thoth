@@ -1,5 +1,5 @@
 #include <Thoth/Http/Request/QueryParams.hpp>
-#include <Thoth/Http/Request/HttpUrl.hpp>
+#include <Thoth/Http/Request/Url.hpp>
 
 #include <algorithm>
 #include <ranges>
@@ -12,7 +12,7 @@ namespace Thoth::Http {
     namespace rg = std::ranges;
     namespace vs = std::views;
 
-    struct HttpUrl;
+    struct Url;
 
     QueryParams::QueryParams(const MapType& initAs): _elements{ initAs } { }
 
@@ -47,7 +47,7 @@ namespace Thoth::Http {
     }
 
     std::optional<QueryParams> QueryParams::ParseDecodified(std::string_view str) {
-        return HttpUrl::TryDecode(str).transform(Parse);
+        return Url::TryDecode(str).transform(Parse);
     }
 
     bool QueryParams::Exists(QueryKeyRef key) const { return _elements.contains(key); }

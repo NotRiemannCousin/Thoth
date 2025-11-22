@@ -4,10 +4,21 @@
 // TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. (json, "map", "continents", "countries"))?
 
 
-namespace Thoth::NJson::detail {
-    using OutIt =  std::format_context::iterator;
+namespace Thoth::NJson {
 
-    void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent, size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
+    // template<class ... T>
+    //     requires (sizeof...(T) != 0) &&
+    //         (std::constructible_from<Key, typename T::first_type>,...) &&
+    //         (std::constructible_from<Json, typename T::second_type>,...)
+    // JsonObject::JsonObject(T &&...pairs) {
+    //     // std::
+    // }
+
+    namespace detail {
+        using OutIt =  std::format_context::iterator;
+
+        void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent, size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
+    }
 }
 
 template<>

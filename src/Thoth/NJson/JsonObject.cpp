@@ -3,6 +3,7 @@
 #include <functional>
 #include <algorithm>
 #include <expected>
+#include <print>
 
 #include <Thoth/NJson/Json.hpp>
 
@@ -22,7 +23,7 @@ JsonObject::~JsonObject() {
 }
 
 JsonObject::JsonObject(const JsonObject& other) {
-    DEBUG_PRINT("Json => const JsonVal& other");
+    DEBUG_PRINT("JsonObject => const JsonVal& other");
     _pairs = other._pairs;
     // If the buffer isn't user managed carries the reference, so when you delete the parent but not the children the
     // Cow still works. Yeah, given the necessity of `_bufferView` (user managed buffers) the `_buffer` itself it's
@@ -30,28 +31,38 @@ JsonObject::JsonObject(const JsonObject& other) {
 }
 
 JsonObject::JsonObject(JsonObject&& other) noexcept : _pairs{ std::move(other._pairs) } {
-    DEBUG_PRINT("Json => JsonVal&& other");
+    DEBUG_PRINT("JsonObject => JsonVal&& other");
 }
+
+JsonObject::JsonObject(MapType&& initAs) : _pairs{ std::move(initAs) } { }
+
+JsonObject::JsonObject(std::initializer_list<JsonPair> init) : _pairs{ init } {
+    DEBUG_PRINT("JsonObject initializer_list");
+}
+
+
 
 JsonObject& JsonObject::operator=(const JsonObject& other) {
     if (this == &other)
         return *this;
 
-    DEBUG_PRINT("Json equals operator => const JsonVal& other");
+    DEBUG_PRINT("JsonObject equals operator => const JsonVal& other");
     _pairs = other._pairs;
 
     return *this;
 }
 
-JsonObject& JsonObject::operator=(JsonObject&& other) noexcept {
-    _pairs = std::move(other._pairs);
-    DEBUG_PRINT("Json equals operator => const JsonVal& other");
+JsonObject & JsonObject::operator=(std::initializer_list<JsonPair> list) {
+    _pairs = list;
+    DEBUG_PRINT("JsonObject equals operator => initializer_list");
     return *this;
 }
 
-JsonObject::JsonObject(MapType&& initAs) : _pairs{ std::move(initAs) } { }
-
-JsonObject::JsonObject(const std::initializer_list<JsonPair>& init) : _pairs{ init } { }
+JsonObject& JsonObject::operator=(JsonObject&& other) noexcept {
+    _pairs = std::move(other._pairs);
+    DEBUG_PRINT("JsonObject equals operator => const JsonVal& other");
+    return *this;
+}
 
 
 bool JsonObject::Exists(JsonObjKeyRef key) const {

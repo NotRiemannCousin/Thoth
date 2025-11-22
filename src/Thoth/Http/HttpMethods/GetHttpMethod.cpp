@@ -1,5 +1,5 @@
 #pragma once
-#include <Thoth/Http/HttpMethods/GetHttpMethod.hpp>
+#include <Thoth/Http/Methods/GetMethod.hpp>
 
 
 using namespace Thoth::Http;

@@ -9,7 +9,7 @@
 namespace Thoth::Http {
     // TODO: Reinforce this constraint
     template<std::ranges::input_range R>
-    WebResult<HttpHeaders> HttpHeaders::Parse(R& headers, const size_t maxHeadersLength) {
+    WebResult<Headers> Headers::Parse(R& headers, const size_t maxHeadersLength) {
         namespace rg = std::ranges;
         namespace vs = std::views;
         using std::string_view;
@@ -40,7 +40,7 @@ namespace Thoth::Http {
 
         constexpr string_view delimiter { "\r\n" };
 
-        HttpHeaders res;
+        Headers res;
 
         while (true) {
             if (headers.begin() == headers.end())
@@ -62,7 +62,7 @@ namespace Thoth::Http {
 
 
             if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, isCharAllowed))
-                return std::unexpected{ HttpStatusCodeEnum::BAD_REQUEST };
+                return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
 
             rg::transform(headerKey, headerKey.begin(), toLower);
             res.Add(headerKey, headerVal);
@@ -71,7 +71,7 @@ namespace Thoth::Http {
         return res;
     }
 
-    inline auto HttpHeaders::GetSetCookieView() const {
+    inline auto Headers::GetSetCookieView() const {
         constexpr auto cmp = [](const auto& p) {
             return p.first == "set-cookie";
         };
@@ -86,11 +86,11 @@ namespace Thoth::Http {
 
 
 template<>
-struct std::formatter<Thoth::Http::HttpHeaders>{
+struct std::formatter<Thoth::Http::Headers>{
 
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-    static auto format(const Thoth::Http::HttpHeaders &headers, std::format_context  &ctx) {
+    static auto format(const Thoth::Http::Headers &headers, std::format_context  &ctx) {
         for (const auto& p : headers._headers)
             if (&p == &headers._headers.back())
                 format_to(ctx.out(), "{}: {}",     p.first, p.second);

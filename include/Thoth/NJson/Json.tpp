@@ -9,6 +9,33 @@
 
 // NOLINTNEXTLINE(*)
 namespace Thoth::NJson {
+
+    template<class T>
+        requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
+    Json::Json(T other) {
+        _value = static_cast<Number>(other);
+    }
+
+    template<class T>
+    requires std::convertible_to<T, std::string>
+    Json::Json(T&& other) {
+        _value = String::FromOwned(std::forward<T>(other));
+    }
+
+    template<class T>
+    requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
+    Json& Json::operator=(T other) {
+        _value = static_cast<Number>(other);
+        return *this;
+    }
+
+    template<class T>
+        requires std::convertible_to<T, std::string>
+    Json& Json::operator=(T&& other) {
+        _value = String::FromOwned(std::forward<T>(other));
+        return *this;
+    }
+
     template<class T>
     bool Json::IsOfType(const Json& val) {
         return std::holds_alternative<T>(val._value);

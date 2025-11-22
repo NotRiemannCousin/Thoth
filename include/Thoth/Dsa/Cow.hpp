@@ -12,14 +12,16 @@ namespace Thoth::Dsa {
         using RefType = RefT;
         using OwnType = OwnT;
 
+        // NOLINTBEGIN(*)
         constexpr Cow() = default;
+        constexpr Cow(RefT) noexcept;
         constexpr Cow(Cow&&) noexcept = default;
         constexpr Cow(const Cow& other);
+        // NOLINTEND(*)
 
         constexpr Cow& operator=(Cow&& other) noexcept = default;
         constexpr Cow& operator=(const Cow& other);
 
-        constexpr bool operator==(const Cow&) const = default;
 
         constexpr static Cow FromRef(RefT ref);
         constexpr Cow& SetRef(RefT ref);
@@ -46,6 +48,11 @@ namespace Thoth::Dsa {
     private:
         ValueType _value;
     };
+
+
+    template<class RefT, class OwnT>
+        requires std::constructible_from<OwnT, RefT>
+    constexpr bool operator==(const Cow<RefT, OwnT>& left, const Cow<RefT, OwnT>& right);
 }
 
 #include <Thoth/Dsa/Cow.tpp>

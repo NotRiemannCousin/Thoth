@@ -4,7 +4,7 @@
 
 
 namespace Thoth::Http {
-    enum class HttpStatusCodeEnum {
+    enum class StatusCodeEnum {
         // Informational responses
         CONTINUE                         = 100,
         SWITCHING_PROTOCOLS              = 101,
@@ -83,7 +83,7 @@ namespace Thoth::Http {
     };
 
 
-    enum class HttpStatusTypeEnum {
+    enum class StatusTypeEnum {
         INFORMATIONAL,
         SUCCESSFUL,
         REDIRECTION,
@@ -91,14 +91,14 @@ namespace Thoth::Http {
         SERVER_ERROR
     };
 
-    constexpr HttpStatusTypeEnum GetStatusType(HttpStatusCodeEnum code) {
-        return static_cast<HttpStatusTypeEnum>(static_cast<size_t>(code) / 100 - 1);
+    constexpr StatusTypeEnum GetStatusType(StatusCodeEnum code) {
+        return static_cast<StatusTypeEnum>(static_cast<size_t>(code) / 100 - 1);
     }
 
 
 
     template<class T>
-    using WebResult = std::expected<T, HttpStatusCodeEnum>;
+    using WebResult = std::expected<T, StatusCodeEnum>;
 
 
     using WebResultOper = WebResult<std::monostate>;

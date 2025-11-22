@@ -1,7 +1,7 @@
 #pragma warning(disable: 4455)
 #include <print>
 
-#include <Thoth/Http/HttpClient.hpp>
+#include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
 
@@ -9,50 +9,13 @@ namespace NHttp = Thoth::Http;
 namespace NJson = Thoth::NJson;
 using NJson::Json;
 
-std::expected<std::monostate, std::string> Request() {
-    const auto request{ NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234") };
-
-    if (!request)
-        return std::unexpected{ "Can't connect to FromUrl" };
-
-    const auto response{ NHttp::HttpClient::Send(*request) };
-
-    if (!response)
-        return std::unexpected{ response.error() };
-
-    const auto json{ response->AsJson() };
-
-    if (!json)
-        return std::unexpected{ "Cannot parse json" };
-
-
-    const auto membersOpt{ json->Get("members") };
-    if (!membersOpt)
-        return std::unexpected{ R"("members" doesn't exist)" };
-
-    const auto& members{ membersOpt->get() };
-
-    if (!members.IsOf<NJson::Array>())
-        return std::unexpected{ R"("members" isn't an array)" };
-
-    for (const auto& member : members.As<NJson::Array>()) {
-        if (!member.IsOf<NJson::Object>())
-            return std::unexpected{ R"("members"'s child isn't an object)" };
-
-        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
-        // or std::print("{}\n", (*member.As<Json::Object>())["name"].As<Json::String>().AsRef());
-    }
-
-    return {};
-}
-
 std::expected<std::monostate, std::string> FunctionalRequest() {
     using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 
     const auto membersOrError {
         NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-                .transform(NHttp::HttpClient::Send<>)
+                .transform(NHttp::Client::Send<>)
                 .value_or(std::unexpected{ "Failed to connect." })
                 .transform(&NHttp::GetResponse::AsJson)
 #ifdef DENSE_DEBUG_JSON
@@ -76,7 +39,7 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
     // Without comments:
     // const auto membersOrError {
     //     NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-    //             .transform(NHttp::HttpClient::Send<>)
+    //             .transform(NHttp::Client::Send<>)
     //             .value_or(std::unexpected{ "Failed to connect." })
     //             .transform(&NHttp::GetResponse::AsJson)
     //             .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
@@ -109,7 +72,7 @@ std::expected<std::monostate, std::string> ShortRequest() {
 
     const auto members{
         GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-        .transform(HttpClient::Send<>)
+        .transform(Client::Send<>)
         .transform(&GetResponse::AsJson)
         .transform(std::bind_back(&Json::GetAndMove, "members"))
         .value().value()
@@ -128,7 +91,7 @@ std::expected<std::monostate, std::string> OtherExample() {
 
     const auto json{
         GetRequest::FromUrl("https://api.jikan.moe/v4/anime/57555")
-                .transform(HttpClient::Send<>)
+                .transform(Client::Send<>)
                 .value_or(std::unexpected{ "Failed to connect." })
                 .transform(&GetResponse::AsJson)
                 .and_then(ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))

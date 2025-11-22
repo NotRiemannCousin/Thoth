@@ -1,17 +1,17 @@
 #pragma once
-#include <Thoth/Http/Response/HttpResponse.hpp>
+#include <Thoth/Http/Response/Response.hpp>
 #include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
 
 namespace Thoth::Http {
-    template<HttpMethodConcept Method>
-    expected<HttpResponse<Method>, string> HttpClient::Send(HttpRequest<Method> request) {
+    template<MethodConcept Method>
+    expected<Response<Method>, string> Client::Send(Request<Method> request) {
         const auto endpointOpt{ Hermes::IpEndpoint::TryResolve(request.url.host, to_string(request.url.port)) };
         if (!endpointOpt)
             return std::unexpected{ "DNS Resolution Failed" };
 
-        HttpClientJanitor& janitor{ HttpClientJanitor::Instance() };
-        std::shared_ptr<HttpSocket> infoPtr;
+        ClientJanitor& janitor{ ClientJanitor::Instance() };
+        std::shared_ptr<Socket> infoPtr;
 
 
         {
@@ -32,7 +32,7 @@ namespace Thoth::Http {
             if (!newSocketResult)
                 return std::unexpected{ "Connection Failed" };
 
-            infoPtr = std::make_shared<HttpSocket>(std::move(*newSocketResult));
+            infoPtr = std::make_shared<Socket>(std::move(*newSocketResult));
         }
 
 
@@ -45,7 +45,7 @@ namespace Thoth::Http {
             "{}\r\n"
             "\r\n"
             "{}",
-            Method::MethodName(), path, HttpVersionToString(request.version),
+            Method::MethodName(), path, VersionToString(request.version),
             request.headers,
             request.body
         ) };
@@ -61,10 +61,10 @@ namespace Thoth::Http {
         namespace rg = std::ranges;
         namespace vs = std::views;
 
-        HttpVersion version{};
-        HttpStatusCodeEnum status{};
+        Version version{};
+        StatusCodeEnum status{};
         string statusMessage{};
-        HttpHeaders headers{};
+        Headers headers{};
         string body{};
 
         auto stream{ infoPtr->socket.RecvRange<char>() };
@@ -73,8 +73,8 @@ namespace Thoth::Http {
             return std::unexpected{ "Invalid response" };
 
         switch (*stream.begin()) {
-            case '0': version = HttpVersion::HTTP1_0; break;
-            case '1': version = HttpVersion::HTTP1_1; break;
+            case '0': version = Version::HTTP1_0; break;
+            case '1': version = Version::HTTP1_1; break;
             default: return std::unexpected{ "Invalid version" };
         }
         ++stream.begin();
@@ -84,11 +84,11 @@ namespace Thoth::Http {
         if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
             return std::unexpected{ "Invalid response" };
 
-        status = static_cast<HttpStatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
+        status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
         statusMessage = stream | Hermes::Utils::UntilMatch(string_view{ "\r\n" }) | rg::to<string>();
 
         auto rawHeaders{ stream | Hermes::Utils::UntilMatch(string_view{ "\r\n\r\n" }) };
-        const auto headersParseRes{ HttpHeaders::Parse(rawHeaders) };
+        const auto headersParseRes{ Headers::Parse(rawHeaders) };
 
         if (!headersParseRes)
             return std::unexpected{ "Invalid headers" };
@@ -105,7 +105,7 @@ namespace Thoth::Http {
 
             body = stream | vs::take(contentSize) | rg::to<string>();
         } else {
-            if (version == HttpVersion::HTTP1_0)
+            if (version == Version::HTTP1_0)
                 return std::unexpected{ "HTTP/1.0 needs content-length" };
 
             static string defaultValue{ "chunked" };
@@ -143,7 +143,7 @@ namespace Thoth::Http {
         std::lock_guard lock(janitor.poolMutex);
         janitor.connectionPool[*endpointOpt].push_back(std::move(infoPtr));
 
-        return HttpResponse<Method>{ version, status, std::move(statusMessage),
+        return Response<Method>{ version, status, std::move(statusMessage),
             std::move(headers), std::move(body) };
     }
 }

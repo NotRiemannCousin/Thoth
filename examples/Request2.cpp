@@ -1,16 +1,15 @@
 #include <print>
-#include <Thoth/Http/HttpClient.hpp>
+#include <Thoth/Http/Client.hpp>
 
 
 namespace NHttp = Thoth::Http;
 
 int main() {
-    const NHttp::HttpRequest<NHttp::HttpGetMethod> request{
-        *NHttp::HttpUrl::FromUrl({ "https://api.chucknorris.io/jokes/random" })
-        // It's a good practice to validate the Url outside
+    const auto response{
+        NHttp::GetRequest::FromUrl({ "https://api.chucknorris.io/jokes/random" })
+                .transform(NHttp::Client::Send<>)
+                .value_or(std::unexpected{ "Failed to connect." })
     };
-
-    const auto response{ NHttp::HttpClient::Send(request) };
 
     if (response) {
         std::print("status: {} {}\n"
@@ -20,9 +19,9 @@ int main() {
             "{}",
             static_cast<int>(response->status), response->statusMessage, response->headers, response->body);
     } else {
-        std::print("{}", response.error());
+        std::println("Error: {}", response.error());
 
-        const int error{ WSAGetLastError() }; // ... Just in case
+        const int error{ WSAGetLastError() };
 
         if (error != 0)
             std::print("\n{}", error);

@@ -20,7 +20,6 @@ namespace Thoth::NJson {
         using JsonPair    = std::pair<JsonObjKey, Json>;
         using JsonPairRef = std::pair<JsonObjKeyRef, JsonValRef>;
         using MapType     = Dsa::LinearMap<JsonObjKey, Json>;
-        // using MapType     = std::map<JsonKey, JsonVal, std::less<>>;
 
         using IterType   = decltype(MapType{}.begin());
         using CIterType  = decltype(MapType{}.cbegin());
@@ -28,19 +27,20 @@ namespace Thoth::NJson {
         ~JsonObject();
 
         JsonObject() = default;
-        JsonObject(const JsonObject& other);
         JsonObject(JsonObject&& other) noexcept;
-
-        JsonObject& operator=(const JsonObject& other);
-        JsonObject& operator=(JsonObject&& other) noexcept;
-
+        JsonObject(const JsonObject& other);
 
         //! @brief Create with an existing map.
         explicit JsonObject(MapType&& initAs);
 
         // NOLINTNEXTLINE(*)
-        JsonObject(const std::initializer_list<JsonPair>& init);
+        JsonObject(std::initializer_list<JsonPair> init);
 
+
+        JsonObject& operator=(JsonObject&& other) noexcept;
+        JsonObject& operator=(const JsonObject& other);
+
+        JsonObject& operator=(std::initializer_list<JsonPair> list);
 
         //! @brief check if a key exists.
         //! @param key The key to be checked.

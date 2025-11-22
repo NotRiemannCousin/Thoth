@@ -1,4 +1,4 @@
-#include <Thoth/Http/Request/HttpRequest.hpp>
+#include <Thoth/Http/Request/Request.hpp>
 
 int main() {
 

@@ -6,8 +6,8 @@ namespace Thoth::Http {
     using string_view = std::string_view;
     using string = std::string;
 
-    struct HttpUrl {
-        //! @brief the given scheme. Can be "http" or "https" (it's HttpUrl after all).
+    struct Url {
+        //! @brief the given scheme. Can be "http" or "https" (it's Url after all).
         string scheme{};
         //! @brief the userinfo of the url, the optional part between the scheme and the host.
         //! eg: https://userinfo@@localhost.
@@ -23,10 +23,10 @@ namespace Thoth::Http {
         //! @brief the fragment of the url. Normally ignored in server side.
         string fragment{};
 
-        //! @brief Tries to convert the given string into HttpUrl.
+        //! @brief Tries to convert the given string into Url.
         //! @param rawUrl the given url.
-        //! @return The HttpUrl if succeeded, std::nullopt if it fails.
-        static std::optional<HttpUrl> FromUrl(string_view rawUrl);
+        //! @return The Url if succeeded, std::nullopt if it fails.
+        static std::optional<Url> FromUrl(string_view rawUrl);
 
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
@@ -43,14 +43,14 @@ namespace Thoth::Http {
         //! @brief Check if the scheme is https.
         [[nodiscard]] bool IsSecure() const;
 
-        bool operator==(const HttpUrl &) const;
+        bool operator==(const Url &) const;
 
     private:
-        HttpUrl();
+        Url();
 
-        friend class std::formatter<HttpUrl>;
+        friend class std::formatter<Url>;
     };
 }
 
 
-#include <Thoth/Http/Request/HttpUrl.tpp>
+#include <Thoth/Http/Request/Url.tpp>

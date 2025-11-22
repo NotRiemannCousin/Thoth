@@ -2,6 +2,9 @@
 
 namespace Thoth::Dsa {
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
+    constexpr Cow<RefT, OwnT>::Cow(RefT ref) noexcept : _value{ ref } { }
+
+    template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>::Cow(const Cow& other) {
         _value = other._value;
         AsOwned();
@@ -106,5 +109,12 @@ namespace Thoth::Dsa {
     template<class Callable>
     constexpr decltype(auto) Cow<RefT, OwnT>::Visit(Callable&& callable) const {
         return std::visit(std::forward<Callable>(callable), _value);
+    }
+
+
+    template<class RefT, class OwnT>
+        requires std::constructible_from<OwnT, RefT>
+    constexpr bool operator==(const Cow<RefT, OwnT>& left, const Cow<RefT, OwnT>& right) {
+        return left.AsRef() == right.AsRef();
     }
 }

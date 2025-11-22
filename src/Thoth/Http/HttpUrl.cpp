@@ -1,7 +1,7 @@
-#include <Thoth/Http/Request/HttpUrl.hpp>
+#include <Thoth/Http/Request/Url.hpp>
 #include <algorithm>
 
-using Thoth::Http::HttpUrl;
+using Thoth::Http::Url;
 using std::string_view;
 using std::string;
 
@@ -13,7 +13,7 @@ namespace vs = std::views;
 
 // URL parsing from RFC3986
 
-std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
+std::optional<Url> Url::FromUrl(string_view rawUrl) {
 
     if (rawUrl.empty() || !isalpha(rawUrl.front())) return std::nullopt;
 
@@ -36,7 +36,7 @@ std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
     //                  / path-rootless
     //                  / path-empty
 
-    if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its HttpUrl after all
+    if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its Url after all
         return std::nullopt; // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrl.find(':') };
@@ -209,7 +209,7 @@ std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
 
 
 
-    HttpUrl res;
+    Url res;
 
     res.scheme   = scheme;
     res.user     = user;
@@ -222,7 +222,7 @@ std::optional<HttpUrl> HttpUrl::FromUrl(string_view rawUrl) {
     return res;
 }
 
-std::string HttpUrl::Encode(std::string_view str) {
+std::string Url::Encode(std::string_view str) {
     string buffer;
     buffer.reserve(3 * str.size());
 
@@ -246,7 +246,7 @@ constexpr auto hexCharToInt = [] {
 }();
 
 
-std::optional<std::string> HttpUrl::TryDecode(std::string_view str) {
+std::optional<std::string> Url::TryDecode(std::string_view str) {
     std::string buffer;
     buffer.reserve(str.length());
 
@@ -269,10 +269,10 @@ std::optional<std::string> HttpUrl::TryDecode(std::string_view str) {
     return buffer;
 }
 
-bool HttpUrl::IsSecure() const {
+bool Url::IsSecure() const {
     return scheme == "https";
 }
 
-bool HttpUrl::operator==(const HttpUrl &) const = default;
+bool Url::operator==(const Url &) const = default;
 
-HttpUrl::HttpUrl() = default;
+Url::Url() = default;

@@ -12,7 +12,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-   constexpr LinearMap<KeyT, ValT, Pred>::LinearMap(const std::initializer_list<value_type>& init, const key_compare& comp)
+   constexpr LinearMap<KeyT, ValT, Pred>::LinearMap(std::initializer_list<value_type> init, const key_compare& comp)
     : _data(init), _compare(comp) {
 
         auto pair_comp = [this](const value_type& a, const value_type& b) {
