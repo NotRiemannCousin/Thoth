@@ -118,7 +118,7 @@ target_link_libraries(ThothExampleEnv1 PUBLIC ThothUtils)
 target_link_libraries(ThothExampleEnv2 PUBLIC ThothUtils)
 
 target_link_libraries(VsNlohmann PUBLIC ThothJson)
-target_link_libraries(YoutubeJson PUBLIC ThothJson)
+target_link_libraries(YoutubeJson PUBLIC ThothHttp)
 
 #--------------------------------------------------------------------------------------------------------------
 #           Tests

@@ -248,11 +248,11 @@ static bool Details::ReadString(std::string_view& input, auto& val, const Buffer
                 //     return false;
 
                 // break;
-            case '\\': str.push_back('\\'); break;
-            case '"' : str.push_back('\"'); break;
-            case 'n' : str.push_back('\n'); break;
-            case 'r' : str.push_back('\r'); break;
-            case 't' : str.push_back('\t'); break;
+            case '\\': str.push_back('\\'); strRef.remove_prefix(1); break;
+            case '"' : str.push_back('\"'); strRef.remove_prefix(1); break;
+            case 'n' : str.push_back('\n'); strRef.remove_prefix(1); break;
+            case 'r' : str.push_back('\r'); strRef.remove_prefix(1); break;
+            case 't' : str.push_back('\t'); strRef.remove_prefix(1); break;
 
             default: return false;
         }
@@ -304,6 +304,9 @@ static bool Details::ReadObject(std::string_view& input, auto& val, const Buffer
         input.remove_prefix(1);
 
         ADVANCE_SPACES();
+
+        if (json.Size() == 0 && *input.data() == '}')
+            break;
 
         String key;
         if (!ReadString(input, key, info))
@@ -369,6 +372,9 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
     while (*input.data() != ']') {
         input.remove_prefix(1);
         ADVANCE_SPACES();
+
+        if (array.size() == 0 && *input.data() == ']')
+            break;
 
         array.emplace_back(NullV);
 

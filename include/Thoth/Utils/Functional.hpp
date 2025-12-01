@@ -36,11 +36,12 @@ namespace Thoth::Utils {
 
     template<class Opt, class Err>
     constexpr auto ValueOrHof(Err&& err) {
-        using ValT = typename std::remove_cvref_t<Opt>::value_type;
+        using OptT = std::optional<Opt>&&;
+        using ValT = typename std::remove_cvref_t<OptT>::value_type;
 
-        return [err = std::forward<Err>(err)](Opt val) -> std::expected<ValT, Err> {
+        return [err = std::forward<Err>(err)](OptT val) -> std::expected<ValT, Err> {
             if (val) {
-                if constexpr (std::is_rvalue_reference_v<Opt>)
+                if constexpr (std::is_rvalue_reference_v<OptT>)
                     return std::move(*val);
                 else
                     return *val;

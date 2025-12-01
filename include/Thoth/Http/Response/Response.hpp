@@ -17,7 +17,7 @@ namespace Thoth::Http {
         Headers headers{};
         string body{};
 
-        friend Client; // who construct it
+        friend struct Client; // who construct it
 
         [[nodiscard]] std::optional<NJson::Json> AsJson() const;
     private:

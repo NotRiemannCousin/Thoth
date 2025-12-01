@@ -36,7 +36,10 @@ namespace Thoth::Http {
         }
 
 
-        request.headers["host"] = request.url.host;
+        // TODO: implement with rvalue
+        request.headers.Add("host", request.url.host);
+        request.headers.Add("content-length", to_string(request.body.size()));
+
         string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
 
 
@@ -126,6 +129,7 @@ namespace Thoth::Http {
                         return std::unexpected{ "Invalid response" };
 
 
+                    body.reserve(body.size() + chunkLength);
                     body.append_range(stream | vs::take(chunkLength));
 
                     if (!rg::starts_with(stream, string_view{ "\r\n" }))

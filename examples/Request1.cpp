@@ -26,13 +26,13 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
                     return val;
                 })
 #endif
-                .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+                .and_then(Utils::ValueOrHof<Json>("Cant convert to json."s))
                 .transform(std::bind_back(&Json::GetAndMove, "members" ))
                 // or `.transform(std::bind_back<Json::Json::GetAndMove>("members"))` with C++26.
                 // GetAndMove is &&-qualified: only rvalues can call it, so no copies are made.
                 // In chained calls the value is consumed at each step, so it's always a last use,
                 // making moves safe. If you need to avoid moving, use Get() or GetCopy() on a const&.
-                .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>(R"("members" doesn't exist.)"s))
+                .and_then(Utils::ValueOrHof<NJson::ValWrapper>(R"("members" doesn't exist.)"s))
                 .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>(R"("members" isn't an array.)"s))
     };
 
@@ -42,9 +42,9 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
     //             .transform(NHttp::Client::Send<>)
     //             .value_or(std::unexpected{ "Failed to connect." })
     //             .transform(&NHttp::GetResponse::AsJson)
-    //             .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+    //             .and_then(Utils::ValueOrHof<Json>("Cant convert to json."s))
     //             .transform(std::bind_back(&Json::GetAndMove, "members" ))
-    //             .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>(R"("members" doesn't exist.)"s))
+    //             .and_then(Utils::ValueOrHof<NJson::ValWrapper>(R"("members" doesn't exist.)"s))
     //             .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>(R"("members" isn't an array.)"s))
     // };
 
@@ -94,7 +94,7 @@ std::expected<std::monostate, std::string> OtherExample() {
                 .transform(Client::Send<>)
                 .value_or(std::unexpected{ "Failed to connect." })
                 .transform(&GetResponse::AsJson)
-                .and_then(ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
+                .and_then(ValueOrHof<Json>("Cant convert to json."s))
     };
 
     if (!json)

@@ -120,7 +120,7 @@ namespace Thoth::Http {
         return {
             {"accept", "*/*" },
             {"user-agent", "Thoth/0.1" },
-            {"accept encoding", "identity" }
+            {"accept-encoding", "identity" }
         };
     }
 
