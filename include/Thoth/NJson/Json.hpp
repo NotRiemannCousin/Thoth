@@ -62,7 +62,8 @@ namespace Thoth::NJson {
     using JsonObjKey    = std::string;
     using JsonObjKeyRef = std::string_view;
 
-    using Key = std::variant<int, JsonObjKey>;
+    using Key  = std::variant<int, JsonObjKey>;
+    using Keys = std::span<const Key>;
 
 
     template<class ...T>
@@ -71,6 +72,7 @@ namespace Thoth::NJson {
 
     struct Json{
         using Value = std::variant<Null, String, Number, Bool, Object, Array>;
+        using PredicatePointer = bool(*)(const Json&);
 
         // NOLINTBEGIN(*)
         Json();
@@ -135,7 +137,7 @@ namespace Thoth::NJson {
         //! @param input the text to parse.
         //! @param copyData if this is false then the json will use references to text.
         //! @return A Json if the parse success, std::nullopt if it fails.
-        static std::optional<Json> Parse(std::string_view input, bool copyData = true);
+        static std::optional<Json> Parse(std::string_view input, bool copyData = true, bool checkFinal = true);
 
 
         //! @brief Return the element with this index/key if this is an Object or Array. Return std::nullopt otherwise.
@@ -150,25 +152,71 @@ namespace Thoth::NJson {
 
 
         //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        OptRefValWrapper Find(std::span<const Key> keys);
+        OptRefValWrapper Find(Keys keys);
         //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        [[nodiscard]] OptCRefValWrapper Find(std::span<const Key> keys) const;
+        [[nodiscard]] OptCRefValWrapper Find(Keys keys) const;
 
         //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        RefValWrapperOrNull FindOrNull(std::span<const Key> keys);
+        RefValWrapperOrNull FindOrNull(Keys keys);
         //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        [[nodiscard]] CRefValWrapperOrNull FindOrNull(std::span<const Key> keys) const;
+        [[nodiscard]] CRefValWrapperOrNull FindOrNull(Keys keys) const;
 
         //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        [[nodiscard]] OptValWrapper FindCopy(std::span<const Key> keys) const;
+        [[nodiscard]] OptValWrapper FindCopy(Keys keys) const;
         //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        [[nodiscard]] ValWrapperOrNull FindOrNullCopy(std::span<const Key> keys) const;
+        [[nodiscard]] ValWrapperOrNull FindOrNullCopy(Keys keys) const;
 
 
         //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        OptValWrapper FindAndMove(std::span<const Key> key) &&;
+        OptValWrapper FindAndMove(Keys key) &&;
         // //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        // ValWrapperOrNull FindOrNullAndMove(std::span<const Key> key) &&;
+        // ValWrapperOrNull FindOrNullAndMove(Keys key) &&;
+
+
+
+        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        OptRefValWrapper Search(Pred&& pred);
+        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        [[nodiscard]] OptCRefValWrapper Search(Pred&& pred) const;
+
+        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        RefValWrapperOrNull SearchOrNull(Pred&& pred);
+        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        [[nodiscard]] CRefValWrapperOrNull SearchOrNull(Pred&& pred) const;
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        [[nodiscard]] OptValWrapper SearchCopy(Pred&& pred) const;
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        [[nodiscard]] ValWrapperOrNull SearchOrNullCopy(Pred&& pred) const;
+
+
+        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        template<class Pred = PredicatePointer>
+            requires std::predicate<Pred, Json>
+        OptValWrapper SearchAndMove(Pred&& pred) &&;
+        // //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        // template<class Pred = PredicatePointer>
+        //     requires std::predicate<Pred, Json>
+        // ValWrapperOrNull SearchOrNullAndMove(Pred&& pred) &&;
+
+
+        template<class Callable>
+        constexpr decltype(auto) Visit(Callable&& callable);
+
+        template<class Callable>
+        [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
     private:
         Value _value;
     };

@@ -20,7 +20,7 @@ namespace Thoth::Http {
             : _elements{ init } {}
 
     QueryParams QueryParams::Parse(std::string_view paramsStr) {
-        static auto const ToStr = [](auto&& r) -> std::string {
+        static auto const toStr = [](auto&& r) -> std::string {
             return r | rg::to<std::string>();
         };
         static auto const splitDelimiter = [](char c) { return c != '='; };
@@ -34,7 +34,7 @@ namespace Thoth::Http {
         static auto const splitParams = [](const auto& rawParams) {
             auto [r, l] = splitBetween(rawParams);
 
-            return std::pair{ r | rg::to<string>(), l | vs::split(',') | vs::transform(ToStr) | rg::to<std::vector>() };
+            return std::pair{ r | rg::to<string>(), l | vs::split(',') | vs::transform(toStr) | rg::to<std::vector>() };
         };
 
         QueryParams params{};

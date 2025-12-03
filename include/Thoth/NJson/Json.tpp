@@ -1,5 +1,6 @@
 #pragma once
 #include <format>
+#include <ranges>
 
 #include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Thoth/Utils/Overloads.hpp>
@@ -58,6 +59,90 @@ namespace Thoth::NJson {
     template<class T>
     const T& Json::As() const {
         return std::get<T>(_value);
+    }
+
+
+    template<class Callable>
+    constexpr decltype(auto) Json::Visit(Callable&& callable) {
+        return std::visit(std::forward<Callable>(callable), _value);
+    }
+
+    template<class Callable>
+    constexpr decltype(auto) Json::Visit(Callable&& callable) const {
+        return std::visit(std::forward<Callable>(callable), _value);
+    }
+
+
+
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    OptRefValWrapper Json::Search(Pred&& pred) {
+        if (IsOf<Array>()) {
+            for (auto &obj : As<Array>())
+                if (std::invoke(pred, obj))
+                    return obj;
+        }
+        if (IsOf<Object>()) {
+            for (auto &obj: *As<Object>() | std::views::values)
+                if (std::invoke(pred, obj))
+                    return obj;
+        }
+
+        return std::nullopt;
+    }
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    [[nodiscard]] OptCRefValWrapper Json::Search(Pred&& pred) const {
+        if (IsOf<Array>()) {
+            for (const auto &obj : As<Array>())
+                if (std::invoke(pred, obj))
+                    return obj;
+        }
+        if (IsOf<Object>()) {
+            for (const auto &obj: *As<Object>() | std::views::values)
+                if (std::invoke(pred, obj))
+                    return obj;
+        }
+        return std::nullopt;
+    }
+
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    RefValWrapperOrNull Json::SearchOrNull(Pred&& pred) {
+        return Search(std::forward<Pred>(pred)).or_value(NullJ);
+    }
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    [[nodiscard]] CRefValWrapperOrNull Json::SearchOrNull(Pred&& pred) const {
+        return Search(std::forward<Pred>(pred)).or_value(NullJ);
+    }
+
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    [[nodiscard]] OptValWrapper Json::SearchCopy(Pred&& pred) const {
+        return Search(std::forward<Pred>(pred))
+            .transform([](const auto& ref){ return ref.get(); });
+    }
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    [[nodiscard]] ValWrapperOrNull Json::SearchOrNullCopy(Pred&& pred) const {
+        return SearchCopy(std::forward<Pred>(pred)).value_or(NullJ);
+    }
+
+
+
+    template <class Pred>
+        requires std::predicate<Pred, Json>
+    OptValWrapper Json::SearchAndMove(Pred&& pred) && {
+        return Search(std::forward<Pred>(pred))
+                .transform([](OptValWrapper v){ return std::move(v.value()); })
+                .value_or(NullJ);
     }
 
     namespace detail {

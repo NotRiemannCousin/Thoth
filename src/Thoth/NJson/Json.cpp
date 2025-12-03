@@ -405,7 +405,7 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
 #pragma endregion
 
 
-std::optional<Json> Json::Parse(std::string_view input, bool copyData) {
+std::optional<Json> Json::Parse(std::string_view input, bool copyData, bool checkFinal) {
     Details::BufferInfo info{};
 
     if (copyData) {
@@ -436,10 +436,12 @@ std::optional<Json> Json::Parse(std::string_view input, bool copyData) {
         return std::nullopt;
 
 #define return json; // Oh god, no again
-    ADVANCE_SPACES();
+    if (checkFinal) {
+        ADVANCE_SPACES();
+    }
 #undef return
 
-    if (input.empty())
+    if (input.empty() || !checkFinal)
         return json;
 
     return std::nullopt;
@@ -522,7 +524,7 @@ OptValWrapper Json::GetAndMove(Key key) && {
     return std::move(curr.value().get());
 }
 
-OptRefValWrapper Json::Find(std::span<const Key> keys) {
+OptRefValWrapper Json::Find(Keys keys) {
     OptRefValWrapper curr{ *this };
 
     for (const auto& key : keys)
@@ -532,7 +534,7 @@ OptRefValWrapper Json::Find(std::span<const Key> keys) {
     return curr;
 }
 
-OptCRefValWrapper Json::Find(std::span<const Key> keys) const {
+OptCRefValWrapper Json::Find(Keys keys) const {
     OptCRefValWrapper curr{ *this };
 
     for (const auto& key : keys)
@@ -543,30 +545,30 @@ OptCRefValWrapper Json::Find(std::span<const Key> keys) const {
 }
 
 
-RefValWrapperOrNull Json::FindOrNull(std::span<const Key> keys) {
+RefValWrapperOrNull Json::FindOrNull(Keys keys) {
     return Find(keys).value_or(NullJ);
 }
 
-CRefValWrapperOrNull Json::FindOrNull(std::span<const Key> keys) const {
+CRefValWrapperOrNull Json::FindOrNull(Keys keys) const {
     return Find(keys).value_or(NullJ);
 }
 
-OptValWrapper Json::FindCopy(std::span<const Key> keys) const {
+OptValWrapper Json::FindCopy(Keys keys) const {
     return Find(keys)
             .transform([](const auto& ref){ return ref.get(); });
 }
 
-ValWrapperOrNull Json::FindOrNullCopy(std::span<const Key> keys) const {
+ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
     return FindCopy(keys).value_or(NullJ);
 }
 
-OptValWrapper Json::FindAndMove(std::span<const Key> key) && {
+OptValWrapper Json::FindAndMove(Keys key) && {
     return Find(key)
         .transform([](OptValWrapper v){ return std::move(v.value()); })
         .value_or(NullJ);
 }
 
-// ValWrapperOrNull Json::FindOrNullAndMove(std::span<const Key> keys) && {
+// ValWrapperOrNull Json::FindOrNullAndMove(Keys keys) && {
 //     Null dummy;
 //     return FindAndMove(keys).value_or(std::move(dummy));
 // }

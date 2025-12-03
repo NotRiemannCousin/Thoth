@@ -119,7 +119,7 @@ namespace Thoth::Utils {
     }
 #pragma endregion
 
-#pragma region ErrorIf
+#pragma region ErrorIfNot
 
     template<class Pred, class Val, class Err>
         requires std::predicate<Pred&, Val&>
@@ -159,6 +159,91 @@ namespace Thoth::Utils {
             if (std::invoke(std::move(pred), value))
                 return std::forward<Val>(value);
             return std::unexpected{ ErrT(error) };
+        };
+    }
+#pragma endregion
+
+
+#pragma region NulloptIf
+
+    template<class Pred, class Val>
+        requires std::predicate<Pred&, Val&>
+    constexpr std::optional<Val> NulloptIf(Pred&& pred, Val&& value) {
+        if (!std::invoke(std::forward<Pred>(pred), value))
+            return std::forward<Val>(value);
+        return std::nullopt;
+    }
+
+    template<auto Pred, class Val>
+        requires std::predicate<decltype(Pred), Val&>
+    constexpr std::optional<Val> NulloptIf(Val&& value) {
+        if (!std::invoke(Pred, value))
+            return std::forward<Val>(value);
+        return std::nullopt;
+    }
+
+
+    template<auto Pred, class Val>
+    constexpr auto NulloptIfHof() {
+        using ValT = std::remove_cvref_t<Val>;
+
+        return [](Val&& value) -> std::optional<ValT> {
+            if (!std::invoke(Pred, value))
+                return std::forward<Val>(value);
+            return std::nullopt;
+        };
+    }
+
+    template<class Pred, class Val>
+    constexpr auto NulloptIfHof(Pred&& pred) {
+        using ValT = std::remove_cvref_t<Val>;
+
+        return [pred = std::forward<Pred>(pred)](Val&& value) -> std::optional<ValT> {
+            if (!std::invoke(std::move(pred), value))
+                return std::forward<Val>(value);
+            return std::nullopt;
+        };
+    }
+#pragma endregion
+
+#pragma region NulloptIfNot
+
+    template<class Pred, class Val>
+        requires std::predicate<Pred&, Val&>
+    constexpr std::optional<Val> NulloptIfNot(Pred&& pred, Val&& value) {
+        if (std::invoke(std::forward<Pred>(pred), value))
+            return std::forward<Val>(value);
+        return std::nullopt;
+    }
+
+    template<auto Pred, class Val>
+        requires std::predicate<decltype(Pred), Val&>
+    constexpr std::optional<Val> NulloptIfNot(Val&& value) {
+        if (std::invoke(Pred, value))
+            return std::forward<Val>(value);
+        return std::nullopt;
+    }
+
+
+    template<auto Pred, class Val>
+    constexpr auto NulloptIfNotHof() {
+        using ValT = std::remove_cvref_t<Val>;
+
+        return [](Val&& value) -> std::optional<ValT> {
+            if (std::invoke(Pred, value))
+                return std::forward<Val>(value);
+            return std::nullopt;
+        };
+    }
+
+    template<class Pred, class Val>
+    constexpr auto NulloptIfNotHof(Pred&& pred) {
+        using ValT = std::remove_cvref_t<Val>;
+
+        return [pred = std::forward<Pred>(pred)](Val&& value) -> std::optional<ValT> {
+            if (std::invoke(std::move(pred), value))
+                return std::forward<Val>(value);
+            return std::nullopt;
         };
     }
 #pragma endregion

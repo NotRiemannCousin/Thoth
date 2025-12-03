@@ -103,7 +103,8 @@ add_executable(ThothExampleEnv1 examples/Env1/Env.cpp)
 add_executable(ThothExampleEnv2 examples/Env2/Env.cpp)
 
 add_executable(VsNlohmann examples/VsNlohmann/main.cpp)
-add_executable(YoutubeJson examples/YoutubeJson.cpp)
+add_executable(YoutubeJson1 examples/YoutubeJson1.cpp)
+add_executable(YoutubeJson2 examples/YoutubeJson2.cpp)
 
 
 #target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
@@ -118,7 +119,8 @@ target_link_libraries(ThothExampleEnv1 PUBLIC ThothUtils)
 target_link_libraries(ThothExampleEnv2 PUBLIC ThothUtils)
 
 target_link_libraries(VsNlohmann PUBLIC ThothJson)
-target_link_libraries(YoutubeJson PUBLIC ThothHttp)
+target_link_libraries(YoutubeJson1 PUBLIC ThothHttp)
+target_link_libraries(YoutubeJson2 PUBLIC ThothHttp)
 
 #--------------------------------------------------------------------------------------------------------------
 #           Tests
