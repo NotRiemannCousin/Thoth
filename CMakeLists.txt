@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.29.1)
+set(CMAKE_DEBUG_POSTFIX "_d")
 project(Thoth)
 
 
@@ -40,101 +41,76 @@ find_package(Hermes REQUIRED)
 #           Thoth
 #--------------------------------------------------------------------------------------------------------------
 
-add_library(Thoth INTERFACE)
-target_include_directories(Thoth
-        INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
-
-add_library(ThothUtils SHARED
+add_library(Thoth SHARED
         src/Thoth/Utils/Env.cpp
-)
 
-target_link_libraries(ThothUtils PUBLIC Thoth)
-
-set_target_properties(ThothUtils PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
-
-
-
-add_library(ThothJson SHARED
         src/Thoth/NJson/Json.cpp
         src/Thoth/NJson/JsonObject.cpp
         src/Thoth/NJson/StringRef.cpp
-)
 
-#target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
-target_link_libraries(ThothJson PUBLIC ThothUtils)
-
-set_target_properties(ThothJson PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
-
-
-
-add_library(ThothHttp SHARED
-        src/Thoth/Http/HttpHeaders.cpp
-        src/Thoth/Http/HttpUrl.cpp
-        src/Thoth/Http/QueryParams.cpp
+        src/Thoth/Http/Headers.cpp
+        src/Thoth/Http/Request/Url.cpp
+        src/Thoth/Http/Request/QueryParams.cpp
 
         src/Thoth/Http/HttpMethods/GetHttpMethod.cpp
         src/Thoth/Http/HttpMethods/_base/HttpMethodBase.cpp
 
-        src/Thoth/Http/Request/HttpClient.cpp
-        src/Thoth/Http/Request/HttpRequest.cpp
+        src/Thoth/Http/Client.cpp
+        src/Thoth/Http/Request/Request.cpp
 )
 
-target_link_libraries(ThothHttp PUBLIC Hermes::Hermes ThothJson)
-
-set_target_properties(ThothHttp PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
-
-#--------------------------------------------------------------------------------------------------------------
-#           Examples
-#--------------------------------------------------------------------------------------------------------------
-
-
-add_executable(ThothExampleRequest1 examples/Request1.cpp)
-add_executable(ThothExampleRequest2 examples/Request2.cpp)
-
-add_executable(ThothExampleJson1 examples/Json1.cpp)
-
-add_executable(ThothExampleEnv1 examples/Env1/Env.cpp)
-add_executable(ThothExampleEnv2 examples/Env2/Env.cpp)
-
-add_executable(VsNlohmann examples/VsNlohmann/main.cpp)
-add_executable(YoutubeJson1 examples/YoutubeJson1.cpp)
-add_executable(YoutubeJson2 examples/YoutubeJson2.cpp)
-
-
-#target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
-
-
-target_link_libraries(ThothExampleRequest1 PUBLIC ThothHttp)
-target_link_libraries(ThothExampleRequest2 PUBLIC ThothHttp)
-
-target_link_libraries(ThothExampleJson1 PUBLIC ThothJson)
-
-target_link_libraries(ThothExampleEnv1 PUBLIC ThothUtils)
-target_link_libraries(ThothExampleEnv2 PUBLIC ThothUtils)
-
-target_link_libraries(VsNlohmann PUBLIC ThothJson)
-target_link_libraries(YoutubeJson1 PUBLIC ThothHttp)
-target_link_libraries(YoutubeJson2 PUBLIC ThothHttp)
-
-#--------------------------------------------------------------------------------------------------------------
-#           Tests
-#--------------------------------------------------------------------------------------------------------------
-
-
-add_executable(
-        ThothTests
-
-
-        tests/main.cpp
-        tests/src/HttpTests.cpp
+target_include_directories(Thoth
+        PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
 
-target_include_directories(ThothTests PUBLIC tests/include)
+#target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
 
-target_link_libraries(ThothTests PUBLIC ThothHttp)
+target_link_libraries(Thoth PUBLIC Hermes::Hermes)
+
+set_target_properties(Thoth PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+
+add_subdirectory(examples)
+add_subdirectory(tests)
+
+
+install(TARGETS Thoth
+        EXPORT ThothTargets
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+        CONFIGURATIONS Debug Release
+)
+
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
+
+install(EXPORT ThothTargets
+        FILE ThothTargets.cmake
+        NAMESPACE Thoth::
+        DESTINATION lib/cmake/Thoth
+        CONFIGURATIONS Debug Release
+)
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/ThothConfigVersion.cmake"
+        VERSION ${PROJECT_VERSION_NUMBER}
+        COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ThothConfig.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/ThothConfig.cmake"
+        INSTALL_DESTINATION lib/cmake/Thoth
+)
+
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/ThothConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/ThothConfigVersion.cmake"
+        DESTINATION lib/cmake/Thoth
+)
