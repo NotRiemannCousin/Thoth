@@ -14,14 +14,14 @@ add_executable(YoutubeJson2 YoutubeJson2.cpp)
 #target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)
 
 
-target_link_libraries(ThothExampleRequest1 PUBLIC ThothHttp)
-target_link_libraries(ThothExampleRequest2 PUBLIC ThothHttp)
+target_link_libraries(ThothExampleRequest1 PUBLIC Thoth)
+target_link_libraries(ThothExampleRequest2 PUBLIC Thoth)
 
-target_link_libraries(ThothExampleJson1 PUBLIC ThothJson)
+target_link_libraries(ThothExampleJson1 PUBLIC Thoth)
 
-target_link_libraries(ThothExampleEnv1 PUBLIC ThothUtils)
-target_link_libraries(ThothExampleEnv2 PUBLIC ThothUtils)
+target_link_libraries(ThothExampleEnv1 PUBLIC Thoth)
+target_link_libraries(ThothExampleEnv2 PUBLIC Thoth)
 
-target_link_libraries(VsNlohmann   PUBLIC ThothJson)
-target_link_libraries(YoutubeJson1 PUBLIC ThothHttp)
-target_link_libraries(YoutubeJson2 PUBLIC ThothHttp)
+target_link_libraries(VsNlohmann   PUBLIC Thoth)
+target_link_libraries(YoutubeJson1 PUBLIC Thoth)
+target_link_libraries(YoutubeJson2 PUBLIC Thoth)
