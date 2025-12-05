@@ -156,7 +156,7 @@ namespace Thoth::NJson {
             tempOutBuffer = '"';
             tempOutBuffer.reserve(str.size());
 
-            for (const char c : str) {
+            for (const unsigned char c : str) {
                 switch (c) {
                     case '"':  tempOutBuffer += R"(\")"; break;
                     case '\\': tempOutBuffer += R"(\\)"; break;

@@ -191,6 +191,65 @@ bool Json::operator==(const Json& other) const {
 
 #pragma region Read functions
 
+static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
+    constexpr auto hex = [](const char c) -> int {
+        if (c >= '0' && c <= '9') return c - '0';
+        if (c >= 'a' && c <= 'f') return c - 'a' + 10;
+        if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+        return -1;
+    };
+
+    auto readU = [&](uint16_t& v) -> bool {
+        if (s.size() < 5 || s[0] != 'u') return false;
+        uint16_t x{};
+        for (int i = 1; i < 5; i++) {
+            const int h{ hex(s[i]) };
+            if (h < 0) return false;
+            x = (x<<4) | h;
+        }
+        v = x;
+        s.remove_prefix(5);
+        return true;
+    };
+
+    uint16_t h;
+    if (!readU(h)) return false;
+
+    uint32_t code{ h };
+
+    // surrogate?
+    if (0xD800 <= h && h <= 0xDBFF) {
+        if (s.size() < 1 || s[0] != '\\') return false;
+        s.remove_prefix(1);
+
+        uint16_t l;
+        if (!readU(l)) return false;
+        if (l < 0xDC00 || l > 0xDFFF) return false;
+        code = 0x10000 + (((h - 0xD800) << 10) | (l - 0xDC00));
+    }
+
+#define char static_cast<char>
+    if (code < 0x80) {
+        out.push_back(char(code));
+    } else if (code < 0x800) {
+        out.push_back(char(0xC0 | (code>>6)));
+        out.push_back(char(0x80 | (code&63)));
+    } else if (code < 0x10000) {
+        out.push_back(char(0xE0 | (code>>12)));
+        out.push_back(char(0x80 | ((code>>6)&63)));
+        out.push_back(char(0x80 | (code&63)));
+    } else {
+        out.push_back(char(0xF0 | (code>>18)));
+        out.push_back(char(0x80 | ((code>>12)&63)));
+        out.push_back(char(0x80 | ((code>>6)&63)));
+        out.push_back(char(0x80 | (code&63)));
+    }
+#undef char
+
+    return true;
+}
+
+
 static bool Details::ReadString(std::string_view& input, auto& val, const BufferInfo& info) {
     if (*input.data() != '"')
         return false;
@@ -240,19 +299,13 @@ static bool Details::ReadString(std::string_view& input, auto& val, const Buffer
         str.append_range(std::string_view{ strRef.data(), pos });
         strRef.remove_prefix(pos + 1);
 
-
         switch (*strRef.data()) {
-            case 'u' :
-                str += '\\'; break;
-                // if (strRef.size() < 3)
-                //     return false;
-
-                // break;
-            case '\\': str.push_back('\\'); strRef.remove_prefix(1); break;
-            case '"' : str.push_back('\"'); strRef.remove_prefix(1); break;
-            case 'n' : str.push_back('\n'); strRef.remove_prefix(1); break;
-            case 'r' : str.push_back('\r'); strRef.remove_prefix(1); break;
-            case 't' : str.push_back('\t'); strRef.remove_prefix(1); break;
+            case 'u' : if (!S_DecodeUtf16(strRef, str)) return false; break;
+            case '\\': str.push_back('\\'); strRef.remove_prefix(1);  break;
+            case '"' : str.push_back('\"'); strRef.remove_prefix(1);  break;
+            case 'n' : str.push_back('\n'); strRef.remove_prefix(1);  break;
+            case 'r' : str.push_back('\r'); strRef.remove_prefix(1);  break;
+            case 't' : str.push_back('\t'); strRef.remove_prefix(1);  break;
 
             default: return false;
         }
