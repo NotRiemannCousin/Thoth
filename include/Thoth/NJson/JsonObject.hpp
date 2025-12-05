@@ -15,8 +15,6 @@ namespace Thoth::NJson {
     struct JsonObject {
         using JsonValRef = Json&;
 
-        using JsonPair = std::pair<JsonObjKey, Json>;
-
         using JsonPair    = std::pair<JsonObjKey, Json>;
         using JsonPairRef = std::pair<JsonObjKeyRef, JsonValRef>;
         using MapType     = Dsa::LinearMap<JsonObjKey, Json>;
