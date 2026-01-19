@@ -98,10 +98,10 @@ namespace Thoth::Http {
         headers = *headersParseRes;
 
         if (auto contentSizeOpt{ headers.Get("content-length") }; contentSizeOpt) {
-            const auto temp{ contentSizeOpt->get() };
+            const auto temp{ *contentSizeOpt };
             size_t contentSize;
 
-            auto [_, ec] = std::from_chars(temp.data(), temp.data() + temp.size(), contentSize);
+            auto [_, ec] = std::from_chars(temp->data(), temp->data() + temp->size(), contentSize);
 
             if (ec != std::errc())
                 return std::unexpected{ "Invalid response" };
@@ -112,8 +112,8 @@ namespace Thoth::Http {
                 return std::unexpected{ "HTTP/1.0 needs content-length" };
 
             static string defaultValue{ "chunked" };
-            auto transferEncoding{ headers.Get("transfer-encoding")
-                    .value_or(std::ref(defaultValue)).get() };
+            auto transferEncoding{ *headers.Get("transfer-encoding")
+                    .value_or(&defaultValue) };
 
             if (transferEncoding == "chunked") {
                 string chunkLengthStr;

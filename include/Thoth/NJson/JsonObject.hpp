@@ -76,38 +76,38 @@ namespace Thoth::NJson {
 
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<JsonVal> if the key exists, std::nullopt otherwise.
+        //! @return JsonVal* if the key exists, std::nullopt otherwise.
         OptRefValWrapper Get(JsonObjKeyRef key);
 
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, std::nullopt otherwise.
+        //! @return const JsonVal* if the key exists, std::nullopt otherwise.
         [[nodiscard]] OptCRefValWrapper Get(JsonObjKeyRef key) const;
 
 
         //! @brief Get the reference of a key or return null if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, NullV otherwise.
+        //! @return const JsonVal* if the key exists, NullV otherwise.
         [[nodiscard]] CRefValWrapperOrNull GetOrNull(JsonObjKeyRef key) const;
 
         //! @brief Copy of a value if it exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, std::nullopt otherwise.
+        //! @return const JsonVal* if the key exists, std::nullopt otherwise.
         [[nodiscard]] OptValWrapper GetCopy(JsonObjKeyRef key) const;
 
         //! @brief Copy of a value or return null if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, NullV otherwise.
+        //! @return const JsonVal* if the key exists, NullV otherwise.
         [[nodiscard]] ValWrapperOrNull GetOrNullCopy(JsonObjKeyRef key) const;
 
         //! @brief Copy of a value if it exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, std::nullopt otherwise.
+        //! @return const JsonVal* if the key exists, std::nullopt otherwise.
         OptValWrapper GetAndMove(JsonObjKeyRef key) &&;
 
         //! @brief Copy of a value or return null if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const JsonVal> if the key exists, NullV otherwise.
+        //! @return const JsonVal* if the key exists, NullV otherwise.
         ValWrapperOrNull GetOrNullAndMove(JsonObjKeyRef key) &&;
 
 

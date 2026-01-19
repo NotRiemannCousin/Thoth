@@ -207,20 +207,20 @@ namespace Thoth::Http {
 
 
 
-    std::optional<std::reference_wrapper<Headers::HeaderValue>> Headers::Get(HeaderKeyRef key) {
+    std::optional<Headers::HeaderValue*> Headers::Get(HeaderKeyRef key) {
         const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
-            return it->second;
+            return &it->second;
 
         return std::nullopt;
     }
 
-    std::optional<std::reference_wrapper<const Headers::HeaderValue>> Headers::Get(HeaderKeyRef key) const {
+    std::optional<const Headers::HeaderValue*> Headers::Get(HeaderKeyRef key) const {
         const auto it{  I_FindInsensitiveKey(_headers, key) };
 
         if (it != _headers.end())
-            return it->second;
+            return &it->second;
 
         return std::nullopt;
     }

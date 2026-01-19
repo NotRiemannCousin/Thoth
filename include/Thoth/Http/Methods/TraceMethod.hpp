@@ -15,10 +15,10 @@ namespace Thoth::Http {
 
         static WebResultOper ValidateResponse(StatusCodeEnum statusCode, string_view body, const Url&, const Headers& headers) {
             string str;
-            auto ref = std::ref(str);
+            auto ref{ &str };
 
             if (statusCode == StatusCodeEnum::OK)
-                if (headers.Get("Content-Type").value_or(ref).get() != "message/http")
+                if (*headers.Get("Content-Type").value_or(ref) != "message/http")
                     return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
 
 

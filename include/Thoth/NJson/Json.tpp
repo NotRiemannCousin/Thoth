@@ -61,6 +61,21 @@ namespace Thoth::NJson {
         return std::get<T>(_value);
     }
 
+    template<class T>
+    T& Json::AsMut() {
+        return std::get<T>(_value);
+    }
+
+    template<class T>
+    T* Json::AsMove() && {
+        return *std::move(std::get<T>(_value));
+    }
+
+    template<class T>
+    const T& Json::AsConst() const {
+        return std::get<T>(_value);
+    }
+
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
@@ -81,12 +96,12 @@ namespace Thoth::NJson {
         if (IsOf<Array>()) {
             for (auto &obj : As<Array>())
                 if (std::invoke(pred, obj))
-                    return obj;
+                    return &obj;
         }
         if (IsOf<Object>()) {
             for (auto &obj: *As<Object>() | std::views::values)
                 if (std::invoke(pred, obj))
-                    return obj;
+                    return &obj;
         }
 
         return std::nullopt;
@@ -98,12 +113,12 @@ namespace Thoth::NJson {
         if (IsOf<Array>()) {
             for (const auto &obj : As<Array>())
                 if (std::invoke(pred, obj))
-                    return obj;
+                    return &obj;
         }
         if (IsOf<Object>()) {
             for (const auto &obj: *As<Object>() | std::views::values)
                 if (std::invoke(pred, obj))
-                    return obj;
+                    return &obj;
         }
         return std::nullopt;
     }

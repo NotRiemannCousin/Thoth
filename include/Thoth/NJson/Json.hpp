@@ -38,8 +38,8 @@ namespace Thoth::NJson {
 
 
 #pragma region Wappers for std::optional and std::expected
-    using RefValWrapper = std::reference_wrapper<Json>;
-    using CRefValWrapper = std::reference_wrapper<const Json>;
+    using RefValWrapper = Json*;
+    using CRefValWrapper = const Json*;
 
     using OptRefValWrapper = std::optional<RefValWrapper>;
     using OptCRefValWrapper = std::optional<CRefValWrapper>;
@@ -130,6 +130,13 @@ namespace Thoth::NJson {
         T& As();
         template<class T>
         [[nodiscard]] const T& As() const;
+
+        template<class T>
+        [[nodiscard]] T& AsMut();
+        template<class T>
+        [[nodiscard]] T* AsMove() &&;
+        template<class T>
+        [[nodiscard]] const T& AsConst() const;
 
         [[nodiscard]] bool operator==(const Json& other) const;
 

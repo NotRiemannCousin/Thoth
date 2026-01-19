@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 
-#include "Thoth/Dsa/LinearMap.hpp"
+#include <Thoth/Dsa/LinearMap.hpp>
 
 namespace Thoth::Http{
     struct QueryParams {
@@ -70,8 +70,8 @@ namespace Thoth::Http{
         bool SetIfNull(QueryKeyRef key, QueryValueRef value);
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<QueryValues> if the key exists, std::nullopt otherwise.
-        std::optional<std::reference_wrapper<QueryValues>> Get(QueryKeyRef key);
+        //! @return QueryValues* if the key exists, std::nullopt otherwise.
+        std::optional<QueryValues*> Get(QueryKeyRef key);
 
 
         IterType begin();

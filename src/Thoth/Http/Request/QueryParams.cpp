@@ -96,9 +96,9 @@ namespace Thoth::Http {
         return true;
     }
 
-    std::optional<std::reference_wrapper<QueryParams::QueryValues>> QueryParams::Get(QueryKeyRef key) {
+    std::optional<QueryParams::QueryValues*> QueryParams::Get(QueryKeyRef key) {
         if (Exists(key))
-            return _elements[key];
+            return &_elements[key];
 
         return std::nullopt;
     }

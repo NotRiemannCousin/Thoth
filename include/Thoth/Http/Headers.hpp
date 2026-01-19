@@ -98,13 +98,13 @@ namespace Thoth::Http {
 
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<HeaderValue> if the key exists, std::nullopt otherwise.
-        std::optional<std::reference_wrapper<HeaderValue>> Get(HeaderKeyRef key);
+        //! @return HeaderValue* if the key exists, std::nullopt otherwise.
+        std::optional<HeaderValue*> Get(HeaderKeyRef key);
 
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
-        //! @return std::reference_wrapper<const HeaderValue> if the key exists, std::nullopt otherwise.
-        [[nodiscard]] std::optional<std::reference_wrapper<const HeaderValue>> Get(HeaderKeyRef key) const;
+        //! @return const HeaderValue* if the key exists, std::nullopt otherwise.
+        [[nodiscard]] std::optional<const HeaderValue*> Get(HeaderKeyRef key) const;
 
 
         //! @brief Get all Set-Cookie header values as they cannot be comma-separated.

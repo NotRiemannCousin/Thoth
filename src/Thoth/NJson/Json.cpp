@@ -514,23 +514,23 @@ std::optional<Json> Json::Parse(std::string_view input, bool copyData, bool chec
 
 constexpr auto ResolveKeys = Thoth::Utils::Overloaded{
     [](auto& curr, const int index) -> bool {
-        if (!Json::IsOfType<Array>(*curr))
+        if (!Json::IsOfType<Array>(**curr))
             return false;
 
         // auto& arr{ Json::AsType<Array>(*curr) };
-        auto& arr{ curr.value().get().template As<Array>() };
+        auto& arr{ curr.value()->template As<Array>() };
 
         if (index < 0 || arr.size() < index)
             return false;
 
-        curr = arr.operator[](index);
+        curr = &arr.operator[](index);
         return true;
     },
     [](auto& curr, const std::string_view key) -> bool {
-        if (!Json::IsOfType<Object>(*curr))
+        if (!Json::IsOfType<Object>(**curr))
             return false;
 
-        auto& obj{ curr.value().get().template As<Object>() };
+        auto& obj{ curr.value()->template As<Object>() };
         auto it{ obj->Get(key) };
 
         if (!it)
@@ -542,7 +542,7 @@ constexpr auto ResolveKeys = Thoth::Utils::Overloaded{
 };
 
 OptRefValWrapper Json::Get(Key key) {
-    OptRefValWrapper curr{ *this };
+    OptRefValWrapper curr{ this };
 
     if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
         return std::nullopt;
@@ -551,7 +551,7 @@ OptRefValWrapper Json::Get(Key key) {
 }
 
 OptCRefValWrapper Json::Get(Key key) const {
-    OptCRefValWrapper curr{ *this };
+    OptCRefValWrapper curr{ this };
 
     if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
         return std::nullopt;
@@ -560,7 +560,7 @@ OptCRefValWrapper Json::Get(Key key) const {
 }
 
 OptValWrapper Json::GetCopy(Key key) const {
-    OptCRefValWrapper curr{ *this };
+    OptCRefValWrapper curr{ this };
 
     if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
         return std::nullopt;
@@ -569,16 +569,16 @@ OptValWrapper Json::GetCopy(Key key) const {
 }
 
 OptValWrapper Json::GetAndMove(Key key) && {
-    OptRefValWrapper curr{ *this };
+    OptRefValWrapper curr{ this };
 
     if (!std::visit([&](const auto& k) { return ResolveKeys(curr, k); }, key))
         return std::nullopt;
 
-    return std::move(curr.value().get());
+    return std::move(curr.value());
 }
 
 OptRefValWrapper Json::Find(Keys keys) {
-    OptRefValWrapper curr{ *this };
+    OptRefValWrapper curr{ this };
 
     for (const auto& key : keys)
         if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
@@ -588,7 +588,7 @@ OptRefValWrapper Json::Find(Keys keys) {
 }
 
 OptCRefValWrapper Json::Find(Keys keys) const {
-    OptCRefValWrapper curr{ *this };
+    OptCRefValWrapper curr{ this };
 
     for (const auto& key : keys)
         if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
@@ -599,16 +599,16 @@ OptCRefValWrapper Json::Find(Keys keys) const {
 
 
 RefValWrapperOrNull Json::FindOrNull(Keys keys) {
-    return Find(keys).value_or(NullJ);
+    return Find(keys).value_or(&NullJ);
 }
 
 CRefValWrapperOrNull Json::FindOrNull(Keys keys) const {
-    return Find(keys).value_or(NullJ);
+    return Find(keys).value_or(&NullJ);
 }
 
 OptValWrapper Json::FindCopy(Keys keys) const {
     return Find(keys)
-            .transform([](const auto& ref){ return ref.get(); });
+            .transform([](const auto& ref){ return ref; });
 }
 
 ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
@@ -616,9 +616,11 @@ ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
 }
 
 OptValWrapper Json::FindAndMove(Keys key) && {
-    return Find(key)
-        .transform([](OptValWrapper v){ return std::move(v.value()); })
-        .value_or(NullJ);
+    return *Find(key)
+            .transform([](OptRefValWrapper v) {
+                return std::move(v.value());
+            })
+            .value_or(&NullJ);
 }
 
 // ValWrapperOrNull Json::FindOrNullAndMove(Keys keys) && {

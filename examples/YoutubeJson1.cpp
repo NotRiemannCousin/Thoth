@@ -1,5 +1,6 @@
 #include <print>
 #include <chrono>
+#pragma warning(disable: 4455)
 
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
@@ -49,11 +50,11 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
                 .value_or(std::unexpected{ "Failed to connect." })
 
                 .transform(&NHttp::PostResponse::AsJson)
-                .and_then(Utils::ValueOrHof<Json>("Cant convert to json."s))
+                .and_then(Utils::ValueOrHof<Json>("Can't convert to json."s))
 
                 .transform(std::bind_back(&Json::FindAndMove, musicTabKeys))
                 .and_then(Utils::ValueOrHof<Json>("Json structure mismatch."s))
-                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<Array>, Json>("Json structure mismatch."s))
+                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<Array>>("Json structure mismatch."s))
     };
     /* musicTabKeys seams to be [0] every time but just in case you can use this:
      * .transform(std::bind_back(&Json::FindAndMove,
@@ -76,7 +77,7 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
     const auto getTab = [&](const string& name) {
         return [&](const Json& tab) {
             if (const auto title{ tab.Find(tabTitleKeys) }; title)
-                return title->get() == Json{ name };
+                return **title == Json{ name };
             return false;
         };
     };
@@ -87,20 +88,20 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
         if (!tab) continue;
 
         const auto content{
-            tab->get().Find(tabContentKeys)
+            (*tab)->Find(tabContentKeys)
             .and_then(&Utils::NulloptIfNot<&Json::IsOf<Array>, CRef>)
         };
         if (!content) continue;
 
         std::print("\n\n{}:\n", tabName);
 
-        for (const auto& album : content->get().As<Array>()) {
+        for (const auto& album : (*content)->As<Array>()) {
             album.Find(albumNameKeys)
                 .and_then(&Utils::NulloptIfNot<&Json::IsOf<String>, CRef>)
-                .transform([](const auto& name) { return std::println("\t- {}", name.get()), 0; });
+                .transform([](const auto& name) { return std::println("\t- {}", *name), 0; });
         }
 
-        if (tab->get().Find(moreContentButtonKeys))
+        if ((*tab)->Find(moreContentButtonKeys))
                 std::println("\tMore...");
     }
 

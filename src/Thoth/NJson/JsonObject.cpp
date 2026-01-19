@@ -1,9 +1,7 @@
 // ReSharper disable CppPassValueParameterByConstReference
 
-#include <functional>
 #include <algorithm>
 #include <expected>
-#include <print>
 
 #include <Thoth/NJson/Json.hpp>
 
@@ -105,18 +103,18 @@ bool JsonObject::SetIfNull(JsonObjKeyRef key, JsonValRef val) {
 
 OptRefValWrapper JsonObject::Get(JsonObjKeyRef key) {
     if (const auto it{ _pairs.find(key) }; it != _pairs.end())
-        return it->second;
+        return &it->second;
     return std::nullopt;
 }
 
 OptCRefValWrapper JsonObject::Get(JsonObjKeyRef key) const {
     if (const auto it{ _pairs.find(key) }; it != _pairs.end())
-        return it->second;
+        return &it->second;
     return std::nullopt;
 }
 
 CRefValWrapperOrNull JsonObject::GetOrNull(JsonObjKeyRef key) const {
-    return Get(key).value_or(NullJ);
+    return Get(key).value_or(&NullJ);
 }
 
 
