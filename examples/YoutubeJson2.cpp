@@ -43,7 +43,7 @@ std::expected<std::monostate, string> MakeRequest() {
             const auto name{ album.Find({
                 { "richItemRenderer","content", "playlistRenderer", "title" }}) };
             if (name)
-                std::println("{}", name->get());
+                std::println("{}", **name);
         }
     }
 

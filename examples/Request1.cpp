@@ -33,7 +33,7 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
                 // In chained calls the value is consumed at each step, so it's always a last use,
                 // making moves safe. If you need to avoid moving, use Get() or GetCopy() on a const&.
                 .and_then(Utils::ValueOrHof<NJson::ValWrapper>(R"("members" doesn't exist.)"s))
-                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>(R"("members" isn't an array.)"s))
+                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>>(R"("members" isn't an array.)"s))
     };
 
     // Without comments:
