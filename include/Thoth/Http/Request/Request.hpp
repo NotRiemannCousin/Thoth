@@ -6,14 +6,14 @@
 #include <Thoth/Http/Methods/PostMethod.hpp>
 
 namespace Thoth::Http {
-	enum class Version {
+	enum class VersionEnum {
 		HTTP1_0,
 		HTTP1_1,
 		HTTP2,
 		HTTP3,
 	};
 
-	std::string_view VersionToString(Version version);
+	std::string_view VersionToString(VersionEnum version);
 
 	template<MethodConcept Method = GetMethod>
 	struct Request {
@@ -21,12 +21,13 @@ namespace Thoth::Http {
 
 		Url url;
 		string body{};
-		Version version{ Version::HTTP1_1 };
+		VersionEnum version{ VersionEnum::HTTP1_1 };
 		Headers headers{ Headers::DefaultHeaders() };
 
 		template<class T = string_view>
 			requires requires (T t) { { std::format("{}", t) }; }
-		static std::optional<Request> FromUrl(string_view url, T&& body = {});
+		static std::optional<Request> FromUrl(
+			string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
 	};
 
 	using GetRequest  = Request<>;

@@ -4,10 +4,8 @@
 #include <bitset>
 #include <execution>
 #include <expected>
-#include <ostream>
-#include <print>
 
-#include <Thoth/String/UnicodeView.hpp>
+#include <Thoth/String/UnicodeViewer.hpp>
 #include <Thoth/Utils/Functional.hpp>
 #include <Thoth/NJson/Json.hpp>
 
@@ -15,6 +13,7 @@ using namespace Thoth::NJson;
 
 
 #ifdef DENSE_DEBUG_JSON
+#include <print>
 #define DEBUG_PRINT(MSG) std::println(MSG);
 #else
 #define DEBUG_PRINT(MSG)

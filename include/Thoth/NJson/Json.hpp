@@ -138,6 +138,12 @@ namespace Thoth::NJson {
         template<class T>
         [[nodiscard]] const T& AsConst() const;
 
+        template<class T>
+        std::optional<T*> Ensure();
+
+        template<class T>
+        std::optional<const T*> EnsureConst() const;
+
         [[nodiscard]] bool operator==(const Json& other) const;
 
         //! @brief Tries to parse the Json from a string.

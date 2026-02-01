@@ -1,6 +1,6 @@
 #include <array>
 #include <Thoth/Utils/Env.hpp>
-#include <Thoth/String/UnicodeView.hpp>
+#include <Thoth/String/UnicodeViewer.hpp>
 #include <filesystem>
 #include <unordered_map>
 #include <fstream>

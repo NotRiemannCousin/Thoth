@@ -76,6 +76,20 @@ namespace Thoth::NJson {
         return std::get<T>(_value);
     }
 
+    template<class T>
+    std::optional<T *> Json::Ensure() {
+        if (IsOf<T>())
+            return &As<T>();
+        return nullptr;
+    }
+
+    template<class T>
+    std::optional<const T *> Json::EnsureConst() const {
+        if (IsOf<T>())
+            return &AsConst<T>();
+        return nullptr;
+    }
+
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {

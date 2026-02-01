@@ -15,7 +15,7 @@ namespace Thoth::Http {
         // TODO: FUTURE: Implement HTTP2 and Quic
         // using ClientSocketType = std::variant<Hermes::RawTcpClient, Hermes::RawDtlsClient>;
         Hermes::RawTlsClient socket;
-        Version version;
+        VersionEnum version;
 
         std::chrono::steady_clock::time_point lastUsed;
     };
@@ -41,14 +41,25 @@ namespace Thoth::Http {
         template<MethodConcept Method = GetMethod>
         static expected<Response<Method>, string> Send(Request<Method> request);
 
+
+        struct HttpData {
+            VersionEnum version{};
+            StatusCodeEnum status{};
+            string statusMessage{};
+            Headers headers{};
+            string body{};
+        };
+
+        using SocketPtr = std::shared_ptr<Socket>;
+
     private:
         // I will do it when... Idk
         // template<MethodConcept Method>
         // static expected<Response<Method>, string> _1RawSend(Request<Method> request);
 
-        // template<MethodConcept Method>
-        // static expected<Response<Method>, string> _1TlsSend(Request<Method> request);
-        //
+        template<MethodConcept Method>
+        static expected<std::pair<SocketPtr, Response<Method>>, string> _ParseHttp11(SocketPtr infoPtr);
+
         // template<MethodConcept Method>
         // static expected<Response<Method>, string> _2TlsSend(Request<Method> request);
         //
