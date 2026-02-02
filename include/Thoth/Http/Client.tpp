@@ -15,7 +15,7 @@ namespace Thoth::Http {
 
                 const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(endpoint) };
 
-                if (connContainerIt == janitor.connectionPool.end())
+                if (connContainerIt == janitor.connectionPool.end() || connContainerIt->second.empty())
                     return std::nullopt;
 
                 const auto infoPtr{ std::move(connContainerIt->second.back()) };
@@ -32,56 +32,61 @@ namespace Thoth::Http {
                 return std::make_shared<Socket>(std::move(*newSocketResult));
             };
 
-
-            SocketPtr infoPtr;
-            const auto s_cleanupSocket = [&](auto&& val) {
+            const auto s_cleanupSocket = [&](std::pair<SocketPtr, Response<Method>> val) {
                 std::lock_guard lock{ janitor.poolMutex };
-                janitor.connectionPool[endpoint].push_back(std::move(infoPtr));
 
-                return std::move(val);
+
+                static Headers::HeaderValue closeConnectionVal{ "close" };
+                static Headers::HeaderValue keepAliveConnectionVal{ "keep-alive" };
+
+                const auto connectionHeader{
+                    *val.second.headers.Get("connection")
+                            .value_or(val.second.version == VersionEnum::HTTP1_0
+                                ? &closeConnectionVal
+                                : &keepAliveConnectionVal)
+                };
+                // TODO: FUTURE: Implement the keepAliveHeader (timeout) properly
+
+                if (val.first != nullptr && connectionHeader != closeConnectionVal)
+                    janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
+
+                return std::move(val.second);
+            };
+            auto infoPtr{ s_getSocketFromPool().or_else(s_createNewSocket).value() };
+
+            const auto s_sendRequest = [&]() -> Hermes::ConnectionResult<SocketPtr> {
+                request.headers.Add("host", request.url.host);
+                request.headers.Add("content-length", to_string(request.body.size()));
+
+                const string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
+                const auto& query { request.url.query };
+                const auto versionStr{ VersionToString(request.version) };
+
+                const auto requestStr{ std::format(
+                    "{} {}?{} {}\r\n"
+                    "{}\r\n"
+                    "\r\n"
+                    "{}",
+                    Method::MethodName(), path, query, versionStr,
+                    request.headers,
+                    request.body
+                ) };
+
+                const auto [_, sendRes]{ infoPtr->socket.Send(requestStr) };
+
+                return sendRes
+                        .transform([&](auto){ return std::move(infoPtr); });
             };
 
-            try {
-                infoPtr = s_getSocketFromPool().or_else(s_createNewSocket).value();
-
-                const auto s_sendRequest = [&]() -> Hermes::ConnectionResult<SocketPtr> {
-                    request.headers.Add("host", request.url.host);
-                    request.headers.Add("content-length", to_string(request.body.size()));
-
-                    const string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
-                    const auto& query { request.url.query };
-                    const auto versionStr{ VersionToString(request.version) };
-
-                    const auto requestStr{ std::format(
-                        "{} {}?{} {}\r\n"
-                        "{}\r\n"
-                        "\r\n"
-                        "{}",
-                        Method::MethodName(), path, query, versionStr,
-                        request.headers,
-                        request.body
-                    ) };
-
-                    const auto [_, sendRes]{ infoPtr->socket.Send(requestStr) };
-
-                    return sendRes
-                            .transform([&](auto){ return std::move(infoPtr); });
-                };
-
-                const auto s_connErrToStr = [](auto) -> string {
-                    return "Can't connect to endpoint";
-                };
+            const auto s_connErrToStr = [](auto) -> string {
+                return "Can't connect to endpoint";
+            };
 
 
-
-                return s_sendRequest()
-                        .transform_error(s_connErrToStr)
-                        .and_then(_ParseHttp11<Method>)
-                        .transform(s_cleanupSocket);
-            } catch (...) {
-                std::ignore = s_cleanupSocket(0);
-                throw;
-            }
+            return s_sendRequest()
+                    .transform_error(s_connErrToStr)
+                    .and_then(_ParseHttp11<Method>)
+                    .transform(s_cleanupSocket);
         };
 
         const auto s_ConnectionErrorToStr = [](auto) {
@@ -95,7 +100,7 @@ namespace Thoth::Http {
     }
 
     template<MethodConcept Method>
-    expected<Response<Method>, string> Client::_ParseHttp11(SocketPtr infoPtr) {
+    expected<std::pair<Client::SocketPtr, Response<Method>>, string> Client::_ParseHttp11(SocketPtr infoPtr) {
         namespace rg = std::ranges;
         namespace vs = std::views;
 
@@ -206,9 +211,12 @@ namespace Thoth::Http {
                     .value();
         };
 
-        const auto s_createObject = [](ParseStage&& info) -> Response<Method> {
-            return Response<Method>{ info.data.version, info.data.status, std::move(info.data.statusMessage),
-                    std::move(info.data.headers), std::move(info.data.body) };
+        const auto s_createObject = [&](ParseStage&& info) {
+            return std::pair{
+                    std::move(infoPtr),
+                    Response<Method>{ info.data.version, info.data.status, std::move(info.data.statusMessage),
+                        std::move(info.data.headers), std::move(info.data.body) }
+                };
         };
 
 
