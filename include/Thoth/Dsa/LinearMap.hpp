@@ -59,11 +59,11 @@ namespace Thoth::Dsa {
         constexpr LinearMap(LinearMap&&) = default;
 
         constexpr explicit LinearMap(const key_compare& comp);
-        constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare());
+        constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare{});
 
 
-        constexpr LinearMap& operator=(const LinearMap&) = default;
-        constexpr LinearMap& operator=(LinearMap&&) = default;
+        constexpr LinearMap& operator=(const LinearMap&);
+        constexpr LinearMap& operator=(LinearMap&&) noexcept;
 
         constexpr bool operator==(const LinearMap& other) const;
 
@@ -81,10 +81,17 @@ namespace Thoth::Dsa {
         constexpr size_type size() const;
 
         template <typename LookupKeyT, typename MappedT>
-        constexpr std::pair<iterator, bool> try_emplace(const LookupKeyT& key, MappedT&& val);
+        constexpr std::pair<iterator, bool> try_emplace(LookupKeyT&& key, MappedT&& val);
+
+        template <typename LookupKeyT, typename MappedT>
+        constexpr std::pair<iterator, bool> insert_or_assign(LookupKeyT&& key, MappedT&& val);
 
         template <typename LookupKeyT>
-        constexpr size_type erase(const LookupKeyT& key);
+        constexpr bool erase(const LookupKeyT& key);
+
+        constexpr iterator erase(iterator pos);
+
+        constexpr iterator erase(const_iterator pos);
 
         template <typename LookupKeyT>
         constexpr iterator find(const LookupKeyT& key);
@@ -97,6 +104,9 @@ namespace Thoth::Dsa {
 
         template <typename LookupKeyT>
         constexpr bool contains(const LookupKeyT& key) const;
+
+        template <typename LookupKeyT>
+        ValT& operator[](LookupKeyT&& key);
     };
 }
 

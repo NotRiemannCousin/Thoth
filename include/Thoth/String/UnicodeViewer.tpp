@@ -160,13 +160,17 @@ namespace Thoth::String {
     constexpr std::basic_string<NewCharT> UnicodeViewer<CharT>::ConvertTo(StringViewType str) {
         if constexpr (std::same_as<CharT, NewCharT>)
             return { str.data(), str.size() };
-        if constexpr (std::same_as<NewCharT, char32_t>)
-            return UnicodeViewer{ str };
+        if constexpr (std::same_as<NewCharT, char32_t>) {
+            std::u32string res;
+            for (auto c : UnicodeViewer{ str })
+                res += c;
+            return res;
+        }
 
         std::basic_string<NewCharT> res;
         UnicodeViewer view{ str };
 
-        for (const auto& rune : view) {
+        for (auto rune : view) {
             if constexpr (std::same_as<NewCharT, char16_t>) {
                 if (rune > 0xFFFF) {
                     res.push_back(static_cast<NewCharT>(0xD7C0u + (rune >> 10u)));
@@ -175,17 +179,21 @@ namespace Thoth::String {
                     res.push_back(static_cast<NewCharT>(rune));
                 }
             } else if constexpr (std::same_as<NewCharT, char8_t>) {
-                if (rune > 0xFFFF) {
-                    res.push_back(static_cast<NewCharT>(0b11110000u | ((rune >> 18u) & 0x3Fu)));
-                    res.push_back(static_cast<NewCharT>(0b10000000u | ((rune >> 12u) & 0x3Fu)));
-                    res.push_back(static_cast<NewCharT>(0b10000000u | ((rune >> 6u ) & 0x3Fu)));
-                    res.push_back(static_cast<NewCharT>(0b10000000u | (rune & 0x3Fu)));
-                } else if (rune > 0x7F) {
-                    res.push_back(static_cast<NewCharT>(0b11000000u | ((rune >> 6u) & 0x3Fu)));
-                    res.push_back(static_cast<NewCharT>(0b10000000u | (rune & 0x3Fu)));
-                } else {
-                    res.push_back(static_cast<NewCharT>(rune));
+                constexpr char8_t seqMask{ 0b00111111 };
+                constexpr char8_t seqMark{ 0b10000000 };
+
+                const int type{ (rune > 0x7F) + (rune > 0x7FF) + (rune > 0xFFFF) };
+
+                if (type == 0) {
+                    res.push_back(static_cast<char8_t>(rune));
+                    continue;
                 }
+
+                res.push_back(static_cast<char8_t>(((0b11110'000 << (3 - type)) | (rune >> (6 * type)))));
+
+
+                for (int i{ type - 1 }; i >= 0; --i)
+                    res.push_back(static_cast<char8_t>(seqMark | ((rune >> (6 * i)) & seqMask)));
             }
         }
 

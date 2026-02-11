@@ -2,6 +2,8 @@
 #include <functional>
 #include <expected>
 #include <concepts>
+#include <ranges>
+#include <algorithm>
 
 
 namespace Thoth::Utils {

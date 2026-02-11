@@ -67,12 +67,12 @@ namespace Thoth::NJson {
     }
 
     template<class T>
-    T* Json::AsMove() && {
-        return *std::move(std::get<T>(_value));
+    T Json::AsMov() && {
+        return std::get<T>(std::move(_value));
     }
 
     template<class T>
-    const T& Json::AsConst() const {
+    const T& Json::AsRef() const {
         return std::get<T>(_value);
     }
 
@@ -80,16 +80,36 @@ namespace Thoth::NJson {
     std::optional<T *> Json::Ensure() {
         if (IsOf<T>())
             return &As<T>();
-        return nullptr;
+        return std::nullopt;
     }
 
     template<class T>
-    std::optional<const T *> Json::EnsureConst() const {
+    std::optional<T *> Json::Ensure() const {
         if (IsOf<T>())
-            return &AsConst<T>();
-        return nullptr;
+            return &As<T>();
+        return std::nullopt;
     }
 
+    template<class T>
+    std::optional<T *> Json::EnsureMut() {
+        if (IsOf<T>())
+            return &As<T>();
+        return std::nullopt;
+    }
+
+    template<class T>
+    std::optional<const T *> Json::EnsureRef() const {
+        if (IsOf<T>())
+            return &AsRef<T>();
+        return std::nullopt;
+    }
+
+    template<class T>
+    std::optional<T> Json::EnsureMov() && {
+        if (IsOf<T>())
+            return std::move(As<T>());
+        return std::nullopt;
+    }
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
@@ -284,8 +304,12 @@ namespace Thoth::NJson {
             std::visit(Utils::Overloaded{
                 [&](const String& str){
                     str.Visit(Utils::Overloaded{
-                        [&](const String::RefType  ref){ std::format_to(it, R"("{}")", ref); },
-                        [&](const String::OwnType& own){ EscapeJsonString(own, it, tempOutBuffer); }
+                        [&](const String::RefType  ref) {
+                            std::format_to(it, R"("{}")", ref);
+                        },
+                        [&](const String::OwnType& own) {
+                            EscapeJsonString(own, it, tempOutBuffer);
+                        }
                     });
                 },
                 [&](const Number  num){ std::format_to(it, "{}", num); },
@@ -304,7 +328,7 @@ struct std::formatter<Thoth::NJson::Json> {
     bool pretty{};
     size_t indentLevel{};
 
-    auto parse(std::format_parse_context& ctx) {
+    constexpr auto parse(std::format_parse_context& ctx) {
         auto it = ctx.begin();
         if (it != ctx.end()) {
             ++it;

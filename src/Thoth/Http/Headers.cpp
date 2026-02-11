@@ -109,7 +109,7 @@ namespace Thoth::Http {
             _headers.emplace_back(key | I_HeaderSanitizeStr, val);
     }
 
-    Headers::Headers(const std::initializer_list<HeaderPair> &init) {
+    Headers::Headers(std::initializer_list<HeaderPair> init) {
         _headers.reserve(init.size());
 
         for (const auto& [key, val] : init)

@@ -25,17 +25,26 @@ namespace std {
         static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
         auto format(const Thoth::Http::QueryParams &query, std::format_context &ctx) const {
+            using Pair = std::pair<string_view, string_view>;
+
+            static constexpr auto singleParam = [] (const Pair p) {
+                return std::format("{}={}", p.first, p.second);
 #ifdef __cpp_lib_ranges_concat
-            static const auto groupParams = [](const auto& p){
                 return std::views::concat(p.first, std::views::single('='), p.second | std::views::join_with(','));
-            };
 #else
-            static const auto groupParams = [](const auto& p){
-                return p.first + '=' + (p.second | std::views::join_with(',') | std::ranges::to<string>());
+            };
+            static constexpr auto getEveryPair = [](const Thoth::Http::QueryParams::MapType::value_type& p) {
+                return p.second | views::transform([&](string_view val) { return Pair{ p.first, val }; });
             };
 #endif
 
-            return std::ranges::copy(query._elements | std::views::transform(groupParams) | std::views::join_with('&'), ctx.out()).out;
+            return std::ranges::copy(
+                query._elements
+                        | views::transform(getEveryPair)
+                        | views::join
+                        | std::views::transform(singleParam)
+                        | views::join_with('&'),
+                ctx.out()).out;
         }
     };
 }

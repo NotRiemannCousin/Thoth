@@ -11,4 +11,14 @@ namespace Thoth::Http {
     std::optional<NJson::Json> Response<Method>::AsJson() const {
         return NJson::Json::Parse(body);
     }
+
+    template<MethodConcept Method>
+    bool Response<Method>::Successful() const {
+        return GetStatusType(status) == StatusTypeEnum::SUCCESSFUL;
+    }
+
+    template<MethodConcept Method>
+    string Response<Method>::MoveBody() && {
+        return std::move(body);
+    }
 }

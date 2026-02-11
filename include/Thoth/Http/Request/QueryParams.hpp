@@ -10,15 +10,15 @@
 namespace Thoth::Http{
     struct QueryParams {
         using QueryKey      = std::string;
-        using QueryKeyRef   = const std::string&;
+        using QueryKeyRef   = std::string_view;
 
         using QueryValue    = std::string;
-        using QueryValueRef = const std::string&;
+        using QueryValueRef = std::string_view;
         using QueryValues   = std::vector<QueryValue>;
 
-        using QueryPair     = std::pair<const QueryKey, QueryValues>;
-        using MapType       = std::map<QueryKey, QueryValues>;
-        // using MapType       = Dsa::LinearMap<QueryKey, QueryValues>;
+        using QueryPair     = std::pair<QueryKey, QueryValues>;
+        // using MapType       = std::map<QueryKey, QueryValues, std::less<>>;
+        using MapType       = Dsa::LinearMap<QueryKey, QueryValues>;
 
         using IterType      = decltype(MapType().begin());
         using CIterType     = decltype(MapType().cbegin());
@@ -27,7 +27,7 @@ namespace Thoth::Http{
         //! @brief Create with an existing map.
         explicit QueryParams(const MapType& initAs);
 
-        QueryParams(const std::initializer_list<QueryPair>& init);
+        QueryParams(std::initializer_list<QueryPair> init);
 
 
         //! @brief Parse the query as it is.
@@ -50,7 +50,7 @@ namespace Thoth::Http{
         //! @brief Add a value with the specified key.
         //! @param key The key where it will be added.
         //! @param val The value to be added.
-        void Add(QueryKeyRef key, QueryValueRef val);
+        void Add(QueryKeyRef key, QueryValue val);
 
         //! @brief Remove a value with the specified key.
         //! @param key The key where it will be removed.

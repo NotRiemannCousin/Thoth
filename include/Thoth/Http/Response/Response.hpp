@@ -21,6 +21,9 @@ namespace Thoth::Http {
         friend struct Client; // who construct it
 
         [[nodiscard]] std::optional<NJson::Json> AsJson() const;
+
+        [[nodiscard]] bool Successful() const;
+        [[nodiscard]] string MoveBody() &&;
     private:
 
         Response(VersionEnum version, StatusCodeEnum status,

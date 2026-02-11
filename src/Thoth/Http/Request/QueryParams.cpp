@@ -2,6 +2,7 @@
 #include <Thoth/Http/Request/Url.hpp>
 
 #include <algorithm>
+#include <assert.h>
 #include <ranges>
 
 
@@ -16,31 +17,23 @@ namespace Thoth::Http {
 
     QueryParams::QueryParams(const MapType& initAs): _elements{ initAs } { }
 
-    QueryParams::QueryParams(const std::initializer_list<QueryPair> &init)
+    QueryParams::QueryParams(std::initializer_list<QueryPair> init)
             : _elements{ init } {}
 
     QueryParams QueryParams::Parse(std::string_view paramsStr) {
-        static auto const toStr = [](auto&& r) -> std::string {
-            return r | rg::to<std::string>();
-        };
-        static auto const splitDelimiter = [](char c) { return c != '='; };
-        static auto const splitBetween = [](const auto& str) {
+        static auto constexpr splitDelimiter = [](char c) { return c != '='; };
+        static auto constexpr splitBetween = [](const auto& str) {
             return std::pair{
-                str | vs::take_while(splitDelimiter),
-                str | vs::drop_while(splitDelimiter) | vs::drop(1)
+                str | vs::take_while(splitDelimiter) | std::ranges::to<string>(),
+                str | vs::drop_while(splitDelimiter) | vs::drop(1) | std::ranges::to<string>()
             };
         };
 
-        static auto const splitParams = [](const auto& rawParams) {
-            auto [r, l] = splitBetween(rawParams);
-
-            return std::pair{ r | rg::to<string>(), l | vs::split(',') | vs::transform(toStr) | rg::to<std::vector>() };
-        };
-
         QueryParams params{};
-        for (const auto& rawParam : paramsStr | vs::split('&')){
-            const auto [r, l] = splitParams(rawParam);
-            params[r] = l;
+        for (const auto rawParam : paramsStr | vs::split('&')) {
+            const auto [r, l] = splitBetween(rawParam);
+
+            params[r].emplace_back(l);
         }
 
         return params;
@@ -62,7 +55,7 @@ namespace Thoth::Http {
         return it2 != it->second.end();
     }
 
-    void QueryParams::Add(QueryKeyRef key, QueryValueRef val) {
+    void QueryParams::Add(QueryKeyRef key, QueryValue val) {
         _elements[key].push_back(val);
     }
 
@@ -92,7 +85,7 @@ namespace Thoth::Http {
         if (Exists(key))
             return false;
 
-        _elements[key].push_back(value);
+        _elements[key].emplace_back(value);
         return true;
     }
 

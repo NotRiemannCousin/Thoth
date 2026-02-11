@@ -457,7 +457,11 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
 #pragma endregion
 
 
-std::optional<Json> Json::Parse(std::string_view input, bool copyData, bool checkFinal) {
+std::optional<Json> Json::Parse(std::string_view input) {
+    return ParseText(input);
+}
+
+std::optional<Json> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
     Details::BufferInfo info{};
 
     if (copyData) {
@@ -519,10 +523,18 @@ constexpr auto ResolveKeys = Thoth::Utils::Overloaded{
         // auto& arr{ Json::AsType<Array>(*curr) };
         auto& arr{ curr.value()->template As<Array>() };
 
-        if (index < 0 || arr.size() < index)
+        const int finalIndex{
+            index >= 0
+                ? index
+                : static_cast<int>(arr.size() + index)
+        };
+
+        if (abs(finalIndex) >= arr.size())
             return false;
 
-        curr = &arr.operator[](index);
+
+        curr = &arr.operator[](finalIndex);
+
         return true;
     },
     [](auto& curr, const std::string_view key) -> bool {
@@ -573,7 +585,7 @@ OptValWrapper Json::GetAndMove(Key key) && {
     if (!std::visit([&](const auto& k) { return ResolveKeys(curr, k); }, key))
         return std::nullopt;
 
-    return std::move(curr.value());
+    return std::move(**curr);
 }
 
 OptRefValWrapper Json::Find(Keys keys) {
@@ -606,8 +618,7 @@ CRefValWrapperOrNull Json::FindOrNull(Keys keys) const {
 }
 
 OptValWrapper Json::FindCopy(Keys keys) const {
-    return Find(keys)
-            .transform([](const auto& ref){ return ref; });
+    return **Find(keys);
 }
 
 ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
@@ -615,11 +626,10 @@ ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
 }
 
 OptValWrapper Json::FindAndMove(Keys key) && {
-    return *Find(key)
-            .transform([](OptRefValWrapper v) {
-                return std::move(v.value());
-            })
-            .value_or(&NullJ);
+    auto ptr{ Find(key) };
+    if (!ptr) return NullJ;
+
+    return std::move(**ptr);
 }
 
 // ValWrapperOrNull Json::FindOrNullAndMove(Keys keys) && {

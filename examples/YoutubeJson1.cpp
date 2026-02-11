@@ -17,6 +17,7 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
 
     using Thoth::NJson::Json;
     using Thoth::NJson::Array;
+    using Thoth::NJson::JsonObject;
     using Thoth::NJson::String;
 
 
@@ -32,18 +33,17 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
                 "musicCarouselShelfBasicHeaderRenderer", "moreContentButton" };
 #pragma endregion
 
-    std::string body{ std::format(R"(
-{{
-    "browseId": "{}",
-    "context": {{
-        "client": {{
-            "clientName": "WEB_REMIX",
-            "clientVersion": "1.{:%Y%m%d}.01.00"
-        }}
-    }}
-}}
-    )", id, std::chrono::system_clock::now()) };
+    JsonObject body{
+        { "videoId", string{ id } },
+        { "context", JsonObject{
+            { "client", JsonObject{
+                { "clientName", "WEB_REMIX" },
+                { "clientVersion", std::format("1.{:%Y%m%d}.01.00", std::chrono::system_clock::now()) }
+            } }
+        } }
+    };
 
+    // settings set target.load-cwd-lldbinit false
     const auto contentTabs{ // keeping the json alive
         NHttp::PostRequest::FromUrl("https://music.youtube.com/youtubei/v1/browse?prettyPrint=false", body)
                 .transform(NHttp::Client::Send<Thoth::Http::PostMethod>)
@@ -56,6 +56,15 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
                 .and_then(Utils::ValueOrHof<Json>("Json structure mismatch."s))
                 .and_then(Utils::ErrorIfNotHof<&Json::IsOf<Array>>("Json structure mismatch."s))
     };
+
+    if (!contentTabs)
+        return std::unexpected{ contentTabs.error() };
+
+    // Json json{ *contentTabs };
+
+    while (true)
+        ;
+
     /* musicTabKeys seams to be [0] every time but just in case you can use this:
      * .transform(std::bind_back(&Json::FindAndMove,
      *     Keys{{ "contents", "singleColumnBrowseResultsRenderer", "tabs" }}))

@@ -27,7 +27,7 @@ std::expected<std::monostate, string> MakeRequest() {
     };
 
     const auto albums{
-        Json::Parse(jsonStart, false, false)
+        Json::ParseText(jsonStart, false, false)
                 .transform(std::bind_back(&Json::GetAndMove, "contents"))
                 .transform(std::bind_back(&Json::GetAndMove, "twoColumnBrowseResultsRenderer"))
                 .transform(std::bind_back(&Json::GetAndMove, "tabs"))
@@ -39,7 +39,7 @@ std::expected<std::monostate, string> MakeRequest() {
     };
 
     if (!albums || (*albums)->IsOf<Thoth::NJson::Array>()) {
-        for (const auto album: (*albums)->As<Thoth::NJson::Array>()) {
+        for (const auto& album: (*albums)->As<Thoth::NJson::Array>()) {
             const auto name{ album.Find({
                 { "richItemRenderer","content", "playlistRenderer", "title" }}) };
             if (name)

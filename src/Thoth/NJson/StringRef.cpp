@@ -13,6 +13,10 @@ StringRef::operator std::string_view() const noexcept {
     return str;
 }
 
+StringRef::operator std::string() const noexcept {
+    return std::string{ str };
+}
+
 bool StringRef::operator==(const StringRef& other) const {
     return str == other.str;
 }

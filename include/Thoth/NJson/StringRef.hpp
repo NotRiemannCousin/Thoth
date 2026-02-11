@@ -15,6 +15,7 @@ namespace Thoth::NJson {
 
         // NOLINTNEXTLINE(*)
         operator std::string_view() const noexcept;
+        operator std::string() const noexcept;
 
 
         StringRef& operator=(StringRef&&) noexcept = default;
@@ -26,6 +27,7 @@ namespace Thoth::NJson {
         std::shared_ptr<std::string> _data;
         // it will keep the buffer alive despite everything.
         // TODO: FUTURE: `std::shared_ptr<std::string>` causes double allocation, change it later.
+        // ? change to std::pair<std::string_view, const std::shared_ptr<std::string>>?
     };
 }
 

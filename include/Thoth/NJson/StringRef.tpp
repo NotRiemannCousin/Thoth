@@ -3,7 +3,7 @@
 
 template<>
 struct std::formatter<Thoth::NJson::StringRef>{
-    static auto parse(std::format_parse_context& ctx) {
+    static constexpr auto parse(std::format_parse_context& ctx) {
         return std::formatter<std::string_view>{}.parse(ctx);
     }
 

@@ -127,30 +127,43 @@ namespace Thoth::NJson {
         template<class T>
         static T& AsType(Json& val);
         template<class T>
-        T& As();
+        [[nodiscard]] T& As();
         template<class T>
         [[nodiscard]] const T& As() const;
 
         template<class T>
         [[nodiscard]] T& AsMut();
         template<class T>
-        [[nodiscard]] T* AsMove() &&;
+        [[nodiscard]] T AsMov() &&;
         template<class T>
-        [[nodiscard]] const T& AsConst() const;
+        [[nodiscard]] const T& AsRef() const;
 
         template<class T>
         std::optional<T*> Ensure();
+        template<class T>
+        std::optional<T*> Ensure() const;
 
         template<class T>
-        std::optional<const T*> EnsureConst() const;
+        std::optional<T*> EnsureMut();
+        template<class T>
+        std::optional<T> EnsureMov() &&;
+        template<class T>
+        std::optional<const T*> EnsureRef() const;
 
         [[nodiscard]] bool operator==(const Json& other) const;
 
         //! @brief Tries to parse the Json from a string.
         //! @param input the text to parse.
-        //! @param copyData if this is false then the json will use references to text.
-        //! @return A Json if the parse success, std::nullopt if it fails.
-        static std::optional<Json> Parse(std::string_view input, bool copyData = true, bool checkFinal = true);
+        static std::optional<Json> Parse(std::string_view input);
+
+
+        //! @brief Tries to parse the Json from a string.
+        //! @param input the text to parse.
+        //! @param copyData copy the input to an internal buffer if true, keeps a reference otherwise.
+        //! @param checkFinal ensure that there is only space chars after the end of the json.
+        //! @return A Json if the parse success, std::nullopt otherwise.
+        static std::optional<Json> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
+
 
 
         //! @brief Return the element with this index/key if this is an Object or Array. Return std::nullopt otherwise.

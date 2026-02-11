@@ -37,6 +37,7 @@ namespace Thoth::Dsa {
         constexpr Cow& SetOwned(OwnT&& own);
 
         constexpr OwnT& AsOwned();
+        [[nodiscard]] constexpr OwnT AsCopy() const;
 
         [[nodiscard]] constexpr RefT AsRef() const;
 

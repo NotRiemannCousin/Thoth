@@ -33,7 +33,7 @@ namespace Thoth::Http {
         //! @brief Create with an existing vector.
         explicit Headers(const MapType& initAs);
 
-        Headers(const std::initializer_list<HeaderPair>& init);
+        Headers(std::initializer_list<HeaderPair> init);
 
 
         //! @brief Tries to parse the headers from the raw TCP string.

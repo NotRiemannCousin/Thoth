@@ -26,7 +26,7 @@ struct std::formatter<Thoth::NJson::JsonObject> {
     bool pretty{};
     size_t indentLevel{};
 
-    auto parse(std::format_parse_context& ctx) {
+    constexpr auto parse(std::format_parse_context& ctx) {
         auto it = ctx.begin();
         if (it != ctx.end()) {
             ++it;
