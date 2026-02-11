@@ -10,45 +10,62 @@
 std::expected<std::monostate, string> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
+    namespace NJson = Thoth::NJson;
 
-    using Json = Thoth::NJson::Json;
+    using Json = NJson::Json;
 
-    const auto page{
-        NHttp::GetRequest::FromUrl("https://www.youtube.com/@ringosheenaofficial/releases")
-                .transform(NHttp::Client::Send<>)
-                .value_or(std::unexpected{ "Failed to connect." })
+    static const std::array<NJson::Key, 8> contentKeys{
+        "contents",
+        "twoColumnBrowseResultsRenderer",
+        "tabs",
+        3,
+        "tabRenderer",
+        "content",
+        "richGridRenderer",
+        "contents",
     };
 
-    if (!page)
-        return std::unexpected{ page.error() };
+    static const array<NJson::Key, 4> albumNameKey{ "richItemRenderer","content", "playlistRenderer", "title" };
 
-    const auto jsonStart{
-        page->body.substr(page->body.find("ytInitialData = ") + strlen("ytInitialData = "))
+
+
+
+    constexpr auto s_extractJson = [](const string& body) {
+        constexpr string_view target{ "ytInitialData = " };
+        const auto jsonStart{ body.substr(body.find(target) + target.size()) };
+
+        return Json::ParseText(jsonStart, true, false);
     };
 
-    const auto albums{
-        Json::ParseText(jsonStart, false, false)
-                .transform(std::bind_back(&Json::GetAndMove, "contents"))
-                .transform(std::bind_back(&Json::GetAndMove, "twoColumnBrowseResultsRenderer"))
-                .transform(std::bind_back(&Json::GetAndMove, "tabs"))
-                .transform(std::bind_back(&Json::GetAndMove, 3))
-                .transform(std::bind_back(&Json::GetAndMove, "tabRenderer"))
-                .transform(std::bind_back(&Json::GetAndMove, "content"))
-                .transform(std::bind_back(&Json::GetAndMove, "richGridRenderer"))
-                .transform(std::bind_back(&Json::GetAndMove, "contents"))
-    };
+    constexpr auto s_printAlbums = [](NJson::Array&& albums) -> std::monostate{
 
-    if (!albums || (*albums)->IsOf<Thoth::NJson::Array>()) {
-        for (const auto& album: (*albums)->As<Thoth::NJson::Array>()) {
-            const auto name{ album.Find({
-                { "richItemRenderer","content", "playlistRenderer", "title" }}) };
+        for (const auto& album: albums) {
+            const auto name{ album.Find(albumNameKey) };
             if (name)
                 std::println("{}", **name);
         }
-    }
 
+        return std::monostate{};
+    };
 
-    return {};
+    using std::operator ""s;
+
+    return NHttp::GetRequest::FromUrl("https://www.youtube.com/@ringosheenaofficial/releases")
+                .transform(NHttp::Client::Send<>)
+                .value_or(std::unexpected{ "Failed to connect." })
+                .and_then(Utils::ErrorIfNotHof(&NHttp::Response<>::Successful, "Failed to connect."s))
+
+                .transform(&NHttp::Response<>::MoveBody)
+                .transform(s_extractJson)
+                .and_then(Utils::ValueOrHof<Json>("Can't parse json."s))
+
+                .transform(std::bind_back(&Json::FindAndMove, contentKeys))
+                .and_then(Utils::ValueOrHof<Json>("Can't find content."s))
+
+                .transform(&Json::EnsureMov<NJson::Array>)
+                .and_then(Utils::ValueOrHof<NJson::Array>("Structure isn't an array."s))
+
+                .transform(s_printAlbums);
 }
 
 

@@ -32,32 +32,26 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
                 "musicCarouselShelfBasicHeaderRenderer", "moreContentButton" };
 #pragma endregion
 
-    std::string body{ R"(
-{
-    "videoId": "wJ0xnyX70Y4",
-    "context": {
-        "client": {
-             "clientName": "ANDROID",
-             "clientVersion": "20.51"
-        }
-    }
-}
-    )", };
+    using Obj = Thoth::NJson::JsonObject;
 
-    const auto contentTabs{ // keeping the json alive
+    const Obj body{
+        { "videoId", "wJ0xnyX70Y4" },
+        { "context", Obj{
+            { "client", Obj{
+                { "clientName", "ANDROID" },
+                { "clientVersion", "20.51" }
+            } }
+        } }
+    };
+
+    return
         NHttp::PostRequest::FromUrl("https://music.youtube.com/youtubei/v1/player?prettyPrint=false", body)
                 .transform(NHttp::Client::Send<Thoth::Http::PostMethod>)
                 .value_or(std::unexpected{ "Failed to connect." })
 
                 .transform(&NHttp::PostResponse::AsJson)
                 .and_then(Utils::ValueOrHof<Json>("Can't convert to json."s))
-    };
-    if (!contentTabs)
-        return std::unexpected{ contentTabs.error() };
-
-    std::print("{}", *contentTabs);
-
-    return {};
+                .transform([](const Json& content){ return std::print("{}", content), std::monostate{}; });
 }
 
 

@@ -1,9 +1,9 @@
 # Thoth
-## An expressive, asynchronous C++26 web microframework
+## An expressive, asynchronous C++26 webdev library
 
 ![](Thoth-logo.webp "Thoth, the Egyptian god of writing and wisdom")
 
-Thoth is a modern C++26 lib and microframework for building both web servers and clients.
+Thoth is a modern C++26 lib and webdev library for building both web servers and clients.
 Powered by the [Hermes](https://github.com/NotRiemannCousin/Hermes) library, Thoth is designed to harness the latest C++ features
 for creating robust, high-performance web applications.
 
@@ -14,34 +14,33 @@ for asynchronous tasks.
 
 
 ## Examples
-### Functional Version 1
 ```cpp
 std::expected<std::monostate, std::string> FunctionalRequest() {
     using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 
-    const auto membersOrError {
-        NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
-                .transform(NHttp::HttpClient::Send<>)
-                .value_or(std::unexpected{ "Failed to connect." })
-                .transform(&NHttp::GetResponse::AsJson)
-                .and_then(Utils::ValueOrHof<std::optional<Json>&&>("Cant convert to json."s))
-                .transform(std::bind_back(&Json::GetAndMove, "members" ))
-                .and_then(Utils::ValueOrHof<NJson::OptValWrapper&&>("\"members\" doesn't exist."s))
-                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<NJson::Array>, Json>("\"members\" isn't an array."s))
+    constexpr auto s_printOrDie = [](const NJson::Array& members) -> std::expected<std::monostate, std::string> {
+        for (const auto& member : members) {
+            if (!member.IsOf<NJson::Object>())
+                return std::unexpected{ R"(Value isn't an object)" };
+
+            std::print("{}\n", (*member.As<NJson::Object>())["name"]);
+        }
+
+        return std::monostate{};
     };
 
-    if (!membersOrError)
-        return std::unexpected{ membersOrError.error() };
+    return NHttp::GetRequest::FromUrl("https://api.discogs.com/artists/4001234")
+            .transform(NHttp::Client::Send<>)
+            .value_or(std::unexpected{ "Failed to connect." })
+            .transform(&NHttp::GetResponse::AsJson)
+            .and_then(Utils::ValueOrHof<Json>("Cant convert to json."s))
 
-    for (const auto& member : membersOrError->As<NJson::Array>()) {
-        if (!member.IsOf<NJson::Object>())
-            return std::unexpected{ "Value isn't an object" };
+            .transform(std::bind_back(&Json::GetAndMove, "members" ))
 
-        std::print("{}\n", (*member.As<NJson::Object>())["name"]);
-    }
+            .transform(&Json::EnsureMov<NJson::Array>)
+            .and_then(Utils::ValueOrHof<NJson::Array>("'members' array doesn't exist."s))
 
-    return {};
+            .and_then(s_printOrDie);
 }
-
 ```

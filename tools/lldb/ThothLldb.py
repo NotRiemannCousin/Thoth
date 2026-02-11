@@ -60,17 +60,20 @@ def UrlSummary(val, _dict):
     scheme   = GetString(val.GetChildMemberWithName("scheme"))
     user     = GetString(val.GetChildMemberWithName("user"))
     host     = GetString(val.GetChildMemberWithName("host"))
-    port     = GetString(val.GetChildMemberWithName("port"))
+    port     = val.GetChildMemberWithName("port").GetValue()
 
     path     = GetString(val.GetChildMemberWithName("path"))
 
     query    = GetString(val.GetChildMemberWithName("query"))
     fragment = GetString(val.GetChildMemberWithName("fragment"))
 
-    if scheme == "http" and port == "80":
-        port = None
+
+    if port == None:
+        port = ""
+    elif scheme == "http" and port == "80":
+        port = ""
     elif scheme == "https" and port == "443":
-        port = None
+        port = ""
 
     if user:
         user = f"{user}@"

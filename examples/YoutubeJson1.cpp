@@ -23,17 +23,55 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
 
     using std::operator ""s;
 
-    std::array<Key, 8> musicTabKeys{ "contents", "singleColumnBrowseResultsRenderer", "tabs",
+    static std::array<Key, 8> musicTabKeys{ "contents", "singleColumnBrowseResultsRenderer", "tabs",
                 0, "tabRenderer", "content", "sectionListRenderer", "contents" };
-    std::array<Key, 2> tabContentKeys{ "musicCarouselShelfRenderer", "contents" };
-    std::array<Key, 7> tabTitleKeys{ "musicCarouselShelfRenderer", "header",
+    static std::array<Key, 7> tabTitleKeys{ "musicCarouselShelfRenderer", "header",
                 "musicCarouselShelfBasicHeaderRenderer", "title", "runs", 0, "text" };
-    std::array<Key, 5> albumNameKeys{ "musicTwoRowItemRenderer", "title", "runs", 0, "text" };
-    std::array<Key, 4> moreContentButtonKeys{ "musicCarouselShelfRenderer", "header",
+    static std::array<Key, 5> albumNameKeys{ "musicTwoRowItemRenderer", "title", "runs", 0, "text" };
+    static std::array<Key, 2> tabContentKeys{ "musicCarouselShelfRenderer", "contents" };
+    static std::array<Key, 4> moreContentButtonKeys{ "musicCarouselShelfRenderer", "header",
                 "musicCarouselShelfBasicHeaderRenderer", "moreContentButton" };
 #pragma endregion
 
-    JsonObject body{
+
+
+    static constexpr auto s_getTab = [](const string& name) {
+        return [&](const Json& tab) {
+            if (const auto title{ tab.Find(tabTitleKeys) }; title)
+                return **title == Json{ name };
+            return false;
+        };
+    };
+
+    static constexpr auto s_printAlbumName = [](const Array* arr, const string& tabName) {
+        std::print("\n\n{}:\n", tabName);
+
+        for (const auto& album : *arr) {
+            album.Find(albumNameKeys)
+                .and_then(&Json::EnsureRef<String>)
+                .transform(&String::AsRef)
+                .transform([](const auto& name) { return std::println("\t- {}", name), 0; });
+        }
+
+        return 0;
+    };
+
+    static constexpr auto s_printCollections = [](const Json& content) {
+        for (const string tabName : { "Albums", "Videos", "Singles & EPs", "Live performances" }) {
+            const auto tab{ content.Search(s_getTab(tabName)) };
+            if (!tab) continue;
+
+            (*tab)->Find(tabContentKeys)
+                    .and_then(&Json::EnsureRef<Array>)
+                    .transform(std::bind_back(s_printAlbumName, tabName));
+
+            if ((*tab)->Find(moreContentButtonKeys))
+                std::println("\tMore...");
+        }
+        return std::monostate{};
+    };
+
+    const JsonObject body{
         { "videoId", string{ id } },
         { "context", JsonObject{
             { "client", JsonObject{
@@ -43,9 +81,9 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
         } }
     };
 
-    // settings set target.load-cwd-lldbinit false
-    const auto contentTabs{ // keeping the json alive
-        NHttp::PostRequest::FromUrl("https://music.youtube.com/youtubei/v1/browse?prettyPrint=false", body)
+    const auto url{ "https://music.youtube.com/youtubei/v1/browse?prettyPrint=false" };
+
+    return NHttp::PostRequest::FromUrl(url, body)
                 .transform(NHttp::Client::Send<Thoth::Http::PostMethod>)
                 .value_or(std::unexpected{ "Failed to connect." })
 
@@ -54,67 +92,9 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
 
                 .transform(std::bind_back(&Json::FindAndMove, musicTabKeys))
                 .and_then(Utils::ValueOrHof<Json>("Json structure mismatch."s))
+
                 .and_then(Utils::ErrorIfNotHof<&Json::IsOf<Array>>("Json structure mismatch."s))
-    };
-
-    if (!contentTabs)
-        return std::unexpected{ contentTabs.error() };
-
-    // Json json{ *contentTabs };
-
-    while (true)
-        ;
-
-    /* musicTabKeys seams to be [0] every time but just in case you can use this:
-     * .transform(std::bind_back(&Json::FindAndMove,
-     *     Keys{{ "contents", "singleColumnBrowseResultsRenderer", "tabs" }}))
-     *
-     * .transform(std::bind_back(&Json::SearchAndMove<>,
-     *     [](const Json& tab) -> bool {
-     *         if (const auto title{ tab.Find({{ "tabRenderer", "title" }})}; title)
-     *             return title->get() == Json{ "Music" }; // std::optional<&T> please 🙏🏾
-     *         return false;
-     *     }))
-     *
-     * .transform(std::bind_back(&Json::FindAndMove,
-     * Keys{{ "tabRenderer", "content", "sectionListRenderer", "contents" }}))
-    **/
-
-    if (!contentTabs)
-        return std::unexpected{ contentTabs.error() };
-
-    const auto getTab = [&](const string& name) {
-        return [&](const Json& tab) {
-            if (const auto title{ tab.Find(tabTitleKeys) }; title)
-                return **title == Json{ name };
-            return false;
-        };
-    };
-
-
-    for (const string tabName : { "Albums", "Videos", "Singles & EPs", "Live performances" }) {
-        const auto tab{ contentTabs->Search(getTab(tabName)) };
-        if (!tab) continue;
-
-        const auto content{
-            (*tab)->Find(tabContentKeys)
-            .and_then(&Utils::NulloptIfNot<&Json::IsOf<Array>, CRef>)
-        };
-        if (!content) continue;
-
-        std::print("\n\n{}:\n", tabName);
-
-        for (const auto& album : (*content)->As<Array>()) {
-            album.Find(albumNameKeys)
-                .and_then(&Utils::NulloptIfNot<&Json::IsOf<String>, CRef>)
-                .transform([](const auto& name) { return std::println("\t- {}", *name), 0; });
-        }
-
-        if ((*tab)->Find(moreContentButtonKeys))
-                std::println("\tMore...");
-    }
-
-    return {};
+                .transform(s_printCollections);
 }
 
 
