@@ -14,6 +14,8 @@ namespace Thoth::Dsa {
            requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::same_as<std::strong_ordering>; }
         || requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::convertible_to<bool>; };
 
+    // unfortunately I have to use snake_case here to it be similar to STL algorithms/containers.
+
     template<class KeyT, class ValT, class Pred = std::less<>>
         requires strong_order_relation<KeyT, Pred>
     struct LinearMap {

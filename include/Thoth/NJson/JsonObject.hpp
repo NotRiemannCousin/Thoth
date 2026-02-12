@@ -130,11 +130,11 @@ namespace Thoth::NJson {
 
 
 
-            //! @return The JsonVal& associated with a key. Create if it not exists.
-            //! STL containers has many problems so it must be JsonKey.
+        //! @return The JsonVal& associated with a key. Create if it not exists.
+        //! STL containers has many problems so it must be JsonKey.
         Json& operator[](JsonObjKeyRef key);
-            //! @return The const JsonVal& associated with a key or returns a null reference if it not exists.
-            //! STL containers has many problems so it must be JsonKey.
+        //! @return The const JsonVal& associated with a key or returns a null reference if it not exists.
+        //! STL containers has many problems so it must be JsonKey.
         const Json& operator[](JsonObjKeyRef key) const;
 
         //! @return True if both jsons match.

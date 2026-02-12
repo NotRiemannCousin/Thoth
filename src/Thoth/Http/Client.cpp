@@ -7,8 +7,8 @@ namespace vs = std::views;
 
 
 // TODO: FUTURE: get from env
-constexpr auto downTime{ std::chrono::seconds{60} };
-constexpr auto sleepTime{ std::chrono::seconds{30} };
+constexpr auto downTime{ std::chrono::seconds{ 60 } };
+constexpr auto sleepTime{ std::chrono::seconds{ 30 } };
 
 Thoth::Http::ClientJanitor & Thoth::Http::ClientJanitor::Instance() {
     static ClientJanitor instance;

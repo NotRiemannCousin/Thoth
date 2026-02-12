@@ -22,6 +22,6 @@ namespace Thoth::Utils {
     //! @endcode
     std::optional<const std::string_view> Env(std::string_view envkey);
 
-    //! @copybrief Env
+    //! @copydoc Env
     std::optional<const std::u8string_view> Utf8Env(std::string_view envkey);
 }

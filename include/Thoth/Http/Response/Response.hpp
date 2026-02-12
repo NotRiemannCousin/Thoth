@@ -22,7 +22,11 @@ namespace Thoth::Http {
 
         [[nodiscard]] std::optional<NJson::Json> AsJson() const;
 
+        //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;
+
+        //! @brief Monad friendly move of the body, discarding the rest of the response.
+        //! Recommended check for Successful() before.
         [[nodiscard]] string MoveBody() &&;
     private:
 
