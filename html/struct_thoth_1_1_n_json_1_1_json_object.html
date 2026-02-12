@@ -1,0 +1,1262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: Thoth::NJson::JsonObject Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('struct_thoth_1_1_n_json_1_1_json_object.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="struct_thoth_1_1_n_json_1_1_json_object-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Thoth::NJson::JsonObject Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_json_object_8hpp_source.html">JsonObject.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a022d2c69a39cdf0f356e4b1834193017" id="r_a022d2c69a39cdf0f356e4b1834193017"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;</td></tr>
+<tr class="separator:a022d2c69a39cdf0f356e4b1834193017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e57edb0381fe2b5e2e21c33ca3a77ee" id="r_a9e57edb0381fe2b5e2e21c33ca3a77ee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">JsonPair</a> = std::pair&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">JsonObjKey</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt;</td></tr>
+<tr class="separator:a9e57edb0381fe2b5e2e21c33ca3a77ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3fc2742c9a5bf2f6d319d4e777af1d3" id="r_aa3fc2742c9a5bf2f6d319d4e777af1d3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a> = std::pair&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a> &gt;</td></tr>
+<tr class="separator:aa3fc2742c9a5bf2f6d319d4e777af1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79510446acfcc8369e7c0e8251ce7c5d" id="r_a79510446acfcc8369e7c0e8251ce7c5d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">Dsa::LinearMap</a>&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">JsonObjKey</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt;</td></tr>
+<tr class="separator:a79510446acfcc8369e7c0e8251ce7c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af98b2755c406bc52bfb503392b3907b6" id="r_af98b2755c406bc52bfb503392b3907b6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">IterType</a> = decltype(<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a>{}.<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af64ae92c90e45b43b3c854ab8c21c248">begin</a>())</td></tr>
+<tr class="separator:af98b2755c406bc52bfb503392b3907b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa950006c25e1a9a6051ed7cbdf28a542" id="r_aa950006c25e1a9a6051ed7cbdf28a542"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">CIterType</a> = decltype(<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a>{}.cbegin())</td></tr>
+<tr class="separator:aa950006c25e1a9a6051ed7cbdf28a542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:adbe79d950400f92351983cfca5a8cae4" id="r_adbe79d950400f92351983cfca5a8cae4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#adbe79d950400f92351983cfca5a8cae4">~JsonObject</a> ()</td></tr>
+<tr class="separator:adbe79d950400f92351983cfca5a8cae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e3c7fed97d9a8e51ed8245a79527d46" id="r_a1e3c7fed97d9a8e51ed8245a79527d46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a1e3c7fed97d9a8e51ed8245a79527d46">JsonObject</a> ()=default</td></tr>
+<tr class="separator:a1e3c7fed97d9a8e51ed8245a79527d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f03badabe9f9a13926baa3607b3d745" id="r_a5f03badabe9f9a13926baa3607b3d745"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a5f03badabe9f9a13926baa3607b3d745">JsonObject</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:a5f03badabe9f9a13926baa3607b3d745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed707b96ace93fce9d82894eb5cda8f8" id="r_aed707b96ace93fce9d82894eb5cda8f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aed707b96ace93fce9d82894eb5cda8f8">JsonObject</a> (const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;other)</td></tr>
+<tr class="separator:aed707b96ace93fce9d82894eb5cda8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100d019d0428c71a2a982050669f217e" id="r_a100d019d0428c71a2a982050669f217e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a100d019d0428c71a2a982050669f217e">JsonObject</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a> &amp;&amp;initAs)</td></tr>
+<tr class="memdesc:a100d019d0428c71a2a982050669f217e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create with an existing map.  <br /></td></tr>
+<tr class="separator:a100d019d0428c71a2a982050669f217e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa74365905fd7a763c020c678a2e3715" id="r_afa74365905fd7a763c020c678a2e3715"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#afa74365905fd7a763c020c678a2e3715">JsonObject</a> (std::initializer_list&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">JsonPair</a> &gt; init)</td></tr>
+<tr class="separator:afa74365905fd7a763c020c678a2e3715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d036935180c4150db1a0fcfdf5f521" id="r_a04d036935180c4150db1a0fcfdf5f521"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a04d036935180c4150db1a0fcfdf5f521">operator=</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:a04d036935180c4150db1a0fcfdf5f521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad245291592da02b7661adeded6575c39" id="r_ad245291592da02b7661adeded6575c39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ad245291592da02b7661adeded6575c39">operator=</a> (const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;other)</td></tr>
+<tr class="separator:ad245291592da02b7661adeded6575c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64e3baafbd8de428b638a08ef4fc799" id="r_af64e3baafbd8de428b638a08ef4fc799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af64e3baafbd8de428b638a08ef4fc799">operator=</a> (std::initializer_list&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">JsonPair</a> &gt; list)</td></tr>
+<tr class="separator:af64e3baafbd8de428b638a08ef4fc799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d466cd8ea2ff26e657cc7161cbab12" id="r_ab7d466cd8ea2ff26e657cc7161cbab12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ab7d466cd8ea2ff26e657cc7161cbab12">Exists</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="memdesc:ab7d466cd8ea2ff26e657cc7161cbab12"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key exists.  <br /></td></tr>
+<tr class="separator:ab7d466cd8ea2ff26e657cc7161cbab12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8833603ebc6412d7093700f818b9001" id="r_ad8833603ebc6412d7093700f818b9001"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ad8833603ebc6412d7093700f818b9001">Exists</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a> p) const</td></tr>
+<tr class="memdesc:ad8833603ebc6412d7093700f818b9001"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key exists.  <br /></td></tr>
+<tr class="separator:ad8833603ebc6412d7093700f818b9001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e413eb497da8c46289cefccc7c9503" id="r_a06e413eb497da8c46289cefccc7c9503"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a06e413eb497da8c46289cefccc7c9503">Exists</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key, <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a> val) const</td></tr>
+<tr class="memdesc:a06e413eb497da8c46289cefccc7c9503"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key=val exists.  <br /></td></tr>
+<tr class="separator:a06e413eb497da8c46289cefccc7c9503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02385f96a549ae010b4912f2d53ae9bf" id="r_a02385f96a549ae010b4912f2d53ae9bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a02385f96a549ae010b4912f2d53ae9bf">Set</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a> p)</td></tr>
+<tr class="memdesc:a02385f96a549ae010b4912f2d53ae9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a value with the specified key. Replace if already exists.  <br /></td></tr>
+<tr class="separator:a02385f96a549ae010b4912f2d53ae9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45de56ee88aaa0499d5370d8f7669058" id="r_a45de56ee88aaa0499d5370d8f7669058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a45de56ee88aaa0499d5370d8f7669058">Set</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key, <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a> val)</td></tr>
+<tr class="memdesc:a45de56ee88aaa0499d5370d8f7669058"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as Add(JsonPairRef p).  <br /></td></tr>
+<tr class="separator:a45de56ee88aaa0499d5370d8f7669058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadf0af88c8d81fb994bd5ca76410dec" id="r_aeadf0af88c8d81fb994bd5ca76410dec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aeadf0af88c8d81fb994bd5ca76410dec">Remove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key)</td></tr>
+<tr class="memdesc:aeadf0af88c8d81fb994bd5ca76410dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a key.  <br /></td></tr>
+<tr class="separator:aeadf0af88c8d81fb994bd5ca76410dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07046fe5fe480419ea866d6de865bd58" id="r_a07046fe5fe480419ea866d6de865bd58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a07046fe5fe480419ea866d6de865bd58">SetIfNull</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a> p)</td></tr>
+<tr class="memdesc:a07046fe5fe480419ea866d6de865bd58"><td class="mdescLeft">&#160;</td><td class="mdescRight">If key not exists, set it to value.  <br /></td></tr>
+<tr class="separator:a07046fe5fe480419ea866d6de865bd58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2626de933fbf2f85d4820304c6789d4c" id="r_a2626de933fbf2f85d4820304c6789d4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a2626de933fbf2f85d4820304c6789d4c">SetIfNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key, <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a> val)</td></tr>
+<tr class="memdesc:a2626de933fbf2f85d4820304c6789d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a07046fe5fe480419ea866d6de865bd58">SetIfNull(JsonPairRef p)</a>.  <br /></td></tr>
+<tr class="separator:a2626de933fbf2f85d4820304c6789d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cdc846ddebd95a379700858f0327e59" id="r_a7cdc846ddebd95a379700858f0327e59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#ab61ded3e391b6ca8e7f4ac7c14eb071c">OptRefValWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a7cdc846ddebd95a379700858f0327e59">Get</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key)</td></tr>
+<tr class="memdesc:a7cdc846ddebd95a379700858f0327e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key but don't create if it not exists.  <br /></td></tr>
+<tr class="separator:a7cdc846ddebd95a379700858f0327e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ff0759006360263ccb772021bfabe67" id="r_a7ff0759006360263ccb772021bfabe67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#a4eb195e73f981721f9426844c0a6a3cb">OptCRefValWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a7ff0759006360263ccb772021bfabe67">Get</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a7ff0759006360263ccb772021bfabe67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key but don't create if it not exists.  <br /></td></tr>
+<tr class="separator:a7ff0759006360263ccb772021bfabe67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1b7c586fad39b2b07c0c88fd3c19e1" id="r_a7c1b7c586fad39b2b07c0c88fd3c19e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#a7c4d04c03a8004990306e248b1201c26">CRefValWrapperOrNull</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a7c1b7c586fad39b2b07c0c88fd3c19e1">GetOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a7c1b7c586fad39b2b07c0c88fd3c19e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key or return null if it not exists.  <br /></td></tr>
+<tr class="separator:a7c1b7c586fad39b2b07c0c88fd3c19e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f9e8ccd1fb57af3e345f9458710312b" id="r_a3f9e8ccd1fb57af3e345f9458710312b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#af0d2d424642a836b4b8d9016b4da0a04">OptValWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a3f9e8ccd1fb57af3e345f9458710312b">GetCopy</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a3f9e8ccd1fb57af3e345f9458710312b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy of a value if it exists.  <br /></td></tr>
+<tr class="separator:a3f9e8ccd1fb57af3e345f9458710312b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd1800a3fc3f5929db812c68ca22e21" id="r_afcd1800a3fc3f5929db812c68ca22e21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#a929c4219e56ce39cce89e424dccdf4fe">ValWrapperOrNull</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#afcd1800a3fc3f5929db812c68ca22e21">GetOrNullCopy</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="memdesc:afcd1800a3fc3f5929db812c68ca22e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy of a value or return null if it not exists.  <br /></td></tr>
+<tr class="separator:afcd1800a3fc3f5929db812c68ca22e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ef9cfa65022bcf74def3034529896d" id="r_ae9ef9cfa65022bcf74def3034529896d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#af0d2d424642a836b4b8d9016b4da0a04">OptValWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ae9ef9cfa65022bcf74def3034529896d">GetAndMove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) &amp;&amp;</td></tr>
+<tr class="memdesc:ae9ef9cfa65022bcf74def3034529896d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy of a value if it exists.  <br /></td></tr>
+<tr class="separator:ae9ef9cfa65022bcf74def3034529896d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e042028d8291c28faf675bf7c2e5f7" id="r_ac4e042028d8291c28faf675bf7c2e5f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_n_json.html#a929c4219e56ce39cce89e424dccdf4fe">ValWrapperOrNull</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ac4e042028d8291c28faf675bf7c2e5f7">GetOrNullAndMove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) &amp;&amp;</td></tr>
+<tr class="memdesc:ac4e042028d8291c28faf675bf7c2e5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy of a value or return null if it not exists.  <br /></td></tr>
+<tr class="separator:ac4e042028d8291c28faf675bf7c2e5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64ae92c90e45b43b3c854ab8c21c248" id="r_af64ae92c90e45b43b3c854ab8c21c248"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">IterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af64ae92c90e45b43b3c854ab8c21c248">begin</a> ()</td></tr>
+<tr class="separator:af64ae92c90e45b43b3c854ab8c21c248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c55a6951dd9c9e180a379180ef4847" id="r_ae4c55a6951dd9c9e180a379180ef4847"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">IterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#ae4c55a6951dd9c9e180a379180ef4847">end</a> ()</td></tr>
+<tr class="separator:ae4c55a6951dd9c9e180a379180ef4847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f10eb2c35212443c45e5c0907b06659" id="r_a6f10eb2c35212443c45e5c0907b06659"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">CIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a6f10eb2c35212443c45e5c0907b06659">begin</a> () const</td></tr>
+<tr class="separator:a6f10eb2c35212443c45e5c0907b06659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a917cc9c953336c61e1f5d3702ffafd67" id="r_a917cc9c953336c61e1f5d3702ffafd67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">CIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a917cc9c953336c61e1f5d3702ffafd67">end</a> () const</td></tr>
+<tr class="separator:a917cc9c953336c61e1f5d3702ffafd67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354413ad75bb80dd8264265b7cd4bdfc" id="r_a354413ad75bb80dd8264265b7cd4bdfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a354413ad75bb80dd8264265b7cd4bdfc">Clear</a> ()</td></tr>
+<tr class="memdesc:a354413ad75bb80dd8264265b7cd4bdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all keys.  <br /></td></tr>
+<tr class="separator:a354413ad75bb80dd8264265b7cd4bdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5616d9a772b915ce25ad68f2ddd76f85" id="r_a5616d9a772b915ce25ad68f2ddd76f85"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a5616d9a772b915ce25ad68f2ddd76f85">Size</a> () const</td></tr>
+<tr class="separator:a5616d9a772b915ce25ad68f2ddd76f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5070a9c23a1913595b2be6a48895cac0" id="r_a5070a9c23a1913595b2be6a48895cac0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a5070a9c23a1913595b2be6a48895cac0">Empty</a> () const</td></tr>
+<tr class="separator:a5070a9c23a1913595b2be6a48895cac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a860fead49721eddfef8f04ab9de34ca4" id="r_a860fead49721eddfef8f04ab9de34ca4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a860fead49721eddfef8f04ab9de34ca4">operator[]</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key)</td></tr>
+<tr class="separator:a860fead49721eddfef8f04ab9de34ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37c9b221d83bd0c22fb8e02cb07aa46f" id="r_a37c9b221d83bd0c22fb8e02cb07aa46f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a37c9b221d83bd0c22fb8e02cb07aa46f">operator[]</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a> key) const</td></tr>
+<tr class="separator:a37c9b221d83bd0c22fb8e02cb07aa46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a5e03b22e35b44037309bb1d80b0c93" id="r_a2a5e03b22e35b44037309bb1d80b0c93"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a2a5e03b22e35b44037309bb1d80b0c93">operator==</a> (const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;other) const</td></tr>
+<tr class="separator:a2a5e03b22e35b44037309bb1d80b0c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a0203945ddf877d034636db2c3a268e4d" id="r_a0203945ddf877d034636db2c3a268e4d"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a0203945ddf877d034636db2c3a268e4d">Json</a></td></tr>
+<tr class="separator:a0203945ddf877d034636db2c3a268e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a80a416fa69a819f8be37d08ec14a82ef" id="r_a80a416fa69a819f8be37d08ec14a82ef"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a80a416fa69a819f8be37d08ec14a82ef">std::formatter&lt; JsonObject &gt;</a></td></tr>
+<tr class="separator:a80a416fa69a819f8be37d08ec14a82ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a1f78665749957f5ab3e5ec20b6ac06" id="r_a2a1f78665749957f5ab3e5ec20b6ac06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a2a1f78665749957f5ab3e5ec20b6ac06">Details::ReadObject</a> (std::string_view &amp;input, auto &amp;val, const <a class="el" href="struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html">Details::BufferInfo</a> &amp;info)</td></tr>
+<tr class="separator:a2a1f78665749957f5ab3e5ec20b6ac06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aa950006c25e1a9a6051ed7cbdf28a542" name="aa950006c25e1a9a6051ed7cbdf28a542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa950006c25e1a9a6051ed7cbdf28a542">&#9670;&#160;</a></span>CIterType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">Thoth::NJson::JsonObject::CIterType</a> =  decltype(<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a>{}.cbegin())</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af98b2755c406bc52bfb503392b3907b6" name="af98b2755c406bc52bfb503392b3907b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af98b2755c406bc52bfb503392b3907b6">&#9670;&#160;</a></span>IterType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">Thoth::NJson::JsonObject::IterType</a> =  decltype(<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a>{}.<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af64ae92c90e45b43b3c854ab8c21c248">begin</a>())</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e57edb0381fe2b5e2e21c33ca3a77ee" name="a9e57edb0381fe2b5e2e21c33ca3a77ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e57edb0381fe2b5e2e21c33ca3a77ee">&#9670;&#160;</a></span>JsonPair</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">Thoth::NJson::JsonObject::JsonPair</a> =  std::pair&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">JsonObjKey</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3fc2742c9a5bf2f6d319d4e777af1d3" name="aa3fc2742c9a5bf2f6d319d4e777af1d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3fc2742c9a5bf2f6d319d4e777af1d3">&#9670;&#160;</a></span>JsonPairRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">Thoth::NJson::JsonObject::JsonPairRef</a> =  std::pair&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a022d2c69a39cdf0f356e4b1834193017" name="a022d2c69a39cdf0f356e4b1834193017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a022d2c69a39cdf0f356e4b1834193017">&#9670;&#160;</a></span>JsonValRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">Thoth::NJson::JsonObject::JsonValRef</a> =  <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79510446acfcc8369e7c0e8251ce7c5d" name="a79510446acfcc8369e7c0e8251ce7c5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79510446acfcc8369e7c0e8251ce7c5d">&#9670;&#160;</a></span>MapType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">Thoth::NJson::JsonObject::MapType</a> =  <a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">Dsa::LinearMap</a>&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">JsonObjKey</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="adbe79d950400f92351983cfca5a8cae4" name="adbe79d950400f92351983cfca5a8cae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe79d950400f92351983cfca5a8cae4">&#9670;&#160;</a></span>~JsonObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::~JsonObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e3c7fed97d9a8e51ed8245a79527d46" name="a1e3c7fed97d9a8e51ed8245a79527d46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3c7fed97d9a8e51ed8245a79527d46">&#9670;&#160;</a></span>JsonObject() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::JsonObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f03badabe9f9a13926baa3607b3d745" name="a5f03badabe9f9a13926baa3607b3d745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f03badabe9f9a13926baa3607b3d745">&#9670;&#160;</a></span>JsonObject() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::JsonObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed707b96ace93fce9d82894eb5cda8f8" name="aed707b96ace93fce9d82894eb5cda8f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed707b96ace93fce9d82894eb5cda8f8">&#9670;&#160;</a></span>JsonObject() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::JsonObject </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a100d019d0428c71a2a982050669f217e" name="a100d019d0428c71a2a982050669f217e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100d019d0428c71a2a982050669f217e">&#9670;&#160;</a></span>JsonObject() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::JsonObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d">MapType</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>initAs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create with an existing map. </p>
+
+</div>
+</div>
+<a id="afa74365905fd7a763c020c678a2e3715" name="afa74365905fd7a763c020c678a2e3715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa74365905fd7a763c020c678a2e3715">&#9670;&#160;</a></span>JsonObject() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::JsonObject::JsonObject </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">JsonPair</a> &gt;&#160;</td>
+          <td class="paramname"><em>init</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af64ae92c90e45b43b3c854ab8c21c248" name="af64ae92c90e45b43b3c854ab8c21c248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af64ae92c90e45b43b3c854ab8c21c248">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">IterType</a> Thoth::NJson::JsonObject::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f10eb2c35212443c45e5c0907b06659" name="a6f10eb2c35212443c45e5c0907b06659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f10eb2c35212443c45e5c0907b06659">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">CIterType</a> Thoth::NJson::JsonObject::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a354413ad75bb80dd8264265b7cd4bdfc" name="a354413ad75bb80dd8264265b7cd4bdfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a354413ad75bb80dd8264265b7cd4bdfc">&#9670;&#160;</a></span>Clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::NJson::JsonObject::Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear all keys. </p>
+
+</div>
+</div>
+<a id="a5070a9c23a1913595b2be6a48895cac0" name="a5070a9c23a1913595b2be6a48895cac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5070a9c23a1913595b2be6a48895cac0">&#9670;&#160;</a></span>Empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::Empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>True if <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a5616d9a772b915ce25ad68f2ddd76f85">Size()</a> is 0. </dd></dl>
+
+</div>
+</div>
+<a id="ae4c55a6951dd9c9e180a379180ef4847" name="ae4c55a6951dd9c9e180a379180ef4847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c55a6951dd9c9e180a379180ef4847">&#9670;&#160;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6">IterType</a> Thoth::NJson::JsonObject::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a917cc9c953336c61e1f5d3702ffafd67" name="a917cc9c953336c61e1f5d3702ffafd67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917cc9c953336c61e1f5d3702ffafd67">&#9670;&#160;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542">CIterType</a> Thoth::NJson::JsonObject::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7d466cd8ea2ff26e657cc7161cbab12" name="ab7d466cd8ea2ff26e657cc7161cbab12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d466cd8ea2ff26e657cc7161cbab12">&#9670;&#160;</a></span>Exists() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::Exists </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if a key exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the key exists, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a06e413eb497da8c46289cefccc7c9503" name="a06e413eb497da8c46289cefccc7c9503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e413eb497da8c46289cefccc7c9503">&#9670;&#160;</a></span>Exists() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::Exists </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a>&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if a key=val exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key to be checked. </td></tr>
+    <tr><td class="paramname">val</td><td>The value to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the key-value pair exists, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ad8833603ebc6412d7093700f818b9001" name="ad8833603ebc6412d7093700f818b9001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8833603ebc6412d7093700f818b9001">&#9670;&#160;</a></span>Exists() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::Exists </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if a key exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>A pair with the key and value to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the key exists, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7cdc846ddebd95a379700858f0327e59" name="a7cdc846ddebd95a379700858f0327e59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cdc846ddebd95a379700858f0327e59">&#9670;&#160;</a></span>Get() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ab61ded3e391b6ca8e7f4ac7c14eb071c">OptRefValWrapper</a> Thoth::NJson::JsonObject::Get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the reference of a key but don't create if it not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>JsonVal* if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7ff0759006360263ccb772021bfabe67" name="a7ff0759006360263ccb772021bfabe67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ff0759006360263ccb772021bfabe67">&#9670;&#160;</a></span>Get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a4eb195e73f981721f9426844c0a6a3cb">OptCRefValWrapper</a> Thoth::NJson::JsonObject::Get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the reference of a key but don't create if it not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae9ef9cfa65022bcf74def3034529896d" name="ae9ef9cfa65022bcf74def3034529896d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ef9cfa65022bcf74def3034529896d">&#9670;&#160;</a></span>GetAndMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#af0d2d424642a836b4b8d9016b4da0a04">OptValWrapper</a> Thoth::NJson::JsonObject::GetAndMove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy of a value if it exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a3f9e8ccd1fb57af3e345f9458710312b" name="a3f9e8ccd1fb57af3e345f9458710312b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f9e8ccd1fb57af3e345f9458710312b">&#9670;&#160;</a></span>GetCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#af0d2d424642a836b4b8d9016b4da0a04">OptValWrapper</a> Thoth::NJson::JsonObject::GetCopy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy of a value if it exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7c1b7c586fad39b2b07c0c88fd3c19e1" name="a7c1b7c586fad39b2b07c0c88fd3c19e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1b7c586fad39b2b07c0c88fd3c19e1">&#9670;&#160;</a></span>GetOrNull()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7c4d04c03a8004990306e248b1201c26">CRefValWrapperOrNull</a> Thoth::NJson::JsonObject::GetOrNull </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the reference of a key or return null if it not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, NullV otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac4e042028d8291c28faf675bf7c2e5f7" name="ac4e042028d8291c28faf675bf7c2e5f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e042028d8291c28faf675bf7c2e5f7">&#9670;&#160;</a></span>GetOrNullAndMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a929c4219e56ce39cce89e424dccdf4fe">ValWrapperOrNull</a> Thoth::NJson::JsonObject::GetOrNullAndMove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy of a value or return null if it not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, NullV otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="afcd1800a3fc3f5929db812c68ca22e21" name="afcd1800a3fc3f5929db812c68ca22e21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd1800a3fc3f5929db812c68ca22e21">&#9670;&#160;</a></span>GetOrNullCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a929c4219e56ce39cce89e424dccdf4fe">ValWrapperOrNull</a> Thoth::NJson::JsonObject::GetOrNullCopy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy of a value or return null if it not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>const JsonVal* if the key exists, NullV otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ad245291592da02b7661adeded6575c39" name="ad245291592da02b7661adeded6575c39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad245291592da02b7661adeded6575c39">&#9670;&#160;</a></span>operator=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp; Thoth::NJson::JsonObject::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04d036935180c4150db1a0fcfdf5f521" name="a04d036935180c4150db1a0fcfdf5f521"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04d036935180c4150db1a0fcfdf5f521">&#9670;&#160;</a></span>operator=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp; Thoth::NJson::JsonObject::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af64e3baafbd8de428b638a08ef4fc799" name="af64e3baafbd8de428b638a08ef4fc799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af64e3baafbd8de428b638a08ef4fc799">&#9670;&#160;</a></span>operator=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp; Thoth::NJson::JsonObject::operator= </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee">JsonPair</a> &gt;&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a5e03b22e35b44037309bb1d80b0c93" name="a2a5e03b22e35b44037309bb1d80b0c93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a5e03b22e35b44037309bb1d80b0c93">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>True if both jsons match. </dd></dl>
+
+</div>
+</div>
+<a id="a860fead49721eddfef8f04ab9de34ca4" name="a860fead49721eddfef8f04ab9de34ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a860fead49721eddfef8f04ab9de34ca4">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp; Thoth::NJson::JsonObject::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The JsonVal&amp; associated with a key. Create if it not exists. STL containers has many problems so it must be JsonKey. </dd></dl>
+
+</div>
+</div>
+<a id="a37c9b221d83bd0c22fb8e02cb07aa46f" name="a37c9b221d83bd0c22fb8e02cb07aa46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c9b221d83bd0c22fb8e02cb07aa46f">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp; Thoth::NJson::JsonObject::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The const JsonVal&amp; associated with a key or returns a null reference if it not exists. STL containers has many problems so it must be JsonKey. </dd></dl>
+
+</div>
+</div>
+<a id="aeadf0af88c8d81fb994bd5ca76410dec" name="aeadf0af88c8d81fb994bd5ca76410dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeadf0af88c8d81fb994bd5ca76410dec">&#9670;&#160;</a></span>Remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::Remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a key. </p>
+
+</div>
+</div>
+<a id="a45de56ee88aaa0499d5370d8f7669058" name="a45de56ee88aaa0499d5370d8f7669058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45de56ee88aaa0499d5370d8f7669058">&#9670;&#160;</a></span>Set() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::NJson::JsonObject::Set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a>&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>same as Add(JsonPairRef p). </p>
+
+</div>
+</div>
+<a id="a02385f96a549ae010b4912f2d53ae9bf" name="a02385f96a549ae010b4912f2d53ae9bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02385f96a549ae010b4912f2d53ae9bf">&#9670;&#160;</a></span>Set() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::NJson::JsonObject::Set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a value with the specified key. Replace if already exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>A pair with the key and the value to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2626de933fbf2f85d4820304c6789d4c" name="a2626de933fbf2f85d4820304c6789d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2626de933fbf2f85d4820304c6789d4c">&#9670;&#160;</a></span>SetIfNull() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::SetIfNull </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">JsonObjKeyRef</a>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017">JsonValRef</a>&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>same as <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#a07046fe5fe480419ea866d6de865bd58">SetIfNull(JsonPairRef p)</a>. </p>
+
+</div>
+</div>
+<a id="a07046fe5fe480419ea866d6de865bd58" name="a07046fe5fe480419ea866d6de865bd58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07046fe5fe480419ea866d6de865bd58">&#9670;&#160;</a></span>SetIfNull() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::JsonObject::SetIfNull </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3">JsonPairRef</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If key not exists, set it to value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>A pair with the key and the value to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the key not exists, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a5616d9a772b915ce25ad68f2ddd76f85" name="a5616d9a772b915ce25ad68f2ddd76f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5616d9a772b915ce25ad68f2ddd76f85">&#9670;&#160;</a></span>Size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Thoth::NJson::JsonObject::Size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The count of keys. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a2a1f78665749957f5ab3e5ec20b6ac06" name="a2a1f78665749957f5ab3e5ec20b6ac06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a1f78665749957f5ab3e5ec20b6ac06">&#9670;&#160;</a></span>Details::ReadObject</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Details::ReadObject </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view &amp;&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">auto &amp;&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html">Details::BufferInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80a416fa69a819f8be37d08ec14a82ef" name="a80a416fa69a819f8be37d08ec14a82ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80a416fa69a819f8be37d08ec14a82ef">&#9670;&#160;</a></span>std::formatter&lt; JsonObject &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct std::formatter&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0203945ddf877d034636db2c3a268e4d" name="a0203945ddf877d034636db2c3a268e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0203945ddf877d034636db2c3a268e4d">&#9670;&#160;</a></span>Json</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend Thoth::NJson::JsonObject::Json</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/Thoth/NJson/<a class="el" href="_json_object_8hpp_source.html">JsonObject.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_n_json.html">NJson</a></li><li class="navelem"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>
