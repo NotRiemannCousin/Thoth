@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['linearmap_0',['linearmap',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a01ee59883815737361d41e2e916f7032',1,'Thoth::Dsa::LinearMap::LinearMap()=default'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#ae1144b2d9ee57f59ffbd8393b3c4b8cb',1,'Thoth::Dsa::LinearMap::LinearMap(const LinearMap &amp;)=default'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a36758133eb0e5d90fec743bf479606eb',1,'Thoth::Dsa::LinearMap::LinearMap(LinearMap &amp;&amp;)=default'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#af27e6ac7991d37cb821cd62a340556f4',1,'Thoth::Dsa::LinearMap::LinearMap(const key_compare &amp;comp)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#ab9febc54b646523e7177dcc9cdc4794c',1,'Thoth::Dsa::LinearMap::LinearMap(std::initializer_list&lt; value_type &gt; init, const key_compare &amp;comp=key_compare{})']]]
-];
