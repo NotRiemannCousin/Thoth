@@ -18,10 +18,10 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
         return std::monostate{};
     };
 
-    static constexpr auto s_printOrDie = [](const NJson::Array& members) -> std::expected<std::monostate, std::string> {
+    static constexpr auto s_printOrDie = [](const NJson::Array& members) -> std::monostate {
         for (const auto& member : members)
             member.EnsureRef<NJson::Object>()
-                .transform(s_printSingleMember);
+                    .transform(s_printSingleMember);
 
         return std::monostate{};
     };
@@ -37,7 +37,7 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
             .transform(&Json::EnsureMov<NJson::Array>)
             .and_then(Utils::ValueOrHof<NJson::Array>("'members' array doesn't exist."s))
 
-            .and_then(s_printOrDie);
+            .transform(s_printOrDie);
 }
 
 std::expected<std::monostate, std::string> OtherExample() {

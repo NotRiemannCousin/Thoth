@@ -92,7 +92,7 @@ namespace Thoth::NJson {
             requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
         Json(T other);
         template<class T>
-            requires std::convertible_to<T, std::string>
+            requires std::constructible_from<std::string, T>
         Json(T&& other);
 
         Json& operator=(const JsonObject& other);
@@ -111,7 +111,7 @@ namespace Thoth::NJson {
             requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
         Json& operator=(T other);
         template<class T>
-            requires std::convertible_to<T, std::string>
+            requires std::constructible_from<std::string, T>
         Json& operator=(T&& other);
 
 

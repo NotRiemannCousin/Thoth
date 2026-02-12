@@ -182,7 +182,7 @@ namespace Thoth::Utils {
         requires std::predicate<Pred&, Val&>
     constexpr std::expected<Val, std::decay_t<Err>>
     S_ErrorIfImpl(Pred&& pred, Val&& value, Err&& error) {
-        if (!S_TestIf<Negate>(pred, value))
+        if (!S_TestIfImpl<Negate>(pred, value))
             return std::forward<Val>(value);
         return std::unexpected{ std::forward<Err>(error) };
     }
@@ -574,6 +574,37 @@ namespace Thoth::Utils {
         return NulloptIfNotHof<Pred>(ToValue<Pred>());
     }
 
+#pragma endregion
+
+#pragma region WhileNotFail
+
+    //! @brief fast fail foldr
+    //!
+    //! F -> Exp -> Exp -> Exp
+    //! like reduce but with fast fail
+    template<std::ranges::input_range R, class F,
+        class Exp = std::iter_value_t<R>, class Val = Exp::value_type, class Err = Exp::error_type>
+        requires std::same_as<Exp, std::expected<Val, Err>>
+            && std::invocable<F, Exp, Exp> && std::same_as<Exp, std::invoke_result_t<F, Exp>>
+    constexpr auto WhileExpected(R&& range, F&& callable, Exp&& reducer = {}) -> Exp {
+        for (auto&& r : range) {
+            reducer = std::invoke(callable, reducer, r);
+
+            if (!reducer)
+                return reducer;
+        }
+
+        return reducer;
+    }
+
+    //! @hof{WhileExpected}
+    template<class F, class Exp>
+    constexpr auto WhileExpectedHof(F&& callable, Exp&& reducer = {}) {
+        return [callable = std::forward<F>(callable), reducer = std::forward<Exp>(reducer)]
+        <std::ranges::input_range R>(R&& range){
+            return WhileExpected(std::forward<R>(range), std::forward<F>(callable), std::forward<Exp>(reducer));
+        };
+    }
 #pragma endregion
 
 }

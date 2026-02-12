@@ -72,7 +72,7 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
     };
 
     const JsonObject body{
-        { "videoId", string{ id } },
+        { "videoId", id },
         { "context", JsonObject{
             { "client", JsonObject{
                 { "clientName", "WEB_REMIX" },

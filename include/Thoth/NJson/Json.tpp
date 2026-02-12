@@ -18,7 +18,7 @@ namespace Thoth::NJson {
     }
 
     template<class T>
-    requires std::convertible_to<T, std::string>
+    requires std::constructible_from<std::string, T>
     Json::Json(T&& other) {
         _value = String::FromOwned(std::forward<T>(other));
     }
@@ -31,7 +31,7 @@ namespace Thoth::NJson {
     }
 
     template<class T>
-        requires std::convertible_to<T, std::string>
+        requires std::constructible_from<std::string, T>
     Json& Json::operator=(T&& other) {
         _value = String::FromOwned(std::forward<T>(other));
         return *this;
