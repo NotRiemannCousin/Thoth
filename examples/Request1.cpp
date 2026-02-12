@@ -13,13 +13,15 @@ std::expected<std::monostate, std::string> FunctionalRequest() {
     using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 
-    constexpr auto s_printOrDie = [](const NJson::Array& members) -> std::expected<std::monostate, std::string> {
-        for (const auto& member : members) {
-            if (!member.IsOf<NJson::Object>())
-                return std::unexpected{ R"(Value isn't an object)" };
+    static constexpr auto s_printSingleMember = [](const NJson::Object* obj) {
+        std::print("{}\n", (**obj)["name"]);
+        return std::monostate{};
+    };
 
-            std::print("{}\n", (*member.As<NJson::Object>())["name"]);
-        }
+    static constexpr auto s_printOrDie = [](const NJson::Array& members) -> std::expected<std::monostate, std::string> {
+        for (const auto& member : members)
+            member.EnsureRef<NJson::Object>()
+                .transform(s_printSingleMember);
 
         return std::monostate{};
     };
