@@ -436,6 +436,15 @@ requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
 <tr class="memitem:a8c180d24c9ee700339c1451cb7855d55"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a8c180d24c9ee700339c1451cb7855d55">NulloptIfNotHof</a> ()</td></tr>
 <tr class="memdesc:a8c180d24c9ee700339c1451cb7855d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{NulloptIfNot}  <br /></td></tr>
 <tr class="separator:a8c180d24c9ee700339c1451cb7855d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada24339ddf5563dc74afd7538161b89" id="r_aada24339ddf5563dc74afd7538161b89"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R, class F , class Exp  = std::iter_value_t&lt;R&gt;, class Val  = Exp::value_type, class Err  = Exp::error_type&gt; <br />
+requires std::same_as&lt;Exp, std::expected&lt;Val, Err&gt;&gt; &amp;&amp; std::invocable&lt;F, Exp, Exp&gt; &amp;&amp; std::same_as&lt;Exp, std::invoke_result_t&lt;F, Exp&gt;&gt;</td></tr>
+<tr class="memitem:aada24339ddf5563dc74afd7538161b89"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aada24339ddf5563dc74afd7538161b89">WhileExpected</a> (R &amp;&amp;range, F &amp;&amp;callable, Exp &amp;&amp;reducer={}) -&gt; Exp</td></tr>
+<tr class="memdesc:aada24339ddf5563dc74afd7538161b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">fast fail foldr  <br /></td></tr>
+<tr class="separator:aada24339ddf5563dc74afd7538161b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b03a824a33628ba00ae2ea69d4f1367" id="r_a7b03a824a33628ba00ae2ea69d4f1367"><td class="memTemplParams" colspan="2">template&lt;class F , class Exp &gt; </td></tr>
+<tr class="memitem:a7b03a824a33628ba00ae2ea69d4f1367"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367">WhileExpectedHof</a> (F &amp;&amp;callable, Exp &amp;&amp;reducer={})</td></tr>
+<tr class="memdesc:a7b03a824a33628ba00ae2ea69d4f1367"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{WhileExpected}  <br /></td></tr>
+<tr class="separator:a7b03a824a33628ba00ae2ea69d4f1367"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f67b23d33902336cc6a174eebe5f6cf" id="r_a0f67b23d33902336cc6a174eebe5f6cf"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a0f67b23d33902336cc6a174eebe5f6cf">HashCombine</a> (size_t &amp;seed, const size_t v)</td></tr>
 <tr class="separator:a0f67b23d33902336cc6a174eebe5f6cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09a77fbefaf13e1d7850746b5dfe148" id="r_aa09a77fbefaf13e1d7850746b5dfe148"><td class="memTemplParams" colspan="2">template&lt;class T , class Variant , template&lt; class, class &gt; class Relation, std::size_t Index = 0&gt; </td></tr>
@@ -3072,6 +3081,94 @@ template&lt;class Opt , class Err &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{ValueOr} </p>
+
+</div>
+</div>
+<a id="aada24339ddf5563dc74afd7538161b89" name="aada24339ddf5563dc74afd7538161b89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada24339ddf5563dc74afd7538161b89">&#9670;&#160;</a></span>WhileExpected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::ranges::input_range R, class F , class Exp  = std::iter_value_t&lt;R&gt;, class Val  = Exp::value_type, class Err  = Exp::error_type&gt; <br />
+requires std::same_as&lt;Exp, std::expected&lt;Val, Err&gt;&gt; &amp;&amp; std::invocable&lt;F, Exp, Exp&gt; &amp;&amp; std::same_as&lt;Exp, std::invoke_result_t&lt;F, Exp&gt;&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto Thoth::Utils::WhileExpected </td>
+          <td>(</td>
+          <td class="paramtype">R &amp;&amp;&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>callable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Exp &amp;&amp;&#160;</td>
+          <td class="paramname"><em>reducer</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; Exp </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>fast fail foldr </p>
+<p>F -&gt; Exp -&gt; Exp -&gt; Exp like reduce but with fast fail </p>
+
+</div>
+</div>
+<a id="a7b03a824a33628ba00ae2ea69d4f1367" name="a7b03a824a33628ba00ae2ea69d4f1367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b03a824a33628ba00ae2ea69d4f1367">&#9670;&#160;</a></span>WhileExpectedHof()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class F , class Exp &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto Thoth::Utils::WhileExpectedHof </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>callable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Exp &amp;&amp;&#160;</td>
+          <td class="paramname"><em>reducer</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>@hof{WhileExpected} </p>
 
 </div>
 </div>

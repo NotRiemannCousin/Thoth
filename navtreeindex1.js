@@ -1,14 +1,16 @@
 var NAVTREEINDEX1 =
 {
+"_utils_8hpp.html#a2ee79c9b3917b8642394d68c4b3e9576":[5,0,0,0,2,3,0],
+"_utils_8hpp.html#ae7bf13278dcf9aa87d3d3fa3497be9dd":[5,0,0,0,2,3,1],
 "_utils_8hpp_source.html":[5,0,0,0,2,3],
 "annotated.html":[4,0],
 "classes.html":[4,1],
-"concept_thoth_1_1_dsa_1_1strong__order__relation.html":[3,0,0,0],
 "concept_thoth_1_1_dsa_1_1strong__order__relation.html":[2,0,0,0,2],
-"concept_thoth_1_1_http_1_1_method_concept.html":[3,0,1,0],
+"concept_thoth_1_1_dsa_1_1strong__order__relation.html":[3,0,0,0],
 "concept_thoth_1_1_http_1_1_method_concept.html":[2,0,0,1,17],
-"concept_thoth_1_1_string_1_1_unicode_char_concept.html":[3,0,2,0],
+"concept_thoth_1_1_http_1_1_method_concept.html":[3,0,1,0],
 "concept_thoth_1_1_string_1_1_unicode_char_concept.html":[2,0,0,3,1],
+"concept_thoth_1_1_string_1_1_unicode_char_concept.html":[3,0,2,0],
 "concepts.html":[3],
 "dir_0548d2bb7dd208758f91f985569944be.html":[5,0,0,0,2],
 "dir_09d6a22b96cbdd451a8a41c9804b07f2.html":[5,0,0,0,1,0],
@@ -238,6 +240,7 @@ var NAVTREEINDEX1 =
 "namespace_thoth_1_1_utils.html#a715c0b35df8d1770159ecd2684b67c6d":[2,0,0,4,57],
 "namespace_thoth_1_1_utils.html#a7381564d4b4ef7efe778a468977cbd50":[2,0,0,4,25],
 "namespace_thoth_1_1_utils.html#a7760b78c133849c3d87b61aeaede1d79":[2,0,0,4,20],
+"namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367":[2,0,0,4,76],
 "namespace_thoth_1_1_utils.html#a7bd04b2f48678089b6e921f42e5495d3":[2,0,0,4,66],
 "namespace_thoth_1_1_utils.html#a8055ec528ba9243ac6bb93fa9b583ecf":[2,0,0,4,49],
 "namespace_thoth_1_1_utils.html#a8b283a092e7f36df31566839e5f6a59c":[2,0,0,4,53],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "namespace_thoth_1_1_utils.html#a9029393a395a40ce50164a7020cdf99c":[2,0,0,4,23],
 "namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c":[2,0,0,4,37],
 "namespace_thoth_1_1_utils.html#a98c01600874f893bd7d0b3f9c8ae1076":[2,0,0,4,10],
-"namespace_thoth_1_1_utils.html#a9e0288a14dd869ab04a83d3320fc8b79":[2,0,0,4,43],
-"namespace_thoth_1_1_utils.html#aa09a77fbefaf13e1d7850746b5dfe148":[2,0,0,4,28],
-"namespace_thoth_1_1_utils.html#aa1fc0b4a0db1a2e058827362eac0f3a8":[2,0,0,4,60],
-"namespace_thoth_1_1_utils.html#aa31ba8d845e1dbcbd6022ec99b77b478":[2,0,0,4,22]
+"namespace_thoth_1_1_utils.html#a9e0288a14dd869ab04a83d3320fc8b79":[2,0,0,4,43]
 };

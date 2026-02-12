@@ -156,10 +156,10 @@ Examples</h1>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
 <div class="line">    };</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> s_printOrDie = [](<span class="keyword">const</span> NJson::Array&amp; members) -&gt; std::expected&lt;std::monostate, std::string&gt; {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> s_printOrDie = [](<span class="keyword">const</span> NJson::Array&amp; members) -&gt; std::monostate {</div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; member : members)</div>
 <div class="line">            member.EnsureRef&lt;NJson::<a class="code hl_typedef" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>&gt;()</div>
-<div class="line">                .transform(s_printSingleMember);</div>
+<div class="line">                    .transform(s_printSingleMember);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
 <div class="line">    };</div>
@@ -175,7 +175,7 @@ Examples</h1>
 <div class="line">            .transform(&amp;Json::EnsureMov&lt;NJson::Array&gt;)</div>
 <div class="line">            .and_then(Utils::ValueOrHof&lt;NJson::Array&gt;(<span class="stringliteral">&quot;&#39;members&#39; array doesn&#39;t exist.&quot;</span>s))</div>
 <div class="line"> </div>
-<div class="line">            .and_then(s_printOrDie);</div>
+<div class="line">            .transform(s_printOrDie);</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> Client.hpp:10</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Json.hpp:13</div></div>

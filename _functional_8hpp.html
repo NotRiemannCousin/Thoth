@@ -432,6 +432,15 @@ requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
 <tr class="memitem:a8c180d24c9ee700339c1451cb7855d55"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a8c180d24c9ee700339c1451cb7855d55">Thoth::Utils::NulloptIfNotHof</a> ()</td></tr>
 <tr class="memdesc:a8c180d24c9ee700339c1451cb7855d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{NulloptIfNot}  <br /></td></tr>
 <tr class="separator:a8c180d24c9ee700339c1451cb7855d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada24339ddf5563dc74afd7538161b89" id="r_aada24339ddf5563dc74afd7538161b89"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R, class F , class Exp  = std::iter_value_t&lt;R&gt;, class Val  = Exp::value_type, class Err  = Exp::error_type&gt; <br />
+requires std::same_as&lt;Exp, std::expected&lt;Val, Err&gt;&gt; &amp;&amp; std::invocable&lt;F, Exp, Exp&gt; &amp;&amp; std::same_as&lt;Exp, std::invoke_result_t&lt;F, Exp&gt;&gt;</td></tr>
+<tr class="memitem:aada24339ddf5563dc74afd7538161b89"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aada24339ddf5563dc74afd7538161b89">Thoth::Utils::WhileExpected</a> (R &amp;&amp;range, F &amp;&amp;callable, Exp &amp;&amp;reducer={}) -&gt; Exp</td></tr>
+<tr class="memdesc:aada24339ddf5563dc74afd7538161b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">fast fail foldr  <br /></td></tr>
+<tr class="separator:aada24339ddf5563dc74afd7538161b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b03a824a33628ba00ae2ea69d4f1367" id="r_a7b03a824a33628ba00ae2ea69d4f1367"><td class="memTemplParams" colspan="2">template&lt;class F , class Exp &gt; </td></tr>
+<tr class="memitem:a7b03a824a33628ba00ae2ea69d4f1367"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367">Thoth::Utils::WhileExpectedHof</a> (F &amp;&amp;callable, Exp &amp;&amp;reducer={})</td></tr>
+<tr class="memdesc:a7b03a824a33628ba00ae2ea69d4f1367"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{WhileExpected}  <br /></td></tr>
+<tr class="separator:a7b03a824a33628ba00ae2ea69d4f1367"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

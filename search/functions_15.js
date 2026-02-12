@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7ejsonobject_0',['~JsonObject',['../struct_thoth_1_1_n_json_1_1_json_object.html#adbe79d950400f92351983cfca5a8cae4',1,'Thoth::NJson::JsonObject']]]
+  ['whileexpected_0',['WhileExpected',['../namespace_thoth_1_1_utils.html#aada24339ddf5563dc74afd7538161b89',1,'Thoth::Utils']]],
+  ['whileexpectedhof_1',['WhileExpectedHof',['../namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367',1,'Thoth::Utils']]]
 ];

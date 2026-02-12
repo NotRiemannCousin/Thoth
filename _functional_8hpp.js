@@ -65,5 +65,7 @@ var _functional_8hpp =
     [ "TransformOptIfNotHof", "_functional_8hpp.html#a8e1e136b3ade47d7dde5d634757ba617", null ],
     [ "TransformOptIfNotHof", "_functional_8hpp.html#a45f7543f8d3e70e04b2c5adbc96f7c13", null ],
     [ "ValueOr", "_functional_8hpp.html#a45f009d19d7b37e4595d20a1d68082c5", null ],
-    [ "ValueOrHof", "_functional_8hpp.html#a2245da06206e12517b4ad14225d92d34", null ]
+    [ "ValueOrHof", "_functional_8hpp.html#a2245da06206e12517b4ad14225d92d34", null ],
+    [ "WhileExpected", "_functional_8hpp.html#aada24339ddf5563dc74afd7538161b89", null ],
+    [ "WhileExpectedHof", "_functional_8hpp.html#a7b03a824a33628ba00ae2ea69d4f1367", null ]
 ];

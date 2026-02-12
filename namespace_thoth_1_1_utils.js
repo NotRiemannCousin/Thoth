@@ -74,5 +74,7 @@ var namespace_thoth_1_1_utils =
     [ "TransformOptIfNotHof", "namespace_thoth_1_1_utils.html#a45f7543f8d3e70e04b2c5adbc96f7c13", null ],
     [ "Utf8Env", "namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0", null ],
     [ "ValueOr", "namespace_thoth_1_1_utils.html#a45f009d19d7b37e4595d20a1d68082c5", null ],
-    [ "ValueOrHof", "namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34", null ]
+    [ "ValueOrHof", "namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34", null ],
+    [ "WhileExpected", "namespace_thoth_1_1_utils.html#aada24339ddf5563dc74afd7538161b89", null ],
+    [ "WhileExpectedHof", "namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367", null ]
 ];
