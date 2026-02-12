@@ -7,6 +7,10 @@ namespace Thoth::String {
 
     constexpr Rune UnknownChar{ U'\uFFFD' };
 
+
+    //! @brief Non owning viewer that represents Unicode encodings.
+    //!
+    //! It goes only forward. Invalid chars are replaced by UnknownChar.
     template<UnicodeCharConcept CharT>
     struct UnicodeViewer {
         using  StringViewType = std::basic_string_view<CharT>;
@@ -39,7 +43,10 @@ namespace Thoth::String {
         [[nodiscard]] constexpr std::default_sentinel_t end() noexcept{        return std::default_sentinel_t{}; }
         [[nodiscard]] constexpr std::default_sentinel_t cend() const noexcept{ return std::default_sentinel_t{}; }
 
+        //! @brief Check if a string does not has invalid chars.
         [[nodiscard]] static constexpr bool IsValid(StringViewType str);
+
+        //! @brief Converts from one Unicode Encoding to another.
         template<UnicodeCharConcept NewCharT>
         constexpr static std::basic_string<NewCharT> ConvertTo(StringViewType str);
     private:

@@ -1,5 +1,5 @@
 # Thoth
-## An expressive, asynchronous C++26 webdev library
+## A functional, expressive, asynchronous C++26 webdev library
 
 ![](Thoth-logo.webp "Thoth, the Egyptian god of writing and wisdom")
 

@@ -13,6 +13,7 @@ namespace Thoth::Http {
 		HTTP3,
 	};
 
+    //! @brief Exactly what you think it is.
 	std::string_view VersionToString(VersionEnum version);
 
 	template<MethodConcept Method = GetMethod>
@@ -24,6 +25,7 @@ namespace Thoth::Http {
 		VersionEnum version{ VersionEnum::HTTP1_1 };
 		Headers headers{ Headers::DefaultHeaders() };
 
+	    //! @brief Try parse to a Url before construct the Request.
 		template<class T = string_view>
 			requires requires (T t) { { std::format("{}", t) }; }
 		static std::optional<Request> FromUrl(

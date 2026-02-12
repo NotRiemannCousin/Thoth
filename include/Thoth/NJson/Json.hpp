@@ -238,9 +238,11 @@ namespace Thoth::NJson {
         // ValWrapperOrNull SearchOrNullAndMove(Pred&& pred) &&;
 
 
+        //! @brief convenient call to std::visit() on _value.
         template<class Callable>
         constexpr decltype(auto) Visit(Callable&& callable);
 
+        //! @brief convenient call to std::visit() on _value.
         template<class Callable>
         [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
     private:

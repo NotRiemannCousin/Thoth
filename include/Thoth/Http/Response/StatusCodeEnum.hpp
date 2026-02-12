@@ -91,6 +91,13 @@ namespace Thoth::Http {
         SERVER_ERROR
     };
 
+    //! @brief Check what type of code StatusCodeEnum is, the first digit of it's number.
+    //!
+    //! 1XX => INFORMATIONAL
+    //! 2XX => SUCCESSFUL
+    //! 3XX => REDIRECTION
+    //! 4XX => CLIENT_ERROR
+    //! 5XX => SERVER_ERROR
     constexpr StatusTypeEnum GetStatusType(StatusCodeEnum code) {
         return static_cast<StatusTypeEnum>(static_cast<size_t>(code) / 100 - 1);
     }

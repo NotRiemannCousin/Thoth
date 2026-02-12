@@ -1,6 +1,8 @@
 #pragma once
 
 namespace Thoth::NJson {
+    // I really don't know why I made this two
+
     template<class ...T>
         requires (std::constructible_from<Json::Value, T>, ...)
     Array MakeArray(T&&... ts) {
