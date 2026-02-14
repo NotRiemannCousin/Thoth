@@ -9,5 +9,5 @@ var searchData=
   ['findornullcopy_6',['FindOrNullCopy',['../struct_thoth_1_1_n_json_1_1_json.html#a43b3f8cf3b93ac2fd092a3fb2349853e',1,'Thoth::NJson::Json']]],
   ['fromowned_7',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
   ['fromref_8',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_9',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a5f3e38391ef92e905c32a080f7ef91bf',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a59e9fe50030c69c6056dbdce2ecd5664',1,'Thoth::Http::Url::FromUrl()']]]
+  ['fromurl_9',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a166e00cc4d4b81600653b19c3902dc66',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a0711c23734c53eced22b4dcca7bfe303',1,'Thoth::Http::Url::FromUrl()']]]
 ];

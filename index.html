@@ -147,39 +147,62 @@ Examples</h1>
 <div class="line"><span class="keyword">namespace </span>NJson = <a class="code hl_namespace" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a>;</div>
 <div class="line"><span class="keyword">using </span>NJson::Json;</div>
 <div class="line"> </div>
-<div class="line">std::expected&lt;std::monostate, std::string&gt; FunctionalRequest() {</div>
+<div class="line">std::expected&lt;std::vector&lt;Json&gt;, std::string&gt; GetMembers(<span class="keywordtype">size_t</span> <span class="keywordtype">id</span>) {</div>
 <div class="line">    <span class="keyword">using </span>std::string_literals::operator <span class="stringliteral">&quot;&quot;</span>s;</div>
 <div class="line">    <span class="keyword">namespace </span>Utils = <a class="code hl_namespace" href="namespace_thoth_1_1_utils.html">Thoth::Utils</a>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> s_printSingleMember = [](<span class="keyword">const</span> NJson::Object* obj) {</div>
-<div class="line">        std::print(<span class="stringliteral">&quot;{}\n&quot;</span>, (**obj)[<span class="stringliteral">&quot;name&quot;</span>]);</div>
-<div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
-<div class="line">    };</div>
+<div class="line">    <span class="comment">//trying to make the request, send to the server and then convert the body to JSON.</span></div>
+<div class="line">    <span class="keywordflow">return</span> NHttp::GetRequest::FromUrl(std::format(<span class="stringliteral">&quot;https://api.discogs.com/artists/{}&quot;</span>, <span class="keywordtype">id</span>))</div>
+<div class="line">            <span class="comment">// At the current moment every error in this string is given by a string, but it will be changed</span></div>
+<div class="line">            <span class="comment">// to enums/proper structs in the future.</span></div>
+<div class="line">            .and_then(NHttp::Client::Send&lt;&gt;)</div>
+<div class="line">            .and_then(&amp;NHttp::GetResponse::AsJson)</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> s_printOrDie = [](<span class="keyword">const</span> NJson::Array&amp; members) -&gt; std::monostate {</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; member : members)</div>
-<div class="line">            member.EnsureRef&lt;NJson::<a class="code hl_typedef" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>&gt;()</div>
-<div class="line">                    .transform(s_printSingleMember);</div>
-<div class="line"> </div>
-<div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
-<div class="line">    };</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> NHttp::GetRequest::FromUrl(<span class="stringliteral">&quot;https://api.discogs.com/artists/4001234&quot;</span>)</div>
-<div class="line">            .transform(NHttp::Client::Send&lt;&gt;)</div>
-<div class="line">            .value_or(std::unexpected{ <span class="stringliteral">&quot;Failed to connect.&quot;</span> })</div>
-<div class="line">            .transform(&amp;NHttp::GetResponse::AsJson)</div>
-<div class="line">            .and_then(Utils::ValueOrHof&lt;Json&gt;(<span class="stringliteral">&quot;Cant convert to json.&quot;</span>s))</div>
-<div class="line"> </div>
+<div class="line">            <span class="comment">// selecting &quot;members&quot; in the first object</span></div>
 <div class="line">            .transform(std::bind_back(&amp;Json::GetAndMove, <span class="stringliteral">&quot;members&quot;</span> ))</div>
 <div class="line"> </div>
+<div class="line">            <span class="comment">// ensuring that it is an array</span></div>
 <div class="line">            .transform(&amp;Json::EnsureMov&lt;NJson::Array&gt;)</div>
-<div class="line">            .and_then(Utils::ValueOrHof&lt;NJson::Array&gt;(<span class="stringliteral">&quot;&#39;members&#39; array doesn&#39;t exist.&quot;</span>s))</div>
+<div class="line">            .and_then(Utils::ValueOrHof&lt;NJson::Array&gt;(<span class="stringliteral">&quot;&#39;members&#39; array doesn&#39;t exist.&quot;</span>s));</div>
+<div class="line">}</div>
 <div class="line"> </div>
-<div class="line">            .transform(s_printOrDie);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> s_getName = [](<span class="keyword">const</span> Json&amp; member) {</div>
+<div class="line">        <span class="keywordflow">return</span> member.Get(<span class="stringliteral">&quot;name&quot;</span>)</div>
+<div class="line">                .and_then(&amp;Json::EnsureRef&lt;NJson::String&gt;)</div>
+<div class="line">                .transform(&amp;NJson::String::AsCopy) <span class="comment">// converting from Thoth Strings (that are COW) to std::string</span></div>
+<div class="line">                .value_or(<span class="stringliteral">&quot;&lt;unnamed&gt;&quot;</span>);</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> s_printNames = [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
+<div class="line">        std::println(<span class="stringliteral">&quot;- Members:&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">string</span>&amp;&amp; name : names)</div>
+<div class="line">            std::println(<span class="stringliteral">&quot;{}&quot;</span>, name);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> s_errorHandler = [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
+<div class="line">        std::println(<span class="stringliteral">&quot;An error occurred: {}&quot;</span>, error);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keywordtype">int</span> wsaError{ WSAGetLastError() }; wsaError != 0)</div>
+<div class="line">            std::println(<span class="stringliteral">&quot;WSA error: {}&quot;</span>, wsaError);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">    GetMembers(4001234)</div>
+<div class="line">            .transform(std::views::transform(s_getName))</div>
+<div class="line">            .transform(s_printNames)</div>
+<div class="line">            .transform_error(s_errorHandler);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> Client.hpp:10</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Json.hpp:13</div></div>
-<div class="ttc" id="anamespace_thoth_1_1_n_json_html_a1d4dbb36608aa59b881f51eb1f24a2a5"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Thoth::NJson::Object</a></div><div class="ttdeci">std::unique_ptr&lt; JsonObject &gt; Object</div><div class="ttdef"><b>Definition</b> Json.hpp:22</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Env.hpp:5</div></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->

@@ -330,12 +330,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ba143a8fe3321e3fa63c02fe753f17d" id="r_a5ba143a8fe3321e3fa63c02fe753f17d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a5ba143a8fe3321e3fa63c02fe753f17d"><td class="memTemplItemLeft" align="right" valign="top">static T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a5ba143a8fe3321e3fa63c02fe753f17d">AsType</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;val)</td></tr>
 <tr class="separator:a5ba143a8fe3321e3fa63c02fe753f17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4939917862f454368948c1f4dabbd6c" id="r_ae4939917862f454368948c1f4dabbd6c"><td class="memItemLeft" align="right" valign="top">static std::optional&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#ae4939917862f454368948c1f4dabbd6c">Parse</a> (std::string_view input)</td></tr>
-<tr class="memdesc:ae4939917862f454368948c1f4dabbd6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.  <br /></td></tr>
-<tr class="separator:ae4939917862f454368948c1f4dabbd6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef980b947f47522f8342b2d9c88ea84c" id="r_aef980b947f47522f8342b2d9c88ea84c"><td class="memItemLeft" align="right" valign="top">static std::optional&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#aef980b947f47522f8342b2d9c88ea84c">ParseText</a> (std::string_view input, bool copyData=true, bool checkFinal=true)</td></tr>
-<tr class="memdesc:aef980b947f47522f8342b2d9c88ea84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.  <br /></td></tr>
-<tr class="separator:aef980b947f47522f8342b2d9c88ea84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe1d7e3831071ae24e8f9e141a799873" id="r_abe1d7e3831071ae24e8f9e141a799873"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#abe1d7e3831071ae24e8f9e141a799873">Parse</a> (std::string_view input)</td></tr>
+<tr class="memdesc:abe1d7e3831071ae24e8f9e141a799873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.  <br /></td></tr>
+<tr class="separator:abe1d7e3831071ae24e8f9e141a799873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec3f7b18d8849792397a4d9b8568e18" id="r_abec3f7b18d8849792397a4d9b8568e18"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#abec3f7b18d8849792397a4d9b8568e18">ParseText</a> (std::string_view input, bool copyData=true, bool checkFinal=true)</td></tr>
+<tr class="memdesc:abec3f7b18d8849792397a4d9b8568e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.  <br /></td></tr>
+<tr class="separator:abec3f7b18d8849792397a4d9b8568e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ae7eeb915ba5e7f2b445e5c3857bbfdff" name="ae7eeb915ba5e7f2b445e5c3857bbfdff"></a>
@@ -1362,8 +1362,8 @@ requires std::floating_point&lt;T&gt; || std::integral&lt;T&gt; &amp;&amp; (!std
 
 </div>
 </div>
-<a id="ae4939917862f454368948c1f4dabbd6c" name="ae4939917862f454368948c1f4dabbd6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4939917862f454368948c1f4dabbd6c">&#9670;&#160;</a></span>Parse()</h2>
+<a id="abe1d7e3831071ae24e8f9e141a799873" name="abe1d7e3831071ae24e8f9e141a799873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe1d7e3831071ae24e8f9e141a799873">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1372,7 +1372,7 @@ requires std::floating_point&lt;T&gt; || std::integral&lt;T&gt; &amp;&amp; (!std
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::optional&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt; Thoth::NJson::Json::Parse </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, std::string &gt; Thoth::NJson::Json::Parse </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>input</em></td><td>)</td>
@@ -1396,8 +1396,8 @@ requires std::floating_point&lt;T&gt; || std::integral&lt;T&gt; &amp;&amp; (!std
 
 </div>
 </div>
-<a id="aef980b947f47522f8342b2d9c88ea84c" name="aef980b947f47522f8342b2d9c88ea84c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef980b947f47522f8342b2d9c88ea84c">&#9670;&#160;</a></span>ParseText()</h2>
+<a id="abec3f7b18d8849792397a4d9b8568e18" name="abec3f7b18d8849792397a4d9b8568e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec3f7b18d8849792397a4d9b8568e18">&#9670;&#160;</a></span>ParseText()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1406,7 +1406,7 @@ requires std::floating_point&lt;T&gt; || std::integral&lt;T&gt; &amp;&amp; (!std
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::optional&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt; Thoth::NJson::Json::ParseText </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, std::string &gt; Thoth::NJson::Json::ParseText </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>input</em>, </td>

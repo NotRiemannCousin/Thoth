@@ -15,7 +15,7 @@ var searchData=
   ['fragment_12',['fragment',['../struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1',1,'Thoth::Http::Url']]],
   ['fromowned_13',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)']]],
   ['fromref_14',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_15',['fromurl',['../struct_thoth_1_1_http_1_1_url.html#a59e9fe50030c69c6056dbdce2ecd5664',1,'Thoth::Http::Url::FromUrl()'],['../struct_thoth_1_1_http_1_1_request.html#a5f3e38391ef92e905c32a080f7ef91bf',1,'Thoth::Http::Request::FromUrl()']]],
+  ['fromurl_15',['fromurl',['../struct_thoth_1_1_http_1_1_url.html#a0711c23734c53eced22b4dcca7bfe303',1,'Thoth::Http::Url::FromUrl()'],['../struct_thoth_1_1_http_1_1_request.html#a166e00cc4d4b81600653b19c3902dc66',1,'Thoth::Http::Request::FromUrl()']]],
   ['functional_20expressive_20asynchronous_20c_2026_20webdev_20library_16',['A functional, expressive, asynchronous C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
   ['functional_2ehpp_17',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
 ];

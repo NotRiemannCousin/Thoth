@@ -154,38 +154,38 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a59e9fe50030c69c6056dbdce2ecd5664" id="r_a59e9fe50030c69c6056dbdce2ecd5664"><td class="memItemLeft" align="right" valign="top">static std::optional&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a59e9fe50030c69c6056dbdce2ecd5664">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> rawUrl)</td></tr>
-<tr class="memdesc:a59e9fe50030c69c6056dbdce2ecd5664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>.  <br /></td></tr>
-<tr class="separator:a59e9fe50030c69c6056dbdce2ecd5664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0711c23734c53eced22b4dcca7bfe303" id="r_a0711c23734c53eced22b4dcca7bfe303"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a0711c23734c53eced22b4dcca7bfe303">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> rawUrl)</td></tr>
+<tr class="memdesc:a0711c23734c53eced22b4dcca7bfe303"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into URL.  <br /></td></tr>
+<tr class="separator:a0711c23734c53eced22b4dcca7bfe303"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a584273530514f66a824e8274f754357b" id="r_a584273530514f66a824e8274f754357b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a584273530514f66a824e8274f754357b">Encode</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> str)</td></tr>
 <tr class="memdesc:a584273530514f66a824e8274f754357b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
 <tr class="separator:a584273530514f66a824e8274f754357b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb2418ab27a21f0e4904035bada94c2" id="r_a8cb2418ab27a21f0e4904035bada94c2"><td class="memItemLeft" align="right" valign="top">static std::optional&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a8cb2418ab27a21f0e4904035bada94c2">TryDecode</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> str)</td></tr>
-<tr class="memdesc:a8cb2418ab27a21f0e4904035bada94c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to decode the text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
-<tr class="separator:a8cb2418ab27a21f0e4904035bada94c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256cdf0cd984c94b5d7dd3d12341768a" id="r_a256cdf0cd984c94b5d7dd3d12341768a"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a256cdf0cd984c94b5d7dd3d12341768a">TryDecode</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> str)</td></tr>
+<tr class="memdesc:a256cdf0cd984c94b5d7dd3d12341768a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to decode the text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
+<tr class="separator:a256cdf0cd984c94b5d7dd3d12341768a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3e3bfed10192bf9f087546d0bee875c1" id="r_a3e3bfed10192bf9f087546d0bee875c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a3e3bfed10192bf9f087546d0bee875c1">scheme</a> {}</td></tr>
-<tr class="memdesc:a3e3bfed10192bf9f087546d0bee875c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the given scheme. Can be "http" or "https" (it's <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> after all).  <br /></td></tr>
+<tr class="memdesc:a3e3bfed10192bf9f087546d0bee875c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the given scheme. Can be "http" or "https" (it's "empty" after all).  <br /></td></tr>
 <tr class="separator:a3e3bfed10192bf9f087546d0bee875c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa48ab72633dba3c50940dd3c33ca9500" id="r_aa48ab72633dba3c50940dd3c33ca9500"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500">user</a> {}</td></tr>
-<tr class="memdesc:aa48ab72633dba3c50940dd3c33ca9500"><td class="mdescLeft">&#160;</td><td class="mdescRight">the userinfo of the url, the optional part between the scheme and the host. eg: <a href="https://userinfo@@localhost">https://userinfo@@localhost</a>.  <br /></td></tr>
+<tr class="memdesc:aa48ab72633dba3c50940dd3c33ca9500"><td class="mdescLeft">&#160;</td><td class="mdescRight">the userinfo of the URL, the optional part between the scheme and the host. eg: <a href="https://userinfo@@localhost">https://userinfo@@localhost</a>.  <br /></td></tr>
 <tr class="separator:aa48ab72633dba3c50940dd3c33ca9500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bc0faff16981b0b0a784582a90104bc" id="r_a4bc0faff16981b0b0a784582a90104bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a4bc0faff16981b0b0a784582a90104bc">host</a> {}</td></tr>
-<tr class="memdesc:a4bc0faff16981b0b0a784582a90104bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">the hostname of the url.  <br /></td></tr>
+<tr class="memdesc:a4bc0faff16981b0b0a784582a90104bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">the hostname of the URL.  <br /></td></tr>
 <tr class="separator:a4bc0faff16981b0b0a784582a90104bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedd90a7e8adfab006087aaa46637a4dd" id="r_aedd90a7e8adfab006087aaa46637a4dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#aedd90a7e8adfab006087aaa46637a4dd">port</a> {}</td></tr>
-<tr class="memdesc:aedd90a7e8adfab006087aaa46637a4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">the port of the url. Goes from 0 to 65.535.  <br /></td></tr>
+<tr class="memdesc:aedd90a7e8adfab006087aaa46637a4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">the port of the URL. Goes from 0 to 65.535.  <br /></td></tr>
 <tr class="separator:aedd90a7e8adfab006087aaa46637a4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd3c10594bab589759b4ce4281511a00" id="r_abd3c10594bab589759b4ce4281511a00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#abd3c10594bab589759b4ce4281511a00">path</a> {}</td></tr>
-<tr class="memdesc:abd3c10594bab589759b4ce4281511a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">the path of the url.  <br /></td></tr>
+<tr class="memdesc:abd3c10594bab589759b4ce4281511a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">the path of the URL.  <br /></td></tr>
 <tr class="separator:abd3c10594bab589759b4ce4281511a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3be0916ffb085f67710bde2bd110411" id="r_aa3be0916ffb085f67710bde2bd110411"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#aa3be0916ffb085f67710bde2bd110411">query</a> {}</td></tr>
-<tr class="memdesc:aa3be0916ffb085f67710bde2bd110411"><td class="mdescLeft">&#160;</td><td class="mdescRight">the query of the url.  <br /></td></tr>
+<tr class="memdesc:aa3be0916ffb085f67710bde2bd110411"><td class="mdescLeft">&#160;</td><td class="mdescRight">the query of the URL.  <br /></td></tr>
 <tr class="separator:aa3be0916ffb085f67710bde2bd110411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd7a61180daeea7495261c395e5662b1" id="r_acd7a61180daeea7495261c395e5662b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1">fragment</a> {}</td></tr>
-<tr class="memdesc:acd7a61180daeea7495261c395e5662b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the fragment of the url. Normally ignored in server side.  <br /></td></tr>
+<tr class="memdesc:acd7a61180daeea7495261c395e5662b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the fragment of the URL. Normally ignored in server side.  <br /></td></tr>
 <tr class="separator:acd7a61180daeea7495261c395e5662b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -229,8 +229,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a59e9fe50030c69c6056dbdce2ecd5664" name="a59e9fe50030c69c6056dbdce2ecd5664"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59e9fe50030c69c6056dbdce2ecd5664">&#9670;&#160;</a></span>FromUrl()</h2>
+<a id="a0711c23734c53eced22b4dcca7bfe303" name="a0711c23734c53eced22b4dcca7bfe303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0711c23734c53eced22b4dcca7bfe303">&#9670;&#160;</a></span>FromUrl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +239,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::optional&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt; Thoth::Http::Url::FromUrl </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; Thoth::Http::Url::FromUrl </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a>&#160;</td>
           <td class="paramname"><em>rawUrl</em></td><td>)</td>
@@ -253,10 +253,10 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Tries to convert the given string into <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>. </p>
+<p>Tries to convert the given string into URL. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">rawUrl</td><td>the given url. </td></tr>
+    <tr><td class="paramname">rawUrl</td><td>the given URL. </td></tr>
   </table>
   </dd>
 </dl>
@@ -301,8 +301,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a8cb2418ab27a21f0e4904035bada94c2" name="a8cb2418ab27a21f0e4904035bada94c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cb2418ab27a21f0e4904035bada94c2">&#9670;&#160;</a></span>TryDecode()</h2>
+<a id="a256cdf0cd984c94b5d7dd3d12341768a" name="a256cdf0cd984c94b5d7dd3d12341768a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256cdf0cd984c94b5d7dd3d12341768a">&#9670;&#160;</a></span>TryDecode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +311,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::optional&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; Thoth::Http::Url::TryDecode </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; Thoth::Http::Url::TryDecode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a>&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -372,7 +372,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the fragment of the url. Normally ignored in server side. </p>
+<p>the fragment of the URL. Normally ignored in server side. </p>
 
 </div>
 </div>
@@ -388,7 +388,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the hostname of the url. </p>
+<p>the hostname of the URL. </p>
 
 </div>
 </div>
@@ -404,7 +404,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the path of the url. </p>
+<p>the path of the URL. </p>
 
 </div>
 </div>
@@ -420,7 +420,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the port of the url. Goes from 0 to 65.535. </p>
+<p>the port of the URL. Goes from 0 to 65.535. </p>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the query of the url. </p>
+<p>the query of the URL. </p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the given scheme. Can be "http" or "https" (it's <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> after all). </p>
+<p>the given scheme. Can be "http" or "https" (it's "empty" after all). </p>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the userinfo of the url, the optional part between the scheme and the host. eg: <a href="https://userinfo@@localhost">https://userinfo@@localhost</a>. </p>
+<p>the userinfo of the URL, the optional part between the scheme and the host. eg: <a href="https://userinfo@@localhost">https://userinfo@@localhost</a>. </p>
 
 </div>
 </div>
