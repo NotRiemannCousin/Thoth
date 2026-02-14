@@ -51,13 +51,10 @@ std::expected<std::monostate, string> MakeRequest() {
     using std::operator ""s;
 
     return NHttp::GetRequest::FromUrl("https://www.youtube.com/@ringosheenaofficial/releases")
-                .transform(NHttp::Client::Send<>)
-                .value_or(std::unexpected{ "Failed to connect." })
-                .and_then(Utils::ErrorIfNotHof(&NHttp::Response<>::Successful, "Failed to connect."s))
+                .and_then(NHttp::Client::Send<>)
 
                 .transform(&NHttp::Response<>::MoveBody)
-                .transform(s_extractJson)
-                .and_then(Utils::ValueOrHof<Json>("Can't parse json."s))
+                .and_then(s_extractJson)
 
                 .transform(std::bind_back(&Json::FindAndMove, contentKeys))
                 .and_then(Utils::ValueOrHof<Json>("Can't find content."s))

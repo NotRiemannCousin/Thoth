@@ -20,7 +20,7 @@ namespace Thoth::NJson {
     template<class T>
     requires std::constructible_from<std::string, T>
     Json::Json(T&& other) {
-        _value = String::FromOwned(std::forward<T>(other));
+        _value = String::FromOwned(std::string{ std::forward<T>(other) });
     }
 
     template<class T>

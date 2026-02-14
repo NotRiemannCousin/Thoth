@@ -457,11 +457,11 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
 #pragma endregion
 
 
-std::optional<Json> Json::Parse(std::string_view input) {
+std::expected<Json, std::string> Json::Parse(std::string_view input) {
     return ParseText(input);
 }
 
-std::optional<Json> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
+std::expected<Json, std::string> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
     Details::BufferInfo info{};
 
     if (copyData) {
@@ -472,7 +472,11 @@ std::optional<Json> Json::ParseText(std::string_view input, bool copyData, bool 
     else
         info.bufferView = input;
 
-#define return return std::nullopt; // I hate to do it but performance matters
+    const auto s_error = [&]() {
+        return std::unexpected{ std::format("invalid char at: {}", info.bufferView.size() - input.size()) };
+    };
+
+#define return return s_error(); // I hate to do it but performance matters
     ADVANCE_SPACES();
 #undef return
 
@@ -486,10 +490,10 @@ std::optional<Json> Json::ParseText(std::string_view input, bool copyData, bool 
         CASE_OPEN_NULLABLE success = Details::ReadNull(  input, json);       break;
         CASE_OPEN_BOOLEAN  success = Details::ReadBool(  input, json);       break;
         CASE_OPEN_ARRAY    success = Details::ReadArray( input, json, info); break;
-        default: return std::nullopt;
+        default: return s_error();
     }
     if (!success)
-        return std::nullopt;
+        return s_error();
 
 #define return json; // Oh god, no again
     if (checkFinal) {
@@ -500,7 +504,7 @@ std::optional<Json> Json::ParseText(std::string_view input, bool copyData, bool 
     if (input.empty() || !checkFinal)
         return json;
 
-    return std::nullopt;
+    return s_error();
 }
 
 #undef ADVANCE_IF

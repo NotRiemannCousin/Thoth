@@ -46,11 +46,9 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
 
     return
         NHttp::PostRequest::FromUrl("https://music.youtube.com/youtubei/v1/player?prettyPrint=false", body)
-                .transform(NHttp::Client::Send<Thoth::Http::PostMethod>)
-                .value_or(std::unexpected{ "Failed to connect." })
+                .and_then(NHttp::Client::Send<Thoth::Http::PostMethod>)
+                .and_then(&NHttp::PostResponse::AsJson)
 
-                .transform(&NHttp::PostResponse::AsJson)
-                .and_then(Utils::ValueOrHof<Json>("Can't convert to json."s))
                 .transform([](const Json& content){ return std::print("{}", content), std::monostate{}; });
 }
 

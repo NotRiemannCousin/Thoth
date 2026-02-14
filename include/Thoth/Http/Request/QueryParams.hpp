@@ -1,9 +1,8 @@
 #pragma once
-#include <optional>
+#include <expected>
 #include <format>
 #include <vector>
 #include <string>
-#include <map>
 
 #include <Thoth/Dsa/LinearMap.hpp>
 
@@ -33,7 +32,7 @@ namespace Thoth::Http{
         //! @brief Parse the query as it is.
         static QueryParams Parse(std::string_view paramsStr);
         //! @brief Tries to decode and then parse.
-        static std::optional<QueryParams> ParseDecodified(std::string_view str);
+        static std::expected<QueryParams, std::string> ParseDecodified(std::string_view str);
 
 
         //! @brief check if a key exists.

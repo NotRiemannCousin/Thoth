@@ -2,14 +2,12 @@
 #include <Thoth/Http/Request/Url.hpp>
 
 #include <algorithm>
-#include <assert.h>
 #include <ranges>
 
 
 namespace Thoth::Http {
     using std::string_view;
     using std::string;
-    using std::map;
     namespace rg = std::ranges;
     namespace vs = std::views;
 
@@ -39,7 +37,7 @@ namespace Thoth::Http {
         return params;
     }
 
-    std::optional<QueryParams> QueryParams::ParseDecodified(std::string_view str) {
+    std::expected<QueryParams, string> QueryParams::ParseDecodified(std::string_view str) {
         return Url::TryDecode(str).transform(Parse);
     }
 

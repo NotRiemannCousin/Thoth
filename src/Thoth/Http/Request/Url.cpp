@@ -13,9 +13,8 @@ namespace vs = std::views;
 
 // URL parsing from RFC3986
 
-std::optional<Url> Url::FromUrl(string_view rawUrl) {
-
-    if (rawUrl.empty() || !isalpha(rawUrl.front())) return std::nullopt;
+std::expected<Url, string> Url::FromUrl(string_view rawUrl) {
+    if (rawUrl.empty() || !isalpha(rawUrl.front())) return std::unexpected{ "empty URL" };
 
     string_view scheme;
     string_view user;
@@ -36,8 +35,8 @@ std::optional<Url> Url::FromUrl(string_view rawUrl) {
     //                  / path-rootless
     //                  / path-empty
 
-    if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its Url after all
-        return std::nullopt; // ill-formed, scheme is mandatory
+    if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its URL after all
+        return std::unexpected{ "invalid scheme" }; // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrl.find(':') };
     scheme = string_view(rawUrl.data(), schemeIdx);
@@ -77,19 +76,19 @@ std::optional<Url> Url::FromUrl(string_view rawUrl) {
 
 
     if (hierPart.empty())
-        return std::nullopt;
+        return std::unexpected{ "ill-formed URL" };
 
     if (!hierPart.starts_with("//"))
-        return std::nullopt; // in HTTP, {"//" authority path-abempty} is mandatory
+        return std::unexpected{ "ill-formed URL" }; // in HTTP, {"//" authority path-abempty} is mandatory
 
     hierPart.remove_prefix(2);
     auto pathIdx{ hierPart.find('/') };
 
     if (pathIdx == 0)
-        return std::nullopt; // ill-formed, authority is empty
+        return std::unexpected{ "ill-formed URL" }; // ill-formed, authority is empty
 
     if (pathIdx != string::npos) {
-        path = string_view(pathIdx + hierPart.begin(), hierPart.end()); // includes '/'
+        path = string_view{ pathIdx + hierPart.begin(), hierPart.end() }; // includes '/' NOLINT(*-narrowing-conversions)
 
         hierPart.remove_suffix(path.size());
     }
@@ -118,13 +117,13 @@ std::optional<Url> Url::FromUrl(string_view rawUrl) {
         hierPart.remove_prefix(portIdx + 1);
 
         if (ec != std::errc() || ptr != &*hierPart.rbegin() + 1)
-            return std::nullopt;
+            return std::unexpected{ "invalid port" };
         if (port < 0 || port > 65535)
-            return std::nullopt;
+            return std::unexpected{ "invalid port" };
     }
 
     if (host.empty())
-        return std::nullopt; // ill-formed, in auth host is mandatory
+        return std::unexpected{ "ill formed URL" }; // ill-formed, in auth host is mandatory
 
 #pragma endregion
 #pragma region Host
@@ -246,7 +245,7 @@ constexpr auto hexCharToInt = [] {
 }();
 
 
-std::optional<std::string> Url::TryDecode(std::string_view str) {
+std::expected<string, string> Url::TryDecode(std::string_view str) {
     std::string buffer;
     buffer.reserve(str.length());
 
@@ -254,7 +253,7 @@ std::optional<std::string> Url::TryDecode(std::string_view str) {
     for (int i{}; i < str.size(); i++) {
         if (str[i] == '%') {
             if (i + 2 >= str.length() || !std::isxdigit(str[i + 1]) || !std::isxdigit(str[i + 2]))
-                return std::nullopt;
+                return std::unexpected{ "ill-formed string" };
 
             const int high{ hexCharToInt[str[i + 1]] };
             const int low{ hexCharToInt[str[i + 2]] };

@@ -84,11 +84,8 @@ std::expected<std::monostate, string> PrintInfo(string_view id) {
     const auto url{ "https://music.youtube.com/youtubei/v1/browse?prettyPrint=false" };
 
     return NHttp::PostRequest::FromUrl(url, body)
-                .transform(NHttp::Client::Send<Thoth::Http::PostMethod>)
-                .value_or(std::unexpected{ "Failed to connect." })
-
-                .transform(&NHttp::PostResponse::AsJson)
-                .and_then(Utils::ValueOrHof<Json>("Can't convert to json."s))
+                .and_then(NHttp::Client::Send<Thoth::Http::PostMethod>)
+                .and_then(&NHttp::PostResponse::AsJson)
 
                 .transform(std::bind_back(&Json::FindAndMove, musicTabKeys))
                 .and_then(Utils::ValueOrHof<Json>("Json structure mismatch."s))
