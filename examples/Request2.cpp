@@ -7,8 +7,7 @@ namespace NHttp = Thoth::Http;
 int main() {
     const auto response{
         NHttp::GetRequest::FromUrl({ "https://api.chucknorris.io/jokes/random" })
-                .transform(NHttp::Client::Send<>)
-                .value_or(std::unexpected{ "Failed to connect." })
+                .and_then(NHttp::Client::Send<>)
     };
 
     if (response) {

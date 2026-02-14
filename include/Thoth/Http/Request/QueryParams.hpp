@@ -3,7 +3,6 @@
 #include <format>
 #include <vector>
 #include <string>
-#include <map>
 
 #include <Thoth/Dsa/LinearMap.hpp>
 

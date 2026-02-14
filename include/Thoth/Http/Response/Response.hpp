@@ -20,7 +20,7 @@ namespace Thoth::Http {
 
         friend struct Client; // who construct it
 
-        [[nodiscard]] std::optional<NJson::Json> AsJson() const;
+        [[nodiscard]] std::expected<NJson::Json, string> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;

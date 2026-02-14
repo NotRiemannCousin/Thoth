@@ -2,14 +2,12 @@
 #include <Thoth/Http/Request/Url.hpp>
 
 #include <algorithm>
-#include <assert.h>
 #include <ranges>
 
 
 namespace Thoth::Http {
     using std::string_view;
     using std::string;
-    using std::map;
     namespace rg = std::ranges;
     namespace vs = std::views;
 
