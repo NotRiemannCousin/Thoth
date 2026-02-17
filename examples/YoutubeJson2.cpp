@@ -7,7 +7,7 @@
 #include <Thoth/Utils/Functional.hpp>
 
 
-std::expected<std::monostate, string> MakeRequest() {
+std::expected<std::monostate, RequestError> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
     namespace NJson = Thoth::NJson;

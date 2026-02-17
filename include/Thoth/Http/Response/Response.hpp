@@ -8,6 +8,8 @@
 
 
 namespace Thoth::Http {
+    struct RequestError;
+
     template<MethodConcept Method = GetMethod>
     struct Response {
         using MethodType = Method;
@@ -20,7 +22,7 @@ namespace Thoth::Http {
 
         friend struct Client; // who construct it
 
-        [[nodiscard]] std::expected<NJson::Json, string> AsJson() const;
+        [[nodiscard]] std::expected<NJson::Json, RequestError> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;

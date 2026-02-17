@@ -8,7 +8,7 @@ namespace Thoth::Http {
             body{ std::move(body) } { }
 
     template<MethodConcept Method>
-    std::expected<NJson::Json, string> Response<Method>::AsJson() const {
+    std::expected<NJson::Json, RequestError> Response<Method>::AsJson() const {
         return NJson::Json::Parse(body);
     }
 

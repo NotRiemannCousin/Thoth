@@ -13,8 +13,11 @@ namespace vs = std::views;
 
 // URL parsing from RFC3986
 
-std::expected<Url, string> Url::FromUrl(string_view rawUrl) {
-    if (rawUrl.empty() || !isalpha(rawUrl.front())) return std::unexpected{ "empty URL" };
+#define FAIL_WITH(x) return std::unexpected{ RequestError{ UrlParseErrorEnum::x } }
+
+std::expected<Url, Thoth::Http::RequestError> Url::FromUrl(string_view rawUrl) {
+    if (rawUrl.empty() || !isalpha(rawUrl.front()))
+        FAIL_WITH(EmptyUrl);
 
     string_view scheme;
     string_view user;
@@ -36,7 +39,7 @@ std::expected<Url, string> Url::FromUrl(string_view rawUrl) {
     //                  / path-empty
 
     if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its URL after all
-        return std::unexpected{ "invalid scheme" }; // ill-formed, scheme is mandatory
+        FAIL_WITH(InvalidScheme);; // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrl.find(':') };
     scheme = string_view(rawUrl.data(), schemeIdx);
@@ -76,16 +79,16 @@ std::expected<Url, string> Url::FromUrl(string_view rawUrl) {
 
 
     if (hierPart.empty())
-        return std::unexpected{ "ill-formed URL" };
+        FAIL_WITH(IllFormed);
 
     if (!hierPart.starts_with("//"))
-        return std::unexpected{ "ill-formed URL" }; // in HTTP, {"//" authority path-abempty} is mandatory
+        FAIL_WITH(IllFormed); // in HTTP, {"//" authority path-abempty} is mandatory
 
     hierPart.remove_prefix(2);
     auto pathIdx{ hierPart.find('/') };
 
     if (pathIdx == 0)
-        return std::unexpected{ "ill-formed URL" }; // ill-formed, authority is empty
+        FAIL_WITH(IllFormed); // ill-formed, authority is empty
 
     if (pathIdx != string::npos) {
         path = string_view{ pathIdx + hierPart.begin(), hierPart.end() }; // includes '/' NOLINT(*-narrowing-conversions)
@@ -117,13 +120,13 @@ std::expected<Url, string> Url::FromUrl(string_view rawUrl) {
         hierPart.remove_prefix(portIdx + 1);
 
         if (ec != std::errc() || ptr != &*hierPart.rbegin() + 1)
-            return std::unexpected{ "invalid port" };
+            FAIL_WITH(InvalidPort);
         if (port < 0 || port > 65535)
-            return std::unexpected{ "invalid port" };
+            FAIL_WITH(InvalidPort);
     }
 
     if (host.empty())
-        return std::unexpected{ "ill formed URL" }; // ill-formed, in auth host is mandatory
+        FAIL_WITH(IllFormed); // ill-formed, in auth host is mandatory
 
 #pragma endregion
 #pragma region Host
@@ -245,7 +248,7 @@ constexpr auto hexCharToInt = [] {
 }();
 
 
-std::expected<string, string> Url::TryDecode(std::string_view str) {
+std::expected<string, Thoth::Http::RequestError> Url::TryDecode(std::string_view str) {
     std::string buffer;
     buffer.reserve(str.length());
 
@@ -253,7 +256,7 @@ std::expected<string, string> Url::TryDecode(std::string_view str) {
     for (int i{}; i < str.size(); i++) {
         if (str[i] == '%') {
             if (i + 2 >= str.length() || !std::isxdigit(str[i + 1]) || !std::isxdigit(str[i + 2]))
-                return std::unexpected{ "ill-formed string" };
+                FAIL_WITH(IllFormed);;
 
             const int high{ hexCharToInt[str[i + 1]] };
             const int low{ hexCharToInt[str[i + 2]] };

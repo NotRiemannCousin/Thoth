@@ -37,7 +37,7 @@ namespace Thoth::Http {
         return params;
     }
 
-    std::expected<QueryParams, string> QueryParams::ParseDecodified(std::string_view str) {
+    std::expected<QueryParams, RequestError> QueryParams::ParseDecodified(std::string_view str) {
         return Url::TryDecode(str).transform(Parse);
     }
 

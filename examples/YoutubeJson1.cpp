@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, string> PrintInfo(string_view id) {
+std::expected<std::monostate, Thoth::NJson::RequestError> PrintInfo(string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;

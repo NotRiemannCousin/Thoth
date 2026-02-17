@@ -28,7 +28,7 @@ namespace Thoth::Http {
 	    //! @brief Try parse to a URL before construct the Request.
 		template<class T = string_view>
 			requires requires (T t) { { std::format("{}", t) }; }
-		static std::expected<Request, string> FromUrl(
+		static std::expected<Request, RequestError> FromUrl(
 			string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
 	};
 

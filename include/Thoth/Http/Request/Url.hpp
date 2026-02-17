@@ -27,7 +27,7 @@ namespace Thoth::Http {
         //! @brief Tries to convert the given string into URL.
         //! @param rawUrl the given URL.
         //! @return The Url if succeeded, std::nullopt if it fails.
-        static std::expected<Url, string> FromUrl(string_view rawUrl);
+        static std::expected<Url, RequestError> FromUrl(string_view rawUrl);
 
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
@@ -39,7 +39,7 @@ namespace Thoth::Http {
         //! Percent-Encoding</a>.
         //! @param str the given text.
         //! @return The string decoded if it succeeded, std::nullopt if it fails.
-        static std::expected<string, string> TryDecode(string_view str);
+        static std::expected<string, RequestError> TryDecode(string_view str);
 
         //! @brief Check if the scheme is https.
         [[nodiscard]] bool IsSecure() const;

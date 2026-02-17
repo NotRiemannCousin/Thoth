@@ -18,12 +18,12 @@ int main() {
             "{}",
             static_cast<int>(response->status), response->statusMessage, response->headers, response->body);
     } else {
-        std::println("Error: {}", response.error());
+        std::println("{}", response.error());
 
         const int error{ WSAGetLastError() };
 
         if (error != 0)
-            std::print("\n{}", error);
+            std::print("\nWSA Error: {}", error);
     }
 
     return 0;

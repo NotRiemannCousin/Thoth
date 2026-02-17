@@ -1,12 +1,13 @@
 #pragma once
 #include <Thoth/Http/Response/Response.hpp>
+#include <Thoth/Http/RequestError.hpp>
 #include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
     template<MethodConcept Method>
-    expected<Response<Method>, string> Client::Send(Request<Method> request) {
+    expected<Response<Method>, RequestError> Client::Send(Request<Method> request) {
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
         const auto s_establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
@@ -78,29 +79,29 @@ namespace Thoth::Http {
                         .transform([&](auto){ return std::move(infoPtr); });
             };
 
-            const auto s_connErrToStr = [](auto) -> string {
-                return "Can't connect to endpoint";
+            const auto s_toRequestError = [](const auto err) -> RequestError {
+                return RequestError{ err };
             };
 
 
             return s_sendRequest()
-                    .transform_error(s_connErrToStr)
+                    .transform_error(s_toRequestError)
                     .and_then(_ParseHttp11<Method>)
                     .transform(s_cleanupSocket);
         };
 
-        const auto s_ConnectionErrorToStr = [](auto) {
-            return string{ "DNS Resolution Failed" };
+        const auto s_toRequestError = [](const auto err) {
+            return RequestError{ err     };
         };
 
 
         return Hermes::IpEndpoint::TryResolve(request.url.host, to_string(request.url.port))
-                    .transform_error(s_ConnectionErrorToStr)
+                    .transform_error(s_toRequestError)
                     .and_then(s_establishConnection);
     }
 
     template<MethodConcept Method>
-    expected<std::pair<Client::SocketPtr, Response<Method>>, string> Client::_ParseHttp11(SocketPtr infoPtr) {
+    expected<std::pair<Client::SocketPtr, Response<Method>>, RequestError> Client::_ParseHttp11(SocketPtr infoPtr) {
         namespace rg = std::ranges;
         namespace vs = std::views;
 
@@ -111,7 +112,7 @@ namespace Thoth::Http {
             decltype(infoPtr->socket.RecvRange<char>()) stream;
         };
 
-        using ParseResult = std::expected<ParseStage, string>;
+        using ParseResult = std::expected<ParseStage, RequestError>;
 
         const auto s_createResponseStream = [&]() -> ParseResult {
             return ParseStage{ HttpData{}, infoPtr->socket.RecvRange<char>() };
@@ -119,19 +120,19 @@ namespace Thoth::Http {
 
         const auto s_fillResponseLine = [&](ParseStage&& info) -> ParseResult {
             if (!rg::starts_with(info.stream, "HTTP/1."sv))
-                return std::unexpected{ "Invalid response" };
+                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
             switch (*info.stream.begin()) {
                 case '0': info.data.version = VersionEnum::HTTP1_0; break;
                 case '1': info.data.version = VersionEnum::HTTP1_1; break;
-                default: return std::unexpected{ "Invalid version" };
+                default: return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidVersion } };
             }
             ++info.stream.begin();
 
             const auto arr{ Hermes::Utils::CopyTo<array<char, 5>>(info.stream) };
 
             if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
-                return std::unexpected{ "Invalid response" };
+                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
             info.data.status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
             info.data.statusMessage = info.stream | Hermes::Utils::UntilMatch("\r\n"sv) | rg::to<string>();
@@ -144,7 +145,7 @@ namespace Thoth::Http {
             const auto headersParseRes{ Headers::Parse(rawHeaders) };
 
             if (!headersParseRes)
-                return std::unexpected{ "Invalid headers" };
+                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidHeaders } };
             info.data.headers = *headersParseRes;
             return std::move(info);
         };
@@ -160,7 +161,7 @@ namespace Thoth::Http {
                 );
 
                 if (ec != std::errc())
-                    return std::unexpected{ "Invalid response" };
+                    return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
                 info.data.body = info.stream | vs::take(contentSize) | rg::to<string>();
 
@@ -169,7 +170,7 @@ namespace Thoth::Http {
 
             const auto s_hasTransferEncoding = [&]() -> std::optional<ParseResult> {
                 if (info.data.version == VersionEnum::HTTP1_0)
-                    return std::unexpected{ "HTTP/1.0 needs content-length" };
+                    return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
 
                 static string defaultValue{ "chunked" };
                 auto transferEncoding{ *info.data.headers.Get("transfer-encoding")
@@ -190,13 +191,13 @@ namespace Thoth::Http {
                         };
 
                         if (ec != std::errc())
-                            return std::unexpected{ "Invalid response" };
+                            return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
 
                         info.data.body.append_range(info.stream | vs::take(chunkLength));
 
                         if (!rg::starts_with(info.stream, "\r\n"sv))
-                            return std::unexpected{ "Invalid response" };
+                            return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
                     } while (chunkLength != 0);
                 }

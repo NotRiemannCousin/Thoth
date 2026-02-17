@@ -6,10 +6,12 @@
 #include <expected>
 
 #include <Thoth/String/UnicodeViewer.hpp>
+#include <Thoth/Http/RequestError.hpp>
 #include <Thoth/Utils/Functional.hpp>
 #include <Thoth/NJson/Json.hpp>
 
 using namespace Thoth::NJson;
+using namespace Thoth::Http;
 
 
 #ifdef DENSE_DEBUG_JSON
@@ -457,11 +459,11 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
 #pragma endregion
 
 
-std::expected<Json, std::string> Json::Parse(std::string_view input) {
+std::expected<Json, RequestError> Json::Parse(std::string_view input) {
     return ParseText(input);
 }
 
-std::expected<Json, std::string> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
+std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
     Details::BufferInfo info{};
 
     if (copyData) {
@@ -472,11 +474,11 @@ std::expected<Json, std::string> Json::ParseText(std::string_view input, bool co
     else
         info.bufferView = input;
 
-    const auto s_error = [&]() {
-        return std::unexpected{ std::format("invalid char at: {}", info.bufferView.size() - input.size()) };
+    const auto s_error = [&]() -> std::unexpected<RequestError>{
+        return std::unexpected{ RequestError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
     };
 
-#define return return s_error(); // I hate to do it but performance matters
+#define return return s_error(); // I hate to do it
     ADVANCE_SPACES();
 #undef return
 

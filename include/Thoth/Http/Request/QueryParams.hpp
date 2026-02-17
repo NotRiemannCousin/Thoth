@@ -5,6 +5,7 @@
 #include <string>
 
 #include <Thoth/Dsa/LinearMap.hpp>
+#include <Thoth/Http/RequestError.hpp>
 
 namespace Thoth::Http{
     struct QueryParams {
@@ -32,7 +33,7 @@ namespace Thoth::Http{
         //! @brief Parse the query as it is.
         static QueryParams Parse(std::string_view paramsStr);
         //! @brief Tries to decode and then parse.
-        static std::expected<QueryParams, std::string> ParseDecodified(std::string_view str);
+        static std::expected<QueryParams, RequestError> ParseDecodified(std::string_view str);
 
 
         //! @brief check if a key exists.

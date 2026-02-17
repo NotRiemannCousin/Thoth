@@ -1,6 +1,7 @@
 #pragma once
 #include <Hermes/Socket/ClientSocket.hpp>
 #include <Thoth/Http/Request/Request.hpp>
+#include <Thoth/Http/RequestError.hpp>
 
 #include <future>
 #include <chrono>
@@ -54,7 +55,7 @@ namespace Thoth::Http {
     struct Client {
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method = GetMethod>
-        static expected<Response<Method>, string> Send(Request<Method> request);
+        static expected<Response<Method>, RequestError> Send(Request<Method> request);
 
 
         //! @brief Record to help construct a response.
@@ -71,16 +72,16 @@ namespace Thoth::Http {
     private:
         // I will do it when... Idk
         // template<MethodConcept Method>
-        // static expected<Response<Method>, string> _1RawSend(Request<Method> request);
+        // static expected<Response<Method>, RequestError> _1RawSend(Request<Method> request);
 
         template<MethodConcept Method>
-        static expected<std::pair<SocketPtr, Response<Method>>, string> _ParseHttp11(SocketPtr infoPtr);
+        static expected<std::pair<SocketPtr, Response<Method>>, RequestError> _ParseHttp11(SocketPtr infoPtr);
 
         // template<MethodConcept Method>
-        // static expected<Response<Method>, string> _2TlsSend(Request<Method> request);
+        // static expected<Response<Method>, RequestError> _2TlsSend(Request<Method> request);
         //
         // template<MethodConcept Method>
-        // static expected<Response<Method>, string> _3DlsSend(Request<Method> request);
+        // static expected<Response<Method>, RequestError> _3DlsSend(Request<Method> request);
         // friend ClientJanitor;
     };
 }

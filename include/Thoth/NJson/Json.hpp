@@ -11,6 +11,10 @@
 #include <Thoth/Dsa/Cow.hpp>
 #include <Thoth/NJson/StringRef.hpp>
 
+namespace Thoth::Http {
+    struct RequestError;
+}
+
 namespace Thoth::NJson {
     struct JsonObject;
     struct Json;
@@ -155,7 +159,7 @@ namespace Thoth::NJson {
 
         //! @brief Tries to parse the Json from a string.
         //! @param input the text to parse.
-        static std::expected<Json, std::string> Parse(std::string_view input);
+        static std::expected<Json, Http::RequestError> Parse(std::string_view input);
 
 
         //! @brief Tries to parse the Json from a string.
@@ -163,7 +167,7 @@ namespace Thoth::NJson {
         //! @param copyData copy the input to an internal buffer if true, keeps a reference otherwise.
         //! @param checkFinal ensure that there is only space chars after the end of the json.
         //! @return A Json if the parse success, std::nullopt otherwise.
-        static std::expected<Json, std::string> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
+        static std::expected<Json, Http::RequestError> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
 
 
 
