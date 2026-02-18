@@ -14,6 +14,7 @@ struct std::formatter<Thoth::Http::RequestError> {
     using UrlParseErrorEnum = Thoth::Http::UrlParseErrorEnum;
     using ConnectionErrorEnum = Thoth::Http::ConnectionErrorEnum;
     using RequestBuildErrorEnum = Thoth::Http::RequestBuildErrorEnum;
+    using GenericError = Thoth::Http::GenericError;
 
     constexpr auto parse(std::format_parse_context& ctx) {
         return ctx.begin();
@@ -86,6 +87,9 @@ struct std::formatter<Thoth::Http::RequestError> {
                         "VersionNeedsContentLength: HTTP 1.0 needs the use of content-length"
                     };
                     std::format_to(ctx.out(), "{}", desc[to_underlying(e)]);
+                },
+                [&](const GenericError& e) {
+                    std::format_to(ctx.out(), "{}", e.error);
                 }
             }, error
         );

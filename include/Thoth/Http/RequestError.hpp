@@ -54,6 +54,9 @@ namespace Thoth::Http {
         VersionNeedsContentLength
     };
 
+    struct GenericError {
+        std::string error{};
+    };
 
     struct RequestError : std::variant<
         JsonParseError,
@@ -63,7 +66,8 @@ namespace Thoth::Http {
         JsonWrongTypeError,
         UrlParseErrorEnum,
         ConnectionErrorEnum,
-        RequestBuildErrorEnum
+        RequestBuildErrorEnum,
+        GenericError
     > { // first time I'm using inheritance in the project lol
     };
 }
