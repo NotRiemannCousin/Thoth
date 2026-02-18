@@ -12,11 +12,12 @@ var searchData=
   ['uri_5ftoo_5flong_9',['URI_TOO_LONG',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a7b62eb07bf8f336f3cb07d87946bbd98',1,'Thoth::Http']]],
   ['url_10',['url',['../struct_thoth_1_1_http_1_1_url.html',1,'Thoth::Http::Url'],['../struct_thoth_1_1_http_1_1_request.html#a494284cc116479cd271f654b4d5a8103',1,'Thoth::Http::Request::url']]],
   ['url_2ehpp_11',['Url.hpp',['../_url_8hpp.html',1,'']]],
-  ['use_5fproxy_5fdeprecated_12',['USE_PROXY_DEPRECATED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ad20cdd8243b69100db434ab329139d39',1,'Thoth::Http']]],
-  ['user_13',['user',['../struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500',1,'Thoth::Http::Url']]],
-  ['utf16view_14',['Utf16View',['../namespace_thoth_1_1_string.html#a5d2612b50ded1adc4f40bc9e0f5dc0da',1,'Thoth::String']]],
-  ['utf32view_15',['Utf32View',['../namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2',1,'Thoth::String']]],
-  ['utf8env_16',['Utf8Env',['../namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0',1,'Thoth::Utils']]],
-  ['utf8view_17',['Utf8View',['../namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea',1,'Thoth::String']]],
-  ['utils_2ehpp_18',['Utils.hpp',['../_utils_8hpp.html',1,'']]]
+  ['urlparseerrorenum_12',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]],
+  ['use_5fproxy_5fdeprecated_13',['USE_PROXY_DEPRECATED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ad20cdd8243b69100db434ab329139d39',1,'Thoth::Http']]],
+  ['user_14',['user',['../struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500',1,'Thoth::Http::Url']]],
+  ['utf16view_15',['Utf16View',['../namespace_thoth_1_1_string.html#a5d2612b50ded1adc4f40bc9e0f5dc0da',1,'Thoth::String']]],
+  ['utf32view_16',['Utf32View',['../namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2',1,'Thoth::String']]],
+  ['utf8env_17',['Utf8Env',['../namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0',1,'Thoth::Utils']]],
+  ['utf8view_18',['Utf8View',['../namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea',1,'Thoth::String']]],
+  ['utils_2ehpp_19',['Utils.hpp',['../_utils_8hpp.html',1,'']]]
 ];

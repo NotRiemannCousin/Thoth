@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['jsonobjkey_0',['JsonObjKey',['../namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97',1,'Thoth::NJson']]],
-  ['jsonobjkeyref_1',['JsonObjKeyRef',['../namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512',1,'Thoth::NJson']]],
-  ['jsonpair_2',['JsonPair',['../struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee',1,'Thoth::NJson::JsonObject']]],
-  ['jsonpairref_3',['JsonPairRef',['../struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3',1,'Thoth::NJson::JsonObject']]],
-  ['jsonvalref_4',['JsonValRef',['../struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017',1,'Thoth::NJson::JsonObject']]]
+  ['iterator_0',['iterator',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a6096fea5bc1c47cf2b9cf3ea83317b3e',1,'Thoth::Dsa::LinearMap']]],
+  ['iterator_5fcategory_1',['iterator_category',['../struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html#ab64b82f725e4e72d66e92710c32abff2',1,'Thoth::String::UnicodeViewer::Iterator']]],
+  ['itertype_2',['itertype',['../struct_thoth_1_1_http_1_1_headers.html#a57b0ff6d4940181a2a7997ccde2e61fa',1,'Thoth::Http::Headers::IterType'],['../struct_thoth_1_1_http_1_1_query_params.html#a0238b0a1ae0b9fa1708b0aa3fe1a20fa',1,'Thoth::Http::QueryParams::IterType'],['../struct_thoth_1_1_n_json_1_1_json_object.html#af98b2755c406bc52bfb503392b3907b6',1,'Thoth::NJson::JsonObject::IterType']]]
 ];

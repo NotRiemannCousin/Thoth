@@ -150,11 +150,11 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a166e00cc4d4b81600653b19c3902dc66" id="r_a166e00cc4d4b81600653b19c3902dc66"><td class="memTemplParams" colspan="2">template&lt;class T  = string_view&gt; <br />
+<tr class="memitem:a147306b5112feabe53f167d5c018982b" id="r_a147306b5112feabe53f167d5c018982b"><td class="memTemplParams" colspan="2">template&lt;class T  = string_view&gt; <br />
 requires requires (T t) { { std::format(&quot;{}&quot;, t) }; }</td></tr>
-<tr class="memitem:a166e00cc4d4b81600653b19c3902dc66"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a166e00cc4d4b81600653b19c3902dc66">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a494284cc116479cd271f654b4d5a8103">url</a>, T &amp;&amp;<a class="el" href="struct_thoth_1_1_http_1_1_request.html#a650d0c78d133d3edc81568c9d326f298">body</a>={}, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a0baed688b7e42712778724303bebb352">headers</a>=<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>())</td></tr>
-<tr class="memdesc:a166e00cc4d4b81600653b19c3902dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try parse to a URL before construct the <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>.  <br /></td></tr>
-<tr class="separator:a166e00cc4d4b81600653b19c3902dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147306b5112feabe53f167d5c018982b"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a147306b5112feabe53f167d5c018982b">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a494284cc116479cd271f654b4d5a8103">url</a>, T &amp;&amp;<a class="el" href="struct_thoth_1_1_http_1_1_request.html#a650d0c78d133d3edc81568c9d326f298">body</a>={}, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a0baed688b7e42712778724303bebb352">headers</a>=<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>())</td></tr>
+<tr class="memdesc:a147306b5112feabe53f167d5c018982b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try parse to a URL before construct the <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>.  <br /></td></tr>
+<tr class="separator:a147306b5112feabe53f167d5c018982b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -185,8 +185,8 @@ template&lt;MethodConcept Method = GetMethod&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a166e00cc4d4b81600653b19c3902dc66" name="a166e00cc4d4b81600653b19c3902dc66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a166e00cc4d4b81600653b19c3902dc66">&#9670;&#160;</a></span>FromUrl()</h2>
+<a id="a147306b5112feabe53f167d5c018982b" name="a147306b5112feabe53f167d5c018982b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a147306b5112feabe53f167d5c018982b">&#9670;&#160;</a></span>FromUrl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +200,7 @@ requires requires (T t) { { std::format(&quot;{}&quot;, t) }; }</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a>&lt; Method &gt;::FromUrl </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a>&lt; Method &gt;::FromUrl </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a>&#160;</td>
           <td class="paramname"><em>url</em>, </td>

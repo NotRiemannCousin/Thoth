@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['reftype_0',['RefType',['../struct_thoth_1_1_dsa_1_1_cow.html#ad1747aa346267fa00570de7fcbf66f21',1,'Thoth::Dsa::Cow']]],
-  ['refvalwrapper_1',['RefValWrapper',['../namespace_thoth_1_1_n_json.html#accc650df3cc2d4060b5bcd1e2df3f583',1,'Thoth::NJson']]],
-  ['refvalwrapperornull_2',['RefValWrapperOrNull',['../namespace_thoth_1_1_n_json.html#a26ffedd5841a3ef267c576268905cad3',1,'Thoth::NJson']]],
-  ['ritertype_3',['RIterType',['../struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579',1,'Thoth::Http::Headers']]],
-  ['rune_4',['Rune',['../namespace_thoth_1_1_string.html#a6e9441aef99bad6e567745dd9f89cdaa',1,'Thoth::String']]]
+  ['querykey_0',['QueryKey',['../struct_thoth_1_1_http_1_1_query_params.html#a442c169f5b5e0a4c2ac840ed4794f869',1,'Thoth::Http::QueryParams']]],
+  ['querykeyref_1',['QueryKeyRef',['../struct_thoth_1_1_http_1_1_query_params.html#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e',1,'Thoth::Http::QueryParams']]],
+  ['querypair_2',['QueryPair',['../struct_thoth_1_1_http_1_1_query_params.html#a2d0b58041cd0868e9c0d4110aced1b57',1,'Thoth::Http::QueryParams']]],
+  ['queryvalue_3',['QueryValue',['../struct_thoth_1_1_http_1_1_query_params.html#a0dc0303dcc318126de3d207349bae5a5',1,'Thoth::Http::QueryParams']]],
+  ['queryvalueref_4',['QueryValueRef',['../struct_thoth_1_1_http_1_1_query_params.html#a1e6e106cc156b28586c3f22877105e15',1,'Thoth::Http::QueryParams']]],
+  ['queryvalues_5',['QueryValues',['../struct_thoth_1_1_http_1_1_query_params.html#a84daad9b3d157918711c0d70003c473f',1,'Thoth::Http::QueryParams']]]
 ];

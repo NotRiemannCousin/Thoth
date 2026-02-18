@@ -7,17 +7,24 @@ var namespace_thoth_1_1_http =
     [ "GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html", "struct_thoth_1_1_http_1_1_headers" ],
     [ "HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
+    [ "JsonFindError", "struct_thoth_1_1_http_1_1_json_find_error.html", "struct_thoth_1_1_http_1_1_json_find_error" ],
+    [ "JsonGetError", "struct_thoth_1_1_http_1_1_json_get_error.html", "struct_thoth_1_1_http_1_1_json_get_error" ],
+    [ "JsonParseError", "struct_thoth_1_1_http_1_1_json_parse_error.html", "struct_thoth_1_1_http_1_1_json_parse_error" ],
+    [ "JsonSearchError", "struct_thoth_1_1_http_1_1_json_search_error.html", null ],
+    [ "JsonWrongTypeError", "struct_thoth_1_1_http_1_1_json_wrong_type_error.html", "struct_thoth_1_1_http_1_1_json_wrong_type_error" ],
     [ "OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
     [ "PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
     [ "PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
     [ "PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
     [ "QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", "struct_thoth_1_1_http_1_1_query_params" ],
     [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
+    [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
     [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
     [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
     [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
     [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ],
     [ "MethodConcept", "concept_thoth_1_1_http_1_1_method_concept.html", null ],
+    [ "ConnectionErrorEnum", "namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2", null ],
     [ "GetRequest", "namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300", null ],
     [ "GetResponse", "namespace_thoth_1_1_http.html#a2e0247eccd17fa9bc309eb3a841e4e7f", null ],
     [ "PostRequest", "namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00", null ],
@@ -26,6 +33,12 @@ var namespace_thoth_1_1_http =
     [ "string_view", "namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d", null ],
     [ "WebResult", "namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3", null ],
     [ "WebResultOper", "namespace_thoth_1_1_http.html#a7b8661391b141f0bf7d74898326ab499", null ],
+    [ "RequestBuildErrorEnum", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673", [
+      [ "InvalidResponse", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a33f317695948b584444f4b7525da594e", null ],
+      [ "InvalidVersion", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a47ff03d2239a69112904305444be2fc0", null ],
+      [ "InvalidHeaders", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a89a8b7dbbd610306770222afabd44e4c", null ],
+      [ "VersionNeedsContentLength", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673ab679137a1826d6d3552abb5782846cd3", null ]
+    ] ],
     [ "StatusCodeEnum", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7", [
       [ "CONTINUE", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a2f453cfe638e57e27bb0c9512436111e", null ],
       [ "SWITCHING_PROTOCOLS", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af65c2e25f74e831cf2af44707695f440", null ],
@@ -97,6 +110,12 @@ var namespace_thoth_1_1_http =
       [ "REDIRECTION", "namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da7c8bc648d02ae1448f155449e5c114f3", null ],
       [ "CLIENT_ERROR", "namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877daac9eb3124d6b6c4075ae1b44d23e8224", null ],
       [ "SERVER_ERROR", "namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da3fd4acc4cfaa41114f84707b95f05f31", null ]
+    ] ],
+    [ "UrlParseErrorEnum", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c", [
+      [ "EmptyUrl", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05", null ],
+      [ "InvalidScheme", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276", null ],
+      [ "IllFormed", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa1654eb0fac9af56a06a85185e60d516", null ],
+      [ "InvalidPort", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa51712bd03bd8b6560b9c57b5ff92690", null ]
     ] ],
     [ "VersionEnum", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f", [
       [ "HTTP1_0", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fa0ddb6aeadb13ebd570463e41253ab8ab", null ],

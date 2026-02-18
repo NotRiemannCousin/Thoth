@@ -159,10 +159,10 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a60e955658fb678696420fe8b4164bc1c" id="r_a60e955658fb678696420fe8b4164bc1c"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method = GetMethod&gt; </td></tr>
-<tr class="memitem:a60e955658fb678696420fe8b4164bc1c"><td class="memTemplItemLeft" align="right" valign="top">static expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method &gt;, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a60e955658fb678696420fe8b4164bc1c">Send</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method &gt; request)</td></tr>
-<tr class="memdesc:a60e955658fb678696420fe8b4164bc1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
-<tr class="separator:a60e955658fb678696420fe8b4164bc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae89dd6184730350d2852ac65211e12" id="r_a9ae89dd6184730350d2852ac65211e12"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method = GetMethod&gt; </td></tr>
+<tr class="memitem:a9ae89dd6184730350d2852ac65211e12"><td class="memTemplItemLeft" align="right" valign="top">static expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a9ae89dd6184730350d2852ac65211e12">Send</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method &gt; request)</td></tr>
+<tr class="memdesc:a9ae89dd6184730350d2852ac65211e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
+<tr class="separator:a9ae89dd6184730350d2852ac65211e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that transforms requests with a given method into their responses, monad friendly. </p>
@@ -183,8 +183,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a60e955658fb678696420fe8b4164bc1c" name="a60e955658fb678696420fe8b4164bc1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60e955658fb678696420fe8b4164bc1c">&#9670;&#160;</a></span>Send()</h2>
+<a id="a9ae89dd6184730350d2852ac65211e12" name="a9ae89dd6184730350d2852ac65211e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ae89dd6184730350d2852ac65211e12">&#9670;&#160;</a></span>Send()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +195,7 @@ template&lt;MethodConcept Method = GetMethod&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method &gt;, <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; Thoth::Http::Client::Send </td>
+          <td class="memname">static expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Client::Send </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method &gt;&#160;</td>
           <td class="paramname"><em>request</em></td><td>)</td>

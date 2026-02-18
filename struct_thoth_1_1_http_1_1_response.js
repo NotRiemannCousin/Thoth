@@ -1,7 +1,7 @@
 var struct_thoth_1_1_http_1_1_response =
 [
     [ "MethodType", "struct_thoth_1_1_http_1_1_response.html#a0971042fa4c1a0cbf5f42b0a95127046", null ],
-    [ "AsJson", "struct_thoth_1_1_http_1_1_response.html#a5b189245f5614493a6330489df296a75", null ],
+    [ "AsJson", "struct_thoth_1_1_http_1_1_response.html#a69776262a224043a601a6fd0e6001e7e", null ],
     [ "MoveBody", "struct_thoth_1_1_http_1_1_response.html#a6c28c8f05f10458c26d5e6ca6c0d3b3f", null ],
     [ "Successful", "struct_thoth_1_1_http_1_1_response.html#ae21bf1be398c88690d255095251cf0ae", null ],
     [ "Client", "struct_thoth_1_1_http_1_1_response.html#a9bee35b146080ab7239cc8aff02333c3", null ],

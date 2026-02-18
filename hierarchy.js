@@ -13,7 +13,12 @@ var hierarchy =
     [ "Thoth::String::UnicodeViewer< CharT >::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
     [ "Thoth::NJson::Json", "struct_thoth_1_1_n_json_1_1_json.html", null ],
+    [ "Thoth::Http::JsonFindError", "struct_thoth_1_1_http_1_1_json_find_error.html", null ],
+    [ "Thoth::Http::JsonGetError", "struct_thoth_1_1_http_1_1_json_get_error.html", null ],
     [ "Thoth::NJson::JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", null ],
+    [ "Thoth::Http::JsonParseError", "struct_thoth_1_1_http_1_1_json_parse_error.html", null ],
+    [ "Thoth::Http::JsonSearchError", "struct_thoth_1_1_http_1_1_json_search_error.html", null ],
+    [ "Thoth::Http::JsonWrongTypeError", "struct_thoth_1_1_http_1_1_json_wrong_type_error.html", null ],
     [ "Thoth::Dsa::LinearMap< KeyT, ValT, Pred >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< JsonObjKey, Json >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< QueryKey, QueryValues >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
@@ -30,6 +35,9 @@ var hierarchy =
     [ "Thoth::Http::TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >", "struct_thoth_1_1_string_1_1_unicode_viewer.html", null ],
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
+    [ "std::variant", null, [
+      [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ]
+    ] ],
     [ "Thoth::Utils::Ts", null, [
       [ "Thoth::Utils::Overloaded< Ts >", "struct_thoth_1_1_utils_1_1_overloaded.html", null ]
     ] ]

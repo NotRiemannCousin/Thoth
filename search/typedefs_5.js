@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['getrequest_0',['GetRequest',['../namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300',1,'Thoth::Http']]],
-  ['getresponse_1',['GetResponse',['../namespace_thoth_1_1_http.html#a2e0247eccd17fa9bc309eb3a841e4e7f',1,'Thoth::Http']]]
+  ['firstconvertiblevariant_0',['FirstConvertibleVariant',['../namespace_thoth_1_1_utils.html#a61e8c9a9cc87a915b608d362c725acd1',1,'Thoth::Utils']]],
+  ['firstequalvariant_1',['FirstEqualVariant',['../namespace_thoth_1_1_utils.html#ad00ce4b8476323c5d488174dca28d600',1,'Thoth::Utils']]]
 ];

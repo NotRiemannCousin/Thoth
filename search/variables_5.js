@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lastused_0',['lastUsed',['../struct_thoth_1_1_http_1_1_socket.html#a689d58e30702ed2d9b9edaf68ff0b553',1,'Thoth::Http::Socket']]]
+  ['json_0',['Json',['../struct_thoth_1_1_n_json_1_1_json_object.html#a0203945ddf877d034636db2c3a268e4d',1,'Thoth::NJson::JsonObject']]]
 ];

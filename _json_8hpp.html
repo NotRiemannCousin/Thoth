@@ -134,9 +134,7 @@ $(document).ready(function(){initNavTree('_json_8hpp.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">Json.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -148,13 +146,13 @@ $(document).ready(function(){initNavTree('_json_8hpp.html',''); initResizable();
 <code>#include &lt;expected&gt;</code><br />
 <code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;span&gt;</code><br />
-<code>#include &lt;<a class="el" href="_cow_8hpp_source.html">Thoth/Dsa/Cow.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_string_ref_8hpp_source.html">Thoth/NJson/StringRef.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_definitions_8hpp_source.html">Thoth/NJson/Definitions.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_request_error_8hpp_source.html">Thoth/Http/RequestError.hpp</a>&gt;</code><br />
 <code>#include &lt;Thoth/NJson/Json.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Json.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_json_8hpp__incl.svg" width="1192" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_json_8hpp__incl.svg" width="1662" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -166,8 +164,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html">Thoth::NJson::Details::BufferInfo</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Thoth::NJson::Json</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -177,62 +173,6 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_thoth_1_1_n_json" id="r_namespace_thoth_1_1_n_json"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespace_thoth_1_1_n_json_1_1_details" id="r_namespace_thoth_1_1_n_json_1_1_details"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json_1_1_details.html">Thoth::NJson::Details</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a99bfc72251b2966b098a93ebf8ba94cd" id="r_a99bfc72251b2966b098a93ebf8ba94cd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a99bfc72251b2966b098a93ebf8ba94cd">Thoth::NJson::Null</a> = std::monostate</td></tr>
-<tr class="separator:a99bfc72251b2966b098a93ebf8ba94cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09693e413ce01b74bf25059d3508aa4d" id="r_a09693e413ce01b74bf25059d3508aa4d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d">Thoth::NJson::String</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Dsa::Cow</a>&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a>, std::string &gt;</td></tr>
-<tr class="separator:a09693e413ce01b74bf25059d3508aa4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d5ed1fc68730aa6e3e52e294cd961aa" id="r_a8d5ed1fc68730aa6e3e52e294cd961aa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a8d5ed1fc68730aa6e3e52e294cd961aa">Thoth::NJson::Number</a> = long double</td></tr>
-<tr class="separator:a8d5ed1fc68730aa6e3e52e294cd961aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9807384fc0a6d2dff1fefc0c5a40cf5" id="r_ac9807384fc0a6d2dff1fefc0c5a40cf5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5">Thoth::NJson::Bool</a> = bool</td></tr>
-<tr class="separator:ac9807384fc0a6d2dff1fefc0c5a40cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d4dbb36608aa59b881f51eb1f24a2a5" id="r_a1d4dbb36608aa59b881f51eb1f24a2a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Thoth::NJson::Object</a> = std::unique_ptr&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a> &gt;</td></tr>
-<tr class="separator:a1d4dbb36608aa59b881f51eb1f24a2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d2ee1e007b09fd0a0c27ac41868f668" id="r_a0d2ee1e007b09fd0a0c27ac41868f668"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a0d2ee1e007b09fd0a0c27ac41868f668">Thoth::NJson::Array</a> = std::vector&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &gt;</td></tr>
-<tr class="separator:a0d2ee1e007b09fd0a0c27ac41868f668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accc650df3cc2d4060b5bcd1e2df3f583" id="r_accc650df3cc2d4060b5bcd1e2df3f583"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#accc650df3cc2d4060b5bcd1e2df3f583">Thoth::NJson::RefValWrapper</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> *</td></tr>
-<tr class="separator:accc650df3cc2d4060b5bcd1e2df3f583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7743a0e142fc4b885a2c4e9e945174af" id="r_a7743a0e142fc4b885a2c4e9e945174af"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a7743a0e142fc4b885a2c4e9e945174af">Thoth::NJson::CRefValWrapper</a> = const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> *</td></tr>
-<tr class="separator:a7743a0e142fc4b885a2c4e9e945174af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab61ded3e391b6ca8e7f4ac7c14eb071c" id="r_ab61ded3e391b6ca8e7f4ac7c14eb071c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#ab61ded3e391b6ca8e7f4ac7c14eb071c">Thoth::NJson::OptRefValWrapper</a> = std::optional&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#accc650df3cc2d4060b5bcd1e2df3f583">RefValWrapper</a> &gt;</td></tr>
-<tr class="separator:ab61ded3e391b6ca8e7f4ac7c14eb071c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eb195e73f981721f9426844c0a6a3cb" id="r_a4eb195e73f981721f9426844c0a6a3cb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a4eb195e73f981721f9426844c0a6a3cb">Thoth::NJson::OptCRefValWrapper</a> = std::optional&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#a7743a0e142fc4b885a2c4e9e945174af">CRefValWrapper</a> &gt;</td></tr>
-<tr class="separator:a4eb195e73f981721f9426844c0a6a3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26ffedd5841a3ef267c576268905cad3" id="r_a26ffedd5841a3ef267c576268905cad3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a26ffedd5841a3ef267c576268905cad3">Thoth::NJson::RefValWrapperOrNull</a> = <a class="el" href="namespace_thoth_1_1_n_json.html#accc650df3cc2d4060b5bcd1e2df3f583">RefValWrapper</a></td></tr>
-<tr class="separator:a26ffedd5841a3ef267c576268905cad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c4d04c03a8004990306e248b1201c26" id="r_a7c4d04c03a8004990306e248b1201c26"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a7c4d04c03a8004990306e248b1201c26">Thoth::NJson::CRefValWrapperOrNull</a> = <a class="el" href="namespace_thoth_1_1_n_json.html#a7743a0e142fc4b885a2c4e9e945174af">CRefValWrapper</a></td></tr>
-<tr class="separator:a7c4d04c03a8004990306e248b1201c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd44f0bb01bdff6ab57fe889260fb8e8" id="r_afd44f0bb01bdff6ab57fe889260fb8e8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#afd44f0bb01bdff6ab57fe889260fb8e8">Thoth::NJson::ValWrapper</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a></td></tr>
-<tr class="separator:afd44f0bb01bdff6ab57fe889260fb8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a829cd5ffbf6740e7923f1d7402a17d65" id="r_a829cd5ffbf6740e7923f1d7402a17d65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a829cd5ffbf6740e7923f1d7402a17d65">Thoth::NJson::CValWrapper</a> = const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a></td></tr>
-<tr class="separator:a829cd5ffbf6740e7923f1d7402a17d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0d2d424642a836b4b8d9016b4da0a04" id="r_af0d2d424642a836b4b8d9016b4da0a04"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#af0d2d424642a836b4b8d9016b4da0a04">Thoth::NJson::OptValWrapper</a> = std::optional&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#afd44f0bb01bdff6ab57fe889260fb8e8">ValWrapper</a> &gt;</td></tr>
-<tr class="separator:af0d2d424642a836b4b8d9016b4da0a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a068ce1a46702fb9bec57675bfb053f39" id="r_a068ce1a46702fb9bec57675bfb053f39"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a068ce1a46702fb9bec57675bfb053f39">Thoth::NJson::OptCValWrapper</a> = std::optional&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#a829cd5ffbf6740e7923f1d7402a17d65">CValWrapper</a> &gt;</td></tr>
-<tr class="separator:a068ce1a46702fb9bec57675bfb053f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a929c4219e56ce39cce89e424dccdf4fe" id="r_a929c4219e56ce39cce89e424dccdf4fe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a929c4219e56ce39cce89e424dccdf4fe">Thoth::NJson::ValWrapperOrNull</a> = <a class="el" href="namespace_thoth_1_1_n_json.html#afd44f0bb01bdff6ab57fe889260fb8e8">ValWrapper</a></td></tr>
-<tr class="separator:a929c4219e56ce39cce89e424dccdf4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef466c323fe9ccd09acc96bfa5a0b10c" id="r_aef466c323fe9ccd09acc96bfa5a0b10c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#aef466c323fe9ccd09acc96bfa5a0b10c">Thoth::NJson::CValWrapperOrNull</a> = <a class="el" href="namespace_thoth_1_1_n_json.html#a829cd5ffbf6740e7923f1d7402a17d65">CValWrapper</a></td></tr>
-<tr class="separator:aef466c323fe9ccd09acc96bfa5a0b10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac018fa19f2f2b9f98d487fcb85970b97" id="r_ac018fa19f2f2b9f98d487fcb85970b97"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">Thoth::NJson::JsonObjKey</a> = std::string</td></tr>
-<tr class="separator:ac018fa19f2f2b9f98d487fcb85970b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f767c8e0ac9ce417d45274a80cb8512" id="r_a3f767c8e0ac9ce417d45274a80cb8512"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512">Thoth::NJson::JsonObjKeyRef</a> = std::string_view</td></tr>
-<tr class="separator:a3f767c8e0ac9ce417d45274a80cb8512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b3ffb5f3e2c190d5530cc47ed479b69" id="r_a6b3ffb5f3e2c190d5530cc47ed479b69"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a6b3ffb5f3e2c190d5530cc47ed479b69">Thoth::NJson::Key</a> = std::variant&lt; int, <a class="el" href="namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97">JsonObjKey</a> &gt;</td></tr>
-<tr class="separator:a6b3ffb5f3e2c190d5530cc47ed479b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa1ed1c7d9c743117960806e849aae7c" id="r_aaa1ed1c7d9c743117960806e849aae7c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#aaa1ed1c7d9c743117960806e849aae7c">Thoth::NJson::Keys</a> = std::span&lt; const <a class="el" href="namespace_thoth_1_1_n_json.html#a6b3ffb5f3e2c190d5530cc47ed479b69">Key</a> &gt;</td></tr>
-<tr class="separator:aaa1ed1c7d9c743117960806e849aae7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a671d80ae10be053e360cc17d0791dd91" id="r_a671d80ae10be053e360cc17d0791dd91"><td class="memTemplParams" colspan="2">template&lt;class ... T&gt; <br />
-requires ((std::unsigned_integral&lt;T&gt; || std::convertible_to&lt;T, std::string_view&gt;) &amp;&amp;...)</td></tr>
-<tr class="memitem:a671d80ae10be053e360cc17d0791dd91"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_n_json.html#a671d80ae10be053e360cc17d0791dd91">Thoth::NJson::MakeKeys</a> (const T &amp;... keys)</td></tr>
-<tr class="separator:a671d80ae10be053e360cc17d0791dd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
