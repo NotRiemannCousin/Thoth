@@ -59,7 +59,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::iterator
     constexpr  LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) {
         return std::lower_bound(_data.begin(), _data.end(), key, PairComparator{ _compare });
@@ -67,7 +67,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::const_iterator
     constexpr  LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) const {
         return std::lower_bound(_data.cbegin(), _data.cend(), key, PairComparator{ _compare });
@@ -75,7 +75,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     constexpr bool LinearMap<KeyT, ValT, Pred>::is_equivalent(const_iterator it, const LookupKeyT& key) const {
         if (it == _data.end()) {
             return false;
@@ -143,8 +143,8 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT, typename MappedT>
-    std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
+    template <class LookupKeyT, class MappedT>
+    std::pair<class LinearMap<KeyT, ValT, Pred>::iterator, bool>
     constexpr LinearMap<KeyT, ValT, Pred>::try_emplace(LookupKeyT&& key, MappedT&& val) {
         const iterator it{ find_position(key) };
 
@@ -158,7 +158,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT, typename MappedT>
+    template <class LookupKeyT, class MappedT>
     std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
     constexpr LinearMap<KeyT, ValT, Pred>::insert_or_assign(LookupKeyT&& key, MappedT&& val) {
         iterator it{ find_position(key) };
@@ -174,7 +174,7 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
     requires strong_order_relation<KeyT, Pred>
-template <typename LookupKeyT>
+template <class LookupKeyT>
 constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
         auto it{ find_position(key) };
 
@@ -202,7 +202,7 @@ constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::iterator
     constexpr  LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) {
         const iterator it{ find_position(key) };
@@ -214,7 +214,7 @@ constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     typename LinearMap<KeyT, ValT, Pred>::const_iterator
     constexpr  LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) const {
         const_iterator it{ find_position(key) };
@@ -226,7 +226,7 @@ constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     constexpr bool LinearMap<KeyT, ValT, Pred>::exists(const LookupKeyT& key) const {
         const_iterator it{ find_position(key) };
         return is_equivalent(it, key);
@@ -234,13 +234,13 @@ constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template <typename LookupKeyT>
+    template <class LookupKeyT>
     constexpr bool LinearMap<KeyT, ValT, Pred>::contains(const LookupKeyT& key) const {
         return exists(key);
     }
 
     template<class KeyT, class ValT, class Pred> requires strong_order_relation<KeyT, Pred>
-    template<typename LookupKeyT>
+    template<class LookupKeyT>
     ValT& LinearMap<KeyT, ValT, Pred>::operator[](LookupKeyT&& key) {
         auto it{ find_position(key) };
         if (is_equivalent(it, key))

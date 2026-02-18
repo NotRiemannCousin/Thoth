@@ -23,7 +23,7 @@ using namespace Thoth::Http;
 
 
 static Json::Value I_CloneValue(const Json::Value& v) {
-    return std::visit([]<typename Type>(Type const& x) -> Json::Value {
+    return std::visit([]<class Type>(Type const& x) -> Json::Value {
         using T = std::remove_cvref_t<Type>;
         if constexpr (std::same_as<T, Object>)
             return Json::Value{ std::make_unique<JsonObject>(*x) };
@@ -193,18 +193,18 @@ bool Json::operator==(const Json& other) const {
 #pragma region Read functions
 
 static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
-    constexpr auto hex = [](const char c) -> int {
+    constexpr auto s_hex = [](const char c) -> int {
         if (c >= '0' && c <= '9') return c - '0';
         if (c >= 'a' && c <= 'f') return c - 'a' + 10;
         if (c >= 'A' && c <= 'F') return c - 'A' + 10;
         return -1;
     };
 
-    auto readU = [&](uint16_t& v) -> bool {
+    auto s_readU = [&](uint16_t& v) -> bool {
         if (s.size() < 5 || s[0] != 'u') return false;
         uint16_t x{};
         for (int i = 1; i < 5; i++) {
-            const int h{ hex(s[i]) };
+            const int h{ s_hex(s[i]) };
             if (h < 0) return false;
             x = (x<<4) | h;
         }
@@ -214,7 +214,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
     };
 
     uint16_t h;
-    if (!readU(h)) return false;
+    if (!s_readU(h)) return false;
 
     uint32_t code{ h };
 
@@ -224,7 +224,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
         s.remove_prefix(1);
 
         uint16_t l;
-        if (!readU(l)) return false;
+        if (!s_readU(l)) return false;
         if (l < 0xDC00 || l > 0xDFFF) return false;
         code = 0x10000 + (((h - 0xD800) << 10) | (l - 0xDC00));
     }
@@ -318,14 +318,14 @@ static bool Details::ReadString(std::string_view& input, auto& val, const Buffer
 }
 static bool Details::ReadNumber(std::string_view& input, auto& val) {
     const auto openValNumber{ input.data() };
-    constexpr auto validChars = []{
+    constexpr auto validChars{ []{
         std::bitset<256> res{};
 
         for (const char c :std::string_view{ "01234567899.-eE" })
             res.set(c);
 
         return res;
-    }();
+    }() };
 
     ADVANCE_IF(validChars[*ptr]);
 

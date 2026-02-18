@@ -16,13 +16,13 @@ namespace Thoth::Http {
         using std::string;
 
 
-        constexpr auto toLower = [](const unsigned char c) -> char {
+        constexpr auto s_toLower = [](const unsigned char c) -> char {
             if ('A' <= c && c <= 'Z')
                 return c - 'A' + 'a';
             return c;
         };
-        constexpr auto isCharAllowed = [](const char c) -> bool {
-            constexpr auto allowedChars = [] {
+        constexpr auto s_isCharAllowed = [](const char c) -> bool {
+            constexpr auto s_allowedChars = [] {
                 std::bitset<256> res{};
 
                 for (char ch{'0'}; ch <= '9'; ch++) res.set(ch);
@@ -35,7 +35,7 @@ namespace Thoth::Http {
                 return res;
             }();
 
-            return allowedChars[c];
+            return s_allowedChars[c];
         };
 
         constexpr string_view delimiter { "\r\n" };
@@ -61,10 +61,10 @@ namespace Thoth::Http {
                 headerVal.pop_back();
 
 
-            if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, isCharAllowed))
+            if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, s_isCharAllowed))
                 return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
 
-            rg::transform(headerKey, headerKey.begin(), toLower);
+            rg::transform(headerKey, headerKey.begin(), s_toLower);
             res.Add(headerKey, headerVal);
         }
 
@@ -72,13 +72,13 @@ namespace Thoth::Http {
     }
 
     inline auto Headers::GetSetCookieView() const {
-        constexpr auto cmp = [](const auto& p) {
+        constexpr auto s_cmp = [](const auto& p) {
             return p.first == "set-cookie";
         };
 
 
         return _headers
-                | std::views::filter(cmp)
+                | std::views::filter(s_cmp)
                 | std::views::transform(&HeaderPair::second);
     }
 

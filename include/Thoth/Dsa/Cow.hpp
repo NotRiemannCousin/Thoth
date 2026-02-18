@@ -30,21 +30,21 @@ namespace Thoth::Dsa {
 
 
         //! @brief Constructs a Cow from a RefT.
-        constexpr static Cow FromRef(RefT ref);
+        static constexpr Cow FromRef(RefT ref);
         //! @brief Sets the value to a new RefT.
         constexpr Cow& SetRef(RefT ref);
 
 
         //! @brief Check if the value is a RefT or OwnT.
-        [[nodiscard]] constexpr static bool IsRefType(const Cow& cow);
+        [[nodiscard]] static constexpr bool IsRefType(const Cow& cow);
         //! @brief Check if the value is a RefT or OwnT.
         [[nodiscard]] constexpr bool IsRef() const;
 
 
         //! @brief Create a OwnT value from another OwnT.
-        constexpr static Cow FromOwned(const OwnT& own);
+        static constexpr Cow FromOwned(const OwnT& own);
         //! @brief Create a OwnT value from another OwnT.
-        constexpr static Cow FromOwned(OwnT&& own);
+        static constexpr Cow FromOwned(OwnT&& own);
         //! @brief Set value to a new OwnT from another OwnT.
         constexpr Cow& SetOwned(const OwnT& own);
         //! @brief Set value to a new OwnT from another OwnT.

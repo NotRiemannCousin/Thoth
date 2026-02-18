@@ -33,14 +33,14 @@ namespace std {
                 return std::views::concat(p.first, std::views::single('='), p.second | std::views::join_with(','));
 #else
             };
-            static constexpr auto getEveryPair = [](const Thoth::Http::QueryParams::MapType::value_type& p) {
+            static constexpr auto s_getEveryPair = [](const Thoth::Http::QueryParams::MapType::value_type& p) {
                 return p.second | views::transform([&](string_view val) { return Pair{ p.first, val }; });
             };
 #endif
 
             return std::ranges::copy(
                 query._elements
-                        | views::transform(getEveryPair)
+                        | views::transform(s_getEveryPair)
                         | views::join
                         | std::views::transform(singleParam)
                         | views::join_with('&'),

@@ -48,7 +48,7 @@ namespace Thoth::String {
 
         //! @brief Converts from one Unicode Encoding to another.
         template<UnicodeCharConcept NewCharT>
-        constexpr static std::basic_string<NewCharT> ConvertTo(StringViewType str);
+        static constexpr std::basic_string<NewCharT> ConvertTo(StringViewType str);
     private:
         StringViewType _ref{};
     };

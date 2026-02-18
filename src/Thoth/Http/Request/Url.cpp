@@ -238,7 +238,7 @@ std::string Url::Encode(std::string_view str) {
 }
 
 
-constexpr auto hexCharToInt = [] {
+constexpr auto s_hexCharToInt = [] {
     std::array<int, 256> toHex{};
     for (char c{'0'}; c <= '9'; c++) toHex[c] = c - '0';
     for (char c{'a'}; c <= 'z'; c++) toHex[c] = c - 'a' + 10;
@@ -258,8 +258,8 @@ std::expected<string, Thoth::Http::RequestError> Url::TryDecode(std::string_view
             if (i + 2 >= str.length() || !std::isxdigit(str[i + 1]) || !std::isxdigit(str[i + 2]))
                 FAIL_WITH(IllFormed);;
 
-            const int high{ hexCharToInt[str[i + 1]] };
-            const int low{ hexCharToInt[str[i + 2]] };
+            const int high{ s_hexCharToInt[str[i + 1]] };
+            const int low{ s_hexCharToInt[str[i + 2]] };
             buffer += static_cast<char>((high << 4) + low);
 
             i += 2;

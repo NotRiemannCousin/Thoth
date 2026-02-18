@@ -68,35 +68,35 @@ namespace Thoth::Http {
     }
 
 
-    template<rg::input_range R, typename T>
+    template<rg::input_range R, class T>
     [[nodiscard]] constexpr auto I_FindInsensitiveKey(R&& r, const T& key) {
         const string_view keySv{ key };
 
-        const auto pred = [&](auto&& element) -> bool {
+        const auto s_pred = [&](auto&& element) -> bool {
             const string_view elemKeySv{ element.first };
 
             return I_InsensitiveCmp(elemKeySv, keySv);
         };
 
-        return rg::find_if(std::forward<R>(r), pred);
+        return rg::find_if(std::forward<R>(r), s_pred);
     }
 
-    template<rg::input_range R, typename T>
+    template<rg::input_range R, class T>
     [[nodiscard]] constexpr auto I_FindInsensitiveKeyWithPair(R&& r, const T& p) {
         const string_view keySv{ p.first };
         const string_view valueSv{ p.second };
 
-        const auto pred = [&](auto&& element) -> bool {
+        const auto s_pred = [&](auto&& element) -> bool {
             const string_view elemKeySv{ element.first };
             const string_view elemValueSv{ element.second };
 
             return I_InsensitiveCmp(keySv, elemKeySv) && rg::equal(valueSv, elemValueSv);
         };
 
-        return rg::find_if(std::forward<R>(r), pred);
+        return rg::find_if(std::forward<R>(r), s_pred);
     }
 
-    constexpr auto inline I_HeaderSanitizeStr = vs::transform(I_ToLower) | rg::to<string>();
+    constexpr auto inline s_headerSanitizeStr = vs::transform(I_ToLower) | rg::to<string>();
 #pragma endregion
 
 
@@ -106,14 +106,14 @@ namespace Thoth::Http {
         _headers.reserve(initAs.size());
 
         for (const auto& [key, val] : initAs)
-            _headers.emplace_back(key | I_HeaderSanitizeStr, val);
+            _headers.emplace_back(key | s_headerSanitizeStr, val);
     }
 
     Headers::Headers(std::initializer_list<HeaderPair> init) {
         _headers.reserve(init.size());
 
         for (const auto& [key, val] : init)
-            _headers.emplace_back(key | I_HeaderSanitizeStr, val);
+            _headers.emplace_back(key | s_headerSanitizeStr, val);
     }
 
     Headers Headers::DefaultHeaders() {
@@ -160,7 +160,7 @@ namespace Thoth::Http {
             }
 
 
-        _headers.emplace_back(p.first| I_HeaderSanitizeStr, p.second);
+        _headers.emplace_back(p.first| s_headerSanitizeStr, p.second);
     }
 
     void Headers::Add(const HeaderKeyRef key, const HeaderValueRef val) {
@@ -172,7 +172,7 @@ namespace Thoth::Http {
             return I_InsensitiveCmp(current.first, p.first);
         });
 
-        _headers.emplace_back(p.first | I_HeaderSanitizeStr, p.second);
+        _headers.emplace_back(p.first | s_headerSanitizeStr, p.second);
     }
 
     void Headers::Set(const HeaderKeyRef key, const HeaderValueRef val) {
@@ -262,7 +262,7 @@ namespace Thoth::Http {
         if (const auto it{  I_FindInsensitiveKey(_headers, key) }; it != _headers.end())
             return it->second;
 
-        _headers.emplace_back(key | I_HeaderSanitizeStr, string{});
+        _headers.emplace_back(key | s_headerSanitizeStr, string{});
         return _headers.back().second;
     }
 

@@ -15,7 +15,7 @@ struct ValueBehaviour {
 
 
 static std::optional<string> S_Interpolate(const string& str) {
-    constexpr auto execCommand = [](const std::string& command) -> string {
+    constexpr auto s_execCommand = [](const std::string& command) -> string {
 #ifdef _WIN32
         const std::string cmd{ std::format(R"(powershell -NoProfile -Command "{}" 2>&1)", command) };
         const std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd.c_str(), "r"), _pclose);
@@ -49,7 +49,7 @@ static std::optional<string> S_Interpolate(const string& str) {
     size_t lastIdx{}, idx{};
     size_t bracketLevel{};
 
-    const auto computeEscapedChar = [&] {
+    const auto s_computeEscapedChar = [&] {
         if(++idx == str.size())
             return false;
 
@@ -64,17 +64,17 @@ static std::optional<string> S_Interpolate(const string& str) {
         }
         return true;
     };
-    const auto computeOpenBracket = [&] {
+    const auto s_computeOpenBracket = [&] {
         if (bracketLevel++ == 0)
             lastIdx = idx + 1;
     };
-    const auto computeCloseBracket = [&] {
+    const auto s_computeCloseBracket = [&] {
         if (--bracketLevel < 0)
             return false;
         if (bracketLevel == 0) {
             cmdBuffer.assign_range(str.substr(lastIdx, idx - lastIdx));
 
-            retBuffer += execCommand(cmdBuffer);
+            retBuffer += s_execCommand(cmdBuffer);
         }
         return true;
     };
@@ -92,9 +92,9 @@ static std::optional<string> S_Interpolate(const string& str) {
             retBuffer.append_range(str.substr(lastIdx, idx - lastIdx));
 
         switch (str[idx]) {
-            case '\\': if (!computeEscapedChar())  return std::nullopt; break;
-            case '{':  computeOpenBracket();                            break;
-            case '}':  if (!computeCloseBracket()) return std::nullopt; break;
+            case '\\': if (!s_computeEscapedChar())  return std::nullopt; break;
+            case '{':  s_computeOpenBracket();                            break;
+            case '}':  if (!s_computeCloseBracket()) return std::nullopt; break;
             default: return std::nullopt;
         }
     }
@@ -140,7 +140,7 @@ static optional<Map> S_GetMap() {
 
     ValueBehaviour behaviour{};
 
-    const auto getBehaviour = [&] {
+    const auto s_getBehaviour = [&] {
         constexpr ValueBehaviour behaviours[] {
             { R"(''')", true,  false },
             { R"(""")", true,  true },
@@ -161,7 +161,7 @@ static optional<Map> S_GetMap() {
         if (behaviour.pattern != " ")
             line.erase(0, behaviour.pattern.size());
     };
-    const auto removeInlineEndingSequence = [&] {
+    const auto s_removeInlineEndingSequence = [&] {
         size_t idx{};
 
         if (behaviour.pattern == " ") {
@@ -182,7 +182,7 @@ static optional<Map> S_GetMap() {
         return true;
     };
 
-    const auto getValue = [&] {
+    const auto s_getValue = [&] {
         bool firstLoop{ true };
 
         do {
@@ -191,7 +191,7 @@ static optional<Map> S_GetMap() {
                 line.pop_back();
 
 
-            if (firstLoop) getBehaviour();
+            if (firstLoop) s_getBehaviour();
             else           val += '\n';
 
             firstLoop = false;
@@ -200,7 +200,7 @@ static optional<Map> S_GetMap() {
                 if (line.starts_with(behaviour.pattern))
                     break;
             } else
-                if (!removeInlineEndingSequence())
+                if (!s_removeInlineEndingSequence())
                     return false;
 
             val.append_range(line);
@@ -210,8 +210,8 @@ static optional<Map> S_GetMap() {
         return true;
     };
 
-    const auto isSpace        = [](const char c){ return c == ' '; };
-    const auto isAllowedInKey = [](const char c){ return !isalnum(c) && c != '_'; };
+    const auto s_isSpace        = [](const char c){ return c == ' '; };
+    const auto s_isAllowedInKey = [](const char c){ return !isalnum(c) && c != '_'; };
 
     while (!file.eof()) {
         char c{ ' ' };
@@ -223,7 +223,7 @@ static optional<Map> S_GetMap() {
             continue;
         }
 
-        if (isspace(c) && ranges::all_of(key, isSpace))
+        if (isspace(c) && ranges::all_of(key, s_isSpace))
             continue;
 
         if (c != '=')
@@ -232,11 +232,11 @@ static optional<Map> S_GetMap() {
 
 
 
-        if (isdigit(key[0]) || ranges::any_of(key, isAllowedInKey))
+        if (isdigit(key[0]) || ranges::any_of(key, s_isAllowedInKey))
             return std::nullopt;
 
 
-        getValue();
+        s_getValue();
 
         if (behaviour.useInterpolation)
             val = S_Interpolate(val).value_or(""); // Maybe this will cause a serious bug someday but anyway
@@ -249,7 +249,7 @@ static optional<Map> S_GetMap() {
 
 
 std::optional<const std::string_view> Thoth::Utils::Env(std::string_view envkey) {
-    static auto envVars = S_GetMap();
+    static auto envVars{ S_GetMap() };
 
     if (!envVars)
         return std::nullopt;
@@ -262,7 +262,7 @@ std::optional<const std::string_view> Thoth::Utils::Env(std::string_view envkey)
     return it->second;
 }
 std::optional<const std::u8string_view> Thoth::Utils::Utf8Env(std::string_view envkey) {
-    static auto envVars = S_GetMap();
+    static auto envVars{ S_GetMap() };
 
     if (!envVars)
         return std::nullopt;

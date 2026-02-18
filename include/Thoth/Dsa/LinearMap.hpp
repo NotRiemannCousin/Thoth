@@ -35,24 +35,24 @@ namespace Thoth::Dsa {
         struct PairComparator {
             const key_compare& _comp;
 
-            template <typename LookupKeyT>
+            template <class LookupKeyT>
             constexpr bool operator()(const value_type& pair, const LookupKeyT& key) const {
                 return std::invoke(_comp, pair.first, key);
             }
 
-            template <typename LookupKeyT>
+            template <class LookupKeyT>
             constexpr bool operator()(const LookupKeyT& key, const value_type& pair) const {
                 return std::invoke(_comp, key, pair.first);
             }
         };
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr iterator find_position(const LookupKeyT& key);
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr const_iterator find_position(const LookupKeyT& key) const;
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr bool is_equivalent(const_iterator it, const LookupKeyT& key) const;
 
     public:
@@ -82,32 +82,32 @@ namespace Thoth::Dsa {
         [[nodiscard]] constexpr bool empty() const;
         constexpr size_type size() const;
 
-        template <typename LookupKeyT, typename MappedT>
+        template <class LookupKeyT, class MappedT>
         constexpr std::pair<iterator, bool> try_emplace(LookupKeyT&& key, MappedT&& val);
 
-        template <typename LookupKeyT, typename MappedT>
+        template <class LookupKeyT, class MappedT>
         constexpr std::pair<iterator, bool> insert_or_assign(LookupKeyT&& key, MappedT&& val);
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr bool erase(const LookupKeyT& key);
 
         constexpr iterator erase(iterator pos);
 
         constexpr iterator erase(const_iterator pos);
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr iterator find(const LookupKeyT& key);
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr const_iterator find(const LookupKeyT& key) const;
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr bool exists(const LookupKeyT& key) const;
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         constexpr bool contains(const LookupKeyT& key) const;
 
-        template <typename LookupKeyT>
+        template <class LookupKeyT>
         ValT& operator[](LookupKeyT&& key);
     };
 }

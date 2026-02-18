@@ -17,8 +17,8 @@
 
 using std::string_view;
 
-inline string_view OK_MESSAGE   = PASSED_TEST_COLOR " [OK] "   RESET_COLOR;
-inline string_view FAIL_MESSAGE = ERROR_TEST_COLOR  " [FAIL] " RESET_COLOR;
+inline string_view OK_MESSAGE  { PASSED_TEST_COLOR " [OK] "   RESET_COLOR };
+inline string_view FAIL_MESSAGE{ ERROR_TEST_COLOR  " [FAIL] " RESET_COLOR };
 
 inline void Test(string_view testName, bool passed) {
     std::println(NAME_TEST_COLOR "{}" RESET_COLOR " {}",

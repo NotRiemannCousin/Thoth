@@ -36,7 +36,7 @@ int main() {
                 .value_or("<unnamed>");
     };
 
-    static auto constexpr s_printNames = [](auto&& names) {
+    static constexpr auto s_printNames = [](auto&& names) {
         std::println("- Members:");
         for (string&& name : names)
             std::println("{}", name);
@@ -44,7 +44,7 @@ int main() {
         return std::monostate{};
     };
 
-    static auto constexpr s_errorHandler = [](auto&& error) {
+    static constexpr auto s_errorHandler = [](auto&& error) {
         std::println("An error occurred: {}", error);
 
         if (const int wsaError{ WSAGetLastError() }; wsaError != 0)

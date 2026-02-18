@@ -19,17 +19,17 @@ namespace Thoth::Http {
             : _elements{ init } {}
 
     QueryParams QueryParams::Parse(std::string_view paramsStr) {
-        static auto constexpr splitDelimiter = [](char c) { return c != '='; };
-        static auto constexpr splitBetween = [](const auto& str) {
+        static constexpr auto s_splitDelimiter = [](char c) { return c != '='; };
+        static constexpr auto s_splitBetween = [](const auto& str) {
             return std::pair{
-                str | vs::take_while(splitDelimiter) | std::ranges::to<string>(),
-                str | vs::drop_while(splitDelimiter) | vs::drop(1) | std::ranges::to<string>()
+                str | vs::take_while(s_splitDelimiter) | std::ranges::to<string>(),
+                str | vs::drop_while(s_splitDelimiter) | vs::drop(1) | std::ranges::to<string>()
             };
         };
 
         QueryParams params{};
         for (const auto rawParam : paramsStr | vs::split('&')) {
-            const auto [r, l] = splitBetween(rawParam);
+            const auto [r, l] = s_splitBetween(rawParam);
 
             params[r].emplace_back(l);
         }
@@ -64,14 +64,14 @@ namespace Thoth::Http {
 
         auto& vec = it->second;
         const auto oldSize{ vec.size() };
-        const auto newEnd = std::ranges::remove(vec, val).begin();
+        const auto newEnd{ std::ranges::remove(vec, val).begin() };
         vec.erase(newEnd, vec.end());
 
         return oldSize != vec.size();
     }
 
     bool QueryParams::RemoveKey(QueryKeyRef key) {
-        auto&& it = _elements.find(key);
+        auto&& it{ _elements.find(key) };
         if (it == _elements.end())
             return false;
 

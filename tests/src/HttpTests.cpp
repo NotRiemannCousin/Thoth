@@ -81,7 +81,7 @@ void QueryParamsTests() {
 
 
     std::string_view queryStr{ "users=KG,AiKath,Kai,LastArchimedes&extensions=cxx,hs,py,rs" };
-    auto parsedParams = QueryParams::Parse(queryStr);
+    auto parsedParams{ QueryParams::Parse(queryStr) };
     Test("Parse: size", parsedParams.Size() == 2);
     Test("Parse: value", parsedParams.ValExists("users", "Kai"));
 
@@ -98,7 +98,7 @@ void QueryParamsTests() {
 
 
     auto formattedStr{ std::format("{}", params1) };
-    auto roundtripParams = QueryParams::Parse(formattedStr);
+    auto roundtripParams{ QueryParams::Parse(formattedStr) };
     Test("Round-trip Parse: Format", std::format("{}", roundtripParams) == formattedStr);
 }
 

@@ -23,7 +23,7 @@ namespace Thoth::Http {
     };
     struct JsonWrongTypeError {
         template<class T>
-        constexpr static size_t IndexOf{};
+        static constexpr size_t IndexOf{};
 
         size_t idxExpected{};
         size_t idxGot{};
