@@ -1,11 +1,15 @@
 #pragma once
+#include <ranges>
 
+#include <Thoth/Utils/Overloads.hpp>
 
 template<>
 struct std::formatter<Thoth::Http::RequestError> {
     using RequestError = Thoth::Http::RequestError;
 
     using JsonParseError = Thoth::Http::JsonParseError;
+    using JsonGetError = Thoth::Http::JsonGetError;
+    using JsonFindError = Thoth::Http::JsonFindError;
     using JsonSearchError = Thoth::Http::JsonSearchError;
     using UrlParseErrorEnum = Thoth::Http::UrlParseErrorEnum;
     using ConnectionErrorEnum = Thoth::Http::ConnectionErrorEnum;
@@ -30,13 +34,31 @@ struct std::formatter<Thoth::Http::RequestError> {
                 [&](const JsonParseError& e) {
                     std::format_to(ctx.out(), "Unknown character '{}' at position {}", e.c, e.idx);
                 },
-                [&](const JsonSearchError& e) {
+                [&](const JsonGetError& e) {
+                    std::format_to(ctx.out(), "Can't find object with the '{}' key", s_keyToStr(e.key));
+                },
+                [&](const JsonFindError& e) {
                     string sla{ e.currentPath
-                            | views::transform(s_keyToStr)
-                            | views::join_with(string_view{ ", " })
+                            | std::views::transform(s_keyToStr)
+                            | std::views::join_with(string_view{ ", " })
                             | ranges::to<string>() };
                     std::format_to(ctx.out(), "Unable to find '{}' in the tree [{}]", s_keyToStr(e.key), sla);
                 },
+                [&](const JsonSearchError& e) {
+                    std::format_to(ctx.out(), "No object matches the predicate");
+                },
+                [&](const Thoth::Http::JsonWrongTypeError e) {
+                    constexpr const char* types[] {
+                        "null",
+                        "string",
+                        "number",
+                        "bool",
+                        "object",
+                        "array"
+                    };
+                    std::format_to(ctx.out(), "Json has the wrong type, expecting '{}' but got '{}'", types[e.idxExpected], types[e.idxGot]);
+                }
+                ,
                 [&](const UrlParseErrorEnum e) {
                     constexpr const char* desc[]{ // will be changed to reflection in the future
                         "EmptyUrl: The URL is empty",

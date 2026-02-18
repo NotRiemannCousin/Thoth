@@ -7,7 +7,7 @@
 #include <Thoth/Utils/Functional.hpp>
 
 
-std::expected<std::monostate, RequestError> MakeRequest() {
+std::expected<std::monostate, Thoth::Http::RequestError> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
     namespace NJson = Thoth::NJson;
@@ -55,12 +55,8 @@ std::expected<std::monostate, RequestError> MakeRequest() {
 
                 .transform(&NHttp::Response<>::MoveBody)
                 .and_then(s_extractJson)
-
-                .transform(std::bind_back(&Json::FindAndMove, contentKeys))
-                .and_then(Utils::ValueOrHof<Json>("Can't find content."s))
-
-                .transform(&Json::EnsureMov<NJson::Array>)
-                .and_then(Utils::ValueOrHof<NJson::Array>("Structure isn't an array."s))
+                .and_then(std::bind_back(&Json::FindAndMoveOrError, contentKeys))
+                .and_then(&Json::EnsureMovOrError<NJson::Array>)
 
                 .transform(s_printAlbums);
 }

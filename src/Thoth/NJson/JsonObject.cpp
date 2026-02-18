@@ -113,18 +113,13 @@ OptCRefValWrapper JsonObject::Get(JsonObjKeyRef key) const {
     return std::nullopt;
 }
 
-CRefValWrapperOrNull JsonObject::GetOrNull(JsonObjKeyRef key) const {
-    return Get(key).value_or(&NullJ);
-}
-
-
 OptValWrapper JsonObject::GetCopy(JsonObjKeyRef key) const {
     if (const auto it{ _pairs.find(key) }; it != _pairs.end())
         return it->second;
     return std::nullopt;
 }
 
-ValWrapperOrNull JsonObject::GetOrNullCopy(JsonObjKeyRef key) const {
+ValWrapper JsonObject::GetCopyOrNull(JsonObjKeyRef key) const {
     return GetCopy(key).value_or(NullJ);
 }
 
@@ -135,7 +130,7 @@ OptValWrapper JsonObject::GetAndMove(JsonObjKeyRef key) && {
     return std::nullopt;
 }
 
-ValWrapperOrNull JsonObject::GetOrNullAndMove(JsonObjKeyRef key) && {
+ValWrapper JsonObject::GetOrNullAndMove(JsonObjKeyRef key) && {
     if (const auto it{ _pairs.find(key) }; it != _pairs.end())
         return std::move(it->second);
     return NullJ;

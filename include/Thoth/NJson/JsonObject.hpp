@@ -1,7 +1,6 @@
 #pragma once
 #include <optional>
 #include <format>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -78,28 +77,14 @@ namespace Thoth::NJson {
         //! @param key The key.
         //! @return JsonVal* if the key exists, std::nullopt otherwise.
         OptRefValWrapper Get(JsonObjKeyRef key);
-
         //! @brief Get the reference of a key but don't create if it not exists.
         //! @param key The key.
         //! @return const JsonVal* if the key exists, std::nullopt otherwise.
         [[nodiscard]] OptCRefValWrapper Get(JsonObjKeyRef key) const;
-
-
-        //! @brief Get the reference of a key or return null if it not exists.
-        //! @param key The key.
-        //! @return const JsonVal* if the key exists, NullV otherwise.
-        [[nodiscard]] CRefValWrapperOrNull GetOrNull(JsonObjKeyRef key) const;
-
         //! @brief Copy of a value if it exists.
         //! @param key The key.
         //! @return const JsonVal* if the key exists, std::nullopt otherwise.
         [[nodiscard]] OptValWrapper GetCopy(JsonObjKeyRef key) const;
-
-        //! @brief Copy of a value or return null if it not exists.
-        //! @param key The key.
-        //! @return const JsonVal* if the key exists, NullV otherwise.
-        [[nodiscard]] ValWrapperOrNull GetOrNullCopy(JsonObjKeyRef key) const;
-
         //! @brief Copy of a value if it exists.
         //! @param key The key.
         //! @return const JsonVal* if the key exists, std::nullopt otherwise.
@@ -108,7 +93,11 @@ namespace Thoth::NJson {
         //! @brief Copy of a value or return null if it not exists.
         //! @param key The key.
         //! @return const JsonVal* if the key exists, NullV otherwise.
-        ValWrapperOrNull GetOrNullAndMove(JsonObjKeyRef key) &&;
+        [[nodiscard]] ValWrapper GetCopyOrNull(JsonObjKeyRef key) const;
+        //! @brief Copy of a value or return null if it not exists.
+        //! @param key The key.
+        //! @return const JsonVal* if the key exists, NullV otherwise.
+        ValWrapper GetOrNullAndMove(JsonObjKeyRef key) &&;
 
 
 

@@ -7,13 +7,12 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, RequestError> PrintInfo(string_view id) {
-#pragma region Aliases and Key definitions
+std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view id) {
+#pragma region Aliases
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
 
     using Thoth::NJson::Key;
-    using CRef = Thoth::NJson::CRefValWrapper;
 
     using Thoth::NJson::Json;
     using Thoth::NJson::Array;
@@ -21,15 +20,6 @@ std::expected<std::monostate, RequestError> PrintInfo(string_view id) {
 
 
     using std::operator ""s;
-
-    std::array<Key, 8> musicTabKeys{ "contents", "singleColumnBrowseResultsRenderer", "tabs",
-                0, "tabRenderer", "content", "sectionListRenderer", "contents" };
-    std::array<Key, 2> tabContentKeys{ "musicCarouselShelfRenderer", "contents" };
-    std::array<Key, 7> tabTitleKeys{ "musicCarouselShelfRenderer", "header",
-                "musicCarouselShelfBasicHeaderRenderer", "title", "runs", 0, "text" };
-    std::array<Key, 5> albumNameKeys{ "musicTwoRowItemRenderer", "title", "runs", 0, "text" };
-    std::array<Key, 4> moreContentButtonKeys{ "musicCarouselShelfRenderer", "header",
-                "musicCarouselShelfBasicHeaderRenderer", "moreContentButton" };
 #pragma endregion
 
     using Obj = Thoth::NJson::JsonObject;

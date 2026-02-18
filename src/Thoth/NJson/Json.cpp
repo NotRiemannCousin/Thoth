@@ -220,7 +220,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
 
     // surrogate?
     if (0xD800 <= h && h <= 0xDBFF) {
-        if (s.size() < 1 || s[0] != '\\') return false;
+        if (s.empty() || s[0] != '\\') return false;
         s.remove_prefix(1);
 
         uint16_t l;
@@ -427,7 +427,7 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
         input.remove_prefix(1);
         ADVANCE_SPACES();
 
-        if (array.size() == 0 && *input.data() == ']')
+        if (array.empty() && *input.data() == ']')
             break;
 
         array.emplace_back(NullV);
@@ -521,7 +521,7 @@ std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool c
 #undef CASE_OPEN_ARRAY
 
 
-constexpr auto ResolveKeys = Thoth::Utils::Overloaded{
+constexpr auto s_resolveKeys = Thoth::Utils::Overloaded{
     [](auto& curr, const int index) -> bool {
         if (!Json::IsOfType<Array>(**curr))
             return false;
@@ -558,87 +558,125 @@ constexpr auto ResolveKeys = Thoth::Utils::Overloaded{
     }
 };
 
-OptRefValWrapper Json::Get(Key key) {
+#define RESOLVE_KEY_AND_RETURN(expected, error) \
+        if (!std::visit([&](const auto& k){ return s_resolveKeys(curr, k); }, key)) \
+            return error; \
+        return expected;
+
+#pragma region Get Functions
+
+OptRefValWrapper Json::Get(const Key key) {
     OptRefValWrapper curr{ this };
-
-    if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
-        return std::nullopt;
-
-    return curr;
+    RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-
-OptCRefValWrapper Json::Get(Key key) const {
+OptCRefValWrapper Json::Get(const Key key) const {
     OptCRefValWrapper curr{ this };
-
-    if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
-        return std::nullopt;
-
-    return curr;
+    RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-
-OptValWrapper Json::GetCopy(Key key) const {
+OptValWrapper Json::GetCopy(const Key key) const {
     OptCRefValWrapper curr{ this };
-
-    if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
-        return std::nullopt;
-
-    return curr;
+    RESOLVE_KEY_AND_RETURN(*curr, std::nullopt);
+}
+OptValWrapper Json::GetAndMove(const Key key) && {
+    OptRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(std::move(**curr), std::nullopt);
 }
 
-OptValWrapper Json::GetAndMove(Key key) && {
+
+ValWrapper Json::GetCopyOrNull(const Key key) const {
+    OptCRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(**curr, NullJ);
+}
+ValWrapper Json::GetAndMoveOrNull(const Key key) && {
     OptRefValWrapper curr{ this };
-
-    if (!std::visit([&](const auto& k) { return ResolveKeys(curr, k); }, key))
-        return std::nullopt;
-
-    return std::move(**curr);
+    RESOLVE_KEY_AND_RETURN(std::move(**curr), NullJ);
 }
 
-OptRefValWrapper Json::Find(Keys keys) {
-    OptRefValWrapper curr{ this };
 
+#define KEY_NOT_FOUND std::unexpected{ RequestError{ JsonGetError{ key } } }
+
+ExpRefValWrapper Json::GetOrError(const Key key) {
+    OptRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
+}
+ExpCRefValWrapper Json::GetOrError(const Key key) const {
+    OptCRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
+}
+ExpValWrapper Json::GetCopyOrError(const Key key) const {
+    OptCRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(**curr, KEY_NOT_FOUND);
+}
+ExpValWrapper Json::GetAndMoveOrError(const Key key) && {
+    OptRefValWrapper curr{ this };
+    RESOLVE_KEY_AND_RETURN(std::move(**curr), KEY_NOT_FOUND);
+}
+
+#undef KEY_NOT_FOUND
+#pragma endregion
+
+#pragma region Find Functions
+
+OptRefValWrapper Json::Find(const Keys keys) {
+    OptRefValWrapper curr{ this };
     for (const auto& key : keys)
-        if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
-            return std::nullopt;
-
-    return curr;
+        RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-
-OptCRefValWrapper Json::Find(Keys keys) const {
+OptCRefValWrapper Json::Find(const Keys keys) const {
     OptCRefValWrapper curr{ this };
-
     for (const auto& key : keys)
-        if (!std::visit([&](const auto& k){ return ResolveKeys(curr, k); }, key))
-            return std::nullopt;
-
-    return curr;
+        RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
+}
+OptValWrapper Json::FindCopy(const Keys keys) const {
+    OptCRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(**curr, std::nullopt);
+}
+OptValWrapper Json::FindAndMove(const Keys keys) && {
+    OptRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(std::move(**curr), std::nullopt);
 }
 
 
-RefValWrapperOrNull Json::FindOrNull(Keys keys) {
-    return Find(keys).value_or(&NullJ);
+ValWrapper Json::FindCopyOrNull(const Keys keys) const {
+    OptCRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(**curr, NullJ);
+}
+ValWrapper Json::FindAndMoveOrNull(const Keys keys) && {
+    OptRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(std::move(**curr), NullJ);
 }
 
-CRefValWrapperOrNull Json::FindOrNull(Keys keys) const {
-    return Find(keys).value_or(&NullJ);
+
+#define KEY_NOT_FOUND std::unexpected{ RequestError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
+
+ExpRefValWrapper Json::FindOrError(const Keys keys) {
+    OptRefValWrapper curr{ this };
+    auto sla = keys | std::ranges::to<std::vector>();
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
 
-OptValWrapper Json::FindCopy(Keys keys) const {
-    return **Find(keys);
+ExpCRefValWrapper Json::FindOrError(const Keys keys) const {
+    OptCRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
 
-ValWrapperOrNull Json::FindOrNullCopy(Keys keys) const {
-    return FindCopy(keys).value_or(NullJ);
+ExpValWrapper Json::FindCopyOrError(const Keys keys) const {
+    OptCRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(**curr, KEY_NOT_FOUND);
 }
 
-OptValWrapper Json::FindAndMove(Keys key) && {
-    auto ptr{ Find(key) };
-    if (!ptr) return NullJ;
-
-    return std::move(**ptr);
+ExpValWrapper Json::FindAndMoveOrError(const Keys keys) && {
+    OptRefValWrapper curr{ this };
+    for (const auto& key : keys)
+        RESOLVE_KEY_AND_RETURN(std::move(**curr), KEY_NOT_FOUND);
 }
 
-// ValWrapperOrNull Json::FindOrNullAndMove(Keys keys) && {
-//     Null dummy;
-//     return FindAndMove(keys).value_or(std::move(dummy));
-// }
+
+#pragma endregion

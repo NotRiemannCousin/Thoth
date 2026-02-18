@@ -8,72 +8,10 @@
 #include <concepts>
 #include <span>
 
-#include <Thoth/Dsa/Cow.hpp>
-#include <Thoth/NJson/StringRef.hpp>
-
-namespace Thoth::Http {
-    struct RequestError;
-}
+#include <Thoth/NJson/Definitions.hpp>
+#include <Thoth/Http/RequestError.hpp>
 
 namespace Thoth::NJson {
-    struct JsonObject;
-    struct Json;
-
-
-    using Null   = std::monostate;                   // null
-    using String = Dsa::Cow<StringRef, std::string>; // string
-    using Number = long double;                      // number
-    using Bool   = bool;                             // bool
-    using Object = std::unique_ptr<JsonObject>;      // {Object}
-    using Array  = std::vector<Json>;                // [Array]
-
-    namespace Details {
-        struct BufferInfo {
-            std::string_view bufferView;
-            std::shared_ptr<std::string> buffer;
-        };
-
-        static bool ReadString(std::string_view& input, auto& val, const BufferInfo& info);
-        static bool ReadNumber(std::string_view& input, auto& val);
-        static bool ReadObject(std::string_view& input, auto& val, const BufferInfo& info);
-        static bool ReadBool  (std::string_view& input, auto& val);
-        static bool ReadNull  (std::string_view& input, auto& val);
-        static bool ReadArray (std::string_view& input, auto& val, const BufferInfo& info);
-    }
-
-
-#pragma region Wappers for std::optional and std::expected
-    using RefValWrapper = Json*;
-    using CRefValWrapper = const Json*;
-
-    using OptRefValWrapper = std::optional<RefValWrapper>;
-    using OptCRefValWrapper = std::optional<CRefValWrapper>;
-
-    using RefValWrapperOrNull = RefValWrapper;
-    using CRefValWrapperOrNull = CRefValWrapper;
-
-    using ValWrapper = Json;
-    using CValWrapper = const Json;
-
-    using OptValWrapper = std::optional<ValWrapper>;
-    using OptCValWrapper = std::optional<CValWrapper>;
-
-    using ValWrapperOrNull = ValWrapper;
-    using CValWrapperOrNull = CValWrapper;
-#pragma endregion
-
-
-
-    using JsonObjKey    = std::string;
-    using JsonObjKeyRef = std::string_view;
-
-    using Key  = std::variant<int, JsonObjKey>;
-    using Keys = std::span<const Key>;
-
-
-    template<class ...T>
-    requires ((std::unsigned_integral<T> || std::convertible_to<T, std::string_view>) &&...)
-    auto MakeKeys(const T&... keys) { return std::array<Key, sizeof...(T)>{ (keys, ...) }; }
 
     struct Json{
         using Value = std::variant<Null, String, Number, Bool, Object, Array>;
@@ -155,14 +93,28 @@ namespace Thoth::NJson {
         template<class T>
         std::optional<const T*> EnsureRef() const;
 
+        template<class T>
+        std::expected<T*, Http::RequestError> EnsureOrError();
+        template<class T>
+        std::expected<T*, Http::RequestError> EnsureOrError() const;
+
+        template<class T>
+        std::expected<T*, Http::RequestError> EnsureMutOrError();
+        template<class T>
+        std::expected<T, Http::RequestError> EnsureMovOrError() &&;
+        template<class T>
+        std::expected<const T*, Http::RequestError> EnsureRefOrError() const;
+
         [[nodiscard]] bool operator==(const Json& other) const;
 
         //! @brief Tries to parse the Json from a string.
+        //! @details Requires only one parameter so it's convenient to monads. Calls ParseText with default parameters.
         //! @param input the text to parse.
+        //! @return A Json if the parse success, std::nullopt otherwise.
         static std::expected<Json, Http::RequestError> Parse(std::string_view input);
 
 
-        //! @brief Tries to parse the Json from a string.
+        //! @copybrief Parse
         //! @param input the text to parse.
         //! @param copyData copy the input to an internal buffer if true, keeps a reference otherwise.
         //! @param checkFinal ensure that there is only space chars after the end of the json.
@@ -170,77 +122,114 @@ namespace Thoth::NJson {
         static std::expected<Json, Http::RequestError> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
 
 
+#pragma region Get Functions
+        //! @{
+        //! @name Get Functions
+        //! Will get the direct child of this element with a given key/index.
 
-        //! @brief Return the element with this index/key if this is an Object or Array. Return std::nullopt otherwise.
+        //! @brief Return a ref of the element with this index/key if this is an Object or Array, std::nullopt otherwise.
         OptRefValWrapper Get(Key key);
-        //! @brief Return the element with this index/key if this is an Object or Array. Return std::nullopt otherwise.
+        //! @copybrief Get
         [[nodiscard]] OptCRefValWrapper Get(Key key) const;
-        //! @brief Return a copy of the element with this index/key if this is an Object or Array. Return std::nullopt
-        //! otherwise.
+        //! @brief Return a copy of the element with this index/key if this is an Object or Array, std::nullopt otherwise.
         [[nodiscard]] OptValWrapper GetCopy(Key key) const;
-        //! @brief Move the element with this index/key if this is an Object or Array. Return std::nullopt otherwise.
+        //! @brief Return (with move) the element with this index/key if this is an Object or Array, std::nullopt otherwise.
         OptValWrapper GetAndMove(Key key) &&;
 
 
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        //! @brief Return a copy of the element with this index/key if this is an Object or Array, null otherwise.
+        [[nodiscard]] ValWrapper GetCopyOrNull(Key key) const;
+        //! @brief Move the element with this index/key if this is an Object or Array, null otherwise.
+        ValWrapper GetAndMoveOrNull(Key key) &&;
+
+
+        //! @brief Return a ref of the element with this index/key if this is an Object or Array, RequestError otherwise.
+        ExpRefValWrapper GetOrError(Key key);
+        //! @copybrief GetOrError
+        [[nodiscard]] ExpCRefValWrapper GetOrError(Key key) const;
+        //! @brief Return a copy of the element with this index/key if this is an Object or Array, RequestError otherwise.
+        [[nodiscard]] ExpValWrapper GetCopyOrError(Key key) const;
+        //! @brief Move the element with this index/key if this is an Object or Array. Return RequestError otherwise.
+        ExpValWrapper GetAndMoveOrError(Key key) &&;
+
+        //! @}
+
+#pragma endregion
+
+#pragma region Find Functions
+        //! @{
+        //! @name Find Functions
+        //! Will find a nested child in the tree. Something like `["data"][-1]["contents"][0]["name"]`.
+
+        //! @brief Same as successive calls to Get, std::nullopt at the first fail.
         OptRefValWrapper Find(Keys keys);
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
+        //! @copybrief Find
         [[nodiscard]] OptCRefValWrapper Find(Keys keys) const;
-
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        RefValWrapperOrNull FindOrNull(Keys keys);
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        [[nodiscard]] CRefValWrapperOrNull FindOrNull(Keys keys) const;
-
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
+        //! @brief Same as successive calls to GetCopy, std::nullopt at the first fail.
         [[nodiscard]] OptValWrapper FindCopy(Keys keys) const;
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        [[nodiscard]] ValWrapperOrNull FindOrNullCopy(Keys keys) const;
+        //! @brief Same as successive calls to GetAndMove, std::nullopt at the first fail.
+        OptValWrapper FindAndMove(Keys keys) &&;
 
 
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        OptValWrapper FindAndMove(Keys key) &&;
-        // //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        // ValWrapperOrNull FindOrNullAndMove(Keys key) &&;
+        //! @brief Same as successive calls to GetCopy. Return null at the first fail.
+        [[nodiscard]] ValWrapper FindCopyOrNull(Keys keys) const;
+        //! @brief Same as successive calls to GetAndMove. Return null at the first fail.
+        ValWrapper FindAndMoveOrNull(Keys keys) &&;
 
 
+        //! @brief Same as successive calls to Get. Return RequestError at the first fail.
+        ExpRefValWrapper FindOrError(Keys keys);
+        //! @copybrief FindOrError
+        [[nodiscard]] ExpCRefValWrapper FindOrError(Keys keys) const;
+        //! @brief Same as successive calls to GetCopy. Return RequestError at the first fail.
+        [[nodiscard]] ExpValWrapper FindCopyOrError(Keys keys) const;
+        //! @brief Same as successive calls to Find. Return RequestError at the first fail.
+        ExpValWrapper FindAndMoveOrError(Keys keys) &&;
 
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
+        //! @}
+#pragma endregion
+
+#pragma region Search Functions
+        //! @{
+        //! @name Search Functions
+        //! Will pick the fist element that satisfies the given predicate.
+
+        //! @brief Will search the childs for the first element that matches the predicate and return it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         OptRefValWrapper Search(Pred&& pred);
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
+        //! @copybrief Search
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] OptCRefValWrapper Search(Pred&& pred) const;
-
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
-        RefValWrapperOrNull SearchOrNull(Pred&& pred);
-        //! @brief Same as successive calls to Get. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
-        [[nodiscard]] CRefValWrapperOrNull SearchOrNull(Pred&& pred) const;
-
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] OptValWrapper SearchCopy(Pred&& pred) const;
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
-        [[nodiscard]] ValWrapperOrNull SearchOrNullCopy(Pred&& pred) const;
-
-
-        //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        template<class Pred = PredicatePointer>
-            requires std::predicate<Pred, Json>
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         OptValWrapper SearchAndMove(Pred&& pred) &&;
-        // //! @brief Same as successive calls to GetCopy. Return std::nullopt at the first fail.
-        // template<class Pred = PredicatePointer>
-        //     requires std::predicate<Pred, Json>
-        // ValWrapperOrNull SearchOrNullAndMove(Pred&& pred) &&;
+
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or RequestError if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        [[nodiscard]] ValWrapper SearchCopyOrNull(Pred&& pred) const;
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or RequestError if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        ValWrapper SearchAndMoveOrNull(Pred&& pred);
+
+
+        //! @brief Will search the childs for the first element that matches the predicate and return it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        ExpRefValWrapper SearchOrError(Pred&& pred);
+        //! @copybrief SearchOrError
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        [[nodiscard]] ExpCRefValWrapper SearchOrError(Pred&& pred) const;
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        [[nodiscard]] ExpValWrapper SearchCopyOrError(Pred&& pred) const;
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt if no matches.
+        template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
+        ExpValWrapper SearchAndMoveOrError(Pred&& pred) &&;
+
+        //! @}
+#pragma endregion
 
 
         //! @brief convenient call to std::visit() on _value.

@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::NJson::RequestError> PrintInfo(string_view id) {
+std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -87,10 +87,7 @@ std::expected<std::monostate, Thoth::NJson::RequestError> PrintInfo(string_view 
                 .and_then(NHttp::Client::Send<Thoth::Http::PostMethod>)
                 .and_then(&NHttp::PostResponse::AsJson)
 
-                .transform(std::bind_back(&Json::FindAndMove, musicTabKeys))
-                .and_then(Utils::ValueOrHof<Json>("Json structure mismatch."s))
-
-                .and_then(Utils::ErrorIfNotHof<&Json::IsOf<Array>>("Json structure mismatch."s))
+                .and_then(std::bind_back(&Json::FindAndMoveOrError, musicTabKeys))
                 .transform(s_printCollections);
 }
 

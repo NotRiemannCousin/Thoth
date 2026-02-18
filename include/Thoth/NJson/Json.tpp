@@ -2,6 +2,7 @@
 #include <format>
 #include <ranges>
 
+#include <Thoth/Http/RequestError.hpp>
 #include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Thoth/Utils/Overloads.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
@@ -76,40 +77,70 @@ namespace Thoth::NJson {
         return std::get<T>(_value);
     }
 
-    template<class T>
-    std::optional<T *> Json::Ensure() {
-        if (IsOf<T>())
-            return &As<T>();
-        return std::nullopt;
-    }
+#pragma region Ensure
+#pragma push_macro("CHECK_TYPE")
+#undef CHECK_TYPE
+#define CHECK_TYPE(happyPath, badPath) \
+    if (IsOf<T>()) \
+        return happyPath; \
+    return badPath;
 
     template<class T>
-    std::optional<T *> Json::Ensure() const {
-        if (IsOf<T>())
-            return &As<T>();
-        return std::nullopt;
+    std::optional<T*> Json::Ensure() {
+        CHECK_TYPE(&As<T>(), std::nullopt);
     }
-
     template<class T>
-    std::optional<T *> Json::EnsureMut() {
-        if (IsOf<T>())
-            return &As<T>();
-        return std::nullopt;
+    std::optional<T*> Json::Ensure() const {
+        CHECK_TYPE(&As<T>(), std::nullopt);
     }
-
     template<class T>
-    std::optional<const T *> Json::EnsureRef() const {
-        if (IsOf<T>())
-            return &AsRef<T>();
-        return std::nullopt;
+    std::optional<T*> Json::EnsureMut() {
+        CHECK_TYPE(&As<T>(), std::nullopt);
     }
-
+    template<class T>
+    std::optional<const T*> Json::EnsureRef() const {
+        CHECK_TYPE(&As<T>(), std::nullopt);
+    }
     template<class T>
     std::optional<T> Json::EnsureMov() && {
-        if (IsOf<T>())
-            return std::move(As<T>());
-        return std::nullopt;
+        CHECK_TYPE(std::move(As<T>()), std::nullopt);
     }
+#pragma endregion
+
+#pragma region EnsureOrError
+#pragma push_macro("ERROR")
+#undef ERROR
+#define ERROR \
+    std::unexpected{ Http::RequestError{ Http::JsonWrongTypeError{ \
+        Http::JsonWrongTypeError::IndexOf<T>, \
+        _value.index() \
+    } } }
+
+
+    template<class T>
+    std::expected<T*, Http::RequestError> Json::EnsureOrError() {
+        CHECK_TYPE(&As<T>(), ERROR);
+    }
+    template<class T>
+    std::expected<T*, Http::RequestError> Json::EnsureOrError() const {
+        CHECK_TYPE(&As<T>(), ERROR);
+    }
+    template<class T>
+    std::expected<T*, Http::RequestError> Json::EnsureMutOrError() {
+        CHECK_TYPE(&As<T>(), ERROR);
+    }
+    template<class T>
+    std::expected<const T*, Http::RequestError> Json::EnsureRefOrError() const {
+        CHECK_TYPE(&AsRef<T>(), ERROR);
+    }
+    template<class T>
+    std::expected<T, Http::RequestError> Json::EnsureMovOrError() && {
+        CHECK_TYPE(std::move(As<T>()), ERROR);
+    }
+
+#pragma pop_macro("ERROR")
+#pragma pop_macro("CHECK_TYPE")
+#pragma endregion
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
@@ -122,77 +153,78 @@ namespace Thoth::NJson {
     }
 
 
+#pragma region Search Functions
+#pragma push_macro("RETURN_IF_MATCH")
+#undef RETURN_IF_MATCH
+#define RETURN_IF_MATCH(declaration, expr) \
+    if (IsOf<Array>()) { \
+        for (declaration : As<Array>()) \
+            if (std::invoke(pred, obj)) \
+                return expr; \
+    } \
+    if (IsOf<Object>()) { \
+        for (declaration : *As<Object>() | std::views::values)\
+            if (std::invoke(pred, obj)) \
+                return expr; \
+    }
 
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
+    template <class Pred> requires std::predicate<Pred, Json>
     OptRefValWrapper Json::Search(Pred&& pred) {
-        if (IsOf<Array>()) {
-            for (auto &obj : As<Array>())
-                if (std::invoke(pred, obj))
-                    return &obj;
-        }
-        if (IsOf<Object>()) {
-            for (auto &obj: *As<Object>() | std::views::values)
-                if (std::invoke(pred, obj))
-                    return &obj;
-        }
-
+        RETURN_IF_MATCH(auto &obj, &obj);
         return std::nullopt;
     }
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
+    template <class Pred> requires std::predicate<Pred, Json>
     [[nodiscard]] OptCRefValWrapper Json::Search(Pred&& pred) const {
-        if (IsOf<Array>()) {
-            for (const auto &obj : As<Array>())
-                if (std::invoke(pred, obj))
-                    return &obj;
-        }
-        if (IsOf<Object>()) {
-            for (const auto &obj: *As<Object>() | std::views::values)
-                if (std::invoke(pred, obj))
-                    return &obj;
-        }
+        RETURN_IF_MATCH(const auto &obj, &obj);
+        return std::nullopt;
+    }
+    template<class Pred> requires std::predicate<Pred, Json>
+    OptValWrapper Json::SearchCopy(Pred &&pred) const {
+        RETURN_IF_MATCH(const auto &obj, obj);
+        return std::nullopt;
+    }
+    template<class Pred> requires std::predicate<Pred, Json>
+    OptValWrapper Json::SearchAndMove(Pred &&pred) && {
+        RETURN_IF_MATCH(auto &obj, std::move(obj));
         return std::nullopt;
     }
 
 
-    template <class Pred>
-        requires std::predicate<Pred, Json>
-    RefValWrapperOrNull Json::SearchOrNull(Pred&& pred) {
-        return Search(std::forward<Pred>(pred)).or_value(NullJ);
+    template<class Pred> requires std::predicate<Pred, Json>
+    ValWrapper Json::SearchCopyOrNull(Pred &&pred) const {
+        RETURN_IF_MATCH(auto &obj, obj);
+        return NullJ;
     }
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
-    [[nodiscard]] CRefValWrapperOrNull Json::SearchOrNull(Pred&& pred) const {
-        return Search(std::forward<Pred>(pred)).or_value(NullJ);
-    }
-
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
-    [[nodiscard]] OptValWrapper Json::SearchCopy(Pred&& pred) const {
-        return Search(std::forward<Pred>(pred))
-            .transform([](const auto& ref){ return ref.get(); });
-    }
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
-    [[nodiscard]] ValWrapperOrNull Json::SearchOrNullCopy(Pred&& pred) const {
-        return SearchCopy(std::forward<Pred>(pred)).value_or(NullJ);
+    template<class Pred> requires std::predicate<Pred, Json>
+    ValWrapper Json::SearchAndMoveOrNull(Pred &&pred) {
+        RETURN_IF_MATCH(auto &obj, std::move(obj));
+        return NullJ;
     }
 
 
-
-    template <class Pred>
-        requires std::predicate<Pred, Json>
-    OptValWrapper Json::SearchAndMove(Pred&& pred) && {
-        return Search(std::forward<Pred>(pred))
-                .transform([](OptValWrapper v){ return std::move(v.value()); })
-                .value_or(NullJ);
+    template<class Pred> requires std::predicate<Pred, Json>
+    ExpRefValWrapper Json::SearchOrError(Pred &&pred) {
+        RETURN_IF_MATCH(auto &obj, &obj);
+        return std::unexpected{ Http::RequestError{ Http::JsonSearchError{} } };
     }
+    template<class Pred> requires std::predicate<Pred, Json>
+    ExpCRefValWrapper Json::SearchOrError(Pred &&pred) const {
+        RETURN_IF_MATCH(auto &obj, &obj);
+        return std::unexpected{ Http::RequestError{ Http::JsonSearchError{} } };
+    }
+    template<class Pred> requires std::predicate<Pred, Json>
+    ExpValWrapper Json::SearchCopyOrError(Pred &&pred) const {
+        RETURN_IF_MATCH(auto &obj, obj);
+        return std::unexpected{ Http::RequestError{ Http::JsonSearchError{} } };
+    }
+    template<class Pred> requires std::predicate<Pred, Json>
+    ExpValWrapper Json::SearchAndMoveOrError(Pred &&pred) && {
+        RETURN_IF_MATCH(auto &obj, std::move(obj));
+        return std::unexpected{ Http::RequestError{ Http::JsonSearchError{} } };
+    }
+
+#pragma pop_macro("RETURN_IF_MATCH")
+#pragma endregion
 
     namespace detail {
         using OutIt =  std::format_context::iterator;
@@ -304,7 +336,7 @@ namespace Thoth::NJson {
             std::visit(Utils::Overloaded{
                 [&](const String& str){
                     str.Visit(Utils::Overloaded{
-                        [&](const String::RefType  ref) {
+                        [&](const String::RefType ref) {
                             std::format_to(it, R"("{}")", ref);
                         },
                         [&](const String::OwnType& own) {

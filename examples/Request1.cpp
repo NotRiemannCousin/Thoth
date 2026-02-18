@@ -15,17 +15,15 @@ std::expected<std::vector<Json>, NHttp::RequestError> GetMembers(size_t id) {
 
     //trying to make the request, send to the server and then convert the body to JSON.
     return NHttp::GetRequest::FromUrl(std::format("https://api.discogs.com/artists/{}", id))
-            // At the current moment every error in this string is given by a string, but it will be changed
-            // to enums/proper structs in the future.
+            // All these functions have the same error type `RequestError`, a std::variant with each specific error.
             .and_then(NHttp::Client::Send<>)
             .and_then(&NHttp::GetResponse::AsJson)
 
             // selecting "members" in the first object
-            .transform(std::bind_back(&Json::GetAndMove, "members" ))
+            .and_then(std::bind_back(&Json::GetAndMoveOrError, "members" ))
 
-            // ensuring that it is an array
-            .transform(&Json::EnsureMov<NJson::Array>)
-            .and_then(Utils::ValueOrHof<NJson::Array>("'members' array doesn't exist."s));
+            // making sure that it's an array
+            .and_then(&Json::EnsureMovOrError<NJson::Array>);
 }
 
 
