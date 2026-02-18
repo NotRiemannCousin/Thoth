@@ -5,6 +5,7 @@ var _request_error_8hpp =
     [ "Thoth::Http::JsonFindError", "struct_thoth_1_1_http_1_1_json_find_error.html", "struct_thoth_1_1_http_1_1_json_find_error" ],
     [ "Thoth::Http::JsonSearchError", "struct_thoth_1_1_http_1_1_json_search_error.html", null ],
     [ "Thoth::Http::JsonWrongTypeError", "struct_thoth_1_1_http_1_1_json_wrong_type_error.html", "struct_thoth_1_1_http_1_1_json_wrong_type_error" ],
+    [ "Thoth::Http::GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
     [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
     [ "ConnectionErrorEnum", "_request_error_8hpp.html#a89c6c47a492bb9cbf14a3c3e52db31f2", null ],
     [ "RequestBuildErrorEnum", "_request_error_8hpp.html#aa8d8efa0ddb373019ec0b443a2ae4673", [

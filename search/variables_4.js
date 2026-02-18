@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['idx_0',['idx',['../struct_thoth_1_1_http_1_1_json_parse_error.html#afcda06c997e3c6ca8d66eb8dcb11c045',1,'Thoth::Http::JsonParseError']]],
-  ['idxexpected_1',['idxExpected',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#a45d62bfe2a443465cfeee2f33569051e',1,'Thoth::Http::JsonWrongTypeError']]],
-  ['idxgot_2',['idxGot',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#afcc395e9d1f3b0f341f3a85ade6ec5eb',1,'Thoth::Http::JsonWrongTypeError']]],
-  ['indexof_3',['IndexOf',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#ac8c8343c928efd2b808b85135ec58e20',1,'Thoth::Http::JsonWrongTypeError']]]
+  ['headers_0',['headers',['../struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a0a5ac4080b3cdf37407ae2313c70dc2f',1,'Thoth::Http::Client::HttpData::headers'],['../struct_thoth_1_1_http_1_1_request.html#a0baed688b7e42712778724303bebb352',1,'Thoth::Http::Request::headers'],['../struct_thoth_1_1_http_1_1_response.html#a737bb10aea90ad36ae3a239542768336',1,'Thoth::Http::Response::headers']]],
+  ['host_1',['host',['../struct_thoth_1_1_http_1_1_url.html#a4bc0faff16981b0b0a784582a90104bc',1,'Thoth::Http::Url']]]
 ];

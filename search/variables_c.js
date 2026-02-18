@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['version_0',['version',['../struct_thoth_1_1_http_1_1_socket.html#ac3ef953f567e3b75fb638b3348cd7967',1,'Thoth::Http::Socket::version'],['../struct_thoth_1_1_http_1_1_client_1_1_http_data.html#aa5a6adef1717524bbeecf9e3312e5d2d',1,'Thoth::Http::Client::HttpData::version'],['../struct_thoth_1_1_http_1_1_request.html#a243528e0412b0cad94c2f5bf74b21b94',1,'Thoth::Http::Request::version'],['../struct_thoth_1_1_http_1_1_response.html#a216cb05cdaf491d49e09b7cab1740982',1,'Thoth::Http::Response::version']]],
-  ['view_1',['view',['../struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html#a461af38c6991843e1a59b51d0c7bfbcd',1,'Thoth::Utils::SharedInputView::Iterator']]]
+  ['unknownchar_0',['UnknownChar',['../namespace_thoth_1_1_string.html#ab59da787e3f16012202445597fa7bc3c',1,'Thoth::String']]],
+  ['url_1',['url',['../struct_thoth_1_1_http_1_1_request.html#a494284cc116479cd271f654b4d5a8103',1,'Thoth::Http::Request']]],
+  ['user_2',['user',['../struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500',1,'Thoth::Http::Url']]]
 ];

@@ -6,6 +6,7 @@ var hierarchy =
     [ "Thoth::Http::ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
     [ "Thoth::Dsa::Cow< RefT, OwnT >", "struct_thoth_1_1_dsa_1_1_cow.html", null ],
     [ "Thoth::Http::DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
+    [ "Thoth::Http::GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", null ],
     [ "Thoth::Http::GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
     [ "Thoth::Http::Headers", "struct_thoth_1_1_http_1_1_headers.html", null ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
