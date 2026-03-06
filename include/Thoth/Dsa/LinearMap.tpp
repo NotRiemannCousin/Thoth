@@ -144,7 +144,7 @@ namespace Thoth::Dsa {
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
     template <class LookupKeyT, class MappedT>
-    std::pair<class LinearMap<KeyT, ValT, Pred>::iterator, bool>
+    std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
     constexpr LinearMap<KeyT, ValT, Pred>::try_emplace(LookupKeyT&& key, MappedT&& val) {
         const iterator it{ find_position(key) };
 
