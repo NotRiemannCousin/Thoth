@@ -135,6 +135,7 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_dsa.html',''); ini
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#concepts">Concepts</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Thoth::Dsa Namespace Reference</div></div>
 </div><!--header-->
@@ -145,6 +146,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like Rust's <code>cow</code> (copy on write).  <a href="struct_thoth_1_1_dsa_1_1_cow.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">LinearMap</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -153,6 +156,13 @@ Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_dsa_1_1strong__order__relation.html">strong_order_relation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a6288619c1e8f23eaee72deaa84e1d184" id="r_a6288619c1e8f23eaee72deaa84e1d184"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">TextFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;&gt;</td></tr>
+<tr class="separator:a6288619c1e8f23eaee72deaa84e1d184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6bfb4be382192bfaa27de82985eff25" id="r_ae6bfb4be382192bfaa27de82985eff25"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">BinFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt; std::byte &gt;</td></tr>
+<tr class="separator:ae6bfb4be382192bfaa27de82985eff25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a983986ed84e4da867e6e3fddc69b3fef" id="r_a983986ed84e4da867e6e3fddc69b3fef"><td class="memTemplParams" colspan="2">template&lt;class RefT , class OwnT &gt; <br />
@@ -160,6 +170,35 @@ requires std::constructible_from&lt;OwnT, RefT&gt;</td></tr>
 <tr class="memitem:a983986ed84e4da867e6e3fddc69b3fef"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_dsa.html#a983986ed84e4da867e6e3fddc69b3fef">operator==</a> (const <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a>&lt; RefT, OwnT &gt; &amp;left, const <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a>&lt; RefT, OwnT &gt; &amp;right)</td></tr>
 <tr class="separator:a983986ed84e4da867e6e3fddc69b3fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ae6bfb4be382192bfaa27de82985eff25" name="ae6bfb4be382192bfaa27de82985eff25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6bfb4be382192bfaa27de82985eff25">&#9670;&#160;</a></span>BinFileOutputRange</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">Thoth::Dsa::BinFileOutputRange</a> = typedef <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;std::byte&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6288619c1e8f23eaee72deaa84e1d184" name="a6288619c1e8f23eaee72deaa84e1d184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6288619c1e8f23eaee72deaa84e1d184">&#9670;&#160;</a></span>TextFileOutputRange</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Thoth::Dsa::TextFileOutputRange</a> = typedef <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a983986ed84e4da867e6e3fddc69b3fef" name="a983986ed84e4da867e6e3fddc69b3fef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a983986ed84e4da867e6e3fddc69b3fef">&#9670;&#160;</a></span>operator==()</h2>

@@ -134,12 +134,14 @@ $(document).ready(function(){initNavTree('_client_8hpp.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a>  </div>
   <div class="headertitle"><div class="title">Client.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;Hermes/Socket/ClientSocket.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="_request_8hpp_source.html">Thoth/Http/Request/Request.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_response_8hpp_source.html">Thoth/Http/Response/Response.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_request_error_8hpp_source.html">Thoth/Http/RequestError.hpp</a>&gt;</code><br />
 <code>#include &lt;future&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
@@ -149,7 +151,7 @@ $(document).ready(function(){initNavTree('_client_8hpp.html',''); initResizable(
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Client.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_client_8hpp__incl.svg" width="2264" height="814"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_client_8hpp__incl.svg" width="2838" height="902"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_client_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -163,9 +165,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="The ClientJanitor stores all open Sockets in a pool to optimize consecutive calls....">ClientJanitor</a> stores all open Sockets in a pool to optimize consecutive calls. Only use it if you know what you are doing.  <a href="struct_thoth_1_1_http_1_1_client_janitor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html">Thoth::Http::Client</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method into their responses, monad friendly.  <a href="struct_thoth_1_1_http_1_1_client.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_1_1_http_data.html">Thoth::Http::Client::HttpData</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_1_1_http_data.html">Thoth::Http::Client::HttpData&lt; Body &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record to help construct a response.  <a href="struct_thoth_1_1_http_1_1_client_1_1_http_data.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -174,6 +175,14 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespace_thoth" id="r_namespace_thoth"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_thoth_1_1_http" id="r_namespace_thoth_1_1_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_body_concept.html">Thoth::Http::BodyConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method into their responses, monad friendly. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">Thoth::Http::ResponseBodyFactoryConcept</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

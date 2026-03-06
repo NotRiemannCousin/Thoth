@@ -10,7 +10,7 @@ var searchData=
   ['unused_7',['UNUSED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3bc180bd00be2c60a3a5a68e0dd49503',1,'Thoth::Http']]],
   ['upgrade_5frequired_8',['UPGRADE_REQUIRED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3d13751f7a8fa303bf9e174565f4b3a5',1,'Thoth::Http']]],
   ['uri_5ftoo_5flong_9',['URI_TOO_LONG',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a7b62eb07bf8f336f3cb07d87946bbd98',1,'Thoth::Http']]],
-  ['url_10',['url',['../struct_thoth_1_1_http_1_1_url.html',1,'Thoth::Http::Url'],['../struct_thoth_1_1_http_1_1_request.html#a494284cc116479cd271f654b4d5a8103',1,'Thoth::Http::Request::url']]],
+  ['url_10',['url',['../struct_thoth_1_1_http_1_1_url.html',1,'Thoth::Http::Url'],['../struct_thoth_1_1_http_1_1_request.html#a5e41af1c5fdac059d5585e417b4770fb',1,'Thoth::Http::Request::url']]],
   ['url_2ehpp_11',['Url.hpp',['../_url_8hpp.html',1,'']]],
   ['urlparseerrorenum_12',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]],
   ['use_5fproxy_5fdeprecated_13',['USE_PROXY_DEPRECATED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ad20cdd8243b69100db434ab329139d39',1,'Thoth::Http']]],

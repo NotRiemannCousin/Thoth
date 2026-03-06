@@ -1,8 +1,9 @@
 var struct_thoth_1_1_http_1_1_client_1_1_http_data =
 [
-    [ "body", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a2aa0bd7b8fb6753c1f28abd914c9c1ab", null ],
-    [ "headers", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a0a5ac4080b3cdf37407ae2313c70dc2f", null ],
-    [ "status", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a23e4763f53e988ec767a851c1b2cc18f", null ],
-    [ "statusMessage", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a6add24d40daefe923d6014c2683fb99a", null ],
-    [ "version", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#aa5a6adef1717524bbeecf9e3312e5d2d", null ]
+    [ "HttpData", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#adf4c798cca85c059edb727e9326b8b6f", null ],
+    [ "body", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a655bb09346fbc34529fc6330b3b30092", null ],
+    [ "headers", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a2076d916437691eac0bddac2f1960501", null ],
+    [ "status", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a101cea473b15cb43d8f9d24b505e7683", null ],
+    [ "statusMessage", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#ab4b8ae733847728f21cb213df613767b", null ],
+    [ "version", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a9ae7aabc64328ff595d8c99bd64f61a6", null ]
 ];

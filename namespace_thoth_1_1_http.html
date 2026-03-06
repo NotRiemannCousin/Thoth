@@ -145,7 +145,6 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_http.html',''); in
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html">Client</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method into their responses, monad friendly.  <a href="struct_thoth_1_1_http_1_1_client.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html">ClientJanitor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="The ClientJanitor stores all open Sockets in a pool to optimize consecutive calls....">ClientJanitor</a> stores all open Sockets in a pool to optimize consecutive calls. Only use it if you know what you are doing.  <a href="struct_thoth_1_1_http_1_1_client_janitor.html#details">More...</a><br /></td></tr>
@@ -199,8 +198,21 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_body_concept.html">BodyConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method into their responses, monad friendly. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">ResponseBodyFactoryConcept</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP methods requirements following <a href="https://datatracker.ietf.org/doc/html/rfc9110#method.extensibility">RFC9110</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_sized_request_body_concept.html">SizedRequestBodyConcept</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_chunked_request_body_concept.html">ChunkedRequestBodyConcept</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_request_body_concept.html">RequestBodyConcept</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_concept.html">ResponseBodyConcept</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -209,6 +221,10 @@ Typedefs</h2></td></tr>
 <tr class="separator:ac372604fd377e070576be6639ec2c300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b32b79eda86ad7068fea4156a55f00" id="r_af1b32b79eda86ad7068fea4156a55f00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a> &gt;</td></tr>
 <tr class="separator:af1b32b79eda86ad7068fea4156a55f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa27ef74bf49ef80cc298cff13f00e54d" id="r_aa27ef74bf49ef80cc298cff13f00e54d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#aa27ef74bf49ef80cc298cff13f00e54d">GetBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:aa27ef74bf49ef80cc298cff13f00e54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40901c06a8fb0dc085d434687730956c" id="r_a40901c06a8fb0dc085d434687730956c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a40901c06a8fb0dc085d434687730956c">PostBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:a40901c06a8fb0dc085d434687730956c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9b9011a7b77e1eaac4fabb08a3f3c3d" id="r_ae9b9011a7b77e1eaac4fabb08a3f3c3d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> = std::string_view</td></tr>
 <tr class="separator:ae9b9011a7b77e1eaac4fabb08a3f3c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a686a9f2206a59f6001c471c0881b76e9" id="r_a686a9f2206a59f6001c471c0881b76e9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> = std::string</td></tr>
@@ -219,6 +235,18 @@ Typedefs</h2></td></tr>
 <tr class="separator:a2e0247eccd17fa9bc309eb3a841e4e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d0ffa4a5170ca15ae1ac3f130b7dede" id="r_a9d0ffa4a5170ca15ae1ac3f130b7dede"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a9d0ffa4a5170ca15ae1ac3f130b7dede">PostResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a> &gt;</td></tr>
 <tr class="separator:a9d0ffa4a5170ca15ae1ac3f130b7dede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab13fe41e42e6c41d24faa9ce3b629c" id="r_a5ab13fe41e42e6c41d24faa9ce3b629c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a5ab13fe41e42e6c41d24faa9ce3b629c">GetBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:a5ab13fe41e42e6c41d24faa9ce3b629c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77114e7999af356bb38a7910da4f4a93" id="r_a77114e7999af356bb38a7910da4f4a93"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a77114e7999af356bb38a7910da4f4a93">PostBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:a77114e7999af356bb38a7910da4f4a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f9f982a0c7ce740b6f72d03d5cdefcc" id="r_a1f9f982a0c7ce740b6f72d03d5cdefcc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a1f9f982a0c7ce740b6f72d03d5cdefcc">GetFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Dsa::TextFileOutputRange</a> &gt;</td></tr>
+<tr class="separator:a1f9f982a0c7ce740b6f72d03d5cdefcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4946cfe487bc759632539e71e043b055" id="r_a4946cfe487bc759632539e71e043b055"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a4946cfe487bc759632539e71e043b055">PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Dsa::TextFileOutputRange</a> &gt;</td></tr>
+<tr class="separator:a4946cfe487bc759632539e71e043b055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2cc2d1681ee34bb84987d9e5d49c21" id="r_aca2cc2d1681ee34bb84987d9e5d49c21"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#aca2cc2d1681ee34bb84987d9e5d49c21">GetFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:aca2cc2d1681ee34bb84987d9e5d49c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9afaccadda16af38dcfabfa441b4e7" id="r_a2d9afaccadda16af38dcfabfa441b4e7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a2d9afaccadda16af38dcfabfa441b4e7">PostFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt; std::byte &gt; &gt;</td></tr>
+<tr class="separator:a2d9afaccadda16af38dcfabfa441b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a129f8acf563a2d60f4d2a9ee3812eaf3" id="r_a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a> = std::expected&lt; T, <a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> &gt;</td></tr>
 <tr class="separator:a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -343,6 +371,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8">VersionToString</a> (<a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f">VersionEnum</a> version)</td></tr>
 <tr class="memdesc:a7bedc663bde5f4726625099926f81fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
 <tr class="separator:a7bedc663bde5f4726625099926f81fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;ResponseBodyConcept Body&gt; </td></tr>
+<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a5379080d14ac2dfa264229cc182c7dc1">GetInserterIterator</a> (Body &amp;body)</td></tr>
+<tr class="separator:a5379080d14ac2dfa264229cc182c7dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82a2512e3a342947a207d53e49974abc" id="r_a82a2512e3a342947a207d53e49974abc"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc">GetStatusType</a> (<a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> code)</td></tr>
 <tr class="memdesc:a82a2512e3a342947a207d53e49974abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check what type of code StatusCodeEnum is, the first digit of it's number.  <br /></td></tr>
 <tr class="separator:a82a2512e3a342947a207d53e49974abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -356,6 +387,62 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2">Thoth::Http::ConnectionErrorEnum</a> = typedef Hermes::ConnectionErrorEnum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa27ef74bf49ef80cc298cff13f00e54d" name="aa27ef74bf49ef80cc298cff13f00e54d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa27ef74bf49ef80cc298cff13f00e54d">&#9670;&#160;</a></span>GetBinRequest</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#aa27ef74bf49ef80cc298cff13f00e54d">Thoth::Http::GetBinRequest</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ab13fe41e42e6c41d24faa9ce3b629c" name="a5ab13fe41e42e6c41d24faa9ce3b629c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ab13fe41e42e6c41d24faa9ce3b629c">&#9670;&#160;</a></span>GetBinResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a5ab13fe41e42e6c41d24faa9ce3b629c">Thoth::Http::GetBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca2cc2d1681ee34bb84987d9e5d49c21" name="aca2cc2d1681ee34bb84987d9e5d49c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca2cc2d1681ee34bb84987d9e5d49c21">&#9670;&#160;</a></span>GetFileBinResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#aca2cc2d1681ee34bb84987d9e5d49c21">Thoth::Http::GetFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f9f982a0c7ce740b6f72d03d5cdefcc" name="a1f9f982a0c7ce740b6f72d03d5cdefcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f9f982a0c7ce740b6f72d03d5cdefcc">&#9670;&#160;</a></span>GetFileResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a1f9f982a0c7ce740b6f72d03d5cdefcc">Thoth::Http::GetFileResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Dsa::TextFileOutputRange</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -384,6 +471,62 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a2e0247eccd17fa9bc309eb3a841e4e7f">Thoth::Http::GetResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40901c06a8fb0dc085d434687730956c" name="a40901c06a8fb0dc085d434687730956c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40901c06a8fb0dc085d434687730956c">&#9670;&#160;</a></span>PostBinRequest</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a40901c06a8fb0dc085d434687730956c">Thoth::Http::PostBinRequest</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77114e7999af356bb38a7910da4f4a93" name="a77114e7999af356bb38a7910da4f4a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77114e7999af356bb38a7910da4f4a93">&#9670;&#160;</a></span>PostBinResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a77114e7999af356bb38a7910da4f4a93">Thoth::Http::PostBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d9afaccadda16af38dcfabfa441b4e7" name="a2d9afaccadda16af38dcfabfa441b4e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d9afaccadda16af38dcfabfa441b4e7">&#9670;&#160;</a></span>PostFileBinResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a2d9afaccadda16af38dcfabfa441b4e7">Thoth::Http::PostFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, vector&lt;std::byte&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4946cfe487bc759632539e71e043b055" name="a4946cfe487bc759632539e71e043b055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4946cfe487bc759632539e71e043b055">&#9670;&#160;</a></span>PostFileResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a4946cfe487bc759632539e71e043b055">Thoth::Http::PostFileResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Dsa::TextFileOutputRange</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -678,6 +821,26 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a5379080d14ac2dfa264229cc182c7dc1" name="a5379080d14ac2dfa264229cc182c7dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5379080d14ac2dfa264229cc182c7dc1">&#9670;&#160;</a></span>GetInserterIterator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;ResponseBodyConcept Body&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::GetInserterIterator </td>
+          <td>(</td>
+          <td class="paramtype">Body &amp;&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a82a2512e3a342947a207d53e49974abc" name="a82a2512e3a342947a207d53e49974abc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a82a2512e3a342947a207d53e49974abc">&#9670;&#160;</a></span>GetStatusType()</h2>
 

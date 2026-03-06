@@ -7,9 +7,10 @@ var searchData=
   ['getcopy_4',['getcopy',['../struct_thoth_1_1_n_json_1_1_json.html#acdb998caee0442e99d4cf62ea456c0ba',1,'Thoth::NJson::Json::GetCopy()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a3f9e8ccd1fb57af3e345f9458710312b',1,'Thoth::NJson::JsonObject::GetCopy()']]],
   ['getcopyorerror_5',['GetCopyOrError',['../struct_thoth_1_1_n_json_1_1_json.html#ac28fbbe961f147b1f0bd268ab8ca0f62',1,'Thoth::NJson::Json']]],
   ['getcopyornull_6',['getcopyornull',['../struct_thoth_1_1_n_json_1_1_json.html#ac9e277cbc57e4ecdf34a8bb1a4dfa3e3',1,'Thoth::NJson::Json::GetCopyOrNull()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a295e0d6475e1e8e07efa76a64dd04da3',1,'Thoth::NJson::JsonObject::GetCopyOrNull()']]],
-  ['getorerror_7',['getorerror',['../struct_thoth_1_1_n_json_1_1_json.html#adbffc171c8c3c59888d4f8521a19a7f8',1,'Thoth::NJson::Json::GetOrError(Key key)'],['../struct_thoth_1_1_n_json_1_1_json.html#aa9d8a96fe1eb704522300a28c48caa15',1,'Thoth::NJson::Json::GetOrError(Key key) const']]],
-  ['getornullandmove_8',['GetOrNullAndMove',['../struct_thoth_1_1_n_json_1_1_json_object.html#a72537cd54c5cabbaada0e0cd71a8fdd8',1,'Thoth::NJson::JsonObject']]],
-  ['getsetcookie_9',['GetSetCookie',['../struct_thoth_1_1_http_1_1_headers.html#ac76e8c8bd68f406f31d48953a3929a34',1,'Thoth::Http::Headers']]],
-  ['getsetcookieview_10',['GetSetCookieView',['../struct_thoth_1_1_http_1_1_headers.html#ae0327d4e9807ea17a15bdc2730faba29',1,'Thoth::Http::Headers']]],
-  ['getstatustype_11',['GetStatusType',['../namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc',1,'Thoth::Http']]]
+  ['getinserteriterator_7',['GetInserterIterator',['../namespace_thoth_1_1_http.html#a5379080d14ac2dfa264229cc182c7dc1',1,'Thoth::Http']]],
+  ['getorerror_8',['getorerror',['../struct_thoth_1_1_n_json_1_1_json.html#adbffc171c8c3c59888d4f8521a19a7f8',1,'Thoth::NJson::Json::GetOrError(Key key)'],['../struct_thoth_1_1_n_json_1_1_json.html#aa9d8a96fe1eb704522300a28c48caa15',1,'Thoth::NJson::Json::GetOrError(Key key) const']]],
+  ['getornullandmove_9',['GetOrNullAndMove',['../struct_thoth_1_1_n_json_1_1_json_object.html#a72537cd54c5cabbaada0e0cd71a8fdd8',1,'Thoth::NJson::JsonObject']]],
+  ['getsetcookie_10',['GetSetCookie',['../struct_thoth_1_1_http_1_1_headers.html#ac76e8c8bd68f406f31d48953a3929a34',1,'Thoth::Http::Headers']]],
+  ['getsetcookieview_11',['GetSetCookieView',['../struct_thoth_1_1_http_1_1_headers.html#ae0327d4e9807ea17a15bdc2730faba29',1,'Thoth::Http::Headers']]],
+  ['getstatustype_12',['GetStatusType',['../namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc',1,'Thoth::Http']]]
 ];

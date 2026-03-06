@@ -3,6 +3,7 @@ var annotated_dup =
     [ "Thoth", "namespace_thoth.html", [
       [ "Dsa", "namespace_thoth_1_1_dsa.html", [
         [ "Cow", "struct_thoth_1_1_dsa_1_1_cow.html", "struct_thoth_1_1_dsa_1_1_cow" ],
+        [ "FileOutputRange", "struct_thoth_1_1_dsa_1_1_file_output_range.html", "struct_thoth_1_1_dsa_1_1_file_output_range" ],
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
