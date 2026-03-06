@@ -416,7 +416,7 @@ static bool Details::ReadNull(std::string_view& input, auto& val) {
 
     val = NullV;
     return true;
-};
+}
 static bool Details::ReadArray(std::string_view& input, auto& val, const BufferInfo& info) {
     if (*input.data() != '[')
         return false;

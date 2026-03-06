@@ -8,4 +8,4 @@ std::string_view Thoth::Http::VersionToString(VersionEnum version) {
         case VersionEnum::HTTP3:   return "HTTP/3";
         default: return "HTTP/1.1";
     }
-};
+}

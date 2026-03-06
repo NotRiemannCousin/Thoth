@@ -39,7 +39,7 @@ std::expected<Url, Thoth::Http::RequestError> Url::FromUrl(string_view rawUrl) {
     //                  / path-empty
 
     if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its URL after all
-        FAIL_WITH(InvalidScheme);; // ill-formed, scheme is mandatory
+        FAIL_WITH(InvalidScheme); // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrl.find(':') };
     scheme = string_view(rawUrl.data(), schemeIdx);
@@ -256,7 +256,7 @@ std::expected<string, Thoth::Http::RequestError> Url::TryDecode(std::string_view
     for (int i{}; i < str.size(); i++) {
         if (str[i] == '%') {
             if (i + 2 >= str.length() || !std::isxdigit(str[i + 1]) || !std::isxdigit(str[i + 2]))
-                FAIL_WITH(IllFormed);;
+                FAIL_WITH(IllFormed);
 
             const int high{ s_hexCharToInt[str[i + 1]] };
             const int low{ s_hexCharToInt[str[i + 2]] };
