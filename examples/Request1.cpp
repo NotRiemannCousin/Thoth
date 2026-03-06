@@ -16,8 +16,8 @@ std::expected<std::vector<Json>, NHttp::RequestError> GetMembers(size_t id) {
     //trying to make the request, send to the server and then convert the body to JSON.
     return NHttp::GetRequest::FromUrl(std::format("https://api.discogs.com/artists/{}", id))
             // All these functions have the same error type `RequestError`, a std::variant with each specific error.
-            .and_then(NHttp::Client::Send<>)
-            .and_then(&NHttp::GetResponse::AsJson)
+            .and_then(NHttp::Client::H_Send())
+            .and_then(&NHttp::Response<>::AsJson<>)
 
             // selecting "members" in the first object
             .and_then(std::bind_back(&Json::GetAndMoveOrError, "members" ))

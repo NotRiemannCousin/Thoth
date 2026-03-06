@@ -51,7 +51,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> MakeRequest() {
     using std::operator ""s;
 
     return NHttp::GetRequest::FromUrl("https://www.youtube.com/@ringosheenaofficial/releases")
-                .and_then(NHttp::Client::Send<>)
+                .and_then(NHttp::Client::H_Send())
 
                 .transform(&NHttp::Response<>::MoveBody)
                 .and_then(s_extractJson)

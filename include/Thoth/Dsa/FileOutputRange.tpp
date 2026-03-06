@@ -11,8 +11,6 @@ namespace Thoth::Dsa {
     template<Hermes::ByteLike T>
     constexpr auto FileOutputRange<T>::H_AsBody(const std::filesystem::path& path, const int mode) {
         return [&]() -> BodyType {
-            if (!is_regular_file(path))
-                return std::unexpected{ Http::RequestError{ Http::GenericError{ std::format("'{}' is not a file", path.string()) } } };
             create_directories(path.parent_path());
             return FileOutputRange{ path, mode };
         };
@@ -21,8 +19,6 @@ namespace Thoth::Dsa {
     template<Hermes::ByteLike T>
     constexpr auto FileOutputRange<T>::H_AsBody(std::filesystem::path&& path, const int mode) {
         return [path = std::move(path), mode = mode]() -> BodyType {
-            if (!is_regular_file(path))
-                return std::unexpected{ Http::RequestError{ Http::GenericError{ std::format("'{}' is not a file", path.string()) } } };
             create_directories(path.parent_path());
             return FileOutputRange{ std::move(path), mode };
         };

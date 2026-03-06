@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view id) {
+std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -48,9 +48,8 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
 
         for (const auto& album : *arr) {
             album.Find(albumNameKeys)
-                .and_then(&Json::EnsureRef<String>)
-                .transform(&String::AsRef)
-                .transform([](const auto& name) { return std::println("\t- {}", name), 0; });
+                    .and_then(&Json::EnsureRef<String>)
+                    .transform([](const auto& name) { return std::println("\t- {}", *name), 0; });
         }
 
         return 0;
@@ -71,12 +70,16 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
         return std::monostate{};
     };
 
+
+
+    using Clock = std::chrono::system_clock;
+
     const JsonObject body{
         { "videoId", id },
         { "context", JsonObject{
             { "client", JsonObject{
                 { "clientName", "WEB_REMIX" },
-                { "clientVersion", std::format("1.{:%Y%m%d}.01.00", std::chrono::system_clock::now()) }
+                { "clientVersion", std::format("1.{:%Y%m%d}.01.00", Clock::now()) }
             } }
         } }
     };
@@ -84,8 +87,8 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
     const auto url{ "https://music.youtube.com/youtubei/v1/browse?prettyPrint=false" };
 
     return NHttp::PostRequest::FromUrl(url, body)
-                .and_then(NHttp::Client::Send<Thoth::Http::PostMethod>)
-                .and_then(&NHttp::PostResponse::AsJson)
+                .and_then(NHttp::Client::H_Send())
+                .and_then(&NHttp::PostResponse::AsJson<>)
 
                 .and_then(std::bind_back(&Json::FindAndMoveOrError, musicTabKeys))
                 .transform(s_printCollections);
@@ -95,8 +98,9 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
 int main() {
 
     /* "UCTmoyDN-uokTbzk_xXKcx6w" */
-    if (const auto oper{ PrintInfo("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
+    if (const auto oper{ SaveImage("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
         std::println("{}", oper.error());
+
 
     return 0;
 }

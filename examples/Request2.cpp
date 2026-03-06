@@ -7,7 +7,7 @@ namespace NHttp = Thoth::Http;
 int main() {
     const auto response{
         NHttp::GetRequest::FromUrl({ "https://api.chucknorris.io/jokes/random" })
-                .and_then(NHttp::Client::Send<>)
+                .and_then(NHttp::Client::H_Send())
     };
 
     if (response) {

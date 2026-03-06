@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view id) {
+std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view id) {
 #pragma region Aliases
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -36,8 +36,8 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
 
     return
         NHttp::PostRequest::FromUrl("https://music.youtube.com/youtubei/v1/player?prettyPrint=false", body)
-                .and_then(NHttp::Client::Send<Thoth::Http::PostMethod>)
-                .and_then(&NHttp::PostResponse::AsJson)
+                .and_then(NHttp::Client::H_Send())
+                .and_then(&NHttp::PostResponse::AsJson<>)
 
                 .transform([](const Json& content){ return std::print("{}", content), std::monostate{}; });
 }
@@ -46,7 +46,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(string_view i
 int main() {
 
     /* "UCTmoyDN-uokTbzk_xXKcx6w" */
-    if (const auto oper{ PrintInfo("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
+    if (const auto oper{ SaveImage("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
         std::println("{}", oper.error());
 
     return 0;
