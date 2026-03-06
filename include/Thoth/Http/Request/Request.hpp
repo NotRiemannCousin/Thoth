@@ -14,26 +14,49 @@ namespace Thoth::Http {
 	};
 
     //! @brief Exactly what you think it is.
-	std::string_view VersionToString(VersionEnum version);
+    std::string_view VersionToString(VersionEnum version);
 
-	template<MethodConcept Method = GetMethod>
+
+
+    template<class T>
+    concept SizedRequestBodyConcept = std::ranges::input_range<T>
+        && std::ranges::sized_range<T>
+        && (
+            std::same_as<std::ranges::range_value_t<T>, char> ||
+            std::same_as<std::ranges::range_value_t<T>, unsigned char> ||
+            std::same_as<std::ranges::range_value_t<T>, std::byte>
+        );
+
+    template<class T>
+    concept ChunkedRequestBodyConcept = SizedRequestBodyConcept<std::ranges::range_value_t<T>>;
+
+    template<class T>
+    concept RequestBodyConcept = SizedRequestBodyConcept<T> || ChunkedRequestBodyConcept<T>;
+
+
+
+	template<MethodConcept Method = GetMethod, RequestBodyConcept Body = std::string>
 	struct Request {
 		using MethodType = Method;
 
 		Url url;
-		string body{};
+		Body body;
 		VersionEnum version{ VersionEnum::HTTP1_1 };
 		Headers headers{ Headers::DefaultHeaders() };
 
 	    //! @brief Try parse to a URL before construct the Request.
 		template<class T = string_view>
-			requires requires (T t) { { std::format("{}", t) }; }
+			requires Hermes::ByteLike<std::ranges::range_value_t<T>>
+	                || (std::same_as<Body, std::string> && requires (T t) { { std::format("{}", t) }; })
 		static std::expected<Request, RequestError> FromUrl(
 			string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
 	};
 
 	using GetRequest  = Request<>;
 	using PostRequest = Request<PostMethod>;
+
+    using GetBinRequest  = Request<GetMethod, vector<std::byte>>;
+    using PostBinRequest = Request<PostMethod, vector<std::byte>>;
 }
 
 

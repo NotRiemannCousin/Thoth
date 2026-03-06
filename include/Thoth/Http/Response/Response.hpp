@@ -5,12 +5,24 @@
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Headers.hpp>
 #include <Thoth/NJson/Json.hpp>
+#include <Thoth/Dsa/FileOutputRange.hpp>
 
 
 namespace Thoth::Http {
     struct RequestError;
 
-    template<MethodConcept Method = GetMethod>
+    template<class T>
+    concept ResponseBodyConcept =
+            std::ranges::output_range<T, char> ||
+            std::ranges::output_range<T, unsigned char> ||
+            std::ranges::output_range<T, std::byte>;
+
+
+    template<ResponseBodyConcept Body>
+    auto GetInserterIterator(Body& body);
+
+
+    template<MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string>
     struct Response {
         using MethodType = Method;
 
@@ -18,10 +30,12 @@ namespace Thoth::Http {
         StatusCodeEnum status{};
         string statusMessage{};
         Headers headers{};
-        string body{};
+        Body body;
 
         friend struct Client; // who construct it
 
+        template<class = void>
+            requires std::same_as<Body, string>
         [[nodiscard]] std::expected<NJson::Json, RequestError> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
@@ -29,15 +43,24 @@ namespace Thoth::Http {
 
         //! @brief Monad friendly move of the body, discarding the rest of the response.
         //! Recommended check for Successful() before.
-        [[nodiscard]] string MoveBody() &&;
+        [[nodiscard]] Body MoveBody() &&;
     private:
 
         Response(VersionEnum version, StatusCodeEnum status,
-                string&& statusMessage, Headers&& headers, string&& body);
+                string&& statusMessage, Headers&& headers, Body&& body);
     };
 
     using GetResponse  = Response<>;
     using PostResponse = Response<PostMethod>;
+
+    using GetBinResponse  = Response<GetMethod, vector<std::byte>>;
+    using PostBinResponse = Response<PostMethod, vector<std::byte>>;
+
+    using GetFileResponse  = Response<GetMethod, Dsa::TextFileOutputRange>;
+    using PostFileResponse = Response<PostMethod, Dsa::TextFileOutputRange>;
+
+    using GetFileBinResponse  = Response<GetMethod, vector<std::byte>>;
+    using PostFileBinResponse = Response<PostMethod, vector<std::byte>>;
 }
 
 

@@ -1,24 +1,40 @@
 #pragma once
 
 namespace Thoth::Http {
-    template<MethodConcept Method>
-    Response<Method>::Response(VersionEnum version, StatusCodeEnum status, string&& statusMessage,
-            Headers&& headers, string&& body) : version{ version },  status{ status },
+
+    // template<ResponseBodyConcept Body>
+    //     requires requires(Body b){ { std::back_inserter(b) }; }
+    // auto GetInserterIterator(Body& body) {
+    //     return std::back_inserter(body);
+    // }
+
+    template<ResponseBodyConcept Body>
+    auto GetInserterIterator(Body& body) {
+        return std::ranges::begin(body);
+    }
+
+
+
+    template<MethodConcept Method, ResponseBodyConcept Body>
+    Response<Method, Body>::Response(VersionEnum version, StatusCodeEnum status, string&& statusMessage,
+            Headers&& headers, Body&& body) : version{ version },  status{ status },
             statusMessage{ std::move(statusMessage) },  headers{ std::move(headers) },
             body{ std::move(body) } { }
 
-    template<MethodConcept Method>
-    std::expected<NJson::Json, RequestError> Response<Method>::AsJson() const {
+    template<MethodConcept Method, ResponseBodyConcept Body>
+    template<class>
+        requires std::same_as<Body, string>
+    std::expected<NJson::Json, RequestError> Response<Method, Body>::AsJson() const {
         return NJson::Json::Parse(body);
     }
 
-    template<MethodConcept Method>
-    bool Response<Method>::Successful() const {
+    template<MethodConcept Method, ResponseBodyConcept Body>
+    bool Response<Method, Body>::Successful() const {
         return GetStatusType(status) == StatusTypeEnum::SUCCESSFUL;
     }
 
-    template<MethodConcept Method>
-    string Response<Method>::MoveBody() && {
+    template<MethodConcept Method, ResponseBodyConcept Body>
+    Body Response<Method, Body>::MoveBody() && {
         return std::move(body);
     }
 }

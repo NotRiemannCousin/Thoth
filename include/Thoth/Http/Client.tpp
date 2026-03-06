@@ -3,11 +3,35 @@
 #include <Thoth/Http/RequestError.hpp>
 #include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
+#include <bit>
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
-    template<MethodConcept Method>
-    expected<Response<Method>, RequestError> Client::Send(Request<Method> request) {
+    template<MethodConcept Method, BodyConcept Body>
+        requires std::default_initializable<Body>
+    expected<Response<Method, Body>, RequestError> Client::Send(Request<Method, Body> request) {
+        return SendAndRecvAsInto<Method, Body, Body>(request, []() -> std::expected<Body, RequestError> { return {}; });
+    }
+
+    template<MethodConcept Method, BodyConcept Body, class F>
+        requires ResponseBodyFactoryConcept<F, Body>
+    expected<Response<Method, Body>, RequestError> Client::SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory) {
+        return SendAndRecvAsInto<Method, Body, Body>(request, std::forward<F>(bodyFactory));
+    }
+
+
+    template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody>
+        requires std::default_initializable<ResponseBody>
+    expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAs(Request<Method, RequestBody> request) {
+        return SendAndRecvAsInto<Method, RequestBodyConcept, ResponseBody>(
+            request, []() -> std::expected<ResponseBody, RequestError> { return {}; });
+    }
+
+
+    template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F>
+        requires ResponseBodyFactoryConcept<F, ResponseBody>
+    expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAsInto(
+        Request<Method, RequestBody> request, F&& bodyFactory) {
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
         const auto s_establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
@@ -19,7 +43,7 @@ namespace Thoth::Http {
                 if (connContainerIt == janitor.connectionPool.end() || connContainerIt->second.empty())
                     return std::nullopt;
 
-                const auto infoPtr{ std::move(connContainerIt->second.back()) };
+                auto infoPtr{ std::move(connContainerIt->second.back()) };
                 connContainerIt->second.pop_back();
 
                 return std::move(infoPtr);
@@ -33,7 +57,7 @@ namespace Thoth::Http {
                 return std::make_shared<Socket>(std::move(*newSocketResult));
             };
 
-            const auto s_cleanupSocket = [&](std::pair<SocketPtr, Response<Method>> val) {
+            const auto s_cleanupSocket = [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
                 std::lock_guard lock{ janitor.poolMutex };
 
 
@@ -48,7 +72,7 @@ namespace Thoth::Http {
                 };
                 // TODO: FUTURE: Implement the keepAliveHeader (timeout) properly
 
-                if (val.first != nullptr && connectionHeader != closeConnectionVal)
+                if (val.first != nullptr&&  connectionHeader != closeConnectionVal)
                     janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
 
                 return std::move(val.second);
@@ -57,12 +81,18 @@ namespace Thoth::Http {
 
             const auto s_sendRequest = [&]() -> Hermes::ConnectionResult<SocketPtr> {
                 request.headers.Add("host", request.url.host);
-                request.headers.Add("content-length", to_string(request.body.size()));
+                // TODO: Just is SizedRequestBodyConcept
+                if constexpr (SizedRequestBodyConcept<RequestBody>)
+                    request.headers.Add("content-length", to_string(std::ranges::size(request.body)));
+                else
+                    request.headers.Add("transfer-encoding", "chunked");
 
                 const string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
                 const auto& query { request.url.query };
                 const auto versionStr{ VersionToString(request.version) };
 
+                // TODO: implement "transfer-encoding: chunked" properly.
+                // TODO: change to views::concat later and then create a local buffer to write
                 const auto requestStr{ std::format(
                     "{} {}?{} {}\r\n"
                     "{}\r\n"
@@ -86,7 +116,7 @@ namespace Thoth::Http {
 
             return s_sendRequest()
                     .transform_error(s_toRequestError)
-                    .and_then(_ParseHttp11<Method>)
+                    .and_then(std::bind_back(P_ParseHttp11<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
                     .transform(s_cleanupSocket);
         };
 
@@ -100,22 +130,70 @@ namespace Thoth::Http {
                     .and_then(s_establishConnection);
     }
 
-    template<MethodConcept Method>
-    expected<std::pair<Client::SocketPtr, Response<Method>>, RequestError> Client::_ParseHttp11(SocketPtr infoPtr) {
+    constexpr auto Client::H_Send() {
+        return []<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
+            return Send<Method, Body>(request);
+        };
+    }
+
+
+    template<class F>
+    auto Client::H_SendAndRecvInto(F&& bodyFactory) {
+        return [&]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
+            return SendAndRecvInto<Method, Body>(request, std::forward<F>(bodyFactory));
+        };
+    }
+
+    template<ResponseBodyConcept ResponseBody>
+    constexpr auto Client::H_SendAndRecvAs() {
+        return []<MethodConcept Method, RequestBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAndRecvAs<Method, RequestBody, ResponseBody>(request);
+        };
+    }
+
+    template<ResponseBodyConcept ResponseBody, class F>
+        requires ResponseBodyFactoryConcept<F, ResponseBody>
+    auto Client::H_SendAndRecvAsInto(F&& bodyFactory) {
+        return [&]<MethodConcept Method, RequestBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAndRecvAsInto<Method, RequestBody, ResponseBody>(request, std::forward<F>(bodyFactory));
+        };
+    }
+
+
+    template<ResponseBodyConcept Body>
+    Client::HttpData<Body>::HttpData(Body&& body) : body{ std::move(body) } {}
+
+    template<MethodConcept Method, ResponseBodyConcept ResponseBody, class F>
+        requires ResponseBodyFactoryConcept<F, ResponseBody>
+    expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, RequestError> Client::P_ParseHttp11(
+        SocketPtr infoPtr, F&& bodyFactory) {
         namespace rg = std::ranges;
         namespace vs = std::views;
 
         using namespace std::literals;
+        using ValueType = ResponseBody::value_type;
 
         struct ParseStage {
-            HttpData data{};
+            HttpData<ResponseBody> data;
             decltype(infoPtr->socket.RecvRange<char>()) stream;
+            // I could receive based in ValueType, but it would be painful to parse the start of the response.
+            // HTTP/2 will use RecvRange<std::byte>().
         };
 
         using ParseResult = std::expected<ParseStage, RequestError>;
 
-        const auto s_createResponseStream = [&]() -> ParseResult {
-            return ParseStage{ HttpData{}, infoPtr->socket.RecvRange<char>() };
+
+        static constexpr auto s_cvt = [](const char c) { // convert
+            return std::bit_cast<ValueType>(c);
+        };
+
+
+        const auto s_initializeBody = [&]() -> std::expected<ResponseBody, RequestError> {
+            return std::invoke(bodyFactory);
+        };
+
+        const auto s_createResponseStream = [&](ResponseBody&& body) -> ParseResult {
+            return ParseStage{ HttpData<ResponseBody>{ std::move(body) }, infoPtr->socket.RecvRange<char>() };
         };
 
         const auto s_fillResponseLine = [&](ParseStage&& info) -> ParseResult {
@@ -163,7 +241,16 @@ namespace Thoth::Http {
                 if (ec != std::errc())
                     return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
-                info.data.body = info.stream | vs::take(contentSize) | rg::to<string>();
+                if constexpr (requires (ResponseBody b){ { b.resize(0) }; })
+                    info.data.body.resize(contentSize);
+
+
+                rg::copy(
+                    info.stream
+                            | vs::take(contentSize)
+                            | vs::transform(s_cvt),
+                    GetInserterIterator(info.data.body)
+                );
 
                 return std::move(info);
             };
@@ -180,11 +267,12 @@ namespace Thoth::Http {
                     string chunkLengthStr;
                     int chunkLength;
 
-                    info.data.body.reserve(0x4000);
-
                     do {
                         chunkLengthStr.clear();
-                        rg::copy(info.stream | Hermes::Utils::UntilMatch("\r\n"sv), std::back_inserter(chunkLengthStr));
+                        rg::copy(
+                            info.stream | Hermes::Utils::UntilMatch("\r\n"sv),
+                            std::back_inserter(chunkLengthStr)
+                        ); // the count of bytes in this package
                         auto [_, ec] {
                             std::from_chars( chunkLengthStr.data(), chunkLengthStr.data() + chunkLengthStr.size(),
                         chunkLength, 16)
@@ -194,8 +282,14 @@ namespace Thoth::Http {
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
 
-                        info.data.body.append_range(info.stream | vs::take(chunkLength));
+                        rg::copy(
+                            info.stream
+                                    | vs::take(chunkLength)
+                                    | vs::transform(s_cvt),
+                            GetInserterIterator(info.data.body)
+                        ); // the data
 
+                        //? Support extensions too? Maybe, someday
                         if (!rg::starts_with(info.stream, "\r\n"sv))
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
@@ -215,18 +309,23 @@ namespace Thoth::Http {
         const auto s_createObject = [&](ParseStage&& info) {
             return std::pair{
                     std::move(infoPtr),
-                    Response<Method>{ info.data.version, info.data.status, std::move(info.data.statusMessage),
-                        std::move(info.data.headers), std::move(info.data.body) }
+                    Response<Method, ResponseBody>{
+                        info.data.version, info.data.status, std::move(info.data.statusMessage),
+                        std::move(info.data.headers),
+                        std::move(info.data.body)
+                    }
                 };
         };
 
 
-        return s_createResponseStream()
+        return s_initializeBody()
+                .and_then(s_createResponseStream)
                 .and_then(s_fillResponseLine)
                 .and_then(s_fillHeaders)
                 .and_then(s_fillBody)
                 .transform(s_createObject);
 
     }
-};
+}
 
+#pragma warning(default: 4455)
