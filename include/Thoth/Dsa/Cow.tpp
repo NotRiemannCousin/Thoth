@@ -1,4 +1,5 @@
 #pragma once
+#include <format>
 
 namespace Thoth::Dsa {
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
@@ -121,3 +122,15 @@ namespace Thoth::Dsa {
         return left.AsRef() == right.AsRef();
     }
 }
+
+template<class RefT, class OwnT>
+    requires requires(RefT ref){ { std::format("{}", ref) }; } && requires(OwnT own){ { std::format("{}", own) }; }
+struct std::formatter<Thoth::Dsa::Cow<RefT, OwnT>>{
+    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+
+    static auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, std::format_context &ctx) {
+        cow.Visit([&](auto val){ std::format_to(ctx.out(), "{}", val); });
+
+        return ctx.out();
+    }
+};
