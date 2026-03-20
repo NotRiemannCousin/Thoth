@@ -77,11 +77,18 @@ namespace Thoth::Http {
 
                 return std::move(val.second);
             };
-            auto infoPtr{ s_getSocketFromPool().or_else(s_createNewSocket).value() };
 
-            const auto s_sendRequest = [&]() -> Hermes::ConnectionResult<SocketPtr> {
+            auto infoPtr{ s_getSocketFromPool().or_else(s_createNewSocket) };
+
+            const auto s_isSocketValid = [&]() -> Hermes::ConnectionResultOper {
+                if (!infoPtr)
+                    return std::unexpected{ ConnectionErrorEnum::CONNECTION_FAILED };
+                return std::monostate{};
+            };
+
+            const auto s_sendRequest = [&](std::monostate) -> Hermes::ConnectionResult<SocketPtr> {
                 request.headers.Add("host", request.url.host);
-                // TODO: Just is SizedRequestBodyConcept
+
                 if constexpr (SizedRequestBodyConcept<RequestBody>)
                     request.headers.Add("content-length", to_string(std::ranges::size(request.body)));
                 else
