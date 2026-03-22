@@ -582,29 +582,53 @@ namespace Thoth::Utils {
     //!
     //! F -> Exp -> Exp -> Exp
     //! like reduce but with fast fail
-    template<std::ranges::input_range R, class F,
+    template<std::ranges::input_range R, class F, class Acc,
         class Exp = std::iter_value_t<R>, class Val = Exp::value_type, class Err = Exp::error_type>
         requires std::same_as<Exp, std::expected<Val, Err>>
-            && std::invocable<F, Exp, Exp> && std::same_as<Exp, std::invoke_result_t<F, Exp>>
-    constexpr auto WhileExpected(R&& range, F&& callable, Exp&& reducer = {}) -> Exp {
-        for (auto&& r : range) {
-            reducer = std::invoke(callable, reducer, r);
+            && std::invocable<F, Acc, Val> && std::same_as<Acc, std::invoke_result_t<F, Acc, Val>>
+    constexpr std::expected<std::remove_cvref_t<Acc>, std::remove_cvref_t<Err>>
+            FoldWhileSuccess(R&& range, F&& callable, Acc&& initial = {}) {
 
-            if (!reducer)
-                return reducer;
+        using AccT = std::remove_cvref_t<Acc>;
+        using ValT = std::remove_cvref_t<Val>;
+        using ErrT = std::remove_cvref_t<Err>;
+
+        AccT accumulator = std::forward<Acc>(initial);
+
+        for (auto&& val : range) {
+            if (!val)
+                return std::unexpected{ val.error() };
+
+            accumulator = std::invoke(callable, std::forward<Acc>(accumulator), *val);
         }
 
-        return reducer;
+        return accumulator;
     }
 
-    //! @hof{WhileExpected}
+    //! @hof{FoldWhileSuccess}
     template<class F, class Exp>
-    constexpr auto WhileExpectedHof(F&& callable, Exp&& reducer = {}) {
+    constexpr auto FoldWhileSuccessHof(F&& callable, Exp&& reducer = {}) {
         return [callable = std::forward<F>(callable), reducer = std::forward<Exp>(reducer)]
         <std::ranges::input_range R>(R&& range){
-            return WhileExpected(std::forward<R>(range), std::forward<F>(callable), std::forward<Exp>(reducer));
+            return FoldWhileSuccess(std::forward<R>(range), std::forward<F>(callable), std::forward<Exp>(reducer));
         };
     }
 #pragma endregion
 
+#pragma region Self
+
+    template<class T, class F>
+        requires std::invocable<F, T>
+    constexpr auto Self(T&& val, F&& callable) {
+        std::invoke(std::forward<F>(callable), val);
+        return std::forward<T>(val);
+    }
+
+    template<class F>
+    constexpr auto SelfHof(F&& callable) {
+        return [callable = std::forward<F>(callable)]<class T>(T&& val) {
+            return Self(std::forward<F>(callable), std::forward<T>(val));
+        };
+    }
+#pragma endregion
 }
