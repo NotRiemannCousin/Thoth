@@ -29,6 +29,8 @@ var namespace_thoth_1_1_utils =
     [ "ErrorIfNotHof", "namespace_thoth_1_1_utils.html#a20a2c9b865d066f060066d94ffa77cfd", null ],
     [ "FindMatchIndex", "namespace_thoth_1_1_utils.html#ac0bed69161d11188b6bb27443248178f", null ],
     [ "FindMatchIndexImpl", "namespace_thoth_1_1_utils.html#aa09a77fbefaf13e1d7850746b5dfe148", null ],
+    [ "FoldWhileSuccess", "namespace_thoth_1_1_utils.html#a233fa4f829ed69699961c3680475aa9d", null ],
+    [ "FoldWhileSuccessHof", "namespace_thoth_1_1_utils.html#a1092c3064d3185d3baa3bf96f8eb7184", null ],
     [ "HashCombine", "namespace_thoth_1_1_utils.html#a0f67b23d33902336cc6a174eebe5f6cf", null ],
     [ "Mut", "namespace_thoth_1_1_utils.html#aa70f74ce08c1453d7a555a17adf43ed8", null ],
     [ "MutFn", "namespace_thoth_1_1_utils.html#a6d38cf86aa3d3c4e236d33e348421a88", null ],
@@ -46,6 +48,8 @@ var namespace_thoth_1_1_utils =
     [ "S_TestIfImpl", "namespace_thoth_1_1_utils.html#a9e0288a14dd869ab04a83d3320fc8b79", null ],
     [ "S_TransformExpIfImpl", "namespace_thoth_1_1_utils.html#acd562ea577fa1b0173e41407edd4b74a", null ],
     [ "S_TransformOptIfImpl", "namespace_thoth_1_1_utils.html#a7031a51f5323a79eff261a27feae4cda", null ],
+    [ "Self", "namespace_thoth_1_1_utils.html#afbb15c1aa5b6538a6a186539b5531c63", null ],
+    [ "SelfHof", "namespace_thoth_1_1_utils.html#a7a0398eb738957feebafa029c0421d5b", null ],
     [ "ToValue", "namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4", null ],
     [ "ToValue", "namespace_thoth_1_1_utils.html#ad080c06e393a61556197ad7b0a190c11", null ],
     [ "TransformExpIf", "namespace_thoth_1_1_utils.html#a3d52058471add1df5475baf412eea131", null ],
@@ -74,7 +78,5 @@ var namespace_thoth_1_1_utils =
     [ "TransformOptIfNotHof", "namespace_thoth_1_1_utils.html#a45f7543f8d3e70e04b2c5adbc96f7c13", null ],
     [ "Utf8Env", "namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0", null ],
     [ "ValueOr", "namespace_thoth_1_1_utils.html#a45f009d19d7b37e4595d20a1d68082c5", null ],
-    [ "ValueOrHof", "namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34", null ],
-    [ "WhileExpected", "namespace_thoth_1_1_utils.html#aada24339ddf5563dc74afd7538161b89", null ],
-    [ "WhileExpectedHof", "namespace_thoth_1_1_utils.html#a7b03a824a33628ba00ae2ea69d4f1367", null ]
+    [ "ValueOrHof", "namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34", null ]
 ];

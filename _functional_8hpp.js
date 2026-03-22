@@ -22,6 +22,8 @@ var _functional_8hpp =
     [ "ErrorIfNot", "_functional_8hpp.html#a607e2acfdaf6ed55abb4c0229dcb2364", null ],
     [ "ErrorIfNotHof", "_functional_8hpp.html#a7381564d4b4ef7efe778a468977cbd50", null ],
     [ "ErrorIfNotHof", "_functional_8hpp.html#a20a2c9b865d066f060066d94ffa77cfd", null ],
+    [ "FoldWhileSuccess", "_functional_8hpp.html#a233fa4f829ed69699961c3680475aa9d", null ],
+    [ "FoldWhileSuccessHof", "_functional_8hpp.html#a1092c3064d3185d3baa3bf96f8eb7184", null ],
     [ "Mut", "_functional_8hpp.html#aa70f74ce08c1453d7a555a17adf43ed8", null ],
     [ "MutFn", "_functional_8hpp.html#a6d38cf86aa3d3c4e236d33e348421a88", null ],
     [ "NulloptIf", "_functional_8hpp.html#ad2de595d710856786b947b33869eecec", null ],
@@ -38,6 +40,8 @@ var _functional_8hpp =
     [ "S_TestIfImpl", "_functional_8hpp.html#a9e0288a14dd869ab04a83d3320fc8b79", null ],
     [ "S_TransformExpIfImpl", "_functional_8hpp.html#acd562ea577fa1b0173e41407edd4b74a", null ],
     [ "S_TransformOptIfImpl", "_functional_8hpp.html#a7031a51f5323a79eff261a27feae4cda", null ],
+    [ "Self", "_functional_8hpp.html#afbb15c1aa5b6538a6a186539b5531c63", null ],
+    [ "SelfHof", "_functional_8hpp.html#a7a0398eb738957feebafa029c0421d5b", null ],
     [ "ToValue", "_functional_8hpp.html#a1b698f9e305ec3d41539545fe50cc2a4", null ],
     [ "ToValue", "_functional_8hpp.html#ad080c06e393a61556197ad7b0a190c11", null ],
     [ "TransformExpIf", "_functional_8hpp.html#a3d52058471add1df5475baf412eea131", null ],
@@ -65,7 +69,5 @@ var _functional_8hpp =
     [ "TransformOptIfNotHof", "_functional_8hpp.html#a8e1e136b3ade47d7dde5d634757ba617", null ],
     [ "TransformOptIfNotHof", "_functional_8hpp.html#a45f7543f8d3e70e04b2c5adbc96f7c13", null ],
     [ "ValueOr", "_functional_8hpp.html#a45f009d19d7b37e4595d20a1d68082c5", null ],
-    [ "ValueOrHof", "_functional_8hpp.html#a2245da06206e12517b4ad14225d92d34", null ],
-    [ "WhileExpected", "_functional_8hpp.html#aada24339ddf5563dc74afd7538161b89", null ],
-    [ "WhileExpectedHof", "_functional_8hpp.html#a7b03a824a33628ba00ae2ea69d4f1367", null ]
+    [ "ValueOrHof", "_functional_8hpp.html#a2245da06206e12517b4ad14225d92d34", null ]
 ];

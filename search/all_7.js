@@ -15,12 +15,14 @@ var searchData=
   ['findorerror_12',['findorerror',['../struct_thoth_1_1_n_json_1_1_json.html#ab32a523588740bb952f620e56444f706',1,'Thoth::NJson::Json::FindOrError(Keys keys)'],['../struct_thoth_1_1_n_json_1_1_json.html#a6cbca120c159eba310bb2eb47e835610',1,'Thoth::NJson::Json::FindOrError(Keys keys) const']]],
   ['firstconvertiblevariant_13',['FirstConvertibleVariant',['../namespace_thoth_1_1_utils.html#a61e8c9a9cc87a915b608d362c725acd1',1,'Thoth::Utils']]],
   ['firstequalvariant_14',['FirstEqualVariant',['../namespace_thoth_1_1_utils.html#ad00ce4b8476323c5d488174dca28d600',1,'Thoth::Utils']]],
-  ['forbidden_15',['FORBIDDEN',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a4a76a6ecac6e4077588fd966db329fa3',1,'Thoth::Http']]],
-  ['found_16',['FOUND',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3e918e9c9f594bda6b0cf358391c3b1a',1,'Thoth::Http']]],
-  ['fragment_17',['fragment',['../struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1',1,'Thoth::Http::Url']]],
-  ['fromowned_18',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
-  ['fromref_19',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_20',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a88b820068a60c6547e847a61a1eb0b8a',1,'Thoth::Http::Url::FromUrl()']]],
-  ['functional_20expressive_20asynchronous_20c_2026_20webdev_20library_21',['A functional, expressive, asynchronous C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
-  ['functional_2ehpp_22',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
+  ['foldwhilesuccess_15',['FoldWhileSuccess',['../namespace_thoth_1_1_utils.html#a233fa4f829ed69699961c3680475aa9d',1,'Thoth::Utils']]],
+  ['foldwhilesuccesshof_16',['FoldWhileSuccessHof',['../namespace_thoth_1_1_utils.html#a1092c3064d3185d3baa3bf96f8eb7184',1,'Thoth::Utils']]],
+  ['forbidden_17',['FORBIDDEN',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a4a76a6ecac6e4077588fd966db329fa3',1,'Thoth::Http']]],
+  ['found_18',['FOUND',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3e918e9c9f594bda6b0cf358391c3b1a',1,'Thoth::Http']]],
+  ['fragment_19',['fragment',['../struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1',1,'Thoth::Http::Url']]],
+  ['fromowned_20',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
+  ['fromref_21',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
+  ['fromurl_22',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a88b820068a60c6547e847a61a1eb0b8a',1,'Thoth::Http::Url::FromUrl()']]],
+  ['functional_20expressive_20asynchronous_20c_2026_20webdev_20library_23',['A functional, expressive, asynchronous C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
+  ['functional_2ehpp_24',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
 ];
