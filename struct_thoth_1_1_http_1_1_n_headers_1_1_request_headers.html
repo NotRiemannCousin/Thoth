@@ -1,0 +1,1462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: Thoth::Http::NHeaders::RequestHeaders Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Thoth::Http::NHeaders::RequestHeaders Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.  
+ <a href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_request_headers_8hpp_source.html">RequestHeaders.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Thoth::Http::NHeaders::RequestHeaders:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers__inherit__graph.svg" width="178" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Raw and Collection Views</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Methods for accessing headers without immediate parsing or as raw collections. </p>
+</div></td></tr>
+<tr class="memitem:ade0ba6b4262b2d138643f54e62122c42" id="r_ade0ba6b4262b2d138643f54e62122c42"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ade0ba6b4262b2d138643f54e62122c42">GetNonValidatedView</a> () const</td></tr>
+<tr class="memdesc:ade0ba6b4262b2d138643f54e62122c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a view of the contents of this headers collection that does not parse nor validate data.  <br /></td></tr>
+<tr class="separator:ade0ba6b4262b2d138643f54e62122c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e52518f5fbc7be78a57d2ac2baef50" id="r_a39e52518f5fbc7be78a57d2ac2baef50"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a39e52518f5fbc7be78a57d2ac2baef50">GetCookiesView</a> () const</td></tr>
+<tr class="memdesc:a39e52518f5fbc7be78a57d2ac2baef50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a readonly view of all Cookie values.  <br /></td></tr>
+<tr class="separator:a39e52518f5fbc7be78a57d2ac2baef50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Strongly Typed Headers (Getters/Setters)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> that usually contain a single value or a specific structured format. </p>
+</div></td></tr>
+<tr class="memitem:aa59384cebcc16d8c3be592ed55e3ca1e" id="r_aa59384cebcc16d8c3be592ed55e3ca1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#aa59384cebcc16d8c3be592ed55e3ca1e">GetHost</a> ()</td></tr>
+<tr class="memdesc:aa59384cebcc16d8c3be592ed55e3ca1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Host header. Essential for HTTP/1.1 and SNI.  <br /></td></tr>
+<tr class="separator:aa59384cebcc16d8c3be592ed55e3ca1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae52a9278540ee61112a47f72c56b97d9" id="r_ae52a9278540ee61112a47f72c56b97d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ae52a9278540ee61112a47f72c56b97d9">SetHost</a> (<a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> host)</td></tr>
+<tr class="memdesc:ae52a9278540ee61112a47f72c56b97d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Host header. Essential for HTTP/1.1 and SNI.  <br /></td></tr>
+<tr class="separator:ae52a9278540ee61112a47f72c56b97d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af199efa0f7a6dfd944f4b21ca03f5ea4" id="r_af199efa0f7a6dfd944f4b21ca03f5ea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#af199efa0f7a6dfd944f4b21ca03f5ea4">SetHost</a> (<a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> host)</td></tr>
+<tr class="memdesc:af199efa0f7a6dfd944f4b21ca03f5ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Host header. Essential for HTTP/1.1 and SNI.  <br /></td></tr>
+<tr class="separator:af199efa0f7a6dfd944f4b21ca03f5ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ec8c26b8e566be26785595be4ea33bb" id="r_a7ec8c26b8e566be26785595be4ea33bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a7ec8c26b8e566be26785595be4ea33bb">GetReferrer</a> ()</td></tr>
+<tr class="memdesc:a7ec8c26b8e566be26785595be4ea33bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Referer header (yes, it's misspelled in RFC).  <br /></td></tr>
+<tr class="separator:a7ec8c26b8e566be26785595be4ea33bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6283861b2651b794ae630380517c0e41" id="r_a6283861b2651b794ae630380517c0e41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a6283861b2651b794ae630380517c0e41">SetReferrer</a> (<a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> url)</td></tr>
+<tr class="separator:a6283861b2651b794ae630380517c0e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c351fc64bcf46e30347535a5f08bfd" id="r_ad6c351fc64bcf46e30347535a5f08bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ad6c351fc64bcf46e30347535a5f08bfd">SetReferrer</a> (<a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> url)</td></tr>
+<tr class="separator:ad6c351fc64bcf46e30347535a5f08bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a17153e642bdf6cf4ce768ff3bf20c7" id="r_a1a17153e642bdf6cf4ce768ff3bf20c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; std::variant&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, std::monostate &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a1a17153e642bdf6cf4ce768ff3bf20c7">GetOrigin</a> ()</td></tr>
+<tr class="memdesc:a1a17153e642bdf6cf4ce768ff3bf20c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Origin header. Used for CORS requests.  <br /></td></tr>
+<tr class="separator:a1a17153e642bdf6cf4ce768ff3bf20c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accc5c87378e6b819d01a1ff3024184b6" id="r_accc5c87378e6b819d01a1ff3024184b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#accc5c87378e6b819d01a1ff3024184b6">SetOrigin</a> (<a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> origin)</td></tr>
+<tr class="separator:accc5c87378e6b819d01a1ff3024184b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b246c224cacec097dd6ed3c2a4c5ae7" id="r_a6b246c224cacec097dd6ed3c2a4c5ae7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a6b246c224cacec097dd6ed3c2a4c5ae7">SetOrigin</a> (<a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> origin)</td></tr>
+<tr class="separator:a6b246c224cacec097dd6ed3c2a4c5ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df669d6e14cd58ab7f52de9c036b878" id="r_a5df669d6e14cd58ab7f52de9c036b878"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a5df669d6e14cd58ab7f52de9c036b878">SetOrigin</a> (std::monostate)</td></tr>
+<tr class="separator:a5df669d6e14cd58ab7f52de9c036b878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4278aa06f0b54b4a1226b1202a963ddf" id="r_a4278aa06f0b54b4a1226b1202a963ddf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a4278aa06f0b54b4a1226b1202a963ddf">GetFrom</a> ()</td></tr>
+<tr class="memdesc:a4278aa06f0b54b4a1226b1202a963ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the From header (email address of the user).  <br /></td></tr>
+<tr class="separator:a4278aa06f0b54b4a1226b1202a963ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00082daaee9f70602fa64631a331539b" id="r_a00082daaee9f70602fa64631a331539b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a00082daaee9f70602fa64631a331539b">SetFrom</a> (<a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> email)</td></tr>
+<tr class="separator:a00082daaee9f70602fa64631a331539b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f3685d784ec754a4e1b6cbdeb2618eb" id="r_a6f3685d784ec754a4e1b6cbdeb2618eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a6f3685d784ec754a4e1b6cbdeb2618eb">GetMaxForwards</a> ()</td></tr>
+<tr class="memdesc:a6f3685d784ec754a4e1b6cbdeb2618eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Max-Forwards header for limiting proxy hops.  <br /></td></tr>
+<tr class="separator:a6f3685d784ec754a4e1b6cbdeb2618eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f9abff9c41380c6f99ffe200344735" id="r_a80f9abff9c41380c6f99ffe200344735"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a80f9abff9c41380c6f99ffe200344735">SetMaxForwards</a> ()</td></tr>
+<tr class="separator:a80f9abff9c41380c6f99ffe200344735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8acd609de53709e180f2bcbf696cc68c" id="r_a8acd609de53709e180f2bcbf696cc68c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a8acd609de53709e180f2bcbf696cc68c">GetProtocol</a> ()</td></tr>
+<tr class="memdesc:a8acd609de53709e180f2bcbf696cc68c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the :protocol pseudo-header (primarily for HTTP/2/3).  <br /></td></tr>
+<tr class="separator:a8acd609de53709e180f2bcbf696cc68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd3293cb3f9186360ec1032aa21fe7f" id="r_afcd3293cb3f9186360ec1032aa21fe7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#afcd3293cb3f9186360ec1032aa21fe7f">SetProtocol</a> ()</td></tr>
+<tr class="separator:afcd3293cb3f9186360ec1032aa21fe7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3596b00a456ebd6fccf15c19cc84a82" id="r_af3596b00a456ebd6fccf15c19cc84a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#af3596b00a456ebd6fccf15c19cc84a82">GetProxyAuthorization</a> ()</td></tr>
+<tr class="memdesc:af3596b00a456ebd6fccf15c19cc84a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Proxy-Authorization header.  <br /></td></tr>
+<tr class="separator:af3596b00a456ebd6fccf15c19cc84a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d4c2b144fc4b1e886fb9cf015af4ee" id="r_a81d4c2b144fc4b1e886fb9cf015af4ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a81d4c2b144fc4b1e886fb9cf015af4ee">SetProxyAuthorization</a> ()</td></tr>
+<tr class="separator:a81d4c2b144fc4b1e886fb9cf015af4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a510f42678ebdfdb93e1d377a7a67abad" id="r_a510f42678ebdfdb93e1d377a7a67abad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a510f42678ebdfdb93e1d377a7a67abad">GetRange</a> ()</td></tr>
+<tr class="memdesc:a510f42678ebdfdb93e1d377a7a67abad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Range header for partial content requests.  <br /></td></tr>
+<tr class="separator:a510f42678ebdfdb93e1d377a7a67abad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa39d4b1bf6607370c3fb7d1fe686621d" id="r_aa39d4b1bf6607370c3fb7d1fe686621d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#aa39d4b1bf6607370c3fb7d1fe686621d">SetRange</a> ()</td></tr>
+<tr class="separator:aa39d4b1bf6607370c3fb7d1fe686621d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e2b618a99a3c1c6bd82512ae31aaac" id="r_a99e2b618a99a3c1c6bd82512ae31aaac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a99e2b618a99a3c1c6bd82512ae31aaac">GetCacheControl</a> ()</td></tr>
+<tr class="memdesc:a99e2b618a99a3c1c6bd82512ae31aaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Cache-Control header for the request.  <br /></td></tr>
+<tr class="separator:a99e2b618a99a3c1c6bd82512ae31aaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1909ad4fb555e233f92f790572fecaa" id="r_aa1909ad4fb555e233f92f790572fecaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#aa1909ad4fb555e233f92f790572fecaa">SetCacheControl</a> ()</td></tr>
+<tr class="separator:aa1909ad4fb555e233f92f790572fecaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5cae08c1dddec45547f5e500356370" id="r_a1b5cae08c1dddec45547f5e500356370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a1b5cae08c1dddec45547f5e500356370">GetDate</a> ()</td></tr>
+<tr class="memdesc:a1b5cae08c1dddec45547f5e500356370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Date header.  <br /></td></tr>
+<tr class="separator:a1b5cae08c1dddec45547f5e500356370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf204e0551b07182a6ee31faf5f4ed8" id="r_acbf204e0551b07182a6ee31faf5f4ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#acbf204e0551b07182a6ee31faf5f4ed8">SetDate</a> ()</td></tr>
+<tr class="separator:acbf204e0551b07182a6ee31faf5f4ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Conditional Headers</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> used for cache validation and conditional requests. </p>
+</div></td></tr>
+<tr class="memitem:a46ae24be5b6d1ef64ed9a24bc485d978" id="r_a46ae24be5b6d1ef64ed9a24bc485d978"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a46ae24be5b6d1ef64ed9a24bc485d978">GetIfModifiedSince</a> ()</td></tr>
+<tr class="memdesc:a46ae24be5b6d1ef64ed9a24bc485d978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the If-Modified-Since header.  <br /></td></tr>
+<tr class="separator:a46ae24be5b6d1ef64ed9a24bc485d978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91424a85e97193fb9ee2a5060d1e4534" id="r_a91424a85e97193fb9ee2a5060d1e4534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a91424a85e97193fb9ee2a5060d1e4534">SetIfModifiedSince</a> ()</td></tr>
+<tr class="separator:a91424a85e97193fb9ee2a5060d1e4534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800d86a0f85be65a8c881634a95f57ed" id="r_a800d86a0f85be65a8c881634a95f57ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a800d86a0f85be65a8c881634a95f57ed">GetIfUnmodifiedSince</a> ()</td></tr>
+<tr class="memdesc:a800d86a0f85be65a8c881634a95f57ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the If-Unmodified-Since header.  <br /></td></tr>
+<tr class="separator:a800d86a0f85be65a8c881634a95f57ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa0bd3cc9aaf51c13b54259b3b52a50" id="r_acfa0bd3cc9aaf51c13b54259b3b52a50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#acfa0bd3cc9aaf51c13b54259b3b52a50">SetIfUnmodifiedSince</a> ()</td></tr>
+<tr class="separator:acfa0bd3cc9aaf51c13b54259b3b52a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa456864978b39ca120af3f82453dc2a8" id="r_aa456864978b39ca120af3f82453dc2a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#aa456864978b39ca120af3f82453dc2a8">GetIfRange</a> ()</td></tr>
+<tr class="memdesc:aa456864978b39ca120af3f82453dc2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the If-Range header.  <br /></td></tr>
+<tr class="separator:aa456864978b39ca120af3f82453dc2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884c5d678e601ad83ee5efcbdb30b6c8" id="r_a884c5d678e601ad83ee5efcbdb30b6c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a884c5d678e601ad83ee5efcbdb30b6c8">SetIfRange</a> ()</td></tr>
+<tr class="separator:a884c5d678e601ad83ee5efcbdb30b6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50dafec5894e066c1beb6f62730f6d68" id="r_a50dafec5894e066c1beb6f62730f6d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a50dafec5894e066c1beb6f62730f6d68">GetIfMatch</a> ()</td></tr>
+<tr class="memdesc:a50dafec5894e066c1beb6f62730f6d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the If-Match header.  <br /></td></tr>
+<tr class="separator:a50dafec5894e066c1beb6f62730f6d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532696c268767bc2b45dfabef3337025" id="r_a532696c268767bc2b45dfabef3337025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a532696c268767bc2b45dfabef3337025">SetIfMatch</a> ()</td></tr>
+<tr class="separator:a532696c268767bc2b45dfabef3337025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ef98498baeda6d24d1ca4fbe40910e" id="r_a04ef98498baeda6d24d1ca4fbe40910e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a04ef98498baeda6d24d1ca4fbe40910e">GetIfNoneMatch</a> ()</td></tr>
+<tr class="memdesc:a04ef98498baeda6d24d1ca4fbe40910e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the If-None-Match header.  <br /></td></tr>
+<tr class="separator:a04ef98498baeda6d24d1ca4fbe40910e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86be6c5b0fbd71fde238169944d7f065" id="r_a86be6c5b0fbd71fde238169944d7f065"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a86be6c5b0fbd71fde238169944d7f065">SetIfNoneMatch</a> ()</td></tr>
+<tr class="separator:a86be6c5b0fbd71fde238169944d7f065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Multi-Value Headers (Adders/Modifiers)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> that naturally support multiple comma-separated values. </p>
+</div></td></tr>
+<tr class="memitem:a8fd8f474f0c218403bbaf49430fc3c14" id="r_a8fd8f474f0c218403bbaf49430fc3c14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a8fd8f474f0c218403bbaf49430fc3c14">AddAccept</a> (<a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html">MimeType</a> type)</td></tr>
+<tr class="memdesc:a8fd8f474f0c218403bbaf49430fc3c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the Accept header (media types).  <br /></td></tr>
+<tr class="separator:a8fd8f474f0c218403bbaf49430fc3c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e81fef2a016bd578a19b875405a4e9" id="r_ad3e81fef2a016bd578a19b875405a4e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ad3e81fef2a016bd578a19b875405a4e9">AddAcceptCharset</a> ()</td></tr>
+<tr class="memdesc:ad3e81fef2a016bd578a19b875405a4e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the Accept-Charset header.  <br /></td></tr>
+<tr class="separator:ad3e81fef2a016bd578a19b875405a4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb50ac002966f70ce7322aa3471d78a" id="r_a7cb50ac002966f70ce7322aa3471d78a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a7cb50ac002966f70ce7322aa3471d78a">AddAcceptEncoding</a> ()</td></tr>
+<tr class="memdesc:a7cb50ac002966f70ce7322aa3471d78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the Accept-Encoding header (gzip, br, etc).  <br /></td></tr>
+<tr class="separator:a7cb50ac002966f70ce7322aa3471d78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ce13dc0c45c1667f458c78c7861046" id="r_a82ce13dc0c45c1667f458c78c7861046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a82ce13dc0c45c1667f458c78c7861046">AddAcceptLanguage</a> ()</td></tr>
+<tr class="memdesc:a82ce13dc0c45c1667f458c78c7861046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the Accept-Language header.  <br /></td></tr>
+<tr class="separator:a82ce13dc0c45c1667f458c78c7861046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0e2b16c707d095479c5fa7c95330edd" id="r_ae0e2b16c707d095479c5fa7c95330edd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ae0e2b16c707d095479c5fa7c95330edd">AddTe</a> ()</td></tr>
+<tr class="memdesc:ae0e2b16c707d095479c5fa7c95330edd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the TE (Transfer Encoding) header.  <br /></td></tr>
+<tr class="separator:ae0e2b16c707d095479c5fa7c95330edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d0f508291143355d9ab74d9efa445d" id="r_a03d0f508291143355d9ab74d9efa445d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a03d0f508291143355d9ab74d9efa445d">AddUpgrade</a> ()</td></tr>
+<tr class="memdesc:a03d0f508291143355d9ab74d9efa445d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Upgrade</a> header (e.g., websocket).  <br /></td></tr>
+<tr class="separator:a03d0f508291143355d9ab74d9efa445d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a441821d7152fe849f3134f70cfeb3bc0" id="r_a441821d7152fe849f3134f70cfeb3bc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a441821d7152fe849f3134f70cfeb3bc0">AddVia</a> ()</td></tr>
+<tr class="memdesc:a441821d7152fe849f3134f70cfeb3bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the Via header for proxy tracking.  <br /></td></tr>
+<tr class="separator:a441821d7152fe849f3134f70cfeb3bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">CORS Request Headers</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> sent by the client during Cross-Origin Resource Sharing. </p>
+</div></td></tr>
+<tr class="memitem:a69ec626dcd327ea1d3be9064ac46a34a" id="r_a69ec626dcd327ea1d3be9064ac46a34a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a69ec626dcd327ea1d3be9064ac46a34a">GetAccessControlRequestMethod</a> ()</td></tr>
+<tr class="memdesc:a69ec626dcd327ea1d3be9064ac46a34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Access-Control-Request-Method for preflight requests.  <br /></td></tr>
+<tr class="separator:a69ec626dcd327ea1d3be9064ac46a34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac55ee39be23f302caa1dcf9fd7ee4247" id="r_ac55ee39be23f302caa1dcf9fd7ee4247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ac55ee39be23f302caa1dcf9fd7ee4247">SetAccessControlRequestMethod</a> ()</td></tr>
+<tr class="separator:ac55ee39be23f302caa1dcf9fd7ee4247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf3fc50eb8523328d4e2f0e462b8c6e7" id="r_acf3fc50eb8523328d4e2f0e462b8c6e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#acf3fc50eb8523328d4e2f0e462b8c6e7">GetAccessControlRequestHeaders</a> ()</td></tr>
+<tr class="memdesc:acf3fc50eb8523328d4e2f0e462b8c6e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Access-Control-Request-Headers for preflight requests.  <br /></td></tr>
+<tr class="separator:acf3fc50eb8523328d4e2f0e462b8c6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59a13fd1571bce76d137fc89604c843a" id="r_a59a13fd1571bce76d137fc89604c843a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a59a13fd1571bce76d137fc89604c843a">SetAccessControlRequestHeaders</a> ()</td></tr>
+<tr class="separator:a59a13fd1571bce76d137fc89604c843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Convenience Methods</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Boolean checks and simplified abstractions over complex headers. </p>
+</div></td></tr>
+<tr class="memitem:a4a671ac372022ed326ed3c5e8ea5a3db" id="r_a4a671ac372022ed326ed3c5e8ea5a3db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a4a671ac372022ed326ed3c5e8ea5a3db">IsConnectionClose</a> () const</td></tr>
+<tr class="memdesc:a4a671ac372022ed326ed3c5e8ea5a3db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Connection header contains the 'close' token.  <br /></td></tr>
+<tr class="separator:a4a671ac372022ed326ed3c5e8ea5a3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae1e19702475e170aa76acfd3042502" id="r_a5ae1e19702475e170aa76acfd3042502"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a5ae1e19702475e170aa76acfd3042502">IsExpectContinue</a> () const</td></tr>
+<tr class="memdesc:a5ae1e19702475e170aa76acfd3042502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Expect header specifically contains '100-continue'.  <br /></td></tr>
+<tr class="separator:a5ae1e19702475e170aa76acfd3042502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2abdfb0edae7a6d0c90d6ac605549d17" id="r_a2abdfb0edae7a6d0c90d6ac605549d17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a2abdfb0edae7a6d0c90d6ac605549d17">IsTransferEncodingChunked</a> () const</td></tr>
+<tr class="memdesc:a2abdfb0edae7a6d0c90d6ac605549d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Transfer-Encoding header contains 'chunked'.  <br /></td></tr>
+<tr class="separator:a2abdfb0edae7a6d0c90d6ac605549d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44722d3741a9ea24a425fd218a031934" id="r_a44722d3741a9ea24a425fd218a031934"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#a44722d3741a9ea24a425fd218a031934">SetTransferEncodingChunked</a> (bool chunked)</td></tr>
+<tr class="memdesc:a44722d3741a9ea24a425fd218a031934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Transfer-Encoding header to 'chunked' or removes it.  <br /></td></tr>
+<tr class="separator:a44722d3741a9ea24a425fd218a031934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4acee1c35f3e081dd4e86883b2e8ddc" id="r_ac4acee1c35f3e081dd4e86883b2e8ddc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html#ac4acee1c35f3e081dd4e86883b2e8ddc">SetConnectionClose</a> (bool close)</td></tr>
+<tr class="memdesc:ac4acee1c35f3e081dd4e86883b2e8ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Connection header to 'Close' or 'Keep-Alive'.  <br /></td></tr>
+<tr class="separator:ac4acee1c35f3e081dd4e86883b2e8ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_thoth_1_1_http_1_1_headers')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
+<tr class="memitem:a1d83300c0da8ca20f55374139098c847 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a1d83300c0da8ca20f55374139098c847"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a> ()</td></tr>
+<tr class="separator:a1d83300c0da8ca20f55374139098c847 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c65b704ffc9065b6105aa3f5344c54 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a24c65b704ffc9065b6105aa3f5344c54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a24c65b704ffc9065b6105aa3f5344c54">Headers</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a> &amp;initAs)</td></tr>
+<tr class="memdesc:a24c65b704ffc9065b6105aa3f5344c54 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create with an existing vector.  <br /></td></tr>
+<tr class="separator:a24c65b704ffc9065b6105aa3f5344c54 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4cb9d11a5d95c5a8ef7fcf8f5071032 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ae4cb9d11a5d95c5a8ef7fcf8f5071032"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ae4cb9d11a5d95c5a8ef7fcf8f5071032">Headers</a> (std::initializer_list&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a906836cc357d094da745ad558388a635">HeaderPair</a> &gt; init)</td></tr>
+<tr class="separator:ae4cb9d11a5d95c5a8ef7fcf8f5071032 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2024102673a3cda32d8622cb2abb70 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a8d2024102673a3cda32d8622cb2abb70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d2024102673a3cda32d8622cb2abb70">Exists</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a8d2024102673a3cda32d8622cb2abb70 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key exists.  <br /></td></tr>
+<tr class="separator:a8d2024102673a3cda32d8622cb2abb70 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d290cbda1e0b0dfaf2b7725b44cc07 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ae6d290cbda1e0b0dfaf2b7725b44cc07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ae6d290cbda1e0b0dfaf2b7725b44cc07">Exists</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p) const</td></tr>
+<tr class="memdesc:ae6d290cbda1e0b0dfaf2b7725b44cc07 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key exists.  <br /></td></tr>
+<tr class="separator:ae6d290cbda1e0b0dfaf2b7725b44cc07 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0b804adb648801f1c3e0780319ddd6 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a0f0b804adb648801f1c3e0780319ddd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a0f0b804adb648801f1c3e0780319ddd6">Exists</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val) const</td></tr>
+<tr class="memdesc:a0f0b804adb648801f1c3e0780319ddd6 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a key=val exists.  <br /></td></tr>
+<tr class="separator:a0f0b804adb648801f1c3e0780319ddd6 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac01f0d57b008af3aab2d5cdacd413d19 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ac01f0d57b008af3aab2d5cdacd413d19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac01f0d57b008af3aab2d5cdacd413d19">Add</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p)</td></tr>
+<tr class="memdesc:ac01f0d57b008af3aab2d5cdacd413d19 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a value with the specified key. Append if already exists.  <br /></td></tr>
+<tr class="separator:ac01f0d57b008af3aab2d5cdacd413d19 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee3c0fd192760969e6162463036b61f inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_adee3c0fd192760969e6162463036b61f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#adee3c0fd192760969e6162463036b61f">Add</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val)</td></tr>
+<tr class="memdesc:adee3c0fd192760969e6162463036b61f inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac01f0d57b008af3aab2d5cdacd413d19">Add(HeaderPairRef p)</a>.  <br /></td></tr>
+<tr class="separator:adee3c0fd192760969e6162463036b61f inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53923bf8042fa3035e92fa43c0e1fce inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_af53923bf8042fa3035e92fa43c0e1fce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af53923bf8042fa3035e92fa43c0e1fce">Set</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p)</td></tr>
+<tr class="memdesc:af53923bf8042fa3035e92fa43c0e1fce inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a value with the specified key. Replace if already exists.  <br /></td></tr>
+<tr class="separator:af53923bf8042fa3035e92fa43c0e1fce inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_abe3d6933f484bf5986199b9d8220211d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#abe3d6933f484bf5986199b9d8220211d">Set</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val)</td></tr>
+<tr class="memdesc:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac01f0d57b008af3aab2d5cdacd413d19">Add(HeaderPairRef p)</a>.  <br /></td></tr>
+<tr class="separator:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a6a77fba1c8c2d373d6ebf8f3febe2893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a6a77fba1c8c2d373d6ebf8f3febe2893">Remove</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p)</td></tr>
+<tr class="memdesc:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a value with the specified key.  <br /></td></tr>
+<tr class="separator:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d20a216594694269d4ad47e26e2469c inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a4d20a216594694269d4ad47e26e2469c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a4d20a216594694269d4ad47e26e2469c">Remove</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val)</td></tr>
+<tr class="memdesc:a4d20a216594694269d4ad47e26e2469c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a6a77fba1c8c2d373d6ebf8f3febe2893">Remove(HeaderPairRef p)</a>.  <br /></td></tr>
+<tr class="separator:a4d20a216594694269d4ad47e26e2469c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d7f9f7c5320534356daec214408de4 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a54d7f9f7c5320534356daec214408de4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a54d7f9f7c5320534356daec214408de4">SetIfNull</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p)</td></tr>
+<tr class="memdesc:a54d7f9f7c5320534356daec214408de4 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">If key not exists, set it to value.  <br /></td></tr>
+<tr class="separator:a54d7f9f7c5320534356daec214408de4 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c174394b2e4c79fd7d1dea04ac53404 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a1c174394b2e4c79fd7d1dea04ac53404"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1c174394b2e4c79fd7d1dea04ac53404">SetIfNull</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val)</td></tr>
+<tr class="memdesc:a1c174394b2e4c79fd7d1dea04ac53404 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a54d7f9f7c5320534356daec214408de4">SetIfNull(HeaderPairRef p)</a>.  <br /></td></tr>
+<tr class="separator:a1c174394b2e4c79fd7d1dea04ac53404 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe718910542f91ce25585f191d7cfcb inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a2fe718910542f91ce25585f191d7cfcb"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f">HeaderValue</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a2fe718910542f91ce25585f191d7cfcb">Get</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key)</td></tr>
+<tr class="memdesc:a2fe718910542f91ce25585f191d7cfcb inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key but don't create if it not exists.  <br /></td></tr>
+<tr class="separator:a2fe718910542f91ce25585f191d7cfcb inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0204f5489b023591809e50ccf37b1ec inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ab0204f5489b023591809e50ccf37b1ec"><td class="memItemLeft" align="right" valign="top">std::optional&lt; const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f">HeaderValue</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ab0204f5489b023591809e50ccf37b1ec">Get</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key) const</td></tr>
+<tr class="memdesc:ab0204f5489b023591809e50ccf37b1ec inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key but don't create if it not exists.  <br /></td></tr>
+<tr class="separator:ab0204f5489b023591809e50ccf37b1ec inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf468f5e5617c787577fbdeb12ed0ebf inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_aaf468f5e5617c787577fbdeb12ed0ebf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a57b0ff6d4940181a2a7997ccde2e61fa">IterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aaf468f5e5617c787577fbdeb12ed0ebf">begin</a> ()</td></tr>
+<tr class="separator:aaf468f5e5617c787577fbdeb12ed0ebf inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a851e6643bfc2e972f8230e8567eb3d01 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a851e6643bfc2e972f8230e8567eb3d01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a57b0ff6d4940181a2a7997ccde2e61fa">IterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a851e6643bfc2e972f8230e8567eb3d01">end</a> ()</td></tr>
+<tr class="separator:a851e6643bfc2e972f8230e8567eb3d01 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5592aae141c5fe7dac51d69a32dd28 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a4d5592aae141c5fe7dac51d69a32dd28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a852a4171401a49de51c90f8849baf8e4">CIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a4d5592aae141c5fe7dac51d69a32dd28">begin</a> () const</td></tr>
+<tr class="separator:a4d5592aae141c5fe7dac51d69a32dd28 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800ae378c585736782f7d0295f8e23a3 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a800ae378c585736782f7d0295f8e23a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a852a4171401a49de51c90f8849baf8e4">CIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a800ae378c585736782f7d0295f8e23a3">end</a> () const</td></tr>
+<tr class="separator:a800ae378c585736782f7d0295f8e23a3 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54795e2d126e3c2c991e442406656126 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a54795e2d126e3c2c991e442406656126"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579">RIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a54795e2d126e3c2c991e442406656126">rbegin</a> ()</td></tr>
+<tr class="separator:a54795e2d126e3c2c991e442406656126 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d9e2d46258484f669e5904584d2b40 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_af3d9e2d46258484f669e5904584d2b40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579">RIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af3d9e2d46258484f669e5904584d2b40">rend</a> ()</td></tr>
+<tr class="separator:af3d9e2d46258484f669e5904584d2b40 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cf9dec93266fd512584200751cf36e0 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a9cf9dec93266fd512584200751cf36e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ad34d9d68c729570507a91be613d97e14">CRIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a9cf9dec93266fd512584200751cf36e0">rbegin</a> () const</td></tr>
+<tr class="separator:a9cf9dec93266fd512584200751cf36e0 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e28bbb530cb0c557d1f3456cca827f inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_af8e28bbb530cb0c557d1f3456cca827f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ad34d9d68c729570507a91be613d97e14">CRIterType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af8e28bbb530cb0c557d1f3456cca827f">rend</a> () const</td></tr>
+<tr class="separator:af8e28bbb530cb0c557d1f3456cca827f inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a5cfc5b8f4c144d4d7f5692df3b0ca3 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a2a5cfc5b8f4c144d4d7f5692df3b0ca3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a2a5cfc5b8f4c144d4d7f5692df3b0ca3">Clear</a> ()</td></tr>
+<tr class="memdesc:a2a5cfc5b8f4c144d4d7f5692df3b0ca3 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all keys.  <br /></td></tr>
+<tr class="separator:a2a5cfc5b8f4c144d4d7f5692df3b0ca3 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e1b4936d590229e3401f6cc9599978 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ad1e1b4936d590229e3401f6cc9599978"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ad1e1b4936d590229e3401f6cc9599978">Size</a> () const</td></tr>
+<tr class="separator:ad1e1b4936d590229e3401f6cc9599978 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0275316907b93dcd13c5dd675a7fc738 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a0275316907b93dcd13c5dd675a7fc738"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a0275316907b93dcd13c5dd675a7fc738">Empty</a> () const</td></tr>
+<tr class="separator:a0275316907b93dcd13c5dd675a7fc738 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d0f8f5008c360acd184e3e541f6aed inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ad3d0f8f5008c360acd184e3e541f6aed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f">HeaderValue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ad3d0f8f5008c360acd184e3e541f6aed">operator[]</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key)</td></tr>
+<tr class="separator:ad3d0f8f5008c360acd184e3e541f6aed inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf06266ca97cbe1c701a5f3ff347bca1 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_acf06266ca97cbe1c701a5f3ff347bca1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#acf06266ca97cbe1c701a5f3ff347bca1">operator==</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &amp;other) const</td></tr>
+<tr class="separator:acf06266ca97cbe1c701a5f3ff347bca1 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1195a035001d08deb7aaefde478abda9 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a1195a035001d08deb7aaefde478abda9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html">NHeaders::MimeType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1195a035001d08deb7aaefde478abda9">ContentType</a> ()</td></tr>
+<tr class="memdesc:a1195a035001d08deb7aaefde478abda9 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the media type of the resource (MIME).  <br /></td></tr>
+<tr class="separator:a1195a035001d08deb7aaefde478abda9 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb713f9fec2d3fe3f80a61b5c7a27a7 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_acdb713f9fec2d3fe3f80a61b5c7a27a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html">NHeaders::MimeType</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#acdb713f9fec2d3fe3f80a61b5c7a27a7">ContentType</a> () const</td></tr>
+<tr class="memdesc:acdb713f9fec2d3fe3f80a61b5c7a27a7 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the media type of the resource (MIME).  <br /></td></tr>
+<tr class="separator:acdb713f9fec2d3fe3f80a61b5c7a27a7 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57f38553a73aab7467897a76cf3c8009 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a57f38553a73aab7467897a76cf3c8009"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a57f38553a73aab7467897a76cf3c8009">ContentLength</a> ()</td></tr>
+<tr class="memdesc:a57f38553a73aab7467897a76cf3c8009 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the entity-body in bytes.  <br /></td></tr>
+<tr class="separator:a57f38553a73aab7467897a76cf3c8009 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994c4fbe8b12a4cd6be5d2b112063162 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a994c4fbe8b12a4cd6be5d2b112063162"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; uint64_t, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a994c4fbe8b12a4cd6be5d2b112063162">ContentLength</a> () const</td></tr>
+<tr class="memdesc:a994c4fbe8b12a4cd6be5d2b112063162 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the entity-body in bytes.  <br /></td></tr>
+<tr class="separator:a994c4fbe8b12a4cd6be5d2b112063162 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af022a7bdbb89e752ed0be03a99cf4916 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_af022a7bdbb89e752ed0be03a99cf4916"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc">NHeaders::ContentEncodingEnum</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af022a7bdbb89e752ed0be03a99cf4916">ContentEncoding</a> ()</td></tr>
+<tr class="memdesc:af022a7bdbb89e752ed0be03a99cf4916 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of encodings (compression) applied to the entity.  <br /></td></tr>
+<tr class="separator:af022a7bdbb89e752ed0be03a99cf4916 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7248783660cf054f2f3244304ef18f5b inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a7248783660cf054f2f3244304ef18f5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc">NHeaders::ContentEncodingEnum</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a7248783660cf054f2f3244304ef18f5b">ContentEncoding</a> () const</td></tr>
+<tr class="memdesc:a7248783660cf054f2f3244304ef18f5b inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of encodings (compression) applied to the entity.  <br /></td></tr>
+<tr class="separator:a7248783660cf054f2f3244304ef18f5b inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d552c8ea3d83bde7c643f5170f4490 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a90d552c8ea3d83bde7c643f5170f4490"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b">NHeaders::TransferEncodingEnum</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a90d552c8ea3d83bde7c643f5170f4490">TransferEncoding</a> ()</td></tr>
+<tr class="memdesc:a90d552c8ea3d83bde7c643f5170f4490 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of compression applied to the entity.  <br /></td></tr>
+<tr class="separator:a90d552c8ea3d83bde7c643f5170f4490 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba20dd7ca75680f9f7f5051e7dc207ab inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_aba20dd7ca75680f9f7f5051e7dc207ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b">NHeaders::TransferEncodingEnum</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aba20dd7ca75680f9f7f5051e7dc207ab">TransferEncoding</a> () const</td></tr>
+<tr class="memdesc:aba20dd7ca75680f9f7f5051e7dc207ab inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of compression applied to the entity.  <br /></td></tr>
+<tr class="separator:aba20dd7ca75680f9f7f5051e7dc207ab inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf010dbf36c61e0aff3fad8c3f0718da inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_acf010dbf36c61e0aff3fad8c3f0718da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#acf010dbf36c61e0aff3fad8c3f0718da">ContentLanguage</a> ()</td></tr>
+<tr class="memdesc:acf010dbf36c61e0aff3fad8c3f0718da inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Natural languages for the intended audience (e.g., "en-US").  <br /></td></tr>
+<tr class="separator:acf010dbf36c61e0aff3fad8c3f0718da inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab10dfc41368eeb9f914f90fe5a14f64 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_aab10dfc41368eeb9f914f90fe5a14f64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aab10dfc41368eeb9f914f90fe5a14f64">ContentLanguage</a> () const</td></tr>
+<tr class="memdesc:aab10dfc41368eeb9f914f90fe5a14f64 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Natural languages for the intended audience (e.g., "en-US").  <br /></td></tr>
+<tr class="separator:aab10dfc41368eeb9f914f90fe5a14f64 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a038cf9f9fecf3403e64f11bf43265e96 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a038cf9f9fecf3403e64f11bf43265e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a038cf9f9fecf3403e64f11bf43265e96">ContentLocation</a> ()</td></tr>
+<tr class="memdesc:a038cf9f9fecf3403e64f11bf43265e96 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">The specific location for the entity-body.  <br /></td></tr>
+<tr class="separator:a038cf9f9fecf3403e64f11bf43265e96 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00006a098d131d8798dc55d68eefcc30 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a00006a098d131d8798dc55d68eefcc30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a00006a098d131d8798dc55d68eefcc30">ContentLocation</a> () const</td></tr>
+<tr class="memdesc:a00006a098d131d8798dc55d68eefcc30 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">The specific location for the entity-body.  <br /></td></tr>
+<tr class="separator:a00006a098d131d8798dc55d68eefcc30 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cad5da5556fce14265549ba7c70929c inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a6cad5da5556fce14265549ba7c70929c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; std::chrono::utc_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a6cad5da5556fce14265549ba7c70929c">Date</a> ()</td></tr>
+<tr class="memdesc:a6cad5da5556fce14265549ba7c70929c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Date and time at which the message was originated.  <br /></td></tr>
+<tr class="separator:a6cad5da5556fce14265549ba7c70929c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186b1706a96f831413a593faae46f27b inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a186b1706a96f831413a593faae46f27b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; std::chrono::utc_clock, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a186b1706a96f831413a593faae46f27b">Date</a> () const</td></tr>
+<tr class="memdesc:a186b1706a96f831413a593faae46f27b inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Date and time at which the message was originated.  <br /></td></tr>
+<tr class="separator:a186b1706a96f831413a593faae46f27b inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb74940db1472f3e8e60fdffb245bd2f inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_adb74940db1472f3e8e60fdffb245bd2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#adb74940db1472f3e8e60fdffb245bd2f">Connection</a> ()</td></tr>
+<tr class="memdesc:adb74940db1472f3e8e60fdffb245bd2f inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the current connection.  <br /></td></tr>
+<tr class="separator:adb74940db1472f3e8e60fdffb245bd2f inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc68914bfdcd99bea28fd7da6d53299d inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_abc68914bfdcd99bea28fd7da6d53299d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#abc68914bfdcd99bea28fd7da6d53299d">Connection</a> () const</td></tr>
+<tr class="memdesc:abc68914bfdcd99bea28fd7da6d53299d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for the current connection.  <br /></td></tr>
+<tr class="separator:abc68914bfdcd99bea28fd7da6d53299d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3976b6a26d5b2903a663c4c8ad003d2 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ab3976b6a26d5b2903a663c4c8ad003d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">NHeaders::Upgrade</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ab3976b6a26d5b2903a663c4c8ad003d2">Upgrade</a> ()</td></tr>
+<tr class="memdesc:ab3976b6a26d5b2903a663c4c8ad003d2 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to signal a protocol change (e.g., "websocket").  <br /></td></tr>
+<tr class="separator:ab3976b6a26d5b2903a663c4c8ad003d2 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e466563ba0b67fd4e2501fa5aaeebe inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ae8e466563ba0b67fd4e2501fa5aaeebe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">NHeaders::Upgrade</a>, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ae8e466563ba0b67fd4e2501fa5aaeebe">Upgrade</a> () const</td></tr>
+<tr class="memdesc:ae8e466563ba0b67fd4e2501fa5aaeebe inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to signal a protocol change (e.g., "websocket").  <br /></td></tr>
+<tr class="separator:ae8e466563ba0b67fd4e2501fa5aaeebe inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52658c3e2c03276e04bfb729f39f6344 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a52658c3e2c03276e04bfb729f39f6344"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a52658c3e2c03276e04bfb729f39f6344">Trailer</a> ()</td></tr>
+<tr class="memdesc:a52658c3e2c03276e04bfb729f39f6344 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates header fields present in the trailer of a chunked message.  <br /></td></tr>
+<tr class="separator:a52658c3e2c03276e04bfb729f39f6344 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f14bc03091d168fe9fbd5f221517f8 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_ac7f14bc03091d168fe9fbd5f221517f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac7f14bc03091d168fe9fbd5f221517f8">Trailer</a> () const</td></tr>
+<tr class="memdesc:ac7f14bc03091d168fe9fbd5f221517f8 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates header fields present in the trailer of a chunked message.  <br /></td></tr>
+<tr class="separator:ac7f14bc03091d168fe9fbd5f221517f8 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf48358de14d18e5847c40a69d1cd7c inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_aadf48358de14d18e5847c40a69d1cd7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aadf48358de14d18e5847c40a69d1cd7c">Via</a> ()</td></tr>
+<tr class="memdesc:aadf48358de14d18e5847c40a69d1cd7c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path taken by the request/response through proxies (free string).  <br /></td></tr>
+<tr class="separator:aadf48358de14d18e5847c40a69d1cd7c inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa129d0d4dbabcfbad240db9cea653e44 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_aa129d0d4dbabcfbad240db9cea653e44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; std::string, true &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aa129d0d4dbabcfbad240db9cea653e44">Via</a> () const</td></tr>
+<tr class="memdesc:aa129d0d4dbabcfbad240db9cea653e44 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path taken by the request/response through proxies (free string).  <br /></td></tr>
+<tr class="separator:aa129d0d4dbabcfbad240db9cea653e44 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_struct_thoth_1_1_http_1_1_headers"><td colspan="2" onclick="javascript:toggleInherit('pub_types_struct_thoth_1_1_http_1_1_headers')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
+<tr class="memitem:a1f70ed9a9baae6dd24ac06b647b0f16d inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a1f70ed9a9baae6dd24ac06b647b0f16d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1f70ed9a9baae6dd24ac06b647b0f16d">HeaderKey</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a">NHeaders::HeaderKey</a></td></tr>
+<tr class="separator:a1f70ed9a9baae6dd24ac06b647b0f16d inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e9b9b7aab9a1a89986ba24d1a8d6f6 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a39e9b9b7aab9a1a89986ba24d1a8d6f6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e">NHeaders::HeaderKeyRef</a></td></tr>
+<tr class="separator:a39e9b9b7aab9a1a89986ba24d1a8d6f6 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af550373a3092b1ab4a6481c5a28c2d8f inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_af550373a3092b1ab4a6481c5a28c2d8f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f">HeaderValue</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">NHeaders::HeaderValue</a></td></tr>
+<tr class="separator:af550373a3092b1ab4a6481c5a28c2d8f inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d69ecd4575d37625ae75c14d5f009e6 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a8d69ecd4575d37625ae75c14d5f009e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95">NHeaders::HeaderValueRef</a></td></tr>
+<tr class="separator:a8d69ecd4575d37625ae75c14d5f009e6 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a906836cc357d094da745ad558388a635 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a906836cc357d094da745ad558388a635"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a906836cc357d094da745ad558388a635">HeaderPair</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25">NHeaders::HeaderPair</a></td></tr>
+<tr class="separator:a906836cc357d094da745ad558388a635 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536935553203c43bf4ee9d497d927d84 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a536935553203c43bf4ee9d497d927d84"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8217e3e781bce447f80e5fab3d2b7e01">NHeaders::HeaderPairRef</a></td></tr>
+<tr class="separator:a536935553203c43bf4ee9d497d927d84 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac52fd3e99c1bda26096706af33f691f5 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_ac52fd3e99c1bda26096706af33f691f5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a> = <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab11732724c2ec519aa611955d769991a">NHeaders::MapType</a></td></tr>
+<tr class="separator:ac52fd3e99c1bda26096706af33f691f5 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8493bbbf9abcbb5a51d2c9fc07431d9 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_ae8493bbbf9abcbb5a51d2c9fc07431d9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ae8493bbbf9abcbb5a51d2c9fc07431d9">MapType</a> = std::vector&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a906836cc357d094da745ad558388a635">HeaderPair</a> &gt;</td></tr>
+<tr class="separator:ae8493bbbf9abcbb5a51d2c9fc07431d9 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b0ff6d4940181a2a7997ccde2e61fa inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a57b0ff6d4940181a2a7997ccde2e61fa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a57b0ff6d4940181a2a7997ccde2e61fa">IterType</a> = decltype(<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>{}.<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aaf468f5e5617c787577fbdeb12ed0ebf">begin</a>())</td></tr>
+<tr class="separator:a57b0ff6d4940181a2a7997ccde2e61fa inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a852a4171401a49de51c90f8849baf8e4 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a852a4171401a49de51c90f8849baf8e4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a852a4171401a49de51c90f8849baf8e4">CIterType</a> = decltype(<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>{}.cbegin())</td></tr>
+<tr class="separator:a852a4171401a49de51c90f8849baf8e4 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b6a0f65d55f057afe90f66fc9f47579 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_a3b6a0f65d55f057afe90f66fc9f47579"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579">RIterType</a> = decltype(<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>{}.<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a54795e2d126e3c2c991e442406656126">rbegin</a>())</td></tr>
+<tr class="separator:a3b6a0f65d55f057afe90f66fc9f47579 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad34d9d68c729570507a91be613d97e14 inherit pub_types_struct_thoth_1_1_http_1_1_headers" id="r_ad34d9d68c729570507a91be613d97e14"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ad34d9d68c729570507a91be613d97e14">CRIterType</a> = decltype(<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>{}.crbegin())</td></tr>
+<tr class="separator:ad34d9d68c729570507a91be613d97e14 inherit pub_types_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_struct_thoth_1_1_http_1_1_headers')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
+<tr class="memitem:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a4867c9b77857dca60eb1eccb726244f7"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a4867c9b77857dca60eb1eccb726244f7">Parse</a> (R &amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP string.  <br /></td></tr>
+<tr class="separator:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
+<tr class="separator:a47e8a0ea4bc89eddd8626be4a630e639 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8fd8f474f0c218403bbaf49430fc3c14" name="a8fd8f474f0c218403bbaf49430fc3c14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fd8f474f0c218403bbaf49430fc3c14">&#9670;&#160;</a></span>AddAccept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddAccept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html">MimeType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the Accept header (media types). </p>
+
+</div>
+</div>
+<a id="ad3e81fef2a016bd578a19b875405a4e9" name="ad3e81fef2a016bd578a19b875405a4e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3e81fef2a016bd578a19b875405a4e9">&#9670;&#160;</a></span>AddAcceptCharset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddAcceptCharset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the Accept-Charset header. </p>
+
+</div>
+</div>
+<a id="a7cb50ac002966f70ce7322aa3471d78a" name="a7cb50ac002966f70ce7322aa3471d78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb50ac002966f70ce7322aa3471d78a">&#9670;&#160;</a></span>AddAcceptEncoding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddAcceptEncoding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the Accept-Encoding header (gzip, br, etc). </p>
+
+</div>
+</div>
+<a id="a82ce13dc0c45c1667f458c78c7861046" name="a82ce13dc0c45c1667f458c78c7861046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ce13dc0c45c1667f458c78c7861046">&#9670;&#160;</a></span>AddAcceptLanguage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddAcceptLanguage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the Accept-Language header. </p>
+
+</div>
+</div>
+<a id="ae0e2b16c707d095479c5fa7c95330edd" name="ae0e2b16c707d095479c5fa7c95330edd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0e2b16c707d095479c5fa7c95330edd">&#9670;&#160;</a></span>AddTe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddTe </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the TE (Transfer Encoding) header. </p>
+
+</div>
+</div>
+<a id="a03d0f508291143355d9ab74d9efa445d" name="a03d0f508291143355d9ab74d9efa445d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d0f508291143355d9ab74d9efa445d">&#9670;&#160;</a></span>AddUpgrade()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddUpgrade </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Upgrade</a> header (e.g., websocket). </p>
+
+</div>
+</div>
+<a id="a441821d7152fe849f3134f70cfeb3bc0" name="a441821d7152fe849f3134f70cfeb3bc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a441821d7152fe849f3134f70cfeb3bc0">&#9670;&#160;</a></span>AddVia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::AddVia </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a value to the Via header for proxy tracking. </p>
+
+</div>
+</div>
+<a id="acf3fc50eb8523328d4e2f0e462b8c6e7" name="acf3fc50eb8523328d4e2f0e462b8c6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf3fc50eb8523328d4e2f0e462b8c6e7">&#9670;&#160;</a></span>GetAccessControlRequestHeaders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetAccessControlRequestHeaders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Access-Control-Request-Headers for preflight requests. </p>
+
+</div>
+</div>
+<a id="a69ec626dcd327ea1d3be9064ac46a34a" name="a69ec626dcd327ea1d3be9064ac46a34a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ec626dcd327ea1d3be9064ac46a34a">&#9670;&#160;</a></span>GetAccessControlRequestMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetAccessControlRequestMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Access-Control-Request-Method for preflight requests. </p>
+
+</div>
+</div>
+<a id="a99e2b618a99a3c1c6bd82512ae31aaac" name="a99e2b618a99a3c1c6bd82512ae31aaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e2b618a99a3c1c6bd82512ae31aaac">&#9670;&#160;</a></span>GetCacheControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetCacheControl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Cache-Control header for the request. </p>
+
+</div>
+</div>
+<a id="a39e52518f5fbc7be78a57d2ac2baef50" name="a39e52518f5fbc7be78a57d2ac2baef50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e52518f5fbc7be78a57d2ac2baef50">&#9670;&#160;</a></span>GetCookiesView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::NHeaders::RequestHeaders::GetCookiesView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a readonly view of all Cookie values. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Risk of dangling reference if the underlying collection is modified. </dd></dl>
+
+</div>
+</div>
+<a id="a1b5cae08c1dddec45547f5e500356370" name="a1b5cae08c1dddec45547f5e500356370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b5cae08c1dddec45547f5e500356370">&#9670;&#160;</a></span>GetDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetDate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Date header. </p>
+
+</div>
+</div>
+<a id="a4278aa06f0b54b4a1226b1202a963ddf" name="a4278aa06f0b54b4a1226b1202a963ddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4278aa06f0b54b4a1226b1202a963ddf">&#9670;&#160;</a></span>GetFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> Thoth::Http::NHeaders::RequestHeaders::GetFrom </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the From header (email address of the user). </p>
+
+</div>
+</div>
+<a id="aa59384cebcc16d8c3be592ed55e3ca1e" name="aa59384cebcc16d8c3be592ed55e3ca1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa59384cebcc16d8c3be592ed55e3ca1e">&#9670;&#160;</a></span>GetHost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt; Thoth::Http::NHeaders::RequestHeaders::GetHost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the Host header. Essential for HTTP/1.1 and SNI. </p>
+
+</div>
+</div>
+<a id="a50dafec5894e066c1beb6f62730f6d68" name="a50dafec5894e066c1beb6f62730f6d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50dafec5894e066c1beb6f62730f6d68">&#9670;&#160;</a></span>GetIfMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetIfMatch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the If-Match header. </p>
+
+</div>
+</div>
+<a id="a46ae24be5b6d1ef64ed9a24bc485d978" name="a46ae24be5b6d1ef64ed9a24bc485d978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46ae24be5b6d1ef64ed9a24bc485d978">&#9670;&#160;</a></span>GetIfModifiedSince()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetIfModifiedSince </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the If-Modified-Since header. </p>
+
+</div>
+</div>
+<a id="a04ef98498baeda6d24d1ca4fbe40910e" name="a04ef98498baeda6d24d1ca4fbe40910e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ef98498baeda6d24d1ca4fbe40910e">&#9670;&#160;</a></span>GetIfNoneMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetIfNoneMatch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the If-None-Match header. </p>
+
+</div>
+</div>
+<a id="aa456864978b39ca120af3f82453dc2a8" name="aa456864978b39ca120af3f82453dc2a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa456864978b39ca120af3f82453dc2a8">&#9670;&#160;</a></span>GetIfRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetIfRange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the If-Range header. </p>
+
+</div>
+</div>
+<a id="a800d86a0f85be65a8c881634a95f57ed" name="a800d86a0f85be65a8c881634a95f57ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800d86a0f85be65a8c881634a95f57ed">&#9670;&#160;</a></span>GetIfUnmodifiedSince()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetIfUnmodifiedSince </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the If-Unmodified-Since header. </p>
+
+</div>
+</div>
+<a id="a6f3685d784ec754a4e1b6cbdeb2618eb" name="a6f3685d784ec754a4e1b6cbdeb2618eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f3685d784ec754a4e1b6cbdeb2618eb">&#9670;&#160;</a></span>GetMaxForwards()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetMaxForwards </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Max-Forwards header for limiting proxy hops. </p>
+
+</div>
+</div>
+<a id="ade0ba6b4262b2d138643f54e62122c42" name="ade0ba6b4262b2d138643f54e62122c42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0ba6b4262b2d138643f54e62122c42">&#9670;&#160;</a></span>GetNonValidatedView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::NHeaders::RequestHeaders::GetNonValidatedView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a view of the contents of this headers collection that does not parse nor validate data. </p>
+
+</div>
+</div>
+<a id="a1a17153e642bdf6cf4ce768ff3bf20c7" name="a1a17153e642bdf6cf4ce768ff3bf20c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a17153e642bdf6cf4ce768ff3bf20c7">&#9670;&#160;</a></span>GetOrigin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; std::variant&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, std::monostate &gt; &gt; Thoth::Http::NHeaders::RequestHeaders::GetOrigin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Origin header. Used for CORS requests. </p>
+
+</div>
+</div>
+<a id="a8acd609de53709e180f2bcbf696cc68c" name="a8acd609de53709e180f2bcbf696cc68c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8acd609de53709e180f2bcbf696cc68c">&#9670;&#160;</a></span>GetProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetProtocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the :protocol pseudo-header (primarily for HTTP/2/3). </p>
+
+</div>
+</div>
+<a id="af3596b00a456ebd6fccf15c19cc84a82" name="af3596b00a456ebd6fccf15c19cc84a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3596b00a456ebd6fccf15c19cc84a82">&#9670;&#160;</a></span>GetProxyAuthorization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetProxyAuthorization </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Proxy-Authorization header. </p>
+
+</div>
+</div>
+<a id="a510f42678ebdfdb93e1d377a7a67abad" name="a510f42678ebdfdb93e1d377a7a67abad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a510f42678ebdfdb93e1d377a7a67abad">&#9670;&#160;</a></span>GetRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::GetRange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Range header for partial content requests. </p>
+
+</div>
+</div>
+<a id="a7ec8c26b8e566be26785595be4ea33bb" name="a7ec8c26b8e566be26785595be4ea33bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec8c26b8e566be26785595be4ea33bb">&#9670;&#160;</a></span>GetReferrer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &gt; Thoth::Http::NHeaders::RequestHeaders::GetReferrer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets or sets the Referer header (yes, it's misspelled in RFC). </p>
+
+</div>
+</div>
+<a id="a4a671ac372022ed326ed3c5e8ea5a3db" name="a4a671ac372022ed326ed3c5e8ea5a3db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a671ac372022ed326ed3c5e8ea5a3db">&#9670;&#160;</a></span>IsConnectionClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::NHeaders::RequestHeaders::IsConnectionClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the Connection header contains the 'close' token. </p>
+
+</div>
+</div>
+<a id="a5ae1e19702475e170aa76acfd3042502" name="a5ae1e19702475e170aa76acfd3042502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ae1e19702475e170aa76acfd3042502">&#9670;&#160;</a></span>IsExpectContinue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::NHeaders::RequestHeaders::IsExpectContinue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the Expect header specifically contains '100-continue'. </p>
+
+</div>
+</div>
+<a id="a2abdfb0edae7a6d0c90d6ac605549d17" name="a2abdfb0edae7a6d0c90d6ac605549d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2abdfb0edae7a6d0c90d6ac605549d17">&#9670;&#160;</a></span>IsTransferEncodingChunked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::NHeaders::RequestHeaders::IsTransferEncodingChunked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the Transfer-Encoding header contains 'chunked'. </p>
+
+</div>
+</div>
+<a id="a59a13fd1571bce76d137fc89604c843a" name="a59a13fd1571bce76d137fc89604c843a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59a13fd1571bce76d137fc89604c843a">&#9670;&#160;</a></span>SetAccessControlRequestHeaders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetAccessControlRequestHeaders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac55ee39be23f302caa1dcf9fd7ee4247" name="ac55ee39be23f302caa1dcf9fd7ee4247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac55ee39be23f302caa1dcf9fd7ee4247">&#9670;&#160;</a></span>SetAccessControlRequestMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetAccessControlRequestMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa1909ad4fb555e233f92f790572fecaa" name="aa1909ad4fb555e233f92f790572fecaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1909ad4fb555e233f92f790572fecaa">&#9670;&#160;</a></span>SetCacheControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetCacheControl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4acee1c35f3e081dd4e86883b2e8ddc" name="ac4acee1c35f3e081dd4e86883b2e8ddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4acee1c35f3e081dd4e86883b2e8ddc">&#9670;&#160;</a></span>SetConnectionClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetConnectionClose </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>close</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the Connection header to 'Close' or 'Keep-Alive'. </p>
+
+</div>
+</div>
+<a id="acbf204e0551b07182a6ee31faf5f4ed8" name="acbf204e0551b07182a6ee31faf5f4ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbf204e0551b07182a6ee31faf5f4ed8">&#9670;&#160;</a></span>SetDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetDate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00082daaee9f70602fa64631a331539b" name="a00082daaee9f70602fa64631a331539b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00082daaee9f70602fa64631a331539b">&#9670;&#160;</a></span>SetFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetFrom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td>
+          <td class="paramname"><em>email</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae52a9278540ee61112a47f72c56b97d9" name="ae52a9278540ee61112a47f72c56b97d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae52a9278540ee61112a47f72c56b97d9">&#9670;&#160;</a></span>SetHost() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetHost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td>
+          <td class="paramname"><em>host</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the Host header. Essential for HTTP/1.1 and SNI. </p>
+
+</div>
+</div>
+<a id="af199efa0f7a6dfd944f4b21ca03f5ea4" name="af199efa0f7a6dfd944f4b21ca03f5ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af199efa0f7a6dfd944f4b21ca03f5ea4">&#9670;&#160;</a></span>SetHost() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetHost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>&#160;</td>
+          <td class="paramname"><em>host</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the Host header. Essential for HTTP/1.1 and SNI. </p>
+
+</div>
+</div>
+<a id="a532696c268767bc2b45dfabef3337025" name="a532696c268767bc2b45dfabef3337025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a532696c268767bc2b45dfabef3337025">&#9670;&#160;</a></span>SetIfMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetIfMatch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91424a85e97193fb9ee2a5060d1e4534" name="a91424a85e97193fb9ee2a5060d1e4534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91424a85e97193fb9ee2a5060d1e4534">&#9670;&#160;</a></span>SetIfModifiedSince()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetIfModifiedSince </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86be6c5b0fbd71fde238169944d7f065" name="a86be6c5b0fbd71fde238169944d7f065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86be6c5b0fbd71fde238169944d7f065">&#9670;&#160;</a></span>SetIfNoneMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetIfNoneMatch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a884c5d678e601ad83ee5efcbdb30b6c8" name="a884c5d678e601ad83ee5efcbdb30b6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884c5d678e601ad83ee5efcbdb30b6c8">&#9670;&#160;</a></span>SetIfRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetIfRange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acfa0bd3cc9aaf51c13b54259b3b52a50" name="acfa0bd3cc9aaf51c13b54259b3b52a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa0bd3cc9aaf51c13b54259b3b52a50">&#9670;&#160;</a></span>SetIfUnmodifiedSince()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetIfUnmodifiedSince </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80f9abff9c41380c6f99ffe200344735" name="a80f9abff9c41380c6f99ffe200344735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80f9abff9c41380c6f99ffe200344735">&#9670;&#160;</a></span>SetMaxForwards()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetMaxForwards </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5df669d6e14cd58ab7f52de9c036b878" name="a5df669d6e14cd58ab7f52de9c036b878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5df669d6e14cd58ab7f52de9c036b878">&#9670;&#160;</a></span>SetOrigin() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetOrigin </td>
+          <td>(</td>
+          <td class="paramtype">std::monostate&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="accc5c87378e6b819d01a1ff3024184b6" name="accc5c87378e6b819d01a1ff3024184b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accc5c87378e6b819d01a1ff3024184b6">&#9670;&#160;</a></span>SetOrigin() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetOrigin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td>
+          <td class="paramname"><em>origin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b246c224cacec097dd6ed3c2a4c5ae7" name="a6b246c224cacec097dd6ed3c2a4c5ae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b246c224cacec097dd6ed3c2a4c5ae7">&#9670;&#160;</a></span>SetOrigin() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetOrigin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>&#160;</td>
+          <td class="paramname"><em>origin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afcd3293cb3f9186360ec1032aa21fe7f" name="afcd3293cb3f9186360ec1032aa21fe7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd3293cb3f9186360ec1032aa21fe7f">&#9670;&#160;</a></span>SetProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetProtocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81d4c2b144fc4b1e886fb9cf015af4ee" name="a81d4c2b144fc4b1e886fb9cf015af4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d4c2b144fc4b1e886fb9cf015af4ee">&#9670;&#160;</a></span>SetProxyAuthorization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetProxyAuthorization </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa39d4b1bf6607370c3fb7d1fe686621d" name="aa39d4b1bf6607370c3fb7d1fe686621d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39d4b1bf6607370c3fb7d1fe686621d">&#9670;&#160;</a></span>SetRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetRange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6283861b2651b794ae630380517c0e41" name="a6283861b2651b794ae630380517c0e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6283861b2651b794ae630380517c0e41">&#9670;&#160;</a></span>SetReferrer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetReferrer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a>&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6c351fc64bcf46e30347535a5f08bfd" name="ad6c351fc64bcf46e30347535a5f08bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6c351fc64bcf46e30347535a5f08bfd">&#9670;&#160;</a></span>SetReferrer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetReferrer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44722d3741a9ea24a425fd218a031934" name="a44722d3741a9ea24a425fd218a031934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44722d3741a9ea24a425fd218a031934">&#9670;&#160;</a></span>SetTransferEncodingChunked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::NHeaders::RequestHeaders::SetTransferEncodingChunked </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>chunked</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the Transfer-Encoding header to 'chunked' or removes it. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/Thoth/Http/NHeaders/Request/<a class="el" href="_request_headers_8hpp_source.html">RequestHeaders.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http.html">Http</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></li><li class="navelem"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html">RequestHeaders</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

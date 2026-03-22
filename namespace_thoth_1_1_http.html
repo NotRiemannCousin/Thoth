@@ -194,6 +194,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structure that stores info about an open <a class="el" href="struct_thoth_1_1_http_1_1_socket.html" title="structure that stores info about an open Socket, like the version, the type of socket and the last us...">Socket</a>, like the version, the type of socket and the last used time.  <a href="struct_thoth_1_1_http_1_1_socket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,12 +266,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:af2ab2d85128b5ec86a6b6cba1e8cb44f" id="r_af2ab2d85128b5ec86a6b6cba1e8cb44f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f">VersionEnum</a> { <a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fa0ddb6aeadb13ebd570463e41253ab8ab">HTTP1_0</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fa5d11af175e78f15ff7768b17ae71868b">HTTP1_1</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fae911468ee8681ba1862cf34bc5e85a8a">HTTP2</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44facdb4b571517d156a0211d74976eaa738">HTTP3</a>
+<tr class="memitem:aafd3ae972536eae8c855e484175fa0db" id="r_aafd3ae972536eae8c855e484175fa0db"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> : uint8_t { <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab">HTTP1_0</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">HTTP1_1</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a">HTTP2</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738">HTTP3</a>
  }</td></tr>
-<tr class="separator:af2ab2d85128b5ec86a6b6cba1e8cb44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aafd3ae972536eae8c855e484175fa0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bf11744ec8f13e9d75fe88e28f7326c" id="r_a2bf11744ec8f13e9d75fe88e28f7326c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c">UrlParseErrorEnum</a> { <a class="el" href="namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05">EmptyUrl</a>
 , <a class="el" href="namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276">InvalidScheme</a>
 , <a class="el" href="namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa1654eb0fac9af56a06a85185e60d516">IllFormed</a>
@@ -377,7 +379,7 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8">VersionToString</a> (<a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f">VersionEnum</a> version)</td></tr>
+<tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8">VersionToString</a> (<a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> version)</td></tr>
 <tr class="memdesc:a7bedc663bde5f4726625099926f81fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
 <tr class="separator:a7bedc663bde5f4726625099926f81fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;ResponseBodyConcept Body&gt; </td></tr>
@@ -817,8 +819,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="af2ab2d85128b5ec86a6b6cba1e8cb44f" name="af2ab2d85128b5ec86a6b6cba1e8cb44f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2ab2d85128b5ec86a6b6cba1e8cb44f">&#9670;&#160;</a></span>VersionEnum</h2>
+<a id="aafd3ae972536eae8c855e484175fa0db" name="aafd3ae972536eae8c855e484175fa0db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd3ae972536eae8c855e484175fa0db">&#9670;&#160;</a></span>VersionEnum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -827,7 +829,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f">Thoth::Http::VersionEnum</a></td>
+          <td class="memname">enum class <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">Thoth::Http::VersionEnum</a> : uint8_t</td>
         </tr>
       </table>
   </td>
@@ -837,10 +839,10 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af2ab2d85128b5ec86a6b6cba1e8cb44fa0ddb6aeadb13ebd570463e41253ab8ab" name="af2ab2d85128b5ec86a6b6cba1e8cb44fa0ddb6aeadb13ebd570463e41253ab8ab"></a>HTTP1_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af2ab2d85128b5ec86a6b6cba1e8cb44fa5d11af175e78f15ff7768b17ae71868b" name="af2ab2d85128b5ec86a6b6cba1e8cb44fa5d11af175e78f15ff7768b17ae71868b"></a>HTTP1_1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af2ab2d85128b5ec86a6b6cba1e8cb44fae911468ee8681ba1862cf34bc5e85a8a" name="af2ab2d85128b5ec86a6b6cba1e8cb44fae911468ee8681ba1862cf34bc5e85a8a"></a>HTTP2&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af2ab2d85128b5ec86a6b6cba1e8cb44facdb4b571517d156a0211d74976eaa738" name="af2ab2d85128b5ec86a6b6cba1e8cb44facdb4b571517d156a0211d74976eaa738"></a>HTTP3&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab" name="aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab"></a>HTTP1_0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b" name="aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b"></a>HTTP1_1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a" name="aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a"></a>HTTP2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738" name="aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738"></a>HTTP3&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -904,7 +906,7 @@ template&lt;ResponseBodyConcept Body&gt; </div>
         <tr>
           <td class="memname">std::string_view Thoth::Http::VersionToString </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f">VersionEnum</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a>&#160;</td>
           <td class="paramname"><em>version</em></td><td>)</td>
           <td></td>
         </tr>

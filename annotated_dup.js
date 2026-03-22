@@ -13,6 +13,8 @@ var annotated_dup =
           [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
           [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
           [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
+          [ "RequestHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers" ],
+          [ "ResponseHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_response_headers.html", null ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
         ] ],
@@ -37,6 +39,7 @@ var annotated_dup =
         [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
         [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
         [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
+        [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
         [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
         [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]

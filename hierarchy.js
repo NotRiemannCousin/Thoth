@@ -11,10 +11,12 @@ var hierarchy =
     [ "Thoth::Dsa::FileOutputRange< T >", "struct_thoth_1_1_dsa_1_1_file_output_range.html", null ],
     [ "Thoth::Http::GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", null ],
     [ "Thoth::Http::GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
-    [ "Thoth::Http::Headers", "struct_thoth_1_1_http_1_1_headers.html", null ],
+    [ "Thoth::Http::Headers", "struct_thoth_1_1_http_1_1_headers.html", [
+      [ "Thoth::Http::NHeaders::RequestHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html", null ],
+      [ "Thoth::Http::NHeaders::ResponseHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_response_headers.html", null ]
+    ] ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
-    [ "Thoth::Http::Client::HttpData< Body >", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html", null ],
     [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
@@ -38,6 +40,7 @@ var hierarchy =
     [ "Thoth::Http::QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", null ],
     [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ],
     [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ],
+    [ "Thoth::Http::ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >", "struct_thoth_1_1_utils_1_1_shared_input_view.html", null ],
     [ "Thoth::Http::Socket", "struct_thoth_1_1_http_1_1_socket.html", null ],
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],

@@ -22,6 +22,7 @@ var namespace_thoth_1_1_http =
     [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
     [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
     [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
+    [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
     [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
     [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
     [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ],
@@ -134,11 +135,11 @@ var namespace_thoth_1_1_http =
       [ "IllFormed", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa1654eb0fac9af56a06a85185e60d516", null ],
       [ "InvalidPort", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa51712bd03bd8b6560b9c57b5ff92690", null ]
     ] ],
-    [ "VersionEnum", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44f", [
-      [ "HTTP1_0", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fa0ddb6aeadb13ebd570463e41253ab8ab", null ],
-      [ "HTTP1_1", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fa5d11af175e78f15ff7768b17ae71868b", null ],
-      [ "HTTP2", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44fae911468ee8681ba1862cf34bc5e85a8a", null ],
-      [ "HTTP3", "namespace_thoth_1_1_http.html#af2ab2d85128b5ec86a6b6cba1e8cb44facdb4b571517d156a0211d74976eaa738", null ]
+    [ "VersionEnum", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db", [
+      [ "HTTP1_0", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab", null ],
+      [ "HTTP1_1", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b", null ],
+      [ "HTTP2", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a", null ],
+      [ "HTTP3", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738", null ]
     ] ],
     [ "GetInserterIterator", "namespace_thoth_1_1_http.html#a5379080d14ac2dfa264229cc182c7dc1", null ],
     [ "GetStatusType", "namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc", null ],
