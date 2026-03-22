@@ -4,14 +4,21 @@
 #include <fstream>
 
 namespace Thoth::Dsa {
+    struct FileBuilderParams {
+        std::filesystem::path path;
+        std::optional<vector<Http::NHeaders::MimeType>> acceptedTypes{};
+        int maxSize{ INT_MAX };
+        int mode{};
+    };
+
     template <Hermes::ByteLike T = char>
     struct FileOutputRange {
 
         using value_type = T;
         using BodyType   = std::expected<FileOutputRange, Http::RequestError>;
 
-        static constexpr auto H_AsBody(const std::filesystem::path& path, int mode = 0);
-        static constexpr auto H_AsBody(std::filesystem::path&& path, int mode = 0);
+        static constexpr auto H_AsBody(const FileBuilderParams& params);
+        static constexpr auto H_AsBody(FileBuilderParams&& params);
 
         static constexpr int Mode();
 

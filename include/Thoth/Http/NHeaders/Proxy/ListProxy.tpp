@@ -9,11 +9,13 @@ namespace Thoth::Http::NHeaders {
 
     template<Serializable T, bool IsConst>
     std::expected<typename ListProxy<T, IsConst>::Ts, InvalidHeaderFormat> ListProxy<T, IsConst>::GetWithDefault(Ts defaultValue) && {
-        auto val{ Get() };
-        if (val) return *val;
-        if (val.error() != HeaderErrorEnum::InvalidFormat) return defaultValue;
-        return std::unexpected{ InvalidHeaderFormat{} };
-    }
+        auto val{ headers.Get(key) };
+
+        if (!val) return defaultValue;
+
+        if (auto parsed{ ParseList(*val) }; !parsed)
+            return *parsed;
+        return std::unexpected{ InvalidHeaderFormat{} };    }
 
     template<Serializable T, bool IsConst>
     std::optional<typename ListProxy<T, IsConst>::Ts> ListProxy<T, IsConst>::GetAsOpt() && {
@@ -32,7 +34,7 @@ namespace Thoth::Http::NHeaders {
         return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<Serializable T, bool IsConst>
+    template<Serializable T, bool IsConst> // NOLINT(*-unconventional-assign-operator)
     template<std::ranges::range R>
         requires (!IsConst)
     void ListProxy<T, IsConst>::operator=(R &&newValue) && {

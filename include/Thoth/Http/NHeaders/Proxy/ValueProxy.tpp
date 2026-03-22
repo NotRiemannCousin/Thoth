@@ -16,7 +16,7 @@ namespace Thoth::Http::NHeaders {
         if (!val) return std::unexpected{ HeaderErrorEnum::NotFound };
         if ((*val)->empty()) return std::unexpected{ HeaderErrorEnum::EmptyValue };
 
-        auto parsed{ Scan<T>(*val) };
+        auto parsed{ Scan<T>(**val) };
         if (!parsed) return std::unexpected{ HeaderErrorEnum::InvalidFormat };
 
         return *parsed;
@@ -26,10 +26,9 @@ namespace Thoth::Http::NHeaders {
     std::expected<T, InvalidHeaderFormat> ValueProxy<T, IsConst>::GetWithDefault(T defaultValue) && {
         auto val{ headers.Get(key) };
 
-        if (!val || (*val)->empty()) return defaultValue;
+        if (!val) return defaultValue;
 
-
-        if (auto parsed{ Scan<T>(**val) }; !parsed)
+        if (auto parsed{ Scan<T>(**val) }; parsed)
             return *parsed;
         return std::unexpected{ InvalidHeaderFormat{} };
     }

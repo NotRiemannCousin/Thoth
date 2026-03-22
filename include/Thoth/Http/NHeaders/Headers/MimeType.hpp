@@ -1,15 +1,20 @@
 #pragma once
+#include <string>
 #include <optional>
 #include <Thoth/Http/NHeaders/_base.hpp>
 
 namespace Thoth::Http::NHeaders {
     struct MimeType {
-        string type;
-        string subtype;
-        std::vector<std::pair<string, string>> options{};
+        std::string type;
+        std::string subtype;
+        std::vector<std::pair<std::string, std::string>> options{};
+
+        bool operator==(const MimeType& other) const;
     };
 
     struct MimeTypes {
+        MimeTypes() = delete;
+
         inline static const MimeType textPlain      { "text",        "plain" };
         inline static const MimeType textHtml       { "text",        "html" };
         inline static const MimeType appJson        { "application", "json" };

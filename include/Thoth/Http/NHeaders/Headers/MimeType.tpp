@@ -9,7 +9,7 @@ namespace Thoth::Http::NHeaders {
         using RfcSpec = String::CharSequences::Http; // RFC 9110
 
         constexpr auto s_isToken = [](std::string_view str) {
-            return !str.empty() && str.find_first_not_of(RfcSpec::tchar) == string::npos;
+            return !str.empty() && str.find_first_not_of(RfcSpec::tchar) == std::string::npos;
         };
 
         String::Trim(input, RfcSpec::whitespace);
@@ -27,8 +27,8 @@ namespace Thoth::Http::NHeaders {
         if (!s_isToken(typeStr) || !s_isToken(subtypeStr)) return std::nullopt;
 
         MimeType mime{
-            .type    = string{ typeStr },
-            .subtype = string{ subtypeStr }
+            .type    = std::string{ typeStr },
+            .subtype = std::string{ subtypeStr }
         };
 
         while (String::LeftTrim(input, RfcSpec::whitespace), !input.empty()) {
@@ -47,7 +47,7 @@ namespace Thoth::Http::NHeaders {
 
             if (input[0] == '"') {
                 input.remove_prefix(1);
-                string value;
+                std::string value;
 
                 while (input[0] != '"') {
                     if (input.empty()) return std::nullopt;

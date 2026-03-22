@@ -1,6 +1,7 @@
 #pragma once
 #include <format>
 #include <optional>
+#include <string>
 #include <string_view>
 
 #include <Thoth/String/Utils.hpp>
@@ -43,7 +44,7 @@ namespace Thoth::Http::NHeaders {
     }
 
     template<>
-    inline std::optional<string> Scan<string>(std::string_view input) {
+    inline std::optional<std::string> Scan<std::string>(std::string_view input) {
         return String::TrimmedStr(input);
     }
 }
