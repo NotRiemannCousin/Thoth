@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['headerkey_0',['HeaderKey',['../struct_thoth_1_1_http_1_1_headers.html#a860ca7bf257a3e602050c457017de992',1,'Thoth::Http::Headers']]],
-  ['headerkeyref_1',['HeaderKeyRef',['../struct_thoth_1_1_http_1_1_headers.html#a97f544a3dc1ece06239f96406377cea9',1,'Thoth::Http::Headers']]],
-  ['headerpair_2',['HeaderPair',['../struct_thoth_1_1_http_1_1_headers.html#aac7914d365e1cf59518c824ce10080d4',1,'Thoth::Http::Headers']]],
-  ['headerpairref_3',['HeaderPairRef',['../struct_thoth_1_1_http_1_1_headers.html#afce3f4216e0c35bb68f112178ca1e919',1,'Thoth::Http::Headers']]],
-  ['headervalue_4',['HeaderValue',['../struct_thoth_1_1_http_1_1_headers.html#ad76c656eca0fad0efb9891e09715dc0e',1,'Thoth::Http::Headers']]],
-  ['headervalueref_5',['HeaderValueRef',['../struct_thoth_1_1_http_1_1_headers.html#af0f068ab925f6f417d602ba20584f89c',1,'Thoth::Http::Headers']]]
+  ['headerkey_0',['headerkey',['../struct_thoth_1_1_http_1_1_headers.html#a1f70ed9a9baae6dd24ac06b647b0f16d',1,'Thoth::Http::Headers::HeaderKey'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a',1,'Thoth::Http::NHeaders::HeaderKey']]],
+  ['headerkeyref_1',['headerkeyref',['../struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6',1,'Thoth::Http::Headers::HeaderKeyRef'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e',1,'Thoth::Http::NHeaders::HeaderKeyRef']]],
+  ['headerpair_2',['headerpair',['../struct_thoth_1_1_http_1_1_headers.html#a906836cc357d094da745ad558388a635',1,'Thoth::Http::Headers::HeaderPair'],['../namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25',1,'Thoth::Http::NHeaders::HeaderPair']]],
+  ['headerpairref_3',['headerpairref',['../struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84',1,'Thoth::Http::Headers::HeaderPairRef'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a8217e3e781bce447f80e5fab3d2b7e01',1,'Thoth::Http::NHeaders::HeaderPairRef']]],
+  ['headervalue_4',['headervalue',['../struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f',1,'Thoth::Http::Headers::HeaderValue'],['../namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed',1,'Thoth::Http::NHeaders::HeaderValue']]],
+  ['headervalueref_5',['headervalueref',['../struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6',1,'Thoth::Http::Headers::HeaderValueRef'],['../namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95',1,'Thoth::Http::NHeaders::HeaderValueRef']]]
 ];

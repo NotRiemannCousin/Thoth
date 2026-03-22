@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['early_5fhints_0',['EARLY_HINTS',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a758e68a19845521ec848ea26ba9b4eb9',1,'Thoth::Http']]],
-  ['emptyurl_1',['EmptyUrl',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05',1,'Thoth::Http']]],
-  ['expectation_5ffailed_2',['EXPECTATION_FAILED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a0dd5a8948b360d099aaffe504790bcfb',1,'Thoth::Http']]]
+  ['dcb_0',['Dcb',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a',1,'Thoth::Http::NHeaders']]],
+  ['dcz_1',['Dcz',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646',1,'Thoth::Http::NHeaders']]],
+  ['deflate_2',['deflate',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccae2430ff724c45c3d68893fb1a3584426',1,'Thoth::Http::NHeaders::Deflate'],['../namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426',1,'Thoth::Http::NHeaders::Deflate']]]
 ];

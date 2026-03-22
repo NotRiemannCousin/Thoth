@@ -133,6 +133,7 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_http.html',''); in
 
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#concepts">Concepts</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
@@ -142,6 +143,11 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_http.html',''); in
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_thoth_1_1_http_1_1_n_headers" id="r_namespace_thoth_1_1_http_1_1_n_headers"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html">Client</a></td></tr>
@@ -158,7 +164,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Headers is a dumb class that stores the headers. Although it can parse the raw headers from TCP,...">Headers</a> is a dumb class that stores the headers. Although it can parse the raw headers from TCP, the role of this class is just store it, so it can't check if the headers individually are well-formed.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class stores the headers from HTTP.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -217,6 +223,9 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6" id="r_a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a> = std::expected&lt; T, std::monostate &gt;</td></tr>
+<tr class="separator:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac372604fd377e070576be6639ec2c300" id="r_ac372604fd377e070576be6639ec2c300"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300">GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="separator:ac372604fd377e070576be6639ec2c300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b32b79eda86ad7068fea4156a55f00" id="r_af1b32b79eda86ad7068fea4156a55f00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a> &gt;</td></tr>
@@ -387,6 +396,22 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2">Thoth::Http::ConnectionErrorEnum</a> = typedef Hermes::ConnectionErrorEnum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14e38b7fac6cbb8cf06cb0e1ed422ab6" name="a14e38b7fac6cbb8cf06cb0e1ed422ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e38b7fac6cbb8cf06cb0e1ed422ab6">&#9670;&#160;</a></span>ExpectedHeader</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">Thoth::Http::ExpectedHeader</a> = typedef std::expected&lt;T, std::monostate&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

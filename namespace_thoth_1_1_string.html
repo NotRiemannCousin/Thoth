@@ -136,6 +136,7 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_string.html',''); 
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#concepts">Concepts</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Thoth::String Namespace Reference</div></div>
 </div><!--header-->
@@ -143,6 +144,8 @@ $(document).ready(function(){initNavTree('namespace_thoth_1_1_string.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html">CharSequences</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_string_1_1_unicode_viewer.html">UnicodeViewer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non owning viewer that represents Unicode encodings.  <a href="struct_thoth_1_1_string_1_1_unicode_viewer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +165,29 @@ Typedefs</h2></td></tr>
 <tr class="separator:a5d2612b50ded1adc4f40bc9e0f5dc0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a320cc6ad2f6cc4af0d4c9765c02cc7e2" id="r_a320cc6ad2f6cc4af0d4c9765c02cc7e2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2">Utf32View</a> = <a class="el" href="struct_thoth_1_1_string_1_1_unicode_viewer.html">UnicodeViewer</a>&lt; char32_t &gt;</td></tr>
 <tr class="separator:a320cc6ad2f6cc4af0d4c9765c02cc7e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab9109807085c377fdbaceb7eebba74a4" id="r_ab9109807085c377fdbaceb7eebba74a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#ab9109807085c377fdbaceb7eebba74a4">Trim</a> (std::string_view &amp;str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:ab9109807085c377fdbaceb7eebba74a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe100af95d712d8a423454cf41b47e3" id="r_a8fe100af95d712d8a423454cf41b47e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a8fe100af95d712d8a423454cf41b47e3">LeftTrim</a> (std::string_view &amp;str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a8fe100af95d712d8a423454cf41b47e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17a95ca565a76e2041d14b8772a5fa93" id="r_a17a95ca565a76e2041d14b8772a5fa93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a17a95ca565a76e2041d14b8772a5fa93">RightTrim</a> (std::string_view &amp;str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a17a95ca565a76e2041d14b8772a5fa93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac05cde6589176a4ec42c3dbe3684f1b5" id="r_ac05cde6589176a4ec42c3dbe3684f1b5"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#ac05cde6589176a4ec42c3dbe3684f1b5">Trimmed</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:ac05cde6589176a4ec42c3dbe3684f1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e8f9bb8483be7bdb5d476010e95301" id="r_a89e8f9bb8483be7bdb5d476010e95301"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a89e8f9bb8483be7bdb5d476010e95301">LeftTrimmed</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a89e8f9bb8483be7bdb5d476010e95301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675419e8074e03bcf60edfc542964c56" id="r_a675419e8074e03bcf60edfc542964c56"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a675419e8074e03bcf60edfc542964c56">RightTrimmed</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a675419e8074e03bcf60edfc542964c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11053c2550329fbd13021724261360fe" id="r_a11053c2550329fbd13021724261360fe"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe">TrimmedStr</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a11053c2550329fbd13021724261360fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8d39c9e5b2df9e51d2e1a371bab078" id="r_a2b8d39c9e5b2df9e51d2e1a371bab078"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a2b8d39c9e5b2df9e51d2e1a371bab078">LeftTrimmedStr</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:a2b8d39c9e5b2df9e51d2e1a371bab078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6fad7f546d1056c87f6904991984491" id="r_ab6fad7f546d1056c87f6904991984491"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#ab6fad7f546d1056c87f6904991984491">RightTrimmedStr</a> (std::string_view str, std::string_view trim=<a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a>)</td></tr>
+<tr class="separator:ab6fad7f546d1056c87f6904991984491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3343e767f5beef131c6b648954b1ea48" id="r_a3343e767f5beef131c6b648954b1ea48"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_string.html#a3343e767f5beef131c6b648954b1ea48">IsVisible</a> (char c)</td></tr>
+<tr class="separator:a3343e767f5beef131c6b648954b1ea48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -219,6 +245,277 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea">Thoth::String::Utf8View</a> = typedef <a class="el" href="struct_thoth_1_1_string_1_1_unicode_viewer.html">UnicodeViewer</a>&lt;char8_t&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a3343e767f5beef131c6b648954b1ea48" name="a3343e767f5beef131c6b648954b1ea48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3343e767f5beef131c6b648954b1ea48">&#9670;&#160;</a></span>IsVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::String::IsVisible </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8fe100af95d712d8a423454cf41b47e3" name="a8fe100af95d712d8a423454cf41b47e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe100af95d712d8a423454cf41b47e3">&#9670;&#160;</a></span>LeftTrim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::String::LeftTrim </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view &amp;&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89e8f9bb8483be7bdb5d476010e95301" name="a89e8f9bb8483be7bdb5d476010e95301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89e8f9bb8483be7bdb5d476010e95301">&#9670;&#160;</a></span>LeftTrimmed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::String::LeftTrimmed </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b8d39c9e5b2df9e51d2e1a371bab078" name="a2b8d39c9e5b2df9e51d2e1a371bab078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8d39c9e5b2df9e51d2e1a371bab078">&#9670;&#160;</a></span>LeftTrimmedStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Thoth::String::LeftTrimmedStr </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17a95ca565a76e2041d14b8772a5fa93" name="a17a95ca565a76e2041d14b8772a5fa93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a95ca565a76e2041d14b8772a5fa93">&#9670;&#160;</a></span>RightTrim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::String::RightTrim </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view &amp;&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a675419e8074e03bcf60edfc542964c56" name="a675419e8074e03bcf60edfc542964c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675419e8074e03bcf60edfc542964c56">&#9670;&#160;</a></span>RightTrimmed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::String::RightTrimmed </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6fad7f546d1056c87f6904991984491" name="ab6fad7f546d1056c87f6904991984491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6fad7f546d1056c87f6904991984491">&#9670;&#160;</a></span>RightTrimmedStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Thoth::String::RightTrimmedStr </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9109807085c377fdbaceb7eebba74a4" name="ab9109807085c377fdbaceb7eebba74a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9109807085c377fdbaceb7eebba74a4">&#9670;&#160;</a></span>Trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::String::Trim </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view &amp;&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac05cde6589176a4ec42c3dbe3684f1b5" name="ac05cde6589176a4ec42c3dbe3684f1b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05cde6589176a4ec42c3dbe3684f1b5">&#9670;&#160;</a></span>Trimmed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::String::Trimmed </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11053c2550329fbd13021724261360fe" name="a11053c2550329fbd13021724261360fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11053c2550329fbd13021724261360fe">&#9670;&#160;</a></span>TrimmedStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Thoth::String::TrimmedStr </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>trim</em> = <code><a class="el" href="struct_thoth_1_1_string_1_1_char_sequences.html#a936b57e635a488710c8b1c4d186d4204">CharSequences::whitespace</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

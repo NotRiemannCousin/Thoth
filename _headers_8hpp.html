@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Http/Headers.hpp File Reference</title>
+<title>Thoth: include/Thoth/Http/NHeaders/Headers.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -134,26 +134,31 @@ $(document).ready(function(){initNavTree('_headers_8hpp.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">Headers.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="_status_code_enum_8hpp_source.html">Thoth/Http/Response/StatusCodeEnum.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;<a class="el" href="_status_code_enum_8hpp_source.html">Thoth/Http/Response/StatusCodeEnum.hpp</a>&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;ranges&gt;</code><br />
-<code>#include &lt;Thoth/Http/Headers.tpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="_url_8hpp_source.html">Thoth/Http/Request/Url.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2_n_headers_2__base_8hpp_source.html">Thoth/Http/NHeaders/_base.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__pch_8hpp_source.html">Thoth/Http/NHeaders/Headers/_pch.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2_n_headers_2_proxy_2__base_8hpp_source.html">Thoth/Http/NHeaders/Proxy/_base.hpp</a>&gt;</code><br />
+<code>#include &lt;Thoth/Http/NHeaders/Headers.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Headers.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_headers_8hpp__incl.svg" width="779" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_headers_8hpp__incl.svg" width="3459" height="564"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_headers_8hpp__dep__incl.svg" width="2022" height="491"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_headers_8hpp__dep__incl.svg" width="1998" height="491"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_headers_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -161,7 +166,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Headers is a dumb class that stores the headers. Although it can parse the raw headers from TCP,...">Headers</a> is a dumb class that stores the headers. Although it can parse the raw headers from TCP, the role of this class is just store it, so it can't check if the headers individually are well-formed.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class stores the headers from HTTP.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -170,13 +175,21 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_thoth_1_1_http" id="r_namespace_thoth_1_1_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_thoth_1_1_http_1_1_n_headers" id="r_namespace_thoth_1_1_http_1_1_n_headers"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6" id="r_a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">Thoth::Http::ExpectedHeader</a> = std::expected&lt; T, std::monostate &gt;</td></tr>
+<tr class="separator:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a class="el" href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a class="el" href="_headers_8hpp.html">Headers.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a class="el" href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a class="el" href="dir_608161aafd2af5389d03134ffea49c9f.html">NHeaders</a></li><li class="navelem"><a class="el" href="_headers_8hpp.html">Headers.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

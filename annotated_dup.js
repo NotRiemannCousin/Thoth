@@ -7,6 +7,13 @@ var annotated_dup =
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
+        [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
+          [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
+          [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
+          [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
+          [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
+          [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
+        ] ],
         [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
@@ -41,6 +48,7 @@ var annotated_dup =
         [ "StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", "struct_thoth_1_1_n_json_1_1_string_ref" ]
       ] ],
       [ "String", "namespace_thoth_1_1_string.html", [
+        [ "CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", "struct_thoth_1_1_string_1_1_char_sequences" ],
         [ "UnicodeViewer", "struct_thoth_1_1_string_1_1_unicode_viewer.html", "struct_thoth_1_1_string_1_1_unicode_viewer" ]
       ] ],
       [ "Utils", "namespace_thoth_1_1_utils.html", [

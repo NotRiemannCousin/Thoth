@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['unknownchar_0',['UnknownChar',['../namespace_thoth_1_1_string.html#ab59da787e3f16012202445597fa7bc3c',1,'Thoth::String']]],
-  ['url_1',['url',['../struct_thoth_1_1_http_1_1_request.html#a5e41af1c5fdac059d5585e417b4770fb',1,'Thoth::Http::Request']]],
-  ['user_2',['user',['../struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500',1,'Thoth::Http::Url']]]
+  ['options_0',['options',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a1ed874c890de272af0b9bdf959726425',1,'Thoth::Http::NHeaders::MimeType']]]
 ];

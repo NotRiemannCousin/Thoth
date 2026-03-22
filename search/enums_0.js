@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requestbuilderrorenum_0',['RequestBuildErrorEnum',['../namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673',1,'Thoth::Http']]]
+  ['contentencodingenum_0',['ContentEncodingEnum',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc',1,'Thoth::Http::NHeaders']]]
 ];

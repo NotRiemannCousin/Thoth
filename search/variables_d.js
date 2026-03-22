@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['version_0',['version',['../struct_thoth_1_1_http_1_1_socket.html#ac3ef953f567e3b75fb638b3348cd7967',1,'Thoth::Http::Socket::version'],['../struct_thoth_1_1_http_1_1_client_1_1_http_data.html#a9ae7aabc64328ff595d8c99bd64f61a6',1,'Thoth::Http::Client::HttpData::version'],['../struct_thoth_1_1_http_1_1_request.html#a40aaadb4dc25edcb929e95deb1358805',1,'Thoth::Http::Request::version'],['../struct_thoth_1_1_http_1_1_response.html#abd186c458a0c8410f5397002d870a37a',1,'Thoth::Http::Response::version']]],
-  ['view_1',['view',['../struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html#a461af38c6991843e1a59b51d0c7bfbcd',1,'Thoth::Utils::SharedInputView::Iterator']]]
+  ['path_0',['path',['../struct_thoth_1_1_http_1_1_url.html#abd3c10594bab589759b4ce4281511a00',1,'Thoth::Http::Url']]],
+  ['poolmutex_1',['poolMutex',['../struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd',1,'Thoth::Http::ClientJanitor']]],
+  ['port_2',['port',['../struct_thoth_1_1_http_1_1_url.html#aedd90a7e8adfab006087aaa46637a4dd',1,'Thoth::Http::Url']]],
+  ['protocol_3',['protocol',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html#a5e7aba1ecd96917623e2528eb1fb80fa',1,'Thoth::Http::NHeaders::Upgrade']]],
+  ['punctuation_4',['punctuation',['../struct_thoth_1_1_string_1_1_char_sequences.html#a74772b70f38d37e636a6fcd30f82b728',1,'Thoth::String::CharSequences']]]
 ];

@@ -1,5 +1,6 @@
 var namespace_thoth_1_1_http =
 [
+    [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", "namespace_thoth_1_1_http_1_1_n_headers" ],
     [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
     [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
     [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
@@ -32,6 +33,7 @@ var namespace_thoth_1_1_http =
     [ "RequestBodyConcept", "concept_thoth_1_1_http_1_1_request_body_concept.html", null ],
     [ "ResponseBodyConcept", "concept_thoth_1_1_http_1_1_response_body_concept.html", null ],
     [ "ConnectionErrorEnum", "namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2", null ],
+    [ "ExpectedHeader", "namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6", null ],
     [ "GetBinRequest", "namespace_thoth_1_1_http.html#aa27ef74bf49ef80cc298cff13f00e54d", null ],
     [ "GetBinResponse", "namespace_thoth_1_1_http.html#a5ab13fe41e42e6c41d24faa9ce3b629c", null ],
     [ "GetFileBinResponse", "namespace_thoth_1_1_http.html#aca2cc2d1681ee34bb84987d9e5d49c21", null ],

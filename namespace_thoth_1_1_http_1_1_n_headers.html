@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: Thoth::Http::NHeaders Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('namespace_thoth_1_1_http_1_1_n_headers.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#concepts">Concepts</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Thoth::Http::NHeaders Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">ListProxy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html">MimeType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Upgrade</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">ValueProxy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Serializable</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a8854f8d0964c3df83f254f22c62a8c0a" id="r_a8854f8d0964c3df83f254f22c62a8c0a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a">HeaderKey</a> = std::string</td></tr>
+<tr class="separator:a8854f8d0964c3df83f254f22c62a8c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a313440daf55066d19909d4a9b60ca31e" id="r_a313440daf55066d19909d4a9b60ca31e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e">HeaderKeyRef</a> = std::string_view</td></tr>
+<tr class="separator:a313440daf55066d19909d4a9b60ca31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8fec1b666df0ee86fd2062bebca6fed" id="r_ac8fec1b666df0ee86fd2062bebca6fed"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">HeaderValue</a> = std::string</td></tr>
+<tr class="separator:ac8fec1b666df0ee86fd2062bebca6fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeca7b3978394ba0ac4cca91e3a42bd95" id="r_aeca7b3978394ba0ac4cca91e3a42bd95"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95">HeaderValueRef</a> = std::string_view</td></tr>
+<tr class="separator:aeca7b3978394ba0ac4cca91e3a42bd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18c23d4601603e2cc9042962b484d25" id="r_ad18c23d4601603e2cc9042962b484d25"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25">HeaderPair</a> = std::pair&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a">HeaderKey</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">HeaderValue</a> &gt;</td></tr>
+<tr class="separator:ad18c23d4601603e2cc9042962b484d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8217e3e781bce447f80e5fab3d2b7e01" id="r_a8217e3e781bce447f80e5fab3d2b7e01"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8217e3e781bce447f80e5fab3d2b7e01">HeaderPairRef</a> = std::pair&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e">HeaderKeyRef</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95">HeaderValueRef</a> &gt;</td></tr>
+<tr class="separator:a8217e3e781bce447f80e5fab3d2b7e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab11732724c2ec519aa611955d769991a" id="r_ab11732724c2ec519aa611955d769991a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab11732724c2ec519aa611955d769991a">MapType</a> = std::vector&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25">HeaderPair</a> &gt;</td></tr>
+<tr class="separator:ab11732724c2ec519aa611955d769991a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a44a91116d18b9c648a9a23c33e2271cc" id="r_a44a91116d18b9c648a9a23c33e2271cc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc">ContentEncodingEnum</a> { <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c">Gzip</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8fa4fcfcda70410e089984d5f51ae97d">Compress</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccae2430ff724c45c3d68893fb1a3584426">Deflate</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2">Br</a>
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca0c8468c9ff2f38e853335e1e40ade4c3">Zstd</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a">Dcb</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646">Dcz</a>
+<br />
+ }</td></tr>
+<tr class="separator:a44a91116d18b9c648a9a23c33e2271cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e89a2363af351f45e1f34e3374f90b" id="r_aa8e89a2363af351f45e1f34e3374f90b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b">TransferEncodingEnum</a> { <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f">Chunked</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba8fa4fcfcda70410e089984d5f51ae97d">Compress</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426">Deflate</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba2548e50da66f41afea53de1cbbf3b30c">Gzip</a>
+ }</td></tr>
+<tr class="separator:aa8e89a2363af351f45e1f34e3374f90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfba8c695632baa83d33e0f1f597e9dd" id="r_abfba8c695632baa83d33e0f1f597e9dd"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> { <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8">NotFound</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d">InvalidFormat</a>
+, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5">EmptyValue</a>
+ }</td></tr>
+<tr class="separator:abfba8c695632baa83d33e0f1f597e9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa70e32f20f526d38258c35722780677a" id="r_aa70e32f20f526d38258c35722780677a"><td class="memTemplParams" colspan="2">template&lt;class T , class ... Args&gt; </td></tr>
+<tr class="memitem:aa70e32f20f526d38258c35722780677a"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Scan</a> (std::string_view input, Args... args)</td></tr>
+<tr class="separator:aa70e32f20f526d38258c35722780677a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9490989ab4c5415c251ef9e8bd8e8945" id="r_a9490989ab4c5415c251ef9e8bd8e8945"><td class="memTemplParams" colspan="2">template&lt;class T &gt; <br />
+requires std::integral&lt;T&gt;</td></tr>
+<tr class="memitem:a9490989ab4c5415c251ef9e8bd8e8945"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945">Scan</a> (std::string_view input, int base=10)</td></tr>
+<tr class="separator:a9490989ab4c5415c251ef9e8bd8e8945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cdc93349172fd89149b84f72bee4e2c" id="r_a2cdc93349172fd89149b84f72bee4e2c"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
+<tr class="memitem:a2cdc93349172fd89149b84f72bee4e2c"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c">Scan&lt; string &gt;</a> (std::string_view input)</td></tr>
+<tr class="separator:a2cdc93349172fd89149b84f72bee4e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a8854f8d0964c3df83f254f22c62a8c0a" name="a8854f8d0964c3df83f254f22c62a8c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8854f8d0964c3df83f254f22c62a8c0a">&#9670;&#160;</a></span>HeaderKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a">Thoth::Http::NHeaders::HeaderKey</a> = typedef std::string</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a313440daf55066d19909d4a9b60ca31e" name="a313440daf55066d19909d4a9b60ca31e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a313440daf55066d19909d4a9b60ca31e">&#9670;&#160;</a></span>HeaderKeyRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e">Thoth::Http::NHeaders::HeaderKeyRef</a> = typedef std::string_view</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad18c23d4601603e2cc9042962b484d25" name="ad18c23d4601603e2cc9042962b484d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18c23d4601603e2cc9042962b484d25">&#9670;&#160;</a></span>HeaderPair</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25">Thoth::Http::NHeaders::HeaderPair</a> = typedef std::pair&lt;<a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a">HeaderKey</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">HeaderValue</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8217e3e781bce447f80e5fab3d2b7e01" name="a8217e3e781bce447f80e5fab3d2b7e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8217e3e781bce447f80e5fab3d2b7e01">&#9670;&#160;</a></span>HeaderPairRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a8217e3e781bce447f80e5fab3d2b7e01">Thoth::Http::NHeaders::HeaderPairRef</a> = typedef std::pair&lt;<a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e">HeaderKeyRef</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95">HeaderValueRef</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8fec1b666df0ee86fd2062bebca6fed" name="ac8fec1b666df0ee86fd2062bebca6fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8fec1b666df0ee86fd2062bebca6fed">&#9670;&#160;</a></span>HeaderValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">Thoth::Http::NHeaders::HeaderValue</a> = typedef std::string</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeca7b3978394ba0ac4cca91e3a42bd95" name="aeca7b3978394ba0ac4cca91e3a42bd95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca7b3978394ba0ac4cca91e3a42bd95">&#9670;&#160;</a></span>HeaderValueRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aeca7b3978394ba0ac4cca91e3a42bd95">Thoth::Http::NHeaders::HeaderValueRef</a> = typedef std::string_view</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab11732724c2ec519aa611955d769991a" name="ab11732724c2ec519aa611955d769991a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab11732724c2ec519aa611955d769991a">&#9670;&#160;</a></span>MapType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab11732724c2ec519aa611955d769991a">Thoth::Http::NHeaders::MapType</a> = typedef std::vector&lt;<a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25">HeaderPair</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a44a91116d18b9c648a9a23c33e2271cc" name="a44a91116d18b9c648a9a23c33e2271cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a91116d18b9c648a9a23c33e2271cc">&#9670;&#160;</a></span>ContentEncodingEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc">Thoth::Http::NHeaders::ContentEncodingEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c" name="a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c"></a>Gzip&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271cca8fa4fcfcda70410e089984d5f51ae97d" name="a44a91116d18b9c648a9a23c33e2271cca8fa4fcfcda70410e089984d5f51ae97d"></a>Compress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271ccae2430ff724c45c3d68893fb1a3584426" name="a44a91116d18b9c648a9a23c33e2271ccae2430ff724c45c3d68893fb1a3584426"></a>Deflate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2" name="a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2"></a>Br&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271cca0c8468c9ff2f38e853335e1e40ade4c3" name="a44a91116d18b9c648a9a23c33e2271cca0c8468c9ff2f38e853335e1e40ade4c3"></a>Zstd&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a" name="a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a"></a>Dcb&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646" name="a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646"></a>Dcz&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="abfba8c695632baa83d33e0f1f597e9dd" name="abfba8c695632baa83d33e0f1f597e9dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfba8c695632baa83d33e0f1f597e9dd">&#9670;&#160;</a></span>HeaderErrorEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">Thoth::Http::NHeaders::HeaderErrorEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8" name="abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8"></a>NotFound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d" name="abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d"></a>InvalidFormat&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5" name="abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5"></a>EmptyValue&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="aa8e89a2363af351f45e1f34e3374f90b" name="aa8e89a2363af351f45e1f34e3374f90b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e89a2363af351f45e1f34e3374f90b">&#9670;&#160;</a></span>TransferEncodingEnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b">Thoth::Http::NHeaders::TransferEncodingEnum</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f" name="aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f"></a>Chunked&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa8e89a2363af351f45e1f34e3374f90ba8fa4fcfcda70410e089984d5f51ae97d" name="aa8e89a2363af351f45e1f34e3374f90ba8fa4fcfcda70410e089984d5f51ae97d"></a>Compress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426" name="aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426"></a>Deflate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa8e89a2363af351f45e1f34e3374f90ba2548e50da66f41afea53de1cbbf3b30c" name="aa8e89a2363af351f45e1f34e3374f90ba2548e50da66f41afea53de1cbbf3b30c"></a>Gzip&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa70e32f20f526d38258c35722780677a" name="aa70e32f20f526d38258c35722780677a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa70e32f20f526d38258c35722780677a">&#9670;&#160;</a></span>Scan() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class ... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; T &gt; Thoth::Http::NHeaders::Scan </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9490989ab4c5415c251ef9e8bd8e8945" name="a9490989ab4c5415c251ef9e8bd8e8945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9490989ab4c5415c251ef9e8bd8e8945">&#9670;&#160;</a></span>Scan() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; <br />
+requires std::integral&lt;T&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; T &gt; Thoth::Http::NHeaders::Scan </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>base</em> = <code>10</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cdc93349172fd89149b84f72bee4e2c" name="a2cdc93349172fd89149b84f72bee4e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cdc93349172fd89149b84f72bee4e2c">&#9670;&#160;</a></span>Scan&lt; string &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Thoth::Http::NHeaders::Scan</a>&lt; <a class="el" href="namespace_thoth_1_1_http.html#a686a9f2206a59f6001c471c0881b76e9">string</a> &gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http.html">Http</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "Thoth::NJson::Details::BufferInfo", "struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html", null ],
+    [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
     [ "Thoth::Http::ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", null ],
     [ "Thoth::Http::ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
@@ -11,7 +12,9 @@ var hierarchy =
     [ "Thoth::Http::GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
     [ "Thoth::Http::Headers", "struct_thoth_1_1_http_1_1_headers.html", null ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
+    [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
     [ "Thoth::Http::Client::HttpData< Body >", "struct_thoth_1_1_http_1_1_client_1_1_http_data.html", null ],
+    [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
     [ "Thoth::NJson::Json", "struct_thoth_1_1_n_json_1_1_json.html", null ],
@@ -24,6 +27,8 @@ var hierarchy =
     [ "Thoth::Dsa::LinearMap< KeyT, ValT, Pred >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< JsonObjKey, Json >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< QueryKey, QueryValues >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
+    [ "Thoth::Http::NHeaders::ListProxy< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", null ],
+    [ "Thoth::Http::NHeaders::MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", null ],
     [ "Thoth::Http::OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
     [ "Thoth::Http::PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
     [ "Thoth::Http::PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
@@ -36,7 +41,9 @@ var hierarchy =
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],
     [ "Thoth::Http::TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >", "struct_thoth_1_1_string_1_1_unicode_viewer.html", null ],
+    [ "Thoth::Http::NHeaders::Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", null ],
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
+    [ "Thoth::Http::NHeaders::ValueProxy< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
       [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ]
     ] ],
