@@ -1,6 +1,7 @@
 #pragma once
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/RequestError.hpp>
+#include <Thoth/Utils/Overloads.hpp>
 #include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
 #include <bit>
@@ -10,7 +11,7 @@ namespace Thoth::Http {
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
     expected<Response<Method, Body>, RequestError> Client::Send(Request<Method, Body> request) {
-        return SendAndRecvAsInto<Method, Body, Body>(request, []() -> std::expected<Body, RequestError> { return {}; });
+        return SendAndRecvAsInto<Method, Body, Body>(request, [](const ResponseHead&) -> std::expected<Body, RequestError> { return {}; });
     }
 
     template<MethodConcept Method, BodyConcept Body, class F>
@@ -24,7 +25,7 @@ namespace Thoth::Http {
         requires std::default_initializable<ResponseBody>
     expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAs(Request<Method, RequestBody> request) {
         return SendAndRecvAsInto<Method, RequestBodyConcept, ResponseBody>(
-            request, []() -> std::expected<ResponseBody, RequestError> { return {}; });
+            request, [](const ResponseHead&) -> std::expected<ResponseBody, RequestError> { return {}; });
     }
 
 
@@ -90,9 +91,9 @@ namespace Thoth::Http {
                 request.headers.Add("host", request.url.host);
 
                 if constexpr (SizedRequestBodyConcept<RequestBody>)
-                    request.headers.Add("content-length", to_string(std::ranges::size(request.body)));
+                    request.headers.ContentLength().Set(std::ranges::size(request.body));
                 else
-                    request.headers.Add("transfer-encoding", "chunked");
+                    request.headers.TransferEncoding().Add(NHeaders::TransferEncodingEnum::Chunked);
 
                 const string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
                 const auto& query { request.url.query };
@@ -110,10 +111,10 @@ namespace Thoth::Http {
                     request.body
                 ) };
 
-                const auto [_, sendRes]{ infoPtr->socket.Send(requestStr) };
+                const auto [_, sendRes]{ (*infoPtr)->socket.Send(requestStr) };
 
                 return sendRes
-                        .transform([&](auto){ return std::move(infoPtr); });
+                        .transform([&](auto){ return std::move(*infoPtr); });
             };
 
             const auto s_toRequestError = [](const auto err) -> RequestError {
@@ -121,7 +122,8 @@ namespace Thoth::Http {
             };
 
 
-            return s_sendRequest()
+            return s_isSocketValid()
+                    .and_then(s_sendRequest)
                     .transform_error(s_toRequestError)
                     .and_then(std::bind_back(P_ParseHttp11<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
                     .transform(s_cleanupSocket);
@@ -167,9 +169,6 @@ namespace Thoth::Http {
     }
 
 
-    template<ResponseBodyConcept Body>
-    Client::HttpData<Body>::HttpData(Body&& body) : body{ std::move(body) } {}
-
     template<MethodConcept Method, ResponseBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, RequestError> Client::P_ParseHttp11(
@@ -180,14 +179,19 @@ namespace Thoth::Http {
         using namespace std::literals;
         using ValueType = ResponseBody::value_type;
 
-        struct ParseStage {
-            HttpData<ResponseBody> data;
+        struct ParseHeadStage {
+            ResponseHead data;
             decltype(infoPtr->socket.RecvRange<char>()) stream;
-            // I could receive based in ValueType, but it would be painful to parse the start of the response.
+            // I could receive based in ValueType, but it would be painful to parse the response head.
             // HTTP/2 will use RecvRange<std::byte>().
         };
 
-        using ParseResult = std::expected<ParseStage, RequestError>;
+        struct ParseCompleteStage : ParseHeadStage {
+            ResponseBody body;
+        };
+
+        using ParseHeadResult     = std::expected<ParseHeadStage, RequestError>;
+        using ParseCompleteResult = std::expected<ParseCompleteStage, RequestError>;
 
 
         static constexpr auto s_cvt = [](const char c) { // convert
@@ -195,15 +199,11 @@ namespace Thoth::Http {
         };
 
 
-        const auto s_initializeBody = [&]() -> std::expected<ResponseBody, RequestError> {
-            return std::invoke(bodyFactory);
+        const auto s_createResponseStream = [&]() -> ParseHeadResult {
+            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvRange<char>() };
         };
 
-        const auto s_createResponseStream = [&](ResponseBody&& body) -> ParseResult {
-            return ParseStage{ HttpData<ResponseBody>{ std::move(body) }, infoPtr->socket.RecvRange<char>() };
-        };
-
-        const auto s_fillResponseLine = [&](ParseStage&& info) -> ParseResult {
+        const auto s_fillResponseLine = [&](ParseHeadStage&& info) -> ParseHeadResult {
             if (!rg::starts_with(info.stream, "HTTP/1."sv))
                 return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
@@ -225,7 +225,7 @@ namespace Thoth::Http {
             return std::move(info);
         };
 
-        const auto s_fillHeaders = [&](ParseStage&& info) -> ParseResult {
+        const auto s_fillHeaders = [&](ParseHeadStage&& info) -> ParseHeadResult {
             auto rawHeaders{ info.stream | Hermes::Utils::UntilMatch("\r\n\r\n"sv) };
             const auto headersParseRes{ Headers::Parse(rawHeaders) };
 
@@ -235,100 +235,110 @@ namespace Thoth::Http {
             return std::move(info);
         };
 
-        const auto s_fillBody = [&](ParseStage&& info) -> ParseResult {
-            const auto s_hasSizedLength = [&](const Headers::HeaderValue* contentSizeHeader) -> ParseResult {
-                size_t contentSize;
+        const auto s_initializeBody = [&](ParseHeadStage&& info) -> ParseCompleteResult {
+            return std::invoke(bodyFactory, info.data)
+                    .transform([info = std::move(info)](auto&& body) {
+                        return ParseCompleteStage{
+                            std::move(info.data),
+                            std::move(info.stream),
+                            std::move(body)
+                        };
+                    });
+        };
 
-                auto [_, ec] = std::from_chars(
-                    contentSizeHeader->data(),
-                    contentSizeHeader->data() + contentSizeHeader->size(),
-                    contentSize
-                );
+        const auto s_fillBody = [&](ParseCompleteStage&& info) -> ParseCompleteResult {
+            using State1 = std::expected<std::variant<std::monostate, size_t>, NHeaders::HeaderErrorEnum>;
+            using State2 = std::expected<std::variant<std::monostate, size_t>, RequestError>;
 
-                if (ec != std::errc())
-                    return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
+            const auto s_extractChunked = [](vector<NHeaders::TransferEncodingEnum> values) -> State1 {
+                if (std::ranges::contains(values, NHeaders::TransferEncodingEnum::Chunked))
+                    return { {std::monostate{} } };
 
-                if constexpr (requires (ResponseBody b){ { b.resize(0) }; })
-                    info.data.body.resize(contentSize);
-
-
-                rg::copy(
-                    info.stream
-                            | vs::take(contentSize)
-                            | vs::transform(s_cvt),
-                    GetInserterIterator(info.data.body)
-                );
-
-                return std::move(info);
+                return unexpected{ NHeaders::HeaderErrorEnum::NotFound };
             };
 
-            const auto s_hasTransferEncoding = [&]() -> std::optional<ParseResult> {
-                if (info.data.version == VersionEnum::HTTP1_0)
-                    return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
+            const auto s_extractLengthIfNotChunked = [&](NHeaders::HeaderErrorEnum error) -> State2 {
+                if (error == NHeaders::HeaderErrorEnum::NotFound)
+                    if (const auto res{ info.data.headers.ContentLength().GetWithDefault(0) }; res)
+                        return *res;
 
-                static string defaultValue{ "chunked" };
-                auto transferEncoding{ *info.data.headers.Get("transfer-encoding")
-                        .value_or(&defaultValue) };
+                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidHeaders } };
+            };
 
-                if (transferEncoding == "chunked") {
+            const auto s_readBody = [&](State2::value_type value) -> ParseCompleteResult {
+                const auto s_readSizedLength = [&](const size_t contentSize) -> std::expected<std::monostate, RequestError> {
+                    if constexpr (requires (ResponseBody b){ { b.resize(0) }; })
+                        info.body.resize(contentSize);
+
+                    rg::copy(
+                        info.stream
+                                | vs::take(contentSize)
+                                | vs::transform(s_cvt),
+                        GetInserterIterator(info.body)
+                    );
+
+                    return std::monostate{};
+                };
+
+                const auto s_readChunked = [&](std::monostate) -> std::expected<std::monostate, RequestError> {
+                    if (info.data.version == VersionEnum::HTTP1_0)
+                        return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
+
                     string chunkLengthStr;
-                    int chunkLength;
+                    decltype(NHeaders::Scan<size_t>(chunkLengthStr)) chunkLength;
+
 
                     do {
                         chunkLengthStr.clear();
-                        rg::copy(
-                            info.stream | Hermes::Utils::UntilMatch("\r\n"sv),
-                            std::back_inserter(chunkLengthStr)
-                        ); // the count of bytes in this package
-                        auto [_, ec] {
-                            std::from_chars( chunkLengthStr.data(), chunkLengthStr.data() + chunkLengthStr.size(),
-                        chunkLength, 16)
-                        };
+                        rg::copy(info.stream | Hermes::Utils::UntilMatch("\r\n"sv), std::back_inserter(chunkLengthStr));
+                        chunkLength = NHeaders::Scan<size_t>(chunkLengthStr, 16);
 
-                        if (ec != std::errc())
+                        if (!chunkLength)
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
-
 
                         rg::copy(
                             info.stream
-                                    | vs::take(chunkLength)
+                                    | vs::take(*chunkLength)
                                     | vs::transform(s_cvt),
-                            GetInserterIterator(info.data.body)
-                        ); // the data
+                            GetInserterIterator(info.body)
+                        );
 
                         //? Support extensions too? Maybe, someday
                         if (!rg::starts_with(info.stream, "\r\n"sv))
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
                     } while (chunkLength != 0);
-                }
 
-                return std::move(info);
+                    return std::monostate{};
+                };
+
+                return std::visit(Utils::Overloaded{ s_readSizedLength, s_readChunked }, value)
+                        .transform([&](auto){ return std::move(info); });
             };
 
 
-            return info.data.headers.Get("content-length")
-                    .transform(s_hasSizedLength)
-                    .or_else(s_hasTransferEncoding)
-                    .value();
+            return info.data.headers.TransferEncoding().Get()
+                    .and_then(s_extractChunked)
+                    .or_else(s_extractLengthIfNotChunked)
+                    .and_then(s_readBody);
         };
 
-        const auto s_createObject = [&](ParseStage&& info) {
+        const auto s_createObject = [&](ParseCompleteStage&& info) {
             return std::pair{
                     std::move(infoPtr),
                     Response<Method, ResponseBody>{
                         info.data.version, info.data.status, std::move(info.data.statusMessage),
                         std::move(info.data.headers),
-                        std::move(info.data.body)
+                        std::move(info.body)
                     }
                 };
         };
 
 
-        return s_initializeBody()
-                .and_then(s_createResponseStream)
+        return s_createResponseStream()
                 .and_then(s_fillResponseLine)
                 .and_then(s_fillHeaders)
+                .and_then(s_initializeBody)
                 .and_then(s_fillBody)
                 .transform(s_createObject);
 

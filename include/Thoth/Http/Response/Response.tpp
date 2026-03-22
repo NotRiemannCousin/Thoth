@@ -2,11 +2,11 @@
 
 namespace Thoth::Http {
 
-    // template<ResponseBodyConcept Body>
-    //     requires requires(Body b){ { std::back_inserter(b) }; }
-    // auto GetInserterIterator(Body& body) {
-    //     return std::back_inserter(body);
-    // }
+    template<ResponseBodyConcept Body>
+        requires requires(Body b){ { b.push_back({}) }; }
+    auto GetInserterIterator(Body& body) {
+        return std::back_inserter(body);
+    }
 
     template<ResponseBodyConcept Body>
     auto GetInserterIterator(Body& body) {
@@ -19,6 +19,11 @@ namespace Thoth::Http {
     Response<Method, Body>::Response(VersionEnum version, StatusCodeEnum status, string&& statusMessage,
             Headers&& headers, Body&& body) : version{ version },  status{ status },
             statusMessage{ std::move(statusMessage) },  headers{ std::move(headers) },
+            body{ std::move(body) } { }
+
+    template<MethodConcept Method, ResponseBodyConcept Body>
+    Response<Method, Body>::Response(ResponseHead &&head, Body &&body) : version{ head.version },  status{ head.status },
+            statusMessage{ std::move(head.statusMessage) },  headers{ std::move(head.headers) },
             body{ std::move(body) } { }
 
     template<MethodConcept Method, ResponseBodyConcept Body>

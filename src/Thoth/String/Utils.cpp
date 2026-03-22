@@ -1,6 +1,10 @@
 #include <Thoth/String/Utils.hpp>
 
 
+bool Thoth::String::CaseInsensitiveCompare(char c1, char c2) {
+    return tolower(c1) == tolower(c2);
+}
+
 void Thoth::String::Trim(std::string_view &str, std::string_view trim) {
     LeftTrim(str, trim);
     RightTrim(str, trim);

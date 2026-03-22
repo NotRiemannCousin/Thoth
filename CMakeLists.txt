@@ -49,7 +49,7 @@ add_library(Thoth SHARED
         src/Thoth/NJson/JsonObject.cpp
         src/Thoth/NJson/StringRef.cpp
 
-        src/Thoth/Http/Headers/Headers.cpp
+        src/Thoth/Http/NHeaders/Headers.cpp
 
         src/Thoth/Http/Request/Url.cpp
         src/Thoth/Http/Request/QueryParams.cpp
@@ -60,6 +60,7 @@ add_library(Thoth SHARED
         src/Thoth/Http/Client.cpp
         src/Thoth/Http/Request/Request.cpp
         src/Thoth/String/Utils.cpp
+        src/Thoth/Http/NHeaders/Headers/MimeType.cpp
 )
 
 target_include_directories(Thoth

@@ -58,8 +58,8 @@ namespace Thoth::Http {
     concept BodyConcept = RequestBodyConcept<T> && ResponseBodyConcept<T>;
 
     template<class F, class Body>
-    concept ResponseBodyFactoryConcept = std::invocable<F> && ResponseBodyConcept<Body> &&
-            requires (F f){ { std::invoke(f) } -> std::same_as<std::expected<Body, RequestError>>; };
+    concept ResponseBodyFactoryConcept = ResponseBodyConcept<Body> &&
+            requires (F f, const ResponseHead& head){ { std::invoke(f, head) } -> std::same_as<std::expected<Body, RequestError>>; };
 
     struct Client {
         //! @brief Sends synced (thread blocking) requests.
@@ -95,19 +95,6 @@ namespace Thoth::Http {
         template<ResponseBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
         static auto H_SendAndRecvAsInto(F&& bodyFactory);
-
-
-        //! @brief Record to help construct a response.
-        template<ResponseBodyConcept Body>
-        struct HttpData {
-            VersionEnum version{};
-            StatusCodeEnum status{};
-            string statusMessage{};
-            Headers headers{};
-            Body body;
-
-            explicit HttpData(Body&& body);
-        };
 
         using SocketPtr = std::shared_ptr<Socket>;
 

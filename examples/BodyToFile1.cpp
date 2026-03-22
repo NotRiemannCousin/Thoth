@@ -11,8 +11,9 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view u
     namespace NHttp = Thoth::Http;
     using FileT = Thoth::Dsa::BinFileOutputRange;
 
+    Thoth::Dsa::FileBuilderParams sla{ "./output.jpg" };
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody({ "./output.jpg" })))
+            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody(sla)))
             .transform([](auto){ return std::monostate{}; });
 }
 

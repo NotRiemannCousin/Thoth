@@ -6,7 +6,7 @@
 #include <Thoth/Http/Methods/PostMethod.hpp>
 
 namespace Thoth::Http {
-	enum class VersionEnum {
+	enum class VersionEnum : uint8_t {
 		HTTP1_0,
 		HTTP1_1,
 		HTTP2,
