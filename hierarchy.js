@@ -27,8 +27,9 @@ var hierarchy =
     [ "Thoth::Dsa::LinearMap< KeyT, ValT, Pred >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< JsonObjKey, Json >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Dsa::LinearMap< QueryKey, QueryValues >", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
-    [ "Thoth::Http::NHeaders::ListProxy< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", null ],
+    [ "Thoth::Http::NHeaders::ListProxy< T, IsConst >", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", null ],
     [ "Thoth::Http::NHeaders::MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", null ],
+    [ "Thoth::Http::NHeaders::MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
     [ "Thoth::Http::OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
     [ "Thoth::Http::PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
     [ "Thoth::Http::PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
@@ -43,7 +44,7 @@ var hierarchy =
     [ "Thoth::String::UnicodeViewer< CharT >", "struct_thoth_1_1_string_1_1_unicode_viewer.html", null ],
     [ "Thoth::Http::NHeaders::Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", null ],
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
-    [ "Thoth::Http::NHeaders::ValueProxy< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
+    [ "Thoth::Http::NHeaders::ValueProxy< T, IsConst >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
       [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ]
     ] ],

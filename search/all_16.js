@@ -8,7 +8,7 @@ var searchData=
   ['unprocessable_5fcontent_5',['UNPROCESSABLE_CONTENT',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7adf43ca69c0daad98ebbbeccbe5a3d64a',1,'Thoth::Http']]],
   ['unsupported_5fmedia_5ftype_6',['UNSUPPORTED_MEDIA_TYPE',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ac8def42f5dfe44bd1ea86a055fb1b5a6',1,'Thoth::Http']]],
   ['unused_7',['UNUSED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3bc180bd00be2c60a3a5a68e0dd49503',1,'Thoth::Http']]],
-  ['upgrade_8',['upgrade',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html',1,'Thoth::Http::NHeaders::Upgrade'],['../struct_thoth_1_1_http_1_1_headers.html#ab3976b6a26d5b2903a663c4c8ad003d2',1,'Thoth::Http::Headers::Upgrade()']]],
+  ['upgrade_8',['upgrade',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html',1,'Thoth::Http::NHeaders::Upgrade'],['../struct_thoth_1_1_http_1_1_headers.html#ae8e466563ba0b67fd4e2501fa5aaeebe',1,'Thoth::Http::Headers::Upgrade() const'],['../struct_thoth_1_1_http_1_1_headers.html#ab3976b6a26d5b2903a663c4c8ad003d2',1,'Thoth::Http::Headers::Upgrade()']]],
   ['upgrade_2ehpp_9',['Upgrade.hpp',['../_upgrade_8hpp.html',1,'']]],
   ['upgrade_5frequired_10',['UPGRADE_REQUIRED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3d13751f7a8fa303bf9e174565f4b3a5',1,'Thoth::Http']]],
   ['uri_5ftoo_5flong_11',['URI_TOO_LONG',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a7b62eb07bf8f336f3cb07d87946bbd98',1,'Thoth::Http']]],
@@ -21,5 +21,5 @@ var searchData=
   ['utf32view_18',['Utf32View',['../namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2',1,'Thoth::String']]],
   ['utf8env_19',['Utf8Env',['../namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0',1,'Thoth::Utils']]],
   ['utf8view_20',['Utf8View',['../namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea',1,'Thoth::String']]],
-  ['utils_2ehpp_21',['utils.hpp',['../_string_2_utils_8hpp.html',1,'(Global Namespace)'],['../_n_json_2_utils_8hpp.html',1,'(Global Namespace)']]]
+  ['utils_2ehpp_21',['utils.hpp',['../_n_json_2_utils_8hpp.html',1,'(Global Namespace)'],['../_string_2_utils_8hpp.html',1,'(Global Namespace)']]]
 ];

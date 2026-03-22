@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['options_0',['options',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a1ed874c890de272af0b9bdf959726425',1,'Thoth::Http::NHeaders::MimeType']]]
+  ['newlines_0',['newlines',['../struct_thoth_1_1_string_1_1_char_sequences.html#a68aad4b9f61cae7931ca81a545b32f99',1,'Thoth::String::CharSequences']]],
+  ['nonprintable_1',['nonPrintable',['../struct_thoth_1_1_string_1_1_char_sequences.html#aa8ed0aadfe1c2d0300f9a4e25c08f0aa',1,'Thoth::String::CharSequences']]]
 ];

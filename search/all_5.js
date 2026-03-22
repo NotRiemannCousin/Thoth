@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['date_0',['Date',['../struct_thoth_1_1_http_1_1_headers.html#a6cad5da5556fce14265549ba7c70929c',1,'Thoth::Http::Headers']]],
+  ['date_0',['date',['../struct_thoth_1_1_http_1_1_headers.html#a6cad5da5556fce14265549ba7c70929c',1,'Thoth::Http::Headers::Date()'],['../struct_thoth_1_1_http_1_1_headers.html#a186b1706a96f831413a593faae46f27b',1,'Thoth::Http::Headers::Date() const']]],
   ['dcb_1',['Dcb',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a',1,'Thoth::Http::NHeaders']]],
   ['dcz_2',['Dcz',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646',1,'Thoth::Http::NHeaders']]],
   ['defaultheaders_3',['DefaultHeaders',['../struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639',1,'Thoth::Http::Headers']]],
