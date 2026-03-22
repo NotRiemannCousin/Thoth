@@ -5,6 +5,9 @@
 #include <ranges>
 #include <Hermes/Utils/UntilMatch.hpp>
 
+#include <Thoth/Http/NHeaders/Proxy/ValueProxy.hpp>
+#include <Thoth/Http/NHeaders/Proxy/ListProxy.hpp>
+
 
 namespace Thoth::Http {
     // TODO: Reinforce this constraint
@@ -71,16 +74,16 @@ namespace Thoth::Http {
         return res;
     }
 
-    inline auto Headers::GetSetCookieView() const {
-        constexpr auto s_cmp = [](const auto& p) {
-            return p.first == "set-cookie";
-        };
-
-
-        return _headers
-                | std::views::filter(s_cmp)
-                | std::views::transform(&HeaderPair::second);
-    }
+    // inline auto Headers::GetSetCookieView() const {
+    //     constexpr auto s_cmp = [](const auto& p) {
+    //         return p.first == "set-cookie";
+    //     };
+    //
+    //
+    //     return _headers
+    //             | std::views::filter(s_cmp)
+    //             | std::views::transform(&HeaderPair::second);
+    // }
 
 }
 

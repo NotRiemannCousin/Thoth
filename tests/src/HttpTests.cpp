@@ -1,6 +1,6 @@
 #include <Thoth/Http/Request/QueryParams.hpp>
 #include <Thoth/Http/Request/Url.hpp>
-#include <Thoth/Http/Headers.hpp>
+#include <Thoth/Http/NHeaders/Headers.hpp>
 #include "../include/BaseTests.hpp"
 
 using namespace Thoth::Http;

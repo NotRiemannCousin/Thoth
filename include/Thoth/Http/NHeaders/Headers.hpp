@@ -1,25 +1,45 @@
 #pragma once
+#include <chrono>
 #include <Thoth/Http/Response/StatusCodeEnum.hpp>
 #include <optional>
 #include <format>
 #include <vector>
-#include <string>
 #include <ranges>
 
+#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/NHeaders/_base.hpp>
+
+#include <Thoth/Http/NHeaders/Headers/_pch.hpp>
+#include <Thoth/Http/NHeaders/Proxy/_base.hpp>
+
+namespace Thoth::Http::NHeaders {
+    template<Serializable T>
+    struct ListProxy;
+    template<Serializable T>
+    struct ValueProxy;
+}
+
+
 namespace Thoth::Http {
-    //! @brief Headers is a dumb class that stores the headers. Although it can parse the raw headers from TCP,
-    //! the role of this class is just store it, so it can't check if the headers individually are well-formed.
+
+    enum class VersionEnum : uint8_t;
+
+    template<class T>
+    using ExpectedHeader = std::expected<T, std::monostate>;;
+
+
+    //! @brief This class stores the headers from HTTP.
     struct Headers {
-        using HeaderKey      = std::string;
-        using HeaderKeyRef   = std::string_view;
+        using HeaderKey      = NHeaders::HeaderKey;
+        using HeaderKeyRef   = NHeaders::HeaderKeyRef;
 
-        using HeaderValue    = std::string;
-        using HeaderValueRef = std::string_view;
+        using HeaderValue    = NHeaders::HeaderValue;
+        using HeaderValueRef = NHeaders::HeaderValueRef;
 
-        // Well, it really maps to something, but isn't a map. The name will be maintained
-        // to not break the naming convention of this lib.
-        using HeaderPair     = std::pair<HeaderKey, HeaderValue>;
-        using HeaderPairRef  = std::pair<HeaderKeyRef, HeaderValueRef>;
+        using HeaderPair     = NHeaders::HeaderPair;
+        using HeaderPairRef  = NHeaders::HeaderPairRef;
+        using MapType        = NHeaders::MapType;
+
         using MapType        = std::vector<HeaderPair>;
 
         using IterType       = decltype(MapType{}.begin());
@@ -107,13 +127,44 @@ namespace Thoth::Http {
         [[nodiscard]] std::optional<const HeaderValue*> Get(HeaderKeyRef key) const;
 
 
-        //! @brief Get all Set-Cookie header values as they cannot be comma-separated.
-        //! @return A readonly view of all Set-Cookie values. No Copies => risk of dangling reference, keep it in mind.
-        [[nodiscard]] auto GetSetCookieView() const;
+        //! @{
+        //! @name Proxies
+        //! Convenient calls to some headers.
 
-        //! @brief Get all Set-Cookie header values as they cannot be comma-separated.
-        //! @return Vector of all Set-Cookie values.
-        [[nodiscard]] std::vector<HeaderValue> GetSetCookie() const;
+        //! @brief Defines the media type of the resource (MIME).
+        NHeaders::ValueProxy<NHeaders::MimeType> ContentType();
+
+        //! @brief The size of the entity-body in bytes.
+        NHeaders::ValueProxy<uint64_t> ContentLength();
+
+        //! @brief List of encodings (compression) applied to the entity.
+        NHeaders::ListProxy<NHeaders::ContentEncodingEnum> ContentEncoding();
+
+        //! @brief List of compression applied to the entity.
+        NHeaders::ListProxy<NHeaders::TransferEncodingEnum> TransferEncoding();
+
+        //! @brief Natural languages for the intended audience (e.g., "en-US").
+        NHeaders::ListProxy<std::string> ContentLanguage();
+
+        //! @brief The specific location for the entity-body.
+        NHeaders::ValueProxy<string> ContentLocation();
+
+        //! @brief Date and time at which the message was originated.
+        NHeaders::ValueProxy<std::chrono::utc_clock> Date();
+
+        //! @brief Options for the current connection.
+        NHeaders::ListProxy<string> Connection();
+
+        //! @brief Used to signal a protocol change (e.g., "websocket").
+        NHeaders::ListProxy<NHeaders::Upgrade> Upgrade();
+
+        //! @brief Indicates header fields present in the trailer of a chunked message.
+        NHeaders::ListProxy<std::string> Trailer();
+
+        //! @brief Path taken by the request/response through proxies (free string).
+        NHeaders::ListProxy<std::string> Via();
+
+        //! @}
 
 
 
@@ -153,4 +204,4 @@ namespace Thoth::Http {
     };
 }
 
-#include <Thoth/Http/Headers.tpp>
+#include <Thoth/Http/NHeaders/Headers.tpp>

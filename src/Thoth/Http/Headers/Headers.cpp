@@ -1,4 +1,5 @@
-#include <Thoth/Http/Headers.hpp>
+#pragma once
+#include <Thoth/Http/NHeaders/Headers.hpp>
 
 #include <algorithm>
 #include <functional>
@@ -227,9 +228,70 @@ namespace Thoth::Http {
 
 
 
-    std::vector<Headers::HeaderValue> Headers::GetSetCookie() const {
-        return GetSetCookieView() | rg::to<std::vector>();
+
+    NHeaders::ValueProxy<NHeaders::MimeType> Headers::ContentType() {
+        return NHeaders::ValueProxy<NHeaders::MimeType>{ "content-type", *this };
     }
+
+
+    NHeaders::ValueProxy<uint64_t> Headers::ContentLength() {
+        return NHeaders::ValueProxy<uint64_t>{ "content-length", *this };
+    }
+
+
+    NHeaders::ListProxy<NHeaders::ContentEncodingEnum> Headers::ContentEncoding() {
+        return NHeaders::ListProxy<NHeaders::ContentEncodingEnum>{ "content-encoding", *this };
+    }
+
+
+    NHeaders::ListProxy<NHeaders::TransferEncodingEnum> Headers::TransferEncoding() {
+        return NHeaders::ListProxy<NHeaders::TransferEncodingEnum>{ "transfer-encoding", *this };
+    }
+
+
+    NHeaders::ListProxy<std::string> Headers::ContentLanguage() {
+        return NHeaders::ListProxy<std::string>{ "content-language", *this };
+    }
+
+
+    NHeaders::ValueProxy<string> Headers::ContentLocation() {
+        return NHeaders::ValueProxy<string>{ "content-location", *this };
+    }
+
+
+    NHeaders::ValueProxy<std::chrono::utc_clock> Headers::Date() {
+        return NHeaders::ValueProxy<std::chrono::utc_clock>{ "date", *this };
+    }
+
+
+    NHeaders::ListProxy<string> Headers::Connection() {
+        return NHeaders::ListProxy<string>{ "connection", *this };
+    }
+
+
+    NHeaders::ListProxy<NHeaders::Upgrade> Headers::Upgrade() {
+        return NHeaders::ListProxy<NHeaders::Upgrade>{ "upgrade", *this };
+    }
+
+
+    NHeaders::ListProxy<std::string> Headers::Trailer() {
+        return NHeaders::ListProxy<std::string>{ "trailer", *this };
+    }
+
+
+    NHeaders::ListProxy<std::string> Headers::Via() {
+        return NHeaders::ListProxy<std::string>{ "via", *this };
+    }
+
+
+
+
+    // std::vector<Headers::HeaderValue> Headers::GetSetCookie() const {
+    //     return GetSetCookieView() | rg::to<std::vector>();
+    // }
+    //
+
+
 
 
     Headers::IterType Headers::begin() { return _headers.begin(); }
