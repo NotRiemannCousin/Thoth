@@ -7,6 +7,7 @@ var namespace_thoth_1_1_string =
     [ "Utf16View", "namespace_thoth_1_1_string.html#a5d2612b50ded1adc4f40bc9e0f5dc0da", null ],
     [ "Utf32View", "namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2", null ],
     [ "Utf8View", "namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea", null ],
+    [ "CaseInsensitiveCompare", "namespace_thoth_1_1_string.html#a67e6da480b07031ecbcb79e84929ffdc", null ],
     [ "IsVisible", "namespace_thoth_1_1_string.html#a3343e767f5beef131c6b648954b1ea48", null ],
     [ "LeftTrim", "namespace_thoth_1_1_string.html#a8fe100af95d712d8a423454cf41b47e3", null ],
     [ "LeftTrimmed", "namespace_thoth_1_1_string.html#a89e8f9bb8483be7bdb5d476010e95301", null ],

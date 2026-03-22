@@ -3,7 +3,7 @@ var namespace_thoth_1_1_http_1_1_n_headers =
     [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
     [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
-    [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
+    [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
     [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
     [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ],
     [ "Serializable", "concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html", null ],
@@ -36,5 +36,5 @@ var namespace_thoth_1_1_http_1_1_n_headers =
     ] ],
     [ "Scan", "namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a", null ],
     [ "Scan", "namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945", null ],
-    [ "Scan< string >", "namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c", null ]
+    [ "Scan< std::string >", "namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53", null ]
 ];

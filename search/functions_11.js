@@ -7,7 +7,7 @@ var searchData=
   ['s_5ftransformexpifimpl_4',['S_TransformExpIfImpl',['../namespace_thoth_1_1_utils.html#acd562ea577fa1b0173e41407edd4b74a',1,'Thoth::Utils']]],
   ['s_5ftransformoptifimpl_5',['S_TransformOptIfImpl',['../namespace_thoth_1_1_utils.html#a7031a51f5323a79eff261a27feae4cda',1,'Thoth::Utils']]],
   ['scan_6',['scan',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a',1,'Thoth::Http::NHeaders::Scan(std::string_view input, Args... args)'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945',1,'Thoth::Http::NHeaders::Scan(std::string_view input, int base=10)']]],
-  ['scan_3c_20string_20_3e_7',['Scan&lt; string &gt;',['../namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c',1,'Thoth::Http::NHeaders']]],
+  ['scan_3c_20std_3a_3astring_20_3e_7',['Scan&lt; std::string &gt;',['../namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53',1,'Thoth::Http::NHeaders']]],
   ['search_8',['search',['../struct_thoth_1_1_n_json_1_1_json.html#a5812cc91f1418a1b7236ca4adba6e86a',1,'Thoth::NJson::Json::Search(Pred &amp;&amp;pred)'],['../struct_thoth_1_1_n_json_1_1_json.html#adbba763e9af31e1de209317c0663e468',1,'Thoth::NJson::Json::Search(Pred &amp;&amp;pred) const']]],
   ['searchandmove_9',['SearchAndMove',['../struct_thoth_1_1_n_json_1_1_json.html#a3cc292b7b6250149a68209e2a8d0a740',1,'Thoth::NJson::Json']]],
   ['searchandmoveorerror_10',['SearchAndMoveOrError',['../struct_thoth_1_1_n_json_1_1_json.html#a4da9472964f650295fce6157e087573f',1,'Thoth::NJson::Json']]],

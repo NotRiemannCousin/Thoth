@@ -2,6 +2,7 @@ var _string_2_utils_8hpp =
 [
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", "struct_thoth_1_1_string_1_1_char_sequences" ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
+    [ "CaseInsensitiveCompare", "_string_2_utils_8hpp.html#a67e6da480b07031ecbcb79e84929ffdc", null ],
     [ "IsVisible", "_string_2_utils_8hpp.html#a3343e767f5beef131c6b648954b1ea48", null ],
     [ "LeftTrim", "_string_2_utils_8hpp.html#a8fe100af95d712d8a423454cf41b47e3", null ],
     [ "LeftTrimmed", "_string_2_utils_8hpp.html#a89e8f9bb8483be7bdb5d476010e95301", null ],

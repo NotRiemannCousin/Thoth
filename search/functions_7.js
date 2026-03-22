@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['h_5fasbody_0',['h_asbody',['../struct_thoth_1_1_dsa_1_1_file_output_range.html#aa97d10892ff04d41292d2330f6a21e9d',1,'Thoth::Dsa::FileOutputRange::H_AsBody(const std::filesystem::path &amp;path, int mode=0)'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a75f0bbd21ab1a2128713b3fdfa67a135',1,'Thoth::Dsa::FileOutputRange::H_AsBody(std::filesystem::path &amp;&amp;path, int mode=0)']]],
+  ['h_5fasbody_0',['h_asbody',['../struct_thoth_1_1_dsa_1_1_file_output_range.html#aa613c8a4b88c114401b91266b595d20e',1,'Thoth::Dsa::FileOutputRange::H_AsBody(const FileBuilderParams &amp;params)'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a12d49adee474b356cfe7f3dff78f4c6b',1,'Thoth::Dsa::FileOutputRange::H_AsBody(FileBuilderParams &amp;&amp;params)']]],
   ['h_5fsend_1',['H_Send',['../struct_thoth_1_1_http_1_1_client.html#a6406ca8c7442733c5776dda3a954f221',1,'Thoth::Http::Client']]],
   ['h_5fsendandrecvas_2',['H_SendAndRecvAs',['../struct_thoth_1_1_http_1_1_client.html#ade5b85024e5141eb848ceb0eb0c3d5a9',1,'Thoth::Http::Client']]],
   ['h_5fsendandrecvasinto_3',['H_SendAndRecvAsInto',['../struct_thoth_1_1_http_1_1_client.html#a4c28b35643a7fd25eab94a909bae8e18',1,'Thoth::Http::Client']]],

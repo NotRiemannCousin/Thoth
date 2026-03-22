@@ -143,70 +143,71 @@ $(document).ready(function(){initNavTree('_http_2_n_headers_2_proxy_2__base_8hpp
 <a href="_http_2_n_headers_2_proxy_2__base_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;format&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_string_2_utils_8hpp.html">Thoth/String/Utils.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">template</span>&lt;<span class="keyword">class </span>T, <span class="keyword">class </span>...Args&gt;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">   10</a></span>    std::optional&lt;T&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Scan</a>(std::string_view input, Args... args);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="comment">// TODO: Implement Scan in a better way.</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="_string_2_utils_8hpp.html">Thoth/String/Utils.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">template</span>&lt;<span class="keyword">class </span>T, <span class="keyword">class </span>...Args&gt;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">   11</a></span>    std::optional&lt;T&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Scan</a>(std::string_view input, Args... args);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">// TODO: Implement Scan in a better way.</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">   15</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Serializable</a> = <span class="keyword">requires</span>(T t, std::string_view str) {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        { std::format(<span class="stringliteral">&quot;{}&quot;</span>, t) } -&gt; std::same_as&lt;std::string&gt;;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        { Scan&lt;T&gt;(str)         } -&gt; std::same_as&lt;std::optional&lt;T&gt;&gt;;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    };</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">   16</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Serializable</a> = <span class="keyword">requires</span>(T t, std::string_view str) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        { std::format(<span class="stringliteral">&quot;{}&quot;</span>, t) } -&gt; std::same_as&lt;std::string&gt;;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        { Scan&lt;T&gt;(str)         } -&gt; std::same_as&lt;std::optional&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
 </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">   21</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8">NotFound</a>,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d">InvalidFormat</a>,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5">EmptyValue</a></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    };</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">   22</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8">NotFound</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d">InvalidFormat</a>,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5">EmptyValue</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">   26</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> {};</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">   27</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> {};</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">requires</span> std::integral&lt;T&gt;</div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945">   34</a></span>    std::optional&lt;T&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Scan</a>(std::string_view input, <span class="keywordtype">int</span> base = 10) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">if</span> (base &lt;= 0 || base &gt; 36) <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        T value;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_function" href="namespace_thoth_1_1_string.html#ab9109807085c377fdbaceb7eebba74a4">String::Trim</a>(input);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">auto</span> [_, ec] = std::from_chars(input.data(), input.data() + input.size(), value, base);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">if</span> (ec != std::errc()) <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> value;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">requires</span> std::integral&lt;T&gt;</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945">   35</a></span>    std::optional&lt;T&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Scan</a>(std::string_view input, <span class="keywordtype">int</span> base = 10) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">if</span> (base &lt;= 0 || base &gt; 36) <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        T value;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_function" href="namespace_thoth_1_1_string.html#ab9109807085c377fdbaceb7eebba74a4">String::Trim</a>(input);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">auto</span> [_, ec] = std::from_chars(input.data(), input.data() + input.size(), value, base);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">if</span> (ec != std::errc()) <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> value;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">inline</span> std::optional&lt;string&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c">Scan&lt;string&gt;</a>(std::string_view input) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe">String::TrimmedStr</a>(input);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">inline</span> std::optional&lt;std::string&gt; <a class="code hl_function" href="namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53">Scan&lt;std::string&gt;</a>(std::string_view input) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe">String::TrimmedStr</a>(input);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
 <div class="ttc" id="a_string_2_utils_8hpp_html"><div class="ttname"><a href="_string_2_utils_8hpp.html">Utils.hpp</a></div></div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_n_headers_1_1_serializable_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a></div><div class="ttdef"><b>Definition</b> _base.hpp:15</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_n_headers_1_1_serializable_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a></div><div class="ttdef"><b>Definition</b> _base.hpp:16</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a></div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
-<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a2cdc93349172fd89149b84f72bee4e2c"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c">Thoth::Http::NHeaders::Scan&lt; string &gt;</a></div><div class="ttdeci">std::optional&lt; string &gt; Scan&lt; string &gt;(std::string_view input)</div><div class="ttdef"><b>Definition</b> _base.hpp:46</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a5f15f2e8d57dbe9dd4a8e2cbe862ad53"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53">Thoth::Http::NHeaders::Scan&lt; std::string &gt;</a></div><div class="ttdeci">std::optional&lt; std::string &gt; Scan&lt; std::string &gt;(std::string_view input)</div><div class="ttdef"><b>Definition</b> _base.hpp:47</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_aa70e32f20f526d38258c35722780677a"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Thoth::Http::NHeaders::Scan</a></div><div class="ttdeci">std::optional&lt; T &gt; Scan(std::string_view input, Args... args)</div></div>
-<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_abfba8c695632baa83d33e0f1f597e9dd"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">Thoth::Http::NHeaders::HeaderErrorEnum</a></div><div class="ttdeci">HeaderErrorEnum</div><div class="ttdef"><b>Definition</b> _base.hpp:21</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_abfba8c695632baa83d33e0f1f597e9dd"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">Thoth::Http::NHeaders::HeaderErrorEnum</a></div><div class="ttdeci">HeaderErrorEnum</div><div class="ttdef"><b>Definition</b> _base.hpp:22</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda38c300f4fc9ce8a77aad4a30de05cad8">Thoth::Http::NHeaders::HeaderErrorEnum::NotFound</a></div><div class="ttdeci">@ NotFound</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5">Thoth::Http::NHeaders::HeaderErrorEnum::EmptyValue</a></div><div class="ttdeci">@ EmptyValue</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d">Thoth::Http::NHeaders::HeaderErrorEnum::InvalidFormat</a></div><div class="ttdeci">@ InvalidFormat</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_string_html_a11053c2550329fbd13021724261360fe"><div class="ttname"><a href="namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe">Thoth::String::TrimmedStr</a></div><div class="ttdeci">std::string TrimmedStr(std::string_view str, std::string_view trim=CharSequences::whitespace)</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_string_html_ab9109807085c377fdbaceb7eebba74a4"><div class="ttname"><a href="namespace_thoth_1_1_string.html#ab9109807085c377fdbaceb7eebba74a4">Thoth::String::Trim</a></div><div class="ttdeci">void Trim(std::string_view &amp;str, std::string_view trim=CharSequences::whitespace)</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">Thoth::Http::NHeaders::InvalidHeaderFormat</a></div><div class="ttdef"><b>Definition</b> _base.hpp:26</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">Thoth::Http::NHeaders::InvalidHeaderFormat</a></div><div class="ttdef"><b>Definition</b> _base.hpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

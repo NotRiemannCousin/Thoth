@@ -7,7 +7,7 @@ var searchData=
   ['s_5ftransformexpifimpl_4',['S_TransformExpIfImpl',['../namespace_thoth_1_1_utils.html#acd562ea577fa1b0173e41407edd4b74a',1,'Thoth::Utils']]],
   ['s_5ftransformoptifimpl_5',['S_TransformOptIfImpl',['../namespace_thoth_1_1_utils.html#a7031a51f5323a79eff261a27feae4cda',1,'Thoth::Utils']]],
   ['scan_6',['scan',['../namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945',1,'Thoth::Http::NHeaders::Scan(std::string_view input, int base=10)'],['../namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a',1,'Thoth::Http::NHeaders::Scan(std::string_view input, Args... args)']]],
-  ['scan_3c_20string_20_3e_7',['Scan&lt; string &gt;',['../namespace_thoth_1_1_http_1_1_n_headers.html#a2cdc93349172fd89149b84f72bee4e2c',1,'Thoth::Http::NHeaders']]],
+  ['scan_3c_20std_3a_3astring_20_3e_7',['Scan&lt; std::string &gt;',['../namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53',1,'Thoth::Http::NHeaders']]],
   ['scheme_8',['scheme',['../struct_thoth_1_1_http_1_1_url.html#a3e3bfed10192bf9f087546d0bee875c1',1,'Thoth::Http::Url']]],
   ['search_9',['search',['../struct_thoth_1_1_n_json_1_1_json.html#a5812cc91f1418a1b7236ca4adba6e86a',1,'Thoth::NJson::Json::Search(Pred &amp;&amp;pred)'],['../struct_thoth_1_1_n_json_1_1_json.html#adbba763e9af31e1de209317c0663e468',1,'Thoth::NJson::Json::Search(Pred &amp;&amp;pred) const']]],
   ['searchandmove_10',['SearchAndMove',['../struct_thoth_1_1_n_json_1_1_json.html#a3cc292b7b6250149a68209e2a8d0a740',1,'Thoth::NJson::Json']]],
@@ -52,7 +52,7 @@ var searchData=
   ['stringref_49',['stringref',['../struct_thoth_1_1_n_json_1_1_string_ref.html#a4aff11834f330992fc230d4d84198597',1,'Thoth::NJson::StringRef::StringRef()'],['../struct_thoth_1_1_n_json_1_1_string_ref.html',1,'Thoth::NJson::StringRef'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#ab60b11627cf856fece4ae1058afab3aa',1,'Thoth::NJson::StringRef::StringRef(std::string_view other, std::shared_ptr&lt; std::string &gt; _data)'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a74921a7da5110cc43e85e7113ebd222b',1,'Thoth::NJson::StringRef::StringRef(const std::string &amp;other)'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a04f15c2c2fa7f7829379d225636781f1',1,'Thoth::NJson::StringRef::StringRef(const StringRef &amp;)=default'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a9d6a31c28d89caf71c8ac723654c09d6',1,'Thoth::NJson::StringRef::StringRef(StringRef &amp;&amp;) noexcept=default']]],
   ['stringref_2ehpp_50',['StringRef.hpp',['../_string_ref_8hpp.html',1,'']]],
   ['stringviewtype_51',['StringViewType',['../struct_thoth_1_1_string_1_1_unicode_viewer.html#a54e54e7f07e82fd962b47836d3c09265',1,'Thoth::String::UnicodeViewer']]],
-  ['subtype_52',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a6688530bf7bda3958732e499b6d862cd',1,'Thoth::Http::NHeaders::MimeType']]],
+  ['subtype_52',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a7bbec6b05517aa5a6e033466177fdf0d',1,'Thoth::Http::NHeaders::MimeType']]],
   ['successful_53',['successful',['../struct_thoth_1_1_http_1_1_response.html#a5dc84f1dc95a19a8c9e0ee0716fef62b',1,'Thoth::Http::Response::Successful()'],['../namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877dadd1dab546c7769f17e9d4e8e4f2f1bf4',1,'Thoth::Http::SUCCESSFUL']]],
   ['switching_5fprotocols_54',['SWITCHING_PROTOCOLS',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af65c2e25f74e831cf2af44707695f440',1,'Thoth::Http']]]
 ];

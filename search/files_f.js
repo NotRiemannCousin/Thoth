@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tracemethod_2ehpp_0',['TraceMethod.hpp',['../_trace_method_8hpp.html',1,'']]],
-  ['transferencodingenum_2ehpp_1',['TransferEncodingEnum.hpp',['../_transfer_encoding_enum_8hpp.html',1,'']]]
+  ['sharedinputview_2ehpp_0',['SharedInputView.hpp',['../_shared_input_view_8hpp.html',1,'']]],
+  ['statuscodeenum_2ehpp_1',['StatusCodeEnum.hpp',['../_status_code_enum_8hpp.html',1,'']]],
+  ['stringref_2ehpp_2',['StringRef.hpp',['../_string_ref_8hpp.html',1,'']]]
 ];

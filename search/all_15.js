@@ -47,5 +47,5 @@ var searchData=
   ['trydecode_44',['TryDecode',['../struct_thoth_1_1_http_1_1_url.html#a0ec0142c2ef2077ebdfccd3b8c331bc2',1,'Thoth::Http::Url']]],
   ['tryset_45',['tryset',['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a1a88af899b9a4028c4d60cff3219e750',1,'Thoth::Http::NHeaders::ValueProxy::TrySet()'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a428e06ef644f74b895a38b466dfbcc13',1,'Thoth::Http::NHeaders::ListProxy::TrySet(std::string_view newValue) &amp;&amp;']]],
   ['ts_46',['Ts',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a63e0190600926720681532d4a896816d',1,'Thoth::Http::NHeaders::ListProxy']]],
-  ['type_47',['type',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a75fa9bea995669a6aac5ee289032f59d',1,'Thoth::Http::NHeaders::MimeType']]]
+  ['type_47',['type',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a6fd641faa38197165dad35c861686088',1,'Thoth::Http::NHeaders::MimeType']]]
 ];

@@ -3,6 +3,7 @@ var annotated_dup =
     [ "Thoth", "namespace_thoth.html", [
       [ "Dsa", "namespace_thoth_1_1_dsa.html", [
         [ "Cow", "struct_thoth_1_1_dsa_1_1_cow.html", "struct_thoth_1_1_dsa_1_1_cow" ],
+        [ "FileBuilderParams", "struct_thoth_1_1_dsa_1_1_file_builder_params.html", "struct_thoth_1_1_dsa_1_1_file_builder_params" ],
         [ "FileOutputRange", "struct_thoth_1_1_dsa_1_1_file_output_range.html", "struct_thoth_1_1_dsa_1_1_file_output_range" ],
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
@@ -11,7 +12,7 @@ var annotated_dup =
           [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
           [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
           [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
-          [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
+          [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
         ] ],

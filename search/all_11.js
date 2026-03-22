@@ -7,7 +7,7 @@ var searchData=
   ['partial_5fcontent_4',['PARTIAL_CONTENT',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ad906a5a1be7a9fc5d8546e34d1608a1e',1,'Thoth::Http']]],
   ['patchmethod_5',['PatchMethod',['../struct_thoth_1_1_http_1_1_patch_method.html',1,'Thoth::Http']]],
   ['patchmethod_2ehpp_6',['PatchMethod.hpp',['../_patch_method_8hpp.html',1,'']]],
-  ['path_7',['path',['../struct_thoth_1_1_http_1_1_url.html#abd3c10594bab589759b4ce4281511a00',1,'Thoth::Http::Url']]],
+  ['path_7',['path',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a53b04ec2463e776c30555873592b0cce',1,'Thoth::Dsa::FileBuilderParams::path'],['../struct_thoth_1_1_http_1_1_url.html#abd3c10594bab589759b4ce4281511a00',1,'Thoth::Http::Url::path']]],
   ['payment_5frequired_8',['PAYMENT_REQUIRED',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a6713760be5f3d289ab8f42e837c126de',1,'Thoth::Http']]],
   ['permanent_5fredirect_9',['PERMANENT_REDIRECT',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a5b2d8349de9fbd020a9cb81cd38fb1b0',1,'Thoth::Http']]],
   ['poolmutex_10',['poolMutex',['../struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd',1,'Thoth::Http::ClientJanitor']]],

@@ -9,5 +9,5 @@ var _http_2_n_headers_2_proxy_2__base_8hpp =
     ] ],
     [ "Scan", "_http_2_n_headers_2_proxy_2__base_8hpp.html#aa70e32f20f526d38258c35722780677a", null ],
     [ "Scan", "_http_2_n_headers_2_proxy_2__base_8hpp.html#a9490989ab4c5415c251ef9e8bd8e8945", null ],
-    [ "Scan< string >", "_http_2_n_headers_2_proxy_2__base_8hpp.html#a2cdc93349172fd89149b84f72bee4e2c", null ]
+    [ "Scan< std::string >", "_http_2_n_headers_2_proxy_2__base_8hpp.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53", null ]
 ];

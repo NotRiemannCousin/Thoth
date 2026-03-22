@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['sharedinputview_2ehpp_0',['SharedInputView.hpp',['../_shared_input_view_8hpp.html',1,'']]],
-  ['statuscodeenum_2ehpp_1',['StatusCodeEnum.hpp',['../_status_code_enum_8hpp.html',1,'']]],
-  ['stringref_2ehpp_2',['StringRef.hpp',['../_string_ref_8hpp.html',1,'']]]
+  ['readme_2emd_0',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['request_2ehpp_1',['Request.hpp',['../_request_8hpp.html',1,'']]],
+  ['requesterror_2ehpp_2',['RequestError.hpp',['../_request_error_8hpp.html',1,'']]],
+  ['response_2ehpp_3',['Response.hpp',['../_response_8hpp.html',1,'']]]
 ];
