@@ -4,24 +4,24 @@
 #include <Thoth/Utils/Functional.hpp>
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T>
-    ListProxy<T>::ListProxy(string_view key, Headers &headers) : key{ key }, headers{ headers } { }
+    template<Serializable T, bool IsConst>
+    ListProxy<T, IsConst>::ListProxy(string_view key, HeaderType &headers) : key{ key }, headers{ headers } { }
 
-    template<Serializable T>
-    std::expected<typename ListProxy<T>::Ts, InvalidHeaderFormat> ListProxy<T>::GetWithDefault(Ts defaultValue) && {
+    template<Serializable T, bool IsConst>
+    std::expected<typename ListProxy<T, IsConst>::Ts, InvalidHeaderFormat> ListProxy<T, IsConst>::GetWithDefault(Ts defaultValue) && {
         auto val{ Get() };
         if (val) return *val;
         if (val.error() != HeaderErrorEnum::InvalidFormat) return defaultValue;
         return std::unexpected{ InvalidHeaderFormat{} };
     }
 
-    template<Serializable T>
-    std::optional<typename ListProxy<T>::Ts> ListProxy<T>::GetAsOpt() && {
+    template<Serializable T, bool IsConst>
+    std::optional<typename ListProxy<T, IsConst>::Ts> ListProxy<T, IsConst>::GetAsOpt() && {
         return headers.Get(key).and_then(&ParseList);
     }
 
-    template<Serializable T>
-    std::expected<typename ListProxy<T>::Ts, HeaderErrorEnum> ListProxy<T>::Get() && {
+    template<Serializable T, bool IsConst>
+    std::expected<typename ListProxy<T, IsConst>::Ts, HeaderErrorEnum> ListProxy<T, IsConst>::Get() && {
         const auto val{ headers.Get(key) };
 
         if (!val) return std::unexpected{ HeaderErrorEnum::NotFound };
@@ -32,15 +32,17 @@ namespace Thoth::Http::NHeaders {
         return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<Serializable T>
+    template<Serializable T, bool IsConst>
     template<std::ranges::range R>
-    void ListProxy<T>::operator=(R &&newValue) && {
+        requires (!IsConst)
+    void ListProxy<T, IsConst>::operator=(R &&newValue) && {
         Set(std::forward<R>(newValue));
     }
 
-    template<Serializable T>
+    template<Serializable T, bool IsConst>
     template<std::ranges::range R>
-    void ListProxy<T>::Set(R &&newValue) && {
+        requires (!IsConst)
+    void ListProxy<T, IsConst>::Set(R &&newValue) && {
         static constexpr auto s_format = [](auto& obj) {
             return std::format("{}", obj);
         };
@@ -50,13 +52,17 @@ namespace Thoth::Http::NHeaders {
                 | std::ranges::to<string>());
     }
 
-    template<Serializable T>
-    void ListProxy<T>::Add(const T &newItem) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    void ListProxy<T, IsConst>::Add(const T &newItem) && {
         headers.Add(newItem);
     }
 
-    template<Serializable T>
-    bool ListProxy<T>::TrySet(std::string_view newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    bool ListProxy<T, IsConst>::TrySet(std::string_view newValue) && {
         auto val{ Scan<T>(newValue) };
         if (!val) return false;
 
@@ -64,8 +70,8 @@ namespace Thoth::Http::NHeaders {
         return true;
     }
 
-    template<Serializable T>
-    std::optional<typename ListProxy<T>::Ts> ListProxy<T>::ParseList(HeaderValue* val) {
+    template<Serializable T, bool IsConst>
+    std::optional<typename ListProxy<T, IsConst>::Ts> ListProxy<T, IsConst>::ParseList(HeaderValue* val) {
         // auto res{ Utils::FoldWhileSuccess(*val
         //         | std::views::split(',')
         //         | std::views::transform([](auto subrange){ return string_view{ subrange.begin(), subrange.end() }; })

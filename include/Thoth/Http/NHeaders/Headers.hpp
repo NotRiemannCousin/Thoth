@@ -13,9 +13,9 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T>
+    template<Serializable T, bool IsConst = false>
     struct ListProxy;
-    template<Serializable T>
+    template<Serializable T, bool IsConst = false>
     struct ValueProxy;
 }
 
@@ -133,36 +133,58 @@ namespace Thoth::Http {
 
         //! @brief Defines the media type of the resource (MIME).
         NHeaders::ValueProxy<NHeaders::MimeType> ContentType();
+        //! @brief Defines the media type of the resource (MIME).
+        NHeaders::ValueProxy<NHeaders::MimeType, true> ContentType() const;
 
         //! @brief The size of the entity-body in bytes.
         NHeaders::ValueProxy<uint64_t> ContentLength();
+        //! @brief The size of the entity-body in bytes.
+        NHeaders::ValueProxy<uint64_t, true> ContentLength() const;
 
         //! @brief List of encodings (compression) applied to the entity.
         NHeaders::ListProxy<NHeaders::ContentEncodingEnum> ContentEncoding();
+        //! @brief List of encodings (compression) applied to the entity.
+        NHeaders::ListProxy<NHeaders::ContentEncodingEnum, true> ContentEncoding() const;
 
         //! @brief List of compression applied to the entity.
         NHeaders::ListProxy<NHeaders::TransferEncodingEnum> TransferEncoding();
+        //! @brief List of compression applied to the entity.
+        NHeaders::ListProxy<NHeaders::TransferEncodingEnum, true> TransferEncoding() const;
 
         //! @brief Natural languages for the intended audience (e.g., "en-US").
         NHeaders::ListProxy<std::string> ContentLanguage();
+        //! @brief Natural languages for the intended audience (e.g., "en-US").
+        NHeaders::ListProxy<std::string, true> ContentLanguage() const;
 
         //! @brief The specific location for the entity-body.
         NHeaders::ValueProxy<string> ContentLocation();
+        //! @brief The specific location for the entity-body.
+        NHeaders::ValueProxy<string, true> ContentLocation() const;
 
         //! @brief Date and time at which the message was originated.
         NHeaders::ValueProxy<std::chrono::utc_clock> Date();
+        //! @brief Date and time at which the message was originated.
+        NHeaders::ValueProxy<std::chrono::utc_clock, true> Date() const;
 
         //! @brief Options for the current connection.
         NHeaders::ListProxy<string> Connection();
+        //! @brief Options for the current connection.
+        NHeaders::ListProxy<string, true> Connection() const;
 
         //! @brief Used to signal a protocol change (e.g., "websocket").
         NHeaders::ListProxy<NHeaders::Upgrade> Upgrade();
+        //! @brief Used to signal a protocol change (e.g., "websocket").
+        NHeaders::ListProxy<NHeaders::Upgrade, true> Upgrade() const;
 
         //! @brief Indicates header fields present in the trailer of a chunked message.
         NHeaders::ListProxy<std::string> Trailer();
+        //! @brief Indicates header fields present in the trailer of a chunked message.
+        NHeaders::ListProxy<std::string, true> Trailer() const;
 
         //! @brief Path taken by the request/response through proxies (free string).
         NHeaders::ListProxy<std::string> Via();
+        //! @brief Path taken by the request/response through proxies (free string).
+        NHeaders::ListProxy<std::string, true> Via() const;
 
         //! @}
 

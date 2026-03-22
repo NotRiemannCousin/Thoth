@@ -1,16 +1,16 @@
 #pragma once
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T>
-    ValueProxy<T>::ValueProxy(string_view key, Headers &headers) : key{ key }, headers{ headers } { }
+    template<Serializable T, bool IsConst>
+    ValueProxy<T, IsConst>::ValueProxy(string_view key, HeaderType &headers) : key{ key }, headers{ headers } { }
 
-    template<Serializable T>
-    std::optional<T> ValueProxy<T>::GetAsOpt() && {
+    template<Serializable T, bool IsConst>
+    std::optional<T> ValueProxy<T, IsConst>::GetAsOpt() && {
         return headers.Get(key).and_then(Scan<T>);
     }
 
-    template<Serializable T>
-    std::expected<T, HeaderErrorEnum> ValueProxy<T>::Get() && {
+    template<Serializable T, bool IsConst>
+    std::expected<T, HeaderErrorEnum> ValueProxy<T, IsConst>::Get() && {
         auto val{ headers.Get(key) };
 
         if (!val) return std::unexpected{ HeaderErrorEnum::NotFound };
@@ -22,8 +22,8 @@ namespace Thoth::Http::NHeaders {
         return *parsed;
     }
 
-    template<Serializable T>
-    std::expected<T, InvalidHeaderFormat> ValueProxy<T>::GetWithDefault(T defaultValue) && {
+    template<Serializable T, bool IsConst>
+    std::expected<T, InvalidHeaderFormat> ValueProxy<T, IsConst>::GetWithDefault(T defaultValue) && {
         auto val{ headers.Get(key) };
 
         if (!val || (*val)->empty()) return defaultValue;
@@ -34,28 +34,38 @@ namespace Thoth::Http::NHeaders {
         return std::unexpected{ InvalidHeaderFormat{} };
     }
 
-    template<Serializable T>
-    void ValueProxy<T>::operator=(const T &newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    void ValueProxy<T, IsConst>::operator=(const T &newValue) && {
         Set(newValue);
     }
 
-    template<Serializable T>
-    void ValueProxy<T>::operator=(T &&newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    void ValueProxy<T, IsConst>::operator=(T &&newValue) && {
         Set(std::move(newValue));
     }
 
-    template<Serializable T>
-    void ValueProxy<T>::Set(const T &newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    void ValueProxy<T, IsConst>::Set(const T &newValue) && {
         headers.Set(key, std::format("{}", newValue));
     }
 
-    template<Serializable T>
-    void ValueProxy<T>::Set(T &&newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    void ValueProxy<T, IsConst>::Set(T &&newValue) && {
         headers.Set(key, std::format("{}", newValue));
     }
 
-    template<Serializable T>
-    bool ValueProxy<T>::TrySet(std::string_view newValue) && {
+    template<Serializable T, bool IsConst>
+    template<class>
+        requires (!IsConst)
+    bool ValueProxy<T, IsConst>::TrySet(std::string_view newValue) && {
         auto val{ Scan<T>(newValue) };
         if (!val) return false;
 

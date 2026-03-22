@@ -97,7 +97,7 @@ namespace Thoth::Http {
         return rg::find_if(std::forward<R>(r), s_pred);
     }
 
-    constexpr auto inline s_headerSanitizeStr = vs::transform(I_ToLower) | rg::to<string>();
+    constexpr auto inline s_headerSanitizeStr = vs::transform(I_ToLower) | rg::to<std::string>();
 #pragma endregion
 
 
@@ -233,9 +233,17 @@ namespace Thoth::Http {
         return NHeaders::ValueProxy<NHeaders::MimeType>{ "content-type", *this };
     }
 
+    NHeaders::ValueProxy<NHeaders::MimeType, true> Headers::ContentType() const {
+        return NHeaders::ValueProxy<NHeaders::MimeType, true>{ "content-type", *this };
+    }
+
 
     NHeaders::ValueProxy<uint64_t> Headers::ContentLength() {
         return NHeaders::ValueProxy<uint64_t>{ "content-length", *this };
+    }
+
+    NHeaders::ValueProxy<uint64_t, true> Headers::ContentLength() const {
+        return NHeaders::ValueProxy<uint64_t, true>{ "content-length", *this };
     }
 
 
@@ -243,9 +251,17 @@ namespace Thoth::Http {
         return NHeaders::ListProxy<NHeaders::ContentEncodingEnum>{ "content-encoding", *this };
     }
 
+    NHeaders::ListProxy<NHeaders::ContentEncodingEnum, true> Headers::ContentEncoding() const {
+        return NHeaders::ListProxy<NHeaders::ContentEncodingEnum, true>{ "content-encoding", *this };
+    }
+
 
     NHeaders::ListProxy<NHeaders::TransferEncodingEnum> Headers::TransferEncoding() {
         return NHeaders::ListProxy<NHeaders::TransferEncodingEnum>{ "transfer-encoding", *this };
+    }
+
+    NHeaders::ListProxy<NHeaders::TransferEncodingEnum, true> Headers::TransferEncoding() const {
+        return NHeaders::ListProxy<NHeaders::TransferEncodingEnum, true>{ "transfer-encoding", *this };
     }
 
 
@@ -253,9 +269,17 @@ namespace Thoth::Http {
         return NHeaders::ListProxy<std::string>{ "content-language", *this };
     }
 
+    NHeaders::ListProxy<std::string, true> Headers::ContentLanguage() const {
+        return NHeaders::ListProxy<std::string, true>{ "content-language", *this };
+    }
 
-    NHeaders::ValueProxy<string> Headers::ContentLocation() {
-        return NHeaders::ValueProxy<string>{ "content-location", *this };
+
+    NHeaders::ValueProxy<std::string> Headers::ContentLocation() {
+        return NHeaders::ValueProxy<std::string>{ "content-location", *this };
+    }
+
+    NHeaders::ValueProxy<std::string, true> Headers::ContentLocation() const {
+        return NHeaders::ValueProxy<std::string, true>{ "content-location", *this };
     }
 
 
@@ -263,9 +287,17 @@ namespace Thoth::Http {
         return NHeaders::ValueProxy<std::chrono::utc_clock>{ "date", *this };
     }
 
+    NHeaders::ValueProxy<std::chrono::utc_clock, true> Headers::Date() const {
+        return NHeaders::ValueProxy<std::chrono::utc_clock, true>{ "date", *this };
+    }
 
-    NHeaders::ListProxy<string> Headers::Connection() {
-        return NHeaders::ListProxy<string>{ "connection", *this };
+
+    NHeaders::ListProxy<std::string> Headers::Connection() {
+        return NHeaders::ListProxy<std::string>{ "connection", *this };
+    }
+
+    NHeaders::ListProxy<std::string, true> Headers::Connection() const {
+        return NHeaders::ListProxy<std::string, true>{ "connection", *this };
     }
 
 
@@ -273,14 +305,26 @@ namespace Thoth::Http {
         return NHeaders::ListProxy<NHeaders::Upgrade>{ "upgrade", *this };
     }
 
+    NHeaders::ListProxy<NHeaders::Upgrade, true> Headers::Upgrade() const {
+        return NHeaders::ListProxy<NHeaders::Upgrade, true>{ "upgrade", *this };
+    }
+
 
     NHeaders::ListProxy<std::string> Headers::Trailer() {
         return NHeaders::ListProxy<std::string>{ "trailer", *this };
     }
 
+    NHeaders::ListProxy<std::string, true> Headers::Trailer() const {
+        return NHeaders::ListProxy<std::string, true>{ "trailer", *this };
+    }
+
 
     NHeaders::ListProxy<std::string> Headers::Via() {
         return NHeaders::ListProxy<std::string>{ "via", *this };
+    }
+
+    NHeaders::ListProxy<std::string, true> Headers::Via() const {
+        return NHeaders::ListProxy<std::string, true>{ "via", *this };
     }
 
 
