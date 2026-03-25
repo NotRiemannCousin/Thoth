@@ -5,6 +5,8 @@
 #include <Thoth/Http/Methods/GetMethod.hpp>
 #include <Thoth/Http/Methods/PostMethod.hpp>
 
+#include <Thoth/Http/NHeaders/Request/RequestHeaders.hpp>
+
 namespace Thoth::Http {
 	enum class VersionEnum : uint8_t {
 		HTTP1_0,
@@ -42,7 +44,7 @@ namespace Thoth::Http {
 		Url url;
 		Body body;
 		VersionEnum version{ VersionEnum::HTTP1_1 };
-		Headers headers{ Headers::DefaultHeaders() };
+		RequestHeaders headers{ Headers::DefaultHeaders() };
 
 	    //! @brief Try parse to a URL before construct the Request.
 		template<class T = string_view>

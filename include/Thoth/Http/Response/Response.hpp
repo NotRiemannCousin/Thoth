@@ -5,6 +5,8 @@
 #include <Thoth/NJson/Json.hpp>
 #include <Thoth/Dsa/FileOutputRange.hpp>
 
+#include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
+
 
 namespace Thoth::Http {
     struct RequestError;
@@ -27,7 +29,7 @@ namespace Thoth::Http {
         VersionEnum version{};
         StatusCodeEnum status{};
         string statusMessage{};
-        Headers headers{};
+        ResponseHeaders headers{};
         Body body;
 
         friend struct Client; // who construct it

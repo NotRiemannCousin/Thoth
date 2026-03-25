@@ -73,7 +73,7 @@ namespace Thoth::Http {
                 };
                 // TODO: FUTURE: Implement the keepAliveHeader (timeout) properly
 
-                if (val.first != nullptr&&  connectionHeader != closeConnectionVal)
+                if (val.first != nullptr && connectionHeader != closeConnectionVal)
                     janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
 
                 return std::move(val.second);
@@ -291,7 +291,7 @@ namespace Thoth::Http {
                     do {
                         chunkLengthStr.clear();
                         rg::copy(info.stream | Hermes::Utils::UntilMatch("\r\n"sv), std::back_inserter(chunkLengthStr));
-                        chunkLength = NHeaders::Scan<size_t>(chunkLengthStr, 16);
+                        chunkLength = NHeaders::Scan<size_t>(chunkLengthStr, "x");
 
                         if (!chunkLength)
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };

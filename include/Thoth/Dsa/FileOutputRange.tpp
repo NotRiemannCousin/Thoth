@@ -15,7 +15,10 @@ namespace Thoth::Dsa {
 
             auto s_checkLen = [&]() -> Exp {
                 const auto length{ head.headers.ContentLength().Get() };
-                if (!length || params.maxSize < *length)
+
+                if (!length)
+                    return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                if (params.maxSize < *length)
                     return std::unexpected{ Http::RequestError{ Http::GenericError{ "response size is bigger than the permitted" } } };
                 return {};
             };
@@ -50,8 +53,11 @@ namespace Thoth::Dsa {
             using Exp = std::expected<std::monostate, Http::RequestError>;
 
             auto s_checkLen = [&]() -> Exp {
-                auto length{ head.headers.ContentLength().Get() };
-                if (!length || params.maxSize < *length)
+                const auto length{ head.headers.ContentLength().Get() };
+
+                if (!length)
+                    return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                if (params.maxSize < *length)
                     return std::unexpected{ Http::RequestError{ Http::GenericError{ "response size is bigger than the permitted" } } };
                 return {};
             };
