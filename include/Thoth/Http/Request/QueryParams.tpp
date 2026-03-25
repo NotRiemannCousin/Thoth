@@ -24,7 +24,8 @@ namespace std {
 
         static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-        auto format(const Thoth::Http::QueryParams &query, std::format_context &ctx) const {
+        template<class FormatContext>
+        auto format(const Thoth::Http::QueryParams &query, FormatContext& ctx) const {
             using Pair = std::pair<string_view, string_view>;
 
             static constexpr auto singleParam = [] (const Pair p) {

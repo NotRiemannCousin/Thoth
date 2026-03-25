@@ -26,7 +26,8 @@ namespace std {
             return it;
         }
 
-        auto format(const Thoth::Http::Url &url, std::format_context &ctx) const {
+        template<class FormatContext>
+        auto format(const Thoth::Http::Url &url, FormatContext& ctx) const {
             format_to(ctx.out(), "{}://", url.scheme);
 
             if (!origin && !url.user.empty())
