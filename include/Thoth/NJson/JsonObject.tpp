@@ -43,7 +43,8 @@ struct std::formatter<Thoth::NJson::JsonObject> {
         return it;
     }
 
-    auto format(const Thoth::NJson::JsonObject& json, std::format_context& ctx) const {
+    template<class FormatContext>
+    auto format(const Thoth::NJson::JsonObject& json, FormatContext& ctx) const {
         auto it{ ctx.out() };
         std::string tempOutBuffer;
 

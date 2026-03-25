@@ -128,7 +128,8 @@ template<class RefT, class OwnT>
 struct std::formatter<Thoth::Dsa::Cow<RefT, OwnT>>{
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-    static auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, std::format_context &ctx) {
+    template<class FormatContext>
+    auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, FormatContext& ctx) const {
         cow.Visit([&](auto val){ std::format_to(ctx.out(), "{}", val); });
 
         return ctx.out();

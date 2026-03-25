@@ -7,7 +7,8 @@ struct std::formatter<Thoth::NJson::StringRef>{
         return std::formatter<std::string_view>{}.parse(ctx);
     }
 
-    static auto format(const Thoth::NJson::StringRef& ref, std::format_context& ctx) {
+    template<class FormatContext>
+    auto format(const Thoth::NJson::StringRef& ref, FormatContext& ctx) const {
         return std::formatter<std::string_view>{}.format(ref.str, ctx);
     }
 };

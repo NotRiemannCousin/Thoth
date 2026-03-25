@@ -20,7 +20,8 @@ struct std::formatter<Thoth::Http::RequestError> {
         return ctx.begin();
     }
 
-    auto format(const RequestError &error, std::format_context &ctx) const {
+    template<class FormatContext>
+    auto format(const RequestError &error, FormatContext& ctx) const {
         constexpr auto s_keyToStr = [](const Thoth::NJson::Key& key) {
             return std::visit(
                 Thoth::Utils::Overloaded{
