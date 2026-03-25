@@ -5,12 +5,14 @@ namespace NJson = Thoth::NJson;
 using NJson::Json;
 
 int main() {
-    auto body{ Thoth::Http::GetRequest::FromUrl("https://www.example.com/")
+    auto body{ Thoth::Http::GetRequest::FromUrl("https://localhost:4433/")
             .and_then(Thoth::Http::Client::H_Send())
             .transform(&Thoth::Http::GetResponse::MoveBody) };
 
     if (body)
         std::print("{}", *body);
-    else
-        std::print("error");
+    else {
+
+        std::print("{}\n\n{}", body.error(), WSAGetLastError());
+    }
 }
