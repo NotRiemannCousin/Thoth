@@ -1,76 +1,140 @@
 #pragma once
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T, bool IsConst>
-    ValueProxy<T, IsConst>::ValueProxy(string_view key, HeaderType &headers) : key{ key }, headers{ headers } { }
 
-    template<Serializable T, bool IsConst>
-    std::optional<T> ValueProxy<T, IsConst>::GetAsOpt() && {
-        return headers.Get(key).and_then(Scan<T>);
-    }
+    template<bool IsConst, Serializable ...Ts>
+    ValueProxy<IsConst, Ts...>::ValueProxy(std::string_view key, HeaderType& headers, PatternType pattern)
+            : key{ key }, headers{ headers }, inPattern{ pattern } { }
 
-    template<Serializable T, bool IsConst>
-    std::expected<T, HeaderErrorEnum> ValueProxy<T, IsConst>::Get() && {
+
+    template<bool IsConst, Serializable ...Ts>
+    auto ValueProxy<IsConst, Ts...>::GetAsOpt() && -> std::optional<Type> {
         auto val{ headers.Get(key) };
 
-        if (!val) return std::unexpected{ HeaderErrorEnum::NotFound };
+        if (!val || (*val)->empty()) return std::nullopt;
+
+        if constexpr (Single) {
+            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+                return *parsed;
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                    result = *parsed;
+                    return true;
+                }
+                return false;
+            }() || ...);
+
+            if (result) return result;
+        }
+
+        return std::nullopt;
+    }
+
+    template<bool IsConst, Serializable ...Ts>
+    auto ValueProxy<IsConst, Ts...>::Get() && -> std::expected<Type, HeaderErrorEnum> {
+        auto val{ headers.Get(key) };
+
+        if (!val)            return std::unexpected{ HeaderErrorEnum::NotFound };
         if ((*val)->empty()) return std::unexpected{ HeaderErrorEnum::EmptyValue };
 
-        auto parsed{ Scan<T>(**val) };
-        if (!parsed) return std::unexpected{ HeaderErrorEnum::InvalidFormat };
+        if constexpr (Single) {
+            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+                return *parsed;
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                    result = *parsed;
+                    return true;
+                }
+                return false;
+            }() || ...);
 
-        return *parsed;
+            if (result) return result;
+        }
+
+        return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<Serializable T, bool IsConst>
-    std::expected<T, InvalidHeaderFormat> ValueProxy<T, IsConst>::GetWithDefault(T defaultValue) && {
+    template<bool IsConst, Serializable ...Ts>
+    auto ValueProxy<IsConst, Ts...>::GetWithDefault(Type defaultValue) && -> std::expected<Type, InvalidHeaderFormat> {
         auto val{ headers.Get(key) };
 
-        if (!val) return defaultValue;
+        if (!val || (*val)->empty()) return defaultValue;
 
-        if (auto parsed{ Scan<T>(**val) }; parsed)
-            return *parsed;
+        if constexpr (Single) {
+            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+                return *parsed;
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                    result = *parsed;
+                    return true;
+                }
+                return false;
+            }() || ...);
+
+            if (result) return result;
+        }
+
         return std::unexpected{ InvalidHeaderFormat{} };
     }
 
-    template<Serializable T, bool IsConst>
-    template<class>
+    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
+    template<class T>
         requires (!IsConst)
-    void ValueProxy<T, IsConst>::operator=(const T &newValue) && {
-        Set(newValue);
+    void ValueProxy<IsConst, Ts...>::operator=(const T& newValue) && {
+        std::move(*this).Set(newValue);
     }
 
-    template<Serializable T, bool IsConst>
-    template<class>
+    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
+    template<class T>
         requires (!IsConst)
-    void ValueProxy<T, IsConst>::operator=(T &&newValue) && {
-        Set(std::move(newValue));
+    void ValueProxy<IsConst, Ts...>::operator=(T&& newValue) && {
+        std::move(*this).Set(std::move(newValue));
     }
 
-    template<Serializable T, bool IsConst>
-    template<class>
+    template<bool IsConst, Serializable ...Ts>
+    template<class T>
         requires (!IsConst)
-    void ValueProxy<T, IsConst>::Set(const T &newValue) && {
+    void ValueProxy<IsConst, Ts...>::Set(const T& newValue) && {
         headers.Set(key, std::format("{}", newValue));
     }
 
-    template<Serializable T, bool IsConst>
-    template<class>
+    template<bool IsConst, Serializable ...Ts>
+    template<class T>
         requires (!IsConst)
-    void ValueProxy<T, IsConst>::Set(T &&newValue) && {
-        headers.Set(key, std::format("{}", newValue));
+    void ValueProxy<IsConst, Ts...>::Set(T&& newValue) && {
+        headers.Set(key, std::format("{}", std::move(newValue)));
     }
 
-    template<Serializable T, bool IsConst>
+    template<bool IsConst, Serializable ...Ts>
     template<class>
         requires (!IsConst)
-    bool ValueProxy<T, IsConst>::TrySet(std::string_view newValue) && {
-        auto val{ Scan<T>(newValue) };
-        if (!val) return false;
-
-        Set(val);
-        return true;
+    bool ValueProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
+        if constexpr (Single) {
+            auto parsed{ Scan<Type>(newValue, inPattern) };
+            if (!parsed) return false;
+            std::move(*this).Set(*parsed);
+            return true;
+        } else {
+            bool set{};
+            std::size_t i{};
+            ([&] {
+                if (!set)
+                    if (auto parsed{ Scan<Ts>(newValue, inPattern[i]) }; parsed) {
+                        headers.Set(key, std::format("{}", *parsed));
+                        set = true;
+                    }
+                ++i;
+            }(), ...);
+            return set;
+        }
     }
 }
-
-

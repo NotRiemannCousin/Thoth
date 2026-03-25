@@ -4,90 +4,154 @@
 #include <Thoth/Utils/Functional.hpp>
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T, bool IsConst>
-    ListProxy<T, IsConst>::ListProxy(string_view key, HeaderType &headers) : key{ key }, headers{ headers } { }
 
-    template<Serializable T, bool IsConst>
-    std::expected<typename ListProxy<T, IsConst>::Ts, InvalidHeaderFormat> ListProxy<T, IsConst>::GetWithDefault(Ts defaultValue) && {
+    template<bool IsConst, Serializable ...Ts>
+    ListProxy<IsConst, Ts...>::ListProxy(std::string_view key, HeaderType& headers, PatternType inPattern)
+            : key{ key }, headers{ headers }, inPattern{ inPattern } { }
+
+    template<bool IsConst, Serializable ...Ts>
+    auto ListProxy<IsConst, Ts...>::GetAsOpt() && -> std::optional<Type> {
         auto val{ headers.Get(key) };
 
-        if (!val) return defaultValue;
+        if (!val || (*val)->empty()) return std::nullopt;
 
-        if (auto parsed{ ParseList(*val) }; !parsed)
-            return *parsed;
-        return std::unexpected{ InvalidHeaderFormat{} };    }
-
-    template<Serializable T, bool IsConst>
-    std::optional<typename ListProxy<T, IsConst>::Ts> ListProxy<T, IsConst>::GetAsOpt() && {
-        return headers.Get(key).and_then(&ParseList);
+        if constexpr (Single) {
+            return ParseList<Ts...[0]>(*val, inPattern);
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                    result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
+                    return true;
+                }
+                return true;
+            }() || ...);
+            if (result) return result;
+        }
+        return std::nullopt;
     }
 
-    template<Serializable T, bool IsConst>
-    std::expected<typename ListProxy<T, IsConst>::Ts, HeaderErrorEnum> ListProxy<T, IsConst>::Get() && {
-        const auto val{ headers.Get(key) };
+    template<bool IsConst, Serializable ...Ts>
+    auto ListProxy<IsConst, Ts...>::Get() && -> std::expected<Type, HeaderErrorEnum> {
+        auto val{ headers.Get(key) };
 
-        if (!val) return std::unexpected{ HeaderErrorEnum::NotFound };
+        if (!val)            return std::unexpected{ HeaderErrorEnum::NotFound };
         if ((*val)->empty()) return std::unexpected{ HeaderErrorEnum::EmptyValue };
 
-        if (auto parsed{ val.and_then(&ParseList) }; parsed)
-            return *parsed;
+        if constexpr (Single) {
+            if (auto parsed{ ParseList<Ts...[0]>(*val, inPattern) }; parsed)
+                return std::move(*parsed);
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                    result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
+                    return true;
+                }
+                return true;
+            }() || ...);
+            if (result) return std::move(*result);
+        }
+
         return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<Serializable T, bool IsConst> // NOLINT(*-unconventional-assign-operator)
-    template<std::ranges::range R>
-        requires (!IsConst)
-    void ListProxy<T, IsConst>::operator=(R &&newValue) && {
-        Set(std::forward<R>(newValue));
+    template<bool IsConst, Serializable ...Ts>
+    auto ListProxy<IsConst, Ts...>::GetWithDefault(Type defaultValue) && -> std::expected<Type, InvalidHeaderFormat> {
+        auto val{ headers.Get(key) };
+
+        if (!val || (*val)->empty()) return defaultValue;
+
+        if constexpr (Single) {
+            if (auto parsed{ ParseList<Ts...[0]>(*val, inPattern) }; parsed)
+                return std::move(*parsed);
+        } else {
+            std::optional<Type> result;
+            std::size_t i{};
+            ([&] {
+                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                    result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
+                    return true;
+                }
+                return true;
+            }() || ...);
+            if (result) return result;
+            if (result) return std::move(*result);
+        }
+
+        return std::unexpected{ InvalidHeaderFormat{} };
     }
 
-    template<Serializable T, bool IsConst>
+
+    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<std::ranges::range R>
         requires (!IsConst)
-    void ListProxy<T, IsConst>::Set(R &&newValue) && {
+    void ListProxy<IsConst, Ts...>::operator=(R&& newValue) && {
+        std::move(*this).Set(std::forward<R>(newValue));
+    }
+
+    template<bool IsConst, Serializable ...Ts>
+    template<std::ranges::range R>
+        requires (!IsConst)
+    void ListProxy<IsConst, Ts...>::Set(R&& newValue) && {
         static constexpr auto s_format = [](auto& obj) {
             return std::format("{}", obj);
         };
         headers.Set(key, newValue
-                | std::views::transform(s_format)
-                | std::views::join_with(',')
-                | std::ranges::to<string>());
+            | std::views::transform(s_format)
+            | std::views::join_with(',')
+            | std::ranges::to<std::string>());
     }
 
-    template<Serializable T, bool IsConst>
+    template<bool IsConst, Serializable ...Ts>
     template<class>
         requires (!IsConst)
-    void ListProxy<T, IsConst>::Add(const T &newItem) && {
-        headers.Add(newItem);
+    void ListProxy<IsConst, Ts...>::Add(const ElemType& newItem) && {
+        if constexpr (Single) {
+            headers.Add(key, std::format("{}", newItem));
+        } else {
+            std::visit([&](const auto& item) {
+                headers.Add(key, std::format("{}", item));
+            }, newItem);
+        }
     }
 
-    template<Serializable T, bool IsConst>
+    template<bool IsConst, Serializable ...Ts>
     template<class>
         requires (!IsConst)
-    bool ListProxy<T, IsConst>::TrySet(std::string_view newValue) && {
-        auto val{ Scan<T>(newValue) };
-        if (!val) return false;
-
-        Set(val);
-        return true;
+    bool ListProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
+        HeaderValue temp{ newValue };
+        if constexpr (Single) {
+            auto parsed{ ParseList<Ts...[0]>(&temp, inPattern) };
+            if (!parsed) return false;
+            std::move(*this).Set(std::move(*parsed));
+            return true;
+        } else {
+            bool set{};
+            std::size_t i{};
+            ([&] {
+                if (!set)
+                    if (auto parsed{ ParseList<Ts>(&temp, inPattern[i]) }; parsed) {
+                        std::move(*this).Set(std::move(*parsed));
+                        set = true;
+                    }
+                ++i;
+            }(), ...);
+            return set;
+        }
     }
 
-    template<Serializable T, bool IsConst>
-    std::optional<typename ListProxy<T, IsConst>::Ts> ListProxy<T, IsConst>::ParseList(HeaderValue* val) {
-        // auto res{ Utils::FoldWhileSuccess(*val
-        //         | std::views::split(',')
-        //         | std::views::transform([](auto subrange){ return string_view{ subrange.begin(), subrange.end() }; })
-        //         | std::views::transform(Scan<T>), Utils::SelfHof(&Ts::push_back), Ts{})
-        // };
-        // if (res) return res;
-        // return std::nullopt;
 
-        Ts res{};
+    template<bool IsConst, Serializable ...Ts>
+    template<class U>
+    auto ListProxy<IsConst, Ts...>::ParseList(HeaderValue* val, std::string_view pattern) -> std::optional<std::vector<U>> {
+        std::vector<U> res{};
         for (auto member : *val
                 | std::views::split(',')
-                | std::views::transform([](auto subrange){ return string_view{ subrange.begin(), subrange.end() }; })
-                | std::views::transform(Scan<T>)) {
-
+                | std::views::transform([](auto subrange) { return std::string_view{ subrange.begin(), subrange.end() }; })
+                | std::views::transform([&](std::string_view input) { return Scan<U>(input, pattern); })) {
             if (!member)
                 return std::nullopt;
             res.push_back(*member);
@@ -95,4 +159,3 @@ namespace Thoth::Http::NHeaders {
         return res;
     }
 }
-

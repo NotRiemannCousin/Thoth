@@ -93,7 +93,8 @@ struct std::formatter<Thoth::Http::Headers>{
 
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-    static auto format(const Thoth::Http::Headers &headers, std::format_context  &ctx) {
+    template<class FormatContext>
+    auto format(const Thoth::Http::Headers &headers, FormatContext& ctx) const {
         for (const auto& p : headers._headers)
             if (&p == &headers._headers.back())
                 format_to(ctx.out(), "{}: {}",     p.first, p.second);

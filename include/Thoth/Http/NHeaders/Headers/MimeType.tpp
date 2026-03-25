@@ -3,9 +3,14 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 #include <Thoth/String/Utils.hpp>
 
-namespace Thoth::Http::NHeaders {
-    template<>
-    inline std::optional<MimeType> Scan<MimeType>(std::string_view input) {
+template<>
+struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::MimeType> {
+    static bool Parse(const std::string_view str) {
+        return str.empty();
+    }
+
+
+    std::optional<MimeType> Scan(std::string_view input) {
         using RfcSpec = String::CharSequences::Http; // RFC 9110
 
         constexpr auto s_isToken = [](std::string_view str) {
@@ -80,17 +85,18 @@ namespace Thoth::Http::NHeaders {
 
         return mime;
     }
-}
+};
 
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::MimeType>{
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-    static auto format(const Thoth::Http::NHeaders::MimeType &mime, std::format_context &ctx) {
-        std::format_to(ctx.out(), "{}/{}", mime.type, mime.subtype);
+    template<class FormatContext>
+    auto format(const Thoth::Http::NHeaders::MimeType& mime, FormatContext& ctx) const {
+        std::format_to(ctx.out(), "{}", mime.type, mime.subtype);
 
-        static constexpr auto s_quoted = [](string_view str) {
+        static constexpr auto s_quoted = [](string_view str) -> string {
             string res;
             for (const char c : str) {
                 if (c == '\\' || c == '\"')
@@ -109,3 +115,7 @@ struct std::formatter<Thoth::Http::NHeaders::MimeType>{
         return ctx.out();
     }
 };
+
+namespace Thoth::Http::NHeaders {
+    static_assert(Serializable<MimeType>);
+}

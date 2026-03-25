@@ -5,8 +5,8 @@
 
 namespace Thoth::Http::NHeaders {
     struct MimeType {
-        std::string type;
-        std::string subtype;
+        std::string type{};
+        std::string subtype{};
         std::vector<std::pair<std::string, std::string>> options{};
 
         bool operator==(const MimeType& other) const;

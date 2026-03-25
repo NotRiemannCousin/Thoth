@@ -2,9 +2,13 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 #include <format>
 
-namespace Thoth::Http::NHeaders{
-    template<>
-    inline std::optional<TransferEncodingEnum> Scan<TransferEncodingEnum>(string_view input) {
+template<>
+struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::TransferEncodingEnum> {
+    static bool Parse(const std::string_view str) {
+        return str.empty();
+    }
+
+    std::optional<TransferEncodingEnum> Scan(string_view input) {
         String::Trim(input);
         const auto value{ input | std::views::transform(tolower) };
 
@@ -15,13 +19,14 @@ namespace Thoth::Http::NHeaders{
 
         return std::nullopt;
     }
-}
+};
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::TransferEncodingEnum> {
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
-    static auto format(const Thoth::Http::NHeaders::TransferEncodingEnum transfer, std::format_context &ctx) {
+    template<class FormatContext>
+    auto format(const Thoth::Http::NHeaders::TransferEncodingEnum transfer, FormatContext& ctx) const {
         using Thoth::Http::NHeaders::TransferEncodingEnum;
 
         if (transfer == TransferEncodingEnum::Chunked ) std::format_to(ctx.out(), "chunked" );

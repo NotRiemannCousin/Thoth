@@ -13,9 +13,9 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 namespace Thoth::Http::NHeaders {
-    template<Serializable T, bool IsConst = false>
+    template<bool IsConst, Serializable ...T>
     struct ListProxy;
-    template<Serializable T, bool IsConst = false>
+    template<bool IsConst, Serializable ...T>
     struct ValueProxy;
 }
 
@@ -23,9 +23,6 @@ namespace Thoth::Http::NHeaders {
 namespace Thoth::Http {
 
     enum class VersionEnum : uint8_t;
-
-    template<class T>
-    using ExpectedHeader = std::expected<T, std::monostate>;;
 
 
     //! @brief This class stores the headers from HTTP.
@@ -56,7 +53,7 @@ namespace Thoth::Http {
         Headers(std::initializer_list<HeaderPair> init);
 
 
-        //! @brief Tries to parse the headers from the raw TCP string.
+        //! @brief Tries to parse the headers from the raw TCP std::string.
         //! @param headers the headers separated by  "\r\n".
         //! @param maxHeadersLength the max length that the headers can achieve.
         //! @return A Headers if the parse success, @ref "bad request" StatusCodeEnum::BAD_REQUEST if the parse
@@ -131,60 +128,69 @@ namespace Thoth::Http {
         //! @name Proxies
         //! Convenient calls to some headers.
 
+        //! @brief Accept-Encoding header (gzip, br, etc).
+        NHeaders::ListProxy<false, NHeaders::MimeType> Accept();
+        NHeaders::ListProxy<true, NHeaders::MimeType> Accept() const;
+
+        //! @brief Accept-Encoding header (gzip, br, etc).
+        NHeaders::ListProxy<false, NHeaders::AcceptEncodingEnum> AcceptEncoding();
+        NHeaders::ListProxy<true, NHeaders::AcceptEncodingEnum> AcceptEncoding() const;
+
+
         //! @brief Defines the media type of the resource (MIME).
-        NHeaders::ValueProxy<NHeaders::MimeType> ContentType();
-        //! @brief Defines the media type of the resource (MIME).
-        NHeaders::ValueProxy<NHeaders::MimeType, true> ContentType() const;
+        NHeaders::ValueProxy<false, NHeaders::MimeType> ContentType();
+        //! @copybrief ContentType
+        [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::MimeType> ContentType() const;
 
         //! @brief The size of the entity-body in bytes.
-        NHeaders::ValueProxy<uint64_t> ContentLength();
-        //! @brief The size of the entity-body in bytes.
-        NHeaders::ValueProxy<uint64_t, true> ContentLength() const;
+        NHeaders::ValueProxy<false, uint64_t> ContentLength();
+        //! @copybrief ContentLength
+        [[nodiscard]] NHeaders::ValueProxy<true, uint64_t> ContentLength() const;
 
         //! @brief List of encodings (compression) applied to the entity.
-        NHeaders::ListProxy<NHeaders::ContentEncodingEnum> ContentEncoding();
-        //! @brief List of encodings (compression) applied to the entity.
-        NHeaders::ListProxy<NHeaders::ContentEncodingEnum, true> ContentEncoding() const;
+        NHeaders::ListProxy<false, NHeaders::ContentEncodingEnum> ContentEncoding();
+        //! @copybrief ContentEncoding
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::ContentEncodingEnum> ContentEncoding() const;
 
         //! @brief List of compression applied to the entity.
-        NHeaders::ListProxy<NHeaders::TransferEncodingEnum> TransferEncoding();
-        //! @brief List of compression applied to the entity.
-        NHeaders::ListProxy<NHeaders::TransferEncodingEnum, true> TransferEncoding() const;
+        NHeaders::ListProxy<false, NHeaders::TransferEncodingEnum> TransferEncoding();
+        //! @copybrief TransferEncoding
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::TransferEncodingEnum> TransferEncoding() const;
 
         //! @brief Natural languages for the intended audience (e.g., "en-US").
-        NHeaders::ListProxy<std::string> ContentLanguage();
-        //! @brief Natural languages for the intended audience (e.g., "en-US").
-        NHeaders::ListProxy<std::string, true> ContentLanguage() const;
+        NHeaders::ListProxy<false, std::string> ContentLanguage();
+        //! @copybrief ContentLanguage
+        [[nodiscard]] NHeaders::ListProxy<true, std::string> ContentLanguage() const;
 
         //! @brief The specific location for the entity-body.
-        NHeaders::ValueProxy<string> ContentLocation();
-        //! @brief The specific location for the entity-body.
-        NHeaders::ValueProxy<string, true> ContentLocation() const;
+        NHeaders::ValueProxy<false, std::string> ContentLocation();
+        //! @copybrief ContentLocation
+        [[nodiscard]] NHeaders::ValueProxy<true, std::string> ContentLocation() const;
 
         //! @brief Date and time at which the message was originated.
-        NHeaders::ValueProxy<std::chrono::utc_clock> Date();
-        //! @brief Date and time at which the message was originated.
-        NHeaders::ValueProxy<std::chrono::utc_clock, true> Date() const;
+        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> Date();
+        //! @copybrief Date
+        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> Date() const;
 
         //! @brief Options for the current connection.
-        NHeaders::ListProxy<string> Connection();
-        //! @brief Options for the current connection.
-        NHeaders::ListProxy<string, true> Connection() const;
+        NHeaders::ListProxy<false, std::string> Connection();
+        //! @copybrief Connection
+        [[nodiscard]] NHeaders::ListProxy<true, std::string> Connection() const;
 
         //! @brief Used to signal a protocol change (e.g., "websocket").
-        NHeaders::ListProxy<NHeaders::Upgrade> Upgrade();
-        //! @brief Used to signal a protocol change (e.g., "websocket").
-        NHeaders::ListProxy<NHeaders::Upgrade, true> Upgrade() const;
+        NHeaders::ListProxy<false, NHeaders::Upgrade> Upgrade();
+        //! @copybrief Upgrade
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Upgrade> Upgrade() const;
 
         //! @brief Indicates header fields present in the trailer of a chunked message.
-        NHeaders::ListProxy<std::string> Trailer();
-        //! @brief Indicates header fields present in the trailer of a chunked message.
-        NHeaders::ListProxy<std::string, true> Trailer() const;
+        NHeaders::ListProxy<false, std::string> Trailer();
+        //! @copybrief Trailer
+        [[nodiscard]] NHeaders::ListProxy<true, std::string> Trailer() const;
 
-        //! @brief Path taken by the request/response through proxies (free string).
-        NHeaders::ListProxy<std::string> Via();
-        //! @brief Path taken by the request/response through proxies (free string).
-        NHeaders::ListProxy<std::string, true> Via() const;
+        //! @brief Path taken by the request/response through proxies (free std::string).
+        NHeaders::ListProxy<false, std::string> Via();
+        //! @copybrief Via
+        [[nodiscard]] NHeaders::ListProxy<true, std::string> Via() const;
 
         //! @}
 

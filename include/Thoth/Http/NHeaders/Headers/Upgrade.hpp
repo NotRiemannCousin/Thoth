@@ -4,8 +4,8 @@
 
 namespace Thoth::Http::NHeaders {
     struct Upgrade {
-        std::string protocol;
-        std::optional<std::string> version;
+        std::string protocol{};
+        std::optional<std::string> version{};
     };
 }
 

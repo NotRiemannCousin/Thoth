@@ -1,8 +1,10 @@
 #pragma once
 #include <Thoth/Http/NHeaders/Headers.hpp>
-#include <vector>
 
-namespace Thoth::Http::NHeaders {
+#include <Thoth/Http/NHeaders/Request/Headers/_pch.hpp>
+#include <Thoth/Http/NHeaders/Headers/EntityTag.hpp>
+
+namespace Thoth::Http {
     // based in Microslop's HttpRequestHeaders
 
     //! @brief Represents the collection of HTTP headers associated with a request.
@@ -16,164 +18,137 @@ namespace Thoth::Http::NHeaders {
 
         //! @brief Gets a view of the contents of this headers collection that does
         //! not parse nor validate data.
-        [[nodiscard]] auto GetNonValidatedView() const;
+        [[nodiscard]] [[nodiscard]] auto GetNonValidatedView() const;
 
         //! @brief Gets a readonly view of all Cookie values.
         //! @warning Risk of dangling reference if the underlying collection is modified.
-        [[nodiscard]] auto GetCookiesView() const;
+        [[nodiscard]] [[nodiscard]] auto GetCookiesView() const;
 
         //! @}
 #pragma endregion
 
-#pragma region Strongly Typed Headers (Getters/Setters)
-        //! @name Strongly Typed Headers (Getters/Setters)
-        //! Headers that usually contain a single value or a specific structured format.
+
+
+#pragma region Request Specific Proxies
+        //! @name Request Specific Proxies
         //! @{
+        //! Convenient calls to some headers.
 
         // TODO: Implement (someday)    
         // ! @brief Gets the Authorization header (e.g., Bearer, Basic).
-        // void GetAuthorization();
-        // ! @brief Sets the Authorization header (e.g., Bearer, Basic).
-        // void SetAuthorization();
+        NHeaders::ValueProxy<false, std::string> Authorization();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::string> Authorization() const;
+
+        using Url = string;
 
         //! @brief Gets the Host header. Essential for HTTP/1.1 and SNI.
-        ExpectedHeader<Url> GetHost();
-        //! @brief Sets the Host header. Essential for HTTP/1.1 and SNI.
-        void SetHost(string host);
-        //! @brief Sets the Host header. Essential for HTTP/1.1 and SNI.
-        void SetHost(Url host);
+        NHeaders::ValueProxy<false, Url> Host();
+        [[nodiscard]] NHeaders::ValueProxy<true, Url> Host() const;
 
-        //! @brief Gets or sets the Referer header (yes, it's misspelled in RFC).
-        ExpectedHeader<Url> GetReferrer();
-        void SetReferrer(string url);
-        void SetReferrer(Url url);
+        //! @brief The value of the Referer header (yes, it's misspelled in RFC).
+        NHeaders::ValueProxy<false, Url> Referrer();
+        [[nodiscard]] NHeaders::ValueProxy<true, Url> Referrer() const;
 
-        //! @brief Gets or sets the Origin header. Used for CORS requests.
-        ExpectedHeader<std::variant<Url, std::monostate>> GetOrigin();
-        void SetOrigin(string origin);
-        void SetOrigin(Url origin);
-        void SetOrigin(std::monostate);
+        //! @brief The value of the Origin header. Used for CORS requests.
+        NHeaders::ValueProxy<false, Url, std::monostate> Origin();
+        [[nodiscard]] NHeaders::ValueProxy<true, Url, std::monostate> Origin() const;
 
-        //! @brief Gets or sets the From header (email address of the user).
-        string GetFrom();
-        void SetFrom(string email);
+        //! @brief The value of the From header (email address of the user).
+        NHeaders::ValueProxy<false, string> From();
+        [[nodiscard]] NHeaders::ValueProxy<true, string> From() const;
 
-        //! @brief Gets or sets the Max-Forwards header for limiting proxy hops.
-        void GetMaxForwards();
-        void SetMaxForwards();
+        //! @brief The value of the Max-Forwards header for limiting proxy hops.
+        NHeaders::ValueProxy<false, unsigned int> MaxForwards();
+        [[nodiscard]] NHeaders::ValueProxy<true, unsigned int> MaxForwards() const;
 
-        //! @brief Gets or sets the :protocol pseudo-header (primarily for HTTP/2/3).
-        void GetProtocol();
-        void SetProtocol();
+        ////! @brief The value of the :protocol pseudo-header (primarily for HTTP/2/3).
+        //void GetProtocol();
+        //[[nodiscard]] void GetProtocol() const;
 
-        //! @brief Gets or sets the Proxy-Authorization header.
-        void GetProxyAuthorization();
-        void SetProxyAuthorization();
+        //! @brief The value of the Proxy-Authorization header.
+        NHeaders::ValueProxy<false, string> ProxyAuthorization();
+        [[nodiscard]] NHeaders::ValueProxy<true, string> ProxyAuthorization() const;
 
-        //! @brief Gets or sets the Range header for partial content requests.
-        void GetRange();
-        void SetRange();
+        //! @brief The value of the Range header for partial content requests.
+        NHeaders::ListProxy<false, NHeaders::Range> Range();
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Range> Range() const;
 
-        //! @brief Gets or sets the Cache-Control header for the request.
-        void GetCacheControl();
-        void SetCacheControl();
+        // //! @brief The value of the Cache-Control header for the request.
+        // NHeaders::ValueProxy<false, string> CacheControl();
+        // [[nodiscard]] NHeaders::ValueProxy<true, string> CacheControl() const;
 
-        //! @brief Gets or sets the Date header.
-        void GetDate();
-        void SetDate();
+        //! @brief The value of the If-Modified-Since header.
+        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> IfModifiedSince();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> IfModifiedSince() const;
+
+        //! @brief The value of the If-Unmodified-Since header.
+        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> IfUnmodifiedSince();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> IfUnmodifiedSince() const;
+
+        //! @brief The value of the If-Range header.
+        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point, string> IfRange();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point, string> IfRange() const;
+
+        //! @brief The value of the If-Match header.
+        NHeaders::ListProxy<false, NHeaders::EntityTag> IfMatch();
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::EntityTag> IfMatch() const;
+
+        //! @brief The value of the If-None-Match header.
+        NHeaders::ValueProxy<false, NHeaders::EntityTag> IfNoneMatch();
+        [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::EntityTag> IfNoneMatch() const;
+        //! @}
+
+
+        //! @brief The value of the Accept-Language header.
+        NHeaders::ListProxy<false, string> AcceptLanguage();
+        [[nodiscard]] NHeaders::ListProxy<true, string> AcceptLanguage() const;
+
+        //! @brief The value of the TE (Transfer Encoding) header.
+        NHeaders::ListProxy<false, NHeaders::TeEnum> Te();
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::TeEnum> Te() const;
+
         //! @}
 #pragma endregion
 
-#pragma region Conditional Headers
-        //! @name Conditional Headers
-        //! Headers used for cache validation and conditional requests.
-        //! @{
-
-        //! @brief Gets or sets the If-Modified-Since header.
-        void GetIfModifiedSince();
-        void SetIfModifiedSince();
-
-        //! @brief Gets or sets the If-Unmodified-Since header.
-        void GetIfUnmodifiedSince();
-        void SetIfUnmodifiedSince();
-
-        //! @brief Gets or sets the If-Range header.
-        void GetIfRange();
-        void SetIfRange();
-
-        //! @brief Gets or sets the If-Match header.
-        void GetIfMatch();
-        void SetIfMatch();
-
-        //! @brief Gets or sets the If-None-Match header.
-        void GetIfNoneMatch();
-        void SetIfNoneMatch();
-        //! @}
-#pragma endregion
-
-#pragma region Multi-Value Headers (Adders/Modifiers)
-        //! @name Multi-Value Headers (Adders/Modifiers)
-        //! Headers that naturally support multiple comma-separated values.
-        //! @{
-
-        //! @brief Adds a value to the Accept header (media types).
-        void AddAccept(MimeType type);
-
-        //! @brief Adds a value to the Accept-Charset header.
-        void AddAcceptCharset();
-
-        //! @brief Adds a value to the Accept-Encoding header (gzip, br, etc).
-        void AddAcceptEncoding();
-
-        //! @brief Adds a value to the Accept-Language header.
-        void AddAcceptLanguage();
-
-        //! @brief Adds a value to the TE (Transfer Encoding) header.
-        void AddTe();
-
-        //! @brief Adds a value to the Upgrade header (e.g., websocket).
-        void AddUpgrade();
-
-        //! @brief Adds a value to the Via header for proxy tracking.
-        void AddVia();
-        //! @}
-#pragma endregion
-
-#pragma region CORS Request Headers
-        //! @name CORS Request Headers
-        //! Headers sent by the client during Cross-Origin Resource Sharing.
-        //! @{
-
-        //! @brief Gets or sets the Access-Control-Request-Method for preflight requests.
-        void GetAccessControlRequestMethod();
-        void SetAccessControlRequestMethod();
-
-        //! @brief Gets or sets the Access-Control-Request-Headers for preflight requests.
-        void GetAccessControlRequestHeaders();
-        void SetAccessControlRequestHeaders();
-        //! @}
-#pragma endregion
-
-#pragma region Convenience Methods
-        //! @name Convenience Methods
-        //! Boolean checks and simplified abstractions over complex headers.
-        //! @{
-
-        //! @brief Checks if the Connection header contains the 'close' token.
-        [[nodiscard]] bool IsConnectionClose() const;
-
-        //! @brief Checks if the Expect header specifically contains '100-continue'.
-        [[nodiscard]] bool IsExpectContinue() const;
-
-        //! @brief Checks if the Transfer-Encoding header contains 'chunked'.
-        [[nodiscard]] bool IsTransferEncodingChunked() const;
-
-        //! @brief Sets the Transfer-Encoding header to 'chunked' or removes it.
-        void SetTransferEncodingChunked(bool chunked);
-
-        //! @brief Sets the Connection header to 'Close' or 'Keep-Alive'.
-        void SetConnectionClose(bool close);
-        //! @}
-#pragma endregion
+// #pragma region CORS Request Headers
+//         //! @name CORS Request Headers
+//         //! Headers sent by the client during Cross-Origin Resource Sharing.
+//         //! @{
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ListProxy<true, string>NHeaders::V<alueProxy<, string> AccessControlAllowCredentials();
+//         [[nodiscard]] NHeaders::ListProxy<false, string>NHeaders::ValueProxytruefalse, string> AccessControlAllowCredentials() const;
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlAllowHeaders();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowHeaders() const;
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlAllowMethods();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowMethods() const;
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlAllowOrigin();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowOrigin() const;
+//
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlExposeAge();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlExposeAge() const;
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlExposeMethods();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlExposeMethods() const;
+//
+//
+//         //! @brief The value of the Access-Control-Request-Method for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlRequestMethod();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlRequestMethod() const;
+//
+//         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
+//         NHeaders::ValueProxy<false, string> AccessControlRequestHeaders();
+//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlRequestHeaders() const;
+//         //! @}
+// #pragma endregion
     };
 };
