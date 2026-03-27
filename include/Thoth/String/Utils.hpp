@@ -1,4 +1,5 @@
 #pragma once
+#include <bitset>
 #include <string_view>
 #include <string>
 
@@ -12,6 +13,14 @@ namespace Thoth::String {
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 "0123456789"
                 "!#$%&'*+-.^_`|~"
+            };
+
+            static constexpr std::string_view url {
+                "abcdefghijklmnopqrstuvwxyz"
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                "0123456789"
+                    "-._~"
+                    "!$&'()*+,;="
             };
 
             static constexpr std::string_view delimiters { "\"(),/:;<=>?@[\\]{}" };
@@ -63,7 +72,10 @@ namespace Thoth::String {
     std::string LeftTrimmedStr(std::string_view str, std::string_view trim = CharSequences::whitespace);
     std::string RightTrimmedStr(std::string_view str, std::string_view trim = CharSequences::whitespace);
 
+    constexpr std::bitset<256> MakeBitset(std::initializer_list<std::string_view> strs);
 
 
     bool IsVisible(char c);
 }
+
+#include <Thoth/String/Utils.tpp>
