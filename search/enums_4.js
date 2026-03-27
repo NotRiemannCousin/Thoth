@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['transferencodingenum_0',['TransferEncodingEnum',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b',1,'Thoth::Http::NHeaders']]]
+  ['statuscodeenum_0',['StatusCodeEnum',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7',1,'Thoth::Http']]],
+  ['statustypeenum_1',['StatusTypeEnum',['../namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877d',1,'Thoth::Http']]]
 ];

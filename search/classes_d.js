@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['request_0',['Request',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
-  ['requesterror_1',['RequestError',['../struct_thoth_1_1_http_1_1_request_error.html',1,'Thoth::Http']]],
-  ['requestheaders_2',['RequestHeaders',['../struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html',1,'Thoth::Http::NHeaders']]],
-  ['response_3',['Response',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['responsehead_4',['ResponseHead',['../struct_thoth_1_1_http_1_1_response_head.html',1,'Thoth::Http']]],
-  ['responseheaders_5',['ResponseHeaders',['../struct_thoth_1_1_http_1_1_n_headers_1_1_response_headers.html',1,'Thoth::Http::NHeaders']]]
+  ['queryparams_0',['QueryParams',['../struct_thoth_1_1_http_1_1_query_params.html',1,'Thoth::Http']]]
 ];

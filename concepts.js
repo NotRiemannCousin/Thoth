@@ -6,6 +6,7 @@ var concepts =
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
+          [ "Scannable", "concept_thoth_1_1_http_1_1_n_headers_1_1_scannable.html", null ],
           [ "Serializable", "concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html", null ]
         ] ],
         [ "BodyConcept", "concept_thoth_1_1_http_1_1_body_concept.html", null ],

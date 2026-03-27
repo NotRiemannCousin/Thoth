@@ -192,9 +192,14 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.  <a href="struct_thoth_1_1_http_1_1_request_headers.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">structure that stores info about an open <a class="el" href="struct_thoth_1_1_http_1_1_socket.html" title="structure that stores info about an open Socket, like the version, the type of socket and the last us...">Socket</a>, like the version, the type of socket and the last used time.  <a href="struct_thoth_1_1_http_1_1_socket.html#details">More...</a><br /></td></tr>
@@ -225,9 +230,6 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6" id="r_a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">ExpectedHeader</a> = std::expected&lt; T, std::monostate &gt;</td></tr>
-<tr class="separator:a14e38b7fac6cbb8cf06cb0e1ed422ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac372604fd377e070576be6639ec2c300" id="r_ac372604fd377e070576be6639ec2c300"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300">GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="separator:ac372604fd377e070576be6639ec2c300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b32b79eda86ad7068fea4156a55f00" id="r_af1b32b79eda86ad7068fea4156a55f00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a> &gt;</td></tr>
@@ -398,22 +400,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2">Thoth::Http::ConnectionErrorEnum</a> = typedef Hermes::ConnectionErrorEnum</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a14e38b7fac6cbb8cf06cb0e1ed422ab6" name="a14e38b7fac6cbb8cf06cb0e1ed422ab6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14e38b7fac6cbb8cf06cb0e1ed422ab6">&#9670;&#160;</a></span>ExpectedHeader</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a14e38b7fac6cbb8cf06cb0e1ed422ab6">Thoth::Http::ExpectedHeader</a> = typedef std::expected&lt;T, std::monostate&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

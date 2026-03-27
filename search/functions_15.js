@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7ejsonobject_0',['~JsonObject',['../struct_thoth_1_1_n_json_1_1_json_object.html#adbe79d950400f92351983cfca5a8cae4',1,'Thoth::NJson::JsonObject']]]
+  ['wwwauthenticate_0',['wwwauthenticate',['../struct_thoth_1_1_http_1_1_response_headers.html#ae0fd9fd3f26f88edcde57246d710624a',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a5a9cf77b3fbfa443d98b9f723964d83b',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate() const']]]
 ];

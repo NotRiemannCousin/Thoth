@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "std", null, [
+      [ "formatter< std::monostate >", "structstd_1_1formatter_3_01std_1_1monostate_01_4.html", "structstd_1_1formatter_3_01std_1_1monostate_01_4" ]
+    ] ],
     [ "Thoth", "namespace_thoth.html", [
       [ "Dsa", "namespace_thoth_1_1_dsa.html", [
         [ "Cow", "struct_thoth_1_1_dsa_1_1_cow.html", "struct_thoth_1_1_dsa_1_1_cow" ],
@@ -9,12 +12,19 @@ var annotated_dup =
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
+          [ "EntityTag", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag" ],
           [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
           [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
           [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
           [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
-          [ "RequestHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_request_headers" ],
-          [ "ResponseHeaders", "struct_thoth_1_1_http_1_1_n_headers_1_1_response_headers.html", null ],
+          [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
+          [ "Scanner", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner" ],
+          [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
+          [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
+          [ "Scanner< std::monostate >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
+          [ "Scanner< std::string >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1string_01_4.html", null ],
+          [ "Scanner< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4" ],
+          [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
         ] ],
@@ -38,8 +48,10 @@ var annotated_dup =
         [ "QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", "struct_thoth_1_1_http_1_1_query_params" ],
         [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
         [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
+        [ "RequestHeaders", "struct_thoth_1_1_http_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_request_headers" ],
         [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
         [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
+        [ "ResponseHeaders", "struct_thoth_1_1_http_1_1_response_headers.html", "struct_thoth_1_1_http_1_1_response_headers" ],
         [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
         [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]

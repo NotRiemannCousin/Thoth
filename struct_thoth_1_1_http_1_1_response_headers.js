@@ -1,0 +1,25 @@
+var struct_thoth_1_1_http_1_1_response_headers =
+[
+    [ "AcceptPatch", "struct_thoth_1_1_http_1_1_response_headers.html#a1ea02076638cb756bc2fccb56d0a6e2e", null ],
+    [ "AcceptPatch", "struct_thoth_1_1_http_1_1_response_headers.html#a5cb0ea2d3d2609aed7e938838d69821a", null ],
+    [ "AcceptPost", "struct_thoth_1_1_http_1_1_response_headers.html#a14dc632607afc861ab41fe209164b7bb", null ],
+    [ "AcceptPost", "struct_thoth_1_1_http_1_1_response_headers.html#a7831a11a3f033ee3bc1ed54190bce1ba", null ],
+    [ "AcceptRanges", "struct_thoth_1_1_http_1_1_response_headers.html#a0ac5495c87a7ed0eb6809072e6a0b7ed", null ],
+    [ "AcceptRanges", "struct_thoth_1_1_http_1_1_response_headers.html#a26fa4374f2e45a1395f07ee19034124f", null ],
+    [ "Age", "struct_thoth_1_1_http_1_1_response_headers.html#ab61a51f17aabe1cd9bf5c1ee02238a37", null ],
+    [ "Age", "struct_thoth_1_1_http_1_1_response_headers.html#acb60f45f2177ccbe8cfba37924a5b225", null ],
+    [ "EntityTag", "struct_thoth_1_1_http_1_1_response_headers.html#ac03b61d968e831d17985cfa2539fbcea", null ],
+    [ "EntityTag", "struct_thoth_1_1_http_1_1_response_headers.html#a3d4430afe3391764ceabc300c365c0e0", null ],
+    [ "Location", "struct_thoth_1_1_http_1_1_response_headers.html#a3c1bbda35fc56f7b05e74c98dd3ae9fe", null ],
+    [ "Location", "struct_thoth_1_1_http_1_1_response_headers.html#a2a1d9d62a6a72c5496d3c1f1155b8cb6", null ],
+    [ "ProxyAuthenticate", "struct_thoth_1_1_http_1_1_response_headers.html#a92e3fad298d3178daf85e8a02a358296", null ],
+    [ "ProxyAuthenticate", "struct_thoth_1_1_http_1_1_response_headers.html#a216b51b9fa775e62bb0b4b105b6da89c", null ],
+    [ "RetryAfter", "struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807", null ],
+    [ "RetryAfter", "struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46", null ],
+    [ "Server", "struct_thoth_1_1_http_1_1_response_headers.html#a2405fdc56018fae569650862d356d1fa", null ],
+    [ "Server", "struct_thoth_1_1_http_1_1_response_headers.html#aa92b559d8c6da9c90411791a2d2e2980", null ],
+    [ "Vary", "struct_thoth_1_1_http_1_1_response_headers.html#af2ba0a89f782771c7c78c70019ed671b", null ],
+    [ "Vary", "struct_thoth_1_1_http_1_1_response_headers.html#ae915a6d1684d548d659f8679352003c2", null ],
+    [ "WwwAuthenticate", "struct_thoth_1_1_http_1_1_response_headers.html#ae0fd9fd3f26f88edcde57246d710624a", null ],
+    [ "WwwAuthenticate", "struct_thoth_1_1_http_1_1_response_headers.html#a5a9cf77b3fbfa443d98b9f723964d83b", null ]
+];

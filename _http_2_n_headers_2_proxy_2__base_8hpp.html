@@ -141,27 +141,43 @@ $(document).ready(function(){initNavTree('_http_2_n_headers_2_proxy_2__base_8hpp
   <div class="headertitle"><div class="title">_base.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;format&gt;</code><br />
+<div class="textblock"><code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
-<code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;<a class="el" href="_string_2_utils_8hpp_source.html">Thoth/String/Utils.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_monostate_8hpp_source.html">Thoth/Utils/Monostate.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for _base.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_http_2_n_headers_2_proxy_2__base_8hpp__incl.svg" width="436" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_http_2_n_headers_2_proxy_2__base_8hpp__incl.svg" width="1000" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_http_2_n_headers_2_proxy_2__base_8hpp__dep__incl.svg" width="2854" height="682"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_http_2_n_headers_2_proxy_2__base_8hpp__dep__incl.svg" width="2408" height="682"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_http_2_n_headers_2_proxy_2__base_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner.html">Thoth::Http::NHeaders::Scanner&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">Thoth::Http::NHeaders::InvalidHeaderFormat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4.html">Thoth::Http::NHeaders::Scanner&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1string_01_4.html">Thoth::Http::NHeaders::Scanner&lt; std::string &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html">Thoth::Http::NHeaders::Scanner&lt; std::chrono::utc_clock::time_point &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html">Thoth::Http::NHeaders::Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1monostate_01_4.html">Thoth::Http::NHeaders::Scanner&lt; std::monostate &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -175,6 +191,8 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_n_headers_1_1_scannable.html">Thoth::Http::NHeaders::Scannable</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -188,16 +206,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa70e32f20f526d38258c35722780677a" id="r_aa70e32f20f526d38258c35722780677a"><td class="memTemplParams" colspan="2">template&lt;class T , class ... Args&gt; </td></tr>
-<tr class="memitem:aa70e32f20f526d38258c35722780677a"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa70e32f20f526d38258c35722780677a">Thoth::Http::NHeaders::Scan</a> (std::string_view input, Args... args)</td></tr>
-<tr class="separator:aa70e32f20f526d38258c35722780677a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9490989ab4c5415c251ef9e8bd8e8945" id="r_a9490989ab4c5415c251ef9e8bd8e8945"><td class="memTemplParams" colspan="2">template&lt;class T &gt; <br />
-requires std::integral&lt;T&gt;</td></tr>
-<tr class="memitem:a9490989ab4c5415c251ef9e8bd8e8945"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a9490989ab4c5415c251ef9e8bd8e8945">Thoth::Http::NHeaders::Scan</a> (std::string_view input, int base=10)</td></tr>
-<tr class="separator:a9490989ab4c5415c251ef9e8bd8e8945"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f15f2e8d57dbe9dd4a8e2cbe862ad53" id="r_a5f15f2e8d57dbe9dd4a8e2cbe862ad53"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a5f15f2e8d57dbe9dd4a8e2cbe862ad53"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a5f15f2e8d57dbe9dd4a8e2cbe862ad53">Thoth::Http::NHeaders::Scan&lt; std::string &gt;</a> (std::string_view input)</td></tr>
-<tr class="separator:a5f15f2e8d57dbe9dd4a8e2cbe862ad53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00fc676c3df1eecd3bb58eb338defa25" id="r_a00fc676c3df1eecd3bb58eb338defa25"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a00fc676c3df1eecd3bb58eb338defa25"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a00fc676c3df1eecd3bb58eb338defa25">Thoth::Http::NHeaders::Scan</a> (std::string_view input, std::string_view args=&quot;&quot;)</td></tr>
+<tr class="separator:a00fc676c3df1eecd3bb58eb338defa25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

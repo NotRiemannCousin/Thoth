@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['headers_0',['headers',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a2425680050f71db70b18ff6a0915cd09',1,'Thoth::Http::NHeaders::ListProxy::headers'],['../struct_thoth_1_1_http_1_1_request.html#a2bb31a3447f430ff268f37193be880d6',1,'Thoth::Http::Request::headers'],['../struct_thoth_1_1_http_1_1_response.html#a0e5fcce1e05c13a8a33dff57866f6edf',1,'Thoth::Http::Response::headers'],['../struct_thoth_1_1_http_1_1_response_head.html#a0400ce41020333e700fda1f9a84845f3',1,'Thoth::Http::ResponseHead::headers']]],
+  ['headers_0',['headers',['../struct_thoth_1_1_http_1_1_request.html#ad62ad25b4d3883e3f0648d3abe6df025',1,'Thoth::Http::Request::headers'],['../struct_thoth_1_1_http_1_1_response.html#abe81ed5f4bf4a8060b307672cef6c189',1,'Thoth::Http::Response::headers'],['../struct_thoth_1_1_http_1_1_response_head.html#a0400ce41020333e700fda1f9a84845f3',1,'Thoth::Http::ResponseHead::headers']]],
   ['hex_1',['hex',['../struct_thoth_1_1_string_1_1_char_sequences.html#a88f3fe33cb9fcc7647023c445c9a2a40',1,'Thoth::String::CharSequences']]],
   ['hexlower_2',['hexLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a0b57e428c43374df2450859a2a99836b',1,'Thoth::String::CharSequences']]],
   ['hexupper_3',['hexUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a8b45d3ed35c39de52a9b0b41f10b781c',1,'Thoth::String::CharSequences']]],

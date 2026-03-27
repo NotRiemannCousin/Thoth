@@ -139,11 +139,9 @@ $(document).ready(function(){initNavTree('concept_thoth_1_1_http_1_1_n_headers_1
 <p><code>#include &lt;<a class="el" href="_http_2_n_headers_2_proxy_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a> =  <span class="keyword">requires</span>(T t, std::string_view str) {</div>
-<div class="line">        { std::format(<span class="stringliteral">&quot;{}&quot;</span>, t) } -&gt; std::same_as&lt;std::string&gt;;</div>
-<div class="line">        { Scan&lt;T&gt;(str)         } -&gt; std::same_as&lt;std::optional&lt;T&gt;&gt;;</div>
-<div class="line">    }</div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_n_headers_1_1_serializable_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a></div><div class="ttdef"><b>Definition</b> _base.hpp:16</div></div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a> =  <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_n_headers_1_1_scannable.html">Scannable&lt;T&gt;</a> &amp;&amp; std::formattable&lt;T, char&gt;</div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_n_headers_1_1_scannable_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_n_headers_1_1_scannable.html">Thoth::Http::NHeaders::Scannable</a></div><div class="ttdef"><b>Definition</b> _base.hpp:34</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_n_headers_1_1_serializable_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html">Thoth::Http::NHeaders::Serializable</a></div><div class="ttdef"><b>Definition</b> _base.hpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

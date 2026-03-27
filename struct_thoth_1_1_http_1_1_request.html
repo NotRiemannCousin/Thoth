@@ -152,7 +152,7 @@ Public Types</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a12a4044abdaf49000c7b8e2be22666dd" id="r_a12a4044abdaf49000c7b8e2be22666dd"><td class="memTemplParams" colspan="2">template&lt;class T  = string_view&gt; <br />
 requires Hermes::ByteLike&lt;std::ranges::range_value_t&lt;T&gt;&gt; || (std::same_as&lt;Body, std::string&gt; &amp;&amp; requires (T t) { { std::format(&quot;{}&quot;, t) }; })</td></tr>
-<tr class="memitem:a12a4044abdaf49000c7b8e2be22666dd"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a5e41af1c5fdac059d5585e417b4770fb">url</a>, T &amp;&amp;<a class="el" href="struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143">body</a>={}, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a2bb31a3447f430ff268f37193be880d6">headers</a>=<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>())</td></tr>
+<tr class="memitem:a12a4044abdaf49000c7b8e2be22666dd"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd">FromUrl</a> (<a class="el" href="namespace_thoth_1_1_http.html#ae9b9011a7b77e1eaac4fabb08a3f3c3d">string_view</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#a5e41af1c5fdac059d5585e417b4770fb">url</a>, T &amp;&amp;<a class="el" href="struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143">body</a>={}, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html#ad62ad25b4d3883e3f0648d3abe6df025">headers</a>=<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>())</td></tr>
 <tr class="memdesc:a12a4044abdaf49000c7b8e2be22666dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try parse to a URL before construct the <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>.  <br /></td></tr>
 <tr class="separator:a12a4044abdaf49000c7b8e2be22666dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -164,8 +164,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:af1628c73ebfc2ae8ced1f932f0124143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40aaadb4dc25edcb929e95deb1358805" id="r_a40aaadb4dc25edcb929e95deb1358805"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a40aaadb4dc25edcb929e95deb1358805">version</a> { <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">VersionEnum::HTTP1_1</a> }</td></tr>
 <tr class="separator:a40aaadb4dc25edcb929e95deb1358805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb31a3447f430ff268f37193be880d6" id="r_a2bb31a3447f430ff268f37193be880d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#a2bb31a3447f430ff268f37193be880d6">headers</a> { <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>() }</td></tr>
-<tr class="separator:a2bb31a3447f430ff268f37193be880d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62ad25b4d3883e3f0648d3abe6df025" id="r_ad62ad25b4d3883e3f0648d3abe6df025"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html#ad62ad25b4d3883e3f0648d3abe6df025">headers</a> { <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>() }</td></tr>
+<tr class="separator:ad62ad25b4d3883e3f0648d3abe6df025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a43982819545d5440c17197b85230f59a" name="a43982819545d5440c17197b85230f59a"></a>
@@ -251,8 +251,8 @@ template&lt;MethodConcept Method = GetMethod, RequestBodyConcept Body = std::str
 
 </div>
 </div>
-<a id="a2bb31a3447f430ff268f37193be880d6" name="a2bb31a3447f430ff268f37193be880d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2bb31a3447f430ff268f37193be880d6">&#9670;&#160;</a></span>headers</h2>
+<a id="ad62ad25b4d3883e3f0648d3abe6df025" name="ad62ad25b4d3883e3f0648d3abe6df025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62ad25b4d3883e3f0648d3abe6df025">&#9670;&#160;</a></span>headers</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,7 +260,7 @@ template&lt;MethodConcept Method = GetMethod, RequestBodyConcept Body = std::str
 template&lt;MethodConcept Method = GetMethod, RequestBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a>&lt; Method, Body &gt;::headers { <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>() }</td>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a>&lt; Method, Body &gt;::headers { <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">Headers::DefaultHeaders</a>() }</td>
         </tr>
       </table>
 </div><div class="memdoc">

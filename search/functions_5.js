@@ -13,7 +13,9 @@ var searchData=
   ['findorerror_10',['findorerror',['../struct_thoth_1_1_n_json_1_1_json.html#ab32a523588740bb952f620e56444f706',1,'Thoth::NJson::Json::FindOrError(Keys keys)'],['../struct_thoth_1_1_n_json_1_1_json.html#a6cbca120c159eba310bb2eb47e835610',1,'Thoth::NJson::Json::FindOrError(Keys keys) const']]],
   ['foldwhilesuccess_11',['FoldWhileSuccess',['../namespace_thoth_1_1_utils.html#a233fa4f829ed69699961c3680475aa9d',1,'Thoth::Utils']]],
   ['foldwhilesuccesshof_12',['FoldWhileSuccessHof',['../namespace_thoth_1_1_utils.html#a1092c3064d3185d3baa3bf96f8eb7184',1,'Thoth::Utils']]],
-  ['fromowned_13',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
-  ['fromref_14',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_15',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a88b820068a60c6547e847a61a1eb0b8a',1,'Thoth::Http::Url::FromUrl()']]]
+  ['format_13',['format',['../structstd_1_1formatter_3_01std_1_1monostate_01_4.html#a206310828434fcd7692fe71d30d344a8',1,'std::formatter&lt; std::monostate &gt;']]],
+  ['from_14',['from',['../struct_thoth_1_1_http_1_1_request_headers.html#a24617d0d6c4948ab19e6990313f8ea4b',1,'Thoth::Http::RequestHeaders::From()'],['../struct_thoth_1_1_http_1_1_request_headers.html#a8f7643994cdc443c140bc51804a5bb45',1,'Thoth::Http::RequestHeaders::From() const']]],
+  ['fromowned_15',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
+  ['fromref_16',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
+  ['fromurl_17',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a88b820068a60c6547e847a61a1eb0b8a',1,'Thoth::Http::Url::FromUrl()']]]
 ];

@@ -1,0 +1,4 @@
+var struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4 =
+[
+    [ "Duration", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html#a8b1da8e2fe6897a40546af1f613ef579", null ]
+];

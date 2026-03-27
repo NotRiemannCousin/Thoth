@@ -6,7 +6,7 @@ var struct_thoth_1_1_http_1_1_response =
     [ "Successful", "struct_thoth_1_1_http_1_1_response.html#a5dc84f1dc95a19a8c9e0ee0716fef62b", null ],
     [ "Client", "struct_thoth_1_1_http_1_1_response.html#a9bee35b146080ab7239cc8aff02333c3", null ],
     [ "body", "struct_thoth_1_1_http_1_1_response.html#ae32b14d3e677ba1c88924c2765bc767d", null ],
-    [ "headers", "struct_thoth_1_1_http_1_1_response.html#a0e5fcce1e05c13a8a33dff57866f6edf", null ],
+    [ "headers", "struct_thoth_1_1_http_1_1_response.html#abe81ed5f4bf4a8060b307672cef6c189", null ],
     [ "status", "struct_thoth_1_1_http_1_1_response.html#a7edc64d21fccf47575d53bba4b5b639f", null ],
     [ "statusMessage", "struct_thoth_1_1_http_1_1_response.html#a80cb5cf54565c3233b67b2e5e8301ae4", null ],
     [ "version", "struct_thoth_1_1_http_1_1_response.html#abd186c458a0c8410f5397002d870a37a", null ]

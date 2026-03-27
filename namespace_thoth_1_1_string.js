@@ -12,6 +12,7 @@ var namespace_thoth_1_1_string =
     [ "LeftTrim", "namespace_thoth_1_1_string.html#a8fe100af95d712d8a423454cf41b47e3", null ],
     [ "LeftTrimmed", "namespace_thoth_1_1_string.html#a89e8f9bb8483be7bdb5d476010e95301", null ],
     [ "LeftTrimmedStr", "namespace_thoth_1_1_string.html#a2b8d39c9e5b2df9e51d2e1a371bab078", null ],
+    [ "MakeBitset", "namespace_thoth_1_1_string.html#abf3a196584ca78db05d96c1a03ad0b08", null ],
     [ "RightTrim", "namespace_thoth_1_1_string.html#a17a95ca565a76e2041d14b8772a5fa93", null ],
     [ "RightTrimmed", "namespace_thoth_1_1_string.html#a675419e8074e03bcf60edfc542964c56", null ],
     [ "RightTrimmedStr", "namespace_thoth_1_1_string.html#ab6fad7f546d1056c87f6904991984491", null ],
