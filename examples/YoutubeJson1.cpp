@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view id) {
+std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(std::string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -35,7 +35,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
 
 
 
-    static constexpr auto s_getTab = [](const string& name) {
+    static constexpr auto s_getTab = [](const std::string& name) {
         return [&](const Json& tab) {
             if (const auto title{ tab.Find(tabTitleKeys) }; title)
                 return **title == Json{ name };
@@ -43,7 +43,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
         };
     };
 
-    static constexpr auto s_printAlbumName = [](const Array* arr, const string& tabName) {
+    static constexpr auto s_printAlbumName = [](const Array* arr, const std::string& tabName) {
         std::print("\n\n{}:\n", tabName);
 
         for (const auto& album : *arr) {
@@ -56,7 +56,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
     };
 
     static constexpr auto s_printCollections = [](const Json& content) {
-        for (const string tabName : { "Albums", "Videos", "Singles & EPs", "Live performances" }) {
+        for (const std::string tabName : { "Albuns", "Videos", "Singles & EPs", "Live performances" }) {
             const auto tab{ content.Search(s_getTab(tabName)) };
             if (!tab) continue;
 
@@ -70,12 +70,22 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
         return std::monostate{};
     };
 
+    static constexpr auto s_processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::RequestError> {
+        switch (req.status) {
+            case NHttp::StatusCodeEnum::Ok:
+                return std::move(req);
+            case NHttp::StatusCodeEnum::BadRequest:
+                return std::unexpected{ NHttp::RequestError{ NHttp::GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
+                default:
+                return std::unexpected{ NHttp::RequestError{ NHttp::GenericError{ "Invalid Request" } } };
+        }
+    };
 
 
     using Clock = std::chrono::system_clock;
 
     const JsonObject body{
-        { "videoId", id },
+        { "browseId", id },
         { "context", JsonObject{
             { "client", JsonObject{
                 { "clientName", "WEB_REMIX" },
@@ -88,6 +98,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
 
     return NHttp::PostRequest::FromUrl(url, body)
                 .and_then(NHttp::Client::H_Send())
+                .and_then(s_processRequest)
                 .and_then(&NHttp::PostResponse::AsJson<>)
 
                 .and_then(std::bind_back(&Json::FindAndMoveOrError, musicTabKeys))
@@ -98,7 +109,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view i
 int main() {
 
     /* "UCTmoyDN-uokTbzk_xXKcx6w" */
-    if (const auto oper{ SaveImage("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
+    if (const auto oper{ PrintInfo("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
         std::println("{}", oper.error());
 
 

@@ -277,7 +277,7 @@ static bool Details::ReadString(std::string_view& input, auto& val, const Buffer
     std::string_view strRef{ &*start, &*input.begin() };
     input.remove_prefix(1);
 
-    // Well, it doesn't make sense to check for all chars because just strings can have UTF-8 chars.
+    // Well, it doesn't make sense to check for all chars because just std::strings can have UTF-8 chars.
     // Moreover, now the cache will not blame on me again.
     if (std::ranges::any_of(strRef, [](const auto c){ return c & 0x80; }) &&
         !Thoth::String::Utf8View::IsValid(std::bit_cast<std::u8string_view>(strRef)))

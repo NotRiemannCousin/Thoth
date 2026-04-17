@@ -10,17 +10,17 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::ContentEncodingEnum
         return str.empty();
     }
 
-    std::optional<ContentEncodingEnum> Scan(string_view input) {
+    std::optional<ContentEncodingEnum> Scan(std::string_view input) {
         String::Trim(input);
         const auto value{ input | std::views::transform(tolower) };
 
-        if (std::ranges::equal(value, string_view{ "gzip"     })) return ContentEncodingEnum::Gzip;
-        if (std::ranges::equal(value, string_view{ "compress" })) return ContentEncodingEnum::Compress;
-        if (std::ranges::equal(value, string_view{ "deflate"  })) return ContentEncodingEnum::Deflate;
-        if (std::ranges::equal(value, string_view{ "br"       })) return ContentEncodingEnum::Br;
-        if (std::ranges::equal(value, string_view{ "zstd"     })) return ContentEncodingEnum::Zstd;
-        if (std::ranges::equal(value, string_view{ "dcb"      })) return ContentEncodingEnum::Dcb;
-        if (std::ranges::equal(value, string_view{ "dcz"      })) return ContentEncodingEnum::Dcz;
+        if (std::ranges::equal(value, std::string_view{ "gzip"     })) return ContentEncodingEnum::Gzip;
+        if (std::ranges::equal(value, std::string_view{ "compress" })) return ContentEncodingEnum::Compress;
+        if (std::ranges::equal(value, std::string_view{ "deflate"  })) return ContentEncodingEnum::Deflate;
+        if (std::ranges::equal(value, std::string_view{ "br"       })) return ContentEncodingEnum::Br;
+        if (std::ranges::equal(value, std::string_view{ "zstd"     })) return ContentEncodingEnum::Zstd;
+        if (std::ranges::equal(value, std::string_view{ "dcb"      })) return ContentEncodingEnum::Dcb;
+        if (std::ranges::equal(value, std::string_view{ "dcz"      })) return ContentEncodingEnum::Dcz;
 
         return std::nullopt;
     }

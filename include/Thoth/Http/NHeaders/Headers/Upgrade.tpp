@@ -6,12 +6,12 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Upgrade> {
         return str.empty();
     }
 
-    std::optional<Upgrade> Scan(string_view input) {
+    std::optional<Upgrade> Scan(std::string_view input) {
         String::Trim(input);
         const auto sep{ input.find('/') };
-        Upgrade upgrade{ string{ input.substr(0, sep) } };
+        Upgrade upgrade{ std::string{ input.substr(0, sep) } };
 
-        if (sep == string::npos || input.substr(sep + 1).empty())
+        if (sep == std::string::npos || input.substr(sep + 1).empty())
             upgrade.version = input;
 
 

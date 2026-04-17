@@ -26,7 +26,7 @@ namespace std {
 
         template<class FormatContext>
         auto format(const Thoth::Http::QueryParams &query, FormatContext& ctx) const {
-            using Pair = std::pair<string_view, string_view>;
+            using Pair = std::pair<std::string_view, std::string_view>;
 
             static constexpr auto singleParam = [] (const Pair p) {
                 return std::format("{}={}", p.first, p.second);
@@ -35,7 +35,7 @@ namespace std {
 #else
             };
             static constexpr auto s_getEveryPair = [](const Thoth::Http::QueryParams::MapType::value_type& p) {
-                return p.second | views::transform([&](string_view val) { return Pair{ p.first, val }; });
+                return p.second | views::transform([&](std::string_view val) { return Pair{ p.first, val }; });
             };
 #endif
 

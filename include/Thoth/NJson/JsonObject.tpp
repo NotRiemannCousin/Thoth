@@ -1,5 +1,9 @@
 #pragma once
 #include <format>
+#include <cassert>
+
+#include "Json.tpp"
+#include "Json.tpp"
 
 // TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. (json, "map", "continents", "countries"))?
 
@@ -15,8 +19,8 @@ namespace Thoth::NJson {
     // }
 
     namespace detail {
-        using OutIt =  std::format_context::iterator;
 
+        template<class OutIt>
         void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent, size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
     }
 }
@@ -26,9 +30,11 @@ struct std::formatter<Thoth::NJson::JsonObject> {
     bool pretty{};
     size_t indentLevel{};
 
-    constexpr auto parse(std::format_parse_context& ctx) {
-        auto it = ctx.begin();
-        if (it != ctx.end()) {
+    template<class FormatContext>
+    constexpr auto parse(FormatContext& ctx) {
+        auto it{ ctx.begin() };
+
+        if (it != ctx.end() && *it != '}') {
             ++it;
             pretty = true;
             auto [_, err]{ std::from_chars(

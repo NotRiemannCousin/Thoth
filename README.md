@@ -50,7 +50,7 @@ int main() {
 
     static auto constexpr s_printNames = [](auto&& names) {
         std::println("- Members:");
-        for (string&& name : names)
+        for (std::string&& name : names)
             std::println("{}", name);
 
         return std::monostate{};

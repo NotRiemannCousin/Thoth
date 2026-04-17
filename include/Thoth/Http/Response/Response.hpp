@@ -28,18 +28,24 @@ namespace Thoth::Http {
 
         VersionEnum version{};
         StatusCodeEnum status{};
-        string statusMessage{};
+        std::string statusMessage{};
         ResponseHeaders headers{};
         Body body;
 
         friend struct Client; // who construct it
 
         template<class = void>
-            requires std::same_as<Body, string>
+            requires std::same_as<Body, std::string>
         [[nodiscard]] std::expected<NJson::Json, RequestError> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;
+
+
+        static std::expected<Response, RequestError> EnsureSuccess(Response&& response);
+
+        // template<>
+        // static std::expected<Response, Response> SplitResult();
 
         //! @brief Monad friendly move of the body, discarding the rest of the response.
         //! Recommended check for Successful() before.
@@ -47,7 +53,7 @@ namespace Thoth::Http {
     private:
 
         Response(VersionEnum version, StatusCodeEnum status,
-                string&& statusMessage, Headers&& headers, Body&& body);
+                std::string&& statusMessage, Headers&& headers, Body&& body);
 
         Response(ResponseHead&& head, Body&& body);
     };
@@ -55,14 +61,14 @@ namespace Thoth::Http {
     using GetResponse  = Response<>;
     using PostResponse = Response<PostMethod>;
 
-    using GetBinResponse  = Response<GetMethod, vector<std::byte>>;
-    using PostBinResponse = Response<PostMethod, vector<std::byte>>;
+    using GetBinResponse  = Response<GetMethod, std::vector<std::byte>>;
+    using PostBinResponse = Response<PostMethod, std::vector<std::byte>>;
 
     using GetFileResponse  = Response<GetMethod, Dsa::TextFileOutputRange>;
     using PostFileResponse = Response<PostMethod, Dsa::TextFileOutputRange>;
 
-    using GetFileBinResponse  = Response<GetMethod, vector<std::byte>>;
-    using PostFileBinResponse = Response<PostMethod, vector<std::byte>>;
+    using GetFileBinResponse  = Response<GetMethod, std::vector<std::byte>>;
+    using PostFileBinResponse = Response<PostMethod, std::vector<std::byte>>;
 }
 
 

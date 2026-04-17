@@ -1,6 +1,6 @@
 #pragma once
 #include <Thoth/Http/Response/StatusCodeEnum.hpp>
-#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/NHeaders/Headers.hpp>
 
 #include <string_view>
@@ -16,8 +16,8 @@ namespace Thoth::Http {
     //! the headers, so I decided to leave it more generic so a class that satisfies MethodConcept have all the
     //! info available to do it validation.
     template<class T>
-    concept MethodConcept = requires(T t, string_view body, Url url, Headers headers, StatusCodeEnum statusCode) {
-        requires requires { { T::MethodName() } -> std::same_as<string_view>; };
+    concept MethodConcept = requires(T t, std::string_view body, Url url, Headers headers, StatusCodeEnum statusCode) {
+        requires requires { { T::MethodName() } -> std::same_as<std::string_view>; };
 
         { T::IsSafe()       } -> std::same_as<bool>;
         { T::IsIdempotent() } -> std::same_as<bool>;

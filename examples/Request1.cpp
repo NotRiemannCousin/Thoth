@@ -38,7 +38,7 @@ int main() {
 
     static constexpr auto s_printNames = [](auto&& names) {
         std::println("- Members:");
-        for (string&& name : names)
+        for (std::string&& name : names)
             std::println("{}", name);
 
         return std::monostate{};
@@ -54,10 +54,12 @@ int main() {
     };
 
 
-    GetMembers(4001234)
-            .transform(std::views::transform(s_getName))
-            .transform(s_printNames)
-            .transform_error(s_errorHandler);
+    auto _{
+        GetMembers(4001234)
+                .transform(std::views::transform(s_getName))
+                .transform(s_printNames)
+                .transform_error(s_errorHandler)
+    };
 
     return 0;
 }

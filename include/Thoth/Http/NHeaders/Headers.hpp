@@ -6,7 +6,7 @@
 #include <vector>
 #include <ranges>
 
-#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/NHeaders/_base.hpp>
 
 #include <Thoth/Http/NHeaders/Headers/_pch.hpp>
@@ -24,6 +24,8 @@ namespace Thoth::Http {
 
     enum class VersionEnum : uint8_t;
 
+    struct RequestHeaders;
+    struct ResponseHeaders;
 
     //! @brief This class stores the headers from HTTP.
     struct Headers {
@@ -225,10 +227,12 @@ namespace Thoth::Http {
 
         //! @return True if both headers match.
         bool operator==(const Headers& other) const;
-    private:
+    protected:
         MapType _headers;
 
         friend struct std::formatter<Headers>;
+        friend struct std::formatter<RequestHeaders>;
+        friend struct std::formatter<ResponseHeaders>;
     };
 }
 

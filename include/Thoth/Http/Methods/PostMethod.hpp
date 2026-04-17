@@ -7,17 +7,17 @@ namespace Thoth::Http {
         static constexpr bool IsSafe()       { return false; }
         static constexpr bool IsIdempotent() { return false; }
 
-        static WebResultOper ValidateRequest(string_view body, const Url& url, const Headers& headers) {
+        static WebResultOper ValidateRequest(std::string_view body, const Url& url, const Headers& headers) {
             return {};
         }
 
-        static WebResultOper ValidateResponse(StatusCodeEnum statusCode, string_view body, const Url& url, const Headers& headers) {
-            if ((statusCode == StatusCodeEnum::NO_CONTENT || statusCode == StatusCodeEnum::NOT_MODIFIED) && !body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+        static WebResultOper ValidateResponse(StatusCodeEnum statusCode, std::string_view body, const Url& url, const Headers& headers) {
+            if ((statusCode == StatusCodeEnum::NoContent || statusCode == StatusCodeEnum::NotModified) && !body.empty())
+                return std::unexpected{ StatusCodeEnum::BadGateway };
 
 
-            if (statusCode == StatusCodeEnum::CREATED && !headers.Exists("Location"))
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+            if (statusCode == StatusCodeEnum::Created && !headers.Exists("Location"))
+                return std::unexpected{ StatusCodeEnum::BadGateway };
 
             return {};
         }

@@ -8,14 +8,14 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::TransferEncodingEnu
         return str.empty();
     }
 
-    std::optional<TransferEncodingEnum> Scan(string_view input) {
+    std::optional<TransferEncodingEnum> Scan(std::string_view input) {
         String::Trim(input);
         const auto value{ input | std::views::transform(tolower) };
 
-        if (std::ranges::equal(value, string_view{ "chunked"  })) return TransferEncodingEnum::Chunked;
-        if (std::ranges::equal(value, string_view{ "compress" })) return TransferEncodingEnum::Compress;
-        if (std::ranges::equal(value, string_view{ "deflate"  })) return TransferEncodingEnum::Deflate;
-        if (std::ranges::equal(value, string_view{ "gzip"     })) return TransferEncodingEnum::Gzip;
+        if (std::ranges::equal(value, std::string_view{ "chunked"  })) return TransferEncodingEnum::Chunked;
+        if (std::ranges::equal(value, std::string_view{ "compress" })) return TransferEncodingEnum::Compress;
+        if (std::ranges::equal(value, std::string_view{ "deflate"  })) return TransferEncodingEnum::Deflate;
+        if (std::ranges::equal(value, std::string_view{ "gzip"     })) return TransferEncodingEnum::Gzip;
 
         return std::nullopt;
     }

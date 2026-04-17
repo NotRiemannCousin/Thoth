@@ -19,18 +19,18 @@ namespace Thoth::Http {
         return c;
     }
 
-    bool I_InsensitiveCmp(const string_view elem1, const string_view elem2) {
+    bool I_InsensitiveCmp(const std::string_view elem1, const std::string_view elem2) {
         return rg::equal(elem1, elem2,
                 [](char a, char b) { return I_ToLower(a) == I_ToLower(b); }
             );
     }
 
-    bool I_UseSemicolon(string_view key) {
-        return I_InsensitiveCmp(key, string_view{"cookie"});
+    bool I_UseSemicolon(std::string_view key) {
+        return I_InsensitiveCmp(key, std::string_view{"cookie"});
     }
 
-    bool I_IsSingleValue(string_view key) {
-        constexpr string_view values[] {
+    bool I_IsSingleValue(std::string_view key) {
+        constexpr std::string_view values[] {
             // Date/Time Headers
             "date",
             "expires",
@@ -58,8 +58,8 @@ namespace Thoth::Http {
 
         return rg::any_of(values, std::bind_front(I_InsensitiveCmp, key));
     }
-    bool I_CanMerge(string_view key) {
-        constexpr string_view values[] {
+    bool I_CanMerge(std::string_view key) {
+        constexpr std::string_view values[] {
             "set-cookie",
             "www-authenticate",
             "proxy-authenticate"
@@ -71,10 +71,10 @@ namespace Thoth::Http {
 
     template<rg::input_range R, class T>
     [[nodiscard]] constexpr auto I_FindInsensitiveKey(R&& r, const T& key) {
-        const string_view keySv{ key };
+        const std::string_view keySv{ key };
 
         const auto s_pred = [&](auto&& element) -> bool {
-            const string_view elemKeySv{ element.first };
+            const std::string_view elemKeySv{ element.first };
 
             return I_InsensitiveCmp(elemKeySv, keySv);
         };
@@ -84,12 +84,12 @@ namespace Thoth::Http {
 
     template<rg::input_range R, class T>
     [[nodiscard]] constexpr auto I_FindInsensitiveKeyWithPair(R&& r, const T& p) {
-        const string_view keySv{ p.first };
-        const string_view valueSv{ p.second };
+        const std::string_view keySv{ p.first };
+        const std::string_view valueSv{ p.second };
 
         const auto s_pred = [&](auto&& element) -> bool {
-            const string_view elemKeySv{ element.first };
-            const string_view elemValueSv{ element.second };
+            const std::string_view elemKeySv{ element.first };
+            const std::string_view elemValueSv{ element.second };
 
             return I_InsensitiveCmp(keySv, elemKeySv) && rg::equal(valueSv, elemValueSv);
         };
@@ -147,7 +147,7 @@ namespace Thoth::Http {
             return;
         }
 
-        string_view sep{ I_UseSemicolon(p.first) ? "; " : ", " };
+        std::string_view sep{ I_UseSemicolon(p.first) ? "; " : ", " };
 
         if (I_CanMerge(p.first) )
             if (const auto it{ I_FindInsensitiveKey(_headers, p.first) }; it != _headers.end()) {

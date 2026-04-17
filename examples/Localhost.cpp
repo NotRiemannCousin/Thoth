@@ -11,8 +11,6 @@ int main() {
 
     if (body)
         std::print("{}", *body);
-    else {
-
+    else
         std::print("{}\n\n{}", body.error(), WSAGetLastError());
-    }
 }

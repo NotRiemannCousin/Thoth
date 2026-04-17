@@ -173,7 +173,7 @@ void UrlTests() {
 void HeadersTests() {
     TestBattery("Headers");
 
-    string refString;
+    std::string refString;
     auto ref{ std::ref(refString) };
 
     Headers headers1{
@@ -404,12 +404,12 @@ void HeadersTests() {
 
     std::string_view leadingSpaceKey{ "   content-type: application/json\r\nauthorization: Bearer token123\r\n" };
     auto parseLeadingSpace{ Headers::Parse(leadingSpaceKey) };
-    Test("Parse: space around key 1", !parseLeadingSpace.has_value() && parseLeadingSpace.error() == StatusCodeEnum::BAD_REQUEST);
+    Test("Parse: space around key 1", !parseLeadingSpace.has_value() && parseLeadingSpace.error() == StatusCodeEnum::BadRequest);
 
 
     std::string_view spaceAroundColon{ "set-cookie    :    session=abc123\r\ncontent-type: text/html\r\n" };
     auto parseSpaceColon{ Headers::Parse(spaceAroundColon) };
-    Test("Parse: space around key 2", parseSpaceColon.error_or({}) == StatusCodeEnum::BAD_REQUEST);
+    Test("Parse: space around key 2", parseSpaceColon.error_or({}) == StatusCodeEnum::BadRequest);
 
 
     std::string_view whitespaceValue{ "content-type:          application/json       \r\nauthorization: Bearer token123\r\n" };
@@ -419,7 +419,7 @@ void HeadersTests() {
 
     std::string_view mixedWhitespace{ "  host  :   example.com   \r\nuser-agent: TestClient/1.0\r\n" };
     auto parseMixedWhitespace{ Headers::Parse(mixedWhitespace) };
-    Test("Parse: space around key 3", parseMixedWhitespace.error_or({}) == StatusCodeEnum::BAD_REQUEST);
+    Test("Parse: space around key 3", parseMixedWhitespace.error_or({}) == StatusCodeEnum::BadRequest);
 
 
     std::string_view tabWhitespace{ "Content-Type:\tapplication/json\r\nauthorization: Bearer token123\r\n" };

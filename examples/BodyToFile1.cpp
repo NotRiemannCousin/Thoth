@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(string_view url) {
+std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(std::string_view url) {
     namespace NHttp = Thoth::Http;
     using FileT = Thoth::Dsa::BinFileOutputRange;
 

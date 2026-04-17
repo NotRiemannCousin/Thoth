@@ -5,10 +5,10 @@ namespace Thoth::Http {
     template<MethodConcept Method, RequestBodyConcept Body>
     template<class T>
         requires Hermes::ByteLike<std::ranges::range_value_t<T>>
-                || (std::same_as<Body, std::string> && requires (T t) { { std::format("{}", t) }; })
-    std::expected<Request<Method, Body>, RequestError> Request<Method, Body>::FromUrl(string_view url, T&& body, Headers headers) {
+                || (std::same_as<Body, std::string> && std::formattable<T, char>)
+    std::expected<Request<Method, Body>, RequestError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
         if constexpr (Hermes::ByteLike<std::ranges::range_value_t<T>>)
-            return Url::FromUrl(url)
+            return Url::FromUrl(std::string{ url })
                     .transform([&](const auto& httpUrl) {
                         return Request{
                             .url     = std::move(httpUrl),
@@ -17,7 +17,7 @@ namespace Thoth::Http {
                         };
                     });
         else
-            return Url::FromUrl(url)
+            return Url::FromUrl(std::string{ url })
                     .transform([&](const auto& httpUrl) {
                         return Request{
                             .url     = std::move(httpUrl),

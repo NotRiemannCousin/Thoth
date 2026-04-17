@@ -25,8 +25,8 @@ struct std::formatter<Thoth::Http::RequestError> {
         constexpr auto s_keyToStr = [](const Thoth::NJson::Key& key) {
             return std::visit(
                 Thoth::Utils::Overloaded{
-                    [](string objKey) { return objKey; },
-                    [](int arrKey) { return to_string(arrKey); }
+                    [](std::string objKey) { return objKey; },
+                    [](int arrKey) { return std::to_string(arrKey); }
                 }, key
             );
         };
@@ -40,7 +40,7 @@ struct std::formatter<Thoth::Http::RequestError> {
                     std::format_to(ctx.out(), "Can't find object with the '{}' key", s_keyToStr(e.key));
                 },
                 [&](const JsonFindError& e) {
-                    string sla{ e.currentPath
+                    std::string sla{ e.currentPath
                             | std::views::transform(s_keyToStr)
                             | std::views::join_with(string_view{ ", " })
                             | ranges::to<string>() };
@@ -78,7 +78,7 @@ struct std::formatter<Thoth::Http::RequestError> {
                     //     "InvalidPort: make sure that the port is a integer between 0 a 65535"
                     // };
                     // std::format_to(ctx.out(), "{}", desc[to_underlying(e)]);
-                    std::format_to(ctx.out(), "ah, deu algo aí, dps mexo na Hermes: {}", to_underlying(e));
+                    std::format_to(ctx.out(), "{:v}", e);
                 },
                 [&](const RequestBuildErrorEnum e) {
                     constexpr const char* desc[]{

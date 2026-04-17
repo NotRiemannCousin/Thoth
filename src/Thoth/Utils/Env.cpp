@@ -8,14 +8,14 @@
 using namespace std;
 
 struct ValueBehaviour {
-    string_view pattern{ " " };
+    std::string_view pattern{ " " };
     bool isMultiline{};
     bool useInterpolation{ true };
 };
 
 
-static std::optional<string> S_Interpolate(const string& str) {
-    constexpr auto s_execCommand = [](const std::string& command) -> string {
+static std::optional<std::string> S_Interpolate(const std::string& str) {
+    constexpr auto s_execCommand = [](const std::string& command) -> std::string {
 #ifdef _WIN32
         const std::string cmd{ std::format(R"(powershell -NoProfile -Command "{}" 2>&1)", command) };
         const std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd.c_str(), "r"), _pclose);
@@ -43,7 +43,7 @@ static std::optional<string> S_Interpolate(const string& str) {
     };
 
 
-    string retBuffer, cmdBuffer;
+    std::string retBuffer, cmdBuffer;
     retBuffer.reserve(str.size());
 
     size_t lastIdx{}, idx{};
@@ -53,7 +53,7 @@ static std::optional<string> S_Interpolate(const string& str) {
         if(++idx == str.size())
             return false;
 
-        string& buffer{ bracketLevel == 0 ? retBuffer : cmdBuffer };
+        std::string& buffer{ bracketLevel == 0 ? retBuffer : cmdBuffer };
 
         switch(str[idx]) {
             case '\\': buffer += '\\'; break;
@@ -85,7 +85,7 @@ static std::optional<string> S_Interpolate(const string& str) {
 
         idx = str.find_first_of(R"(\{})", idx);
 
-        if (idx == string::npos)
+        if (idx == std::string::npos)
             break;
 
         if (bracketLevel == 0)
@@ -121,9 +121,9 @@ struct Equal {
     bool operator()(std::string_view   a, const std::string& b) const { return a == b; }
     bool operator()(std::string_view   a, std::string_view   b) const { return a == b; }
 };
-// Ok this is stupid, unordered_map<string, string>'s find should work with string_view.
+// Ok this is stupid, unordered_map<std::string, std::string>'s find should work with std::string_view.
 
-using Map = unordered_map<string, string, Hash, Equal>;
+using Map = unordered_map<std::string, std::string, Hash, Equal>;
 
 static optional<Map> S_GetMap() {
     Map vars;
@@ -132,8 +132,8 @@ static optional<Map> S_GetMap() {
     if (!file)
         return vars;
 
-    string key, val;
-    string line;
+    std::string key, val;
+    std::string line;
 
     line.reserve(256);
 
@@ -169,7 +169,7 @@ static optional<Map> S_GetMap() {
         } else {
             do {
                 idx = line.find(behaviour.pattern, idx);
-            } while (idx != 0 && idx != string::npos && line[idx - 1] == '\\');
+            } while (idx != 0 && idx != std::string::npos && line[idx - 1] == '\\');
 
 
             if (idx == string::npos)

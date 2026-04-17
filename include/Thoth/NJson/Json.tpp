@@ -229,11 +229,13 @@ namespace Thoth::NJson {
     namespace detail {
         using OutIt =  std::format_context::iterator;
 
+        template<class OutIt>
         void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
             size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
 
 
-        inline void EscapeJsonString(const std::string_view& str, const OutIt& it, std::string& tempOutBuffer) {
+        template<class OutIt>
+        void EscapeJsonString(const std::string_view& str, const OutIt& it, std::string& tempOutBuffer) {
             tempOutBuffer = '"';
             tempOutBuffer.reserve(str.size());
 
@@ -258,7 +260,8 @@ namespace Thoth::NJson {
             std::format_to(it, "{}", tempOutBuffer);
         }
 
-        inline void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent,
+        template<class OutIt>
+        void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent,
             size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
 
             std::format_to(it, "{{");
@@ -295,7 +298,8 @@ namespace Thoth::NJson {
             std::format_to(it, "}}");
         }
 
-        inline void FormatJsonArr(const Array& val, bool pretty, const std::string& indent,
+        template<class OutIt>
+        void FormatJsonArr(const Array& val, bool pretty, const std::string& indent,
                 size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
             std::format_to(it, "[");
             bool first = true;
@@ -331,7 +335,8 @@ namespace Thoth::NJson {
             std::format_to(it, "]");
         }
 
-        inline void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
+        template<class OutIt>
+        void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
             const size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
             std::visit(Utils::Overloaded{
                 [&](const String& str){
@@ -362,7 +367,7 @@ struct std::formatter<Thoth::NJson::Json> {
 
     constexpr auto parse(std::format_parse_context& ctx) {
         auto it = ctx.begin();
-        if (it != ctx.end()) {
+        if (it != ctx.end() && *it != '}') {
             ++it;
             pretty = true;
             auto [_, err]{ std::from_chars(

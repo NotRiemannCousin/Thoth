@@ -65,22 +65,22 @@ namespace Thoth::Http {
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, BodyConcept Body>
             requires std::default_initializable<Body>
-        static expected<Response<Method, Body>, RequestError> Send(Request<Method, Body> request);
+        static std::expected<Response<Method, Body>, RequestError> Send(Request<Method, Body> request);
 
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, BodyConcept Body, class F>
             requires ResponseBodyFactoryConcept<F, Body>
-        static expected<Response<Method, Body>, RequestError> SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory);
+        static std::expected<Response<Method, Body>, RequestError> SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory);
 
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody>
             requires std::default_initializable<ResponseBody>
-        static expected<Response<Method, ResponseBody>, RequestError> SendAndRecvAs(Request<Method, RequestBody> request);
+        static std::expected<Response<Method, ResponseBody>, RequestError> SendAndRecvAs(Request<Method, RequestBody> request);
 
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static expected<Response<Method, ResponseBody>, RequestError> SendAndRecvAsInto(Request<Method, RequestBody> request, F&& bodyFactory);
+        static std::expected<Response<Method, ResponseBody>, RequestError> SendAndRecvAsInto(Request<Method, RequestBody> request, F&& bodyFactory);
 
         //! @hof{Send}
         static constexpr auto H_Send();
@@ -101,17 +101,17 @@ namespace Thoth::Http {
     private:
         // I will do it when... Idk
         // template<MethodConcept Method, ResponseBodyConcept ResponseBody>
-        // static expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> _1RawSend(Request<Method> request);
+        // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> _1RawSend(Request<Method> request);
 
         template<MethodConcept Method, ResponseBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> P_ParseHttp11(SocketPtr infoPtr, F&& bodyFactory);
+        static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> P_ParseHttp11(SocketPtr infoPtr, F&& bodyFactory);
 
         // template<MethodConcept Method, ResponseBodyConcept ResponseBody>
-        // static expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> request();
+        // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, RequestError> request();
         //
         // template<MethodConcept Method>
-        // static expected<Response<Method>, RequestError> _3DlsSend(Request<Method> request);
+        // static std::expected<Response<Method>, RequestError> _3DlsSend(Request<Method> request);
         // friend ClientJanitor;
     };
 }

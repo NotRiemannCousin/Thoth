@@ -6,7 +6,7 @@
 namespace Thoth::Dsa {
     struct FileBuilderParams {
         std::filesystem::path path;
-        std::optional<vector<Http::NHeaders::MimeType>> acceptedTypes{};
+        std::optional<std::vector<Http::NHeaders::MimeType>> acceptedTypes{};
         int maxSize{ INT_MAX };
         int mode{};
     };

@@ -1,5 +1,5 @@
 #include <Thoth/Http/Request/QueryParams.hpp>
-#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/Url/Url.hpp>
 
 #include <algorithm>
 #include <ranges>
@@ -22,8 +22,8 @@ namespace Thoth::Http {
         static constexpr auto s_splitDelimiter = [](char c) { return c != '='; };
         static constexpr auto s_splitBetween = [](const auto& str) {
             return std::pair{
-                str | vs::take_while(s_splitDelimiter) | std::ranges::to<string>(),
-                str | vs::drop_while(s_splitDelimiter) | vs::drop(1) | std::ranges::to<string>()
+                str | vs::take_while(s_splitDelimiter) | std::ranges::to<std::string>(),
+                str | vs::drop_while(s_splitDelimiter) | vs::drop(1) | std::ranges::to<std::string>()
             };
         };
 

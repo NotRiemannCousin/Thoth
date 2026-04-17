@@ -39,7 +39,7 @@ namespace Thoth::Http {
         NHeaders::ValueProxy<false, std::string> Authorization();
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> Authorization() const;
 
-        using Url = string;
+        using Url = std::string;
 
         //! @brief Gets the Host header. Essential for HTTP/1.1 and SNI.
         NHeaders::ValueProxy<false, Url> Host();
@@ -54,8 +54,8 @@ namespace Thoth::Http {
         [[nodiscard]] NHeaders::ValueProxy<true, Url, std::monostate> Origin() const;
 
         //! @brief The value of the From header (email address of the user).
-        NHeaders::ValueProxy<false, string> From();
-        [[nodiscard]] NHeaders::ValueProxy<true, string> From() const;
+        NHeaders::ValueProxy<false, std::string> From();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::string> From() const;
 
         //! @brief The value of the Max-Forwards header for limiting proxy hops.
         NHeaders::ValueProxy<false, unsigned int> MaxForwards();
@@ -66,16 +66,16 @@ namespace Thoth::Http {
         //[[nodiscard]] void GetProtocol() const;
 
         //! @brief The value of the Proxy-Authorization header.
-        NHeaders::ValueProxy<false, string> ProxyAuthorization();
-        [[nodiscard]] NHeaders::ValueProxy<true, string> ProxyAuthorization() const;
+        NHeaders::ValueProxy<false, std::string> ProxyAuthorization();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::string> ProxyAuthorization() const;
 
         //! @brief The value of the Range header for partial content requests.
         NHeaders::ListProxy<false, NHeaders::Range> Range();
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Range> Range() const;
 
         // //! @brief The value of the Cache-Control header for the request.
-        // NHeaders::ValueProxy<false, string> CacheControl();
-        // [[nodiscard]] NHeaders::ValueProxy<true, string> CacheControl() const;
+        // NHeaders::ValueProxy<false, std::string> CacheControl();
+        // [[nodiscard]] NHeaders::ValueProxy<true, std::string> CacheControl() const;
 
         //! @brief The value of the If-Modified-Since header.
         NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> IfModifiedSince();
@@ -86,8 +86,8 @@ namespace Thoth::Http {
         [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> IfUnmodifiedSince() const;
 
         //! @brief The value of the If-Range header.
-        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point, string> IfRange();
-        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point, string> IfRange() const;
+        NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point, std::string> IfRange();
+        [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point, std::string> IfRange() const;
 
         //! @brief The value of the If-Match header.
         NHeaders::ListProxy<false, NHeaders::EntityTag> IfMatch();
@@ -100,8 +100,8 @@ namespace Thoth::Http {
 
 
         //! @brief The value of the Accept-Language header.
-        NHeaders::ListProxy<false, string> AcceptLanguage();
-        [[nodiscard]] NHeaders::ListProxy<true, string> AcceptLanguage() const;
+        NHeaders::ListProxy<false, std::string> AcceptLanguage();
+        [[nodiscard]] NHeaders::ListProxy<true, std::string> AcceptLanguage() const;
 
         //! @brief The value of the TE (Transfer Encoding) header.
         NHeaders::ListProxy<false, NHeaders::TeEnum> Te();
@@ -116,38 +116,38 @@ namespace Thoth::Http {
 //         //! @{
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ListProxy<true, string>NHeaders::V<alueProxy<, string> AccessControlAllowCredentials();
-//         [[nodiscard]] NHeaders::ListProxy<false, string>NHeaders::ValueProxytruefalse, string> AccessControlAllowCredentials() const;
+//         NHeaders::ListProxy<true, std::string>NHeaders::V<alueProxy<, std::string> AccessControlAllowCredentials();
+//         [[nodiscard]] NHeaders::ListProxy<false, std::string>NHeaders::ValueProxytruefalse, std::string> AccessControlAllowCredentials() const;
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlAllowHeaders();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowHeaders() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlAllowHeaders();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlAllowHeaders() const;
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlAllowMethods();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowMethods() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlAllowMethods();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlAllowMethods() const;
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlAllowOrigin();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlAllowOrigin() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlAllowOrigin();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlAllowOrigin() const;
 //
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlExposeAge();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlExposeAge() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlExposeAge();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlExposeAge() const;
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlExposeMethods();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlExposeMethods() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlExposeMethods();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlExposeMethods() const;
 //
 //
 //         //! @brief The value of the Access-Control-Request-Method for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlRequestMethod();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlRequestMethod() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlRequestMethod();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlRequestMethod() const;
 //
 //         //! @brief The value of the Access-Control-Request-Headers for preflight requests.
-//         NHeaders::ValueProxy<false, string> AccessControlRequestHeaders();
-//         [[nodiscard]] NHeaders::ValueProxy<true, string> AccessControlRequestHeaders() const;
+//         NHeaders::ValueProxy<false, std::string> AccessControlRequestHeaders();
+//         [[nodiscard]] NHeaders::ValueProxy<true, std::string> AccessControlRequestHeaders() const;
 //         //! @}
 // #pragma endregion
     };

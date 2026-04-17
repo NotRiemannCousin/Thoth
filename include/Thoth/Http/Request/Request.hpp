@@ -1,7 +1,7 @@
 #pragma once
 #include <Hermes/Socket/ClientSocket.hpp>
 
-#include <Thoth/Http/Request/Url.hpp>
+#include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/Methods/GetMethod.hpp>
 #include <Thoth/Http/Methods/PostMethod.hpp>
 
@@ -47,18 +47,18 @@ namespace Thoth::Http {
 		RequestHeaders headers{ Headers::DefaultHeaders() };
 
 	    //! @brief Try parse to a URL before construct the Request.
-		template<class T = string_view>
+		template<class T = std::string_view>
 			requires Hermes::ByteLike<std::ranges::range_value_t<T>>
-	                || (std::same_as<Body, std::string> && requires (T t) { { std::format("{}", t) }; })
+	                || (std::same_as<Body, std::string> && std::formattable<T, char>)
 		static std::expected<Request, RequestError> FromUrl(
-			string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
+			std::string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
 	};
 
 	using GetRequest  = Request<>;
 	using PostRequest = Request<PostMethod>;
 
-    using GetBinRequest  = Request<GetMethod, vector<std::byte>>;
-    using PostBinRequest = Request<PostMethod, vector<std::byte>>;
+    using GetBinRequest  = Request<GetMethod, std::vector<std::byte>>;
+    using PostBinRequest = Request<PostMethod, std::vector<std::byte>>;
 }
 
 

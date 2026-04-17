@@ -10,18 +10,18 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::AcceptEncodingEnum>
         return str.empty();
     }
 
-    std::optional<AcceptEncodingEnum> Scan(string_view input) {
+    std::optional<AcceptEncodingEnum> Scan(std::string_view input) {
         String::Trim(input);
         const auto value{ input | std::views::transform(tolower) };
 
-        if (std::ranges::equal(value, string_view{ "gzip"     })) return AcceptEncodingEnum::Gzip;
-        if (std::ranges::equal(value, string_view{ "compress" })) return AcceptEncodingEnum::Compress;
-        if (std::ranges::equal(value, string_view{ "deflate"  })) return AcceptEncodingEnum::Deflate;
-        if (std::ranges::equal(value, string_view{ "br"       })) return AcceptEncodingEnum::Br;
-        if (std::ranges::equal(value, string_view{ "zstd"     })) return AcceptEncodingEnum::Zstd;
-        if (std::ranges::equal(value, string_view{ "dcb"      })) return AcceptEncodingEnum::Dcb;
-        if (std::ranges::equal(value, string_view{ "dcz"      })) return AcceptEncodingEnum::Dcz;
-        if (std::ranges::equal(value, string_view{ "*"        })) return AcceptEncodingEnum::Identity;
+        if (std::ranges::equal(value, std::string_view{ "gzip"     })) return AcceptEncodingEnum::Gzip;
+        if (std::ranges::equal(value, std::string_view{ "compress" })) return AcceptEncodingEnum::Compress;
+        if (std::ranges::equal(value, std::string_view{ "deflate"  })) return AcceptEncodingEnum::Deflate;
+        if (std::ranges::equal(value, std::string_view{ "br"       })) return AcceptEncodingEnum::Br;
+        if (std::ranges::equal(value, std::string_view{ "zstd"     })) return AcceptEncodingEnum::Zstd;
+        if (std::ranges::equal(value, std::string_view{ "dcb"      })) return AcceptEncodingEnum::Dcb;
+        if (std::ranges::equal(value, std::string_view{ "dcz"      })) return AcceptEncodingEnum::Dcz;
+        if (std::ranges::equal(value, std::string_view{ "*"        })) return AcceptEncodingEnum::Identity;
 
         return std::nullopt;
     }

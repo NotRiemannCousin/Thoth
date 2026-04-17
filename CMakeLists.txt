@@ -51,7 +51,7 @@ add_library(Thoth SHARED
 
         src/Thoth/Http/NHeaders/Headers.cpp
 
-        src/Thoth/Http/Request/Url.cpp
+        src/Thoth/Http/Url/Url.cpp
         src/Thoth/Http/Request/QueryParams.cpp
 
         src/Thoth/Http/HttpMethods/GetHttpMethod.cpp

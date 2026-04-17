@@ -10,20 +10,20 @@
 namespace Thoth::Http {
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
-    expected<Response<Method, Body>, RequestError> Client::Send(Request<Method, Body> request) {
+    std::expected<Response<Method, Body>, RequestError> Client::Send(Request<Method, Body> request) {
         return SendAndRecvAsInto<Method, Body, Body>(request, [](const ResponseHead&) -> std::expected<Body, RequestError> { return {}; });
     }
 
     template<MethodConcept Method, BodyConcept Body, class F>
         requires ResponseBodyFactoryConcept<F, Body>
-    expected<Response<Method, Body>, RequestError> Client::SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory) {
+    std::expected<Response<Method, Body>, RequestError> Client::SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory) {
         return SendAndRecvAsInto<Method, Body, Body>(request, std::forward<F>(bodyFactory));
     }
 
 
     template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody>
         requires std::default_initializable<ResponseBody>
-    expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAs(Request<Method, RequestBody> request) {
+    std::expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAs(Request<Method, RequestBody> request) {
         return SendAndRecvAsInto<Method, RequestBodyConcept, ResponseBody>(
             request, [](const ResponseHead&) -> std::expected<ResponseBody, RequestError> { return {}; });
     }
@@ -31,11 +31,34 @@ namespace Thoth::Http {
 
     template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAsInto(
+    std::expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAsInto(
         Request<Method, RequestBody> request, F&& bodyFactory) {
+        // change it somewhere in the future
+        if (const auto scheme{ request.url.GetScheme() }; scheme != "http" && scheme != "https")
+            return std::unexpected{ RequestError{ GenericError{ "Invalid scheme" } } };
+
+        const auto auth{ request.url.GetAuthority() };
+        if (!auth) return std::unexpected{ RequestError{ GenericError{ "No authority provided" } } };
+
+        const auto s_getDefaultPort = [&]() {
+            return GetDefaultPort(request.url.GetScheme());
+        };
+        const auto port{ auth->port.or_else(s_getDefaultPort) };
+        if (!port) return std::unexpected{ RequestError{ GenericError{ "No port provided" } } };
+
+        const std::string hostname{
+            std::visit(Hermes::Utils::Overloaded{
+                [](Hermes::IpAddress addr) { return std::format("{}", addr); },
+                [](std::string_view addr) { return std::string{ addr }; },
+            }, auth->host)
+        };
+
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
         const auto s_establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
+
+#pragma region create socket
+
             const auto s_getSocketFromPool = [&]() -> std::optional<SocketPtr> {
                 std::lock_guard lock{ janitor.poolMutex };
 
@@ -51,7 +74,7 @@ namespace Thoth::Http {
             };
 
             const auto s_createNewSocket = [&]() -> std::optional<SocketPtr> {
-                auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ endpoint, request.url.host }) };
+                auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ endpoint, hostname }) };
                 if (!newSocketResult)
                     return std::nullopt;
 
@@ -79,24 +102,28 @@ namespace Thoth::Http {
                 return std::move(val.second);
             };
 
+#pragma endregion
+
             auto infoPtr{ s_getSocketFromPool().or_else(s_createNewSocket) };
+
+#pragma region check and send
 
             const auto s_isSocketValid = [&]() -> Hermes::ConnectionResultOper {
                 if (!infoPtr)
-                    return std::unexpected{ ConnectionErrorEnum::CONNECTION_FAILED };
+                    return std::unexpected{ ConnectionErrorEnum::ConnectionFailed };
                 return std::monostate{};
             };
 
             const auto s_sendRequest = [&](std::monostate) -> Hermes::ConnectionResult<SocketPtr> {
-                request.headers.Add("host", request.url.host);
+                request.headers.Add("host", hostname);
 
                 if constexpr (SizedRequestBodyConcept<RequestBody>)
                     request.headers.ContentLength().Set(std::ranges::size(request.body));
                 else
                     request.headers.TransferEncoding().Add(NHeaders::TransferEncodingEnum::Chunked);
 
-                const string_view path{ request.url.path.empty() ? string_view{ "/" } : request.url.path };
-                const auto& query { request.url.query };
+                const std::string_view path{ request.url.GetPathOrSep() };
+                const auto& query { request.url.GetQuery() };
                 const auto versionStr{ VersionToString(request.version) };
 
                 // TODO: implement "transfer-encoding: chunked" properly.
@@ -121,6 +148,7 @@ namespace Thoth::Http {
                 return RequestError{ err };
             };
 
+#pragma endregion
 
             return s_isSocketValid()
                     .and_then(s_sendRequest)
@@ -130,13 +158,13 @@ namespace Thoth::Http {
         };
 
         const auto s_toRequestError = [](const auto err) {
-            return RequestError{ err     };
+            return RequestError{ err };
         };
 
 
-        return Hermes::IpEndpoint::TryResolve(request.url.host, to_string(request.url.port))
-                    .transform_error(s_toRequestError)
-                    .and_then(s_establishConnection);
+        return Hermes::IpEndpoint::TryResolve(hostname, std::string{ request.url.GetScheme() })
+                .transform_error(s_toRequestError)
+                .and_then(s_establishConnection);
     }
 
     constexpr auto Client::H_Send() {
@@ -171,7 +199,7 @@ namespace Thoth::Http {
 
     template<MethodConcept Method, ResponseBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, RequestError> Client::P_ParseHttp11(
+    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, RequestError> Client::P_ParseHttp11(
         SocketPtr infoPtr, F&& bodyFactory) {
         namespace rg = std::ranges;
         namespace vs = std::views;
@@ -181,9 +209,9 @@ namespace Thoth::Http {
 
         struct ParseHeadStage {
             ResponseHead data;
-            decltype(infoPtr->socket.RecvRange<char>()) stream;
+            decltype(infoPtr->socket.RecvLazyRange<char>()) stream;
             // I could receive based in ValueType, but it would be painful to parse the response head.
-            // HTTP/2 will use RecvRange<std::byte>().
+            // HTTP/2 will use RecvLazyRange<std::byte>().
         };
 
         struct ParseCompleteStage : ParseHeadStage {
@@ -200,10 +228,11 @@ namespace Thoth::Http {
 
 
         const auto s_createResponseStream = [&]() -> ParseHeadResult {
-            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvRange<char>() };
+            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvLazyRange<char>() };
         };
 
         const auto s_fillResponseLine = [&](ParseHeadStage&& info) -> ParseHeadResult {
+            auto err{ info.stream.Error() };
             if (!rg::starts_with(info.stream, "HTTP/1."sv))
                 return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
@@ -214,13 +243,13 @@ namespace Thoth::Http {
             }
             ++info.stream.begin();
 
-            const auto arr{ Hermes::Utils::CopyTo<array<char, 5>>(info.stream) };
+            const auto arr{ Hermes::Utils::CopyTo<std::array<char, 5>>(info.stream) };
 
             if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
                 return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
 
             info.data.status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
-            info.data.statusMessage = info.stream | Hermes::Utils::UntilMatch("\r\n"sv) | rg::to<string>();
+            info.data.statusMessage = info.stream | Hermes::Utils::UntilMatch("\r\n"sv) | rg::to<std::string>();
 
             return std::move(info);
         };
@@ -250,11 +279,11 @@ namespace Thoth::Http {
             using State1 = std::expected<std::variant<std::monostate, size_t>, NHeaders::HeaderErrorEnum>;
             using State2 = std::expected<std::variant<std::monostate, size_t>, RequestError>;
 
-            const auto s_extractChunked = [](vector<NHeaders::TransferEncodingEnum> values) -> State1 {
+            const auto s_extractChunked = [](std::vector<NHeaders::TransferEncodingEnum> values) -> State1 {
                 if (std::ranges::contains(values, NHeaders::TransferEncodingEnum::Chunked))
                     return { {std::monostate{} } };
 
-                return unexpected{ NHeaders::HeaderErrorEnum::NotFound };
+                return std::unexpected{ NHeaders::HeaderErrorEnum::NotFound };
             };
 
             const auto s_extractLengthIfNotChunked = [&](NHeaders::HeaderErrorEnum error) -> State2 {
@@ -284,7 +313,7 @@ namespace Thoth::Http {
                     if (info.data.version == VersionEnum::HTTP1_0)
                         return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
 
-                    string chunkLengthStr;
+                    std::string chunkLengthStr;
                     decltype(NHeaders::Scan<size_t>(chunkLengthStr)) chunkLength;
 
 

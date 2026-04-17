@@ -9,17 +9,17 @@ namespace Thoth::Http {
 
         static WebResultOper ValidateRequest(string_view body, const Url& url, const Headers& headers) {
             if (!body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
+                return std::unexpected{ StatusCodeEnum::BadRequest };
             return {};
         }
 
         static WebResultOper ValidateResponse(StatusCodeEnum statusCode, string_view body, const Url& url, const Headers& headers) {
-            if ((statusCode == StatusCodeEnum::NO_CONTENT || statusCode == StatusCodeEnum::NOT_MODIFIED) && !body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+            if ((statusCode == StatusCodeEnum::NoContent || statusCode == StatusCodeEnum::NotModified) && !body.empty())
+                return std::unexpected{ StatusCodeEnum::BadGateway };
 
 
-            if (statusCode == StatusCodeEnum::OK && !headers.Exists("Allow"))
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+            if (statusCode == StatusCodeEnum::Ok && !headers.Exists("Allow"))
+                return std::unexpected{ StatusCodeEnum::BadGateway };
 
             return {};
         }

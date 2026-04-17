@@ -7,15 +7,15 @@ namespace Thoth::Http {
         static constexpr bool IsSafe()       { return true; }
         static constexpr bool IsIdempotent() { return true; }
 
-        static WebResultOper ValidateRequest(string_view body, const Url&, const Headers&) {
+        static WebResultOper ValidateRequest(std::string_view body, const Url&, const Headers&) {
             if (!body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
+                return std::unexpected{ StatusCodeEnum::BadRequest };
             return {};
         }
 
-        static WebResultOper ValidateResponse(StatusCodeEnum, string_view body, const Url&, const Headers&) {
+        static WebResultOper ValidateResponse(StatusCodeEnum, std::string_view body, const Url&, const Headers&) {
             if (!body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+                return std::unexpected{ StatusCodeEnum::BadGateway };
             return {};
         }
     };

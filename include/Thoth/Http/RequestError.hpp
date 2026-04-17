@@ -42,6 +42,7 @@ namespace Thoth::Http {
         EmptyUrl,
         InvalidScheme,
         IllFormed,
+        HostIsRequired,
         InvalidPort
     };
 

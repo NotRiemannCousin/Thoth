@@ -4,7 +4,6 @@
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/Client.hpp>
-#include <Thoth/Utils/Functional.hpp>
 
 
 std::expected<std::monostate, Thoth::Http::RequestError> MakeRequest() {
@@ -25,13 +24,13 @@ std::expected<std::monostate, Thoth::Http::RequestError> MakeRequest() {
         "contents",
     };
 
-    static const array<NJson::Key, 4> albumNameKey{ "richItemRenderer","content", "playlistRenderer", "title" };
+    static const std::array<NJson::Key, 4> albumNameKey{ "richItemRenderer","content", "playlistRenderer", "title" };
 
 
 
 
-    constexpr auto s_extractJson = [](const string& body) {
-        constexpr string_view target{ "ytInitialData = " };
+    constexpr auto s_extractJson = [](const std::string& body) {
+        constexpr std::string_view target{ "ytInitialData = " };
         const auto jsonStart{ body.substr(body.find(target) + target.size()) };
 
         return Json::ParseText(jsonStart, true, false);

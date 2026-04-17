@@ -7,23 +7,23 @@ namespace Thoth::Http {
         static constexpr bool IsSafe()       { return true; }
         static constexpr bool IsIdempotent() { return true; }
 
-        static WebResultOper ValidateRequest(string_view body, const Url&, const Headers&) {
+        static WebResultOper ValidateRequest(std::string_view body, const Url&, const Headers&) {
             if (!body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
+                return std::unexpected{ StatusCodeEnum::BadRequest };
             return {};
         }
 
-        static WebResultOper ValidateResponse(StatusCodeEnum statusCode, string_view body, const Url&, const Headers& headers) {
-            string str;
+        static WebResultOper ValidateResponse(StatusCodeEnum statusCode, std::string_view body, const Url&, const Headers& headers) {
+            std::string str;
             auto ref{ &str };
 
-            if (statusCode == StatusCodeEnum::OK)
+            if (statusCode == StatusCodeEnum::Ok)
                 if (*headers.Get("Content-Type").value_or(ref) != "message/http")
-                    return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+                    return std::unexpected{ StatusCodeEnum::BadGateway };
 
 
-            if ((statusCode == StatusCodeEnum::NO_CONTENT || statusCode == StatusCodeEnum::NOT_MODIFIED) && !body.empty())
-                return std::unexpected{ StatusCodeEnum::BAD_GATEWAY };
+            if ((statusCode == StatusCodeEnum::NoContent || statusCode == StatusCodeEnum::NotModified) && !body.empty())
+                return std::unexpected{ StatusCodeEnum::BadGateway };
 
             return {};
         }

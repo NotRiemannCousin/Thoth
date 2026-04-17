@@ -65,7 +65,7 @@ namespace Thoth::Http {
 
 
             if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, s_isCharAllowed))
-                return std::unexpected{ StatusCodeEnum::BAD_REQUEST };
+                return std::unexpected{ StatusCodeEnum::BadRequest };
 
             rg::transform(headerKey, headerKey.begin(), s_toLower);
             res.Add(headerKey, headerVal);
@@ -88,13 +88,14 @@ namespace Thoth::Http {
 }
 
 
-template<>
-struct std::formatter<Thoth::Http::Headers>{
+template<class T>
+    requires (std::derived_from<T, Thoth::Http::Headers>)
+struct std::formatter<T>{
 
     static constexpr auto parse(auto &ctx) { return ctx.begin(); }
 
     template<class FormatContext>
-    auto format(const Thoth::Http::Headers &headers, FormatContext& ctx) const {
+    auto format(const T& headers, FormatContext& ctx) const {
         for (const auto& p : headers._headers)
             if (&p == &headers._headers.back())
                 format_to(ctx.out(), "{}: {}",     p.first, p.second);
