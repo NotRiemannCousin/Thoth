@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Thoth::Http::Authority", "struct_thoth_1_1_http_1_1_authority.html", null ],
     [ "Thoth::NJson::Details::BufferInfo", "struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html", null ],
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
@@ -63,8 +64,5 @@ var hierarchy =
     [ "Thoth::Http::NHeaders::ValueProxy< IsConst, Ts >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
       [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ]
-    ] ],
-    [ "Thoth::Utils::Ts", null, [
-      [ "Thoth::Utils::Overloaded< Ts >", "struct_thoth_1_1_utils_1_1_overloaded.html", null ]
     ] ]
 ];

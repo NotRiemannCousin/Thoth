@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['bad_5fgateway_0',['BAD_GATEWAY',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a2a685d68f06ec03e4b658cc0d6ca4e54',1,'Thoth::Http']]],
-  ['bad_5frequest_1',['BAD_REQUEST',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a0bbffe9eb8bbfc49246e867fccaefb73',1,'Thoth::Http']]],
+  ['badgateway_0',['BadGateway',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a0e7c9ad08be0653518bf456c9994ace5',1,'Thoth::Http']]],
+  ['badrequest_1',['BadRequest',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a9edf8fbf00a57d95a0af4923c9a1ec6f',1,'Thoth::Http']]],
   ['base64_2',['base64',['../struct_thoth_1_1_string_1_1_char_sequences.html#a6f6f2cc1cc5019b6be1a542d0786fa5e',1,'Thoth::String::CharSequences']]],
   ['base64padding_3',['base64Padding',['../struct_thoth_1_1_string_1_1_char_sequences.html#a8827ca13cacecb7a10c4ce4a88ed1148',1,'Thoth::String::CharSequences']]],
   ['base64url_4',['base64Url',['../struct_thoth_1_1_string_1_1_char_sequences.html#a30d909bdff408cb4f2b08be162c905b5',1,'Thoth::String::CharSequences']]],

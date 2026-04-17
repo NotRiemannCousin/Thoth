@@ -67,5 +67,8 @@ var struct_thoth_1_1_http_1_1_headers =
     [ "Upgrade", "struct_thoth_1_1_http_1_1_headers.html#a9872847930a784f68295a2bbc2ea80c0", null ],
     [ "Via", "struct_thoth_1_1_http_1_1_headers.html#adcee07297f560fb294d915827fd61974", null ],
     [ "Via", "struct_thoth_1_1_http_1_1_headers.html#a26cea7fea8398af5825b5386c8e6f054", null ],
-    [ "std::formatter< Headers >", "struct_thoth_1_1_http_1_1_headers.html#a36c4fbe43f97230e8e5704099dcbe6b8", null ]
+    [ "std::formatter< Headers >", "struct_thoth_1_1_http_1_1_headers.html#a36c4fbe43f97230e8e5704099dcbe6b8", null ],
+    [ "std::formatter< RequestHeaders >", "struct_thoth_1_1_http_1_1_headers.html#a7892e0867430013d6f8923390acb84fb", null ],
+    [ "std::formatter< ResponseHeaders >", "struct_thoth_1_1_http_1_1_headers.html#a214bcfac71d0984ad477b74d9586acf9", null ],
+    [ "_headers", "struct_thoth_1_1_http_1_1_headers.html#aa2171982c72692c386614940dbeeb64f", null ]
 ];

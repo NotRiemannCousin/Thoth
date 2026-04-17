@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['scanner_0',['Scanner',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner.html',1,'Thoth::Http::NHeaders']]],
-  ['scanner_3c_20std_3a_3achrono_3a_3aduration_3c_20ped_2c_20ratio_20_3e_20_3e_1',['Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html',1,'Thoth::Http::NHeaders']]],
-  ['scanner_3c_20std_3a_3achrono_3a_3autc_5fclock_3a_3atime_5fpoint_20_3e_2',['Scanner&lt; std::chrono::utc_clock::time_point &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html',1,'Thoth::Http::NHeaders']]],
-  ['scanner_3c_20std_3a_3amonostate_20_3e_3',['Scanner&lt; std::monostate &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1monostate_01_4.html',1,'Thoth::Http::NHeaders']]],
-  ['scanner_3c_20std_3a_3astring_20_3e_4',['Scanner&lt; std::string &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1string_01_4.html',1,'Thoth::Http::NHeaders']]],
-  ['scanner_3c_20t_20_3e_5',['Scanner&lt; T &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4.html',1,'Thoth::Http::NHeaders']]],
-  ['sharedinputview_6',['SharedInputView',['../struct_thoth_1_1_utils_1_1_shared_input_view.html',1,'Thoth::Utils']]],
-  ['socket_7',['Socket',['../struct_thoth_1_1_http_1_1_socket.html',1,'Thoth::Http']]],
-  ['stringref_8',['StringRef',['../struct_thoth_1_1_n_json_1_1_string_ref.html',1,'Thoth::NJson']]],
-  ['suffixedrange_9',['SuffixedRange',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html',1,'Thoth::Http::NHeaders']]]
+  ['request_0',['Request',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
+  ['requesterror_1',['RequestError',['../struct_thoth_1_1_http_1_1_request_error.html',1,'Thoth::Http']]],
+  ['requestheaders_2',['RequestHeaders',['../struct_thoth_1_1_http_1_1_request_headers.html',1,'Thoth::Http']]],
+  ['response_3',['Response',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
+  ['responsehead_4',['ResponseHead',['../struct_thoth_1_1_http_1_1_response_head.html',1,'Thoth::Http']]],
+  ['responseheaders_5',['ResponseHeaders',['../struct_thoth_1_1_http_1_1_response_headers.html',1,'Thoth::Http']]]
 ];

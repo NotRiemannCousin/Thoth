@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['temporary_5fredirect_0',['TEMPORARY_REDIRECT',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a698dcee850e80b3dfc04ad8b5dcedd3a',1,'Thoth::Http']]],
-  ['too_5fearly_5fexperimental_1',['TOO_EARLY_EXPERIMENTAL',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a560909426a6ba74aeefd828e0001a4a1',1,'Thoth::Http']]],
-  ['too_5fmany_5frequests_2',['TOO_MANY_REQUESTS',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a48217406fa20a472560abdf9b6ec8c17',1,'Thoth::Http']]],
+  ['temporaryredirect_0',['TemporaryRedirect',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a1b73a351faf2b550d06fae9cc6e0a894',1,'Thoth::Http']]],
+  ['tooearlyexperimental_1',['TooEarlyExperimental',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a747ad809d11c9136e4b62d49964c11c8',1,'Thoth::Http']]],
+  ['toomanyrequests_2',['TooManyRequests',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ab00b00233255c3551697fe613001265d',1,'Thoth::Http']]],
   ['trailers_3',['Trailers',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63da88937f30a16114ae6f63f5ab6c69a49e',1,'Thoth::Http::NHeaders']]]
 ];

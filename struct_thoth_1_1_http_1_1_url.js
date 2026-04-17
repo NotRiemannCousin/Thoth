@@ -1,13 +1,19 @@
 var struct_thoth_1_1_http_1_1_url =
 [
-    [ "IsSecure", "struct_thoth_1_1_http_1_1_url.html#aef004d848b92f3be69ba3d70dbdd403f", null ],
-    [ "operator==", "struct_thoth_1_1_http_1_1_url.html#a5367b9d4e648bc5ab90d84b1d9f9b467", null ],
-    [ "std::formatter< Url >", "struct_thoth_1_1_http_1_1_url.html#af164d5170a93253e2a7d0ba8c96fe086", null ],
-    [ "fragment", "struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1", null ],
-    [ "host", "struct_thoth_1_1_http_1_1_url.html#a4bc0faff16981b0b0a784582a90104bc", null ],
-    [ "path", "struct_thoth_1_1_http_1_1_url.html#abd3c10594bab589759b4ce4281511a00", null ],
-    [ "port", "struct_thoth_1_1_http_1_1_url.html#aedd90a7e8adfab006087aaa46637a4dd", null ],
-    [ "query", "struct_thoth_1_1_http_1_1_url.html#aa3be0916ffb085f67710bde2bd110411", null ],
-    [ "scheme", "struct_thoth_1_1_http_1_1_url.html#a3e3bfed10192bf9f087546d0bee875c1", null ],
-    [ "user", "struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500", null ]
+    [ "Url", "struct_thoth_1_1_http_1_1_url.html#ad057a14b4f10a782866042324a83e7ba", null ],
+    [ "Url", "struct_thoth_1_1_http_1_1_url.html#a11638280a3369585e7ecfeb420d22759", null ],
+    [ "GetAuthority", "struct_thoth_1_1_http_1_1_url.html#a5d1479c034022a89adcc0d7334ab332b", null ],
+    [ "GetFragment", "struct_thoth_1_1_http_1_1_url.html#afe056173ad1f70c42956ff25b3d75825", null ],
+    [ "GetPath", "struct_thoth_1_1_http_1_1_url.html#a69d81631dc8114691dd6dbd17de79537", null ],
+    [ "GetPathOrSep", "struct_thoth_1_1_http_1_1_url.html#a3c01fe96d7eeddd6dd6e165908d06456", null ],
+    [ "GetQuery", "struct_thoth_1_1_http_1_1_url.html#a7ab954045205be54a0711a84afeddc76", null ],
+    [ "GetQueryParams", "struct_thoth_1_1_http_1_1_url.html#aa1e288a779c54a13550cc435fe07a893", null ],
+    [ "GetScheme", "struct_thoth_1_1_http_1_1_url.html#a82360c7b662bf8429170e26209c56f25", null ],
+    [ "GetUrlWithoutFragment", "struct_thoth_1_1_http_1_1_url.html#a67cf8cdf2471047268347e5c43ca532c", null ],
+    [ "operator=", "struct_thoth_1_1_http_1_1_url.html#ae5d6f84ad5e79e1052cbe5aa1c790478", null ],
+    [ "operator=", "struct_thoth_1_1_http_1_1_url.html#a0b4dbe3f4878b0b4a6b369eb5a589b1f", null ],
+    [ "operator==", "struct_thoth_1_1_http_1_1_url.html#a1d8750b8d017a21455881fbc2d08e5ec", null ],
+    [ "std::formatter< Url >", "struct_thoth_1_1_http_1_1_url.html#acf55916f535372d81c7cae8409a95e20", null ],
+    [ "std::hash< Url >", "struct_thoth_1_1_http_1_1_url.html#a481c48d2a0da36c4e9b0514f54464a77", null ],
+    [ "UrlBuilder", "struct_thoth_1_1_http_1_1_url.html#a5685b39bea8e81ec7c915f7b4f155b2d", null ]
 ];

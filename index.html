@@ -178,7 +178,7 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> s_printNames = [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;- Members:&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">string</span>&amp;&amp; name : names)</div>
+<div class="line">        <span class="keywordflow">for</span> (std::string&amp;&amp; name : names)</div>
 <div class="line">            std::println(<span class="stringliteral">&quot;{}&quot;</span>, name);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>

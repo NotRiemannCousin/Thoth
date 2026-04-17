@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Utils/Overloads.hpp Source File</title>
+<title>Thoth: Thoth::Http::Authority Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -93,11 +93,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function() { init_codefold(0); });
-/* @license-end */
-</script>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -111,7 +106,7 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('_overloads_8hpp_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_authority.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -137,24 +132,100 @@ $(document).ready(function(){initNavTree('_overloads_8hpp_source.html',''); init
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Overloads.hpp</div></div>
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_thoth_1_1_http_1_1_authority-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Thoth::Http::Authority Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_overloads_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_utils.html">Thoth::Utils</a> {</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    <span class="comment">// thanks https://en.cppreference.com/w/cpp/utility/variant/visit2.html</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span>... Ts&gt;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_utils_1_1_overloaded.html">    6</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_utils_1_1_overloaded.html">Overloaded</a> : Ts... { <span class="keyword">using </span>Ts::operator()...; };</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>}</div>
-<div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Env.hpp:5</div></div>
-<div class="ttc" id="astruct_thoth_1_1_utils_1_1_overloaded_html"><div class="ttname"><a href="struct_thoth_1_1_utils_1_1_overloaded.html">Thoth::Utils::Overloaded</a></div><div class="ttdef"><b>Definition</b> Overloads.hpp:6</div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p><code>#include &lt;<a class="el" href="_url_8hpp_source.html">Url.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1cf96428aeaba03032b08df1523108db" id="r_a1cf96428aeaba03032b08df1523108db"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html#a1cf96428aeaba03032b08df1523108db">GetHostString</a> () const</td></tr>
+<tr class="separator:a1cf96428aeaba03032b08df1523108db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a0cd8c915c810d4c96c9f9f752c52b9e1" id="r_a0cd8c915c810d4c96c9f9f752c52b9e1"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html#a0cd8c915c810d4c96c9f9f752c52b9e1">userinfo</a> {}</td></tr>
+<tr class="separator:a0cd8c915c810d4c96c9f9f752c52b9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff590335dc0632ddda19752c2d5eaa82" id="r_aff590335dc0632ddda19752c2d5eaa82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#a17e71657945b1a6c36e0257247295df5">Host</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html#aff590335dc0632ddda19752c2d5eaa82">host</a></td></tr>
+<tr class="separator:aff590335dc0632ddda19752c2d5eaa82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3da879c4774bd4027862b57d05bf38" id="r_a7e3da879c4774bd4027862b57d05bf38"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html#a7e3da879c4774bd4027862b57d05bf38">port</a> {}</td></tr>
+<tr class="separator:a7e3da879c4774bd4027862b57d05bf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1cf96428aeaba03032b08df1523108db" name="a1cf96428aeaba03032b08df1523108db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf96428aeaba03032b08df1523108db">&#9670;&#160;</a></span>GetHostString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Thoth::Http::Authority::GetHostString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aff590335dc0632ddda19752c2d5eaa82" name="aff590335dc0632ddda19752c2d5eaa82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff590335dc0632ddda19752c2d5eaa82">&#9670;&#160;</a></span>host</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a17e71657945b1a6c36e0257247295df5">Host</a> Thoth::Http::Authority::host</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e3da879c4774bd4027862b57d05bf38" name="a7e3da879c4774bd4027862b57d05bf38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3da879c4774bd4027862b57d05bf38">&#9670;&#160;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::uint16_t&gt; Thoth::Http::Authority::port {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cd8c915c810d4c96c9f9f752c52b9e1" name="a0cd8c915c810d4c96c9f9f752c52b9e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cd8c915c810d4c96c9f9f752c52b9e1">&#9670;&#160;</a></span>userinfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::Http::Authority::userinfo {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/Thoth/Http/Url/<a class="el" href="_url_8hpp_source.html">Url.hpp</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a class="el" href="dir_2d830115d85308f46eeefe3ce749e641.html">Utils</a></li><li class="navelem"><a class="el" href="_overloads_8hpp.html">Overloads.hpp</a></li>
+    <li class="navelem"><a class="el" href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http.html">Http</a></li><li class="navelem"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html">Authority</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

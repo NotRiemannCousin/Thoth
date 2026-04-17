@@ -136,6 +136,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_headers.html
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="struct_thoth_1_1_http_1_1_headers-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Thoth::Http::Headers Struct Reference</div></div>
@@ -343,10 +344,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
 <tr class="separator:a47e8a0ea4bc89eddd8626be4a630e639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aa2171982c72692c386614940dbeeb64f" id="r_aa2171982c72692c386614940dbeeb64f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#aa2171982c72692c386614940dbeeb64f">_headers</a></td></tr>
+<tr class="separator:aa2171982c72692c386614940dbeeb64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a36c4fbe43f97230e8e5704099dcbe6b8" id="r_a36c4fbe43f97230e8e5704099dcbe6b8"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a36c4fbe43f97230e8e5704099dcbe6b8">std::formatter&lt; Headers &gt;</a></td></tr>
 <tr class="separator:a36c4fbe43f97230e8e5704099dcbe6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7892e0867430013d6f8923390acb84fb" id="r_a7892e0867430013d6f8923390acb84fb"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a7892e0867430013d6f8923390acb84fb">std::formatter&lt; RequestHeaders &gt;</a></td></tr>
+<tr class="separator:a7892e0867430013d6f8923390acb84fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a214bcfac71d0984ad477b74d9586acf9" id="r_a214bcfac71d0984ad477b74d9586acf9"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a214bcfac71d0984ad477b74d9586acf9">std::formatter&lt; ResponseHeaders &gt;</a></td></tr>
+<tr class="separator:a214bcfac71d0984ad477b74d9586acf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class stores the headers from HTTP. </p>
@@ -1336,7 +1346,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> if the parse success, bad request <a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a0bbffe9eb8bbfc49246e867fccaefb73">StatusCodeEnum::BAD_REQUEST</a> if the parse fails and content too large <a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aa1416cab4530a92fa7736bf49e012c6a">StatusCodeEnum::CONTENT_TOO_LARGE</a> if the header is too long. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long. </dd></dl>
 
 </div>
 </div>
@@ -1765,6 +1775,73 @@ template&lt;std::ranges::input_range R&gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7892e0867430013d6f8923390acb84fb" name="a7892e0867430013d6f8923390acb84fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7892e0867430013d6f8923390acb84fb">&#9670;&#160;</a></span>std::formatter&lt; RequestHeaders &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct std::formatter&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a214bcfac71d0984ad477b74d9586acf9" name="a214bcfac71d0984ad477b74d9586acf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a214bcfac71d0984ad477b74d9586acf9">&#9670;&#160;</a></span>std::formatter&lt; ResponseHeaders &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct std::formatter&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa2171982c72692c386614940dbeeb64f" name="aa2171982c72692c386614940dbeeb64f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2171982c72692c386614940dbeeb64f">&#9670;&#160;</a></span>_headers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a> Thoth::Http::Headers::_headers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

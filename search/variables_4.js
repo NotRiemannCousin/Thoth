@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['end_0',['end',['../struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html#aaf3bf5c1650b3bc5c5c708eb5133e80f',1,'Thoth::Http::NHeaders::PrefixedRange']]],
-  ['error_1',['error',['../struct_thoth_1_1_http_1_1_generic_error.html#a2096fe41359de674603e2528ff3144eb',1,'Thoth::Http::GenericError']]]
+  ['delimiters_0',['delimiters',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a0c27a4dacbfb2b41e2cc5dc7141e13cf',1,'Thoth::String::CharSequences::Http']]],
+  ['digits_1',['digits',['../struct_thoth_1_1_string_1_1_char_sequences.html#aa0c81097eaa4ae88a290ab3f857235c1',1,'Thoth::String::CharSequences']]]
 ];

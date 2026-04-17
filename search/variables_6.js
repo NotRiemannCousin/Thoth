@@ -4,5 +4,5 @@ var searchData=
   ['hex_1',['hex',['../struct_thoth_1_1_string_1_1_char_sequences.html#a88f3fe33cb9fcc7647023c445c9a2a40',1,'Thoth::String::CharSequences']]],
   ['hexlower_2',['hexLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a0b57e428c43374df2450859a2a99836b',1,'Thoth::String::CharSequences']]],
   ['hexupper_3',['hexUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a8b45d3ed35c39de52a9b0b41f10b781c',1,'Thoth::String::CharSequences']]],
-  ['host_4',['host',['../struct_thoth_1_1_http_1_1_url.html#a4bc0faff16981b0b0a784582a90104bc',1,'Thoth::Http::Url']]]
+  ['host_4',['host',['../struct_thoth_1_1_http_1_1_authority.html#aff590335dc0632ddda19752c2d5eaa82',1,'Thoth::Http::Authority']]]
 ];

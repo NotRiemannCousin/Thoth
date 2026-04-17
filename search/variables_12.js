@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['unknownchar_0',['UnknownChar',['../namespace_thoth_1_1_string.html#ab59da787e3f16012202445597fa7bc3c',1,'Thoth::String']]],
-  ['url_1',['url',['../struct_thoth_1_1_http_1_1_request.html#a5e41af1c5fdac059d5585e417b4770fb',1,'Thoth::Http::Request::url'],['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#ad4984c6562675225323cd00256044bd6',1,'Thoth::String::CharSequences::Http::url']]],
-  ['user_2',['user',['../struct_thoth_1_1_http_1_1_url.html#aa48ab72633dba3c50940dd3c33ca9500',1,'Thoth::Http::Url']]]
+  ['version_0',['version',['../struct_thoth_1_1_http_1_1_socket.html#ac3ef953f567e3b75fb638b3348cd7967',1,'Thoth::Http::Socket::version'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html#a6a14045eb89cba5f428ab4ab245b93f9',1,'Thoth::Http::NHeaders::Upgrade::version'],['../struct_thoth_1_1_http_1_1_request.html#a40aaadb4dc25edcb929e95deb1358805',1,'Thoth::Http::Request::version'],['../struct_thoth_1_1_http_1_1_response.html#abd186c458a0c8410f5397002d870a37a',1,'Thoth::Http::Response::version'],['../struct_thoth_1_1_http_1_1_response_head.html#a965e9c44b79a1434d7445fbff1b43788',1,'Thoth::Http::ResponseHead::version']]],
+  ['view_1',['view',['../struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html#a461af38c6991843e1a59b51d0c7bfbcd',1,'Thoth::Utils::SharedInputView::Iterator']]]
 ];

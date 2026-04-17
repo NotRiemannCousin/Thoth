@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['base64_0',['base64',['../struct_thoth_1_1_string_1_1_char_sequences.html#a6f6f2cc1cc5019b6be1a542d0786fa5e',1,'Thoth::String::CharSequences']]],
-  ['base64padding_1',['base64Padding',['../struct_thoth_1_1_string_1_1_char_sequences.html#a8827ca13cacecb7a10c4ce4a88ed1148',1,'Thoth::String::CharSequences']]],
-  ['base64url_2',['base64Url',['../struct_thoth_1_1_string_1_1_char_sequences.html#a30d909bdff408cb4f2b08be162c905b5',1,'Thoth::String::CharSequences']]],
-  ['body_3',['body',['../struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143',1,'Thoth::Http::Request::body'],['../struct_thoth_1_1_http_1_1_response.html#ae32b14d3e677ba1c88924c2765bc767d',1,'Thoth::Http::Response::body']]],
-  ['buffer_4',['buffer',['../struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html#a8ef28baaa4147d8addd52f0a20913d65',1,'Thoth::NJson::Details::BufferInfo']]],
-  ['bufferview_5',['bufferView',['../struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html#a147d37391a900bc792c2a7214344d0e7',1,'Thoth::NJson::Details::BufferInfo']]]
+  ['acceptedtypes_0',['acceptedTypes',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#aa59d593f6bc6fd5305a6bd981f6cb968',1,'Thoth::Dsa::FileBuilderParams']]],
+  ['alpha_1',['alpha',['../struct_thoth_1_1_string_1_1_char_sequences.html#a88bce0089c6d2509bec080b6858aa2c7',1,'Thoth::String::CharSequences']]],
+  ['alphalower_2',['alphaLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9ced9a1583c310dfa86d9cd3d34510d9',1,'Thoth::String::CharSequences']]],
+  ['alphanumeric_3',['alphanumeric',['../struct_thoth_1_1_string_1_1_char_sequences.html#ae1e08aa0dd8f8c7040422f284c992c91',1,'Thoth::String::CharSequences']]],
+  ['alphaupper_4',['alphaUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a1e0295877d151fcb9afa075f6c559a93',1,'Thoth::String::CharSequences']]],
+  ['appjson_5',['appJson',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['appoctetstream_6',['appOctetStream',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a44c9bb493e0541edb8dcd209a8b332ce',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['appxml_7',['appXml',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a5911bfde2d2c3e41f2e32bc8a1ba20ab',1,'Thoth::Http::NHeaders::MimeTypes']]]
 ];

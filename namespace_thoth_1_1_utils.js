@@ -1,6 +1,5 @@
 var namespace_thoth_1_1_utils =
 [
-    [ "Overloaded", "struct_thoth_1_1_utils_1_1_overloaded.html", null ],
     [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ],
     [ "FirstConvertibleVariant", "namespace_thoth_1_1_utils.html#a61e8c9a9cc87a915b608d362c725acd1", null ],
     [ "FirstEqualVariant", "namespace_thoth_1_1_utils.html#ad00ce4b8476323c5d488174dca28d600", null ],
@@ -31,7 +30,6 @@ var namespace_thoth_1_1_utils =
     [ "FindMatchIndexImpl", "namespace_thoth_1_1_utils.html#aa09a77fbefaf13e1d7850746b5dfe148", null ],
     [ "FoldWhileSuccess", "namespace_thoth_1_1_utils.html#a233fa4f829ed69699961c3680475aa9d", null ],
     [ "FoldWhileSuccessHof", "namespace_thoth_1_1_utils.html#a1092c3064d3185d3baa3bf96f8eb7184", null ],
-    [ "HashCombine", "namespace_thoth_1_1_utils.html#a0f67b23d33902336cc6a174eebe5f6cf", null ],
     [ "Mut", "namespace_thoth_1_1_utils.html#aa70f74ce08c1453d7a555a17adf43ed8", null ],
     [ "MutFn", "namespace_thoth_1_1_utils.html#a6d38cf86aa3d3c4e236d33e348421a88", null ],
     [ "NulloptIf", "namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec", null ],

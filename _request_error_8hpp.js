@@ -18,6 +18,7 @@ var _request_error_8hpp =
       [ "EmptyUrl", "_request_error_8hpp.html#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05", null ],
       [ "InvalidScheme", "_request_error_8hpp.html#a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276", null ],
       [ "IllFormed", "_request_error_8hpp.html#a2bf11744ec8f13e9d75fe88e28f7326caa1654eb0fac9af56a06a85185e60d516", null ],
+      [ "HostIsRequired", "_request_error_8hpp.html#a2bf11744ec8f13e9d75fe88e28f7326ca5452f8e44246560d1ea500453313a721", null ],
       [ "InvalidPort", "_request_error_8hpp.html#a2bf11744ec8f13e9d75fe88e28f7326caa51712bd03bd8b6560b9c57b5ff92690", null ]
     ] ]
 ];

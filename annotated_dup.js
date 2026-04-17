@@ -28,6 +28,7 @@ var annotated_dup =
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
         ] ],
+        [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
         [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
@@ -69,7 +70,6 @@ var annotated_dup =
         [ "UnicodeViewer", "struct_thoth_1_1_string_1_1_unicode_viewer.html", "struct_thoth_1_1_string_1_1_unicode_viewer" ]
       ] ],
       [ "Utils", "namespace_thoth_1_1_utils.html", [
-        [ "Overloaded", "struct_thoth_1_1_utils_1_1_overloaded.html", null ],
         [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ]
       ] ]
     ] ]

@@ -16,6 +16,6 @@ var searchData=
   ['trimmed_13',['Trimmed',['../namespace_thoth_1_1_string.html#ac05cde6589176a4ec42c3dbe3684f1b5',1,'Thoth::String']]],
   ['trimmedstr_14',['TrimmedStr',['../namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe',1,'Thoth::String']]],
   ['try_5femplace_15',['try_emplace',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a24707b69d1e27ce24d5c6002efcf7646',1,'Thoth::Dsa::LinearMap']]],
-  ['trydecode_16',['TryDecode',['../struct_thoth_1_1_http_1_1_url.html#a0ec0142c2ef2077ebdfccd3b8c331bc2',1,'Thoth::Http::Url']]],
+  ['trydecode_16',['TryDecode',['../struct_thoth_1_1_http_1_1_url.html#abd9a6b86c647c0f41d4b8035ecac1eed',1,'Thoth::Http::Url']]],
   ['tryset_17',['tryset',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a04c8847bca0f28c2d0f22c0dd6dcb034',1,'Thoth::Http::NHeaders::ListProxy::TrySet()'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a01e185e3b350938b5a83e1aaeedbc124',1,'Thoth::Http::NHeaders::ValueProxy::TrySet()']]]
 ];

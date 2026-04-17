@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['failed_5fdependency_0',['FAILED_DEPENDENCY',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a7894182637bd7b11407afb64611c9076',1,'Thoth::Http']]],
+  ['faileddependency_0',['FailedDependency',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3e30483e6f8d532c08ac164aebf039fd',1,'Thoth::Http']]],
   ['filebuilderparams_1',['FileBuilderParams',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html',1,'Thoth::Dsa']]],
   ['fileoutputrange_2',['fileoutputrange',['../struct_thoth_1_1_dsa_1_1_file_output_range.html',1,'Thoth::Dsa::FileOutputRange&lt; T &gt;'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#ad1f24f9619c5feb59aaa32ecd4179962',1,'Thoth::Dsa::FileOutputRange::FileOutputRange(const FileOutputRange &amp;other)=delete'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a5b5164694262199f890cea6653aacc10',1,'Thoth::Dsa::FileOutputRange::FileOutputRange(FileOutputRange &amp;&amp;other) noexcept'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a37d7f046d90a6f04ecc09f0ea050e1ea',1,'Thoth::Dsa::FileOutputRange::FileOutputRange(std::basic_ofstream&lt; T &gt; &amp;&amp;file)'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a11cb9b0d2b6fab1ff37583e85044cca8',1,'Thoth::Dsa::FileOutputRange::FileOutputRange(std::filesystem::path &amp;&amp;path, int mode=0)'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#ad8e2d761c8404e25113dc03fab714f81',1,'Thoth::Dsa::FileOutputRange::FileOutputRange(const std::filesystem::path &amp;path, int mode=0)']]],
   ['fileoutputrange_2ehpp_3',['FileOutputRange.hpp',['../_file_output_range_8hpp.html',1,'']]],
-  ['find_4',['find',['../struct_thoth_1_1_n_json_1_1_json.html#a382a858d198eddc12eb7da82c3e29b0a',1,'Thoth::NJson::Json::Find(Keys keys)'],['../struct_thoth_1_1_n_json_1_1_json.html#aa477a1126f75df53c5e40336aa9c2a28',1,'Thoth::NJson::Json::Find(Keys keys) const'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#ab070446f83dd254cd2283cef5eb2cb33',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a1e60c41e85fb01d0614a8f1dc86e93c7',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key) const']]],
+  ['find_4',['find',['../struct_thoth_1_1_dsa_1_1_linear_map.html#ab070446f83dd254cd2283cef5eb2cb33',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a1e60c41e85fb01d0614a8f1dc86e93c7',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key) const'],['../struct_thoth_1_1_n_json_1_1_json.html#a382a858d198eddc12eb7da82c3e29b0a',1,'Thoth::NJson::Json::Find(Keys keys)'],['../struct_thoth_1_1_n_json_1_1_json.html#aa477a1126f75df53c5e40336aa9c2a28',1,'Thoth::NJson::Json::Find(Keys keys) const']]],
   ['findandmove_5',['FindAndMove',['../struct_thoth_1_1_n_json_1_1_json.html#ace53bce069600c9e91516c8d54dec3b9',1,'Thoth::NJson::Json']]],
   ['findandmoveorerror_6',['FindAndMoveOrError',['../struct_thoth_1_1_n_json_1_1_json.html#a7ab0e34be372fdac4d90303e37aedb92',1,'Thoth::NJson::Json']]],
   ['findandmoveornull_7',['FindAndMoveOrNull',['../struct_thoth_1_1_n_json_1_1_json.html#a5c984bd05a4e2c957b188b3f9caea517',1,'Thoth::NJson::Json']]],
@@ -19,15 +19,14 @@ var searchData=
   ['firstequalvariant_16',['FirstEqualVariant',['../namespace_thoth_1_1_utils.html#ad00ce4b8476323c5d488174dca28d600',1,'Thoth::Utils']]],
   ['foldwhilesuccess_17',['FoldWhileSuccess',['../namespace_thoth_1_1_utils.html#a233fa4f829ed69699961c3680475aa9d',1,'Thoth::Utils']]],
   ['foldwhilesuccesshof_18',['FoldWhileSuccessHof',['../namespace_thoth_1_1_utils.html#a1092c3064d3185d3baa3bf96f8eb7184',1,'Thoth::Utils']]],
-  ['forbidden_19',['FORBIDDEN',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a4a76a6ecac6e4077588fd966db329fa3',1,'Thoth::Http']]],
+  ['forbidden_19',['Forbidden',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a722969577a96ca3953e84e3d949dee81',1,'Thoth::Http']]],
   ['format_20',['format',['../structstd_1_1formatter_3_01std_1_1monostate_01_4.html#a206310828434fcd7692fe71d30d344a8',1,'std::formatter&lt; std::monostate &gt;']]],
   ['formatter_3c_20std_3a_3amonostate_20_3e_21',['formatter&lt; std::monostate &gt;',['../structstd_1_1formatter_3_01std_1_1monostate_01_4.html',1,'std']]],
-  ['found_22',['FOUND',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a3e918e9c9f594bda6b0cf358391c3b1a',1,'Thoth::Http']]],
-  ['fragment_23',['fragment',['../struct_thoth_1_1_http_1_1_url.html#acd7a61180daeea7495261c395e5662b1',1,'Thoth::Http::Url']]],
-  ['from_24',['from',['../struct_thoth_1_1_http_1_1_request_headers.html#a8f7643994cdc443c140bc51804a5bb45',1,'Thoth::Http::RequestHeaders::From() const'],['../struct_thoth_1_1_http_1_1_request_headers.html#a24617d0d6c4948ab19e6990313f8ea4b',1,'Thoth::Http::RequestHeaders::From()']]],
-  ['fromowned_25',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)']]],
-  ['fromref_26',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_27',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a12a4044abdaf49000c7b8e2be22666dd',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a88b820068a60c6547e847a61a1eb0b8a',1,'Thoth::Http::Url::FromUrl()']]],
-  ['functional_20expressive_20asynchronous_20c_2026_20webdev_20library_28',['A functional, expressive, asynchronous C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
-  ['functional_2ehpp_29',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
+  ['found_22',['Found',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a5d695cc28c6a7ea955162fbdd0ae42b9',1,'Thoth::Http']]],
+  ['from_23',['from',['../struct_thoth_1_1_http_1_1_request_headers.html#a51bf3712dd9a8c1bda4676184c69061b',1,'Thoth::Http::RequestHeaders::From() const'],['../struct_thoth_1_1_http_1_1_request_headers.html#a4ca085ca46b3bd1a2098bda19d8dc1e3',1,'Thoth::Http::RequestHeaders::From()']]],
+  ['fromowned_24',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)']]],
+  ['fromref_25',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
+  ['fromurl_26',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a5c94b0ca53d57aedef82b988875be649',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a20f815e71ec7449ab3a0583a456edb65',1,'Thoth::Http::Url::FromUrl()']]],
+  ['functional_20expressive_20asynchronous_20c_2026_20webdev_20library_27',['A functional, expressive, asynchronous C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
+  ['functional_2ehpp_28',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
 ];
