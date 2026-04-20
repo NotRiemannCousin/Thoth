@@ -82,7 +82,7 @@ void JsonObject::Set(JsonPairRef p) {
 }
 
 void JsonObject::Set(JsonObjKeyRef key, JsonValRef val) {
-    _pairs.try_emplace(key, val);
+    _pairs.insert_or_assign(key, val);
 }
 
 bool JsonObject::Remove(JsonObjKeyRef key) {

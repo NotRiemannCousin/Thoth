@@ -6,7 +6,7 @@
 
 namespace Thoth::Http::NHeaders {
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     struct ValueProxy{
         static constexpr int Count{ sizeof...(Ts) };
         static constexpr int Single{ sizeof...(Ts) == 1 };

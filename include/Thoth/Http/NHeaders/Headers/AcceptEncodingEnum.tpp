@@ -5,7 +5,9 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::AcceptEncodingEnum> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::AcceptEncodingEnum> {
+    using AcceptEncodingEnum = Http::NHeaders::AcceptEncodingEnum;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -48,7 +50,3 @@ struct std::formatter<Thoth::Http::NHeaders::AcceptEncodingEnum> {
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<AcceptEncodingEnum>);
-}

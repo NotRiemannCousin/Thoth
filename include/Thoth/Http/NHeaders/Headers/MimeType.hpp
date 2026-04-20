@@ -27,3 +27,5 @@ namespace Thoth::Http::NHeaders {
 }
 
 #include <Thoth/Http/NHeaders/Headers/MimeType.tpp>
+
+static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::MimeType>);

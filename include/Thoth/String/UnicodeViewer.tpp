@@ -37,13 +37,15 @@ namespace Thoth::String {
 
         } else if constexpr (std::same_as<CharT, char8_t>) {
             const char8_t firstOct{ *_curIt };
+            if (firstOct >= 0xF5)
+                goto error_with_count;
+
             const int octCount{ std::countl_one(static_cast<unsigned char>(firstOct)) };
 
             if (octCount == 1 || octCount > 4)
                 goto error_with_count;
 
             _currValue = firstOct & 0xFF >> octCount; // cropping the 1's
-
 
             for (int i{ 1 }; i < octCount; i++) {
                 if (++_curIt == _end || *_curIt >> 6 != 0b10) //* checking continuation sequence

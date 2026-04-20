@@ -4,6 +4,8 @@
 #include <string>
 #include <Hermes/Endpoint/IpEndpoint/IpAddress.hpp>
 #include <Thoth/Http/Request/QueryParams.hpp>
+#include <Thoth/Utils/Scanner.hpp>
+
 
 namespace Thoth::Http {
     using Host = std::variant<std::string_view, Hermes::IpAddress>;
@@ -75,3 +77,5 @@ namespace Thoth::Http {
 
 
 #include <Thoth/Http/Url/Url.tpp>
+
+static_assert(Thoth::Utils::Serializable<Thoth::Http::Url>);

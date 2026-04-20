@@ -4,7 +4,9 @@
 #include <Thoth/String/Utils.hpp>
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::MimeType> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeType> {
+    using MimeType = Http::NHeaders::MimeType;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -94,7 +96,7 @@ struct std::formatter<Thoth::Http::NHeaders::MimeType>{
 
     template<class FormatContext>
     auto format(const Thoth::Http::NHeaders::MimeType& mime, FormatContext& ctx) const {
-        std::format_to(ctx.out(), "{}", mime.type, mime.subtype);
+        std::format_to(ctx.out(), "{}/{}", mime.type, mime.subtype);
 
         static constexpr auto s_quoted = [](string_view str) -> string {
             string res;
@@ -115,7 +117,3 @@ struct std::formatter<Thoth::Http::NHeaders::MimeType>{
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<MimeType>);
-}

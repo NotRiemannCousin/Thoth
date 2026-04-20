@@ -3,7 +3,9 @@
 #include <format>
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::TransferEncodingEnum> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::TransferEncodingEnum> {
+    using TransferEncodingEnum = Http::NHeaders::TransferEncodingEnum;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }

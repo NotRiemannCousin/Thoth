@@ -1,7 +1,9 @@
 #pragma once
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Upgrade> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Upgrade> {
+    using Upgrade = Http::NHeaders::Upgrade;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -11,9 +13,8 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Upgrade> {
         const auto sep{ input.find('/') };
         Upgrade upgrade{ std::string{ input.substr(0, sep) } };
 
-        if (sep == std::string::npos || input.substr(sep + 1).empty())
-            upgrade.version = input;
-
+        if (sep != std::string::npos && !input.substr(sep + 1).empty())
+            upgrade.version = input.substr(sep + 1);
 
 
         return upgrade;
@@ -34,7 +35,3 @@ struct std::formatter<Thoth::Http::NHeaders::Upgrade> {
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<Upgrade>);
-}

@@ -13,9 +13,9 @@
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 namespace Thoth::Http::NHeaders {
-    template<bool IsConst, Serializable ...T>
+    template<bool IsConst, Utils::Serializable ...T>
     struct ListProxy;
-    template<bool IsConst, Serializable ...T>
+    template<bool IsConst, Utils::Serializable ...T>
     struct ValueProxy;
 }
 
@@ -49,10 +49,12 @@ namespace Thoth::Http {
 
         Headers();
 
+
         //! @brief Create with an existing vector.
         explicit Headers(const MapType& initAs);
 
         Headers(std::initializer_list<HeaderPair> init);
+        Headers(std::initializer_list<std::initializer_list<HeaderPair>>) = delete;
 
 
         //! @brief Tries to parse the headers from the raw TCP std::string.

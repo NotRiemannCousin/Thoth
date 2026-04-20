@@ -131,7 +131,6 @@ namespace Thoth::Http {
                 const auto requestStr{ std::format(
                     "{} {}?{} {}\r\n"
                     "{}\r\n"
-                    "\r\n"
                     "{}",
                     Method::MethodName(), path, query, versionStr,
                     request.headers,
@@ -314,13 +313,13 @@ namespace Thoth::Http {
                         return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
 
                     std::string chunkLengthStr;
-                    decltype(NHeaders::Scan<size_t>(chunkLengthStr)) chunkLength;
+                    decltype(Utils::Scan<size_t>(chunkLengthStr)) chunkLength;
 
 
                     do {
                         chunkLengthStr.clear();
                         rg::copy(info.stream | Hermes::Utils::UntilMatch("\r\n"sv), std::back_inserter(chunkLengthStr));
-                        chunkLength = NHeaders::Scan<size_t>(chunkLengthStr, "x");
+                        chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
 
                         if (!chunkLength)
                             return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };

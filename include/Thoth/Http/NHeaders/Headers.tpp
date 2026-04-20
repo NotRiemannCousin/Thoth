@@ -43,19 +43,37 @@ namespace Thoth::Http {
 
         constexpr string_view delimiter { "\r\n" };
 
+        auto headersView{ [&] mutable {
+                if constexpr (std::constructible_from<string_view, R>)
+                    return string_view{ headers };
+                else
+                    return std::forward<R>(headers);
+            }()
+        };
+
         Headers res;
 
         while (true) {
-            if (headers.begin() == headers.end())
+            if (headersView.begin() == headersView.end())
                 break;
 
-            auto headerRaw{ headers | Hermes::Utils::UntilMatch(delimiter) };
+            auto headerRaw{ headersView | Hermes::Utils::ExclusiveUntilMatch(delimiter) };
 
-            auto headerKey{ headerRaw | vs::take_while(
+            string headerKey{ headerRaw | vs::take_while(
                     [](const char c) { return c != ':'; }) | rg::to<string>() };
             ++headerRaw.begin();
-            auto headerVal{ headerRaw | vs::drop_while(
+            string headerVal{ headerRaw | vs::drop_while(
                     [](const char c) { return c == ' '; }) | rg::to<string>() };
+
+
+            if constexpr (std::constructible_from<string_view, R>) {
+                auto broPleaseWhereIsMy_to_input_itsAlready2ndQuarterOf2026{
+                    headersView | Hermes::Utils::InclusiveUntilMatch(delimiter)
+                };
+
+                headersView.remove_prefix(rg::distance(broPleaseWhereIsMy_to_input_itsAlready2ndQuarterOf2026));
+            }
+
 
             while (!headerKey.empty() && headerKey.back() == ' ')
                 headerKey.pop_back();
@@ -64,7 +82,7 @@ namespace Thoth::Http {
                 headerVal.pop_back();
 
 
-            if (headerKey.empty() || headerVal.empty() || !rg::all_of(headerKey, s_isCharAllowed))
+            if (headerKey.empty() || !rg::all_of(headerKey, s_isCharAllowed))
                 return std::unexpected{ StatusCodeEnum::BadRequest };
 
             rg::transform(headerKey, headerKey.begin(), s_toLower);
@@ -97,10 +115,7 @@ struct std::formatter<T>{
     template<class FormatContext>
     auto format(const T& headers, FormatContext& ctx) const {
         for (const auto& p : headers._headers)
-            if (&p == &headers._headers.back())
-                format_to(ctx.out(), "{}: {}",     p.first, p.second);
-            else
-                format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
+            format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
 
         return ctx.out();
     }

@@ -69,41 +69,62 @@ namespace Thoth::NJson {
 
         template<class T>
         static T& AsType(Json& val);
-        template<class T>
-        [[nodiscard]] T& As();
-        template<class T>
-        [[nodiscard]] const T& As() const;
+
+        template<class T, class Self>
+        [[nodiscard]] decltype(auto) As(this Self&& self);
 
         template<class T>
-        [[nodiscard]] T& AsMut();
+        [[nodiscard]] T AsCpy() const&;
         template<class T>
-        [[nodiscard]] T AsMov() &&;
+        [[nodiscard]] T AsCpy() && = delete;
         template<class T>
-        [[nodiscard]] const T& AsRef() const;
+        [[nodiscard]] T& AsMut() &;
+        template<class T>
+        [[nodiscard]] T&& AsMov() &&;
+        template<class T>
+        [[nodiscard]] const T& AsRef() const&;
+        template<class T>
+        [[nodiscard]] const T& AsRef() && = delete;
 
         template<class T>
-        std::optional<T*> Ensure();
+        [[nodiscard]] std::optional<T*> Ensure() &;
         template<class T>
-        std::optional<T*> Ensure() const;
+        [[nodiscard]] std::optional<T> Ensure() &&;
+        template<class T>
+        [[nodiscard]] std::optional<const T*> Ensure() const&;
 
         template<class T>
-        std::optional<T*> EnsureMut();
+        [[nodiscard]] std::optional<T> EnsureCpy() const&;
         template<class T>
-        std::optional<T> EnsureMov() &&;
+        [[nodiscard]] std::optional<T> EnsureCpy() && = delete;
         template<class T>
-        std::optional<const T*> EnsureRef() const;
+        [[nodiscard]] std::optional<T*> EnsureMut() &;
+        template<class T>
+        [[nodiscard]] std::optional<T> EnsureMov() &&;
+        template<class T>
+        [[nodiscard]] std::optional<const T*> EnsureRef() const&;
+        template<class T>
+        [[nodiscard]] std::optional<const T*> EnsureRef() && = delete;
 
         template<class T>
-        std::expected<T*, Http::RequestError> EnsureOrError();
+        [[nodiscard]] std::expected<T*, Http::RequestError> EnsureOrError() &;
         template<class T>
-        std::expected<T*, Http::RequestError> EnsureOrError() const;
+        [[nodiscard]] std::expected<T, Http::RequestError> EnsureOrError() &&;
+        template<class T>
+        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureOrError() const&;
 
         template<class T>
-        std::expected<T*, Http::RequestError> EnsureMutOrError();
+        [[nodiscard]] std::expected<T, Http::RequestError> EnsureCpyOrError() const&;
         template<class T>
-        std::expected<T, Http::RequestError> EnsureMovOrError() &&;
+        [[nodiscard]] std::expected<T, Http::RequestError> EnsureCpyOrError() && = delete;
         template<class T>
-        std::expected<const T*, Http::RequestError> EnsureRefOrError() const;
+        [[nodiscard]] std::expected<T*, Http::RequestError> EnsureMutOrError() &;
+        template<class T>
+        [[nodiscard]] std::expected<T, Http::RequestError> EnsureMovOrError() &&;
+        template<class T>
+        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureRefOrError() const&;
+        template<class T>
+        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureRefOrError() && = delete;
 
         [[nodiscard]] bool operator==(const Json& other) const;
 

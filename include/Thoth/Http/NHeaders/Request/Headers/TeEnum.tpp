@@ -10,7 +10,9 @@
 
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::TeEnum> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::TeEnum> {
+    using TeEnum = Http::NHeaders::TeEnum;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -44,7 +46,3 @@ struct std::formatter<Thoth::Http::NHeaders::TeEnum> {
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<TeEnum>);
-}

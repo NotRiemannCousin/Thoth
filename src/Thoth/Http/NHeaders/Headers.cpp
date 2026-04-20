@@ -226,112 +226,120 @@ namespace Thoth::Http {
         return std::nullopt;
     }
 
+    NHeaders::ListProxy<false, NHeaders::MimeType> Headers::Accept() {
+        return { "accept", *this };
+    }
+
+    NHeaders::ListProxy<true, NHeaders::MimeType> Headers::Accept() const {
+        return { "accept", *this };
+    }
+
 
     NHeaders::ListProxy<false, NHeaders::AcceptEncodingEnum> Headers::AcceptEncoding() {
-        return NHeaders::ListProxy<false, NHeaders::AcceptEncodingEnum>{ "accept-encoding", *this };
+        return { "accept-encoding", *this };
     }
 
     NHeaders::ListProxy<true, NHeaders::AcceptEncodingEnum> Headers::AcceptEncoding() const {
-        return NHeaders::ListProxy<true, NHeaders::AcceptEncodingEnum>{ "accept-encoding", *this };
+        return { "accept-encoding", *this };
     }
 
 
     NHeaders::ValueProxy<false, NHeaders::MimeType> Headers::ContentType() {
-        return NHeaders::ValueProxy<false, NHeaders::MimeType>{ "content-type", *this };
+        return { "content-type", *this };
     }
 
     NHeaders::ValueProxy<true, NHeaders::MimeType> Headers::ContentType() const {
-        return NHeaders::ValueProxy<true, NHeaders::MimeType>{ "content-type", *this };
+        return { "content-type", *this };
     }
 
 
     NHeaders::ValueProxy<false, uint64_t> Headers::ContentLength() {
-        return NHeaders::ValueProxy<false, uint64_t>{ "content-length", *this };
+        return { "content-length", *this };
     }
 
     NHeaders::ValueProxy<true, uint64_t> Headers::ContentLength() const {
-        return NHeaders::ValueProxy<true, uint64_t>{ "content-length", *this };
+        return { "content-length", *this };
     }
 
 
     NHeaders::ListProxy<false, NHeaders::ContentEncodingEnum> Headers::ContentEncoding() {
-        return NHeaders::ListProxy<false, NHeaders::ContentEncodingEnum>{ "content-encoding", *this };
+        return { "content-encoding", *this };
     }
 
     NHeaders::ListProxy<true, NHeaders::ContentEncodingEnum> Headers::ContentEncoding() const {
-        return NHeaders::ListProxy<true, NHeaders::ContentEncodingEnum>{ "content-encoding", *this };
+        return { "content-encoding", *this };
     }
 
 
     NHeaders::ListProxy<false, NHeaders::TransferEncodingEnum> Headers::TransferEncoding() {
-        return NHeaders::ListProxy<false, NHeaders::TransferEncodingEnum>{ "transfer-encoding", *this };
+        return { "transfer-encoding", *this };
     }
 
     NHeaders::ListProxy<true, NHeaders::TransferEncodingEnum> Headers::TransferEncoding() const {
-        return NHeaders::ListProxy<true, NHeaders::TransferEncodingEnum>{ "transfer-encoding", *this };
+        return { "transfer-encoding", *this };
     }
 
 
     NHeaders::ListProxy<false, std::string> Headers::ContentLanguage() {
-        return NHeaders::ListProxy<false, std::string>{ "content-language", *this };
+        return { "content-language", *this };
     }
 
     NHeaders::ListProxy<true, std::string> Headers::ContentLanguage() const {
-        return NHeaders::ListProxy<true, std::string>{ "content-language", *this };
+        return { "content-language", *this };
     }
 
 
     NHeaders::ValueProxy<false, std::string> Headers::ContentLocation() {
-        return NHeaders::ValueProxy<false, std::string>{ "content-location", *this };
+        return { "content-location", *this };
     }
 
     NHeaders::ValueProxy<true, std::string> Headers::ContentLocation() const {
-        return NHeaders::ValueProxy<true, std::string>{ "content-location", *this };
+        return { "content-location", *this };
     }
 
 
     NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> Headers::Date() {
-        return NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point>{ "date", *this, "%a, %d %b %Y %H:%M:%S GMT" };
+        return { "date", *this, "%a, %d %b %Y %H:%M:%S GMT" };
     }
 
     NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> Headers::Date() const {
-        return NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point>{ "date", *this, "%a, %d %b %Y %H:%M:%S GMT" };
+        return { "date", *this, "%a, %d %b %Y %H:%M:%S GMT" };
     }
 
 
     NHeaders::ListProxy<false, std::string> Headers::Connection() {
-        return NHeaders::ListProxy<false, std::string>{ "connection", *this };
+        return { "connection", *this };
     }
 
     NHeaders::ListProxy<true, std::string> Headers::Connection() const {
-        return NHeaders::ListProxy<true, std::string>{ "connection", *this };
+        return { "connection", *this };
     }
 
 
     NHeaders::ListProxy<false, NHeaders::Upgrade> Headers::Upgrade() {
-        return NHeaders::ListProxy<false, NHeaders::Upgrade>{ "upgrade", *this };
+        return { "upgrade", *this };
     }
 
     NHeaders::ListProxy<true, NHeaders::Upgrade> Headers::Upgrade() const {
-        return NHeaders::ListProxy<true, NHeaders::Upgrade>{ "upgrade", *this };
+        return { "upgrade", *this };
     }
 
 
     NHeaders::ListProxy<false, std::string> Headers::Trailer() {
-        return NHeaders::ListProxy<false, std::string>{ "trailer", *this };
+        return { "trailer", *this };
     }
 
     NHeaders::ListProxy<true, std::string> Headers::Trailer() const {
-        return NHeaders::ListProxy<true, std::string>{ "trailer", *this };
+        return { "trailer", *this };
     }
 
 
     NHeaders::ListProxy<false, std::string> Headers::Via() {
-        return NHeaders::ListProxy<false, std::string>{ "via", *this };
+        return { "via", *this };
     }
 
     NHeaders::ListProxy<true, std::string> Headers::Via() const {
-        return NHeaders::ListProxy<true, std::string>{ "via", *this };
+        return { "via", *this };
     }
 
 

@@ -2,25 +2,25 @@
 
 namespace Thoth::Http::NHeaders {
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     ValueProxy<IsConst, Ts...>::ValueProxy(std::string_view key, HeaderType& headers, PatternType pattern)
             : key{ key }, headers{ headers }, inPattern{ pattern } { }
 
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ValueProxy<IsConst, Ts...>::GetAsOpt() && -> std::optional<Type> {
         auto val{ headers.Get(key) };
 
         if (!val || (*val)->empty()) return std::nullopt;
 
         if constexpr (Single) {
-            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+            if (auto parsed{ Utils::Scan<Type>(**val, inPattern) }; parsed)
                 return *parsed;
         } else {
             std::optional<Type> result;
             std::size_t i{};
             ([&] {
-                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
@@ -33,7 +33,7 @@ namespace Thoth::Http::NHeaders {
         return std::nullopt;
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ValueProxy<IsConst, Ts...>::Get() && -> std::expected<Type, HeaderErrorEnum> {
         auto val{ headers.Get(key) };
 
@@ -41,85 +41,85 @@ namespace Thoth::Http::NHeaders {
         if ((*val)->empty()) return std::unexpected{ HeaderErrorEnum::EmptyValue };
 
         if constexpr (Single) {
-            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+            if (auto parsed{ Utils::Scan<Type>(**val, inPattern) }; parsed)
                 return *parsed;
         } else {
             std::optional<Type> result;
             std::size_t i{};
             ([&] {
-                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
                 return false;
             }() || ...);
 
-            if (result) return result;
+            if (result) return *result;
         }
 
         return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ValueProxy<IsConst, Ts...>::GetWithDefault(Type defaultValue) && -> std::expected<Type, InvalidHeaderFormat> {
         auto val{ headers.Get(key) };
 
         if (!val || (*val)->empty()) return defaultValue;
 
         if constexpr (Single) {
-            if (auto parsed{ Scan<Type>(**val, inPattern) }; parsed)
+            if (auto parsed{ Utils::Scan<Type>(**val, inPattern) }; parsed)
                 return *parsed;
         } else {
             std::optional<Type> result;
             std::size_t i{};
             ([&] {
-                if (auto parsed{ Scan<Ts>(**val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
                 return false;
             }() || ...);
 
-            if (result) return result;
+            if (result) return *result;
         }
 
         return std::unexpected{ InvalidHeaderFormat{} };
     }
 
-    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
+    template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<class T>
         requires (!IsConst)
     void ValueProxy<IsConst, Ts...>::operator=(const T& newValue) && {
         std::move(*this).Set(newValue);
     }
 
-    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
+    template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<class T>
         requires (!IsConst)
     void ValueProxy<IsConst, Ts...>::operator=(T&& newValue) && {
         std::move(*this).Set(std::move(newValue));
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class T>
         requires (!IsConst)
     void ValueProxy<IsConst, Ts...>::Set(const T& newValue) && {
         headers.Set(key, std::format("{}", newValue));
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class T>
         requires (!IsConst)
     void ValueProxy<IsConst, Ts...>::Set(T&& newValue) && {
         headers.Set(key, std::format("{}", std::move(newValue)));
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class>
         requires (!IsConst)
     bool ValueProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
         if constexpr (Single) {
-            auto parsed{ Scan<Type>(newValue, inPattern) };
+            auto parsed{ Utils::Scan<Type>(newValue, inPattern) };
             if (!parsed) return false;
             std::move(*this).Set(*parsed);
             return true;
@@ -128,7 +128,7 @@ namespace Thoth::Http::NHeaders {
             std::size_t i{};
             ([&] {
                 if (!set)
-                    if (auto parsed{ Scan<Ts>(newValue, inPattern[i]) }; parsed) {
+                    if (auto parsed{ Utils::Scan<Ts>(newValue, inPattern[i]) }; parsed) {
                         headers.Set(key, std::format("{}", *parsed));
                         set = true;
                     }

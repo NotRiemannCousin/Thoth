@@ -10,7 +10,7 @@ namespace Thoth::Http {
 
 namespace Thoth::Http::NHeaders {
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     struct ListProxy {
         static constexpr std::size_t Count{ sizeof...(Ts) };
         static constexpr bool Single{ sizeof...(Ts) == 1 };

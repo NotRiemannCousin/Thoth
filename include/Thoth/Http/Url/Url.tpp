@@ -26,4 +26,19 @@ namespace std {
             return ctx.out();
         }
     };
+
+
 }
+
+template<>
+struct Thoth::Utils::Scanner<Thoth::Http::Url> {
+    static bool Parse(const std::string_view str) {
+        return str.empty();
+    }
+
+    static std::optional<Http::Url> Scan(std::string_view input) {
+        auto res{ Http::Url::FromUrl(std::string{ input }) };
+        if (res) return *res;
+        return std::nullopt;
+    }
+};

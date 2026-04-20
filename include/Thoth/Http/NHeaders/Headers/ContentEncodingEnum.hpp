@@ -13,3 +13,5 @@ namespace Thoth::Http::NHeaders {
 }
 
 #include <Thoth/Http/NHeaders/Headers/ContentEncodingEnum.tpp>
+
+static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::ContentEncodingEnum>);

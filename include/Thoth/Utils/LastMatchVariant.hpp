@@ -10,9 +10,8 @@ namespace Thoth::Utils {
 
         if constexpr (Relation<T, std::variant_alternative_t<Index, Variant>>::value)
             return Index;
-
-
-        return FindMatchIndexImpl<T, Variant, Relation, Index + 1>();
+        else
+            return FindMatchIndexImpl<T, Variant, Relation, Index + 1>();
     }
 
     template<class T, class Variant, template<class, class> class Relation>

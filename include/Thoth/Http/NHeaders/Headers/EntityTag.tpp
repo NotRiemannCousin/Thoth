@@ -10,7 +10,9 @@
 
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::EntityTag> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::EntityTag> {
+    using EntityTag = Http::NHeaders::EntityTag;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -46,7 +48,3 @@ struct std::formatter<Thoth::Http::NHeaders::EntityTag> {
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<EntityTag>);
-}

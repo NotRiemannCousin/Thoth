@@ -1,4 +1,5 @@
 #pragma once
+#include <Thoth/Http/Response/ResponseHead.hpp>
 
 namespace Thoth::Dsa {
     template<Hermes::ByteLike T>

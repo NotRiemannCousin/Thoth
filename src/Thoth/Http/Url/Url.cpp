@@ -1,7 +1,7 @@
 #include <Thoth/Http/Url/Url.hpp>
 #include <algorithm>
 
-#include "Thoth/String/Utils.hpp"
+#include <Thoth/String/Utils.hpp>
 
 using Thoth::Http::Url;
 using std::string_view;
@@ -112,7 +112,7 @@ std::string_view                      Url::GetFragment()  const noexcept { retur
 
 
 
-std::string_view Url::GetPathOrSep() const noexcept { return path.empty() ? ":" : path; }
+std::string_view Url::GetPathOrSep() const noexcept { return path.empty() ? "/" : path; }
 
 Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(query); }
 
@@ -157,7 +157,19 @@ std::expected<Url, Thoth::Http::RequestError> Url::FromUrl(std::string rawUrl) {
     //     FAIL_WITH(InvalidScheme); // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrlView.find(':') };
+
+    if (schemeIdx == string::npos)
+        FAIL_WITH(InvalidScheme); // ill-formed, scheme is mandatory
+
     scheme = string_view(rawUrlView.data(), schemeIdx);
+
+    static constexpr auto a_acceptedSchemeChars = [](char c) {
+        constexpr auto bitset{ String::MakeBitset({ String::CharSequences::alphanumeric, "+-." }) };
+        return bitset[c];
+    };
+    if (scheme.empty() || !isalpha(scheme[0]) || !rg::all_of(scheme, a_acceptedSchemeChars))
+        FAIL_WITH(InvalidScheme);
+
     rawUrlView.remove_prefix(schemeIdx + 1);
 
 

@@ -12,7 +12,11 @@
 
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Range> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Range> {
+    using PrefixedRange = Http::NHeaders::PrefixedRange;
+    using SuffixedRange = Http::NHeaders::SuffixedRange;
+    using Range = Http::NHeaders::Range;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -27,12 +31,12 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Range> {
 
         input.remove_prefix(prefix.size());
 
-        if (input.empty() || (input[0] != '-' && isdigit(input[0])))
+        if (input.empty() || (input[0] != '-' && !isdigit(input[0])))
             return std::nullopt;
 
         if (input[0] == '-') {
             input.remove_prefix(1);
-            if (auto last{ NHeaders::Scan<unsigned int>( input ) }; last)
+            if (auto last{ Utils::Scan<unsigned int>( input ) }; last)
                 return SuffixedRange{ *last };
         } else {
             const auto idx{ input.find('-') };
@@ -40,12 +44,12 @@ struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::Range> {
             if (idx == std::string::npos) return std::nullopt;
 
             if (idx == input.length() - 1) {
-                input.remove_prefix(1);
-                if (const auto start{ NHeaders::Scan<unsigned int>( input ) }; start)
+                input.remove_suffix(1);
+                if (const auto start{ Utils::Scan<unsigned int>( input ) }; start)
                     return PrefixedRange{ *start, {} };
             } else {
-                const auto start{ NHeaders::Scan<unsigned int>( input.substr(0, idx) ) };
-                const auto end{ NHeaders::Scan<unsigned int>( input.substr(idx) ) };
+                const auto start{ Utils::Scan<unsigned int>( input.substr(0, idx) ) };
+                const auto end{ Utils::Scan<unsigned int>( input.substr(idx + 1) ) };
 
                 if (start && end)
                     return PrefixedRange{ *start, *end };
@@ -79,7 +83,3 @@ struct std::formatter<Thoth::Http::NHeaders::Range> {
         return ctx.out();
     }
 };
-
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<Range>);
-}

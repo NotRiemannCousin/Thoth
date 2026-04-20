@@ -49,7 +49,6 @@ add_library(Thoth SHARED
         src/Thoth/NJson/JsonObject.cpp
         src/Thoth/NJson/StringRef.cpp
 
-        src/Thoth/Http/NHeaders/Headers.cpp
 
         src/Thoth/Http/Url/Url.cpp
         src/Thoth/Http/Request/QueryParams.cpp
@@ -57,10 +56,15 @@ add_library(Thoth SHARED
         src/Thoth/Http/HttpMethods/GetHttpMethod.cpp
         src/Thoth/Http/HttpMethods/_base/HttpMethodBase.cpp
 
+        src/Thoth/Http/NHeaders/Headers.cpp
+
         src/Thoth/Http/Client.cpp
         src/Thoth/Http/Request/Request.cpp
         src/Thoth/String/Utils.cpp
         src/Thoth/Http/NHeaders/Headers/MimeType.cpp
+
+        src/Thoth/Http/NHeaders/Request/RequestHeaders.cpp
+        src/Thoth/Http/NHeaders/Response/ResponseHeaders.cpp
 )
 
 target_include_directories(Thoth

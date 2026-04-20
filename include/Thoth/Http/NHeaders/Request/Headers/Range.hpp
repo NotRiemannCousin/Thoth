@@ -15,3 +15,5 @@ namespace Thoth::Http::NHeaders {
 
 
 #include <Thoth/Http/NHeaders/Request/Headers/Range.tpp>
+
+static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::Range>);

@@ -5,11 +5,11 @@
 
 namespace Thoth::Http::NHeaders {
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     ListProxy<IsConst, Ts...>::ListProxy(std::string_view key, HeaderType& headers, PatternType inPattern)
             : key{ key }, headers{ headers }, inPattern{ inPattern } { }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::GetAsOpt() && -> std::optional<Type> {
         auto val{ headers.Get(key) };
 
@@ -32,7 +32,7 @@ namespace Thoth::Http::NHeaders {
         return std::nullopt;
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::Get() && -> std::expected<Type, HeaderErrorEnum> {
         auto val{ headers.Get(key) };
 
@@ -58,7 +58,7 @@ namespace Thoth::Http::NHeaders {
         return std::unexpected{ HeaderErrorEnum::InvalidFormat };
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::GetWithDefault(Type defaultValue) && -> std::expected<Type, InvalidHeaderFormat> {
         auto val{ headers.Get(key) };
 
@@ -85,14 +85,14 @@ namespace Thoth::Http::NHeaders {
     }
 
 
-    template<bool IsConst, Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
+    template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<std::ranges::range R>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::operator=(R&& newValue) && {
         std::move(*this).Set(std::forward<R>(newValue));
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<std::ranges::range R>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::Set(R&& newValue) && {
@@ -105,7 +105,7 @@ namespace Thoth::Http::NHeaders {
             | std::ranges::to<std::string>());
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::Add(const ElemType& newItem) && {
@@ -118,7 +118,7 @@ namespace Thoth::Http::NHeaders {
         }
     }
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class>
         requires (!IsConst)
     bool ListProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
@@ -144,14 +144,14 @@ namespace Thoth::Http::NHeaders {
     }
 
 
-    template<bool IsConst, Serializable ...Ts>
+    template<bool IsConst, Utils::Serializable ...Ts>
     template<class U>
     auto ListProxy<IsConst, Ts...>::ParseList(HeaderValue* val, std::string_view pattern) -> std::optional<std::vector<U>> {
         std::vector<U> res{};
         for (auto member : *val
                 | std::views::split(',')
                 | std::views::transform([](auto subrange) { return std::string_view{ subrange.begin(), subrange.end() }; })
-                | std::views::transform([&](std::string_view input) { return Scan<U>(input, pattern); })) {
+                | std::views::transform([&](std::string_view input) { return Utils::Scan<U>(input, pattern); })) {
             if (!member)
                 return std::nullopt;
             res.push_back(*member);

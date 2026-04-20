@@ -12,6 +12,8 @@
 // NOLINTNEXTLINE(*)
 namespace Thoth::NJson {
 
+#pragma region Construction and Assignment
+
     template<class T>
         requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json::Json(T other) {
@@ -38,6 +40,8 @@ namespace Thoth::NJson {
         return *this;
     }
 
+#pragma endregion
+
     template<class T>
     bool Json::IsOfType(const Json& val) {
         return std::holds_alternative<T>(val._value);
@@ -53,94 +57,102 @@ namespace Thoth::NJson {
         return std::get<T>(val._value);
     }
 
-    template<class T>
-    T& Json::As() {
-        return std::get<T>(_value);
-    }
-    template<class T>
-    const T& Json::As() const {
-        return std::get<T>(_value);
+
+#pragma region Macro Definitions
+
+#pragma push_macro("CHECK_TYPE")
+#pragma push_macro("RETURN_TYPE")
+#pragma push_macro("RET_CPY")
+#pragma push_macro("RET_MUT")
+#pragma push_macro("RET_MOV")
+#pragma push_macro("RET_REF")
+#pragma push_macro("ERROR")
+#pragma push_macro("MOV_FROM")
+#undef CHECK_TYPE
+#undef RETURN_TYPE
+#undef RET_CPY
+#undef RET_MUT
+#undef RET_MOV
+#undef RET_REF
+#undef ERROR
+#undef MOV_FROM
+
+#define CHECK_TYPE(happyPath, badPath) if (IsOf<T>()) return happyPath; return badPath;
+
+#define RETURN_TYPE(RET) std::optional<RET>
+#define RET_CPY RETURN_TYPE(T)
+#define RET_MUT RETURN_TYPE(T*)
+#define RET_MOV RETURN_TYPE(T)
+#define RET_REF RETURN_TYPE(const T*)
+
+#define MOV_FROM(FROM) std::move(*this).template FROM
+    // even with std::optional<T*>, will I still need to use T* because of expected? aff, hard life
+
+#define ERROR \
+    std::unexpected{ Http::RequestError{ Http::JsonWrongTypeError{ \
+        Http::JsonWrongTypeError::IndexOf<T>, _value.index() } } }
+
+#pragma endregion
+
+#pragma region As
+
+    template<class T, class Self>
+    decltype(auto) Json::As(this Self&& self) {
+        return std::get<T>(std::forward_like<Self>(self._value));
     }
 
-    template<class T>
-    T& Json::AsMut() {
-        return std::get<T>(_value);
-    }
+    template<class T> T        Json::AsCpy() const& { return As<T>();           }
+    template<class T> T&       Json::AsMut() &      { return As<T>();           }
+    template<class T> T&&      Json::AsMov() &&     { return MOV_FROM(As<T>()); }
+    template<class T> const T& Json::AsRef() const& { return As<T>();           }
 
-    template<class T>
-    T Json::AsMov() && {
-        return std::get<T>(std::move(_value));
-    }
-
-    template<class T>
-    const T& Json::AsRef() const {
-        return std::get<T>(_value);
-    }
+#pragma endregion
 
 #pragma region Ensure
-#pragma push_macro("CHECK_TYPE")
-#undef CHECK_TYPE
-#define CHECK_TYPE(happyPath, badPath) \
-    if (IsOf<T>()) \
-        return happyPath; \
-    return badPath;
 
-    template<class T>
-    std::optional<T*> Json::Ensure() {
-        CHECK_TYPE(&As<T>(), std::nullopt);
-    }
-    template<class T>
-    std::optional<T*> Json::Ensure() const {
-        CHECK_TYPE(&As<T>(), std::nullopt);
-    }
-    template<class T>
-    std::optional<T*> Json::EnsureMut() {
-        CHECK_TYPE(&As<T>(), std::nullopt);
-    }
-    template<class T>
-    std::optional<const T*> Json::EnsureRef() const {
-        CHECK_TYPE(&As<T>(), std::nullopt);
-    }
-    template<class T>
-    std::optional<T> Json::EnsureMov() && {
-        CHECK_TYPE(std::move(As<T>()), std::nullopt);
-    }
+    template<class T> RET_MUT Json::Ensure() &      { CHECK_TYPE(&As<T>(), std::nullopt);          }
+    template<class T> RET_MOV Json::Ensure() &&     { CHECK_TYPE(MOV_FROM(As<T>()), std::nullopt); }
+    template<class T> RET_REF Json::Ensure() const& { CHECK_TYPE(&As<T>(), std::nullopt);          }
+
+
+    template<class T> RET_CPY Json::EnsureCpy() const& { CHECK_TYPE(&As<T>(), std::nullopt); }
+    template<class T> RET_MUT Json::EnsureMut() &      { return Ensure<T>();                 }
+    template<class T> RET_MOV Json::EnsureMov() &&     { return MOV_FROM(Ensure<T>());       }
+    template<class T> RET_REF Json::EnsureRef() const& { return Ensure<T>();                 }
+
 #pragma endregion
 
 #pragma region EnsureOrError
-#pragma push_macro("ERROR")
-#undef ERROR
-#define ERROR \
-    std::unexpected{ Http::RequestError{ Http::JsonWrongTypeError{ \
-        Http::JsonWrongTypeError::IndexOf<T>, \
-        _value.index() \
-    } } }
+
+#undef RETURN_TYPE
+#define RETURN_TYPE(RET) std::expected<RET, Http::RequestError>
+
+    template<class T> RET_MUT Json::EnsureOrError() &      { CHECK_TYPE(&As<T>(), ERROR);          }
+    template<class T> RET_MOV Json::EnsureOrError() &&     { CHECK_TYPE(MOV_FROM(As<T>()), ERROR); }
+    template<class T> RET_REF Json::EnsureOrError() const& { CHECK_TYPE(&As<T>(), ERROR);          }
 
 
-    template<class T>
-    std::expected<T*, Http::RequestError> Json::EnsureOrError() {
-        CHECK_TYPE(&As<T>(), ERROR);
-    }
-    template<class T>
-    std::expected<T*, Http::RequestError> Json::EnsureOrError() const {
-        CHECK_TYPE(&As<T>(), ERROR);
-    }
-    template<class T>
-    std::expected<T*, Http::RequestError> Json::EnsureMutOrError() {
-        CHECK_TYPE(&As<T>(), ERROR);
-    }
-    template<class T>
-    std::expected<const T*, Http::RequestError> Json::EnsureRefOrError() const {
-        CHECK_TYPE(&AsRef<T>(), ERROR);
-    }
-    template<class T>
-    std::expected<T, Http::RequestError> Json::EnsureMovOrError() && {
-        CHECK_TYPE(std::move(As<T>()), ERROR);
-    }
+    template<class T> RET_CPY Json::EnsureCpyOrError() const& { CHECK_TYPE(As<T>(), ERROR);          }
+    template<class T> RET_MUT Json::EnsureMutOrError() &      { return EnsureOrError<T>();           }
+    template<class T> RET_MOV Json::EnsureMovOrError() &&     { return MOV_FROM(EnsureOrError<T>()); }
+    template<class T> RET_REF Json::EnsureRefOrError() const& { return EnsureOrError<T>();           }
 
-#pragma pop_macro("ERROR")
-#pragma pop_macro("CHECK_TYPE")
 #pragma endregion
+
+#pragma region Macro Cleanup
+
+#pragma pop_macro("CHECK_TYPE")
+#pragma pop_macro("RETURN_TYPE")
+#pragma pop_macro("RET_CPY")
+#pragma pop_macro("RET_MUT")
+#pragma pop_macro("RET_MOV")
+#pragma pop_macro("RET_REF")
+#pragma pop_macro("ERROR")
+#pragma pop_macro("MOV_FROM")
+
+#pragma endregion
+
+
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
@@ -156,17 +168,19 @@ namespace Thoth::NJson {
 #pragma region Search Functions
 #pragma push_macro("RETURN_IF_MATCH")
 #undef RETURN_IF_MATCH
-#define RETURN_IF_MATCH(declaration, expr) \
-    if (IsOf<Array>()) { \
-        for (declaration : As<Array>()) \
-            if (std::invoke(pred, obj)) \
-                return expr; \
-    } \
-    if (IsOf<Object>()) { \
-        for (declaration : *As<Object>() | std::views::values)\
-            if (std::invoke(pred, obj)) \
-                return expr; \
-    }
+#define RETURN_IF_MATCH(declaration, expr) {                   \
+    if (IsOf<Array>()) {                                       \
+        for (declaration : As<Array>())                        \
+            if (std::invoke(pred, obj))                        \
+                return expr;                                   \
+    }                                                          \
+    if (IsOf<Object>()) {                                      \
+        for (declaration : *As<Object>() | std::views::values) \
+            if (std::invoke(pred, obj))                        \
+                return expr;                                   \
+    }                                                          \
+}
+
 
     template <class Pred> requires std::predicate<Pred, Json>
     OptRefValWrapper Json::Search(Pred&& pred) {
@@ -252,7 +266,7 @@ namespace Thoth::NJson {
                         if (c < 32)
                             tempOutBuffer += std::format("\\u{:04x}", static_cast<unsigned char>(c));
                         else
-                            tempOutBuffer += c;
+                            tempOutBuffer += static_cast<char>(c);
                 }
             }
 

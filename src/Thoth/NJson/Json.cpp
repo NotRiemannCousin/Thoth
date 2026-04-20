@@ -162,13 +162,15 @@ bool Json::operator==(const Json& other) const {
 // This section is dedicated to this cursed amazing feature that deserves
 // to be deprecated/context constrained 10 years ago
 
-#define ADVANCE_IF(predicate) do {                                         \
-        const char* ptr = input.data();                                    \
-        const char* end = ptr + input.size();                              \
+#define ADVANCE_IF_RAW(predicate, action) do {                             \
+        const char* ptr{ input.data() };                                   \
+        const char* end{ ptr + input.size() };                             \
         while (ptr != end && (predicate)) ++ptr; /* SIMD someday */        \
-            if (ptr == end) [[unlikely]] return false;                     \
+            if (ptr == end) [[unlikely]] action;                           \
             input.remove_prefix(static_cast<size_t>(ptr - input.data()));  \
     } while (0)
+
+#define ADVANCE_IF(predicate) ADVANCE_IF_RAW(predicate, return false)
 
 #define ADVANCE_IF_FUNC(func, predicate) do {                              \
         const char* ptr = input.data();                                    \
@@ -327,7 +329,7 @@ static bool Details::ReadNumber(std::string_view& input, auto& val) {
         return res;
     }() };
 
-    ADVANCE_IF(validChars[*ptr]);
+    ADVANCE_IF_RAW(validChars[*ptr], );
 
 
     const auto closeValNumber{ input.data() };
@@ -475,6 +477,8 @@ std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool c
         info.bufferView = input;
 
     const auto s_error = [&]() -> std::unexpected<RequestError>{
+        if (input.empty())
+            return std::unexpected{ RequestError{ GenericError{ "Input for Json is empty" } } };
         return std::unexpected{ RequestError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
     };
 

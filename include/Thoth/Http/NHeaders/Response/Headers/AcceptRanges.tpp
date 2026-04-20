@@ -10,7 +10,9 @@
 
 
 template<>
-struct Thoth::Http::NHeaders::Scanner<Thoth::Http::NHeaders::AcceptRanges> {
+struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::AcceptRanges> {
+    using AcceptRanges = Http::NHeaders::AcceptRanges;
+
     static bool Parse(const std::string_view str) {
         return str.empty();
     }
@@ -41,6 +43,4 @@ struct std::formatter<Thoth::Http::NHeaders::AcceptRanges> {
     }
 };
 
-namespace Thoth::Http::NHeaders {
-    static_assert(Serializable<AcceptRanges>);
-}
+static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::AcceptRanges>);
