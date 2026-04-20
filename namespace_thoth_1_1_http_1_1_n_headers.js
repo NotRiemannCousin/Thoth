@@ -6,17 +6,9 @@ var namespace_thoth_1_1_http_1_1_n_headers =
     [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
     [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
     [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
-    [ "Scanner", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner" ],
-    [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
-    [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
-    [ "Scanner< std::monostate >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
-    [ "Scanner< std::string >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1string_01_4.html", null ],
-    [ "Scanner< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4" ],
     [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
     [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
     [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ],
-    [ "Scannable", "concept_thoth_1_1_http_1_1_n_headers_1_1_scannable.html", null ],
-    [ "Serializable", "concept_thoth_1_1_http_1_1_n_headers_1_1_serializable.html", null ],
     [ "HeaderKey", "namespace_thoth_1_1_http_1_1_n_headers.html#a8854f8d0964c3df83f254f22c62a8c0a", null ],
     [ "HeaderKeyRef", "namespace_thoth_1_1_http_1_1_n_headers.html#a313440daf55066d19909d4a9b60ca31e", null ],
     [ "HeaderPair", "namespace_thoth_1_1_http_1_1_n_headers.html#ad18c23d4601603e2cc9042962b484d25", null ],
@@ -65,6 +57,5 @@ var namespace_thoth_1_1_http_1_1_n_headers =
       [ "Compress", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba8fa4fcfcda70410e089984d5f51ae97d", null ],
       [ "Deflate", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426", null ],
       [ "Gzip", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba2548e50da66f41afea53de1cbbf3b30c", null ]
-    ] ],
-    [ "Scan", "namespace_thoth_1_1_http_1_1_n_headers.html#a00fc676c3df1eecd3bb58eb338defa25", null ]
+    ] ]
 ];

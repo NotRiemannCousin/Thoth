@@ -18,12 +18,6 @@ var annotated_dup =
           [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
           [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
           [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
-          [ "Scanner", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner" ],
-          [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
-          [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
-          [ "Scanner< std::monostate >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
-          [ "Scanner< std::string >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1string_01_4.html", null ],
-          [ "Scanner< T >", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01_t_01_4" ],
           [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
@@ -70,6 +64,12 @@ var annotated_dup =
         [ "UnicodeViewer", "struct_thoth_1_1_string_1_1_unicode_viewer.html", "struct_thoth_1_1_string_1_1_unicode_viewer" ]
       ] ],
       [ "Utils", "namespace_thoth_1_1_utils.html", [
+        [ "Scanner", "struct_thoth_1_1_utils_1_1_scanner.html", "struct_thoth_1_1_utils_1_1_scanner" ],
+        [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
+        [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
+        [ "Scanner< std::monostate >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
+        [ "Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
+        [ "Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4" ],
         [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ]
       ] ]
     ] ]

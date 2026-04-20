@@ -12,5 +12,5 @@ var searchData=
   ['details_3a_3areadobject_9',['ReadObject',['../struct_thoth_1_1_n_json_1_1_json_object.html#a2a1f78665749957f5ab3e5ec20b6ac06',1,'Thoth::NJson::JsonObject']]],
   ['difference_5ftype_10',['difference_type',['../struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html#a52c77dd9f650999969c0c0664735f41d',1,'Thoth::Utils::SharedInputView::Iterator::difference_type'],['../struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html#a54bd54412e92dc9ab9dce6ef2f3f0593',1,'Thoth::String::UnicodeViewer::Iterator::difference_type']]],
   ['digits_11',['digits',['../struct_thoth_1_1_string_1_1_char_sequences.html#aa0c81097eaa4ae88a290ab3f857235c1',1,'Thoth::String::CharSequences']]],
-  ['duration_12',['Duration',['../struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html#a8b1da8e2fe6897a40546af1f613ef579',1,'Thoth::Http::NHeaders::Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;']]]
+  ['duration_12',['Duration',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html#a47bf2213a5cfe28fd24cf197d96fc0e9',1,'Thoth::Utils::Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;']]]
 ];

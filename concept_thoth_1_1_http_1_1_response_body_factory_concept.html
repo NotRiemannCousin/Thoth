@@ -140,9 +140,10 @@ $(document).ready(function(){initNavTree('concept_thoth_1_1_http_1_1_response_bo
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> F, <span class="keyword">class</span> Body&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">Thoth::Http::ResponseBodyFactoryConcept</a> =  <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_response_body_concept.html">ResponseBodyConcept&lt;Body&gt;</a> &amp;&amp;</div>
-<div class="line">            <span class="keyword">requires</span> (F f, <span class="keyword">const</span> ResponseHead&amp; head){ { std::invoke(f, head) } -&gt; std::same_as&lt;std::expected&lt;Body, RequestError&gt;&gt;; }</div>
+<div class="line">            <span class="keyword">requires</span> (F f, <span class="keyword">const</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a>&amp; head){ { std::invoke(f, head) } -&gt; std::same_as&lt;std::expected&lt;Body, RequestError&gt;&gt;; }</div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_response_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_response_body_concept.html">Thoth::Http::ResponseBodyConcept</a></div><div class="ttdef"><b>Definition</b> Response.hpp:15</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_response_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">Thoth::Http::ResponseBodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> Client.hpp:61</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_response_head_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_response_head.html">Thoth::Http::ResponseHead</a></div><div class="ttdef"><b>Definition</b> ResponseHead.hpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

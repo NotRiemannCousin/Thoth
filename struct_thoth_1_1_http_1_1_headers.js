@@ -15,6 +15,7 @@ var struct_thoth_1_1_http_1_1_headers =
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#a24c65b704ffc9065b6105aa3f5344c54", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#ae4cb9d11a5d95c5a8ef7fcf8f5071032", null ],
+    [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#a2b2aef4ef6eb965a5d09f49c9364d516", null ],
     [ "Accept", "struct_thoth_1_1_http_1_1_headers.html#a1a5d54e739abeeb0717bb3aedda97acc", null ],
     [ "Accept", "struct_thoth_1_1_http_1_1_headers.html#a9dcf3f306dc53310a5eafefed92189ca", null ],
     [ "AcceptEncoding", "struct_thoth_1_1_http_1_1_headers.html#ab7c0a1abdac6cda51fbbf003a8914baa", null ],

@@ -1,6 +1,14 @@
 var namespace_thoth_1_1_utils =
 [
+    [ "Scanner", "struct_thoth_1_1_utils_1_1_scanner.html", "struct_thoth_1_1_utils_1_1_scanner" ],
+    [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
+    [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
+    [ "Scanner< std::monostate >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
+    [ "Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
+    [ "Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4" ],
     [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ],
+    [ "Scannable", "concept_thoth_1_1_utils_1_1_scannable.html", null ],
+    [ "Serializable", "concept_thoth_1_1_utils_1_1_serializable.html", null ],
     [ "FirstConvertibleVariant", "namespace_thoth_1_1_utils.html#a61e8c9a9cc87a915b608d362c725acd1", null ],
     [ "FirstEqualVariant", "namespace_thoth_1_1_utils.html#ad00ce4b8476323c5d488174dca28d600", null ],
     [ "CallIfError", "namespace_thoth_1_1_utils.html#ac98e545ca9c1b45065cc18370ca34246", null ],
@@ -46,6 +54,7 @@ var namespace_thoth_1_1_utils =
     [ "S_TestIfImpl", "namespace_thoth_1_1_utils.html#a9e0288a14dd869ab04a83d3320fc8b79", null ],
     [ "S_TransformExpIfImpl", "namespace_thoth_1_1_utils.html#acd562ea577fa1b0173e41407edd4b74a", null ],
     [ "S_TransformOptIfImpl", "namespace_thoth_1_1_utils.html#a7031a51f5323a79eff261a27feae4cda", null ],
+    [ "Scan", "namespace_thoth_1_1_utils.html#a57853778e79eba19dfddf02289cf852d", null ],
     [ "Self", "namespace_thoth_1_1_utils.html#afbb15c1aa5b6538a6a186539b5531c63", null ],
     [ "SelfHof", "namespace_thoth_1_1_utils.html#a7a0398eb738957feebafa029c0421d5b", null ],
     [ "ToValue", "namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4", null ],

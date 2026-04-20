@@ -1,4 +1,0 @@
-var struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4 =
-[
-    [ "pattern", "struct_thoth_1_1_http_1_1_n_headers_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html#afb1a554e613502d4e425988640bbc32d", null ]
-];

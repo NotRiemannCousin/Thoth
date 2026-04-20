@@ -4,5 +4,6 @@ var dir_2d830115d85308f46eeefe3ce749e641 =
     [ "Env.hpp", "_env_8hpp.html", "_env_8hpp" ],
     [ "Functional.hpp", "_functional_8hpp.html", "_functional_8hpp" ],
     [ "LastMatchVariant.hpp", "_last_match_variant_8hpp.html", "_last_match_variant_8hpp" ],
-    [ "Monostate.hpp", "_monostate_8hpp.html", "_monostate_8hpp" ]
+    [ "Monostate.hpp", "_monostate_8hpp.html", "_monostate_8hpp" ],
+    [ "Scanner.hpp", "_scanner_8hpp.html", "_scanner_8hpp" ]
 ];
