@@ -145,7 +145,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_n_json_1_1_json.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a6216b284b3013155228c9fcef781c917" id="r_a6216b284b3013155228c9fcef781c917"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a6216b284b3013155228c9fcef781c917">Value</a> = std::variant&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#a99bfc72251b2966b098a93ebf8ba94cd">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d">String</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a8d5ed1fc68730aa6e3e52e294cd961aa">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0d2ee1e007b09fd0a0c27ac41868f668">Array</a> &gt;</td></tr>
+<tr class="memitem:a6216b284b3013155228c9fcef781c917" id="r_a6216b284b3013155228c9fcef781c917"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a6216b284b3013155228c9fcef781c917">Value</a> = std::variant&lt; <a class="el" href="namespace_thoth_1_1_n_json.html#a99bfc72251b2966b098a93ebf8ba94cd">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d">String</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0447f6e8d65cd141bb69213515bb7a3f">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0d2ee1e007b09fd0a0c27ac41868f668">Array</a> &gt;</td></tr>
 <tr class="separator:a6216b284b3013155228c9fcef781c917"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7eeb915ba5e7f2b445e5c3857bbfdff" id="r_ae7eeb915ba5e7f2b445e5c3857bbfdff"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#ae7eeb915ba5e7f2b445e5c3857bbfdff">PredicatePointer</a> = bool(*)(const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;)</td></tr>
 <tr class="separator:ae7eeb915ba5e7f2b445e5c3857bbfdff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,9 +219,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:a4a9ca6275e87c6f92207297d3135db41" id="r_a4a9ca6275e87c6f92207297d3135db41"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a4a9ca6275e87c6f92207297d3135db41"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a4a9ca6275e87c6f92207297d3135db41">AsCpy</a> () const &amp;</td></tr>
 <tr class="separator:a4a9ca6275e87c6f92207297d3135db41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c173aafcc7966950912d5034b28692e" id="r_a2c173aafcc7966950912d5034b28692e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a2c173aafcc7966950912d5034b28692e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a2c173aafcc7966950912d5034b28692e">AsCpy</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:a2c173aafcc7966950912d5034b28692e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb82e8e0dde421697d36eb3d4a09631d" id="r_aeb82e8e0dde421697d36eb3d4a09631d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aeb82e8e0dde421697d36eb3d4a09631d"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#aeb82e8e0dde421697d36eb3d4a09631d">AsMut</a> () &amp;</td></tr>
 <tr class="separator:aeb82e8e0dde421697d36eb3d4a09631d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,9 +228,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:a83434f4f8326a422576b57991e3047ca" id="r_a83434f4f8326a422576b57991e3047ca"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a83434f4f8326a422576b57991e3047ca"><td class="memTemplItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a83434f4f8326a422576b57991e3047ca">AsRef</a> () const &amp;</td></tr>
 <tr class="separator:a83434f4f8326a422576b57991e3047ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e9c7c1e14f88c2ba5549fbcfef6740c" id="r_a4e9c7c1e14f88c2ba5549fbcfef6740c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a4e9c7c1e14f88c2ba5549fbcfef6740c"><td class="memTemplItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a4e9c7c1e14f88c2ba5549fbcfef6740c">AsRef</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:a4e9c7c1e14f88c2ba5549fbcfef6740c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1b54b7ee3f0858968eb9b928c0ffa0f" id="r_aa1b54b7ee3f0858968eb9b928c0ffa0f"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa1b54b7ee3f0858968eb9b928c0ffa0f"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#aa1b54b7ee3f0858968eb9b928c0ffa0f">Ensure</a> () &amp;</td></tr>
 <tr class="separator:aa1b54b7ee3f0858968eb9b928c0ffa0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,9 +240,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:aaf44611cbf14f2335979f819fb5d1722" id="r_aaf44611cbf14f2335979f819fb5d1722"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aaf44611cbf14f2335979f819fb5d1722"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#aaf44611cbf14f2335979f819fb5d1722">EnsureCpy</a> () const &amp;</td></tr>
 <tr class="separator:aaf44611cbf14f2335979f819fb5d1722"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99172874309504dbcd93aa81257505cc" id="r_a99172874309504dbcd93aa81257505cc"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a99172874309504dbcd93aa81257505cc"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a99172874309504dbcd93aa81257505cc">EnsureCpy</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:a99172874309504dbcd93aa81257505cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18de1eb2139518f2a2da54d84690488d" id="r_a18de1eb2139518f2a2da54d84690488d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a18de1eb2139518f2a2da54d84690488d"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a18de1eb2139518f2a2da54d84690488d">EnsureMut</a> () &amp;</td></tr>
 <tr class="separator:a18de1eb2139518f2a2da54d84690488d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -258,9 +249,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:a7caa97bb339a02febab75141553c026e" id="r_a7caa97bb339a02febab75141553c026e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a7caa97bb339a02febab75141553c026e"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; const T * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a7caa97bb339a02febab75141553c026e">EnsureRef</a> () const &amp;</td></tr>
 <tr class="separator:a7caa97bb339a02febab75141553c026e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a319c90a63336bac291595b74ecd20877" id="r_a319c90a63336bac291595b74ecd20877"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a319c90a63336bac291595b74ecd20877"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; const T * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a319c90a63336bac291595b74ecd20877">EnsureRef</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:a319c90a63336bac291595b74ecd20877"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa18c34dc38b0354ca7cc1bfa0b6a02c6" id="r_aa18c34dc38b0354ca7cc1bfa0b6a02c6"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aa18c34dc38b0354ca7cc1bfa0b6a02c6"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; T *, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#aa18c34dc38b0354ca7cc1bfa0b6a02c6">EnsureOrError</a> () &amp;</td></tr>
 <tr class="separator:aa18c34dc38b0354ca7cc1bfa0b6a02c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,9 +261,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:ab023403e51690d593bcef8e1bb7972aa" id="r_ab023403e51690d593bcef8e1bb7972aa"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ab023403e51690d593bcef8e1bb7972aa"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; T, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#ab023403e51690d593bcef8e1bb7972aa">EnsureCpyOrError</a> () const &amp;</td></tr>
 <tr class="separator:ab023403e51690d593bcef8e1bb7972aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adef30447e1453903e2519faeb680fb9e" id="r_adef30447e1453903e2519faeb680fb9e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:adef30447e1453903e2519faeb680fb9e"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; T, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#adef30447e1453903e2519faeb680fb9e">EnsureCpyOrError</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:adef30447e1453903e2519faeb680fb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a028b847e31bceb3eb399cf1d5baf5a1e" id="r_a028b847e31bceb3eb399cf1d5baf5a1e"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a028b847e31bceb3eb399cf1d5baf5a1e"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; T *, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a028b847e31bceb3eb399cf1d5baf5a1e">EnsureMutOrError</a> () &amp;</td></tr>
 <tr class="separator:a028b847e31bceb3eb399cf1d5baf5a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,9 +270,6 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr class="memitem:afc08ba8d9471be3e29b1a4766ee101c8" id="r_afc08ba8d9471be3e29b1a4766ee101c8"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:afc08ba8d9471be3e29b1a4766ee101c8"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; const T *, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#afc08ba8d9471be3e29b1a4766ee101c8">EnsureRefOrError</a> () const &amp;</td></tr>
 <tr class="separator:afc08ba8d9471be3e29b1a4766ee101c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a257fcfb19cbb775c9f445dbfa775896d" id="r_a257fcfb19cbb775c9f445dbfa775896d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a257fcfb19cbb775c9f445dbfa775896d"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; const T *, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a257fcfb19cbb775c9f445dbfa775896d">EnsureRefOrError</a> () &amp;&amp;=delete</td></tr>
-<tr class="separator:a257fcfb19cbb775c9f445dbfa775896d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00c1a8b14f05bb23a3f776081f18fdb7" id="r_a00c1a8b14f05bb23a3f776081f18fdb7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a00c1a8b14f05bb23a3f776081f18fdb7">operator==</a> (const <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> &amp;other) const</td></tr>
 <tr class="separator:a00c1a8b14f05bb23a3f776081f18fdb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a708a753bf0fd9f3b665c43c92d4a467e" id="r_a708a753bf0fd9f3b665c43c92d4a467e"><td class="memTemplParams" colspan="2">template&lt;class Callable &gt; </td></tr>
@@ -455,7 +437,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a6216b284b3013155228c9fcef781c917">Thoth::NJson::Json::Value</a> =  std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#a99bfc72251b2966b098a93ebf8ba94cd">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d">String</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a8d5ed1fc68730aa6e3e52e294cd961aa">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0d2ee1e007b09fd0a0c27ac41868f668">Array</a>&gt;</td>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html#a6216b284b3013155228c9fcef781c917">Thoth::NJson::Json::Value</a> =  std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#a99bfc72251b2966b098a93ebf8ba94cd">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d">String</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0447f6e8d65cd141bb69213515bb7a3f">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a1d4dbb36608aa59b881f51eb1f24a2a5">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a0d2ee1e007b09fd0a0c27ac41868f668">Array</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -721,35 +703,8 @@ template&lt;class T , class Self &gt; </div>
 
 </div>
 </div>
-<a id="a2c173aafcc7966950912d5034b28692e" name="a2c173aafcc7966950912d5034b28692e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c173aafcc7966950912d5034b28692e">&#9670;&#160;</a></span>AsCpy() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T Thoth::NJson::Json::AsCpy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a4a9ca6275e87c6f92207297d3135db41" name="a4a9ca6275e87c6f92207297d3135db41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a9ca6275e87c6f92207297d3135db41">&#9670;&#160;</a></span>AsCpy() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a9ca6275e87c6f92207297d3135db41">&#9670;&#160;</a></span>AsCpy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -805,35 +760,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a4e9c7c1e14f88c2ba5549fbcfef6740c" name="a4e9c7c1e14f88c2ba5549fbcfef6740c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e9c7c1e14f88c2ba5549fbcfef6740c">&#9670;&#160;</a></span>AsRef() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const T &amp; Thoth::NJson::Json::AsRef </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a83434f4f8326a422576b57991e3047ca" name="a83434f4f8326a422576b57991e3047ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83434f4f8326a422576b57991e3047ca">&#9670;&#160;</a></span>AsRef() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a83434f4f8326a422576b57991e3047ca">&#9670;&#160;</a></span>AsRef()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -936,35 +864,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a99172874309504dbcd93aa81257505cc" name="a99172874309504dbcd93aa81257505cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99172874309504dbcd93aa81257505cc">&#9670;&#160;</a></span>EnsureCpy() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt; T &gt; Thoth::NJson::Json::EnsureCpy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aaf44611cbf14f2335979f819fb5d1722" name="aaf44611cbf14f2335979f819fb5d1722"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf44611cbf14f2335979f819fb5d1722">&#9670;&#160;</a></span>EnsureCpy() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf44611cbf14f2335979f819fb5d1722">&#9670;&#160;</a></span>EnsureCpy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -982,35 +883,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="adef30447e1453903e2519faeb680fb9e" name="adef30447e1453903e2519faeb680fb9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adef30447e1453903e2519faeb680fb9e">&#9670;&#160;</a></span>EnsureCpyOrError() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::expected&lt; T, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt; Thoth::NJson::Json::EnsureCpyOrError </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab023403e51690d593bcef8e1bb7972aa" name="ab023403e51690d593bcef8e1bb7972aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab023403e51690d593bcef8e1bb7972aa">&#9670;&#160;</a></span>EnsureCpyOrError() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab023403e51690d593bcef8e1bb7972aa">&#9670;&#160;</a></span>EnsureCpyOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1161,35 +1035,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a319c90a63336bac291595b74ecd20877" name="a319c90a63336bac291595b74ecd20877"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a319c90a63336bac291595b74ecd20877">&#9670;&#160;</a></span>EnsureRef() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt; const T * &gt; Thoth::NJson::Json::EnsureRef </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a7caa97bb339a02febab75141553c026e" name="a7caa97bb339a02febab75141553c026e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7caa97bb339a02febab75141553c026e">&#9670;&#160;</a></span>EnsureRef() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7caa97bb339a02febab75141553c026e">&#9670;&#160;</a></span>EnsureRef()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1207,35 +1054,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a257fcfb19cbb775c9f445dbfa775896d" name="a257fcfb19cbb775c9f445dbfa775896d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a257fcfb19cbb775c9f445dbfa775896d">&#9670;&#160;</a></span>EnsureRefOrError() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::expected&lt; const T *, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">Http::RequestError</a> &gt; Thoth::NJson::Json::EnsureRefOrError </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> &amp;&amp;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="afc08ba8d9471be3e29b1a4766ee101c8" name="afc08ba8d9471be3e29b1a4766ee101c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc08ba8d9471be3e29b1a4766ee101c8">&#9670;&#160;</a></span>EnsureRefOrError() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afc08ba8d9471be3e29b1a4766ee101c8">&#9670;&#160;</a></span>EnsureRefOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">

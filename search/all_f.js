@@ -16,5 +16,5 @@ var searchData=
   ['nulloptifhof_13',['nulloptifhof',['../namespace_thoth_1_1_utils.html#a56f8f5f5ad556eaf19ba354f20ceff1e',1,'Thoth::Utils::NulloptIfHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a1c40039e4a87ee05f4017a96641cb699',1,'Thoth::Utils::NulloptIfHof()']]],
   ['nulloptifnot_14',['nulloptifnot',['../namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24',1,'Thoth::Utils::NulloptIfNot(Pred &amp;&amp;pred, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c',1,'Thoth::Utils::NulloptIfNot(Val &amp;&amp;value)']]],
   ['nulloptifnothof_15',['nulloptifnothof',['../namespace_thoth_1_1_utils.html#a0222d55a46b2800dd6860ab067e99452',1,'Thoth::Utils::NulloptIfNotHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a8c180d24c9ee700339c1451cb7855d55',1,'Thoth::Utils::NulloptIfNotHof()']]],
-  ['number_16',['Number',['../namespace_thoth_1_1_n_json.html#a8d5ed1fc68730aa6e3e52e294cd961aa',1,'Thoth::NJson']]]
+  ['number_16',['Number',['../namespace_thoth_1_1_n_json.html#a0447f6e8d65cd141bb69213515bb7a3f',1,'Thoth::NJson']]]
 ];

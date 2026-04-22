@@ -14,7 +14,7 @@ var _definitions_8hpp =
     [ "Key", "_definitions_8hpp.html#a6b3ffb5f3e2c190d5530cc47ed479b69", null ],
     [ "Keys", "_definitions_8hpp.html#aaa1ed1c7d9c743117960806e849aae7c", null ],
     [ "Null", "_definitions_8hpp.html#a99bfc72251b2966b098a93ebf8ba94cd", null ],
-    [ "Number", "_definitions_8hpp.html#a8d5ed1fc68730aa6e3e52e294cd961aa", null ],
+    [ "Number", "_definitions_8hpp.html#a0447f6e8d65cd141bb69213515bb7a3f", null ],
     [ "Object", "_definitions_8hpp.html#a1d4dbb36608aa59b881f51eb1f24a2a5", null ],
     [ "OptCRefValWrapper", "_definitions_8hpp.html#a4eb195e73f981721f9426844c0a6a3cb", null ],
     [ "OptCValWrapper", "_definitions_8hpp.html#a068ce1a46702fb9bec57675bfb053f39", null ],
