@@ -1,4 +1,3 @@
-// esse deixei pra IA fds, mó preguiça de fazer
 #pragma once
 
 #include <vector>
@@ -14,8 +13,6 @@ namespace Thoth::Dsa {
            requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::same_as<std::strong_ordering>; }
         || requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::convertible_to<bool>; };
 
-    // unfortunately I have to use snake_case here to it be similar to STL algorithms/containers.
-
     template<class KeyT, class ValT, class Pred = std::less<>>
         requires strong_order_relation<KeyT, Pred>
     struct LinearMap {
@@ -30,21 +27,7 @@ namespace Thoth::Dsa {
 
     private:
         container_type _data;
-        key_compare _compare;
-
-        struct PairComparator {
-            const key_compare& _comp;
-
-            template <class LookupKeyT>
-            constexpr bool operator()(const value_type& pair, const LookupKeyT& key) const {
-                return std::invoke(_comp, pair.first, key);
-            }
-
-            template <class LookupKeyT>
-            constexpr bool operator()(const LookupKeyT& key, const value_type& pair) const {
-                return std::invoke(_comp, key, pair.first);
-            }
-        };
+        [[no_unique_address]] key_compare _compare; // Otimização para comparadores sem estado (stateless)
 
         template <class LookupKeyT>
         constexpr iterator find_position(const LookupKeyT& key);
@@ -63,12 +46,10 @@ namespace Thoth::Dsa {
         constexpr explicit LinearMap(const key_compare& comp);
         constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare{});
 
-
-        constexpr LinearMap& operator=(const LinearMap&);
-        constexpr LinearMap& operator=(LinearMap&&) noexcept;
+        constexpr LinearMap& operator=(const LinearMap&) = default;
+        constexpr LinearMap& operator=(LinearMap&&) noexcept = default;
 
         constexpr bool operator==(const LinearMap& other) const;
-
 
         constexpr void clear();
 
@@ -92,7 +73,6 @@ namespace Thoth::Dsa {
         constexpr bool erase(const LookupKeyT& key);
 
         constexpr iterator erase(iterator pos);
-
         constexpr iterator erase(const_iterator pos);
 
         template <class LookupKeyT>

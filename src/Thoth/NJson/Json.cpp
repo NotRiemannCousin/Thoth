@@ -334,7 +334,7 @@ static bool Details::ReadNumber(std::string_view& input, auto& val) {
 
     const auto closeValNumber{ input.data() };
 
-    long double number{};
+    Number number{};
 
     auto [ptr, err] {
         std::from_chars(

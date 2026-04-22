@@ -23,7 +23,7 @@ namespace Thoth::NJson {
 
     using Null   = std::monostate;                   // null
     using String = Dsa::Cow<StringRef, std::string>; // string
-    using Number = long double;                      // number
+    using Number = double;                           // number
     using Bool   = bool;                             // bool
     using Object = std::unique_ptr<JsonObject>;      // {Object}
     using Array  = std::vector<Json>;                // [Array]

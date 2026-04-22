@@ -7,6 +7,8 @@
 #include <Thoth/Utils/Overloads.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
 
+#include "Thoth/String/Utils.hpp"
+
 // TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. (json, "map", "continents", "countries"))?
 
 // NOLINTNEXTLINE(*)
@@ -245,129 +247,175 @@ namespace Thoth::NJson {
 
         template<class OutIt>
         void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
-            size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
+            size_t indentDepth, OutIt& it);
 
 
         template<class OutIt>
-        void EscapeJsonString(const std::string_view& str, const OutIt& it, std::string& tempOutBuffer) {
-            tempOutBuffer = '"';
-            tempOutBuffer.reserve(str.size());
+        void EscapeJsonString(const std::string_view& str, OutIt& it) {
+            *it++ = '"';
 
-            for (const unsigned char c : str) {
+#pragma push_macro("ESCAPE_CHAR")
+#pragma push_macro("UPDATE")
+#undef ESCAPE_CHAR
+#undef ESCAPE_CHAR
+#define UPDATE(index) it = std::ranges::copy(str.substr(lastIndex, index - lastIndex), it).out;
+#define ESCAPE_CHAR(esc) UPDATE(i); lastIndex = static_cast<int>(i) + 1; *it++ = '\\'; *it++ = esc;
+
+            int lastIndex{};
+            for (auto [i, c] : str | std::ranges::views::enumerate) {
                 switch (c) {
-                    case '"':  tempOutBuffer += R"(\")"; break;
-                    case '\\': tempOutBuffer += R"(\\)"; break;
-                    case '\b': tempOutBuffer += R"(\b)"; break;
-                    case '\f': tempOutBuffer += R"(\f)"; break;
-                    case '\n': tempOutBuffer += R"(\n)"; break;
-                    case '\r': tempOutBuffer += R"(\r)"; break;
-                    case '\t': tempOutBuffer += R"(\t)"; break;
+                    case '\r': ESCAPE_CHAR('r');  break;
+                    case '\t': ESCAPE_CHAR('t');  break;
+                    case '"':  ESCAPE_CHAR('"');  break;
+                    case '\\': ESCAPE_CHAR('\\'); break;
+                    case '\b': ESCAPE_CHAR('b');  break;
+                    case '\f': ESCAPE_CHAR('f');  break;
+                    case '\n': ESCAPE_CHAR('n');  break;
                     default:
-                        if (c < 32)
-                            tempOutBuffer += std::format("\\u{:04x}", static_cast<unsigned char>(c));
-                        else
-                            tempOutBuffer += static_cast<char>(c);
-                }
-            }
+                        const auto d{ static_cast<unsigned char>(c) };
 
-            tempOutBuffer += '"';
-            std::format_to(it, "{}", tempOutBuffer);
+                        if (d < 32) {
+                            UPDATE(i);
+                            static constexpr auto& hex{ Thoth::String::CharSequences::hexLower };
+
+                            *it++ = '\\';
+                            *it++ = 'u';
+                            *it++ = '0';
+                            *it++ = '0';
+                            *it++ = hex[d >> 4];
+                            *it++ = hex[d & 0x0F];
+                        }
+                    }
+                }
+
+            UPDATE(std::string::npos);
+            *it++ = '"';
+
+#pragma pop_macro("ESCAPE_CHAR")
+#pragma pop_macro("UPDATE")
         }
 
         template<class OutIt>
         void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent,
-            size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
+            size_t indentDepth, OutIt& it) {
 
-            std::format_to(it, "{{");
+            *it++ = '{';
 
             indentDepth++;
             bool first = true;
             for (const auto& [key, val] : json) {
-                if (!first) std::format_to(it, ",");
+                if (!first) *it++ = ',';
                 first = false;
 
                 if (pretty) {
-                    std::format_to(it, "\n");
+                    *it++ = '\n';
                     for (int i{}; i < indentDepth; i++)
-                        std::format_to(it, "{}", indent);
+                        it = std::ranges::copy(indent, it).out;
                 }
 
 
-                EscapeJsonString(key, it, tempOutBuffer);
-                std::format_to(it, ":");
+                EscapeJsonString(key, it);
+                *it++ = ':';
 
 
-                if (pretty) std::format_to(it, " ");
+                if (pretty) *it++ = ' ';
 
-                FormatJsonVal(val, pretty, indent, indentDepth + 1, it, tempOutBuffer);
+                FormatJsonVal(val, pretty, indent, indentDepth + 1, it);
             }
             indentDepth--;
 
             if (pretty && !json.Empty()) {
-                std::format_to(it, "\n");
+                *it++ = '\n';
                 for (int i{}; i < indentDepth; i++)
-                    std::format_to(it, "{}", indent);
+                    it = std::ranges::copy(indent, it).out;
             }
 
-            std::format_to(it, "}}");
+            *it++ = '}';
         }
 
         template<class OutIt>
         void FormatJsonArr(const Array& val, bool pretty, const std::string& indent,
-                size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
-            std::format_to(it, "[");
+                size_t indentDepth, OutIt& it) {
+            *it++ = '[';
             bool first = true;
 
             indentDepth++;
             for (const auto& elem : val) {
-                if (!first) std::format_to(it, ",");
+                if (!first) *it++ = ',';
                 first = false;
 
                 if (pretty) {
-                    std::format_to(it, "\n");
+                    *it++ = '\n';
                     for (int i{}; i < indentDepth; i++)
-                        std::format_to(it, "{}", indent);
+                        it = std::ranges::copy(indent, it).out;
                 }
 
-                FormatJsonVal(elem, pretty, indent, indentDepth, it,  tempOutBuffer);
+                FormatJsonVal(elem, pretty, indent, indentDepth, it);
             }
 
             if (pretty && !val.empty()) {
-                std::format_to(it, "\n");
+                *it++ = '\n';
                 for (int i{}; i < indentDepth; i++)
-                    std::format_to(it, "{}", indent);
+                    it = std::ranges::copy(indent, it).out;
             }
             indentDepth--;
 
 
             if (pretty) {
-                std::format_to(it, "\n");
+                *it++ = '\n';
                 for (int i{}; i < indentDepth; i++)
-                    std::format_to(it, "{}", indent);
+                    it = std::ranges::copy(indent, it).out;
             }
 
-            std::format_to(it, "]");
+            *it++ = ']';
         }
 
         template<class OutIt>
         void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
-            const size_t indentDepth, OutIt& it, std::string& tempOutBuffer) {
+            const size_t indentDepth, OutIt& it) {
+            static constexpr std::string_view nullStr{ "null" };
+
+            static constexpr std::string_view falseStr{ "false" };
+            static constexpr std::string_view trueStr{ "true" };
+
+            const auto s_formatNumber = [&](const Number num) {
+                if (!std::isfinite(num)) {
+                    it = std::ranges::copy(nullStr, it).out;
+                    return;
+                }
+
+                std::array<char, 330> buf;
+
+                const auto [ptr, ec]{ std::to_chars(buf.data(), buf.data() + buf.size(), num, std::chars_format::fixed) };
+
+                if (ec == std::errc{})
+                    it = std::ranges::copy(buf.data(), ptr, it).out;
+                else
+                    it = std::ranges::copy(nullStr, it).out;
+            };
+
+            const auto s_formatString = [&](const String& str) {
+                str.Visit(Utils::Overloaded{
+                    // ReSharper disable once CppPassValueParameterByConstReference
+                    [&](const String::RefType ref) {
+                        *it++ = '"';
+                        it = std::ranges::copy(ref.str, it).out; // TODO: StringRef must be a range
+                        *it++ = '"';
+                    },
+                    [&](const String::OwnType& own) {
+                        EscapeJsonString(own, it);
+                    }
+                });
+            };
+
+
             std::visit(Utils::Overloaded{
-                [&](const String& str){
-                    str.Visit(Utils::Overloaded{
-                        [&](const String::RefType ref) {
-                            std::format_to(it, R"("{}")", ref);
-                        },
-                        [&](const String::OwnType& own) {
-                            EscapeJsonString(own, it, tempOutBuffer);
-                        }
-                    });
-                },
-                [&](const Number  num){ std::format_to(it, "{}", num); },
-                [&](const Bool    bln){ std::format_to(it, "{}", bln); },
-                [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it, tempOutBuffer); },
-                [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it, tempOutBuffer); },
-                [&](const Null&      ){ std::format_to(it, "null"); }
+                s_formatString,
+                s_formatNumber,
+                [&](const Bool    bln){ it = std::ranges::copy(bln ? trueStr : falseStr, it).out; },
+                [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it); },
+                [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it); },
+                [&](const Null&      ){ it = std::ranges::copy(nullStr, it).out; }
             }, static_cast<const Json::Value&>(val));
         }
     }
@@ -380,7 +428,7 @@ struct std::formatter<Thoth::NJson::Json> {
     size_t indentLevel{};
 
     constexpr auto parse(std::format_parse_context& ctx) {
-        auto it = ctx.begin();
+        auto it{ ctx.begin() };
         if (it != ctx.end() && *it != '}') {
             ++it;
             pretty = true;
@@ -391,18 +439,16 @@ struct std::formatter<Thoth::NJson::Json> {
             ) };
 
             if (err != std::errc{})
-                throw std::format_error("Invalid format specifier for JsonVal");
+                throw std::format_error{ "Invalid format specifier for JsonVal" };
         }
         return it;
     }
 
     template<class FormatContext>
     auto format(const Thoth::NJson::Json& val, FormatContext& ctx) const {
-        auto it = ctx.out();
-        std::string tempOutBuffer;
+        auto it{ ctx.out() };
 
-        Thoth::NJson::detail::FormatJsonVal(val, pretty, std::string(indentLevel, ' '),
-            0, it, tempOutBuffer);
+        Thoth::NJson::detail::FormatJsonVal(val, pretty, std::string(indentLevel, ' '), 0, it);
         return it;
     }
 };

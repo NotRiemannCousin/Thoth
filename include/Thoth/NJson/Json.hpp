@@ -76,15 +76,11 @@ namespace Thoth::NJson {
         template<class T>
         [[nodiscard]] T AsCpy() const&;
         template<class T>
-        [[nodiscard]] T AsCpy() && = delete;
-        template<class T>
         [[nodiscard]] T& AsMut() &;
         template<class T>
         [[nodiscard]] T&& AsMov() &&;
         template<class T>
         [[nodiscard]] const T& AsRef() const&;
-        template<class T>
-        [[nodiscard]] const T& AsRef() && = delete;
 
         template<class T>
         [[nodiscard]] std::optional<T*> Ensure() &;
@@ -96,15 +92,11 @@ namespace Thoth::NJson {
         template<class T>
         [[nodiscard]] std::optional<T> EnsureCpy() const&;
         template<class T>
-        [[nodiscard]] std::optional<T> EnsureCpy() && = delete;
-        template<class T>
         [[nodiscard]] std::optional<T*> EnsureMut() &;
         template<class T>
         [[nodiscard]] std::optional<T> EnsureMov() &&;
         template<class T>
         [[nodiscard]] std::optional<const T*> EnsureRef() const&;
-        template<class T>
-        [[nodiscard]] std::optional<const T*> EnsureRef() && = delete;
 
         template<class T>
         [[nodiscard]] std::expected<T*, Http::RequestError> EnsureOrError() &;
@@ -116,15 +108,11 @@ namespace Thoth::NJson {
         template<class T>
         [[nodiscard]] std::expected<T, Http::RequestError> EnsureCpyOrError() const&;
         template<class T>
-        [[nodiscard]] std::expected<T, Http::RequestError> EnsureCpyOrError() && = delete;
-        template<class T>
         [[nodiscard]] std::expected<T*, Http::RequestError> EnsureMutOrError() &;
         template<class T>
         [[nodiscard]] std::expected<T, Http::RequestError> EnsureMovOrError() &&;
         template<class T>
         [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureRefOrError() const&;
-        template<class T>
-        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureRefOrError() && = delete;
 
         [[nodiscard]] bool operator==(const Json& other) const;
 

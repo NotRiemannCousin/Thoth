@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark JSON</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .line-through { text-decoration: line-through; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen p-6">
+<div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-slate-900 mb-6">Benchmark JSON - Análise de Desempenho</h1>
+
+    <!-- Painel de Controle -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 mb-8 grid md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-2">
+            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Adicionar Novo Teste</h3>
+            <input type="text" id="newRunName" placeholder="Nome do teste (opcional)" class="w-full p-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <textarea id="rawInput" class="w-full h-24 p-3 text-xs font-mono bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none" placeholder="Cole o output do terminal (ns) aqui..."></textarea>
+            <button onclick="S_HandleAddRun()" class="mt-1 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">Guardar Teste</button>
+        </div>
+
+        <div class="flex flex-col justify-between">
+            <div>
+                <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Modo de Visualização</h3>
+                <div class="flex bg-slate-100 p-1 rounded-lg w-fit">
+                    <button id="btnViewCurrent" onclick="S_SetViewMode('current')" class="px-4 py-2 rounded-md font-medium text-sm transition-all bg-white shadow text-blue-600">Comparação de Suítes</button>
+                    <button id="btnViewHistory" onclick="S_SetViewMode('history')" class="px-4 py-2 rounded-md font-medium text-sm transition-all text-slate-500 hover:text-slate-800">Evolução Histórica</button>
+                </div>
+            </div>
+
+            <div id="runSelectionPanel" class="mt-4 flex flex-col gap-2">
+                <label class="text-sm font-bold text-slate-500 uppercase tracking-wider block">Teste Selecionado</label>
+
+                <div id="editNameContainer" class="hidden gap-2 w-full">
+                    <input type="text" id="editNameInput" class="flex-1 p-2 bg-white border border-blue-400 rounded-lg focus:outline-none">
+                    <button onclick="S_HandleRenameRun()" class="px-3 py-2 bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100">✔</button>
+                    <button onclick="S_ToggleEditName(false)" class="px-3 py-2 bg-slate-100 text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-200">✖</button>
+                </div>
+
+                <div id="selectNameContainer" class="flex gap-2 w-full items-center">
+                    <select id="activeRunSelect" onchange="S_HandleRunChange()" class="flex-1 p-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none truncate"></select>
+                    <div id="runActions" class="flex gap-1 shrink-0 hidden">
+                        <button onclick="S_ToggleEditName(true)" class="px-3 py-2 bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 rounded-lg font-medium transition-colors" title="Renomear">✎</button>
+                        <button onclick="S_HandleDeleteRun()" class="px-3 py-2 bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 rounded-lg font-medium transition-colors" title="Excluir">🗑</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selecionador de Métricas Globais -->
+    <div id="metricSelector" class="mb-8 flex flex-wrap gap-3"></div>
+
+    <!-- Containers Principais -->
+    <div id="currentViewContainer" class="grid grid-cols-6 gap-8"></div>
+    <div id="historyViewContainer" class="grid grid-cols-6 gap-8 hidden"></div>
+</div>
+
+<script>
+    const S_INITIAL_RAW_TEXT = `Running C:\\\\Users\\\\MARCE\\\\CLionProjects\\\\Thoth\\\\cmake-build-release-msvc\\\\bin\\\\Release\\\\BenchJson.exe
+Run on (16 X 2894 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 512 KiB (x8)
+  L3 Unified 4096 KiB (x2)
+--------------------------------------------------------------------------------------------
+Benchmark                                  Time             CPU   Iterations UserCounters...
+--------------------------------------------------------------------------------------------
+Parse/Thoth/Small                       7577 ns         7324 ns        74667 bytes_per_second=20.1824Mi/s small
+Parse/Thoth/Medium                    270240 ns       263672 ns         3200 bytes_per_second=37.7423Mi/s medium
+Parse/Thoth/Large                   76445645 ns     75284091 ns           11 bytes_per_second=79.1797Mi/s large
+Parse/Thoth/Nested                     56912 ns        55804 ns        11200 bytes_per_second=19.5337Mi/s nested
+Parse/Thoth/Numbers                   325102 ns       306920 ns         2240 bytes_per_second=24.5752Mi/s numbers
+Parse/Thoth/Array                     889899 ns       889369 ns          896 bytes_per_second=19.3562Mi/s array
+Parse/Thoth/Strings                    83678 ns        83705 ns         8960 bytes_per_second=39.0788Mi/s strings
+Parse/Thoth/RawStrings                 52191 ns        51562 ns        10000 bytes_per_second=85.8191Mi/s raw_strings
+Parse/Thoth/Twitter                 19431103 ns     19003378 ns           37 bytes_per_second=31.6922Mi/s twitter
+Parse/Nlohmann/Small                   12902 ns        12835 ns        56000 bytes_per_second=11.5171Mi/s small
+Parse/Nlohmann/Medium                 433169 ns       433243 ns         1659 bytes_per_second=22.97Mi/s medium
+Parse/Nlohmann/Large               158378980 ns    150000000 ns            5 bytes_per_second=39.7398Mi/s large
+Parse/Nlohmann/Nested                  77952 ns        77424 ns         7467 bytes_per_second=14.079Mi/s nested
+Parse/Nlohmann/Numbers                530932 ns       531250 ns         1000 bytes_per_second=14.1979Mi/s numbers
+Parse/Nlohmann/Array                 1118359 ns      1088170 ns          560 bytes_per_second=15.8199Mi/s array
+Parse/Nlohmann/Strings                129719 ns       125552 ns         4978 bytes_per_second=26.0537Mi/s strings
+Parse/Nlohmann/RawStrings             112642 ns       111607 ns         5600 bytes_per_second=39.6484Mi/s raw_strings
+Parse/Nlohmann/Twitter              23323843 ns     21354167 ns           30 bytes_per_second=28.2034Mi/s twitter
+Parse/Simdjson/Small                     307 ns          301 ns      2488889 bytes_per_second=490.542Mi/s small
+Parse/Simdjson/Medium                   8089 ns         7847 ns        89600 bytes_per_second=1.23842Gi/s medium
+Parse/Simdjson/Large                 3577967 ns      3599877 ns          204 bytes_per_second=1.61707Gi/s large
+Parse/Simdjson/Nested                   1367 ns         1287 ns       497778 bytes_per_second=846.99Mi/s nested
+Parse/Simdjson/Numbers                  5834 ns         5859 ns       112000 bytes_per_second=1.2571Gi/s numbers
+Parse/Simdjson/Array                   16304 ns        16044 ns        44800 bytes_per_second=1.04786Gi/s array
+Parse/Simdjson/Strings                  2359 ns         2246 ns       320000 bytes_per_second=1.42222Gi/s strings
+Parse/Simdjson/RawStrings               2997 ns         2965 ns       263529 bytes_per_second=1.45766Gi/s raw_strings
+Parse/Simdjson/Twitter                516692 ns       502232 ns         1120 bytes_per_second=1.17106Gi/s twitter
+Parse/Rapidjson/Small                   3649 ns         3610 ns       194783 bytes_per_second=40.9497Mi/s small
+Parse/Rapidjson/Medium                 85998 ns        83705 ns         8960 bytes_per_second=118.888Mi/s medium
+Parse/Rapidjson/Large               50985336 ns     49715909 ns           11 bytes_per_second=119.901Mi/s large
+Parse/Rapidjson/Nested                 14039 ns        14125 ns        49778 bytes_per_second=77.1705Mi/s nested
+Parse/Rapidjson/Numbers                69379 ns        65569 ns        11200 bytes_per_second=115.033Mi/s numbers
+Parse/Rapidjson/Array                 165738 ns       164958 ns         4073 bytes_per_second=104.358Mi/s array
+Parse/Rapidjson/Strings                30485 ns        29157 ns        23579 bytes_per_second=112.188Mi/s strings
+Parse/Rapidjson/RawStrings             38011 ns        37667 ns        18667 bytes_per_second=117.479Mi/s raw_strings
+Parse/Rapidjson/Twitter              5439559 ns      5312500 ns          100 bytes_per_second=113.367Mi/s twitter
+Parse/Thoth/Medium/NoCopy             252375 ns       249051 ns         2635 bytes_per_second=39.958Mi/s medium/nocopy
+Parse/Thoth/Large/NoCopy            70289127 ns     66761364 ns           11 bytes_per_second=89.2877Mi/s large/nocopy
+Parse/Simdjson_DOM/Medium              17916 ns        17578 ns        37333 bytes_per_second=566.13Mi/s medium/dom
+Parse/Simdjson_DOM/Large             6751016 ns      6770833 ns           90 bytes_per_second=880.389Mi/s large/dom
+Parse/Rapidjson/Medium/InSitu          75871 ns        75335 ns        11200 bytes_per_second=132.098Mi/s medium/insitu
+Parse/Rapidjson/Large/InSitu        33166800 ns     33482143 ns           21 bytes_per_second=178.034Mi/s large/insitu
+Stringify/Thoth/Small                   5310 ns         5022 ns       112000 small
+Stringify/Thoth/Medium                203001 ns       190438 ns         3446 medium
+Stringify/Thoth/Large               63963982 ns     63920455 ns           11 large
+Stringify/Nlohmann/Small                3952 ns         4011 ns       194783 small
+Stringify/Nlohmann/Medium             134971 ns       131830 ns         4978 medium
+Stringify/Nlohmann/Large            85705929 ns     84821429 ns            7 large
+Stringify/Rapidjson/Small               1699 ns         1573 ns       407273 small
+Stringify/Rapidjson/Medium             74421 ns        71498 ns         8960 medium
+Stringify/Rapidjson/Large           51826486 ns     51339286 ns           14 large
+KeyAccess/Thoth/Medium                   298 ns          283 ns      2488889
+KeyAccess/Nlohmann/Medium                232 ns          230 ns      2986667
+KeyAccess/Simdjson_DOM/Medium            103 ns         99.4 ns      8960000
+KeyAccess/Rapidjson/Medium               113 ns          112 ns      6400000
+ArrayIteration/Thoth/Array             21886 ns        21973 ns        32000
+ArrayIteration/Nlohmann/Array          13381 ns        13114 ns        56000
+ArrayIteration/Simdjson_DOM/Array       8631 ns         8196 ns        89600
+ArrayIteration/Rapidjson/Array          8692 ns         8161 ns        74667
+ArrayIteration/Thoth/Large           2108843 ns      2083333 ns          345
+ArrayIteration/Nlohmann/Large        2503083 ns      2343750 ns          280
+ArrayIteration/Simdjson_DOM/Large     900246 ns       878906 ns         1120
+ArrayIteration/Rapidjson/Large        624885 ns       599888 ns         1120
+Build/Object/Thoth                      5885 ns         5859 ns       112000
+Build/Object/Nlohmann                   8491 ns         8545 ns        89600
+Build/Object/Rapidjson                  1707 ns         1709 ns       448000
+Build/Array/Thoth/10                   13249 ns        12556 ns        56000
+Build/Array/Thoth/16                   20067 ns        19671 ns        37333
+Build/Array/Thoth/64                   83796 ns        80218 ns         8960
+Build/Array/Thoth/256                 357170 ns       358943 ns         2133
+Build/Array/Thoth/1000               1390006 ns      1411898 ns          498
+Build/Array/Nlohmann/10                15689 ns        14648 ns        44800
+Build/Array/Nlohmann/16                25483 ns        24588 ns        29867
+Build/Array/Nlohmann/64               104244 ns       104627 ns         7467
+Build/Array/Nlohmann/256              394735 ns       376607 ns         1867
+Build/Array/Nlohmann/1000            1449435 ns      1349147 ns          498
+Build/Array/Rapidjson/10                3068 ns         3069 ns       224000
+Build/Array/Rapidjson/16                4306 ns         4147 ns       154483
+Build/Array/Rapidjson/64               15152 ns        15381 ns        49778
+Build/Array/Rapidjson/256              57845 ns        54408 ns        11200
+Build/Array/Rapidjson/1000            232484 ns       234375 ns         3200
+TypeChecking/Thoth/Medium               65.6 ns         62.8 ns     11200000
+TypeChecking/Nlohmann/Medium             398 ns          401 ns      1792000
+TypeChecking/Rapidjson/Medium           67.3 ns         64.5 ns      8960000
+PathTraversal/Thoth/Nested              1077 ns         1088 ns       746667
+PathTraversal/Nlohmann/Nested           1373 ns         1367 ns       560000
+PathTraversal/Simdjson_DOM/Nested        553 ns          558 ns      1120000
+PathTraversal/Rapidjson/Nested           536 ns          502 ns      1120000
+RoundTrip/Thoth/Medium                527314 ns       525890 ns         1545 bytes_per_second=18.9233Mi/s
+RoundTrip/Nlohmann/Medium             549271 ns       544085 ns         1120 bytes_per_second=18.2905Mi/s
+RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 bytes_per_second=61.7643Mi/s`;
+
+    const LIB_COLORS = {
+        'Thoth': '#5C88F2',
+        'Thoth (NoCopy)': '#8EAFF2',
+        'Nlohmann': '#F25C5C',
+        'Simdjson': '#43C88D',
+        'Simdjson (DOM)': '#7AE2B1',
+        'Rapidjson': '#A16DF2',
+        'Rapidjson (InSitu)': '#C3A3F2'
+    };
+
+    const METRICS = [
+        { id: 'mb_s', label: 'Taxa (MiB/s)' },
+        { id: 'time', label: 'Tempo (µs)' },
+        { id: 'cpu', label: 'CPU Tempo (µs)' },
+        { id: 'iterations', label: 'Iterações' }
+    ];
+
+    let g_state = {
+        runs: [],
+        activeRunId: 'default',
+        metric: 'mb_s',
+        viewMode: 'current',
+        hiddenLibs: {},
+        hiddenTests: {},
+        logScales: {},
+        collapsedRows: {}
+    };
+
+    let g_chartInstances = {};
+
+    function S_Init() {
+        Chart.defaults.font.family = 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+        Chart.defaults.plugins.tooltip.backgroundColor = '#ffffff';
+        Chart.defaults.plugins.tooltip.titleColor = '#1e293b';
+        Chart.defaults.plugins.tooltip.bodyColor = '#475569';
+        Chart.defaults.plugins.tooltip.borderColor = '#e2e8f0';
+        Chart.defaults.plugins.tooltip.borderWidth = 1;
+        Chart.defaults.plugins.tooltip.padding = 12;
+        Chart.defaults.plugins.tooltip.boxPadding = 6;
+        Chart.defaults.plugins.tooltip.usePointStyle = true;
+
+        S_LoadState();
+        S_UpdateUI();
+    }
+
+    function S_ParseBenchmarkText(text) {
+        const lines = text.split('\n');
+        const results = [];
+        for (const line of lines) {
+            if (!line.includes('/') || line.startsWith('-')) continue;
+
+            const parts = line.trim().split(/\s+/);
+            if (parts.length < 4) continue;
+
+            const timeNs = parseFloat(parts[1]);
+            const cpuNs = parseFloat(parts[3]);
+            const iterations = parseInt(parts[5]);
+
+            const time = timeNs / 1000;
+            const cpu = cpuNs / 1000;
+
+            const nameParts = parts[0].split('/');
+            if (nameParts.length < 3) continue;
+
+            let suite = nameParts[0];
+            let lib = '';
+            let testName = '';
+
+            if (suite === 'Build') {
+                testName = nameParts[1];
+                lib = nameParts[2];
+                if (nameParts.length > 3) testName += '/' + nameParts.slice(3).join('/');
+            } else {
+                lib = nameParts[1];
+                testName = nameParts.slice(2).join('/');
+            }
+
+            if (lib === 'Simdjson_DOM') lib = 'Simdjson (DOM)';
+            if (testName.includes('NoCopy')) { lib += ' (NoCopy)'; testName = testName.replace('/NoCopy', ''); }
+            if (testName.includes('InSitu')) { lib += ' (InSitu)'; testName = testName.replace('/InSitu', ''); }
+
+            let mb_s = null;
+            for (const p of parts) {
+                if (p.startsWith('bytes_per_second=')) {
+                    const match = p.match(/bytes_per_second=([\d.]+)(Mi\/s|Gi\/s)/);
+                    if (match) {
+                        const val = parseFloat(match[1]);
+                        mb_s = match[2] === 'Gi/s' ? val * 1024 : val;
+                    }
+                }
+            }
+
+            results.push({ suite, lib, test: testName, fullPath: `${suite} - ${testName}`, time, cpu, iterations, mb_s });
+        }
+        return results;
+    }
+
+    function S_GetSuiteGroup(suite, metric) {
+        if (suite === 'KeyAccess' || suite === 'ArrayIteration') return 'group-key-array';
+        if (suite === 'TypeChecking' || suite === 'PathTraversal') return 'group-type-path';
+        if (suite === 'RoundTrip') return metric === 'mb_s' ? 'group-roundtrip' : 'group-type-path';
+        return `group-${suite}`;
+    }
+
+    function S_LoadState() {
+        let saved = null;
+        try { saved = JSON.parse(localStorage.getItem('benchJson_runs')); } catch (e) {}
+
+        const defaultData = S_ParseBenchmarkText(S_INITIAL_RAW_TEXT);
+        const defaultRun = { id: 'default', name: 'Teste Base (Local)', data: defaultData, createdAt: 0 };
+
+        if (saved && Array.isArray(saved) && saved.length > 0) {
+            g_state.runs = [defaultRun, ...saved];
+        } else {
+            g_state.runs = [defaultRun];
+        }
+        g_state.activeRunId = g_state.runs[g_state.runs.length - 1].id;
+    }
+
+    function S_SaveState() {
+        const toSave = g_state.runs.filter(r => r.id !== 'default');
+        localStorage.setItem('benchJson_runs', JSON.stringify(toSave));
+    }
+
+    function S_SetViewMode(mode) {
+        g_state.viewMode = mode;
+        S_UpdateUI();
+    }
+
+    function S_SetMetric(metricId) {
+        g_state.metric = metricId;
+        S_UpdateUI();
+    }
+
+    function S_HandleAddRun() {
+        const rawInput = document.getElementById('rawInput').value;
+        const newName = document.getElementById('newRunName').value;
+        if (!rawInput.trim()) return;
+
+        const data = S_ParseBenchmarkText(rawInput);
+        if (data.length === 0) return alert("Nenhum dado válido encontrado.");
+
+        const id = `local-${Date.now()}`;
+        const finalName = newName.trim() || `Teste ${g_state.runs.length}`;
+
+        g_state.runs.push({ id, name: finalName, data, createdAt: Date.now() });
+        g_state.activeRunId = id;
+        S_SaveState();
+
+        document.getElementById('rawInput').value = '';
+        document.getElementById('newRunName').value = '';
+
+        S_UpdateUI();
+    }
+
+    function S_HandleDeleteRun() {
+        if (g_state.activeRunId === 'default') return;
+        g_state.runs = g_state.runs.filter(r => r.id !== g_state.activeRunId);
+        g_state.activeRunId = 'default';
+        S_SaveState();
+        S_UpdateUI();
+    }
+
+    function S_ToggleEditName(isEditing) {
+        const editContainer = document.getElementById('editNameContainer');
+        const selectContainer = document.getElementById('selectNameContainer');
+        const editInput = document.getElementById('editNameInput');
+
+        if (isEditing) {
+            const activeRun = g_state.runs.find(r => r.id === g_state.activeRunId);
+            editInput.value = activeRun ? activeRun.name : '';
+            editContainer.classList.remove('hidden');
+            editContainer.classList.add('flex');
+            selectContainer.classList.add('hidden');
+            editInput.focus();
+        } else {
+            editContainer.classList.add('hidden');
+            editContainer.classList.remove('flex');
+            selectContainer.classList.remove('hidden');
+        }
+    }
+
+    function S_HandleRenameRun() {
+        const newName = document.getElementById('editNameInput').value.trim();
+        if (!newName || g_state.activeRunId === 'default') return S_ToggleEditName(false);
+
+        const run = g_state.runs.find(r => r.id === g_state.activeRunId);
+        if (run) run.name = newName;
+
+        S_SaveState();
+        S_ToggleEditName(false);
+        S_UpdateUI();
+    }
+
+    function S_HandleRunChange() {
+        g_state.activeRunId = document.getElementById('activeRunSelect').value;
+        S_UpdateUI();
+    }
+
+    function S_ToggleTestVisibility(suite, test) {
+        const key = `${suite}-${test}`;
+        g_state.hiddenTests[key] = !g_state.hiddenTests[key];
+        S_UpdateUI();
+    }
+
+    function S_ToggleLibVisibility(key) {
+        g_state.hiddenLibs[key] = !g_state.hiddenLibs[key];
+        S_UpdateUI();
+    }
+
+    function S_ToggleLogScale(suite) {
+        g_state.logScales[suite] = !g_state.logScales[suite];
+        S_UpdateUI();
+    }
+
+    function S_ToggleCollapse(groupId) {
+        g_state.collapsedRows[groupId] = !g_state.collapsedRows[groupId];
+        S_UpdateUI();
+    }
+
+    function S_UpdateUI() {
+        const activeRun = g_state.runs.find(r => r.id === g_state.activeRunId) || g_state.runs[0];
+
+        document.getElementById('btnViewCurrent').className = `px-4 py-2 rounded-md font-medium text-sm transition-all ${g_state.viewMode === 'current' ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-800'}`;
+        document.getElementById('btnViewHistory').className = `px-4 py-2 rounded-md font-medium text-sm transition-all ${g_state.viewMode === 'history' ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-800'}`;
+
+        const runSelect = document.getElementById('activeRunSelect');
+        runSelect.innerHTML = g_state.runs.map(r => `<option value="${r.id}" ${r.id === g_state.activeRunId ? 'selected' : ''}>${r.name}</option>`).join('');
+
+        document.getElementById('runSelectionPanel').classList.toggle('hidden', g_state.viewMode !== 'current');
+        document.getElementById('runActions').classList.toggle('hidden', g_state.activeRunId === 'default');
+
+        const metricContainer = document.getElementById('metricSelector');
+        metricContainer.innerHTML = METRICS.map(m => `
+        <button onclick="S_SetMetric('${m.id}')" class="px-5 py-2.5 rounded-lg font-medium transition-all shadow-sm ${g_state.metric === m.id ? 'bg-blue-600 text-white shadow-blue-500/30' : 'bg-white text-slate-600 hover:bg-slate-100'}">
+            ${m.label}
+        </button>
+    `).join('');
+
+        document.getElementById('currentViewContainer').classList.toggle('hidden', g_state.viewMode !== 'current');
+        document.getElementById('historyViewContainer').classList.toggle('hidden', g_state.viewMode !== 'history');
+
+        if (g_state.viewMode === 'current') {
+            S_RenderCurrentView(activeRun);
+        } else {
+            S_RenderHistoryView();
+        }
+    }
+
+    function S_FormatYAxis(value) {
+        if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+        if (value >= 1000) return (value / 1000).toFixed(1) + 'k';
+        return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
+    }
+
+    function S_FormatTooltip(val) {
+        if (g_state.metric === 'mb_s') return val.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' MiB/s';
+        if (g_state.metric === 'time' || g_state.metric === 'cpu') return val.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' µs';
+        return val.toLocaleString();
+    }
+
+    function S_RenderCurrentView(activeRun) {
+        const container = document.getElementById('currentViewContainer');
+        const suites = Array.from(new Set(activeRun.data.map(d => d.suite)));
+        const allLibs = Array.from(new Set(activeRun.data.map(d => d.lib)));
+
+        let html = '';
+        const renderData = [];
+
+        suites.forEach((suite, index) => {
+            const suiteData = activeRun.data.filter(d => d.suite === suite);
+            const hasMetric = suiteData.some(d => d[g_state.metric] != null && !isNaN(d[g_state.metric]));
+            if (!hasMetric) return;
+
+            const allTestsForSuite = Array.from(new Set(suiteData.map(d => d.test)));
+            const visibleTests = allTestsForSuite.filter(t => !g_state.hiddenTests[`${suite}-${t}`]);
+
+            const activeLibsInSuite = allLibs.filter(lib =>
+                allTestsForSuite.some(t => {
+                    const entry = suiteData.find(d => d.test === t && d.lib === lib);
+                    return entry && entry[g_state.metric] != null;
+                })
+            );
+
+            const isLogScale = g_state.logScales[suite] && (g_state.metric === 'time' || g_state.metric === 'cpu');
+            const groupId = S_GetSuiteGroup(suite, g_state.metric);
+            const isCollapsed = g_state.collapsedRows[groupId];
+
+            let gridClass = 'col-span-6';
+            if (suite === 'KeyAccess') gridClass = 'col-span-6 lg:col-span-2';
+            if (suite === 'ArrayIteration') gridClass = 'col-span-6 lg:col-span-4';
+            if (suite === 'TypeChecking' || suite === 'PathTraversal') gridClass = 'col-span-6 lg:col-span-2';
+            if (suite === 'RoundTrip') gridClass = g_state.metric === 'mb_s' ? 'col-span-6' : 'col-span-6 lg:col-span-2';
+
+            const chartId = `chart_${suite.replace(/\//g, '_')}`;
+
+            html += `
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col ${gridClass}">
+                <div class="mb-4 flex justify-between items-start gap-2">
+                    <div class="cursor-pointer hover:opacity-75 transition-opacity" onclick="S_ToggleCollapse('${groupId}')" title="Clique para contrair/expandir">
+                        <h2 class="text-xl font-bold text-slate-800 select-none flex items-center gap-2">
+                            ${index + 1}. ${suite} <span class="text-sm text-slate-400">${isCollapsed ? '▼' : '▲'}</span>
+                        </h2>
+                        <p class="text-slate-500 mt-1 text-sm">Baseado em ${METRICS.find(m => m.id === g_state.metric).label}</p>
+                    </div>
+                    ${!isCollapsed && (g_state.metric === 'time' || g_state.metric === 'cpu') ? `
+                        <button onclick="S_ToggleLogScale('${suite}')" class="shrink-0 text-xs font-bold px-3 py-1.5 rounded-md border ${isLogScale ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}">
+                            ${isLogScale ? 'Escala Log' : 'Linear'}
+                        </button>
+                    ` : ''}
+                </div>
+
+                ${!isCollapsed ? `
+                    <div class="mb-4 flex flex-wrap gap-2">
+                        ${allTestsForSuite.map(test => `
+                            <button onclick="S_ToggleTestVisibility('${suite}', '${test}')" class="text-xs px-2 py-1 rounded border transition-all ${g_state.hiddenTests[`${suite}-${test}`] ? 'line-through text-slate-400 border-slate-200 bg-slate-50' : 'text-slate-700 border-slate-300 hover:bg-slate-100'}">
+                                ${test}
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3 mb-2">
+                        ${activeLibsInSuite.map(lib => `
+                            <div onclick="S_ToggleLibVisibility('${suite}-${lib}')" class="flex items-center cursor-pointer text-xs transition-opacity hover:opacity-80">
+                                <span class="w-3 h-3 rounded-full mr-1.5 opacity-${g_state.hiddenLibs[`${suite}-${lib}`] ? '30' : '100'}" style="background-color: ${LIB_COLORS[lib] || '#cbd5e1'}"></span>
+                                <span class="${g_state.hiddenLibs[`${suite}-${lib}`] ? 'line-through text-slate-400' : 'text-slate-700'}">${lib}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="flex-1 w-full min-h-[350px] relative">
+                        <canvas id="${chartId}"></canvas>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
+            if (!isCollapsed) {
+                renderData.push({ chartId, suite, visibleTests, activeLibsInSuite, suiteData, isLogScale });
+            }
+        });
+
+        Object.values(g_chartInstances).forEach(c => c.destroy());
+        g_chartInstances = {};
+
+        container.innerHTML = html || '<div class="col-span-6 text-center py-12 text-slate-500">Não há dados disponíveis para esta métrica.</div>';
+
+        renderData.forEach(({ chartId, suite, visibleTests, activeLibsInSuite, suiteData, isLogScale }) => {
+            const ctx = document.getElementById(chartId).getContext('2d');
+
+            const datasets = activeLibsInSuite.map(lib => {
+                return {
+                    label: lib,
+                    data: visibleTests.map(test => {
+                        const entry = suiteData.find(d => d.test === test && d.lib === lib);
+                        return entry && entry[g_state.metric] != null ? entry[g_state.metric] : null;
+                    }),
+                    backgroundColor: LIB_COLORS[lib] || '#cbd5e1',
+                    hidden: g_state.hiddenLibs[`${suite}-${lib}`],
+                    borderRadius: 4,
+                    borderSkipped: false
+                };
+            });
+
+            g_chartInstances[chartId] = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: visibleTests, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { label: (ctx) => `${ctx.dataset.label}: ${S_FormatTooltip(ctx.raw)}` }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            type: isLogScale ? 'logarithmic' : 'linear',
+                            beginAtZero: !isLogScale,
+                            ticks: { callback: S_FormatYAxis }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    function S_RenderHistoryView() {
+        const container = document.getElementById('historyViewContainer');
+        const latestRun = g_state.runs[g_state.runs.length - 1];
+
+        if (!latestRun) {
+            container.innerHTML = '<div class="col-span-6 text-center py-12 text-slate-500">Sem dados.</div>';
+            return;
+        }
+
+        const suites = Array.from(new Set(latestRun.data.map(d => d.suite)));
+        const allLibs = Array.from(new Set(latestRun.data.map(d => d.lib)));
+
+        let html = '';
+        const renderData = [];
+
+        suites.forEach((suite, index) => {
+            const suiteDataLatest = latestRun.data.filter(d => d.suite === suite);
+            const hasMetric = suiteDataLatest.some(d => d[g_state.metric] != null && !isNaN(d[g_state.metric]));
+            if (!hasMetric) return;
+
+            const testsInSuite = Array.from(new Set(suiteDataLatest.map(d => d.test)));
+            const activeLibsInSuite = allLibs.filter(lib =>
+                testsInSuite.some(t => {
+                    const entry = suiteDataLatest.find(d => d.test === t && d.lib === lib);
+                    return entry && entry[g_state.metric] != null;
+                })
+            );
+
+            const isLogScale = g_state.logScales[suite] && (g_state.metric === 'time' || g_state.metric === 'cpu');
+            const groupId = S_GetSuiteGroup(suite, g_state.metric);
+            const isCollapsed = g_state.collapsedRows[groupId];
+
+            let gridClass = 'col-span-6';
+            if (suite === 'KeyAccess') gridClass = 'col-span-6 lg:col-span-2';
+            if (suite === 'ArrayIteration') gridClass = 'col-span-6 lg:col-span-4';
+            if (suite === 'TypeChecking' || suite === 'PathTraversal') gridClass = 'col-span-6 lg:col-span-2';
+            if (suite === 'RoundTrip') gridClass = g_state.metric === 'mb_s' ? 'col-span-6' : 'col-span-6 lg:col-span-2';
+
+            html += `
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col ${gridClass}">
+                <div class="mb-4 flex justify-between items-start gap-2">
+                    <div class="cursor-pointer hover:opacity-75 transition-opacity" onclick="S_ToggleCollapse('${groupId}')" title="Clique para contrair/expandir">
+                        <h2 class="text-xl font-bold text-slate-800 select-none flex items-center gap-2">
+                            ${index + 1}. ${suite} <span class="text-sm text-slate-400">${isCollapsed ? '▼' : '▲'}</span>
+                        </h2>
+                        <p class="text-slate-500 mt-1 text-sm">Histórico Baseado em ${METRICS.find(m => m.id === g_state.metric).label}</p>
+                    </div>
+                    ${!isCollapsed && (g_state.metric === 'time' || g_state.metric === 'cpu') ? `
+                        <button onclick="S_ToggleLogScale('${suite}')" class="shrink-0 text-xs font-bold px-3 py-1.5 rounded-md border ${isLogScale ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}">
+                            ${isLogScale ? 'Escala Log' : 'Linear'}
+                        </button>
+                    ` : ''}
+                </div>
+
+                ${!isCollapsed ? `
+                    <div class="flex flex-wrap justify-center gap-3 mb-6">
+                        ${activeLibsInSuite.map(lib => `
+                            <div onclick="S_ToggleLibVisibility('${suite}-${lib}')" class="flex items-center cursor-pointer text-xs transition-opacity hover:opacity-80">
+                                <span class="w-3 h-3 rounded-full mr-1.5 opacity-${g_state.hiddenLibs[`${suite}-${lib}`] ? '30' : '100'}" style="background-color: ${LIB_COLORS[lib] || '#cbd5e1'}"></span>
+                                <span class="${g_state.hiddenLibs[`${suite}-${lib}`] ? 'line-through text-slate-400' : 'text-slate-700'}">${lib}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${testsInSuite.map(test => {
+                const chartId = `histChart_${suite.replace(/\//g, '_')}_${test.replace(/[\/\s]/g, '_')}`;
+                renderData.push({ chartId, suite, test, activeLibsInSuite, isLogScale });
+                return `
+                                <div class="flex flex-col items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                    <h3 class="text-sm font-semibold text-slate-600 mb-3">${test}</h3>
+                                    <div class="h-40 w-full relative">
+                                        <canvas id="${chartId}"></canvas>
+                                    </div>
+                                </div>
+                            `;
+            }).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+        });
+
+        Object.values(g_chartInstances).forEach(c => c.destroy());
+        g_chartInstances = {};
+
+        container.innerHTML = html || '<div class="col-span-6 text-center py-12 text-slate-500">Não há dados no histórico.</div>';
+
+        const labels = g_state.runs.map(r => r.name);
+
+        renderData.forEach(({ chartId, suite, test, activeLibsInSuite, isLogScale }) => {
+            const ctx = document.getElementById(chartId).getContext('2d');
+
+            const datasets = activeLibsInSuite.map(lib => ({
+                label: lib,
+                data: g_state.runs.map(run => {
+                    const entry = run.data.find(d => d.suite === suite && d.test === test && d.lib === lib);
+                    return entry && entry[g_state.metric] != null ? entry[g_state.metric] : null;
+                }),
+                borderColor: LIB_COLORS[lib] || '#cbd5e1',
+                backgroundColor: LIB_COLORS[lib] || '#cbd5e1',
+                tension: 0.2,
+                borderWidth: 2,
+                pointRadius: 3,
+                hidden: g_state.hiddenLibs[`${suite}-${lib}`],
+                spanGaps: true
+            }));
+
+            g_chartInstances[chartId] = new Chart(ctx, {
+                type: 'line',
+                data: { labels, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${S_FormatTooltip(ctx.raw)}` } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { maxRotation: 45, minRotation: 0, font: { size: 9 } } },
+                        y: {
+                            type: isLogScale ? 'logarithmic' : 'linear',
+                            beginAtZero: !isLogScale,
+                            ticks: { callback: S_FormatYAxis, font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', S_Init);
+</script>
+</body>
+</html>

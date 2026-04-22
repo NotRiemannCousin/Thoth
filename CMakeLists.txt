@@ -21,9 +21,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 else()
     add_link_options(
-#            /LTCG           # Link-time optimization
-#            /OPT:REF        # Delete unused
-#            /OPT:ICF        # join equal functions
+            #            /LTCG           # Link-time optimization
+            #            /OPT:REF        # Delete unused
+            #            /OPT:ICF        # join equal functions
     )
 endif()
 
@@ -80,8 +80,20 @@ target_link_libraries(Thoth PUBLIC Hermes::Hermes)
 set_target_properties(Thoth PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 
-add_subdirectory(examples)
-add_subdirectory(tests)
+option(THOTH_BUILD_EXAMPLES "Build examples" OFF)
+if(THOTH_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
+
+option(THOTH_BUILD_TESTS "Build Google Tests suites" OFF)
+if(THOTH_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
+option(THOTH_BUILD_BENCHMARKS "Build Google Benchmark suites" OFF)
+if(THOTH_BUILD_BENCHMARKS)
+    add_subdirectory(benchmarks)
+endif()
 
 
 install(TARGETS Thoth

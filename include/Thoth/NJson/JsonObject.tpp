@@ -21,7 +21,7 @@ namespace Thoth::NJson {
     namespace detail {
 
         template<class OutIt>
-        void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent, size_t indentDepth, OutIt& it, std::string& tempOutBuffer);
+        void FormatJsonObj(const JsonObject& json, bool pretty, const std::string& indent, size_t indentDepth, OutIt& it);
     }
 }
 
@@ -52,10 +52,9 @@ struct std::formatter<Thoth::NJson::JsonObject> {
     template<class FormatContext>
     auto format(const Thoth::NJson::JsonObject& json, FormatContext& ctx) const {
         auto it{ ctx.out() };
-        std::string tempOutBuffer;
 
         Thoth::NJson::detail::FormatJsonObj(json, pretty, std::string(indentLevel, ' '),
-            0, it, tempOutBuffer);
+            0, it);
 
         return it;
     }

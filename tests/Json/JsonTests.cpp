@@ -532,6 +532,36 @@ TEST_F(JsonFormatTest, Format_RoundTrip_Object) {
     EXPECT_EQ(*reparsed, j);
 }
 
+TEST_F(JsonFormatTest, Format_ComplexNestedStructure_WithUtf8AndEscaping) {
+    constexpr std::string_view rawInput{ R"({
+        "glossary": {
+            "title": "example terminology",
+            "UTF-8-Check": "Ohayou sekai, good morning world! 🌍",
+            "escapes": "Tab\t, Newline\n, Quote\"",
+            "list": [1, -2.5, null, true, "sub-string"],
+            "empty": {
+                "arr": [],
+                "obj": {}
+            }
+        },
+        "active": false
+    })" };
+
+    const auto j{ ParseOk(rawInput) };
+    const auto formatted{ std::format("{}", j) };
+
+    const auto reparsed{ Json::Parse(formatted) };
+    ASSERT_TRUE(reparsed);
+    EXPECT_EQ(*reparsed, j);
+
+    EXPECT_TRUE(formatted.find(R"("UTF-8-Check":"Ohayou sekai, good morning world! 🌍")") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"("escapes":"Tab\t, Newline\n, Quote\"")") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"([1,-2.5,null,true,"sub-string"])") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"("active":false)") != std::string::npos);
+
+    EXPECT_EQ(std::format("{}", *reparsed), formatted);
+}
+
 #pragma endregion
 
  
