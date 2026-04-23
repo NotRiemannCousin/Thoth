@@ -470,6 +470,16 @@ requires std::invocable&lt;F, T&gt;</td></tr>
 <tr class="memitem:a7a0398eb738957feebafa029c0421d5b" id="r_a7a0398eb738957feebafa029c0421d5b"><td class="memTemplParams" colspan="2">template&lt;class F &gt; </td></tr>
 <tr class="memitem:a7a0398eb738957feebafa029c0421d5b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a7a0398eb738957feebafa029c0421d5b">SelfHof</a> (F &amp;&amp;callable)</td></tr>
 <tr class="separator:a7a0398eb738957feebafa029c0421d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afe62cd6eaf9f5fe3b3d5ac52fb14cf" id="r_a5afe62cd6eaf9f5fe3b3d5ac52fb14cf"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a5afe62cd6eaf9f5fe3b3d5ac52fb14cf">H_Move</a> ()</td></tr>
+<tr class="separator:a5afe62cd6eaf9f5fe3b3d5ac52fb14cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9769ff5c48d2905204b526ede15c7058" id="r_a9769ff5c48d2905204b526ede15c7058"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a9769ff5c48d2905204b526ede15c7058">H_PMove</a> ()</td></tr>
+<tr class="separator:a9769ff5c48d2905204b526ede15c7058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3d62d7e448f8b7016bb3c23729866f" id="r_a9f3d62d7e448f8b7016bb3c23729866f"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a9f3d62d7e448f8b7016bb3c23729866f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a9f3d62d7e448f8b7016bb3c23729866f">H_MoveAs</a> ()</td></tr>
+<tr class="separator:a9f3d62d7e448f8b7016bb3c23729866f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf1f6eebfe8763838712e850a7d31d5" id="r_a2bf1f6eebfe8763838712e850a7d31d5"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a2bf1f6eebfe8763838712e850a7d31d5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a2bf1f6eebfe8763838712e850a7d31d5">H_PMoveAs</a> ()</td></tr>
+<tr class="separator:a2bf1f6eebfe8763838712e850a7d31d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09a77fbefaf13e1d7850746b5dfe148" id="r_aa09a77fbefaf13e1d7850746b5dfe148"><td class="memTemplParams" colspan="2">template&lt;class T , class Variant , template&lt; class, class &gt; class Relation, std::size_t Index = 0&gt; </td></tr>
 <tr class="memitem:aa09a77fbefaf13e1d7850746b5dfe148"><td class="memTemplItemLeft" align="right" valign="top">consteval size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aa09a77fbefaf13e1d7850746b5dfe148">FindMatchIndexImpl</a> ()</td></tr>
 <tr class="separator:aa09a77fbefaf13e1d7850746b5dfe148"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1468,6 +1478,94 @@ template&lt;class F , class Exp &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{FoldWhileSuccess} </p>
+
+</div>
+</div>
+<a id="a5afe62cd6eaf9f5fe3b3d5ac52fb14cf" name="a5afe62cd6eaf9f5fe3b3d5ac52fb14cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5afe62cd6eaf9f5fe3b3d5ac52fb14cf">&#9670;&#160;</a></span>H_Move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Utils::H_Move </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f3d62d7e448f8b7016bb3c23729866f" name="a9f3d62d7e448f8b7016bb3c23729866f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f3d62d7e448f8b7016bb3c23729866f">&#9670;&#160;</a></span>H_MoveAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Utils::H_MoveAs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9769ff5c48d2905204b526ede15c7058" name="a9769ff5c48d2905204b526ede15c7058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9769ff5c48d2905204b526ede15c7058">&#9670;&#160;</a></span>H_PMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Utils::H_PMove </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2bf1f6eebfe8763838712e850a7d31d5" name="a2bf1f6eebfe8763838712e850a7d31d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bf1f6eebfe8763838712e850a7d31d5">&#9670;&#160;</a></span>H_PMoveAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Utils::H_PMoveAs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
