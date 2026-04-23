@@ -295,8 +295,8 @@ namespace Thoth::Http {
 
             const auto s_readBody = [&](State2::value_type value) -> ParseCompleteResult {
                 const auto s_readSizedLength = [&](const size_t contentSize) -> std::expected<std::monostate, RequestError> {
-                    if constexpr (requires (ResponseBody b){ { b.resize(0) }; })
-                        info.body.resize(contentSize);
+                    if constexpr (requires (ResponseBody b){ { b.reserve(0) }; })
+                        info.body.reserve(contentSize);
 
                     rg::copy(
                         info.stream
