@@ -631,4 +631,34 @@ namespace Thoth::Utils {
         };
     }
 #pragma endregion
+
+#pragma region Move
+
+    inline auto H_Move() {
+        return [](auto&& val) -> decltype(auto) {
+            return std::move(val);
+        };
+    }
+
+    inline auto H_PMove() {
+        return [](auto&& ptr) -> decltype(auto) {
+            return std::move(*ptr);
+        };
+    }
+
+    template<class T>
+    auto H_MoveAs() {
+        return [](T& val) -> decltype(auto) {
+            return std::move(val);
+        };
+    }
+
+    template<class T>
+    auto H_PMoveAs() {
+        return [](T&& ptr) -> decltype(auto) {
+            return std::move(*ptr);
+        };
+    }
+
+#pragma endregion
 }
