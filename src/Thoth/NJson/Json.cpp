@@ -525,7 +525,7 @@ std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool c
 #undef CASE_OPEN_ARRAY
 
 
-constexpr auto s_resolveKeys = Thoth::Utils::Overloaded{
+constexpr auto s_resolveKeys = Hermes::Utils::Overloaded{
     [](auto& curr, const int index) -> bool {
         if (!Json::IsOfType<Array>(**curr))
             return false;

@@ -12,6 +12,12 @@
       <file path="$PROJECT_DIR$/include" />
       <file path="$PROJECT_DIR$/src" />
     </sourceRoots>
+    <excludeRoots>
+      <file path="$PROJECT_DIR$/cmake-build-debug-msvc" />
+      <file path="$PROJECT_DIR$/cmake-build-install-debug-msvc" />
+      <file path="$PROJECT_DIR$/cmake-build-install-release-msvc" />
+      <file path="$PROJECT_DIR$/cmake-build-release-msvc" />
+    </excludeRoots>
   </component>
-  <component name="WestSettings"><![CDATA[{}]]></component>
+  <component name="WestSettings">{}</component>
 </project>

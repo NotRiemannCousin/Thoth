@@ -8,7 +8,7 @@
 #include <Thoth/String/Utils.hpp>
 
 // #include <Thoth/Utils/Range.hpp>
-#include <Thoth/Utils/Overloads.hpp>
+#include <Hermes/Utils/Overloads.hpp>
 
 
 template<>
@@ -70,7 +70,7 @@ struct std::formatter<Thoth::Http::NHeaders::Range> {
         using namespace Thoth::Http::NHeaders;
 
         std::visit(
-            Thoth::Utils::Overloaded{
+            Hermes::Utils::Overloaded{
                 [&](SuffixedRange sfxRange) { std::format_to(ctx.out(), "bytes=-{}", sfxRange.last); },
                 [&](PrefixedRange pfxRange) {
                     if (pfxRange.end) std::format_to(ctx.out(), "bytes={}-{}", pfxRange.start, *pfxRange.end);

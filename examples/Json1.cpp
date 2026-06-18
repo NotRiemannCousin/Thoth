@@ -7,21 +7,21 @@ namespace NJson = Thoth::NJson;
 
 int main() {
     const NJson::JsonObject obj{
-                {"info", NJson::MakeArray(
-                    "AiKatherine",
-                    "KG/M",
-                    "NB",
-                    20,
-                    1.71,
-                    false,
-                    NJson::NullV
-               )},
-                {"isAdmin", true},
-                {"isPremium", true},
-                {"links", {{
-                    {"youtube", "https://www.youtube.com/@LastArchimedes"},
-                    {"github", "https://github.com/NotRiemannCousin"},
-                }}}
+        { "info", NJson::MakeArray(
+            "AiKatherine",
+            "KG/M",
+            "NB",
+            21,
+            1.71,
+            false,
+            NJson::NullV
+       ) },
+        { "isAdmin", true },
+        { "isPremium", true },
+        { "links", {{
+            { "youtube", "https://www.youtube.com/@LastArchimedes" },
+            { "github" , "https://github.com/NotRiemannCousin"     },
+        }}}
     };
 
     const auto parsed = NJson::Json::Parse(R"(
@@ -30,7 +30,7 @@ int main() {
             "AiKatherine",
             "KG/M",
             "NB",
-            20,
+            21,
             1.71,
             false,
             null
@@ -39,7 +39,7 @@ int main() {
         "isPremium" : true,
         "links" : {
             "youtube" : "https://www.youtube.com/@LastArchimedes",
-            "github" : "https://github.com/NotRiemannCousin"
+            "github"  : "https://github.com/NotRiemannCousin"
         }
     }
 )");

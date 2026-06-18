@@ -1,20 +1,20 @@
 #pragma once
 #include <ranges>
 
-#include <Thoth/Utils/Overloads.hpp>
+#include <Hermes/Utils/Overloads.hpp>
 
 template<>
 struct std::formatter<Thoth::Http::RequestError> {
     using RequestError = Thoth::Http::RequestError;
 
-    using JsonParseError = Thoth::Http::JsonParseError;
-    using JsonGetError = Thoth::Http::JsonGetError;
-    using JsonFindError = Thoth::Http::JsonFindError;
-    using JsonSearchError = Thoth::Http::JsonSearchError;
-    using UrlParseErrorEnum = Thoth::Http::UrlParseErrorEnum;
-    using ConnectionErrorEnum = Thoth::Http::ConnectionErrorEnum;
+    using JsonParseError        = Thoth::Http::JsonParseError;
+    using JsonGetError          = Thoth::Http::JsonGetError;
+    using JsonFindError         = Thoth::Http::JsonFindError;
+    using JsonSearchError       = Thoth::Http::JsonSearchError;
+    using UrlParseErrorEnum     = Thoth::Http::UrlParseErrorEnum;
+    using ConnectionErrorEnum   = Thoth::Http::ConnectionErrorEnum;
     using RequestBuildErrorEnum = Thoth::Http::RequestBuildErrorEnum;
-    using GenericError = Thoth::Http::GenericError;
+    using GenericError          = Thoth::Http::GenericError;
 
     constexpr auto parse(std::format_parse_context& ctx) {
         return ctx.begin();
@@ -24,15 +24,15 @@ struct std::formatter<Thoth::Http::RequestError> {
     auto format(const RequestError &error, FormatContext& ctx) const {
         constexpr auto s_keyToStr = [](const Thoth::NJson::Key& key) {
             return std::visit(
-                Thoth::Utils::Overloaded{
+                Hermes::Utils::Overloaded{
                     [](std::string objKey) { return objKey; },
-                    [](int arrKey) { return std::to_string(arrKey); }
+                    [](const int arrKey)   { return std::to_string(arrKey); }
                 }, key
             );
         };
 
         std::visit(
-            Thoth::Utils::Overloaded{
+            Hermes::Utils::Overloaded{
                 [&](const JsonParseError& e) {
                     std::format_to(ctx.out(), "Unknown character '{}' at position {}", e.c, e.idx);
                 },

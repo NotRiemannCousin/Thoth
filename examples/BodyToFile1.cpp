@@ -1,19 +1,15 @@
 #include <print>
 #include <chrono>
-#pragma warning(disable: 4455)
-
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/Client.hpp>
-#include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(std::string_view url) {
+static std::expected<std::monostate, Thoth::Http::RequestError> SaveImage(const std::string_view url) {
     namespace NHttp = Thoth::Http;
-    using FileT = Thoth::Dsa::BinFileOutputRange;
+    using     FileT = Thoth::Dsa::BinFileOutputRange;
 
-    Thoth::Dsa::FileBuilderParams sla{ "./output.jpg" };
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody(sla)))
+            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody({ "./output.jpg" })))
             .transform([](auto){ return std::monostate{}; });
 }
 

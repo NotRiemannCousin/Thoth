@@ -451,7 +451,7 @@ struct JsonVisitTest : testing::Test {};
 TEST_F(JsonVisitTest, Visit_Number_CallsNumberLambda) {
     Json j{ 7 };
     std::string visited;
-    j.Visit(Thoth::Utils::Overloaded{
+    j.Visit(Hermes::Utils::Overloaded{
         [&](Number)  { visited = "number"; },
         [&](Bool)    { visited = "bool"; },
         [&](String&) { visited = "string"; },
@@ -465,7 +465,7 @@ TEST_F(JsonVisitTest, Visit_Number_CallsNumberLambda) {
 TEST_F(JsonVisitTest, Visit_Const_InvokesCorrectHandler) {
     const Json j{ true };
     bool wasBool{ false };
-    j.Visit(Thoth::Utils::Overloaded{
+    j.Visit(Hermes::Utils::Overloaded{
         [&](Number)        {},
         [&](Bool b)        { wasBool = b; },
         [&](const String&) {},

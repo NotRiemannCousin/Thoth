@@ -4,8 +4,6 @@ set(CMAKE_DEBUG_POSTFIX "_d")
 project(Thoth)
 
 
-add_compile_options(/favor:AMD64)
-
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_compile_options(
             /permissive-    # without MSVC madness
@@ -36,7 +34,14 @@ set(PROJECT_VERSION "${PROJECT_VERSION_NUMBER}")
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Hermes REQUIRED)
+include(cmake/get_cpm.cmake)
+
+CPMAddPackage(
+        NAME Hermes
+        GITHUB_REPOSITORY NotRiemannCousin/Hermes
+        GIT_TAG v0.5.1-beta
+        OPTIONS "HERMES_INSTALL ON"
+)
 
 #--------------------------------------------------------------------------------------------------------------
 #           Thoth
@@ -75,7 +80,10 @@ target_include_directories(Thoth
 
 #target_compile_definitions(ThothJson PRIVATE -DDENSE_DEBUG_JSON)
 
-target_link_libraries(Thoth PUBLIC Hermes::Hermes)
+target_link_libraries(Thoth PUBLIC
+        $<BUILD_INTERFACE:Hermes>
+        $<INSTALL_INTERFACE:Hermes::Hermes>
+)
 
 set_target_properties(Thoth PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
 

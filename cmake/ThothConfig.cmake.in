@@ -1,3 +1,7 @@
 @PACKAGE_INIT@
 
+include(CMakeFindDependencyMacro)
+find_dependency(Hermes REQUIRED)
+
 include("${CMAKE_CURRENT_LIST_DIR}/ThothTargets.cmake")
+check_required_components(Thoth)

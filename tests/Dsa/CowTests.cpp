@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <Thoth/Dsa/Cow.hpp>
-#include <Thoth/Utils/Overloads.hpp>
 #include <Thoth/NJson/StringRef.hpp>
+#include <Hermes/Utils/Overloads.hpp>
 
 
 using namespace Thoth::Dsa;
@@ -137,7 +137,7 @@ struct CowVisitTest : testing::Test {};
 TEST_F(CowVisitTest, Visit_RefVariant_CallsRefHandler) {
     StringCow cow{ StringCow::FromRef(StringRef{}) };
     bool wasRef{ false };
-    cow.Visit(Thoth::Utils::Overloaded{
+    cow.Visit(Hermes::Utils::Overloaded{
         [&](StringRef)        { wasRef = true; },
         [&](std::string&)     { wasRef = false; }
     });
@@ -147,7 +147,7 @@ TEST_F(CowVisitTest, Visit_RefVariant_CallsRefHandler) {
 TEST_F(CowVisitTest, Visit_OwnedVariant_CallsOwnedHandler) {
     StringCow cow{ StringCow::FromOwned(std::string("data")) };
     bool wasOwned{ false };
-    cow.Visit(Thoth::Utils::Overloaded{
+    cow.Visit(Hermes::Utils::Overloaded{
         [&](StringRef)        { wasOwned = false; },
         [&](std::string&)     { wasOwned = true; }
     });
@@ -157,7 +157,7 @@ TEST_F(CowVisitTest, Visit_OwnedVariant_CallsOwnedHandler) {
 TEST_F(CowVisitTest, Visit_Const_RefVariant) {
     const StringCow cow{ StringCow::FromRef(StringRef{}) };
     bool wasRef{ false };
-    cow.Visit(Thoth::Utils::Overloaded{
+    cow.Visit(Hermes::Utils::Overloaded{
         [&](const StringRef&)  { wasRef = true; },
         [&](const std::string&){ wasRef = false; }
     });

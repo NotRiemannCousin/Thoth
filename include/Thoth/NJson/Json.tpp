@@ -4,7 +4,7 @@
 
 #include <Thoth/Http/RequestError.hpp>
 #include <Thoth/Utils/LastMatchVariant.hpp>
-#include <Thoth/Utils/Overloads.hpp>
+#include <Hermes/Utils/Overloads.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
 
 #include "Thoth/String/Utils.hpp"
@@ -395,7 +395,7 @@ namespace Thoth::NJson {
             };
 
             const auto s_formatString = [&](const String& str) {
-                str.Visit(Utils::Overloaded{
+                str.Visit(Hermes::Utils::Overloaded{
                     // ReSharper disable once CppPassValueParameterByConstReference
                     [&](const String::RefType ref) {
                         *it++ = '"';
@@ -409,7 +409,7 @@ namespace Thoth::NJson {
             };
 
 
-            std::visit(Utils::Overloaded{
+            std::visit(Hermes::Utils::Overloaded{
                 s_formatString,
                 s_formatNumber,
                 [&](const Bool    bln){ it = std::ranges::copy(bln ? trueStr : falseStr, it).out; },

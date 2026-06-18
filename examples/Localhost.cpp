@@ -5,9 +5,9 @@ namespace NJson = Thoth::NJson;
 using NJson::Json;
 
 int main() {
-    auto body{ Thoth::Http::GetRequest::FromUrl("https://localhost:4433/")
-            .and_then(Thoth::Http::Client::H_Send())
-            .transform(&Thoth::Http::GetResponse::MoveBody) };
+    auto body{ NHttp::GetRequest::FromUrl("https://localhost:4433/")
+            .and_then(NHttp::Client::H_Send())
+            .transform(&NHttp::GetResponse::MoveBody) };
 
     if (body)
         std::print("{}", *body);

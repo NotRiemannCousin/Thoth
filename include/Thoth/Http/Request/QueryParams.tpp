@@ -5,7 +5,7 @@ namespace std {
     template<>
     struct hash<Thoth::Http::QueryParams> {
         size_t operator()(const Thoth::Http::QueryParams& params) const noexcept {
-            using Thoth::Utils::HashCombine;
+            using Hermes::Utils::HashCombine;
             size_t seed = 1469598103934665603ULL;
 
             for (const auto& [key, vals] : params) {

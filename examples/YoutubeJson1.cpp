@@ -34,6 +34,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(std::string_v
 #pragma endregion
 
 
+#pragma region Lambdas
 
     static constexpr auto s_getTab = [](const std::string& name) {
         return [&](const Json& tab) {
@@ -81,6 +82,7 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(std::string_v
         }
     };
 
+#pragma endregion
 
     using Clock = std::chrono::system_clock;
 

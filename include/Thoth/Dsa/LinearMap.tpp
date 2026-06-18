@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 
-#include <Thoth/Utils/Hash.hpp>
+#include <Hermes/Utils/Hash.hpp>
 
 namespace Thoth::Dsa {
     template<class KeyT, class ValT, class Pred>
@@ -167,7 +167,7 @@ template<class K, class V, class P>
     requires requires(const K& k){ std::hash<K>{}(k); } && requires(const V& v){ std::hash<V>{}(v); }
 struct std::hash<Thoth::Dsa::LinearMap<K,V,P>> {
     size_t operator()(const Thoth::Dsa::LinearMap<K,V,P>& m) const noexcept {
-        using Thoth::Utils::HashCombine;
+        using Hermes::Utils::HashCombine;
         size_t seed{ 1469598103934665603ULL };
 
         for (const auto& p : m) {

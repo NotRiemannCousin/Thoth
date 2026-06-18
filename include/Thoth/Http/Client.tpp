@@ -1,7 +1,7 @@
 #pragma once
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/RequestError.hpp>
-#include <Thoth/Utils/Overloads.hpp>
+#include <Hermes/Utils/Overloads.hpp>
 #include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
 #include <bit>
@@ -208,9 +208,9 @@ namespace Thoth::Http {
 
         struct ParseHeadStage {
             ResponseHead data;
-            decltype(infoPtr->socket.RecvLazyRange<char>()) stream;
+            decltype(infoPtr->socket.RecvStream<char>()) stream;
             // I could receive based in ValueType, but it would be painful to parse the response head.
-            // HTTP/2 will use RecvLazyRange<std::byte>().
+            // HTTP/2 will use RecvStream<std::byte>().
         };
 
         struct ParseCompleteStage : ParseHeadStage {
@@ -227,7 +227,7 @@ namespace Thoth::Http {
 
 
         const auto s_createResponseStream = [&]() -> ParseHeadResult {
-            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvLazyRange<char>() };
+            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
         };
 
         const auto s_fillResponseLine = [&](ParseHeadStage&& info) -> ParseHeadResult {
@@ -242,7 +242,7 @@ namespace Thoth::Http {
             }
             ++info.stream.begin();
 
-            const auto arr{ Hermes::Utils::CopyTo<std::array<char, 5>>(info.stream) };
+            const auto arr{ Hermes::Utils::ExtractTo<std::array<char, 5>>(info.stream) };
 
             if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
                 return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
@@ -340,7 +340,7 @@ namespace Thoth::Http {
                     return std::monostate{};
                 };
 
-                return std::visit(Utils::Overloaded{ s_readSizedLength, s_readChunked }, value)
+                return std::visit(Hermes::Utils::Overloaded{ s_readSizedLength, s_readChunked }, value)
                         .transform([&](auto){ return std::move(info); });
             };
 

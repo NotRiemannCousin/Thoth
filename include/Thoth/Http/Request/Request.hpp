@@ -1,5 +1,5 @@
 #pragma once
-#include <Hermes/Socket/ClientSocket.hpp>
+#include <Hermes/Socket/Sync/ClientSocket.hpp>
 
 #include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/Methods/GetMethod.hpp>

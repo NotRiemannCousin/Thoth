@@ -1,11 +1,9 @@
 #pragma once
-#include <Hermes/Socket/_base/_base.hpp>
+#include <Hermes/Socket/_base.hpp>
 #include <Thoth/Dsa/FileOutputRange.hpp>
 #include <Thoth/Http/NHeaders/Headers.hpp>
 #include <filesystem>
 #include <fstream>
-
-using namespace Thoth::Http;
 
 namespace Thoth::Dsa {
     struct FileBuilderParams {

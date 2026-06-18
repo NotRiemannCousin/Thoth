@@ -2,7 +2,6 @@
 #include <print>
 
 #include <Thoth/Http/Client.hpp>
-#include <Thoth/Utils/Functional.hpp>
 
 
 namespace NHttp = Thoth::Http;
