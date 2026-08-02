@@ -12,15 +12,15 @@ namespace Thoth::Dsa {
     template<Hermes::ByteLike T>
     constexpr auto FileOutputRange<T>::H_AsBody(const FileBuilderParams& params) {
         return [&](const Http::ResponseHead& head) -> BodyType {
-            using Exp = std::expected<std::monostate, Http::RequestError>;
+            using Exp = std::expected<std::monostate, Http::ExchangeError>;
 
             auto s_checkLen = [&]() -> Exp {
                 const auto length{ head.headers.ContentLength().Get() };
 
                 if (!length)
-                    return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                    return std::unexpected{ Http::ExchangeError{ Http::MessageParseErrorEnum::InvalidHeaders } };
                 if (params.maxSize < *length)
-                    return std::unexpected{ Http::RequestError{ Http::GenericError{ "response size is bigger than the permitted" } } };
+                    return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "response size is bigger than the permitted" } } };
                 return {};
             };
 
@@ -28,18 +28,18 @@ namespace Thoth::Dsa {
                 if (!params.acceptedTypes) return {};
 
                 const auto type{ head.headers.ContentType().GetWithDefault(Http::NHeaders::MimeTypes::appOctetStream) };
-                if (!type) return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                if (!type) return std::unexpected{ Http::ExchangeError{ Http::MessageParseErrorEnum::InvalidHeaders } };
 
                 if (!std::ranges::contains(*params.acceptedTypes, *type))
-                    return std::unexpected{ Http::RequestError{ Http::GenericError{ "type not accepted" } } };
+                    return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "type not accepted" } } };
 
                 return {};
             };
 
-            auto s_happyPath = [&](auto) -> std::expected<FileOutputRange, Http::RequestError> {
+            auto s_happyPath = [&](auto) -> std::expected<FileOutputRange, Http::ExchangeError> {
                 std::error_code ec;
                 std::filesystem::create_directories(params.path.parent_path(), ec);
-                if (ec) return std::unexpected{ Http::RequestError{ Http::GenericError{ "Unable to create file path" } } };
+                if (ec) return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "Unable to create file path" } } };
 
                 return FileOutputRange{ params.path, params.mode };
             };
@@ -51,15 +51,15 @@ namespace Thoth::Dsa {
     template<Hermes::ByteLike T>
     constexpr auto FileOutputRange<T>::H_AsBody(FileBuilderParams&& params) {
         return [params = std::move(params)](const Http::ResponseHead& head) mutable -> BodyType {
-            using Exp = std::expected<std::monostate, Http::RequestError>;
+            using Exp = std::expected<std::monostate, Http::ExchangeError>;
 
             auto s_checkLen = [&]() -> Exp {
                 const auto length{ head.headers.ContentLength().Get() };
 
                 if (!length)
-                    return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                    return std::unexpected{ Http::ExchangeError{ Http::MessageParseErrorEnum::InvalidHeaders } };
                 if (params.maxSize < *length)
-                    return std::unexpected{ Http::RequestError{ Http::GenericError{ "response size is bigger than the permitted" } } };
+                    return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "response size is bigger than the permitted" } } };
                 return {};
             };
 
@@ -67,18 +67,18 @@ namespace Thoth::Dsa {
                 if (!params.acceptedTypes) return {};
 
                 const auto type{ head.headers.ContentType().GetWithDefault(Http::NHeaders::MimeTypes::appOctetStream) };
-                if (!type) return std::unexpected{ Http::RequestError{ Http::RequestBuildErrorEnum::InvalidHeaders } };
+                if (!type) return std::unexpected{ Http::ExchangeError{ Http::MessageParseErrorEnum::InvalidHeaders } };
 
                 if (!std::ranges::contains(*params.acceptedTypes, *type))
-                    return std::unexpected{ Http::RequestError{ Http::GenericError{ "type not accepted" } } };
+                    return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "type not accepted" } } };
 
                 return {};
             };
 
-            auto s_happyPath = [&](auto) -> std::expected<FileOutputRange, Http::RequestError> {
+            auto s_happyPath = [&](auto) -> std::expected<FileOutputRange, Http::ExchangeError> {
                 std::error_code ec;
                 std::filesystem::create_directories(params.path.parent_path(), ec);
-                if (ec) return std::unexpected{ Http::RequestError{ Http::GenericError{ "Unable to create file path" } } };
+                if (ec) return std::unexpected{ Http::ExchangeError{ Http::GenericError{ "Unable to create file path" } } };
 
                 return FileOutputRange{ std::move(params.path), params.mode };
             };

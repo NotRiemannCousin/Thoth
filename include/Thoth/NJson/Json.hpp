@@ -9,7 +9,7 @@
 #include <span>
 
 #include <Thoth/NJson/Definitions.hpp>
-#include <Thoth/Http/RequestError.hpp>
+#include <Thoth/Http/ExchangeError.hpp>
 
 namespace Thoth::NJson {
 
@@ -99,20 +99,20 @@ namespace Thoth::NJson {
         [[nodiscard]] std::optional<const T*> EnsureRef() const&;
 
         template<class T>
-        [[nodiscard]] std::expected<T*, Http::RequestError> EnsureOrError() &;
+        [[nodiscard]] std::expected<T*, Http::ExchangeError> EnsureOrError() &;
         template<class T>
-        [[nodiscard]] std::expected<T, Http::RequestError> EnsureOrError() &&;
+        [[nodiscard]] std::expected<T, Http::ExchangeError> EnsureOrError() &&;
         template<class T>
-        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureOrError() const&;
+        [[nodiscard]] std::expected<const T*, Http::ExchangeError> EnsureOrError() const&;
 
         template<class T>
-        [[nodiscard]] std::expected<T, Http::RequestError> EnsureCpyOrError() const&;
+        [[nodiscard]] std::expected<T, Http::ExchangeError> EnsureCpyOrError() const&;
         template<class T>
-        [[nodiscard]] std::expected<T*, Http::RequestError> EnsureMutOrError() &;
+        [[nodiscard]] std::expected<T*, Http::ExchangeError> EnsureMutOrError() &;
         template<class T>
-        [[nodiscard]] std::expected<T, Http::RequestError> EnsureMovOrError() &&;
+        [[nodiscard]] std::expected<T, Http::ExchangeError> EnsureMovOrError() &&;
         template<class T>
-        [[nodiscard]] std::expected<const T*, Http::RequestError> EnsureRefOrError() const&;
+        [[nodiscard]] std::expected<const T*, Http::ExchangeError> EnsureRefOrError() const&;
 
         [[nodiscard]] bool operator==(const Json& other) const;
 
@@ -120,7 +120,7 @@ namespace Thoth::NJson {
         //! @details Requires only one parameter so it's convenient to monads. Calls ParseText with default parameters.
         //! @param input the text to parse.
         //! @return A Json if the parse success, std::nullopt otherwise.
-        static std::expected<Json, Http::RequestError> Parse(std::string_view input);
+        static std::expected<Json, Http::ExchangeError> Parse(std::string_view input);
 
 
         //! @copybrief Parse
@@ -128,7 +128,7 @@ namespace Thoth::NJson {
         //! @param copyData copy the input to an internal buffer if true, keeps a reference otherwise.
         //! @param checkFinal ensure that there is only space chars after the end of the json.
         //! @return A Json if the parse success, std::nullopt otherwise.
-        static std::expected<Json, Http::RequestError> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
+        static std::expected<Json, Http::ExchangeError> ParseText(std::string_view input, bool copyData = true, bool checkFinal = true);
 
 
 #pragma region Get Functions
@@ -152,13 +152,13 @@ namespace Thoth::NJson {
         ValWrapper GetAndMoveOrNull(Key key) &&;
 
 
-        //! @brief Return a ref of the element with this index/key if this is an Object or Array, RequestError otherwise.
+        //! @brief Return a ref of the element with this index/key if this is an Object or Array, ExchangeError otherwise.
         ExpRefValWrapper GetOrError(Key key);
         //! @copybrief GetOrError
         [[nodiscard]] ExpCRefValWrapper GetOrError(Key key) const;
-        //! @brief Return a copy of the element with this index/key if this is an Object or Array, RequestError otherwise.
+        //! @brief Return a copy of the element with this index/key if this is an Object or Array, ExchangeError otherwise.
         [[nodiscard]] ExpValWrapper GetCopyOrError(Key key) const;
-        //! @brief Move the element with this index/key if this is an Object or Array. Return RequestError otherwise.
+        //! @brief Move the element with this index/key if this is an Object or Array. Return ExchangeError otherwise.
         ExpValWrapper GetAndMoveOrError(Key key) &&;
 
         //! @}
@@ -186,13 +186,13 @@ namespace Thoth::NJson {
         ValWrapper FindAndMoveOrNull(Keys keys) &&;
 
 
-        //! @brief Same as successive calls to Get. Return RequestError at the first fail.
+        //! @brief Same as successive calls to Get. Return ExchangeError at the first fail.
         ExpRefValWrapper FindOrError(Keys keys);
         //! @copybrief FindOrError
         [[nodiscard]] ExpCRefValWrapper FindOrError(Keys keys) const;
-        //! @brief Same as successive calls to GetCopy. Return RequestError at the first fail.
+        //! @brief Same as successive calls to GetCopy. Return ExchangeError at the first fail.
         [[nodiscard]] ExpValWrapper FindCopyOrError(Keys keys) const;
-        //! @brief Same as successive calls to Find. Return RequestError at the first fail.
+        //! @brief Same as successive calls to Find. Return ExchangeError at the first fail.
         ExpValWrapper FindAndMoveOrError(Keys keys) &&;
 
         //! @}
@@ -216,10 +216,10 @@ namespace Thoth::NJson {
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         OptValWrapper SearchAndMove(Pred&& pred) &&;
 
-        //! @brief Will search the childs for the first element that matches the predicate and clone it, or RequestError if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or ExchangeError if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] ValWrapper SearchCopyOrNull(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and move it, or RequestError if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or ExchangeError if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         ValWrapper SearchAndMoveOrNull(Pred&& pred);
 

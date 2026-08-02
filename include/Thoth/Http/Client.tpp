@@ -1,65 +1,83 @@
 #pragma once
+#include <Thoth/Http/_base/Http11.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/RequestError.hpp>
+#include <Thoth/Http/ExchangeError.hpp>
 #include <Hermes/Utils/Overloads.hpp>
-#include <Hermes/Utils/UntilMatch.hpp>
 #include <string_view>
 #include <bit>
+
+#pragma region Macros
+#pragma push_macro("ASSERT_OR_RET_ERROR")
+#pragma push_macro("ASSERT_OR_RET_EXC_ERROR")
+#pragma push_macro("HTTP11_FORWARD")
+#undef ASSERT_OR_RET_ERROR
+#undef ASSERT_OR_RET_EXC_ERROR
+#undef HTTP11_FORWARD
+
+#define ASSERT_OR_RET_ERROR(cond, error) do {       \
+    if (!(cond)) return std::unexpected{ (error) }; \
+} while (0)
+#define ASSERT_OR_RET_EXC_ERROR(cond, error) ASSERT_OR_RET_ERROR(cond, ExchangeError{ (error) })
+#define HTTP11_FORWARD(methodName) ([](auto stage) { return details_::Http11::methodName(std::move(stage)); })
+
+#pragma endregion
+
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
-    std::expected<Response<Method, Body>, RequestError> Client::Send(Request<Method, Body> request) {
-        return SendAndRecvAsInto<Method, Body, Body>(request, [](const ResponseHead&) -> std::expected<Body, RequestError> { return {}; });
+    auto Client::Send(Request<Method, Body> request) -> ExpResponse<Method, Body> {
+        return SendAsAndParse<Method, Body, Body>(
+            request,[](const ResponseHead&) -> std::expected<Body, ExchangeError> { return {}; }
+        );
     }
 
     template<MethodConcept Method, BodyConcept Body, class F>
         requires ResponseBodyFactoryConcept<F, Body>
-    std::expected<Response<Method, Body>, RequestError> Client::SendAndRecvInto(Request<Method, Body> request, F&& bodyFactory) {
-        return SendAndRecvAsInto<Method, Body, Body>(request, std::forward<F>(bodyFactory));
+    auto Client::SendAndParse(Request<Method, Body> request, F&& bodyFactory) -> ExpResponse<Method, Body> {
+        return SendAsAndParse<Method, Body, Body>(request, std::forward<F>(bodyFactory));
     }
 
 
-    template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody>
+    template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody>
         requires std::default_initializable<ResponseBody>
-    std::expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAs(Request<Method, RequestBody> request) {
-        return SendAndRecvAsInto<Method, RequestBodyConcept, ResponseBody>(
-            request, [](const ResponseHead&) -> std::expected<ResponseBody, RequestError> { return {}; });
+    auto Client::SendAs(Request<Method, RequestBody> request) -> ExpResponse<Method, ResponseBody> {
+        return SendAsAndParse<Method, ReadableBodyConcept, ResponseBody>(
+            request, [](const ResponseHead&) -> std::expected<ResponseBody, ExchangeError> { return {}; }
+        );
     }
 
 
-    template<MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F>
+    template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<Response<Method, ResponseBody>, RequestError> Client::SendAndRecvAsInto(
-        Request<Method, RequestBody> request, F&& bodyFactory) {
-        // change it somewhere in the future
-        if (const auto scheme{ request.url.GetScheme() }; scheme != "http" && scheme != "https")
-            return std::unexpected{ RequestError{ GenericError{ "Invalid scheme" } } };
+    auto Client::SendAsAndParse(
+        Request<Method, RequestBody> request, F&& bodyFactory) -> ExpResponse<Method, ResponseBody> {
+
+        const auto scheme{ request.url.GetScheme() };
+        ASSERT_OR_RET_EXC_ERROR(scheme == "http" || scheme == "https", GenericError{ "Invalid scheme" });
 
         const auto auth{ request.url.GetAuthority() };
-        if (!auth) return std::unexpected{ RequestError{ GenericError{ "No authority provided" } } };
+        ASSERT_OR_RET_EXC_ERROR(auth, GenericError{ "No authority provided" });
 
-        const auto s_getDefaultPort = [&]() {
-            return GetDefaultPort(request.url.GetScheme());
-        };
-        const auto port{ auth->port.or_else(s_getDefaultPort) };
-        if (!port) return std::unexpected{ RequestError{ GenericError{ "No port provided" } } };
+        const auto getDefaultPort{ [&] { return GetDefaultPort(request.url.GetScheme()); } };
+        const auto port{ auth->port.or_else(getDefaultPort) };
+        ASSERT_OR_RET_EXC_ERROR(port, GenericError{ "No port provided" });
 
         const std::string hostname{
             std::visit(Hermes::Utils::Overloaded{
-                [](Hermes::IpAddress addr) { return std::format("{}", addr); },
-                [](std::string_view addr) { return std::string{ addr }; },
+                [](const Hermes::IpAddress addr) { return std::format("{}", addr); },
+                [](const std::string_view  addr) { return std::string{ addr };     },
             }, auth->host)
         };
 
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
-        const auto s_establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
+        const auto establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
 
 #pragma region create socket
 
-            const auto s_getSocketFromPool = [&]() -> std::optional<SocketPtr> {
+            const auto getSocketFromPool = [&]() -> std::optional<SocketPtr> {
                 std::lock_guard lock{ janitor.poolMutex };
 
                 const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(endpoint) };
@@ -73,7 +91,7 @@ namespace Thoth::Http {
                 return std::move(infoPtr);
             };
 
-            const auto s_createNewSocket = [&]() -> std::optional<SocketPtr> {
+            const auto createNewSocket = [&]() -> std::optional<SocketPtr> {
                 auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ endpoint, hostname }) };
                 if (!newSocketResult)
                     return std::nullopt;
@@ -81,9 +99,8 @@ namespace Thoth::Http {
                 return std::make_shared<Socket>(std::move(*newSocketResult));
             };
 
-            const auto s_cleanupSocket = [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
+            const auto cleanupSocket = [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
                 std::lock_guard lock{ janitor.poolMutex };
-
 
                 static Headers::HeaderValue closeConnectionVal{ "close" };
                 static Headers::HeaderValue keepAliveConnectionVal{ "keep-alive" };
@@ -94,7 +111,6 @@ namespace Thoth::Http {
                                 ? &closeConnectionVal
                                 : &keepAliveConnectionVal)
                 };
-                // TODO: FUTURE: Implement the keepAliveHeader (timeout) properly
 
                 if (val.first != nullptr && connectionHeader != closeConnectionVal)
                     janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
@@ -104,66 +120,52 @@ namespace Thoth::Http {
 
 #pragma endregion
 
-            auto infoPtr{ s_getSocketFromPool().or_else(s_createNewSocket) };
+            auto infoPtr{ getSocketFromPool().or_else(createNewSocket) };
 
 #pragma region check and send
 
-            const auto s_isSocketValid = [&]() -> Hermes::ConnectionResultOper {
-                if (!infoPtr)
-                    return std::unexpected{ ConnectionErrorEnum::ConnectionFailed };
+            const auto isSocketValid = [&]() -> Hermes::ConnectionResultOper {
+                ASSERT_OR_RET_ERROR(infoPtr, ConnectionErrorEnum::ConnectionFailed);
                 return std::monostate{};
             };
 
-            const auto s_sendRequest = [&](std::monostate) -> Hermes::ConnectionResult<SocketPtr> {
+            const auto sendRequest = [&](std::monostate) -> std::expected<SocketPtr, ExchangeError> {
                 request.headers.Add("host", hostname);
 
-                if constexpr (SizedRequestBodyConcept<RequestBody>)
-                    request.headers.ContentLength().Set(std::ranges::size(request.body));
-                else
-                    request.headers.TransferEncoding().Add(NHeaders::TransferEncodingEnum::Chunked);
+                details_::Http11::PrepareBodyHeaders(request.headers, request.body);
 
-                const std::string_view path{ request.url.GetPathOrSep() };
-                const auto& query { request.url.GetQuery() };
-                const auto versionStr{ VersionToString(request.version) };
-
-                // TODO: implement "transfer-encoding: chunked" properly.
-                // TODO: change to views::concat later and then create a local buffer to write
-                const auto requestStr{ std::format(
-                    "{} {}?{} {}\r\n"
-                    "{}\r\n"
-                    "{}",
-                    Method::MethodName(), path, query, versionStr,
-                    request.headers,
-                    request.body
+                auto headRes{ details_::Http11::SendRequestLineAndHeaders(
+                    (*infoPtr)->socket, Method::MethodName(), request.url, request.version, request.headers
                 ) };
+                ASSERT_OR_RET_ERROR(headRes, headRes.error());
 
-                const auto [_, sendRes]{ (*infoPtr)->socket.Send(requestStr) };
+                auto bodyRes{ details_::Http11::SendBody((*infoPtr)->socket, request.body) };
+                ASSERT_OR_RET_ERROR(bodyRes, bodyRes.error());
 
-                return sendRes
-                        .transform([&](auto){ return std::move(*infoPtr); });
+                return std::move(*infoPtr);
             };
 
-            const auto s_toRequestError = [](const auto err) -> RequestError {
-                return RequestError{ err };
+            const auto toExchangeError = [](const auto err) -> ExchangeError {
+                return ExchangeError{ err };
             };
 
 #pragma endregion
 
-            return s_isSocketValid()
-                    .and_then(s_sendRequest)
-                    .transform_error(s_toRequestError)
-                    .and_then(std::bind_back(P_ParseHttp11<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
-                    .transform(s_cleanupSocket);
+            return isSocketValid()
+                    .transform_error(toExchangeError)
+                    .and_then(sendRequest)
+                    .and_then(std::bind_back(ParseHttp11_<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
+                    .transform(cleanupSocket);
         };
 
-        const auto s_toRequestError = [](const auto err) {
-            return RequestError{ err };
+        const auto toExchangeError = [](const auto err) {
+            return ExchangeError{ err };
         };
 
 
         return Hermes::IpEndpoint::TryResolve(hostname, std::string{ request.url.GetScheme() })
-                .transform_error(s_toRequestError)
-                .and_then(s_establishConnection);
+                .transform_error(toExchangeError)
+                .and_then(establishConnection);
     }
 
     constexpr auto Client::H_Send() {
@@ -174,203 +176,72 @@ namespace Thoth::Http {
 
 
     template<class F>
-    auto Client::H_SendAndRecvInto(F&& bodyFactory) {
+    auto Client::H_SendAndParse(F&& bodyFactory) {
         return [&]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
-            return SendAndRecvInto<Method, Body>(request, std::forward<F>(bodyFactory));
+            return SendAndParse<Method, Body>(request, std::forward<F>(bodyFactory));
         };
     }
 
-    template<ResponseBodyConcept ResponseBody>
-    constexpr auto Client::H_SendAndRecvAs() {
-        return []<MethodConcept Method, RequestBodyConcept RequestBody>(Request<Method, RequestBody> request) {
-            return SendAndRecvAs<Method, RequestBody, ResponseBody>(request);
+    template<WritableBodyConcept ResponseBody>
+    constexpr auto Client::H_SendAs() {
+        return []<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAs<Method, RequestBody, ResponseBody>(request);
         };
     }
 
-    template<ResponseBodyConcept ResponseBody, class F>
+    template<WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    auto Client::H_SendAndRecvAsInto(F&& bodyFactory) {
-        return [&]<MethodConcept Method, RequestBodyConcept RequestBody>(Request<Method, RequestBody> request) {
-            return SendAndRecvAsInto<Method, RequestBody, ResponseBody>(request, std::forward<F>(bodyFactory));
+    auto Client::H_SendAsAndParse(F&& bodyFactory) {
+        return [&]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAsAndParse<Method, RequestBody, ResponseBody>(request, std::forward<F>(bodyFactory));
         };
     }
 
 
-    template<MethodConcept Method, ResponseBodyConcept ResponseBody, class F>
+    template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, RequestError> Client::P_ParseHttp11(
+    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ExchangeError> Client::ParseHttp11_(
         SocketPtr infoPtr, F&& bodyFactory) {
-        namespace rg = std::ranges;
-        namespace vs = std::views;
 
-        using namespace std::literals;
-        using ValueType = ResponseBody::value_type;
+        using StreamType = decltype(infoPtr->socket.RecvStream<char>());
+        using ParseCompleteStage = details_::ParseCompleteStage<StreamType, ResponseBody>;
 
-        struct ParseHeadStage {
-            ResponseHead data;
-            decltype(infoPtr->socket.RecvStream<char>()) stream;
-            // I could receive based in ValueType, but it would be painful to parse the response head.
-            // HTTP/2 will use RecvStream<std::byte>().
+        const auto createResponseStream = [&]() -> std::expected<details_::ResponseParseStage<StreamType>, ExchangeError> {
+            return details_::ResponseParseStage<StreamType>{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
         };
 
-        struct ParseCompleteStage : ParseHeadStage {
-            ResponseBody body;
-        };
+        const auto initializeBody = [&](details_::ResponseParseStage<StreamType> stage) -> std::expected<ParseCompleteStage, ExchangeError> {
+            auto bodyExp{ std::invoke(bodyFactory, stage.data) };
 
-        using ParseHeadResult     = std::expected<ParseHeadStage, RequestError>;
-        using ParseCompleteResult = std::expected<ParseCompleteStage, RequestError>;
+            if (!bodyExp) return std::unexpected{ bodyExp.error() };
 
-
-        static constexpr auto s_cvt = [](const char c) { // convert
-            return std::bit_cast<ValueType>(c);
-        };
-
-
-        const auto s_createResponseStream = [&]() -> ParseHeadResult {
-            return ParseHeadStage{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
-        };
-
-        const auto s_fillResponseLine = [&](ParseHeadStage&& info) -> ParseHeadResult {
-            auto err{ info.stream.Error() };
-            if (!rg::starts_with(info.stream, "HTTP/1."sv))
-                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
-
-            switch (*info.stream.begin()) {
-                case '0': info.data.version = VersionEnum::HTTP1_0; break;
-                case '1': info.data.version = VersionEnum::HTTP1_1; break;
-                default: return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidVersion } };
-            }
-            ++info.stream.begin();
-
-            const auto arr{ Hermes::Utils::ExtractTo<std::array<char, 5>>(info.stream) };
-
-            if (arr[0] != ' ' || !isdigit(arr[1]) || !isdigit(arr[2]) || !isdigit(arr[3]) || arr[4] != ' ')
-                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
-
-            info.data.status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
-            info.data.statusMessage = info.stream | Hermes::Utils::UntilMatch("\r\n"sv) | rg::to<std::string>();
-
-            return std::move(info);
-        };
-
-        const auto s_fillHeaders = [&](ParseHeadStage&& info) -> ParseHeadResult {
-            auto rawHeaders{ info.stream | Hermes::Utils::UntilMatch("\r\n\r\n"sv) };
-            const auto headersParseRes{ Headers::Parse(rawHeaders) };
-
-            if (!headersParseRes)
-                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidHeaders } };
-            info.data.headers = *headersParseRes;
-            return std::move(info);
-        };
-
-        const auto s_initializeBody = [&](ParseHeadStage&& info) -> ParseCompleteResult {
-            return std::invoke(bodyFactory, info.data)
-                    .transform([info = std::move(info)](auto&& body) {
-                        return ParseCompleteStage{
-                            std::move(info.data),
-                            std::move(info.stream),
-                            std::move(body)
-                        };
-                    });
-        };
-
-        const auto s_fillBody = [&](ParseCompleteStage&& info) -> ParseCompleteResult {
-            using State1 = std::expected<std::variant<std::monostate, size_t>, NHeaders::HeaderErrorEnum>;
-            using State2 = std::expected<std::variant<std::monostate, size_t>, RequestError>;
-
-            const auto s_extractChunked = [](std::vector<NHeaders::TransferEncodingEnum> values) -> State1 {
-                if (std::ranges::contains(values, NHeaders::TransferEncodingEnum::Chunked))
-                    return { {std::monostate{} } };
-
-                return std::unexpected{ NHeaders::HeaderErrorEnum::NotFound };
+            return ParseCompleteStage{
+                { std::move(stage.data), std::move(stage.stream) },
+                std::move(*bodyExp)
             };
-
-            const auto s_extractLengthIfNotChunked = [&](NHeaders::HeaderErrorEnum error) -> State2 {
-                if (error == NHeaders::HeaderErrorEnum::NotFound)
-                    if (const auto res{ info.data.headers.ContentLength().GetWithDefault(0) }; res)
-                        return *res;
-
-                return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidHeaders } };
-            };
-
-            const auto s_readBody = [&](State2::value_type value) -> ParseCompleteResult {
-                const auto s_readSizedLength = [&](const size_t contentSize) -> std::expected<std::monostate, RequestError> {
-                    if constexpr (requires (ResponseBody b){ { b.reserve(0) }; })
-                        info.body.reserve(contentSize);
-
-                    rg::copy(
-                        info.stream
-                                | vs::take(contentSize)
-                                | vs::transform(s_cvt),
-                        GetInserterIterator(info.body)
-                    );
-
-                    return std::monostate{};
-                };
-
-                const auto s_readChunked = [&](std::monostate) -> std::expected<std::monostate, RequestError> {
-                    if (info.data.version == VersionEnum::HTTP1_0)
-                        return std::unexpected{ RequestError{ RequestBuildErrorEnum::VersionNeedsContentLength } };
-
-                    std::string chunkLengthStr;
-                    decltype(Utils::Scan<size_t>(chunkLengthStr)) chunkLength;
-
-
-                    do {
-                        chunkLengthStr.clear();
-                        rg::copy(info.stream | Hermes::Utils::UntilMatch("\r\n"sv), std::back_inserter(chunkLengthStr));
-                        chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
-
-                        if (!chunkLength)
-                            return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
-
-                        rg::copy(
-                            info.stream
-                                    | vs::take(*chunkLength)
-                                    | vs::transform(s_cvt),
-                            GetInserterIterator(info.body)
-                        );
-
-                        //? Support extensions too? Maybe, someday
-                        if (!rg::starts_with(info.stream, "\r\n"sv))
-                            return std::unexpected{ RequestError{ RequestBuildErrorEnum::InvalidResponse } };
-
-                    } while (chunkLength != 0);
-
-                    return std::monostate{};
-                };
-
-                return std::visit(Hermes::Utils::Overloaded{ s_readSizedLength, s_readChunked }, value)
-                        .transform([&](auto){ return std::move(info); });
-            };
-
-
-            return info.data.headers.TransferEncoding().Get()
-                    .and_then(s_extractChunked)
-                    .or_else(s_extractLengthIfNotChunked)
-                    .and_then(s_readBody);
         };
 
-        const auto s_createObject = [&](ParseCompleteStage&& info) {
+        const auto createObject = [&](ParseCompleteStage&& stage) {
             return std::pair{
                     std::move(infoPtr),
                     Response<Method, ResponseBody>{
-                        info.data.version, info.data.status, std::move(info.data.statusMessage),
-                        std::move(info.data.headers),
-                        std::move(info.body)
+                        stage.data.version, stage.data.status, std::move(stage.data.statusMessage),
+                        std::move(stage.data.headers),
+                        std::move(stage.body)
                     }
                 };
         };
 
-
-        return s_createResponseStream()
-                .and_then(s_fillResponseLine)
-                .and_then(s_fillHeaders)
-                .and_then(s_initializeBody)
-                .and_then(s_fillBody)
-                .transform(s_createObject);
-
+        return createResponseStream()
+                .and_then(HTTP11_FORWARD(ParseResponseLine))
+                .and_then(HTTP11_FORWARD(ParseHeaders))
+                .and_then(initializeBody)
+                .and_then(HTTP11_FORWARD(ParseBody))
+                .transform(createObject);
     }
 }
 
 #pragma warning(default: 4455)
+#pragma pop_macro("HTTP11_FORWARD")
+#pragma pop_macro("ASSERT_OR_RET_EXC_ERROR")
+#pragma pop_macro("ASSERT_OR_RET_ERROR")

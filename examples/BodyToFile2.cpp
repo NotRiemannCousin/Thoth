@@ -4,7 +4,7 @@
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/Client.hpp>
 
-static std::expected<std::monostate, Thoth::Http::RequestError> SavePdf(const std::string_view url) {
+static std::expected<std::monostate, Thoth::Http::ExchangeError> SavePdf(const std::string_view url) {
     namespace NHttp = Thoth::Http;
     using     FileT = Thoth::Dsa::BinFileOutputRange;
 

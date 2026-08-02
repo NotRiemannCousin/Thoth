@@ -22,7 +22,7 @@ std::string Thoth::Http::Authority::GetHostString() const {
         }, host);
 }
 
-#define FAIL_WITH(x) return std::unexpected{ RequestError{ UrlParseErrorEnum::x } }
+#define FAIL_WITH(x) return std::unexpected{ ExchangeError{ UrlParseErrorEnum::x } }
 
 std::optional<std::uint16_t> Thoth::Http::GetDefaultPort(const std::string_view scheme) noexcept {
     if (scheme == "http"  ) return 80;
@@ -127,7 +127,7 @@ std::string_view Url::GetUrlWithoutFragment() const noexcept {
 // URL parsing from RFC3986
 
 
-std::expected<Url, Thoth::Http::RequestError> Url::FromUrl(std::string rawUrl) {
+std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) {
     if (rawUrl.empty() || !isalpha(rawUrl.front()))
         FAIL_WITH(EmptyUrl);
 
@@ -431,7 +431,7 @@ constexpr auto s_hexCharToInt = [] {
 }();
 
 
-std::expected<string, Thoth::Http::RequestError> Url::TryDecode(std::string_view str) {
+std::expected<string, Thoth::Http::ExchangeError> Url::TryDecode(std::string_view str) {
     std::string buffer;
     buffer.reserve(str.length());
 

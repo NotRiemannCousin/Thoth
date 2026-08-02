@@ -6,7 +6,7 @@
 #include <expected>
 
 #include <Thoth/String/UnicodeViewer.hpp>
-#include <Thoth/Http/RequestError.hpp>
+#include <Thoth/Http/ExchangeError.hpp>
 #include <Thoth/Utils/Functional.hpp>
 #include <Thoth/NJson/Json.hpp>
 
@@ -253,7 +253,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
 }
 
 
-static bool Details::ReadString(std::string_view& input, auto& val, const BufferInfo& info) {
+static bool details_::ReadString(std::string_view& input, auto& val, const BufferInfo& info) {
     if (*input.data() != '"')
         return false;
     input.remove_prefix(1);
@@ -318,7 +318,7 @@ static bool Details::ReadString(std::string_view& input, auto& val, const Buffer
     val = String::FromOwned(std::move(str));
     return true;
 }
-static bool Details::ReadNumber(std::string_view& input, auto& val) {
+static bool details_::ReadNumber(std::string_view& input, auto& val) {
     const auto openValNumber{ input.data() };
     constexpr auto validChars{ []{
         std::bitset<256> res{};
@@ -348,7 +348,7 @@ static bool Details::ReadNumber(std::string_view& input, auto& val) {
     val = number;
     return true;
 }
-static bool Details::ReadObject(std::string_view& input, auto& val, const BufferInfo& info) {
+static bool details_::ReadObject(std::string_view& input, auto& val, const BufferInfo& info) {
     JsonObject json;
 
     ADVANCE_SPACES();
@@ -401,7 +401,7 @@ static bool Details::ReadObject(std::string_view& input, auto& val, const Buffer
     val = std::move(json);
     return true;
 }
-static bool Details::ReadBool(std::string_view& input, auto& val) {
+static bool details_::ReadBool(std::string_view& input, auto& val) {
     if (std::ranges::starts_with(input, std::string_view{ "true" }))
         input.remove_prefix(4), val = true;
     else if (std::ranges::starts_with(input, std::string_view{ "false" }))
@@ -410,7 +410,7 @@ static bool Details::ReadBool(std::string_view& input, auto& val) {
         return false;
     return true;
 }
-static bool Details::ReadNull(std::string_view& input, auto& val) {
+static bool details_::ReadNull(std::string_view& input, auto& val) {
     if (std::ranges::starts_with(input, std::string_view{ "null" }))
         input.remove_prefix(4);
     else
@@ -419,7 +419,7 @@ static bool Details::ReadNull(std::string_view& input, auto& val) {
     val = NullV;
     return true;
 }
-static bool Details::ReadArray(std::string_view& input, auto& val, const BufferInfo& info) {
+static bool details_::ReadArray(std::string_view& input, auto& val, const BufferInfo& info) {
     if (*input.data() != '[')
         return false;
 
@@ -461,12 +461,12 @@ static bool Details::ReadArray(std::string_view& input, auto& val, const BufferI
 #pragma endregion
 
 
-std::expected<Json, RequestError> Json::Parse(std::string_view input) {
+std::expected<Json, ExchangeError> Json::Parse(std::string_view input) {
     return ParseText(input);
 }
 
-std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
-    Details::BufferInfo info{};
+std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
+    details_::BufferInfo info{};
 
     if (copyData) {
         info.buffer = std::make_shared<std::string>(input);
@@ -476,10 +476,10 @@ std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool c
     else
         info.bufferView = input;
 
-    const auto s_error = [&]() -> std::unexpected<RequestError>{
+    const auto s_error = [&]() -> std::unexpected<ExchangeError>{
         if (input.empty())
-            return std::unexpected{ RequestError{ GenericError{ "Input for Json is empty" } } };
-        return std::unexpected{ RequestError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
+            return std::unexpected{ ExchangeError{ GenericError{ "Input for Json is empty" } } };
+        return std::unexpected{ ExchangeError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
     };
 
 #define return return s_error(); // I hate to do it
@@ -490,12 +490,12 @@ std::expected<Json, RequestError> Json::ParseText(std::string_view input, bool c
     bool success{};
 
     switch (input[0]){
-        CASE_OPEN_STRING   success = Details::ReadString(input, json, info); break;
-        CASE_OPEN_NUMBER   success = Details::ReadNumber(input, json);       break;
-        CASE_OPEN_OBJECT   success = Details::ReadObject(input, json, info); break;
-        CASE_OPEN_NULLABLE success = Details::ReadNull(  input, json);       break;
-        CASE_OPEN_BOOLEAN  success = Details::ReadBool(  input, json);       break;
-        CASE_OPEN_ARRAY    success = Details::ReadArray( input, json, info); break;
+        CASE_OPEN_STRING   success = details_::ReadString(input, json, info); break;
+        CASE_OPEN_NUMBER   success = details_::ReadNumber(input, json);       break;
+        CASE_OPEN_OBJECT   success = details_::ReadObject(input, json, info); break;
+        CASE_OPEN_NULLABLE success = details_::ReadNull(  input, json);       break;
+        CASE_OPEN_BOOLEAN  success = details_::ReadBool(  input, json);       break;
+        CASE_OPEN_ARRAY    success = details_::ReadArray( input, json, info); break;
         default: return s_error();
     }
     if (!success)
@@ -597,7 +597,7 @@ ValWrapper Json::GetAndMoveOrNull(const Key key) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ RequestError{ JsonGetError{ key } } }
+#define KEY_NOT_FOUND std::unexpected{ ExchangeError{ JsonGetError{ key } } }
 
 ExpRefValWrapper Json::GetOrError(const Key key) {
     OptRefValWrapper curr{ this };
@@ -655,7 +655,7 @@ ValWrapper Json::FindAndMoveOrNull(const Keys keys) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ RequestError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
+#define KEY_NOT_FOUND std::unexpected{ ExchangeError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
 
 ExpRefValWrapper Json::FindOrError(const Keys keys) {
     OptRefValWrapper curr{ this };

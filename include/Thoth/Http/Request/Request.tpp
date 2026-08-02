@@ -2,11 +2,11 @@
 #include <ranges>
 
 namespace Thoth::Http {
-    template<MethodConcept Method, RequestBodyConcept Body>
+    template<MethodConcept Method, ReadableBodyConcept Body>
     template<class T>
         requires Hermes::ByteLike<std::ranges::range_value_t<T>>
                 || (std::same_as<Body, std::string> && std::formattable<T, char>)
-    std::expected<Request<Method, Body>, RequestError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
+    std::expected<Request<Method, Body>, ExchangeError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
         if constexpr (Hermes::ByteLike<std::ranges::range_value_t<T>>)
             return Url::FromUrl(std::string{ url })
                     .transform([&](const auto& httpUrl) {

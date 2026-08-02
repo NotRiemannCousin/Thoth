@@ -55,7 +55,7 @@ namespace Thoth::Http::NHeaders {
         bool TrySet(std::string_view newValue) &&;
 
         template<class U>
-        static std::optional<std::vector<U>> ParseList(HeaderValue* val, std::string_view pattern);
+        static std::optional<std::vector<U>> ParseList(const HeaderValue* val, std::string_view pattern);
 
     private:
         const PatternType inPattern;

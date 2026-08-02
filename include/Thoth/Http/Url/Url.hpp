@@ -44,7 +44,7 @@ namespace Thoth::Http {
         //! @brief Tries to convert the given string into URL.
         //! @param rawUrl the given URL.
         //! @return The Url if succeeded, std::nullopt if it fails.
-        static std::expected<Url, RequestError> FromUrl(std::string rawUrl);
+        static std::expected<Url, ExchangeError> FromUrl(std::string rawUrl);
 
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
@@ -56,7 +56,7 @@ namespace Thoth::Http {
         //! Percent-Encoding</a>.
         //! @param str the given text.
         //! @return The string decoded if it succeeded, std::nullopt if it fails.
-        static std::expected<std::string, RequestError> TryDecode(std::string_view str);
+        static std::expected<std::string, ExchangeError> TryDecode(std::string_view str);
 
         bool operator==(const Url& other) const noexcept;
     private:

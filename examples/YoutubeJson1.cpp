@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(std::string_view id) {
+std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -71,14 +71,14 @@ std::expected<std::monostate, Thoth::Http::RequestError> PrintInfo(std::string_v
         return std::monostate{};
     };
 
-    static constexpr auto s_processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::RequestError> {
+    static constexpr auto s_processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::ExchangeError> {
         switch (req.status) {
             case NHttp::StatusCodeEnum::Ok:
                 return std::move(req);
             case NHttp::StatusCodeEnum::BadRequest:
-                return std::unexpected{ NHttp::RequestError{ NHttp::GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
+                return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
                 default:
-                return std::unexpected{ NHttp::RequestError{ NHttp::GenericError{ "Invalid Request" } } };
+                return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ "Invalid Request" } } };
         }
     };
 

@@ -146,7 +146,7 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     template<class U>
-    auto ListProxy<IsConst, Ts...>::ParseList(HeaderValue* val, std::string_view pattern) -> std::optional<std::vector<U>> {
+    auto ListProxy<IsConst, Ts...>::ParseList(const HeaderValue* val, std::string_view pattern) -> std::optional<std::vector<U>> {
         std::vector<U> res{};
         for (auto member : *val
                 | std::views::split(',')

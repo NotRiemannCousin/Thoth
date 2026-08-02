@@ -4,8 +4,8 @@
 #include <Hermes/Utils/Overloads.hpp>
 
 template<>
-struct std::formatter<Thoth::Http::RequestError> {
-    using RequestError = Thoth::Http::RequestError;
+struct std::formatter<Thoth::Http::ExchangeError> {
+    using ExchangeError = Thoth::Http::ExchangeError;
 
     using JsonParseError        = Thoth::Http::JsonParseError;
     using JsonGetError          = Thoth::Http::JsonGetError;
@@ -13,7 +13,7 @@ struct std::formatter<Thoth::Http::RequestError> {
     using JsonSearchError       = Thoth::Http::JsonSearchError;
     using UrlParseErrorEnum     = Thoth::Http::UrlParseErrorEnum;
     using ConnectionErrorEnum   = Thoth::Http::ConnectionErrorEnum;
-    using RequestBuildErrorEnum = Thoth::Http::RequestBuildErrorEnum;
+    using MessageParseErrorEnum = Thoth::Http::MessageParseErrorEnum;
     using GenericError          = Thoth::Http::GenericError;
 
     constexpr auto parse(std::format_parse_context& ctx) {
@@ -21,7 +21,7 @@ struct std::formatter<Thoth::Http::RequestError> {
     }
 
     template<class FormatContext>
-    auto format(const RequestError &error, FormatContext& ctx) const {
+    auto format(const ExchangeError &error, FormatContext& ctx) const {
         constexpr auto s_keyToStr = [](const Thoth::NJson::Key& key) {
             return std::visit(
                 Hermes::Utils::Overloaded{
@@ -80,9 +80,9 @@ struct std::formatter<Thoth::Http::RequestError> {
                     // std::format_to(ctx.out(), "{}", desc[to_underlying(e)]);
                     std::format_to(ctx.out(), "{:v}", e);
                 },
-                [&](const RequestBuildErrorEnum e) {
+                [&](const MessageParseErrorEnum e) {
                     constexpr const char* desc[]{
-                        "InvalidResponse: unknown error, probably a invalid character",
+                        "InvalidStartLine: unknown error, probably a invalid character",
                         "InvalidVersion: uses 1.0 or 1.1 (2.0 and 3.0 in the future)",
                         "InvalidHeaders: error while parsing headers, maybe invalid values for defined headers or invalid chars",
                         "VersionNeedsContentLength: HTTP 1.0 needs the use of content-length"

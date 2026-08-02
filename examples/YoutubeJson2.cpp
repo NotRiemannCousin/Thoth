@@ -6,7 +6,7 @@
 #include <Thoth/Http/Client.hpp>
 
 
-std::expected<std::monostate, Thoth::Http::RequestError> MakeRequest() {
+std::expected<std::monostate, Thoth::Http::ExchangeError> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
     namespace NJson = Thoth::NJson;

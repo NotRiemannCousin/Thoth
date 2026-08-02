@@ -48,8 +48,8 @@ namespace Thoth::Http {
 
     using ConnectionErrorEnum = Hermes::ConnectionErrorEnum;
 
-    enum class RequestBuildErrorEnum {
-        InvalidResponse,
+    enum class MessageParseErrorEnum {
+        InvalidStartLine,
         InvalidVersion,
         InvalidHeaders,
         VersionNeedsContentLength
@@ -59,7 +59,7 @@ namespace Thoth::Http {
         std::string error{};
     };
 
-    struct RequestError : std::variant<
+    struct ExchangeError : std::variant<
         JsonParseError,
         JsonGetError,
         JsonFindError,
@@ -67,10 +67,10 @@ namespace Thoth::Http {
         JsonWrongTypeError,
         UrlParseErrorEnum,
         ConnectionErrorEnum,
-        RequestBuildErrorEnum,
+        MessageParseErrorEnum,
         GenericError
     > { // first time I'm using inheritance in the project lol
     };
 }
 
-#include <Thoth/Http/RequestError.tpp>
+#include <Thoth/Http/ExchangeError.tpp>

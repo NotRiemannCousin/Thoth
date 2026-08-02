@@ -17,7 +17,7 @@ namespace Thoth::Dsa {
     struct FileOutputRange {
 
         using value_type = T;
-        using BodyType   = std::expected<FileOutputRange, Http::RequestError>;
+        using BodyType   = std::expected<FileOutputRange, Http::ExchangeError>;
 
         static constexpr auto H_AsBody(const FileBuilderParams& params);
         static constexpr auto H_AsBody(FileBuilderParams&& params);

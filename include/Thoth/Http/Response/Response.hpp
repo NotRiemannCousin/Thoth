@@ -2,6 +2,7 @@
 #include <Thoth/Http/Response/ResponseHead.hpp>
 #include <Thoth/Http/Methods/PostMethod.hpp>
 #include <Thoth/Http/Methods/GetMethod.hpp>
+#include <Thoth/Http/_base.hpp>
 #include <Thoth/NJson/Json.hpp>
 #include <Thoth/Dsa/FileOutputRange.hpp>
 
@@ -9,20 +10,13 @@
 
 
 namespace Thoth::Http {
-    struct RequestError;
+    struct ExchangeError;
 
-    template<class T>
-    concept ResponseBodyConcept =
-            std::ranges::output_range<T, char> ||
-            std::ranges::output_range<T, unsigned char> ||
-            std::ranges::output_range<T, std::byte>;
-
-
-    template<ResponseBodyConcept Body>
+    template<WritableBodyConcept Body>
     auto GetInserterIterator(Body& body);
 
 
-    template<MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string>
+    template<MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string>
     struct Response {
         using MethodType = Method;
 
@@ -36,13 +30,13 @@ namespace Thoth::Http {
 
         template<class = void>
             requires std::same_as<Body, std::string>
-        [[nodiscard]] std::expected<NJson::Json, RequestError> AsJson() const;
+        [[nodiscard]] std::expected<NJson::Json, ExchangeError> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;
 
 
-        static std::expected<Response, RequestError> EnsureSuccess(Response&& response);
+        static std::expected<Response, ExchangeError> EnsureSuccess(Response&& response);
 
         // template<>
         // static std::expected<Response, Response> SplitResult();

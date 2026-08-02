@@ -13,7 +13,7 @@
 
 
 namespace Thoth::Http {
-    struct RequestError;
+    struct ExchangeError;
 }
 
 namespace Thoth::NJson {
@@ -28,7 +28,7 @@ namespace Thoth::NJson {
     using Object = std::unique_ptr<JsonObject>;      // {Object}
     using Array  = std::vector<Json>;                // [Array]
 
-    namespace Details {
+    namespace details_ {
         struct BufferInfo {
             std::string_view bufferView;
             std::shared_ptr<std::string> buffer;
@@ -50,8 +50,8 @@ namespace Thoth::NJson {
     using OptRefValWrapper = std::optional<RefValWrapper>;
     using OptCRefValWrapper = std::optional<CRefValWrapper>;
 
-    using ExpRefValWrapper = std::expected<RefValWrapper, Http::RequestError>;
-    using ExpCRefValWrapper = std::expected<CRefValWrapper, Http::RequestError>;
+    using ExpRefValWrapper = std::expected<RefValWrapper, Http::ExchangeError>;
+    using ExpCRefValWrapper = std::expected<CRefValWrapper, Http::ExchangeError>;
 
     using ValWrapper = Json;
     using CValWrapper = const Json;
@@ -59,8 +59,8 @@ namespace Thoth::NJson {
     using OptValWrapper = std::optional<ValWrapper>;
     using OptCValWrapper = std::optional<CValWrapper>;
 
-    using ExpValWrapper = std::expected<ValWrapper, Http::RequestError>;
-    using ExpCValWrapper = std::expected<CValWrapper, Http::RequestError>;
+    using ExpValWrapper = std::expected<ValWrapper, Http::ExchangeError>;
+    using ExpCValWrapper = std::expected<CValWrapper, Http::ExchangeError>;
 #pragma endregion
 
 

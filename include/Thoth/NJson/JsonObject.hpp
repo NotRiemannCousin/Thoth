@@ -130,7 +130,7 @@ namespace Thoth::NJson {
         bool operator==(const JsonObject& other) const;
 
         friend Json;
-        friend bool Details::ReadObject(std::string_view& input, auto& val, const Details::BufferInfo& info);
+        friend bool details_::ReadObject(std::string_view& input, auto& val, const details_::BufferInfo& info);
     private:
         MapType _pairs{};
 
