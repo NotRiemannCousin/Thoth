@@ -17,5 +17,5 @@ var searchData=
   ['from_14',['from',['../struct_thoth_1_1_http_1_1_request_headers.html#a4ca085ca46b3bd1a2098bda19d8dc1e3',1,'Thoth::Http::RequestHeaders::From()'],['../struct_thoth_1_1_http_1_1_request_headers.html#a51bf3712dd9a8c1bda4676184c69061b',1,'Thoth::Http::RequestHeaders::From() const']]],
   ['fromowned_15',['fromowned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
   ['fromref_16',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
-  ['fromurl_17',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#a5c94b0ca53d57aedef82b988875be649',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a20f815e71ec7449ab3a0583a456edb65',1,'Thoth::Http::Url::FromUrl()']]]
+  ['fromurl_17',['fromurl',['../struct_thoth_1_1_http_1_1_request.html#afdff7c5173612f8b756617a4a75e69bf',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#a32cb38ae2c8677bb0f6e9764089493c2',1,'Thoth::Http::Url::FromUrl()']]]
 ];

@@ -11,6 +11,11 @@ var annotated_dup =
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
+        [ "details_", "namespace_thoth_1_1_http_1_1details__.html", [
+          [ "Http11", "struct_thoth_1_1_http_1_1details___1_1_http11.html", null ],
+          [ "ParseCompleteStage", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage" ],
+          [ "ResponseParseStage", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage" ]
+        ] ],
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
           [ "EntityTag", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag" ],
           [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
@@ -27,6 +32,7 @@ var annotated_dup =
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
         [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
+        [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
         [ "GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
         [ "GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
         [ "Headers", "struct_thoth_1_1_http_1_1_headers.html", "struct_thoth_1_1_http_1_1_headers" ],
@@ -42,7 +48,6 @@ var annotated_dup =
         [ "PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
         [ "QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", "struct_thoth_1_1_http_1_1_query_params" ],
         [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
-        [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
         [ "RequestHeaders", "struct_thoth_1_1_http_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_request_headers" ],
         [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
         [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
@@ -52,8 +57,8 @@ var annotated_dup =
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]
       ] ],
       [ "NJson", "namespace_thoth_1_1_n_json.html", [
-        [ "Details", "namespace_thoth_1_1_n_json_1_1_details.html", [
-          [ "BufferInfo", "struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info" ]
+        [ "details_", "namespace_thoth_1_1_n_json_1_1details__.html", [
+          [ "BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info" ]
         ] ],
         [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
         [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],

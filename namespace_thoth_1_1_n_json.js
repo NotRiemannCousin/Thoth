@@ -1,6 +1,6 @@
 var namespace_thoth_1_1_n_json =
 [
-    [ "Details", "namespace_thoth_1_1_n_json_1_1_details.html", "namespace_thoth_1_1_n_json_1_1_details" ],
+    [ "details_", "namespace_thoth_1_1_n_json_1_1details__.html", "namespace_thoth_1_1_n_json_1_1details__" ],
     [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
     [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],
     [ "StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", "struct_thoth_1_1_n_json_1_1_string_ref" ],
@@ -8,10 +8,10 @@ var namespace_thoth_1_1_n_json =
     [ "Bool", "namespace_thoth_1_1_n_json.html#ac9807384fc0a6d2dff1fefc0c5a40cf5", null ],
     [ "CRefValWrapper", "namespace_thoth_1_1_n_json.html#a7743a0e142fc4b885a2c4e9e945174af", null ],
     [ "CValWrapper", "namespace_thoth_1_1_n_json.html#a829cd5ffbf6740e7923f1d7402a17d65", null ],
-    [ "ExpCRefValWrapper", "namespace_thoth_1_1_n_json.html#a1634814256945052871fe4a199ddfbed", null ],
-    [ "ExpCValWrapper", "namespace_thoth_1_1_n_json.html#ad653a01d29f76cf198dc3b32acf56ca2", null ],
-    [ "ExpRefValWrapper", "namespace_thoth_1_1_n_json.html#af7042fcd4c767513a6fda95746c45878", null ],
-    [ "ExpValWrapper", "namespace_thoth_1_1_n_json.html#a22ff47cc80a51f60e50fa482ff7c2d37", null ],
+    [ "ExpCRefValWrapper", "namespace_thoth_1_1_n_json.html#aee60262d8f1a749668225409aa559e84", null ],
+    [ "ExpCValWrapper", "namespace_thoth_1_1_n_json.html#a56276c68f2e8cb3069ccc05b2e3a3f76", null ],
+    [ "ExpRefValWrapper", "namespace_thoth_1_1_n_json.html#af2f792853c42a32f7775f44c649d321a", null ],
+    [ "ExpValWrapper", "namespace_thoth_1_1_n_json.html#aaa2a68817a9d057ca6303d77333e52ba", null ],
     [ "JsonObjKey", "namespace_thoth_1_1_n_json.html#ac018fa19f2f2b9f98d487fcb85970b97", null ],
     [ "JsonObjKeyRef", "namespace_thoth_1_1_n_json.html#a3f767c8e0ac9ce417d45274a80cb8512", null ],
     [ "Key", "namespace_thoth_1_1_n_json.html#a6b3ffb5f3e2c190d5530cc47ed479b69", null ],

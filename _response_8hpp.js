@@ -1,7 +1,6 @@
 var _response_8hpp =
 [
     [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
-    [ "Thoth::Http::ResponseBodyConcept", "concept_thoth_1_1_http_1_1_response_body_concept.html", null ],
     [ "GetBinResponse", "_response_8hpp.html#a66534c0148b6e9dc796a457b09a1fcbd", null ],
     [ "GetFileBinResponse", "_response_8hpp.html#ae8b78e72060a2aa644664c97b8511ac0", null ],
     [ "GetFileResponse", "_response_8hpp.html#a1f9f982a0c7ce740b6f72d03d5cdefcc", null ],

@@ -135,14 +135,12 @@ $(document).ready(function(){initNavTree('_request_8hpp.html',''); initResizable
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#concepts">Concepts</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">Request.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;Hermes/Socket/Sync/ClientSocket.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">Thoth/Http/_base.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_url_8hpp_source.html">Thoth/Http/Url/Url.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_get_method_8hpp_source.html">Thoth/Http/Methods/GetMethod.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_post_method_8hpp_source.html">Thoth/Http/Methods/PostMethod.hpp</a>&gt;</code><br />
@@ -151,12 +149,12 @@ $(document).ready(function(){initNavTree('_request_8hpp.html',''); initResizable
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Request.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_request_8hpp__incl.svg" width="3607" height="740"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_request_8hpp__incl.svg" width="4219" height="652"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_request_8hpp__dep__incl.svg" width="276" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_request_8hpp__dep__incl.svg" width="339" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_request_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -173,15 +171,6 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespace_thoth_1_1_http" id="r_namespace_thoth_1_1_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
-Concepts</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_sized_request_body_concept.html">Thoth::Http::SizedRequestBodyConcept</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_chunked_request_body_concept.html">Thoth::Http::ChunkedRequestBodyConcept</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_request_body_concept.html">Thoth::Http::RequestBodyConcept</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ac372604fd377e070576be6639ec2c300" id="r_ac372604fd377e070576be6639ec2c300"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300">Thoth::Http::GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
@@ -192,21 +181,6 @@ Typedefs</h2></td></tr>
 <tr class="separator:a8519e3b7adb92d999d0dce8ad36d63a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a768f872667ab7f23ddfb16c31e8485d0" id="r_a768f872667ab7f23ddfb16c31e8485d0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a768f872667ab7f23ddfb16c31e8485d0">Thoth::Http::PostBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt; std::byte &gt; &gt;</td></tr>
 <tr class="separator:a768f872667ab7f23ddfb16c31e8485d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:aafd3ae972536eae8c855e484175fa0db" id="r_aafd3ae972536eae8c855e484175fa0db"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">Thoth::Http::VersionEnum</a> : uint8_t { <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab">Thoth::Http::HTTP1_0</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">Thoth::Http::HTTP1_1</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a">Thoth::Http::HTTP2</a>
-, <a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738">Thoth::Http::HTTP3</a>
- }</td></tr>
-<tr class="separator:aafd3ae972536eae8c855e484175fa0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8">Thoth::Http::VersionToString</a> (<a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> version)</td></tr>
-<tr class="memdesc:a7bedc663bde5f4726625099926f81fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
-<tr class="separator:a7bedc663bde5f4726625099926f81fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

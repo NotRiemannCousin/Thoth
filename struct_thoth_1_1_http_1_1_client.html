@@ -140,51 +140,89 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client.html'
 </div><!--header-->
 <div class="contents">
 
+<p>Class that transforms requests with a given method AndParse their responses, monad friendly.  
+ <a href="struct_thoth_1_1_http_1_1_client.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a36b4ac4a3bfe315e9d23fb8310025257" id="r_a36b4ac4a3bfe315e9d23fb8310025257"><td class="memTemplParams" colspan="2">template&lt;class Method , BodyConcept Body&gt; </td></tr>
+<tr class="memitem:a36b4ac4a3bfe315e9d23fb8310025257"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a> = std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;</td></tr>
+<tr class="memdesc:a36b4ac4a3bfe315e9d23fb8310025257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for <code>std::expected</code> containing a <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> or a <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>.  <br /></td></tr>
+<tr class="separator:a36b4ac4a3bfe315e9d23fb8310025257"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f400febc6761eb6d1774443b08f53cb" id="r_a5f400febc6761eb6d1774443b08f53cb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a5f400febc6761eb6d1774443b08f53cb">SocketPtr</a> = std::shared_ptr&lt; <a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a> &gt;</td></tr>
 <tr class="separator:a5f400febc6761eb6d1774443b08f53cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a83e8193958217f7d7251ac20a0d1f813" id="r_a83e8193958217f7d7251ac20a0d1f813"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, BodyConcept Body&gt; <br />
+<tr class="memitem:adffbf72a1380e3e7818404f0747bae5a" id="r_adffbf72a1380e3e7818404f0747bae5a"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, BodyConcept Body&gt; <br />
 requires std::default_initializable&lt;Body&gt;</td></tr>
-<tr class="memitem:a83e8193958217f7d7251ac20a0d1f813"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a83e8193958217f7d7251ac20a0d1f813">Send</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt; request)</td></tr>
-<tr class="memdesc:a83e8193958217f7d7251ac20a0d1f813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
-<tr class="separator:a83e8193958217f7d7251ac20a0d1f813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7098466cb84b617ba165bbf3eb166b7f" id="r_a7098466cb84b617ba165bbf3eb166b7f"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, BodyConcept Body, class F &gt; <br />
+<tr class="memitem:adffbf72a1380e3e7818404f0747bae5a"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#adffbf72a1380e3e7818404f0747bae5a">Send</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt; request) -&gt; <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, Body &gt;</td></tr>
+<tr class="memdesc:adffbf72a1380e3e7818404f0747bae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a synchronous HTTP request and receives a response of the same body type.  <br /></td></tr>
+<tr class="separator:adffbf72a1380e3e7818404f0747bae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e88deb490d9de8c8cc3fc88972b4e00" id="r_a5e88deb490d9de8c8cc3fc88972b4e00"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, BodyConcept Body, class F &gt; <br />
 requires ResponseBodyFactoryConcept&lt;F, Body&gt;</td></tr>
-<tr class="memitem:a7098466cb84b617ba165bbf3eb166b7f"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a7098466cb84b617ba165bbf3eb166b7f">SendAndRecvInto</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt; request, F &amp;&amp;bodyFactory)</td></tr>
-<tr class="memdesc:a7098466cb84b617ba165bbf3eb166b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
-<tr class="separator:a7098466cb84b617ba165bbf3eb166b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee4f62d697908dc15ef8f06c30e473c2" id="r_aee4f62d697908dc15ef8f06c30e473c2"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody&gt; <br />
+<tr class="memitem:a5e88deb490d9de8c8cc3fc88972b4e00"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a5e88deb490d9de8c8cc3fc88972b4e00">SendAndParse</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt; request, F &amp;&amp;bodyFactory) -&gt; <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, Body &gt;</td></tr>
+<tr class="memdesc:a5e88deb490d9de8c8cc3fc88972b4e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
+<tr class="separator:a5e88deb490d9de8c8cc3fc88972b4e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7367e79a862337a0e4678ef9cf2c20a4" id="r_a7367e79a862337a0e4678ef9cf2c20a4"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody&gt; <br />
 requires std::default_initializable&lt;ResponseBody&gt;</td></tr>
-<tr class="memitem:aee4f62d697908dc15ef8f06c30e473c2"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#aee4f62d697908dc15ef8f06c30e473c2">SendAndRecvAs</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt; request)</td></tr>
-<tr class="memdesc:aee4f62d697908dc15ef8f06c30e473c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
-<tr class="separator:aee4f62d697908dc15ef8f06c30e473c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9611e8232ea3fad8430d5659ca4ee36" id="r_ae9611e8232ea3fad8430d5659ca4ee36"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F &gt; <br />
+<tr class="memitem:a7367e79a862337a0e4678ef9cf2c20a4"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a7367e79a862337a0e4678ef9cf2c20a4">SendAs</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt; request) -&gt; <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, ResponseBody &gt;</td></tr>
+<tr class="memdesc:a7367e79a862337a0e4678ef9cf2c20a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
+<tr class="separator:a7367e79a862337a0e4678ef9cf2c20a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94402e6b2d29eee9fe9489eba158202e" id="r_a94402e6b2d29eee9fe9489eba158202e"><td class="memTemplParams" colspan="2">template&lt;MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F &gt; <br />
 requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
-<tr class="memitem:ae9611e8232ea3fad8430d5659ca4ee36"><td class="memTemplItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#ae9611e8232ea3fad8430d5659ca4ee36">SendAndRecvAsInto</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt; request, F &amp;&amp;bodyFactory)</td></tr>
-<tr class="memdesc:ae9611e8232ea3fad8430d5659ca4ee36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends synced (thread blocking) requests.  <br /></td></tr>
-<tr class="separator:ae9611e8232ea3fad8430d5659ca4ee36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94402e6b2d29eee9fe9489eba158202e"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a94402e6b2d29eee9fe9489eba158202e">SendAsAndParse</a> (<a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt; request, F &amp;&amp;bodyFactory) -&gt; <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, ResponseBody &gt;</td></tr>
+<tr class="memdesc:a94402e6b2d29eee9fe9489eba158202e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a request with one body type and receives a response of another, constructed via factory.  <br /></td></tr>
+<tr class="separator:a94402e6b2d29eee9fe9489eba158202e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6406ca8c7442733c5776dda3a954f221" id="r_a6406ca8c7442733c5776dda3a954f221"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a6406ca8c7442733c5776dda3a954f221">H_Send</a> ()</td></tr>
 <tr class="memdesc:a6406ca8c7442733c5776dda3a954f221"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{Send}  <br /></td></tr>
 <tr class="separator:a6406ca8c7442733c5776dda3a954f221"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fb5ae10bf8b0000fae1bc30ce9854ad" id="r_a8fb5ae10bf8b0000fae1bc30ce9854ad"><td class="memTemplParams" colspan="2">template&lt;class F &gt; </td></tr>
-<tr class="memitem:a8fb5ae10bf8b0000fae1bc30ce9854ad"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a8fb5ae10bf8b0000fae1bc30ce9854ad">H_SendAndRecvInto</a> (F &amp;&amp;bodyFactory)</td></tr>
-<tr class="separator:a8fb5ae10bf8b0000fae1bc30ce9854ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade5b85024e5141eb848ceb0eb0c3d5a9" id="r_ade5b85024e5141eb848ceb0eb0c3d5a9"><td class="memTemplParams" colspan="2">template&lt;ResponseBodyConcept ResponseBody&gt; </td></tr>
-<tr class="memitem:ade5b85024e5141eb848ceb0eb0c3d5a9"><td class="memTemplItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#ade5b85024e5141eb848ceb0eb0c3d5a9">H_SendAndRecvAs</a> ()</td></tr>
-<tr class="memdesc:ade5b85024e5141eb848ceb0eb0c3d5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{SendAndGetAs}  <br /></td></tr>
-<tr class="separator:ade5b85024e5141eb848ceb0eb0c3d5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c28b35643a7fd25eab94a909bae8e18" id="r_a4c28b35643a7fd25eab94a909bae8e18"><td class="memTemplParams" colspan="2">template&lt;ResponseBodyConcept ResponseBody, class F &gt; <br />
+<tr class="memitem:a0e043f075204adaff4927894932b15ce" id="r_a0e043f075204adaff4927894932b15ce"><td class="memTemplParams" colspan="2">template&lt;class F &gt; </td></tr>
+<tr class="memitem:a0e043f075204adaff4927894932b15ce"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a0e043f075204adaff4927894932b15ce">H_SendAndParse</a> (F &amp;&amp;bodyFactory)</td></tr>
+<tr class="separator:a0e043f075204adaff4927894932b15ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc95735af9d5fe527c1d6fba543ef612" id="r_adc95735af9d5fe527c1d6fba543ef612"><td class="memTemplParams" colspan="2">template&lt;WritableBodyConcept ResponseBody&gt; </td></tr>
+<tr class="memitem:adc95735af9d5fe527c1d6fba543ef612"><td class="memTemplItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#adc95735af9d5fe527c1d6fba543ef612">H_SendAs</a> ()</td></tr>
+<tr class="memdesc:adc95735af9d5fe527c1d6fba543ef612"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{SendAs}  <br /></td></tr>
+<tr class="separator:adc95735af9d5fe527c1d6fba543ef612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a4b27fa597b6efeae3b26a75b6419d" id="r_af9a4b27fa597b6efeae3b26a75b6419d"><td class="memTemplParams" colspan="2">template&lt;WritableBodyConcept ResponseBody, class F &gt; <br />
 requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
-<tr class="memitem:a4c28b35643a7fd25eab94a909bae8e18"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a4c28b35643a7fd25eab94a909bae8e18">H_SendAndRecvAsInto</a> (F &amp;&amp;bodyFactory)</td></tr>
-<tr class="separator:a4c28b35643a7fd25eab94a909bae8e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a4b27fa597b6efeae3b26a75b6419d"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#af9a4b27fa597b6efeae3b26a75b6419d">H_SendAsAndParse</a> (F &amp;&amp;bodyFactory)</td></tr>
+<tr class="memdesc:af9a4b27fa597b6efeae3b26a75b6419d"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{SendAsAndParse}  <br /></td></tr>
+<tr class="separator:af9a4b27fa597b6efeae3b26a75b6419d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that transforms requests with a given method AndParse their responses, monad friendly. </p>
+<p>Supports sync and async operations (only sync are implemented at the given moment). </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a36b4ac4a3bfe315e9d23fb8310025257" name="a36b4ac4a3bfe315e9d23fb8310025257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b4ac4a3bfe315e9d23fb8310025257">&#9670;&#160;</a></span>ExpResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Method , BodyConcept Body&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">Thoth::Http::Client::ExpResponse</a> =  std::expected&lt;<a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;Method, Body&gt;, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias for <code>std::expected</code> containing a <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> or a <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>. </p>
+<p>This type is used consistently across the <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Class that transforms requests with a given method AndParse their responses, monad friendly.">Client</a> API to represent the result of a synchronous HTTP operation. It follows the modern C++ "error handling
+as value" pattern.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Method</td><td>The HTTP method used for the request and present in the response. </td></tr>
+    <tr><td class="paramname">Body</td><td>The body type of the response (e.g., <a class="el" href="namespace_thoth_1_1_string.html">String</a>, Json, etc.). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5f400febc6761eb6d1774443b08f53cb" name="a5f400febc6761eb6d1774443b08f53cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f400febc6761eb6d1774443b08f53cb">&#9670;&#160;</a></span>SocketPtr</h2>
 
@@ -227,19 +265,47 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
 
 </div>
 </div>
-<a id="ade5b85024e5141eb848ceb0eb0c3d5a9" name="ade5b85024e5141eb848ceb0eb0c3d5a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade5b85024e5141eb848ceb0eb0c3d5a9">&#9670;&#160;</a></span>H_SendAndRecvAs()</h2>
+<a id="a0e043f075204adaff4927894932b15ce" name="a0e043f075204adaff4927894932b15ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e043f075204adaff4927894932b15ce">&#9670;&#160;</a></span>H_SendAndParse()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;ResponseBodyConcept ResponseBody&gt; </div>
+template&lt;class F &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static constexpr auto Thoth::Http::Client::H_SendAndRecvAs </td>
+          <td class="memname">static auto Thoth::Http::Client::H_SendAndParse </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>bodyFactory</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc95735af9d5fe527c1d6fba543ef612" name="adc95735af9d5fe527c1d6fba543ef612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc95735af9d5fe527c1d6fba543ef612">&#9670;&#160;</a></span>H_SendAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;WritableBodyConcept ResponseBody&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr auto Thoth::Http::Client::H_SendAs </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -252,24 +318,24 @@ template&lt;ResponseBodyConcept ResponseBody&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>@hof{SendAndGetAs} </p>
+<p>@hof{SendAs} </p>
 
 </div>
 </div>
-<a id="a4c28b35643a7fd25eab94a909bae8e18" name="a4c28b35643a7fd25eab94a909bae8e18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c28b35643a7fd25eab94a909bae8e18">&#9670;&#160;</a></span>H_SendAndRecvAsInto()</h2>
+<a id="af9a4b27fa597b6efeae3b26a75b6419d" name="af9a4b27fa597b6efeae3b26a75b6419d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a4b27fa597b6efeae3b26a75b6419d">&#9670;&#160;</a></span>H_SendAsAndParse()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;ResponseBodyConcept ResponseBody, class F &gt; <br />
+template&lt;WritableBodyConcept ResponseBody, class F &gt; <br />
 requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto Thoth::Http::Client::H_SendAndRecvAsInto </td>
+          <td class="memname">static auto Thoth::Http::Client::H_SendAsAndParse </td>
           <td>(</td>
           <td class="paramtype">F &amp;&amp;&#160;</td>
           <td class="paramname"><em>bodyFactory</em></td><td>)</td>
@@ -283,38 +349,12 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a8fb5ae10bf8b0000fae1bc30ce9854ad" name="a8fb5ae10bf8b0000fae1bc30ce9854ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fb5ae10bf8b0000fae1bc30ce9854ad">&#9670;&#160;</a></span>H_SendAndRecvInto()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class F &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static auto Thoth::Http::Client::H_SendAndRecvInto </td>
-          <td>(</td>
-          <td class="paramtype">F &amp;&amp;&#160;</td>
-          <td class="paramname"><em>bodyFactory</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>@hof{SendAsAndParse} </p>
 
 </div>
 </div>
-<a id="a83e8193958217f7d7251ac20a0d1f813" name="a83e8193958217f7d7251ac20a0d1f813"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83e8193958217f7d7251ac20a0d1f813">&#9670;&#160;</a></span>Send()</h2>
+<a id="adffbf72a1380e3e7818404f0747bae5a" name="adffbf72a1380e3e7818404f0747bae5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adffbf72a1380e3e7818404f0747bae5a">&#9670;&#160;</a></span>Send()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,11 +366,11 @@ requires std::default_initializable&lt;Body&gt;</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Client::Send </td>
+          <td class="memname">static auto Thoth::Http::Client::Send </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt;&#160;</td>
           <td class="paramname"><em>request</em></td><td>)</td>
-          <td></td>
+          <td> -&gt;  <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, Body &gt;</td>
         </tr>
       </table>
   </td>
@@ -340,84 +380,34 @@ requires std::default_initializable&lt;Body&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p>Sends synced (thread blocking) requests. </p>
+<p>Sends a synchronous HTTP request and receives a response of the same body type. </p>
+<p>This is the primary entry point for simple request-response cycles where the structure of the data sent (RequestBody) is expected to be identical to the structure of the data received (ResponseBody).</p>
+<p><b>Type Relationship:</b></p><ul>
+<li>The <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> uses <code>Body</code> as its payload.</li>
+<li>The <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> uses <code>Body</code> as its payload.</li>
+</ul>
+<p><b>Input Requirements:</b></p><ul>
+<li><code>Body</code> must satisfy be <code>std::default_initializable</code>. The library must be able to construct the response body (<code>Body{}</code>) before reading the network stream. If your body type requires context from the HTTP headers to be constructed (e.g., a parser that needs to know the <code>Content-Length</code> or <code>Content-Type</code> upfront), use <code>SendAndParse</code> or <code>SendAsAndParse</code> instead.</li>
+</ul>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Method</td><td>The HTTP method type (e.g., <code>Methods::Get</code>). </td></tr>
+    <tr><td class="paramname">Body</td><td>The body type for both request and response. Must be default-initializable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The fully configured HTTP request to send. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>ExpResponse&lt;Method, Body&gt;</code> containing the populated response or an error. </dd></dl>
 
 </div>
 </div>
-<a id="aee4f62d697908dc15ef8f06c30e473c2" name="aee4f62d697908dc15ef8f06c30e473c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee4f62d697908dc15ef8f06c30e473c2">&#9670;&#160;</a></span>SendAndRecvAs()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody&gt; <br />
-requires std::default_initializable&lt;ResponseBody&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Client::SendAndRecvAs </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt;&#160;</td>
-          <td class="paramname"><em>request</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sends synced (thread blocking) requests. </p>
-
-</div>
-</div>
-<a id="ae9611e8232ea3fad8430d5659ca4ee36" name="ae9611e8232ea3fad8430d5659ca4ee36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9611e8232ea3fad8430d5659ca4ee36">&#9670;&#160;</a></span>SendAndRecvAsInto()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;MethodConcept Method, RequestBodyConcept RequestBody, ResponseBodyConcept ResponseBody, class F &gt; <br />
-requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Client::SendAndRecvAsInto </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt;&#160;</td>
-          <td class="paramname"><em>request</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">F &amp;&amp;&#160;</td>
-          <td class="paramname"><em>bodyFactory</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sends synced (thread blocking) requests. </p>
-
-</div>
-</div>
-<a id="a7098466cb84b617ba165bbf3eb166b7f" name="a7098466cb84b617ba165bbf3eb166b7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7098466cb84b617ba165bbf3eb166b7f">&#9670;&#160;</a></span>SendAndRecvInto()</h2>
+<a id="a5e88deb490d9de8c8cc3fc88972b4e00" name="a5e88deb490d9de8c8cc3fc88972b4e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e88deb490d9de8c8cc3fc88972b4e00">&#9670;&#160;</a></span>SendAndParse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -429,7 +419,7 @@ requires ResponseBodyFactoryConcept&lt;F, Body&gt;</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Client::SendAndRecvInto </td>
+          <td class="memname">static auto Thoth::Http::Client::SendAndParse </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, Body &gt;&#160;</td>
           <td class="paramname"><em>request</em>, </td>
@@ -443,7 +433,7 @@ requires ResponseBodyFactoryConcept&lt;F, Body&gt;</div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> -&gt;  <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, Body &gt;</td>
         </tr>
       </table>
   </td>
@@ -454,6 +444,107 @@ requires ResponseBodyFactoryConcept&lt;F, Body&gt;</div>
 </div><div class="memdoc">
 
 <p>Sends synced (thread blocking) requests. </p>
+
+</div>
+</div>
+<a id="a7367e79a862337a0e4678ef9cf2c20a4" name="a7367e79a862337a0e4678ef9cf2c20a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7367e79a862337a0e4678ef9cf2c20a4">&#9670;&#160;</a></span>SendAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody&gt; <br />
+requires std::default_initializable&lt;ResponseBody&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Thoth::Http::Client::SendAs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td> -&gt;  <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, ResponseBody &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends synced (thread blocking) requests. </p>
+
+</div>
+</div>
+<a id="a94402e6b2d29eee9fe9489eba158202e" name="a94402e6b2d29eee9fe9489eba158202e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94402e6b2d29eee9fe9489eba158202e">&#9670;&#160;</a></span>SendAsAndParse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F &gt; <br />
+requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Thoth::Http::Client::SendAsAndParse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; Method, RequestBody &gt;&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>bodyFactory</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a>&lt; Method, ResponseBody &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends a request with one body type and receives a response of another, constructed via factory. </p>
+<p>The most flexible synchronous send method. It combines the type decoupling of <code>SendAs</code> with the factory-based initialization of <code>SendAndParse</code>.</p>
+<p><b>Factory Contract:</b></p><ul>
+<li>Similar to <code>SendAndParse</code>, the <code>bodyFactory</code> is called with <code><a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a></code>.</li>
+<li>It must return <code>std::expected&lt;ResponseBody, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>&gt;</code>.</li>
+</ul>
+<p><b>Use Cases:</b></p><ul>
+<li>Uploading a file (<code>RequestBody</code> = <code>File</code>) and downloading a processing report (<code>ResponseBody</code> = <code>Json</code>), where the JSON parser needs configuration based on headers.</li>
+</ul>
+<p><b>Input Requirements:</b></p><ul>
+<li><code>ResponseBody</code>: Must satisfy <code>WritableBodyConcept</code>.</li>
+<li><code>F</code>: Must satisfy <code>ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</code>.</li>
+</ul>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Method</td><td>The HTTP method type. </td></tr>
+    <tr><td class="paramname">RequestBody</td><td>The type of the body being sent. </td></tr>
+    <tr><td class="paramname">ResponseBody</td><td>The type of the body expected in the response. </td></tr>
+    <tr><td class="paramname">F</td><td>The factory type (callable). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The HTTP request to send. </td></tr>
+    <tr><td class="paramname">bodyFactory</td><td>A callable <code>F(const <a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a>&amp;)</code> returning <code>std::expected&lt;ResponseBody, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>&gt;</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>ExpResponse&lt;Method, ResponseBody&gt;</code> containing the response. </dd></dl>
 
 </div>
 </div>

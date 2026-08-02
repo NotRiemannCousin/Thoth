@@ -1,11 +1,13 @@
 var namespace_thoth_1_1_http =
 [
+    [ "details_", "namespace_thoth_1_1_http_1_1details__.html", "namespace_thoth_1_1_http_1_1details__" ],
     [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", "namespace_thoth_1_1_http_1_1_n_headers" ],
     [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
     [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
     [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
     [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
     [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
+    [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
     [ "GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
     [ "GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html", "struct_thoth_1_1_http_1_1_headers" ],
@@ -21,7 +23,6 @@ var namespace_thoth_1_1_http =
     [ "PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
     [ "QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", "struct_thoth_1_1_http_1_1_query_params" ],
     [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
-    [ "RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ],
     [ "RequestHeaders", "struct_thoth_1_1_http_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_request_headers" ],
     [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
     [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
@@ -29,13 +30,15 @@ var namespace_thoth_1_1_http =
     [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
     [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
     [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ],
+    [ "SizedReadableBodyConcept", "concept_thoth_1_1_http_1_1_sized_readable_body_concept.html", null ],
+    [ "ChunkedReadableBodyConcept", "concept_thoth_1_1_http_1_1_chunked_readable_body_concept.html", null ],
+    [ "ReadableBodyConcept", "concept_thoth_1_1_http_1_1_readable_body_concept.html", null ],
+    [ "WritableBodyConcept", "concept_thoth_1_1_http_1_1_writable_body_concept.html", null ],
     [ "BodyConcept", "concept_thoth_1_1_http_1_1_body_concept.html", null ],
+    [ "BodyFactoryConcept", "concept_thoth_1_1_http_1_1_body_factory_concept.html", null ],
+    [ "WireSocketConcept", "concept_thoth_1_1_http_1_1_wire_socket_concept.html", null ],
     [ "ResponseBodyFactoryConcept", "concept_thoth_1_1_http_1_1_response_body_factory_concept.html", null ],
     [ "MethodConcept", "concept_thoth_1_1_http_1_1_method_concept.html", null ],
-    [ "SizedRequestBodyConcept", "concept_thoth_1_1_http_1_1_sized_request_body_concept.html", null ],
-    [ "ChunkedRequestBodyConcept", "concept_thoth_1_1_http_1_1_chunked_request_body_concept.html", null ],
-    [ "RequestBodyConcept", "concept_thoth_1_1_http_1_1_request_body_concept.html", null ],
-    [ "ResponseBodyConcept", "concept_thoth_1_1_http_1_1_response_body_concept.html", null ],
     [ "ConnectionErrorEnum", "namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2", null ],
     [ "GetBinRequest", "namespace_thoth_1_1_http.html#a8519e3b7adb92d999d0dce8ad36d63a2", null ],
     [ "GetBinResponse", "namespace_thoth_1_1_http.html#a66534c0148b6e9dc796a457b09a1fcbd", null ],
@@ -52,11 +55,11 @@ var namespace_thoth_1_1_http =
     [ "PostResponse", "namespace_thoth_1_1_http.html#a9d0ffa4a5170ca15ae1ac3f130b7dede", null ],
     [ "WebResult", "namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3", null ],
     [ "WebResultOper", "namespace_thoth_1_1_http.html#a7b8661391b141f0bf7d74898326ab499", null ],
-    [ "RequestBuildErrorEnum", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673", [
-      [ "InvalidResponse", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a33f317695948b584444f4b7525da594e", null ],
-      [ "InvalidVersion", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a47ff03d2239a69112904305444be2fc0", null ],
-      [ "InvalidHeaders", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a89a8b7dbbd610306770222afabd44e4c", null ],
-      [ "VersionNeedsContentLength", "namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673ab679137a1826d6d3552abb5782846cd3", null ]
+    [ "MessageParseErrorEnum", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388", [
+      [ "InvalidStartLine", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d", null ],
+      [ "InvalidVersion", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0", null ],
+      [ "InvalidHeaders", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c", null ],
+      [ "VersionNeedsContentLength", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3", null ]
     ] ],
     [ "StatusCodeEnum", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7", [
       [ "Continue", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe", null ],

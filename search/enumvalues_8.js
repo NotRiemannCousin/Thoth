@@ -8,9 +8,9 @@ var searchData=
   ['insufficientstorage_5',['InsufficientStorage',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aead0064570e2f25592cd76e0e69565a5',1,'Thoth::Http']]],
   ['internalservererror_6',['InternalServerError',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aecbf01325f1c744e9d7bb586ac2eb5ed',1,'Thoth::Http']]],
   ['invalidformat_7',['InvalidFormat',['../namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9ddade236a235b4e8ffc9141676624753b2d',1,'Thoth::Http::NHeaders']]],
-  ['invalidheaders_8',['InvalidHeaders',['../namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a89a8b7dbbd610306770222afabd44e4c',1,'Thoth::Http']]],
+  ['invalidheaders_8',['InvalidHeaders',['../namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c',1,'Thoth::Http']]],
   ['invalidport_9',['InvalidPort',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa51712bd03bd8b6560b9c57b5ff92690',1,'Thoth::Http']]],
-  ['invalidresponse_10',['InvalidResponse',['../namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a33f317695948b584444f4b7525da594e',1,'Thoth::Http']]],
-  ['invalidscheme_11',['InvalidScheme',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276',1,'Thoth::Http']]],
-  ['invalidversion_12',['InvalidVersion',['../namespace_thoth_1_1_http.html#aa8d8efa0ddb373019ec0b443a2ae4673a47ff03d2239a69112904305444be2fc0',1,'Thoth::Http']]]
+  ['invalidscheme_10',['InvalidScheme',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276',1,'Thoth::Http']]],
+  ['invalidstartline_11',['InvalidStartLine',['../namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d',1,'Thoth::Http']]],
+  ['invalidversion_12',['InvalidVersion',['../namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0',1,'Thoth::Http']]]
 ];

@@ -174,15 +174,15 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a20f815e71ec7449ab3a0583a456edb65" id="r_a20f815e71ec7449ab3a0583a456edb65"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a20f815e71ec7449ab3a0583a456edb65">FromUrl</a> (std::string rawUrl)</td></tr>
-<tr class="memdesc:a20f815e71ec7449ab3a0583a456edb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into URL.  <br /></td></tr>
-<tr class="separator:a20f815e71ec7449ab3a0583a456edb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32cb38ae2c8677bb0f6e9764089493c2" id="r_a32cb38ae2c8677bb0f6e9764089493c2"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a32cb38ae2c8677bb0f6e9764089493c2">FromUrl</a> (std::string rawUrl)</td></tr>
+<tr class="memdesc:a32cb38ae2c8677bb0f6e9764089493c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into URL.  <br /></td></tr>
+<tr class="separator:a32cb38ae2c8677bb0f6e9764089493c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace68089aab5879c69433c82d67734cb4" id="r_ace68089aab5879c69433c82d67734cb4"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#ace68089aab5879c69433c82d67734cb4">Encode</a> (std::string_view str)</td></tr>
 <tr class="memdesc:ace68089aab5879c69433c82d67734cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
 <tr class="separator:ace68089aab5879c69433c82d67734cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd9a6b86c647c0f41d4b8035ecac1eed" id="r_abd9a6b86c647c0f41d4b8035ecac1eed"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; std::string, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#abd9a6b86c647c0f41d4b8035ecac1eed">TryDecode</a> (std::string_view str)</td></tr>
-<tr class="memdesc:abd9a6b86c647c0f41d4b8035ecac1eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to decode the text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
-<tr class="separator:abd9a6b86c647c0f41d4b8035ecac1eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a087bd46a7af71d25159eb9d878746da4" id="r_a087bd46a7af71d25159eb9d878746da4"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; std::string, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a087bd46a7af71d25159eb9d878746da4">TryDecode</a> (std::string_view str)</td></tr>
+<tr class="memdesc:a087bd46a7af71d25159eb9d878746da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to decode the text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
+<tr class="separator:a087bd46a7af71d25159eb9d878746da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -274,8 +274,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a20f815e71ec7449ab3a0583a456edb65" name="a20f815e71ec7449ab3a0583a456edb65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20f815e71ec7449ab3a0583a456edb65">&#9670;&#160;</a></span>FromUrl()</h2>
+<a id="a32cb38ae2c8677bb0f6e9764089493c2" name="a32cb38ae2c8677bb0f6e9764089493c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32cb38ae2c8677bb0f6e9764089493c2">&#9670;&#160;</a></span>FromUrl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +284,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Url::FromUrl </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; Thoth::Http::Url::FromUrl </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>rawUrl</em></td><td>)</td>
@@ -571,8 +571,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="abd9a6b86c647c0f41d4b8035ecac1eed" name="abd9a6b86c647c0f41d4b8035ecac1eed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd9a6b86c647c0f41d4b8035ecac1eed">&#9670;&#160;</a></span>TryDecode()</h2>
+<a id="a087bd46a7af71d25159eb9d878746da4" name="a087bd46a7af71d25159eb9d878746da4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a087bd46a7af71d25159eb9d878746da4">&#9670;&#160;</a></span>TryDecode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -581,7 +581,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; std::string, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; Thoth::Http::Url::TryDecode </td>
+          <td class="memname">static std::expected&lt; std::string, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; Thoth::Http::Url::TryDecode </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>

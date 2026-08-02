@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client_janit
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="The ClientJanitor stores all open Sockets in a pool to optimize consecutive calls....">ClientJanitor</a> stores all open Sockets in a pool to optimize consecutive calls. Only use it if you know what you are doing.  
+<p>Manages a pool of reusable HTTP sockets to optimize consecutive calls.  
  <a href="struct_thoth_1_1_http_1_1_client_janitor.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
@@ -165,8 +165,21 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a44965e2f6a12ae8ae09bed695413936f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="The ClientJanitor stores all open Sockets in a pool to optimize consecutive calls....">ClientJanitor</a> stores all open Sockets in a pool to optimize consecutive calls. Only use it if you know what you are doing. </p>
-<p>Please use poolMutex while accessing connectionPool to not break other threads. Each 30s it will destruct sockets unused for more than 1 minute. </p>
+<div class="textblock"><p>Manages a pool of reusable HTTP sockets to optimize consecutive calls. </p>
+<p><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> maintains a map from endpoint identifiers to vectors of live sockets, allowing the <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Class that transforms requests with a given method AndParse their responses, monad friendly.">Client</a> to reuse connections instead of repeatedly establishing new ones. A background janitor thread periodically sweeps sockets that have been idle for more than a configurable threshold (currently 1 minute).</p>
+<p><b>Thread-safety:</b></p><ul>
+<li>The internal <code>connectionPool</code> must be accessed while holding <code>poolMutex</code>.</li>
+<li>Do not assume any locking is performed automatically; always lock <code>poolMutex</code> before reading or writing <code>connectionPool</code>.</li>
+<li>The janitor thread runs every ~30 seconds and will also lock <code>poolMutex</code> during its sweep.</li>
+</ul>
+<p><b>Lifetime:</b></p><ul>
+<li><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> is a singleton; access it via <code><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">Instance()</a></code>.</li>
+<li>The background thread is stopped when the singleton is destroyed.</li>
+</ul>
+<p><b>Use-cases:</b></p><ul>
+<li>Advanced users can inspect <code>connectionPool</code> for statistics or debugging.</li>
+<li>Most users should rely on the <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Class that transforms requests with a given method AndParse their responses, monad friendly.">Client</a> APIs directly and ignore this class. </li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab526b4e335daf088e39deb5246369f69" name="ab526b4e335daf088e39deb5246369f69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab526b4e335daf088e39deb5246369f69">&#9670;&#160;</a></span>Instance()</h2>

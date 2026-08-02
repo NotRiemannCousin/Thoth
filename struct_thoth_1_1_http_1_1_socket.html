@@ -139,7 +139,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_socket.html'
 </div><!--header-->
 <div class="contents">
 
-<p>structure that stores info about an open <a class="el" href="struct_thoth_1_1_http_1_1_socket.html" title="structure that stores info about an open Socket, like the version, the type of socket and the last us...">Socket</a>, like the version, the type of socket and the last used time.  
+<p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client.  
  <a href="struct_thoth_1_1_http_1_1_socket.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
@@ -154,7 +154,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a689d58e30702ed2d9b9edaf68ff0b553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>structure that stores info about an open <a class="el" href="struct_thoth_1_1_http_1_1_socket.html" title="structure that stores info about an open Socket, like the version, the type of socket and the last us...">Socket</a>, like the version, the type of socket and the last used time. </p>
+<div class="textblock"><p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client. </p>
+<p>Aggregates the low-level socket (Hermes::RawTlsClient), the HTTP version negotiated for the connection, and the timestamp of the last use. This struct is used internally by <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> to decide when a socket can be safely evicted. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a689d58e30702ed2d9b9edaf68ff0b553" name="a689d58e30702ed2d9b9edaf68ff0b553"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a689d58e30702ed2d9b9edaf68ff0b553">&#9670;&#160;</a></span>lastUsed</h2>
@@ -167,6 +168,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>A timestamp marking the most recent use of this socket. <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> uses this to detect idle connections. </p>
 
 </div>
 </div>
@@ -181,6 +183,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The Hermes TLS client socket. Ensure that any operation on this socket respects thread-safety constraints; <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> may access sockets from a background thread. </p>
 
 </div>
 </div>
@@ -195,6 +198,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The HTTP version of the connection (e.g., HTTP/1.1). Future HTTP/2 or QUIC support will extend this field. </p>
 
 </div>
 </div>

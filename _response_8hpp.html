@@ -135,7 +135,6 @@ $(document).ready(function(){initNavTree('_response_8hpp.html',''); initResizabl
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#concepts">Concepts</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Response.hpp File Reference</div></div>
@@ -144,6 +143,7 @@ $(document).ready(function(){initNavTree('_response_8hpp.html',''); initResizabl
 <div class="textblock"><code>#include &lt;<a class="el" href="_response_head_8hpp_source.html">Thoth/Http/Response/ResponseHead.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_post_method_8hpp_source.html">Thoth/Http/Methods/PostMethod.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_get_method_8hpp_source.html">Thoth/Http/Methods/GetMethod.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">Thoth/Http/_base.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_json_8hpp_source.html">Thoth/NJson/Json.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_file_output_range_8hpp_source.html">Thoth/Dsa/FileOutputRange.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_response_headers_8hpp_source.html">Thoth/Http/NHeaders/Response/ResponseHeaders.hpp</a>&gt;</code><br />
@@ -151,12 +151,12 @@ $(document).ready(function(){initNavTree('_response_8hpp.html',''); initResizabl
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Response.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_response_8hpp__incl.svg" width="2524" height="975"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_response_8hpp__incl.svg" width="2574" height="975"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="_response_8hpp__dep__incl.svg" width="195" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="_response_8hpp__dep__incl.svg" width="320" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_response_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -171,11 +171,6 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespace_thoth" id="r_namespace_thoth"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_thoth_1_1_http" id="r_namespace_thoth_1_1_http"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
-Concepts</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_concept.html">Thoth::Http::ResponseBodyConcept</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -199,7 +194,7 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;ResponseBodyConcept Body&gt; </td></tr>
+<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;WritableBodyConcept Body&gt; </td></tr>
 <tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a5379080d14ac2dfa264229cc182c7dc1">Thoth::Http::GetInserterIterator</a> (Body &amp;body)</td></tr>
 <tr class="separator:a5379080d14ac2dfa264229cc182c7dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "Thoth::Http::Authority", "struct_thoth_1_1_http_1_1_authority.html", null ],
-    [ "Thoth::NJson::Details::BufferInfo", "struct_thoth_1_1_n_json_1_1_details_1_1_buffer_info.html", null ],
+    [ "Thoth::NJson::details_::BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", null ],
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
     [ "Thoth::Http::ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", null ],
@@ -22,6 +22,7 @@ var hierarchy =
     ] ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
+    [ "Thoth::Http::details_::Http11", "struct_thoth_1_1_http_1_1details___1_1_http11.html", null ],
     [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
@@ -47,6 +48,9 @@ var hierarchy =
     [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ],
     [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ],
     [ "Thoth::Http::ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", null ],
+    [ "Thoth::Http::details_::ResponseParseStage< Stream >", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage.html", [
+      [ "Thoth::Http::details_::ParseCompleteStage< Stream, Body >", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", null ]
+    ] ],
     [ "Thoth::Utils::Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner.html", null ],
     [ "Thoth::Utils::Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", null ],
     [ "Thoth::Utils::Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", null ],
@@ -63,6 +67,6 @@ var hierarchy =
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy< IsConst, Ts >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
-      [ "Thoth::Http::RequestError", "struct_thoth_1_1_http_1_1_request_error.html", null ]
+      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ]
     ] ]
 ];

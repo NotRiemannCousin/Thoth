@@ -152,10 +152,10 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af279cde391779086c052c2b84242fb0c" id="r_af279cde391779086c052c2b84242fb0c"><td class="memTemplParams" colspan="2">template&lt;class  = void&gt; <br />
+<tr class="memitem:ac3bda874a5fdf2273dcf08f8587add64" id="r_ac3bda874a5fdf2273dcf08f8587add64"><td class="memTemplParams" colspan="2">template&lt;class  = void&gt; <br />
 requires std::same_as&lt;Body, std::string&gt;</td></tr>
-<tr class="memitem:af279cde391779086c052c2b84242fb0c"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">NJson::Json</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html#af279cde391779086c052c2b84242fb0c">AsJson</a> () const</td></tr>
-<tr class="separator:af279cde391779086c052c2b84242fb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3bda874a5fdf2273dcf08f8587add64"><td class="memTemplItemLeft" align="right" valign="top">std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">NJson::Json</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html#ac3bda874a5fdf2273dcf08f8587add64">AsJson</a> () const</td></tr>
+<tr class="separator:ac3bda874a5fdf2273dcf08f8587add64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dc84f1dc95a19a8c9e0ee0716fef62b" id="r_a5dc84f1dc95a19a8c9e0ee0716fef62b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html#a5dc84f1dc95a19a8c9e0ee0716fef62b">Successful</a> () const</td></tr>
 <tr class="memdesc:a5dc84f1dc95a19a8c9e0ee0716fef62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the response is 2XX.  <br /></td></tr>
 <tr class="separator:a5dc84f1dc95a19a8c9e0ee0716fef62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,8 +165,8 @@ requires std::same_as&lt;Body, std::string&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a53d1e289183ed95c541172eb560aef98" id="r_a53d1e289183ed95c541172eb560aef98"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html#a53d1e289183ed95c541172eb560aef98">EnsureSuccess</a> (<a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> &amp;&amp;response)</td></tr>
-<tr class="separator:a53d1e289183ed95c541172eb560aef98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae744a538d9369ee0796aef76477743d1" id="r_ae744a538d9369ee0796aef76477743d1"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response.html#ae744a538d9369ee0796aef76477743d1">EnsureSuccess</a> (<a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> &amp;&amp;response)</td></tr>
+<tr class="separator:ae744a538d9369ee0796aef76477743d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -193,7 +193,7 @@ Friends</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::MethodType =  Method</td>
@@ -204,19 +204,19 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af279cde391779086c052c2b84242fb0c" name="af279cde391779086c052c2b84242fb0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af279cde391779086c052c2b84242fb0c">&#9670;&#160;</a></span>AsJson()</h2>
+<a id="ac3bda874a5fdf2273dcf08f8587add64" name="ac3bda874a5fdf2273dcf08f8587add64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3bda874a5fdf2273dcf08f8587add64">&#9670;&#160;</a></span>AsJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
 <div class="memtemplate">
 template&lt;class  = void&gt; <br />
 requires std::same_as&lt;Body, std::string&gt;</div>
       <table class="memname">
         <tr>
-          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">NJson::Json</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::AsJson </td>
+          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">NJson::Json</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::AsJson </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -226,19 +226,19 @@ requires std::same_as&lt;Body, std::string&gt;</div>
 
 </div>
 </div>
-<a id="a53d1e289183ed95c541172eb560aef98" name="a53d1e289183ed95c541172eb560aef98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53d1e289183ed95c541172eb560aef98">&#9670;&#160;</a></span>EnsureSuccess()</h2>
+<a id="ae744a538d9369ee0796aef76477743d1" name="ae744a538d9369ee0796aef76477743d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae744a538d9369ee0796aef76477743d1">&#9670;&#160;</a></span>EnsureSuccess()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>, <a class="el" href="struct_thoth_1_1_http_1_1_request_error.html">RequestError</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::EnsureSuccess </td>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::EnsureSuccess </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt; &amp;&amp;&#160;</td>
           <td class="paramname"><em>response</em></td><td>)</td>
@@ -260,7 +260,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Body <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::MoveBody </td>
@@ -281,7 +281,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::Successful </td>
@@ -303,7 +303,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -328,7 +328,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Body <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::body</td>
@@ -344,7 +344,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a> <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::headers {}</td>
@@ -360,7 +360,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::status {}</td>
@@ -376,7 +376,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::string <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::statusMessage {}</td>
@@ -392,7 +392,7 @@ template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::st
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;MethodConcept Method = GetMethod, ResponseBodyConcept Body = std::string&gt; </div>
+template&lt;MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Thoth::Http::Response</a>&lt; Method, Body &gt;::version {}</td>
