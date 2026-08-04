@@ -14,7 +14,7 @@ var annotated_dup =
         [ "details_", "namespace_thoth_1_1_http_1_1details__.html", [
           [ "Http11", "struct_thoth_1_1_http_1_1details___1_1_http11.html", null ],
           [ "ParseCompleteStage", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage" ],
-          [ "ResponseParseStage", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage" ]
+          [ "ParseStage", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_stage" ]
         ] ],
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
           [ "EntityTag", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag" ],
@@ -29,6 +29,7 @@ var annotated_dup =
         ] ],
         [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
         [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
+        [ "ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", "struct_thoth_1_1_http_1_1_client_connection" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
         [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
@@ -48,11 +49,13 @@ var annotated_dup =
         [ "PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
         [ "QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", "struct_thoth_1_1_http_1_1_query_params" ],
         [ "Request", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
+        [ "RequestHead", "struct_thoth_1_1_http_1_1_request_head.html", "struct_thoth_1_1_http_1_1_request_head" ],
         [ "RequestHeaders", "struct_thoth_1_1_http_1_1_request_headers.html", "struct_thoth_1_1_http_1_1_request_headers" ],
         [ "Response", "struct_thoth_1_1_http_1_1_response.html", "struct_thoth_1_1_http_1_1_response" ],
         [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
         [ "ResponseHeaders", "struct_thoth_1_1_http_1_1_response_headers.html", "struct_thoth_1_1_http_1_1_response_headers" ],
-        [ "Socket", "struct_thoth_1_1_http_1_1_socket.html", "struct_thoth_1_1_http_1_1_socket" ],
+        [ "Server", "struct_thoth_1_1_http_1_1_server.html", "struct_thoth_1_1_http_1_1_server" ],
+        [ "ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ],
         [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]
       ] ],

@@ -8,6 +8,7 @@ var _exchange_error_8hpp =
     [ "Thoth::Http::GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
     [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
     [ "ConnectionErrorEnum", "_exchange_error_8hpp.html#a89c6c47a492bb9cbf14a3c3e52db31f2", null ],
+    [ "ExchangeResult", "_exchange_error_8hpp.html#a4681c6f69ad2084fc2012f59fee2432c", null ],
     [ "MessageParseErrorEnum", "_exchange_error_8hpp.html#a8e58d1d4b4fcb6af2eee47c9a3a12388", [
       [ "InvalidStartLine", "_exchange_error_8hpp.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d", null ],
       [ "InvalidVersion", "_exchange_error_8hpp.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0", null ],

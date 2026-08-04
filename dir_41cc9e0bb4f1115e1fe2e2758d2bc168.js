@@ -8,5 +8,6 @@ var dir_41cc9e0bb4f1115e1fe2e2758d2bc168 =
     [ "Url", "dir_f0d5f9c2813ecd5c8dcd2e2ff3dca0a2.html", "dir_f0d5f9c2813ecd5c8dcd2e2ff3dca0a2" ],
     [ "_base.hpp", "_http_2__base_8hpp.html", "_http_2__base_8hpp" ],
     [ "Client.hpp", "_client_8hpp.html", "_client_8hpp" ],
-    [ "ExchangeError.hpp", "_exchange_error_8hpp.html", "_exchange_error_8hpp" ]
+    [ "ExchangeError.hpp", "_exchange_error_8hpp.html", "_exchange_error_8hpp" ],
+    [ "Server.hpp", "_server_8hpp.html", "_server_8hpp" ]
 ];

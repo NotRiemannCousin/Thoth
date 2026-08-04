@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: Thoth::Http::Socket Struct Reference</title>
+<title>Thoth: include/Thoth/Http/Server.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -93,6 +93,11 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -106,7 +111,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_socket.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('_server_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -132,85 +137,47 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_socket.html'
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="struct_thoth_1_1_http_1_1_socket-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Thoth::Http::Socket Struct Reference</div></div>
+  <div class="headertitle"><div class="title">Server.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client.  
- <a href="struct_thoth_1_1_http_1_1_socket.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a34f7efb68496a3b3113924e2138d7a7f" id="r_a34f7efb68496a3b3113924e2138d7a7f"><td class="memItemLeft" align="right" valign="top">Hermes::RawTlsClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html#a34f7efb68496a3b3113924e2138d7a7f">socket</a></td></tr>
-<tr class="separator:a34f7efb68496a3b3113924e2138d7a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ef953f567e3b75fb638b3348cd7967" id="r_ac3ef953f567e3b75fb638b3348cd7967"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html#ac3ef953f567e3b75fb638b3348cd7967">version</a></td></tr>
-<tr class="separator:ac3ef953f567e3b75fb638b3348cd7967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a689d58e30702ed2d9b9edaf68ff0b553" id="r_a689d58e30702ed2d9b9edaf68ff0b553"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html#a689d58e30702ed2d9b9edaf68ff0b553">lastUsed</a></td></tr>
-<tr class="separator:a689d58e30702ed2d9b9edaf68ff0b553"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client. </p>
-<p>Aggregates the low-level socket (Hermes::RawTlsClient), the HTTP version negotiated for the connection, and the timestamp of the last use. This struct is used internally by <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> to decide when a socket can be safely evicted. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a689d58e30702ed2d9b9edaf68ff0b553" name="a689d58e30702ed2d9b9edaf68ff0b553"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a689d58e30702ed2d9b9edaf68ff0b553">&#9670;&#160;</a></span>lastUsed</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::chrono::steady_clock::time_point Thoth::Http::Socket::lastUsed</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>A timestamp marking the most recent use of this socket. <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> uses this to detect idle connections. </p>
-
+<a href="_server_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Hermes/Socket/Sync/ServerSocket.hpp&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="_exchange_error_8hpp.html">Thoth/Http/ExchangeError.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="_request_8hpp.html">Thoth/Http/Request/Request.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_response_8hpp.html">Thoth/Http/Response/Response.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_server_connection.html">   10</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a> : std::variant&lt;Hermes::RawTcpServer, Hermes::RawTlsServer&gt; {};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_server.html">   13</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_server.html">Server</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keyword">template</span> &lt;<span class="keyword">class </span>BodyType, <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept</a>... RequestTypes&gt;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="keyword">requires</span> (<span class="keyword">sizeof</span>...(RequestTypes) &gt; 0)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_server.html#a4e8cc21a7941946701e76bcc12f63087">   16</a></span>        <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a4681c6f69ad2084fc2012f59fee2432c">ExchangeResult&lt;std::variant&lt;Request&lt;RequestTypes, BodyType&gt;</a>...&gt;&gt; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_server.html#a4e8cc21a7941946701e76bcc12f63087">Receive</a>(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a>&amp; conn);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    };</div>
 </div>
-</div>
-<a id="a34f7efb68496a3b3113924e2138d7a7f" name="a34f7efb68496a3b3113924e2138d7a7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34f7efb68496a3b3113924e2138d7a7f">&#9670;&#160;</a></span>socket</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Hermes::RawTlsClient Thoth::Http::Socket::socket</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The Hermes TLS client socket. Ensure that any operation on this socket respects thread-safety constraints; <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> may access sockets from a background thread. </p>
-
-</div>
-</div>
-<a id="ac3ef953f567e3b75fb638b3348cd7967" name="ac3ef953f567e3b75fb638b3348cd7967"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3ef953f567e3b75fb638b3348cd7967">&#9670;&#160;</a></span>version</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> Thoth::Http::Socket::version</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The HTTP version of the connection (e.g., HTTP/1.1). Future HTTP/2 or QUIC support will extend this field. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Thoth/Http/<a class="el" href="_client_8hpp_source.html">Client.hpp</a></li>
-</ul>
-</div><!-- contents -->
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;Thoth/Http/Server.tpp&gt;</span></div>
+<div class="ttc" id="a_exchange_error_8hpp_html"><div class="ttname"><a href="_exchange_error_8hpp.html">ExchangeError.hpp</a></div></div>
+<div class="ttc" id="a_request_8hpp_html"><div class="ttname"><a href="_request_8hpp.html">Request.hpp</a></div></div>
+<div class="ttc" id="a_response_8hpp_html"><div class="ttname"><a href="_response_8hpp.html">Response.hpp</a></div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_method_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_method_concept.html">Thoth::Http::MethodConcept</a></div><div class="ttdoc">The HTTP methods requirements following RFC9110.</div><div class="ttdef"><b>Definition</b> MethodConcept.hpp:19</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a4681c6f69ad2084fc2012f59fee2432c"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a4681c6f69ad2084fc2012f59fee2432c">Thoth::Http::ExchangeResult</a></div><div class="ttdeci">std::expected&lt; T, ExchangeError &gt; ExchangeResult</div><div class="ttdef"><b>Definition</b> ExchangeError.hpp:76</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_connection_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server_connection.html">Thoth::Http::ServerConnection</a></div><div class="ttdef"><b>Definition</b> Server.hpp:10</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a></div><div class="ttdef"><b>Definition</b> Server.hpp:13</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html_a4e8cc21a7941946701e76bcc12f63087"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html#a4e8cc21a7941946701e76bcc12f63087">Thoth::Http::Server::Receive</a></div><div class="ttdeci">ExchangeResult&lt; std::variant&lt; Request&lt; RequestTypes, BodyType &gt;... &gt; &gt; Receive(ServerConnection &amp;conn)</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a class="el" href="namespace_thoth_1_1_http.html">Http</a></li><li class="navelem"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a class="el" href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a class="el" href="_server_8hpp.html">Server.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

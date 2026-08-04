@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_0',['data',['../struct_thoth_1_1_http_1_1details___1_1_response_parse_stage.html#a79de7f799b2ce466e57f5118008bcd15',1,'Thoth::Http::details_::ResponseParseStage']]],
+  ['data_0',['data',['../struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5',1,'Thoth::Http::details_::ParseStage']]],
   ['date_1',['date',['../struct_thoth_1_1_http_1_1_headers.html#a0532e0fec07a6a326af6d1d1bd5759d9',1,'Thoth::Http::Headers::Date()'],['../struct_thoth_1_1_http_1_1_headers.html#a446011c163e204b7f6cf323d82f59d85',1,'Thoth::Http::Headers::Date() const']]],
   ['dcb_2',['dcb',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d7c195116c034dee8f191f4eaa8bf3a',1,'Thoth::Http::NHeaders::Dcb'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d7c195116c034dee8f191f4eaa8bf3a',1,'Thoth::Http::NHeaders::Dcb']]],
   ['dcz_3',['dcz',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271ccafee3557d28a6f83af2da83a156708646',1,'Thoth::Http::NHeaders::Dcz'],['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99dafee3557d28a6f83af2da83a156708646',1,'Thoth::Http::NHeaders::Dcz']]],

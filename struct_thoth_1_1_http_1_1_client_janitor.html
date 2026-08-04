@@ -160,9 +160,9 @@ Static Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8859c9e78721242af20538be63a42efd" id="r_a8859c9e78721242af20538be63a42efd"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">poolMutex</a></td></tr>
 <tr class="separator:a8859c9e78721242af20538be63a42efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44965e2f6a12ae8ae09bed695413936f" id="r_a44965e2f6a12ae8ae09bed695413936f"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; Hermes::IpEndpoint, std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#a44965e2f6a12ae8ae09bed695413936f">connectionPool</a></td></tr>
-<tr class="memdesc:a44965e2f6a12ae8ae09bed695413936f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not break other threads.  <br /></td></tr>
-<tr class="separator:a44965e2f6a12ae8ae09bed695413936f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5ea5a82b79de2988ca09516d180378" id="r_aaf5ea5a82b79de2988ca09516d180378"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; Hermes::IpEndpoint, std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#aaf5ea5a82b79de2988ca09516d180378">connectionPool</a></td></tr>
+<tr class="memdesc:aaf5ea5a82b79de2988ca09516d180378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not break other threads.  <br /></td></tr>
+<tr class="separator:aaf5ea5a82b79de2988ca09516d180378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages a pool of reusable HTTP sockets to optimize consecutive calls. </p>
@@ -224,14 +224,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a44965e2f6a12ae8ae09bed695413936f" name="a44965e2f6a12ae8ae09bed695413936f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44965e2f6a12ae8ae09bed695413936f">&#9670;&#160;</a></span>connectionPool</h2>
+<a id="aaf5ea5a82b79de2988ca09516d180378" name="aaf5ea5a82b79de2988ca09516d180378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf5ea5a82b79de2988ca09516d180378">&#9670;&#160;</a></span>connectionPool</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;Hermes::IpEndpoint, std::vector&lt;std::shared_ptr&lt;<a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a>&gt; &gt; &gt; Thoth::Http::ClientJanitor::connectionPool</td>
+          <td class="memname">std::unordered_map&lt;Hermes::IpEndpoint, std::vector&lt;std::shared_ptr&lt;<a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a>&gt; &gt; &gt; Thoth::Http::ClientJanitor::connectionPool</td>
         </tr>
       </table>
 </div><div class="memdoc">

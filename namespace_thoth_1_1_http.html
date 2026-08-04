@@ -157,6 +157,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html">Client</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method AndParse their responses, monad friendly.  <a href="struct_thoth_1_1_http_1_1_client.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client.  <a href="struct_thoth_1_1_http_1_1_client_connection.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html">ClientJanitor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages a pool of reusable HTTP sockets to optimize consecutive calls.  <a href="struct_thoth_1_1_http_1_1_client_janitor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,6 +200,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.  <a href="struct_thoth_1_1_http_1_1_request_headers.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,8 +211,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_socket.html">Socket</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client.  <a href="struct_thoth_1_1_http_1_1_socket.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Server</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_trace_method.html">TraceMethod</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -241,6 +247,9 @@ Concepts</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a89c6c47a492bb9cbf14a3c3e52db31f2" id="r_a89c6c47a492bb9cbf14a3c3e52db31f2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2">ConnectionErrorEnum</a> = Hermes::ConnectionErrorEnum</td></tr>
 <tr class="separator:a89c6c47a492bb9cbf14a3c3e52db31f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4681c6f69ad2084fc2012f59fee2432c" id="r_a4681c6f69ad2084fc2012f59fee2432c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a4681c6f69ad2084fc2012f59fee2432c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a4681c6f69ad2084fc2012f59fee2432c">ExchangeResult</a> = std::expected&lt; T, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;</td></tr>
+<tr class="separator:a4681c6f69ad2084fc2012f59fee2432c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac372604fd377e070576be6639ec2c300" id="r_ac372604fd377e070576be6639ec2c300"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ac372604fd377e070576be6639ec2c300">GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="separator:ac372604fd377e070576be6639ec2c300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b32b79eda86ad7068fea4156a55f00" id="r_af1b32b79eda86ad7068fea4156a55f00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a> &gt;</td></tr>
@@ -413,6 +422,22 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a89c6c47a492bb9cbf14a3c3e52db31f2">Thoth::Http::ConnectionErrorEnum</a> = typedef Hermes::ConnectionErrorEnum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4681c6f69ad2084fc2012f59fee2432c" name="a4681c6f69ad2084fc2012f59fee2432c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4681c6f69ad2084fc2012f59fee2432c">&#9670;&#160;</a></span>ExchangeResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a4681c6f69ad2084fc2012f59fee2432c">Thoth::Http::ExchangeResult</a> = typedef std::expected&lt;T, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

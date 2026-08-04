@@ -210,10 +210,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a2245da06206e12517b4ad14225d92d34"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34">ValueOrHof</a> (Err &amp;&amp;err)</td></tr>
 <tr class="memdesc:a2245da06206e12517b4ad14225d92d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{ValueOr}  <br /></td></tr>
 <tr class="separator:a2245da06206e12517b4ad14225d92d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c86d5b3b20d30645e402af3c80a4c59" id="r_a4c86d5b3b20d30645e402af3c80a4c59"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
+<tr class="memitem:ad8211355c73a20d8f362f5d239c8e433" id="r_ad8211355c73a20d8f362f5d239c8e433"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</td></tr>
-<tr class="memitem:a4c86d5b3b20d30645e402af3c80a4c59"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::expected&lt; Val, std::invoke_result_t&lt; Trans, Val &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a4c86d5b3b20d30645e402af3c80a4c59">S_CallIfErrorImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</td></tr>
-<tr class="separator:a4c86d5b3b20d30645e402af3c80a4c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8211355c73a20d8f362f5d239c8e433"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::expected&lt; Val, std::invoke_result_t&lt; Trans, Val &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ad8211355c73a20d8f362f5d239c8e433">CallIfErrorImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</td></tr>
+<tr class="separator:ad8211355c73a20d8f362f5d239c8e433"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac98e545ca9c1b45065cc18370ca34246" id="r_ac98e545ca9c1b45065cc18370ca34246"><td class="memTemplParams" colspan="2">template&lt;class Pred , class Trans , class Val &gt; </td></tr>
 <tr class="memitem:ac98e545ca9c1b45065cc18370ca34246"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ac98e545ca9c1b45065cc18370ca34246">CallIfError</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</td></tr>
 <tr class="memdesc:ac98e545ca9c1b45065cc18370ca34246"><td class="mdescLeft">&#160;</td><td class="mdescRight">In the std::expected&lt;Val, Err&gt; context, returns the value if the predicate match, or the std::unexpected with transformation applied to the error otherwise.  <br /></td></tr>
@@ -262,14 +262,14 @@ requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;
 <tr class="memitem:ab877d80cc358e01fc0e956d9d3a3430d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ab877d80cc358e01fc0e956d9d3a3430d">CallIfErrorNotHof</a> ()</td></tr>
 <tr class="memdesc:ab877d80cc358e01fc0e956d9d3a3430d"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{CallIfErrorNot}  <br /></td></tr>
 <tr class="separator:ab877d80cc358e01fc0e956d9d3a3430d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0288a14dd869ab04a83d3320fc8b79" id="r_a9e0288a14dd869ab04a83d3320fc8b79"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val &gt; <br />
+<tr class="memitem:aebf850919eb337a7faeb8352cbee2468" id="r_aebf850919eb337a7faeb8352cbee2468"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
-<tr class="memitem:a9e0288a14dd869ab04a83d3320fc8b79"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a9e0288a14dd869ab04a83d3320fc8b79">S_TestIfImpl</a> (Pred &amp;&amp;pred, Val &amp;value)</td></tr>
-<tr class="separator:a9e0288a14dd869ab04a83d3320fc8b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08dc4a93b7211c71d79cf7f805486fd4" id="r_a08dc4a93b7211c71d79cf7f805486fd4"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val , class Err &gt; <br />
+<tr class="memitem:aebf850919eb337a7faeb8352cbee2468"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aebf850919eb337a7faeb8352cbee2468">TestIfImpl</a> (Pred &amp;&amp;pred, Val &amp;value)</td></tr>
+<tr class="separator:aebf850919eb337a7faeb8352cbee2468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0e9e929e256856f79a6d64695a6fea" id="r_acb0e9e929e256856f79a6d64695a6fea"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val , class Err &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
-<tr class="memitem:a08dc4a93b7211c71d79cf7f805486fd4"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::expected&lt; Val, std::decay_t&lt; Err &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a08dc4a93b7211c71d79cf7f805486fd4">S_ErrorIfImpl</a> (Pred &amp;&amp;pred, Val &amp;&amp;value, Err &amp;&amp;error)</td></tr>
-<tr class="separator:a08dc4a93b7211c71d79cf7f805486fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0e9e929e256856f79a6d64695a6fea"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::expected&lt; Val, std::decay_t&lt; Err &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#acb0e9e929e256856f79a6d64695a6fea">ErrorIfImpl</a> (Pred &amp;&amp;pred, Val &amp;&amp;value, Err &amp;&amp;error)</td></tr>
+<tr class="separator:acb0e9e929e256856f79a6d64695a6fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b553f3aaafa18d4d0c433f5fd6ea0be" id="r_a1b553f3aaafa18d4d0c433f5fd6ea0be"><td class="memTemplParams" colspan="2">template&lt;class Pred , class Val , class Err &gt; </td></tr>
 <tr class="memitem:a1b553f3aaafa18d4d0c433f5fd6ea0be"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a1b553f3aaafa18d4d0c433f5fd6ea0be">ErrorIf</a> (Pred &amp;&amp;pred, Val &amp;&amp;value, Err &amp;&amp;error)</td></tr>
 <tr class="memdesc:a1b553f3aaafa18d4d0c433f5fd6ea0be"><td class="mdescLeft">&#160;</td><td class="mdescRight">In a std::expected&lt;Val, Err&gt; context, transform an error into a value only if the predicate match.  <br /></td></tr>
@@ -302,14 +302,14 @@ requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
 <tr class="memitem:a7381564d4b4ef7efe778a468977cbd50"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a7381564d4b4ef7efe778a468977cbd50">ErrorIfNotHof</a> (Err &amp;&amp;error)</td></tr>
 <tr class="memdesc:a7381564d4b4ef7efe778a468977cbd50"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{ErrorIfNot}  <br /></td></tr>
 <tr class="separator:a7381564d4b4ef7efe778a468977cbd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7031a51f5323a79eff261a27feae4cda" id="r_a7031a51f5323a79eff261a27feae4cda"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
+<tr class="memitem:ac31c13eba41f9cb6bafa07b9856c03c2" id="r_ac31c13eba41f9cb6bafa07b9856c03c2"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</td></tr>
-<tr class="memitem:a7031a51f5323a79eff261a27feae4cda"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a7031a51f5323a79eff261a27feae4cda">S_TransformOptIfImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value) -&gt; std::optional&lt; std::invoke_result_t&lt; Trans, Val &gt; &gt;</td></tr>
-<tr class="separator:a7031a51f5323a79eff261a27feae4cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd562ea577fa1b0173e41407edd4b74a" id="r_acd562ea577fa1b0173e41407edd4b74a"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val , class Err &gt; <br />
+<tr class="memitem:ac31c13eba41f9cb6bafa07b9856c03c2"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ac31c13eba41f9cb6bafa07b9856c03c2">TransformOptIfImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value) -&gt; std::optional&lt; std::invoke_result_t&lt; Trans, Val &gt; &gt;</td></tr>
+<tr class="separator:ac31c13eba41f9cb6bafa07b9856c03c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad664b7768a662e1b9957ad091983b1c4" id="r_ad664b7768a662e1b9957ad091983b1c4"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Trans , class Val , class Err &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</td></tr>
-<tr class="memitem:acd562ea577fa1b0173e41407edd4b74a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#acd562ea577fa1b0173e41407edd4b74a">S_TransformExpIfImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value, Err &amp;&amp;error) -&gt; std::expected&lt; std::invoke_result_t&lt; Trans, Val &gt;, std::decay_t&lt; Err &gt; &gt;</td></tr>
-<tr class="separator:acd562ea577fa1b0173e41407edd4b74a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad664b7768a662e1b9957ad091983b1c4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ad664b7768a662e1b9957ad091983b1c4">TransformExpIfImpl</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value, Err &amp;&amp;error) -&gt; std::expected&lt; std::invoke_result_t&lt; Trans, Val &gt;, std::decay_t&lt; Err &gt; &gt;</td></tr>
+<tr class="separator:ad664b7768a662e1b9957ad091983b1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1fc0b4a0db1a2e058827362eac0f3a8" id="r_aa1fc0b4a0db1a2e058827362eac0f3a8"><td class="memTemplParams" colspan="2">template&lt;class Pred , class Trans , class Val &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</td></tr>
 <tr class="memitem:aa1fc0b4a0db1a2e058827362eac0f3a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aa1fc0b4a0db1a2e058827362eac0f3a8">TransformOptIf</a> (Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</td></tr>
@@ -418,10 +418,10 @@ requires std::invocable&lt;decltype(Trans), Val&gt;</td></tr>
 <tr class="memitem:a715c0b35df8d1770159ecd2684b67c6d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a715c0b35df8d1770159ecd2684b67c6d">TransformExpIfNotHof</a> (Err &amp;&amp;error)</td></tr>
 <tr class="memdesc:a715c0b35df8d1770159ecd2684b67c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{TransformExpIfNot}  <br /></td></tr>
 <tr class="separator:a715c0b35df8d1770159ecd2684b67c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20e3795b8df82f73b3984fb8e470a6da" id="r_a20e3795b8df82f73b3984fb8e470a6da"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val &gt; <br />
+<tr class="memitem:a76ce0ff0906a30ad5f16d6e4b9da34ec" id="r_a76ce0ff0906a30ad5f16d6e4b9da34ec"><td class="memTemplParams" colspan="2">template&lt;bool Negate, class Pred , class Val &gt; <br />
 requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</td></tr>
-<tr class="memitem:a20e3795b8df82f73b3984fb8e470a6da"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; std::remove_cvref_t&lt; Val &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a20e3795b8df82f73b3984fb8e470a6da">S_NulloptIfImpl</a> (Pred &amp;&amp;pred, Val &amp;&amp;value)</td></tr>
-<tr class="separator:a20e3795b8df82f73b3984fb8e470a6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ce0ff0906a30ad5f16d6e4b9da34ec"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; std::remove_cvref_t&lt; Val &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a76ce0ff0906a30ad5f16d6e4b9da34ec">NulloptIfImpl</a> (Pred &amp;&amp;pred, Val &amp;&amp;value)</td></tr>
+<tr class="separator:a76ce0ff0906a30ad5f16d6e4b9da34ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2de595d710856786b947b33869eecec" id="r_ad2de595d710856786b947b33869eecec"><td class="memTemplParams" colspan="2">template&lt;class Pred , class Val &gt; </td></tr>
 <tr class="memitem:ad2de595d710856786b947b33869eecec"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">NulloptIf</a> (Pred &amp;&amp;pred, Val &amp;&amp;value)</td></tr>
 <tr class="memdesc:ad2de595d710856786b947b33869eecec"><td class="mdescLeft">&#160;</td><td class="mdescRight">In a std::optional&lt;T&gt; context, transforms the value to std::nullopt if the predicate match.  <br /></td></tr>
@@ -736,6 +736,51 @@ template&lt;auto Pred, class Trans &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{CallIfError} </p>
+
+</div>
+</div>
+<a id="ad8211355c73a20d8f362f5d239c8e433" name="ad8211355c73a20d8f362f5d239c8e433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8211355c73a20d8f362f5d239c8e433">&#9670;&#160;</a></span>CallIfErrorImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::expected&lt; Val, std::invoke_result_t&lt; Trans, Val &gt; &gt; Thoth::Utils::CallIfErrorImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Trans &amp;&amp;&#160;</td>
+          <td class="paramname"><em>trans</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1196,6 +1241,51 @@ template&lt;class Pred , class Err &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{ErrorIf} </p>
+
+</div>
+</div>
+<a id="acb0e9e929e256856f79a6d64695a6fea" name="acb0e9e929e256856f79a6d64695a6fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb0e9e929e256856f79a6d64695a6fea">&#9670;&#160;</a></span>ErrorIfImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Val , class Err &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::expected&lt; Val, std::decay_t&lt; Err &gt; &gt; Thoth::Utils::ErrorIfImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Err &amp;&amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1754,6 +1844,45 @@ template&lt;class Pred &gt; </div>
 
 </div>
 </div>
+<a id="a76ce0ff0906a30ad5f16d6e4b9da34ec" name="a76ce0ff0906a30ad5f16d6e4b9da34ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ce0ff0906a30ad5f16d6e4b9da34ec">&#9670;&#160;</a></span>NulloptIfImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Val &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::optional&lt; std::remove_cvref_t&lt; Val &gt; &gt; Thoth::Utils::NulloptIfImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae2116ada08bb9ad12296d31332d6ce24" name="ae2116ada08bb9ad12296d31332d6ce24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2116ada08bb9ad12296d31332d6ce24">&#9670;&#160;</a></span>NulloptIfNot() <span class="overload">[1/2]</span></h2>
 
@@ -1883,272 +2012,6 @@ template&lt;class Pred &gt; </div>
 
 </div>
 </div>
-<a id="a4c86d5b3b20d30645e402af3c80a4c59" name="a4c86d5b3b20d30645e402af3c80a4c59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c86d5b3b20d30645e402af3c80a4c59">&#9670;&#160;</a></span>S_CallIfErrorImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr std::expected&lt; Val, std::invoke_result_t&lt; Trans, Val &gt; &gt; Thoth::Utils::S_CallIfErrorImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Trans &amp;&amp;&#160;</td>
-          <td class="paramname"><em>trans</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a08dc4a93b7211c71d79cf7f805486fd4" name="a08dc4a93b7211c71d79cf7f805486fd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08dc4a93b7211c71d79cf7f805486fd4">&#9670;&#160;</a></span>S_ErrorIfImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Val , class Err &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr std::expected&lt; Val, std::decay_t&lt; Err &gt; &gt; Thoth::Utils::S_ErrorIfImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Err &amp;&amp;&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a20e3795b8df82f73b3984fb8e470a6da" name="a20e3795b8df82f73b3984fb8e470a6da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20e3795b8df82f73b3984fb8e470a6da">&#9670;&#160;</a></span>S_NulloptIfImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Val &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr std::optional&lt; std::remove_cvref_t&lt; Val &gt; &gt; Thoth::Utils::S_NulloptIfImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9e0288a14dd869ab04a83d3320fc8b79" name="a9e0288a14dd869ab04a83d3320fc8b79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e0288a14dd869ab04a83d3320fc8b79">&#9670;&#160;</a></span>S_TestIfImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Val &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr bool Thoth::Utils::S_TestIfImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acd562ea577fa1b0173e41407edd4b74a" name="acd562ea577fa1b0173e41407edd4b74a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd562ea577fa1b0173e41407edd4b74a">&#9670;&#160;</a></span>S_TransformExpIfImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Trans , class Val , class Err &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto Thoth::Utils::S_TransformExpIfImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Trans &amp;&amp;&#160;</td>
-          <td class="paramname"><em>trans</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Err &amp;&amp;&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::expected&lt;std::invoke_result_t&lt;Trans, Val&gt;, std::decay_t&lt;Err&gt;&gt;
-    </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a7031a51f5323a79eff261a27feae4cda" name="a7031a51f5323a79eff261a27feae4cda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7031a51f5323a79eff261a27feae4cda">&#9670;&#160;</a></span>S_TransformOptIfImpl()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
-requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto Thoth::Utils::S_TransformOptIfImpl </td>
-          <td>(</td>
-          <td class="paramtype">Pred &amp;&amp;&#160;</td>
-          <td class="paramname"><em>pred</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Trans &amp;&amp;&#160;</td>
-          <td class="paramname"><em>trans</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Val &amp;&amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::optional&lt;std::invoke_result_t&lt;Trans, Val&gt;&gt;
-    </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a57853778e79eba19dfddf02289cf852d" name="a57853778e79eba19dfddf02289cf852d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a57853778e79eba19dfddf02289cf852d">&#9670;&#160;</a></span>Scan()</h2>
 
@@ -2235,6 +2098,45 @@ template&lt;class F &gt; </div>
           <td class="paramtype">F &amp;&amp;&#160;</td>
           <td class="paramname"><em>callable</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebf850919eb337a7faeb8352cbee2468" name="aebf850919eb337a7faeb8352cbee2468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf850919eb337a7faeb8352cbee2468">&#9670;&#160;</a></span>TestIfImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Val &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool Thoth::Utils::TestIfImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -2558,6 +2460,58 @@ template&lt;auto Pred, class Trans , class Err &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{TransformExpIf} </p>
+
+</div>
+</div>
+<a id="ad664b7768a662e1b9957ad091983b1c4" name="ad664b7768a662e1b9957ad091983b1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad664b7768a662e1b9957ad091983b1c4">&#9670;&#160;</a></span>TransformExpIfImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Trans , class Val , class Err &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto Thoth::Utils::TransformExpIfImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Trans &amp;&amp;&#160;</td>
+          <td class="paramname"><em>trans</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Err &amp;&amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;std::invoke_result_t&lt;Trans, Val&gt;, std::decay_t&lt;Err&gt;&gt;
+    </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -3033,6 +2987,52 @@ template&lt;auto Pred, class Trans &gt; </div>
 </div><div class="memdoc">
 
 <p>@hof{TransformOptIf} </p>
+
+</div>
+</div>
+<a id="ac31c13eba41f9cb6bafa07b9856c03c2" name="ac31c13eba41f9cb6bafa07b9856c03c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31c13eba41f9cb6bafa07b9856c03c2">&#9670;&#160;</a></span>TransformOptIfImpl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool Negate, class Pred , class Trans , class Val &gt; <br />
+requires std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto Thoth::Utils::TransformOptIfImpl </td>
+          <td>(</td>
+          <td class="paramtype">Pred &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pred</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Trans &amp;&amp;&#160;</td>
+          <td class="paramname"><em>trans</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Val &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::optional&lt;std::invoke_result_t&lt;Trans, Val&gt;&gt;
+    </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -194,8 +194,34 @@ $(document).ready(function(){initNavTree('_http_2__base_8hpp_source.html',''); i
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        { s.Abort() } -&gt; std::same_as&lt;void&gt;;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    };</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1details__.html">   61</a></span>    <span class="keyword">namespace </span>details_ {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> Stream, <span class="keyword">class</span> Head&gt;</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">   63</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">   64</a></span>            Head <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">data</a>{};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">   65</a></span>            Stream <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">stream</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        };</div>
 </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> Stream, <span class="keyword">class</span> Head, WritableBodyConcept Body&gt;</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">   69</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a> : <a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a>&lt;Stream, Head&gt; {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">   70</a></span>            Body <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">body</a>{};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        };</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_crlf     { <span class="stringliteral">&quot;\r\n&quot;</span> };</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_crlfCrlf { <span class="stringliteral">&quot;\r\n\r\n&quot;</span> };</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_lastChunk{ <span class="stringliteral">&quot;0\r\n\r\n&quot;</span> };</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#include &lt;Thoth/Http/_base.tpp&gt;</span></div>
 <div class="ttc" id="a_headers_8hpp_html"><div class="ttname"><a href="_headers_8hpp.html">Headers.hpp</a></div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_concept.html">Thoth::Http::BodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:37</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:40</div></div>
@@ -211,6 +237,11 @@ $(document).ready(function(){initNavTree('_http_2__base_8hpp_source.html',''); i
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">Thoth::Http::VersionEnum::HTTP1_1</a></div><div class="ttdeci">@ HTTP1_1</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738">Thoth::Http::VersionEnum::HTTP3</a></div><div class="ttdeci">@ HTTP3</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a">Thoth::Http::VersionEnum::HTTP2</a></div><div class="ttdeci">@ HTTP2</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_complete_stage_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">Thoth::Http::details_::ParseCompleteStage</a></div><div class="ttdef"><b>Definition</b> _base.hpp:69</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_complete_stage_html_af904068dd6b5018ebf67283a1e1802d5"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">Thoth::Http::details_::ParseCompleteStage::body</a></div><div class="ttdeci">Body body</div><div class="ttdef"><b>Definition</b> _base.hpp:70</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">Thoth::Http::details_::ParseStage</a></div><div class="ttdef"><b>Definition</b> _base.hpp:63</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html_aceccf8350b1b343c5fd266c8d39e7fe5"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">Thoth::Http::details_::ParseStage::data</a></div><div class="ttdeci">Head data</div><div class="ttdef"><b>Definition</b> _base.hpp:64</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html_af3dce146bef4ae90584fa9e9a13f8632"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">Thoth::Http::details_::ParseStage::stream</a></div><div class="ttdeci">Stream stream</div><div class="ttdef"><b>Definition</b> _base.hpp:65</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

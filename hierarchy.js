@@ -4,6 +4,7 @@ var hierarchy =
     [ "Thoth::NJson::details_::BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", null ],
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
+    [ "Thoth::Http::ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", null ],
     [ "Thoth::Http::ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", null ],
     [ "Thoth::Http::ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
     [ "Thoth::Dsa::Cow< RefT, OwnT >", "struct_thoth_1_1_dsa_1_1_cow.html", null ],
@@ -40,16 +41,19 @@ var hierarchy =
     [ "Thoth::Http::NHeaders::MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", null ],
     [ "Thoth::Http::NHeaders::MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
     [ "Thoth::Http::OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
+    [ "Thoth::Http::details_::ParseStage< Stream, Head >", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", [
+      [ "Thoth::Http::details_::ParseCompleteStage< Stream, Head, Body >", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", null ]
+    ] ],
     [ "Thoth::Http::PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
     [ "Thoth::Http::PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
     [ "Thoth::Http::NHeaders::PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", null ],
     [ "Thoth::Http::PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
     [ "Thoth::Http::QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", null ],
-    [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ],
-    [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ],
-    [ "Thoth::Http::ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", null ],
-    [ "Thoth::Http::details_::ResponseParseStage< Stream >", "struct_thoth_1_1_http_1_1details___1_1_response_parse_stage.html", [
-      [ "Thoth::Http::details_::ParseCompleteStage< Stream, Body >", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", null ]
+    [ "Thoth::Http::RequestHead", "struct_thoth_1_1_http_1_1_request_head.html", [
+      [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ]
+    ] ],
+    [ "Thoth::Http::ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", [
+      [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ]
     ] ],
     [ "Thoth::Utils::Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner.html", null ],
     [ "Thoth::Utils::Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", null ],
@@ -57,8 +61,8 @@ var hierarchy =
     [ "Thoth::Utils::Scanner< std::monostate >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
     [ "Thoth::Utils::Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
     [ "Thoth::Utils::Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", null ],
+    [ "Thoth::Http::Server", "struct_thoth_1_1_http_1_1_server.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >", "struct_thoth_1_1_utils_1_1_shared_input_view.html", null ],
-    [ "Thoth::Http::Socket", "struct_thoth_1_1_http_1_1_socket.html", null ],
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],
     [ "Thoth::Http::NHeaders::SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", null ],
     [ "Thoth::Http::TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
@@ -67,6 +71,7 @@ var hierarchy =
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy< IsConst, Ts >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
-      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ]
+      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
+      [ "Thoth::Http::ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ]
     ] ]
 ];

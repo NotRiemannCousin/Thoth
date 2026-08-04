@@ -2,7 +2,7 @@ var searchData=
 [
   ['last_0',['last',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#a1161220e331314c0f1f7f930e3458347',1,'Thoth::Http::NHeaders::SuffixedRange']]],
   ['lastmatchvariant_2ehpp_1',['LastMatchVariant.hpp',['../_last_match_variant_8hpp.html',1,'']]],
-  ['lastused_2',['lastUsed',['../struct_thoth_1_1_http_1_1_socket.html#a689d58e30702ed2d9b9edaf68ff0b553',1,'Thoth::Http::Socket']]],
+  ['lastused_2',['lastUsed',['../struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416',1,'Thoth::Http::ClientConnection']]],
   ['lefttrim_3',['LeftTrim',['../namespace_thoth_1_1_string.html#a8fe100af95d712d8a423454cf41b47e3',1,'Thoth::String']]],
   ['lefttrimmed_4',['LeftTrimmed',['../namespace_thoth_1_1_string.html#a89e8f9bb8483be7bdb5d476010e95301',1,'Thoth::String']]],
   ['lefttrimmedstr_5',['LeftTrimmedStr',['../namespace_thoth_1_1_string.html#a2b8d39c9e5b2df9e51d2e1a371bab078',1,'Thoth::String']]],
