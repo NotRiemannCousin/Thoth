@@ -302,7 +302,7 @@ namespace Thoth::NJson {
             *it++ = '{';
 
             indentDepth++;
-            bool first = true;
+            bool first{ true };
             for (const auto& [key, val] : json) {
                 if (!first) *it++ = ',';
                 first = false;
@@ -337,7 +337,7 @@ namespace Thoth::NJson {
         void FormatJsonArr(const Array& val, bool pretty, const std::string& indent,
                 size_t indentDepth, OutIt& it) {
             *it++ = '[';
-            bool first = true;
+            bool first{ true };
 
             indentDepth++;
             for (const auto& elem : val) {
@@ -378,7 +378,7 @@ namespace Thoth::NJson {
             static constexpr std::string_view falseStr{ "false" };
             static constexpr std::string_view trueStr{ "true" };
 
-            const auto s_formatNumber = [&](const Number num) {
+            const auto formatNumber{ [&](const Number num) {
                 if (!std::isfinite(num)) {
                     it = std::ranges::copy(nullStr, it).out;
                     return;
@@ -392,9 +392,9 @@ namespace Thoth::NJson {
                     it = std::ranges::copy(buf.data(), ptr, it).out;
                 else
                     it = std::ranges::copy(nullStr, it).out;
-            };
+            } };
 
-            const auto s_formatString = [&](const String& str) {
+            const auto formatString{ [&](const String& str) {
                 str.Visit(Hermes::Utils::Overloaded{
                     // ReSharper disable once CppPassValueParameterByConstReference
                     [&](const String::RefType ref) {
@@ -406,12 +406,12 @@ namespace Thoth::NJson {
                         EscapeJsonString(own, it);
                     }
                 });
-            };
+            } };
 
 
             std::visit(Hermes::Utils::Overloaded{
-                s_formatString,
-                s_formatNumber,
+                formatString,
+                formatNumber,
                 [&](const Bool    bln){ it = std::ranges::copy(bln ? trueStr : falseStr, it).out; },
                 [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it); },
                 [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it); },

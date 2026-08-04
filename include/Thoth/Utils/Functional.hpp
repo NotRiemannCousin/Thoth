@@ -70,7 +70,7 @@ namespace Thoth::Utils {
     template<bool Negate, class Pred, class Trans, class Val>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
     constexpr std::expected<Val, std::invoke_result_t<Trans, Val>>
-    S_CallIfErrorImpl(Pred&& pred, Trans&& trans, Val&& value) {
+    CallIfErrorImpl(Pred&& pred, Trans&& trans, Val&& value) {
         if (std::invoke(pred, value) ^ Negate)
             return std::forward<Val>(value);
         return std::unexpected{ std::invoke(trans, std::forward<Val>(value)) };
@@ -80,7 +80,7 @@ namespace Thoth::Utils {
     //! the std::unexpected with transformation applied to the error otherwise.
     template<class Pred, class Trans, class Val>
     constexpr auto CallIfError(Pred&& pred, Trans&& trans, Val&& value) {
-        return S_CallIfErrorImpl<false>(
+        return CallIfErrorImpl<false>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value)
@@ -103,7 +103,7 @@ namespace Thoth::Utils {
     //! the std::unexpected with transformation applied to the error otherwise.
     template<class Pred, class Trans, class Val>
     constexpr auto CallIfErrorNot(Pred&& pred, Trans&& trans, Val&& value) {
-        return S_CallIfErrorImpl<true>(
+        return CallIfErrorImpl<true>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value)
@@ -174,15 +174,15 @@ namespace Thoth::Utils {
 
     template<bool Negate, class Pred, class Val>
         requires std::predicate<Pred&, Val&>
-    constexpr bool S_TestIfImpl(Pred&& pred, Val& value) {
+    constexpr bool TestIfImpl(Pred&& pred, Val& value) {
         return std::invoke(pred, value) ^ Negate;
     }
 
     template<bool Negate, class Pred, class Val, class Err>
         requires std::predicate<Pred&, Val&>
     constexpr std::expected<Val, std::decay_t<Err>>
-    S_ErrorIfImpl(Pred&& pred, Val&& value, Err&& error) {
-        if (!S_TestIfImpl<Negate>(pred, value))
+    ErrorIfImpl(Pred&& pred, Val&& value, Err&& error) {
+        if (!TestIfImpl<Negate>(pred, value))
             return std::forward<Val>(value);
         return std::unexpected{ std::forward<Err>(error) };
     }
@@ -190,7 +190,7 @@ namespace Thoth::Utils {
     //! @brief In a std::expected<Val, Err> context, transform an error into a value only if the predicate match.
     template<class Pred, class Val, class Err>
     constexpr auto ErrorIf(Pred&& pred, Val&& value, Err&& error) {
-        return S_ErrorIfImpl<false>(
+        return ErrorIfImpl<false>(
             std::forward<Pred>(pred),
             std::forward<Val>(value),
             std::forward<Err>(error)
@@ -206,7 +206,7 @@ namespace Thoth::Utils {
     //! @brief In a std::expected<Val, Err> context, transform an error into a value only if the predicate *doesn't* match.
     template<class Pred, class Val, class Err>
     constexpr auto ErrorIfNot(Pred&& pred, Val&& value, Err&& error) {
-        return S_ErrorIfImpl<true>(
+        return ErrorIfImpl<true>(
             std::forward<Pred>(pred),
             std::forward<Val>(value),
             std::forward<Err>(error)
@@ -258,7 +258,7 @@ namespace Thoth::Utils {
 
     template<bool Negate, class Pred, class Trans, class Val>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto S_TransformOptIfImpl(Pred&& pred, Trans&& trans, Val&& value)
+    constexpr auto TransformOptIfImpl(Pred&& pred, Trans&& trans, Val&& value)
         -> std::optional<std::invoke_result_t<Trans, Val>>
     {
         if (std::invoke(pred, value) ^ Negate)
@@ -268,7 +268,7 @@ namespace Thoth::Utils {
 
     template<bool Negate, class Pred, class Trans, class Val, class Err>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto S_TransformExpIfImpl(Pred&& pred, Trans&& trans, Val&& value, Err&& error)
+    constexpr auto TransformExpIfImpl(Pred&& pred, Trans&& trans, Val&& value, Err&& error)
     -> std::expected<std::invoke_result_t<Trans, Val>, std::decay_t<Err>>
     {
         if (std::invoke(pred, value) ^ Negate)
@@ -283,7 +283,7 @@ namespace Thoth::Utils {
     template<class Pred, class Trans, class Val>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
     constexpr auto TransformOptIf(Pred&& pred, Trans&& trans, Val&& value) {
-        return S_TransformOptIfImpl<false>(
+        return TransformOptIfImpl<false>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value)
@@ -309,7 +309,7 @@ namespace Thoth::Utils {
     template<class Pred, class Trans, class Val>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
     constexpr auto TransformOptIfNot(Pred&& pred, Trans&& trans, Val&& value) {
-        return S_TransformOptIfImpl<true>(
+        return TransformOptIfImpl<true>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value)
@@ -384,7 +384,7 @@ namespace Thoth::Utils {
     template<class Pred, class Trans, class Val, class Err>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
     constexpr auto TransformExpIf(Pred&& pred, Trans&& trans, Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<false>(
+        return TransformExpIfImpl<false>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value),
@@ -396,7 +396,7 @@ namespace Thoth::Utils {
     template<auto Pred, class Trans, class Val, class Err>
         requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
     constexpr auto TransformExpIf(Trans&& trans, Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<false>(
+        return TransformExpIfImpl<false>(
             ToValue<Pred>(),
             std::forward<Trans>(trans),
             std::forward<Val>(value),
@@ -408,7 +408,7 @@ namespace Thoth::Utils {
     template<auto Pred, auto Trans, class Val, class Err>
         requires std::invocable<decltype(Trans), Val>
     constexpr auto TransformExpIf(Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<false>(
+        return TransformExpIfImpl<false>(
             ToValue<Pred>(),
             ToValue<Trans>(),
             std::forward<Val>(value),
@@ -420,7 +420,7 @@ namespace Thoth::Utils {
     template<class Pred, class Trans, class Val, class Err>
         requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
     constexpr auto TransformExpIfNot(Pred&& pred, Trans&& trans, Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<true>(
+        return TransformExpIfImpl<true>(
             std::forward<Pred>(pred),
             std::forward<Trans>(trans),
             std::forward<Val>(value),
@@ -432,7 +432,7 @@ namespace Thoth::Utils {
     template<auto Pred, class Trans, class Val, class Err>
         requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
     constexpr auto TransformExpIfNot(Trans&& trans, Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<true>(
+        return TransformExpIfImpl<true>(
             ToValue<Pred>(),
             std::forward<Trans>(trans),
             std::forward<Val>(value),
@@ -444,7 +444,7 @@ namespace Thoth::Utils {
     template<auto Pred, auto Trans, class Val, class Err>
         requires std::invocable<decltype(Trans), Val>
     constexpr auto TransformExpIfNot(Val&& value, Err&& error) {
-        return S_TransformExpIfImpl<true>(
+        return TransformExpIfImpl<true>(
             ToValue<Pred>(),
             ToValue<Trans>(),
             std::forward<Val>(value),
@@ -510,8 +510,8 @@ namespace Thoth::Utils {
     template<bool Negate, class Pred, class Val>
         requires std::predicate<Pred&, Val&>
     constexpr std::optional<std::remove_cvref_t<Val>>
-    S_NulloptIfImpl(Pred&& pred, Val&& value) {
-        if (!S_TestIf<Negate>(pred, value))
+    NulloptIfImpl(Pred&& pred, Val&& value) {
+        if (!TestIf<Negate>(pred, value))
             return std::forward<Val>(value);
         return std::nullopt;
     }
@@ -519,7 +519,7 @@ namespace Thoth::Utils {
     //! @brief In a std::optional<T> context, transforms the value to std::nullopt if the predicate match.
     template<class Pred, class Val>
     constexpr auto NulloptIf(Pred&& pred, Val&& value) {
-        return S_NulloptIfImpl<false>(
+        return NulloptIfImpl<false>(
             std::forward<Pred>(pred),
             std::forward<Val>(value)
         );
@@ -534,7 +534,7 @@ namespace Thoth::Utils {
     //! @brief In a std::optional<T> context, transforms the value to std::nullopt if the predicate *doesn't* match.
     template<class Pred, class Val>
     constexpr auto NulloptIfNot(Pred&& pred, Val&& value) {
-        return S_NulloptIfImpl<true>(
+        return NulloptIfImpl<true>(
             std::forward<Pred>(pred),
             std::forward<Val>(value)
         );

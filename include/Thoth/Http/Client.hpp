@@ -25,7 +25,7 @@ namespace Thoth::Http {
     //! negotiated for the connection, and the timestamp of the last use.
     //! This struct is used internally by ClientJanitor to decide when a socket can
     //! be safely evicted.
-    struct Socket {
+    struct ClientConnection {
         // TODO: FUTURE: Implement HTTP2 and Quic
         // using ClientSocketType = std::variant<Hermes::RawTcpClient     , Hermes::RawTlsClient      ,
         //                                       Hermes::AsyncRawTcpClient, Hermes::AsyncRawTlsClient>;
@@ -73,7 +73,7 @@ namespace Thoth::Http {
 
         //! @brief Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex
         //! to not break other threads.
-        std::unordered_map<Hermes::IpEndpoint, std::vector<std::shared_ptr<Socket>>> connectionPool;
+        std::unordered_map<Hermes::IpEndpoint, std::vector<std::shared_ptr<ClientConnection>>> connectionPool;
     private:
         std::atomic_bool _isRunning{ true };
         ClientJanitor();
@@ -100,7 +100,7 @@ namespace Thoth::Http {
         template<class Method, BodyConcept Body>
         using ExpResponse = std::expected<Response<Method, Body>, ExchangeError>;
 
-        using SocketPtr = std::shared_ptr<Socket>;
+        using SocketPtr = std::shared_ptr<ClientConnection>;
 
         //! @brief Sends a synchronous HTTP request and receives a response of the same body type.
         //! @details

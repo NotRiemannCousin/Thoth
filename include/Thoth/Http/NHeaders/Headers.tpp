@@ -19,13 +19,13 @@ namespace Thoth::Http {
         using std::string;
 
 
-        constexpr auto s_toLower = [](const unsigned char c) -> char {
+        constexpr auto toLower{ [](const unsigned char c) -> char {
             if ('A' <= c && c <= 'Z')
                 return c - 'A' + 'a';
             return c;
-        };
-        constexpr auto s_isCharAllowed = [](const char c) -> bool {
-            constexpr auto s_allowedChars = [] {
+        } };
+        constexpr auto isCharAllowed{ [](const char c) -> bool {
+            constexpr auto allowedChars{ std::invoke([] {
                 std::bitset<256> res{};
 
                 for (char ch{'0'}; ch <= '9'; ch++) res.set(ch);
@@ -36,20 +36,19 @@ namespace Thoth::Http {
                     res.set(ch);
 
                 return res;
-            }();
+            }) };
 
-            return s_allowedChars[c];
-        };
+            return allowedChars[c];
+        } };
 
         constexpr string_view delimiter { "\r\n" };
 
-        auto headersView{ [&] mutable {
-                if constexpr (std::constructible_from<string_view, R>)
-                    return string_view{ headers };
-                else
-                    return std::forward<R>(headers);
-            }()
-        };
+        auto headersView{ std::invoke([&] mutable {
+            if constexpr (std::constructible_from<string_view, R>)
+                return string_view{ headers };
+            else
+                return std::forward<R>(headers);
+        }) };
 
         Headers res;
 
@@ -82,10 +81,10 @@ namespace Thoth::Http {
                 headerVal.pop_back();
 
 
-            if (headerKey.empty() || !rg::all_of(headerKey, s_isCharAllowed))
+            if (headerKey.empty() || !rg::all_of(headerKey, isCharAllowed))
                 return std::unexpected{ StatusCodeEnum::BadRequest };
 
-            rg::transform(headerKey, headerKey.begin(), s_toLower);
+            rg::transform(headerKey, headerKey.begin(), toLower);
             res.Add(headerKey, headerVal);
         }
 
@@ -93,13 +92,13 @@ namespace Thoth::Http {
     }
 
     // inline auto Headers::GetSetCookieView() const {
-    //     constexpr auto s_cmp = [](const auto& p) {
+    //     constexpr auto cmp{ [](const auto& p) {
     //         return p.first == "set-cookie";
-    //     };
+    //     } };
     //
     //
     //     return _headers
-    //             | std::views::filter(s_cmp)
+    //             | std::views::filter(cmp)
     //             | std::views::transform(&HeaderPair::second);
     // }
 

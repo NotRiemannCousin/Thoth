@@ -15,9 +15,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeType> {
     std::optional<MimeType> Scan(std::string_view input) {
         using RfcSpec = String::CharSequences::Http; // RFC 9110
 
-        constexpr auto s_isToken = [](std::string_view str) {
+        constexpr auto isToken{ [](std::string_view str) {
             return !str.empty() && str.find_first_not_of(RfcSpec::tchar) == std::string::npos;
-        };
+        } };
 
         String::Trim(input, RfcSpec::whitespace);
 
@@ -31,7 +31,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeType> {
         const auto subtypeStr{ input.substr(0, semiIdx) };
         input.remove_prefix(subtypeStr.size());
 
-        if (!s_isToken(typeStr) || !s_isToken(subtypeStr)) return std::nullopt;
+        if (!isToken(typeStr) || !isToken(subtypeStr)) return std::nullopt;
 
         MimeType mime{
             .type    = std::string{ typeStr },
@@ -50,7 +50,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeType> {
             const auto key{ input.substr(0, equalIdx) };
             input.remove_prefix(key.size() + 1);
 
-            if (input.empty() || !s_isToken(key)) return std::nullopt;
+            if (input.empty() || !isToken(key)) return std::nullopt;
 
             if (input[0] == '"') {
                 input.remove_prefix(1);
@@ -79,7 +79,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeType> {
                 std::string_view value{ input.substr(0, endParam) };
                 input.remove_prefix(value.size());
 
-                if (!s_isToken(value)) return std::nullopt;
+                if (!isToken(value)) return std::nullopt;
 
                 mime.options.emplace_back(key, value);
             }
@@ -98,7 +98,7 @@ struct std::formatter<Thoth::Http::NHeaders::MimeType>{
     auto format(const Thoth::Http::NHeaders::MimeType& mime, FormatContext& ctx) const {
         std::format_to(ctx.out(), "{}/{}", mime.type, mime.subtype);
 
-        static constexpr auto s_quoted = [](string_view str) -> string {
+        static constexpr auto quoted{ [](string_view str) -> string {
             string res;
             for (const char c : str) {
                 if (c == '\\' || c == '\"')
@@ -106,11 +106,11 @@ struct std::formatter<Thoth::Http::NHeaders::MimeType>{
                 res += c;
             }
             return res;
-        };
+        } };
 
         for (const auto [fst, snd] : mime.options)
             if (snd.contains("\\\""))
-                std::format_to(ctx.out(), ";{}=\"{}\"", fst, s_quoted(snd));
+                std::format_to(ctx.out(), ";{}=\"{}\"", fst, quoted(snd));
             else
                 std::format_to(ctx.out(), ";{}={}", fst, snd);
 

@@ -77,7 +77,7 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
                 return std::move(req);
             case NHttp::StatusCodeEnum::BadRequest:
                 return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
-                default:
+            default:
                 return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ "Invalid Request" } } };
         }
     };

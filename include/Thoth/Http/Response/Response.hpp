@@ -17,16 +17,10 @@ namespace Thoth::Http {
 
 
     template<MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string>
-    struct Response {
+    struct Response : ResponseHead {
         using MethodType = Method;
 
-        VersionEnum version{};
-        StatusCodeEnum status{};
-        std::string statusMessage{};
-        ResponseHeaders headers{};
         Body body;
-
-        friend struct Client; // who construct it
 
         template<class = void>
             requires std::same_as<Body, std::string>
@@ -44,12 +38,6 @@ namespace Thoth::Http {
         //! @brief Monad friendly move of the body, discarding the rest of the response.
         //! Recommended check for Successful() before.
         [[nodiscard]] Body MoveBody() &&;
-    private:
-
-        Response(VersionEnum version, StatusCodeEnum status,
-                std::string&& statusMessage, Headers&& headers, Body&& body);
-
-        Response(ResponseHead&& head, Body&& body);
     };
 
     using GetResponse  = Response<>;

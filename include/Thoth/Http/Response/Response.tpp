@@ -13,19 +13,6 @@ namespace Thoth::Http {
         return std::ranges::begin(body);
     }
 
-
-
-    template<MethodConcept Method, WritableBodyConcept Body>
-    Response<Method, Body>::Response(VersionEnum version, StatusCodeEnum status, std::string&& statusMessage,
-            Headers&& headers, Body&& body) : version{ version },  status{ status },
-            statusMessage{ std::move(statusMessage) },  headers{ std::move(headers) },
-            body{ std::move(body) } { }
-
-    template<MethodConcept Method, WritableBodyConcept Body>
-    Response<Method, Body>::Response(ResponseHead &&head, Body &&body) : version{ head.version },  status{ head.status },
-            statusMessage{ std::move(head.statusMessage) },  headers{ std::move(head.headers) },
-            body{ std::move(body) } { }
-
     template<MethodConcept Method, WritableBodyConcept Body>
     template<class>
         requires std::same_as<Body, std::string>
@@ -53,5 +40,14 @@ namespace Thoth::Http {
     template<MethodConcept Method, WritableBodyConcept Body>
     Body Response<Method, Body>::MoveBody() && {
         return std::move(body);
+    }
+
+
+    namespace details_ {
+        template <class Stream>
+        using ResponseParseStage = ParseStage<Stream, ResponseHead>;
+
+        template <class Stream, WritableBodyConcept Body>
+        using ResponseParseCompleteStage = ParseCompleteStage<Stream, ResponseHead, Body>;
     }
 }

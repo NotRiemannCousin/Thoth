@@ -15,9 +15,9 @@ namespace Thoth::Dsa {
         : _data(init), _compare(comp) {
         std::ranges::sort(_data, _compare, &value_type::first);
 
-        const auto key_equiv = [this](const KeyT& a, const KeyT& b) {
+        const auto key_equiv{ [this](const KeyT& a, const KeyT& b) {
             return !std::invoke(_compare, a, b) && !std::invoke(_compare, b, a);
-        };
+        } };
 
         auto [firstToErase, last]{ std::ranges::unique(_data, key_equiv, &value_type::first) };
         _data.erase(firstToErase, last);

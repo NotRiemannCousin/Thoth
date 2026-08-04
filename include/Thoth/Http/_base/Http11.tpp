@@ -1,4 +1,3 @@
-// Http11.tpp
 #pragma once
 #pragma region Macros
 #pragma push_macro("ASSERT_OR_RET_ERROR")
@@ -17,7 +16,7 @@
 #pragma endregion
 
 namespace Thoth::Http::details_ {
-    template<typename Stream>
+    template <class Stream>
     std::expected<ResponseParseStage<Stream>, ExchangeError> Http11::ParseResponseLine(ResponseParseStage<Stream> stage) {
         namespace rg = std::ranges;
         using namespace std::literals;
@@ -42,12 +41,13 @@ namespace Thoth::Http::details_ {
         return std::move(stage);
     }
 
-    template<typename Stream>
-        std::expected<ResponseParseStage<Stream>, ExchangeError> Http11::ParseHeaders(ResponseParseStage<Stream> stage) {
+    template<class Stream, class Head>
+        std::expected<ParseStage<Stream, Head>, ExchangeError> Http11::ParseHeaders(ParseStage<Stream, Head> stage) {
         using namespace std::literals;
+        using HeadersType = decltype(stage.data.headers);
 
         auto rawHeaders{ stage.stream | Hermes::Utils::UntilMatch(k_crlfCrlf) };
-        const auto headersParseRes{ Headers::Parse(rawHeaders) };
+        const auto headersParseRes{ HeadersType::Parse(rawHeaders) };
 
         ASSERT_OR_RET_ERROR(headersParseRes, MessageParseErrorEnum::InvalidHeaders);
 
@@ -70,9 +70,9 @@ namespace Thoth::Http::details_ {
         }
     }
 
-template<typename Stream, WritableBodyConcept Body>
-    std::expected<ParseCompleteStage<Stream, Body>, ExchangeError> Http11::ParseBody(
-        ParseCompleteStage<Stream, Body> stage)
+template<class Stream, WritableBodyConcept Body, class Head>
+    std::expected<ParseCompleteStage<Stream, Head, Body>, ExchangeError> Http11::ParseBody(
+        ParseCompleteStage<Stream, Head, Body> stage)
     {
         namespace rg = std::ranges;
         namespace vs = std::views;
@@ -83,41 +83,41 @@ template<typename Stream, WritableBodyConcept Body>
         using HeaderErrEnum        = NHeaders::HeaderErrorEnum;
         using TransEncodingErrEnum = NHeaders::TransferEncodingEnum;
 
-        static constexpr auto s_cvt = [](const char c) {
+        static constexpr auto cvt{ [](const char c) {
             return std::bit_cast<ValueType>(c);
-        };
+        } };
 
         using TransferValue = std::variant<std::monostate, size_t>;
         using State1 = std::expected<TransferValue, HeaderErrEnum>;
         using State2 = std::expected<TransferValue, ExchangeError>;
 
-        const auto s_extractChunked = [](const std::vector<TransEncodingErrEnum>& values) -> State1 {
+        const auto extractChunked{ [](const std::vector<TransEncodingErrEnum>& values) -> State1 {
             if (rg::contains(values, TransEncodingErrEnum::Chunked))
                 return TransferValue{ std::monostate{} };
             return std::unexpected{ HeaderErrEnum::NotFound };
-        };
+        } };
 
-        const auto s_extractLengthIfNotChunked = [&](HeaderErrEnum error) -> State2 {
+        const auto extractLengthIfNotChunked{ [&](HeaderErrEnum error) -> State2 {
             if (error == HeaderErrEnum::NotFound)
                 if (const auto res{ stage.data.headers.ContentLength().GetWithDefault(0) }; res)
                     return TransferValue{*res};
 
             return std::unexpected{ ExchangeError{ ParseErrEnum::InvalidHeaders } };
-        };
+        } };
 
-        const auto s_readBody = [&](State2::value_type value) -> std::expected<std::monostate, ExchangeError> {
-            const auto s_readSizedLength = [&](const size_t contentSize) -> std::expected<std::monostate, ExchangeError> {
+        const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ExchangeError> {
+            const auto readSizedLength{ [&](const size_t contentSize) -> std::expected<std::monostate, ExchangeError> {
                 if constexpr (requires (Body b){ { b.reserve(0) }; })
                     stage.body.reserve(contentSize);
 
                 rg::copy(
-                    stage.stream | vs::take(contentSize) | vs::transform(s_cvt),
+                    stage.stream | vs::take(contentSize) | vs::transform(cvt),
                     GetInserterIterator(stage.body)
                 );
                 return std::monostate{};
-            };
+            } };
 
-            const auto s_readChunked = [&](std::monostate) -> std::expected<std::monostate, ExchangeError> {
+            const auto readChunked{ [&](std::monostate) -> std::expected<std::monostate, ExchangeError> {
                 ASSERT_OR_RET_ERROR(stage.data.version != VersionEnum::HTTP1_0, ParseErrEnum::VersionNeedsContentLength);
 
                 std::string chunkLengthStr;
@@ -131,7 +131,7 @@ template<typename Stream, WritableBodyConcept Body>
                     ASSERT_OR_RET_ERROR(chunkLength, ParseErrEnum::InvalidStartLine);
 
                     rg::copy(
-                        stage.stream | vs::take(*chunkLength) | vs::transform(s_cvt),
+                        stage.stream | vs::take(*chunkLength) | vs::transform(cvt),
                         GetInserterIterator(stage.body)
                     );
 
@@ -140,40 +140,25 @@ template<typename Stream, WritableBodyConcept Body>
                 } while (chunkLength != 0);
 
                 return std::monostate{};
-            };
+            } };
 
-            return std::visit(Hermes::Utils::Overloaded{ s_readSizedLength, s_readChunked }, value);
-        };
+            return std::visit(Hermes::Utils::Overloaded{ readSizedLength, readChunked }, value);
+        } };
 
         auto readRes{ stage.data.headers.TransferEncoding().Get()
-                .and_then(s_extractChunked)
-                .or_else(s_extractLengthIfNotChunked)
-                .and_then(s_readBody) };
+                .and_then(extractChunked)
+                .or_else(extractLengthIfNotChunked)
+                .and_then(readBody) };
 
         if (!readRes) return std::unexpected{ readRes.error() };
 
         return std::move(stage);
     }
 
-    template<WireSocketConcept Socket>
-    std::expected<std::monostate, ExchangeError> Http11::SendRequestLineAndHeaders(
-        Socket& socket,
-        std::string_view method,
-        const auto& url,
-        VersionEnum version,
-        const Headers& headers)
-    {
-        const std::string_view path{ url.GetPathOrSep() };
-        const auto& query{ url.GetQuery() };
-        const auto versionStr{ VersionToString(version) };
-
-        std::string requestStr;
-        if (query.empty()) {
-            requestStr = std::format("{} {} {}{}{}{}", method, path, versionStr, k_crlf, headers, k_crlf);
-        } else {
-            requestStr = std::format("{} {}?{} {}{}{}{}", method, path, query, versionStr, k_crlf, headers, k_crlf);
-        }
-
+    template<MethodConcept Method, class Head, WireSocketConcept Socket>
+        requires (std::same_as<Head, RequestHead> || std::same_as<Head, ResponseHead>)
+    std::expected<std::monostate, ExchangeError> Http11::SendMessageHead(Socket& socket, const Head& head) {
+        std::string requestStr{ std::format("{} {}", Method::MethodName(), head) };
         SEND_OR_RET_ERROR(res, requestStr);
 
         return std::monostate{};

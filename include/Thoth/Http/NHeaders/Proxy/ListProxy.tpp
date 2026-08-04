@@ -20,13 +20,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
                 return true;
-            }() || ...);
+            }) || ...);
             if (result) return result;
         }
         return std::nullopt;
@@ -45,13 +45,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
                 return true;
-            }() || ...);
+            }) || ...);
             if (result) return std::move(*result);
         }
 
@@ -70,13 +70,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
                 return true;
-            }() || ...);
+            }) || ...);
             if (result) return result;
             if (result) return std::move(*result);
         }
@@ -96,11 +96,11 @@ namespace Thoth::Http::NHeaders {
     template<std::ranges::range R>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::Set(R&& newValue) && {
-        static constexpr auto s_format = [](auto& obj) {
+        static constexpr auto format{ [](auto& obj) {
             return std::format("{}", obj);
-        };
+        } };
         headers.Set(key, newValue
-            | std::views::transform(s_format)
+            | std::views::transform(format)
             | std::views::join_with(',')
             | std::ranges::to<std::string>());
     }
@@ -131,14 +131,14 @@ namespace Thoth::Http::NHeaders {
         } else {
             bool set{};
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (!set)
                     if (auto parsed{ ParseList<Ts>(&temp, inPattern[i]) }; parsed) {
                         std::move(*this).Set(std::move(*parsed));
                         set = true;
                     }
                 ++i;
-            }(), ...);
+            }), ...);
             return set;
         }
     }

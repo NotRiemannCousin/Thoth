@@ -5,6 +5,9 @@
 namespace Thoth::Http {
     // based in Microslop's HttpResponseHeaders
     struct ResponseHeaders : Headers {
+        //! @copydoc Headers::Parse
+        template<std::ranges::input_range R>
+        static WebResult<ResponseHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Response Specific Proxies
 
@@ -92,3 +95,5 @@ namespace Thoth::Http {
 #pragma endregion
     };
 }
+
+#include <Thoth/Http/NHeaders/Response/ResponseHeaders.tpp>

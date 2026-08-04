@@ -10,6 +10,9 @@ namespace Thoth::Http {
     //! @brief Represents the collection of HTTP headers associated with a request.
     //! Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.
     struct RequestHeaders : Headers {
+        //! @copydoc Headers::Parse
+        template<std::ranges::input_range R>
+        static WebResult<RequestHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Raw and Collection Views
         //! @name Raw and Collection Views
@@ -152,3 +155,5 @@ namespace Thoth::Http {
 // #pragma endregion
     };
 };
+
+#include <Thoth/Http/NHeaders/Request/RequestHeaders.tpp>

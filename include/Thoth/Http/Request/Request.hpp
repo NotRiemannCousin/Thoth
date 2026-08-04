@@ -1,6 +1,7 @@
 #pragma once
 #include <Hermes/Socket/Sync/ClientSocket.hpp>
 
+#include <Thoth/Http/Request/RequestHead.hpp>
 #include <Thoth/Http/_base.hpp>
 #include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/Methods/GetMethod.hpp>
@@ -10,13 +11,10 @@
 
 namespace Thoth::Http {
 	template<MethodConcept Method = GetMethod, ReadableBodyConcept Body = std::string>
-	struct Request {
+	struct Request : RequestHead {
 		using MethodType = Method;
 
-		Url url;
 		Body body;
-		VersionEnum version{ VersionEnum::HTTP1_1 };
-		RequestHeaders headers{ Headers::DefaultHeaders() };
 
 	    //! @brief Try parse to a URL before construct the Request.
 		template<class T = std::string_view>

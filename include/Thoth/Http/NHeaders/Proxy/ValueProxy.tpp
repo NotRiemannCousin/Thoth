@@ -19,13 +19,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
                 return false;
-            }() || ...);
+            }) || ...);
 
             if (result) return result;
         }
@@ -46,13 +46,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
                 return false;
-            }() || ...);
+            }) || ...);
 
             if (result) return *result;
         }
@@ -72,13 +72,13 @@ namespace Thoth::Http::NHeaders {
         } else {
             std::optional<Type> result;
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (auto parsed{ Utils::Scan<Ts>(**val, inPattern[i++]) }; parsed) {
                     result = *parsed;
                     return true;
                 }
                 return false;
-            }() || ...);
+            }) || ...);
 
             if (result) return *result;
         }
@@ -126,14 +126,14 @@ namespace Thoth::Http::NHeaders {
         } else {
             bool set{};
             std::size_t i{};
-            ([&] {
+            (std::invoke([&] {
                 if (!set)
                     if (auto parsed{ Utils::Scan<Ts>(newValue, inPattern[i]) }; parsed) {
                         headers.Set(key, std::format("{}", *parsed));
                         set = true;
                     }
                 ++i;
-            }(), ...);
+            }), ...);
             return set;
         }
     }

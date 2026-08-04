@@ -4,7 +4,6 @@
 #include <Thoth/Http/ExchangeError.hpp>
 #include <Hermes/Utils/Overloads.hpp>
 #include <string_view>
-#include <bit>
 
 #pragma region Macros
 #pragma push_macro("ASSERT_OR_RET_ERROR")
@@ -54,6 +53,10 @@ namespace Thoth::Http {
     auto Client::SendAsAndParse(
         Request<Method, RequestBody> request, F&& bodyFactory) -> ExpResponse<Method, ResponseBody> {
 
+        static constexpr auto toExchangeError{ [](const auto err) {
+            return ExchangeError{ err };
+        } };
+
         const auto scheme{ request.url.GetScheme() };
         ASSERT_OR_RET_EXC_ERROR(scheme == "http" || scheme == "https", GenericError{ "Invalid scheme" });
 
@@ -73,11 +76,11 @@ namespace Thoth::Http {
 
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
-        const auto establishConnection = [&](Hermes::IpEndpoint&& endpoint) {
+        const auto establishConnection{ [&](Hermes::IpEndpoint&& endpoint) {
 
 #pragma region create socket
 
-            const auto getSocketFromPool = [&]() -> std::optional<SocketPtr> {
+            const auto getSocketFromPool{ [&]() -> std::optional<SocketPtr> {
                 std::lock_guard lock{ janitor.poolMutex };
 
                 const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(endpoint) };
@@ -89,17 +92,17 @@ namespace Thoth::Http {
                 connContainerIt->second.pop_back();
 
                 return std::move(infoPtr);
-            };
+            } };
 
-            const auto createNewSocket = [&]() -> std::optional<SocketPtr> {
+            const auto createNewSocket{ [&]() -> std::optional<SocketPtr> {
                 auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ endpoint, hostname }) };
                 if (!newSocketResult)
                     return std::nullopt;
 
-                return std::make_shared<Socket>(std::move(*newSocketResult));
-            };
+                return std::make_shared<ClientConnection>(std::move(*newSocketResult));
+            } };
 
-            const auto cleanupSocket = [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
+            const auto cleanupSocket{ [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
                 std::lock_guard lock{ janitor.poolMutex };
 
                 static Headers::HeaderValue closeConnectionVal{ "close" };
@@ -116,7 +119,7 @@ namespace Thoth::Http {
                     janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
 
                 return std::move(val.second);
-            };
+            } };
 
 #pragma endregion
 
@@ -124,30 +127,24 @@ namespace Thoth::Http {
 
 #pragma region check and send
 
-            const auto isSocketValid = [&]() -> Hermes::ConnectionResultOper {
+            const auto isSocketValid{ [&]() -> Hermes::ConnectionResultOper {
                 ASSERT_OR_RET_ERROR(infoPtr, ConnectionErrorEnum::ConnectionFailed);
                 return std::monostate{};
-            };
+            } };
 
-            const auto sendRequest = [&](std::monostate) -> std::expected<SocketPtr, ExchangeError> {
+            const auto sendRequest{ [&](std::monostate) -> std::expected<SocketPtr, ExchangeError> {
                 request.headers.Add("host", hostname);
 
                 details_::Http11::PrepareBodyHeaders(request.headers, request.body);
 
-                auto headRes{ details_::Http11::SendRequestLineAndHeaders(
-                    (*infoPtr)->socket, Method::MethodName(), request.url, request.version, request.headers
-                ) };
+                auto headRes{ details_::Http11::SendMessageHead<Method, RequestHead>((*infoPtr)->socket, request) };
                 ASSERT_OR_RET_ERROR(headRes, headRes.error());
 
                 auto bodyRes{ details_::Http11::SendBody((*infoPtr)->socket, request.body) };
                 ASSERT_OR_RET_ERROR(bodyRes, bodyRes.error());
 
                 return std::move(*infoPtr);
-            };
-
-            const auto toExchangeError = [](const auto err) -> ExchangeError {
-                return ExchangeError{ err };
-            };
+            } };
 
 #pragma endregion
 
@@ -156,11 +153,7 @@ namespace Thoth::Http {
                     .and_then(sendRequest)
                     .and_then(std::bind_back(ParseHttp11_<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
                     .transform(cleanupSocket);
-        };
-
-        const auto toExchangeError = [](const auto err) {
-            return ExchangeError{ err };
-        };
+        } };
 
 
         return Hermes::IpEndpoint::TryResolve(hostname, std::string{ request.url.GetScheme() })
@@ -203,34 +196,27 @@ namespace Thoth::Http {
     std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ExchangeError> Client::ParseHttp11_(
         SocketPtr infoPtr, F&& bodyFactory) {
 
-        using StreamType = decltype(infoPtr->socket.RecvStream<char>());
-        using ParseCompleteStage = details_::ParseCompleteStage<StreamType, ResponseBody>;
+        using StreamType    = decltype(infoPtr->socket.RecvStream<char>());
+        using HeadStage     = details_::ResponseParseStage<StreamType>;
+        using CompleteStage = details_::ResponseParseCompleteStage<StreamType, ResponseBody>;
 
-        const auto createResponseStream = [&]() -> std::expected<details_::ResponseParseStage<StreamType>, ExchangeError> {
-            return details_::ResponseParseStage<StreamType>{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
-        };
+        const auto createResponseStream{ [&]() -> std::expected<HeadStage, ExchangeError> {
+            return HeadStage{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
+        } };
 
-        const auto initializeBody = [&](details_::ResponseParseStage<StreamType> stage) -> std::expected<ParseCompleteStage, ExchangeError> {
+        const auto initializeBody{ [&](HeadStage stage) -> std::expected<CompleteStage, ExchangeError> {
             auto bodyExp{ std::invoke(bodyFactory, stage.data) };
+            ASSERT_OR_RET_ERROR(bodyExp, bodyExp.error());
 
-            if (!bodyExp) return std::unexpected{ bodyExp.error() };
-
-            return ParseCompleteStage{
+            return CompleteStage{
                 { std::move(stage.data), std::move(stage.stream) },
                 std::move(*bodyExp)
             };
-        };
+        } };
 
-        const auto createObject = [&](ParseCompleteStage&& stage) {
-            return std::pair{
-                    std::move(infoPtr),
-                    Response<Method, ResponseBody>{
-                        stage.data.version, stage.data.status, std::move(stage.data.statusMessage),
-                        std::move(stage.data.headers),
-                        std::move(stage.body)
-                    }
-                };
-        };
+        const auto createObject{ [&](CompleteStage&& stage) {
+            return std::pair{ std::move(infoPtr), Response<Method, ResponseBody>{ stage.data, std::move(stage.body) } };
+        } };
 
         return createResponseStream()
                 .and_then(HTTP11_FORWARD(ParseResponseLine))

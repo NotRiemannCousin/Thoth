@@ -6,7 +6,7 @@ namespace std {
     struct hash<Thoth::Http::QueryParams> {
         size_t operator()(const Thoth::Http::QueryParams& params) const noexcept {
             using Hermes::Utils::HashCombine;
-            size_t seed = 1469598103934665603ULL;
+            size_t seed{ 1469598103934665603ULL };
 
             for (const auto& [key, vals] : params) {
                 HashCombine(seed, std::hash<Thoth::Http::QueryParams::QueryKey>{}(key));
@@ -28,20 +28,20 @@ namespace std {
         auto format(const Thoth::Http::QueryParams &query, FormatContext& ctx) const {
             using Pair = std::pair<std::string_view, std::string_view>;
 
-            static constexpr auto singleParam = [] (const Pair p) {
+            static constexpr auto singleParam{ [] (const Pair p) {
                 return std::format("{}={}", p.first, p.second);
 #ifdef __cpp_lib_ranges_concat
                 return std::views::concat(p.first, std::views::single('='), p.second | std::views::join_with(','));
 #else
-            };
-            static constexpr auto s_getEveryPair = [](const Thoth::Http::QueryParams::MapType::value_type& p) {
+            } };
+            static constexpr auto getEveryPair{ [](const Thoth::Http::QueryParams::MapType::value_type& p) {
                 return p.second | views::transform([&](std::string_view val) { return Pair{ p.first, val }; });
-            };
+            } };
 #endif
 
             return std::ranges::copy(
                 query._elements
-                        | views::transform(s_getEveryPair)
+                        | views::transform(getEveryPair)
                         | views::join
                         | std::views::transform(singleParam)
                         | views::join_with('&'),

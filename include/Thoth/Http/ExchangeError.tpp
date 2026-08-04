@@ -22,14 +22,17 @@ struct std::formatter<Thoth::Http::ExchangeError> {
 
     template<class FormatContext>
     auto format(const ExchangeError &error, FormatContext& ctx) const {
-        constexpr auto s_keyToStr = [](const Thoth::NJson::Key& key) {
+        namespace rg = std::ranges;
+        namespace vs = std::views;
+
+        constexpr auto keyToStr{ [](const Thoth::NJson::Key& key) {
             return std::visit(
                 Hermes::Utils::Overloaded{
                     [](std::string objKey) { return objKey; },
                     [](const int arrKey)   { return std::to_string(arrKey); }
                 }, key
             );
-        };
+        } };
 
         std::visit(
             Hermes::Utils::Overloaded{
@@ -37,14 +40,14 @@ struct std::formatter<Thoth::Http::ExchangeError> {
                     std::format_to(ctx.out(), "Unknown character '{}' at position {}", e.c, e.idx);
                 },
                 [&](const JsonGetError& e) {
-                    std::format_to(ctx.out(), "Can't find object with the '{}' key", s_keyToStr(e.key));
+                    std::format_to(ctx.out(), "Can't find object with the '{}' key", keyToStr(e.key));
                 },
                 [&](const JsonFindError& e) {
                     std::string sla{ e.currentPath
-                            | std::views::transform(s_keyToStr)
-                            | std::views::join_with(string_view{ ", " })
-                            | ranges::to<string>() };
-                    std::format_to(ctx.out(), "Unable to find '{}' in the tree [{}]", s_keyToStr(e.key), sla);
+                            | vs::transform(keyToStr)
+                            | vs::join_with(string_view{ ", " })
+                            | rg::to<string>() };
+                    std::format_to(ctx.out(), "Unable to find '{}' in the tree [{}]", keyToStr(e.key), sla);
                 },
                 [&](const JsonSearchError& e) {
                     std::format_to(ctx.out(), "No object matches the predicate");

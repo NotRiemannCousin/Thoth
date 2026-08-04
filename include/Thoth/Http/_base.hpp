@@ -56,4 +56,24 @@ namespace Thoth::Http {
         { s.Close() } -> std::same_as<void>;
         { s.Abort() } -> std::same_as<void>;
     };
+
+
+    namespace details_ {
+        template<class Stream, class Head>
+        struct ParseStage {
+            Head data{};
+            Stream stream;
+        };
+
+        template<class Stream, class Head, WritableBodyConcept Body>
+        struct ParseCompleteStage : ParseStage<Stream, Head> {
+            Body body{};
+        };
+
+        static constexpr std::string_view k_crlf     { "\r\n" };
+        static constexpr std::string_view k_crlfCrlf { "\r\n\r\n" };
+        static constexpr std::string_view k_lastChunk{ "0\r\n\r\n" };
+    }
 }
+
+#include <Thoth/Http/_base.tpp>
