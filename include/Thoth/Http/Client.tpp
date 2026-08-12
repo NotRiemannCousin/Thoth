@@ -1,5 +1,5 @@
 #pragma once
-#include <Thoth/Http/_base/Http11.hpp>
+#include <Thoth/Http/_base/Http1.hpp>
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/ExchangeError.hpp>
 #include <Hermes/Utils/Overloads.hpp>
@@ -8,22 +8,33 @@
 #pragma region Macros
 #pragma push_macro("ASSERT_OR_RET_ERROR")
 #pragma push_macro("ASSERT_OR_RET_EXC_ERROR")
-#pragma push_macro("HTTP11_FORWARD")
 #undef ASSERT_OR_RET_ERROR
 #undef ASSERT_OR_RET_EXC_ERROR
-#undef HTTP11_FORWARD
 
 #define ASSERT_OR_RET_ERROR(cond, error) do {       \
     if (!(cond)) return std::unexpected{ (error) }; \
 } while (0)
 #define ASSERT_OR_RET_EXC_ERROR(cond, error) ASSERT_OR_RET_ERROR(cond, ExchangeError{ (error) })
-#define HTTP11_FORWARD(methodName) ([](auto stage) { return details_::Http11::methodName(std::move(stage)); })
 
 #pragma endregion
 
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
+    template<class T>
+    auto ClientConnection::Send(const T& data) {
+        return std::visit([&](auto& sock) { return sock.Send(data); }, socket);
+    }
+    inline void ClientConnection::Close() {
+        std::visit([](auto& sock) { sock.Close(); }, socket);
+    }
+    inline void ClientConnection::Abort() {
+        std::visit([](auto& sock) { sock.Abort(); }, socket);
+    }
+
+
+
+
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
     auto Client::Send(Request<Method, Body> request) -> ExpResponse<Method, Body> {
@@ -123,7 +134,7 @@ namespace Thoth::Http {
 
 #pragma endregion
 
-            auto infoPtr{ getSocketFromPool().or_else(createNewSocket) };
+            auto infoPtr{ getSocketFromPool().or_else(createNewSocket).value_or(nullptr) };
 
 #pragma region check and send
 
@@ -135,15 +146,15 @@ namespace Thoth::Http {
             const auto sendRequest{ [&](std::monostate) -> std::expected<SocketPtr, ExchangeError> {
                 request.headers.Add("host", hostname);
 
-                details_::Http11::PrepareBodyHeaders(request.headers, request.body);
+                details_::Http1::PrepareBodyHeaders(request.headers, request.body);
 
-                auto headRes{ details_::Http11::SendMessageHead<Method, RequestHead>((*infoPtr)->socket, request) };
+                auto headRes{ details_::Http1::SendMessageHead<Method, RequestHead>(*infoPtr, request) };
                 ASSERT_OR_RET_ERROR(headRes, headRes.error());
 
-                auto bodyRes{ details_::Http11::SendBody((*infoPtr)->socket, request.body) };
+                auto bodyRes{ details_::Http1::SendBody(*infoPtr, request.body) };
                 ASSERT_OR_RET_ERROR(bodyRes, bodyRes.error());
 
-                return std::move(*infoPtr);
+                return std::move(infoPtr);
             } };
 
 #pragma endregion
@@ -151,7 +162,7 @@ namespace Thoth::Http {
             return isSocketValid()
                     .transform_error(toExchangeError)
                     .and_then(sendRequest)
-                    .and_then(std::bind_back(ParseHttp11_<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
+                    .and_then(std::bind_back(ParseHttp1_<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
                     .transform(cleanupSocket);
         } };
 
@@ -170,8 +181,8 @@ namespace Thoth::Http {
 
     template<class F>
     auto Client::H_SendAndParse(F&& bodyFactory) {
-        return [&]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
-            return SendAndParse<Method, Body>(request, std::forward<F>(bodyFactory));
+        return [factory{ std::forward<F>(bodyFactory) }]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) mutable {
+            return SendAndParse<Method, Body>(std::move(request), std::forward<F>(factory));
         };
     }
 
@@ -185,49 +196,33 @@ namespace Thoth::Http {
     template<WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     auto Client::H_SendAsAndParse(F&& bodyFactory) {
-        return [&]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
-            return SendAsAndParse<Method, RequestBody, ResponseBody>(request, std::forward<F>(bodyFactory));
+        return [factory{ std::forward<F>(bodyFactory) }]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAsAndParse<Method, RequestBody, ResponseBody>(std::move(request), std::move(factory));
         };
     }
 
 
     template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ExchangeError> Client::ParseHttp11_(
+    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ExchangeError> Client::ParseHttp1_(
         SocketPtr infoPtr, F&& bodyFactory) {
 
-        using StreamType    = decltype(infoPtr->socket.RecvStream<char>());
-        using HeadStage     = details_::ResponseParseStage<StreamType>;
-        using CompleteStage = details_::ResponseParseCompleteStage<StreamType, ResponseBody>;
-
-        const auto createResponseStream{ [&]() -> std::expected<HeadStage, ExchangeError> {
-            return HeadStage{ ResponseHead{}, infoPtr->socket.RecvStream<char>() };
+        const auto forwardBoth{ [&infoPtr](Response<Method, ResponseBody>&& response) {
+            return std::pair<SocketPtr, Response<Method, ResponseBody>>{ std::move(infoPtr), std::move(response) };
         } };
 
-        const auto initializeBody{ [&](HeadStage stage) -> std::expected<CompleteStage, ExchangeError> {
-            auto bodyExp{ std::invoke(bodyFactory, stage.data) };
-            ASSERT_OR_RET_ERROR(bodyExp, bodyExp.error());
-
-            return CompleteStage{
-                { std::move(stage.data), std::move(stage.stream) },
-                std::move(*bodyExp)
-            };
+        auto createResponse{ [bFactory = std::forward<F>(bodyFactory)](auto&& sock) mutable {
+            return details_::Http1::BuildResponse<Method, ResponseBody>(
+                sock.template RecvStream<char>(),
+                std::forward<F>(bFactory)
+            );
         } };
 
-        const auto createObject{ [&](CompleteStage&& stage) {
-            return std::pair{ std::move(infoPtr), Response<Method, ResponseBody>{ stage.data, std::move(stage.body) } };
-        } };
-
-        return createResponseStream()
-                .and_then(HTTP11_FORWARD(ParseResponseLine))
-                .and_then(HTTP11_FORWARD(ParseHeaders))
-                .and_then(initializeBody)
-                .and_then(HTTP11_FORWARD(ParseBody))
-                .transform(createObject);
+        return std::visit(createResponse, infoPtr->socket)
+                .transform(forwardBoth);
     }
 }
 
 #pragma warning(default: 4455)
-#pragma pop_macro("HTTP11_FORWARD")
 #pragma pop_macro("ASSERT_OR_RET_EXC_ERROR")
 #pragma pop_macro("ASSERT_OR_RET_ERROR")

@@ -72,7 +72,7 @@ namespace Thoth::Http {
     > { // first time I'm using inheritance in the project lol
     };
 
-    template <class T>
+    template<class T>
     using ExchangeResult = std::expected<T, ExchangeError>;
 }
 

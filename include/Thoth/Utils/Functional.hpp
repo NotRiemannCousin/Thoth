@@ -593,7 +593,7 @@ namespace Thoth::Utils {
         using ValT = std::remove_cvref_t<Val>;
         using ErrT = std::remove_cvref_t<Err>;
 
-        AccT accumulator = std::forward<Acc>(initial);
+        AccT accumulator{ std::forward<Acc>(initial) };
 
         for (auto&& val : range) {
             if (!val)

@@ -7,7 +7,7 @@ using namespace Thoth::NJson;
 StringRef::StringRef(const std::string& other) : str{ other } { }
 
 // NOLINTNEXTLINE(*)
-StringRef::StringRef(const std::string_view other, const std::shared_ptr<std::string> _data) : str{ other }, _data{ _data } { }
+StringRef::StringRef(const std::string_view other, const std::shared_ptr<std::string> data) : str{ other }, m_data{ data } { }
 
 StringRef::operator std::string_view() const noexcept {
     return str;

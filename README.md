@@ -1,5 +1,5 @@
 # Thoth
-## A functional, expressive, asynchronous C++26 webdev library
+## A functional, expressive, C++26 webdev library
 
 ![](Thoth-logo.webp "Thoth, the Egyptian god of writing and wisdom")
 
@@ -10,7 +10,7 @@ for creating robust, high-performance web applications.
 Inspired by the egyptian god of knowledge, magic and the moon, Thoth embraces a philosophy of
 strong type safety and compile-time checks without sacrificing usability or elegance. It heavily
 utilizes coroutines and functional programming concepts to offer a natural and expressive API
-for asynchronous tasks.
+for tasks.
 
 
 ## Examples
@@ -41,14 +41,14 @@ std::expected<std::vector<Json>, std::string> GetMembers(size_t id) {
 
 
 int main() {
-    static constexpr auto s_getName = [](const Json& member) {
+    static constexpr auto getName = [](const Json& member) {
         return member.Get("name")
                 .and_then(&Json::EnsureRef<NJson::String>)
                 .transform(&NJson::String::AsCopy) // converting from Thoth Strings (that are COW) to std::string
                 .value_or("<unnamed>");
     };
 
-    static auto constexpr s_printNames = [](auto&& names) {
+    static auto constexpr printNames = [](auto&& names) {
         std::println("- Members:");
         for (std::string&& name : names)
             std::println("{}", name);
@@ -56,7 +56,7 @@ int main() {
         return std::monostate{};
     };
 
-    static auto constexpr s_errorHandler = [](auto&& error) {
+    static auto constexpr errorHandler = [](auto&& error) {
         std::println("An error occurred: {}", error);
 
         if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
@@ -67,9 +67,9 @@ int main() {
 
 
     GetMembers(4001234)
-            .transform(std::views::transform(s_getName))
-            .transform(s_printNames)
-            .transform_error(s_errorHandler);
+            .transform(std::views::transform(getName))
+            .transform(printNames)
+            .transform_error(errorHandler);
 
     return 0;
 }

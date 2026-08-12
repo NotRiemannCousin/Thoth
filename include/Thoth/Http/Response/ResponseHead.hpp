@@ -3,6 +3,7 @@
 
 #include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
 #include <Thoth/Http/Response/StatusCodeEnum.hpp>
+#include <Thoth/Http/_base.hpp>
 
 
 namespace Thoth::Http {

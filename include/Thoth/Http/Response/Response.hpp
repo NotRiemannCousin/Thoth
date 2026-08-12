@@ -49,8 +49,8 @@ namespace Thoth::Http {
     using GetFileResponse  = Response<GetMethod, Dsa::TextFileOutputRange>;
     using PostFileResponse = Response<PostMethod, Dsa::TextFileOutputRange>;
 
-    using GetFileBinResponse  = Response<GetMethod, std::vector<std::byte>>;
-    using PostFileBinResponse = Response<PostMethod, std::vector<std::byte>>;
+    using GetFileBinResponse  = Response<GetMethod, Dsa::BinFileOutputRange>;
+    using PostFileBinResponse = Response<PostMethod, Dsa::BinFileOutputRange>;
 }
 
 

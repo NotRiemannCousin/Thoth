@@ -13,7 +13,7 @@ namespace Thoth::Dsa {
         int mode{};
     };
 
-    template <Hermes::ByteLike T = char>
+    template<Hermes::ByteLike T = char>
     struct FileOutputRange {
 
         using value_type = T;
@@ -43,7 +43,7 @@ namespace Thoth::Dsa {
         [[nodiscard]] static std::unreachable_sentinel_t end();
 
     private:
-        std::basic_ofstream<T> _outStream;
+        std::basic_ofstream<T> m_outStream;
     };
 
     using TextFileOutputRange = FileOutputRange<>;

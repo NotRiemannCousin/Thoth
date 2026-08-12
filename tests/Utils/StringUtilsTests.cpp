@@ -192,65 +192,65 @@ struct CharSequencesTest : testing::Test {};
 
 TEST_F(CharSequencesTest, Digits_ContainsAllDigits) {
     for (char c{ '0' }; c <= '9'; ++c)
-        EXPECT_NE(CharSequences::digits.find(c), std::string_view::npos) << c;
+        EXPECT_NE(CharSequences::k_digits.find(c), std::string_view::npos) << c;
 }
 
 TEST_F(CharSequencesTest, Alpha_ContainsAllLetters) {
     for (char c{ 'a' }; c <= 'z'; ++c)
-        EXPECT_NE(CharSequences::alpha.find(c), std::string_view::npos) << c;
+        EXPECT_NE(CharSequences::k_alpha.find(c), std::string_view::npos) << c;
     for (char c{ 'A' }; c <= 'Z'; ++c)
-        EXPECT_NE(CharSequences::alpha.find(c), std::string_view::npos) << c;
+        EXPECT_NE(CharSequences::k_alpha.find(c), std::string_view::npos) << c;
 }
 
 TEST_F(CharSequencesTest, AlphaLower_NoUpperCase) {
-    for (char c : CharSequences::alphaLower)
+    for (char c : CharSequences::k_alphaLower)
         EXPECT_FALSE('A' <= c && c <= 'Z');
 }
 
 TEST_F(CharSequencesTest, AlphaUpper_NoLowerCase) {
-    for (char c : CharSequences::alphaUpper)
+    for (char c : CharSequences::k_alphaUpper)
         EXPECT_FALSE('a' <= c && c <= 'z');
 }
 
 TEST_F(CharSequencesTest, Alphanumeric_ContainsDigitsAndLetters) {
-    EXPECT_NE(CharSequences::alphanumeric.find('a'), std::string_view::npos);
-    EXPECT_NE(CharSequences::alphanumeric.find('Z'), std::string_view::npos);
-    EXPECT_NE(CharSequences::alphanumeric.find('5'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_alphanumeric.find('a'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_alphanumeric.find('Z'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_alphanumeric.find('5'), std::string_view::npos);
 }
 
 TEST_F(CharSequencesTest, Base64_HasExactly64Chars) {
-    EXPECT_EQ(CharSequences::base64.size(), 64u);
+    EXPECT_EQ(CharSequences::k_base64.size(), 64u);
 }
 
 TEST_F(CharSequencesTest, Base64Url_HasExactly64Chars) {
-    EXPECT_EQ(CharSequences::base64Url.size(), 64u);
+    EXPECT_EQ(CharSequences::k_base64Url.size(), 64u);
 }
 
 TEST_F(CharSequencesTest, Base64Url_HasDashAndUnderscore) {
-    EXPECT_NE(CharSequences::base64Url.find('-'), std::string_view::npos);
-    EXPECT_NE(CharSequences::base64Url.find('_'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_base64Url.find('-'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_base64Url.find('_'), std::string_view::npos);
 }
 
 TEST_F(CharSequencesTest, Hex_ContainsDigitsAndAF) {
-    EXPECT_NE(CharSequences::hex.find('a'), std::string_view::npos);
-    EXPECT_NE(CharSequences::hex.find('F'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_hex.find('a'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_hex.find('F'), std::string_view::npos);
 }
 
 TEST_F(CharSequencesTest, Whitespace_ContainsCommonChars) {
-    EXPECT_NE(CharSequences::whitespace.find(' '),  std::string_view::npos);
-    EXPECT_NE(CharSequences::whitespace.find('\t'), std::string_view::npos);
-    EXPECT_NE(CharSequences::whitespace.find('\n'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_whitespace.find(' '),  std::string_view::npos);
+    EXPECT_NE(CharSequences::k_whitespace.find('\t'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_whitespace.find('\n'), std::string_view::npos);
 }
 
 TEST_F(CharSequencesTest, Newlines_ContainsCRLF) {
-    EXPECT_NE(CharSequences::newlines.find('\r'), std::string_view::npos);
-    EXPECT_NE(CharSequences::newlines.find('\n'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_newlines.find('\r'), std::string_view::npos);
+    EXPECT_NE(CharSequences::k_newlines.find('\n'), std::string_view::npos);
 }
 
 TEST_F(CharSequencesTest, Http_Tchar_ContainsAlphanumeric) {
-    EXPECT_NE(CharSequences::Http::tchar.find('a'), std::string_view::npos);
-    EXPECT_NE(CharSequences::Http::tchar.find('0'), std::string_view::npos);
-    EXPECT_NE(CharSequences::Http::tchar.find('!'), std::string_view::npos);
+    EXPECT_NE(CharSequences::Http::k_tchar.find('a'), std::string_view::npos);
+    EXPECT_NE(CharSequences::Http::k_tchar.find('0'), std::string_view::npos);
+    EXPECT_NE(CharSequences::Http::k_tchar.find('!'), std::string_view::npos);
 }
 
 #pragma endregion
@@ -281,7 +281,7 @@ TEST_F(MakeBitsetTest, MakeBitset_MultipleStrings_UnionOfChars) {
 }
 
 TEST_F(MakeBitsetTest, MakeBitset_Digits_AllDigitsSet) {
-    constexpr auto bs{ MakeBitset({ CharSequences::digits }) };
+    constexpr auto bs{ MakeBitset({ CharSequences::k_digits }) };
     for (char c{ '0' }; c <= '9'; ++c)
         EXPECT_TRUE(bs.test(static_cast<unsigned char>(c)));
 }

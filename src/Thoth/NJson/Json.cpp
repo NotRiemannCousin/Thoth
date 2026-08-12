@@ -22,7 +22,7 @@ using namespace Thoth::Http;
 #endif
 
 
-static Json::Value I_CloneValue(const Json::Value& v) {
+static Json::Value CloneValue(const Json::Value& v) {
     return std::visit([]<class Type>(Type const& x) -> Json::Value {
         using T = std::remove_cvref_t<Type>;
         if constexpr (std::same_as<T, Object>)
@@ -35,15 +35,15 @@ static Json::Value I_CloneValue(const Json::Value& v) {
 }
 
 
-Json::Json(JsonObject&& child)      : _value{ std::make_unique<JsonObject>(std::move(child)) } {
+Json::Json(JsonObject&& child)      : m_value{ std::make_unique<JsonObject>(std::move(child)) } {
     DEBUG_PRINT("JsonVal => Json&& child");
  }
 
-Json::Json(const Array& child) : _value{ child } {
+Json::Json(const Array& child) : m_value{ child } {
     DEBUG_PRINT("JsonVal => const Array& child");
 }
 
-Json::Json(Array&& child) : _value{ std::move(child) } {
+Json::Json(Array&& child) : m_value{ std::move(child) } {
     DEBUG_PRINT("JsonVal => Array&& child");
 }
 
@@ -51,28 +51,28 @@ Json::Json() {
     DEBUG_PRINT("JsonVal => Default");
 }
 
-Json::Json(const JsonObject& child) : _value{ std::make_unique<JsonObject>(child) } {
+Json::Json(const JsonObject& child) : m_value{ std::make_unique<JsonObject>(child) } {
     DEBUG_PRINT("JsonVal => const Json& child");
  }
 
 
-Json::Json(Value&& newValue) noexcept : _value{ std::move(newValue) } {
+Json::Json(Value&& newValue) noexcept : m_value{ std::move(newValue) } {
     DEBUG_PRINT("JsonVal => Value&& newValue");
  }
 
-Json::Json(const Value& newValue)     : _value{ I_CloneValue(newValue) } {
+Json::Json(const Value& newValue)     : m_value{ CloneValue(newValue) } {
     DEBUG_PRINT("JsonVal => const Value& newValue");
  }
 
-Json::Json(Json&& other) noexcept  : _value{ std::move(other._value) } {
+Json::Json(Json&& other) noexcept  : m_value{ std::move(other.m_value) } {
     DEBUG_PRINT("JsonVal => JsonVal&& other");
  }
 
-Json::Json(const Json& other)      : _value{ I_CloneValue(other._value) } {
+Json::Json(const Json& other)      : m_value{ CloneValue(other.m_value) } {
     DEBUG_PRINT("JsonVal => const JsonVal& other");
 }
 
-Json::Json(bool b) : _value{ b } {
+Json::Json(bool b) : m_value{ b } {
     DEBUG_PRINT("JsonVal => bool b");
 }
 
@@ -80,48 +80,48 @@ Json::Json(bool b) : _value{ b } {
 
 
 Json& Json::operator=(JsonObject&& other) {
-    _value = std::make_unique<JsonObject>(std::move(other));
+    m_value = std::make_unique<JsonObject>(std::move(other));
     DEBUG_PRINT("JsonVal operator => Json&& child");
     return *this;
 }
 
 Json& Json::operator=(const JsonObject& other) {
-    _value = std::make_unique<JsonObject>(other);
+    m_value = std::make_unique<JsonObject>(other);
     DEBUG_PRINT("JsonVal operator => const Json& child");
 
     return *this;
 }
 
 Json & Json::operator=(const Array &child) {
-    _value = child;
+    m_value = child;
     DEBUG_PRINT("JsonVal operator => const array& child");
 
     return *this;
 }
 
 Json & Json::operator=(Array &&child) {
-    _value = std::move(child);
+    m_value = std::move(child);
     DEBUG_PRINT("JsonVal operator => const array& child");
 
     return *this;
 }
 
 Json& Json::operator=(Value&& newValue) noexcept {
-    _value = std::move(newValue);
+    m_value = std::move(newValue);
     DEBUG_PRINT("JsonVal operator => Value&& newValue");
 
     return *this;
 }
 
 Json& Json::operator=(const Value& newValue) {
-    _value = I_CloneValue(newValue);
+    m_value = CloneValue(newValue);
     DEBUG_PRINT("JsonVal operator => const Value& newValue");
 
     return *this;
 }
 
 Json& Json::operator=(Json&& other) noexcept {
-    _value = std::move(other._value);
+    m_value = std::move(other.m_value);
     DEBUG_PRINT("JsonVal operator => JsonVal&& other");
 
     return *this;
@@ -131,30 +131,30 @@ Json& Json::operator=(const Json& other) {
     if (this == &other)
         return *this;
 
-    _value = I_CloneValue(other._value);
+    m_value = CloneValue(other.m_value);
     DEBUG_PRINT("JsonVal operator => const JsonVal& other");
 
     return *this;
 }
 
 Json& Json::operator=(bool other) {
-    _value = other;
+    m_value = other;
     return *this;
 }
 
 
-Json::operator Value&() { return _value; }
+Json::operator Value&() { return m_value; }
 
-Json::operator const Value&() const { return _value; }
+Json::operator const Value&() const { return m_value; }
 
 
 bool Json::operator==(const Json& other) const {
     return std::visit([&]<class T>(const T& val){
             if constexpr (std::same_as<T, Object>)
-                return std::holds_alternative<T>(other._value) && *std::get<T>(other._value) == *val;
+                return std::holds_alternative<T>(other.m_value) && *std::get<T>(other.m_value) == *val;
             else
-                return std::holds_alternative<T>(other._value) && std::get<T>(other._value) == val;
-        }, _value);
+                return std::holds_alternative<T>(other.m_value) && std::get<T>(other.m_value) == val;
+        }, m_value);
 }
 
 
@@ -194,19 +194,19 @@ bool Json::operator==(const Json& other) const {
 
 #pragma region Read functions
 
-static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
-    constexpr auto s_hex = [](const char c) -> int {
+static bool DecodeUtf16(std::string_view& s, std::string& out) {
+    constexpr auto hex = [](const char c) -> int {
         if (c >= '0' && c <= '9') return c - '0';
         if (c >= 'a' && c <= 'f') return c - 'a' + 10;
         if (c >= 'A' && c <= 'F') return c - 'A' + 10;
         return -1;
     };
 
-    auto s_readU = [&](uint16_t& v) -> bool {
+    auto readU = [&](uint16_t& v) -> bool {
         if (s.size() < 5 || s[0] != 'u') return false;
         uint16_t x{};
         for (int i = 1; i < 5; i++) {
-            const int h{ s_hex(s[i]) };
+            const int h{ hex(s[i]) };
             if (h < 0) return false;
             x = (x<<4) | h;
         }
@@ -216,7 +216,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
     };
 
     uint16_t h;
-    if (!s_readU(h)) return false;
+    if (!readU(h)) return false;
 
     uint32_t code{ h };
 
@@ -226,7 +226,7 @@ static bool S_DecodeUtf16(std::string_view& s, std::string& out) {
         s.remove_prefix(1);
 
         uint16_t l;
-        if (!s_readU(l)) return false;
+        if (!readU(l)) return false;
         if (l < 0xDC00 || l > 0xDFFF) return false;
         code = 0x10000 + (((h - 0xD800) << 10) | (l - 0xDC00));
     }
@@ -303,7 +303,7 @@ static bool details_::ReadString(std::string_view& input, auto& val, const Buffe
         strRef.remove_prefix(pos + 1);
 
         switch (*strRef.data()) {
-            case 'u' : if (!S_DecodeUtf16(strRef, str)) return false; break;
+            case 'u' : if (!DecodeUtf16(strRef, str)) return false; break;
             case '\\': str.push_back('\\'); strRef.remove_prefix(1);  break;
             case '"' : str.push_back('\"'); strRef.remove_prefix(1);  break;
             case 'n' : str.push_back('\n'); strRef.remove_prefix(1);  break;
@@ -376,7 +376,7 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
 
         ADVANCE_SPACES();
 
-        auto [newItem, _]{ json._pairs.try_emplace(key.AsOwned(), NullV ) };
+        auto [newItem, _]{ json.m_pairs.try_emplace(key.AsOwned(), NullV ) };
 
         bool success{};
         switch (*input.data()) {
@@ -476,13 +476,13 @@ std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool 
     else
         info.bufferView = input;
 
-    const auto s_error = [&]() -> std::unexpected<ExchangeError>{
+    const auto error = [&]() -> std::unexpected<ExchangeError>{
         if (input.empty())
             return std::unexpected{ ExchangeError{ GenericError{ "Input for Json is empty" } } };
         return std::unexpected{ ExchangeError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
     };
 
-#define return return s_error(); // I hate to do it
+#define return return error(); // I hate to do it
     ADVANCE_SPACES();
 #undef return
 
@@ -496,10 +496,10 @@ std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool 
         CASE_OPEN_NULLABLE success = details_::ReadNull(  input, json);       break;
         CASE_OPEN_BOOLEAN  success = details_::ReadBool(  input, json);       break;
         CASE_OPEN_ARRAY    success = details_::ReadArray( input, json, info); break;
-        default: return s_error();
+        default: return error();
     }
     if (!success)
-        return s_error();
+        return error();
 
 #define return json; // Oh god, no again
     if (checkFinal) {
@@ -510,7 +510,7 @@ std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool 
     if (input.empty() || !checkFinal)
         return json;
 
-    return s_error();
+    return error();
 }
 
 #undef ADVANCE_IF
@@ -525,7 +525,7 @@ std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool 
 #undef CASE_OPEN_ARRAY
 
 
-constexpr auto s_resolveKeys = Hermes::Utils::Overloaded{
+constexpr auto resolveKeys = Hermes::Utils::Overloaded{
     [](auto& curr, const int index) -> bool {
         if (!Json::IsOfType<Array>(**curr))
             return false;
@@ -563,7 +563,7 @@ constexpr auto s_resolveKeys = Hermes::Utils::Overloaded{
 };
 
 #define RESOLVE_KEY_AND_RETURN(expected, error) \
-        if (!std::visit([&](const auto& k){ return s_resolveKeys(curr, k); }, key)) \
+        if (!std::visit([&](const auto& k){ return resolveKeys(curr, k); }, key)) \
             return error; \
         return expected;
 

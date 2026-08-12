@@ -66,12 +66,12 @@ namespace Thoth::Http {
 
         explicit Url() = default;
 
-        std::string rawUrl{};
-        std::string_view scheme{};
-        std::optional<Authority> authority{};
-        std::string_view path{};
-        std::string_view query{};
-        std::string_view frag{};
+        std::string              m_rawUrl{};
+        std::string_view         m_scheme{};
+        std::optional<Authority> m_authority{};
+        std::string_view         m_path{};
+        std::string_view         m_query{};
+        std::string_view         m_frag{};
     };
 }
 

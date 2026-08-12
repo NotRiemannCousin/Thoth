@@ -3,17 +3,17 @@
 
 namespace Thoth::Dsa {
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
-    constexpr Cow<RefT, OwnT>::Cow(RefT ref) noexcept : _value{ ref } { }
+    constexpr Cow<RefT, OwnT>::Cow(RefT ref) noexcept : m_value{ ref } { }
 
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>::Cow(const Cow& other) {
-        _value = other._value;
+        m_value = other.m_value;
     }
 
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::operator=(const Cow& other) {
         if (this != &other)
-            _value = other._value;
+            m_value = other.m_value;
         return *this;
     }
 
@@ -21,7 +21,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromRef(RefT ref) {
         Cow obj;
-        obj._value = ref;
+        obj.m_value = ref;
 
         return obj;
     }
@@ -29,14 +29,14 @@ namespace Thoth::Dsa {
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::SetRef(RefT ref) {
-        _value = ref;
+        m_value = ref;
         return *this;
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr bool Cow<RefT, OwnT>::IsRefType(const Cow& cow) {
-        return std::holds_alternative<RefT>(cow._value);
+        return std::holds_alternative<RefT>(cow.m_value);
     }
 
 
@@ -50,7 +50,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromOwned(const OwnT& own) {
         Cow obj;
-        obj._value = own;
+        obj.m_value = own;
 
         return obj;
     }
@@ -59,7 +59,7 @@ namespace Thoth::Dsa {
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT> Cow<RefT, OwnT>::FromOwned(OwnT &&own) {
         Cow obj;
-        obj._value = std::move(own);
+        obj.m_value = std::move(own);
 
         return obj;
     }
@@ -67,52 +67,52 @@ namespace Thoth::Dsa {
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::SetOwned(const OwnT& own) {
-        _value = own;
+        m_value = own;
         return *this;
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr Cow<RefT, OwnT>& Cow<RefT, OwnT>::SetOwned(OwnT&& own) {
-        _value = std::move(own);
+        m_value = std::move(own);
         return *this;
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr OwnT& Cow<RefT, OwnT>::AsOwned() {
-        if (std::holds_alternative<RefT>(_value))
-            _value = OwnT(std::get<RefT>(_value));
-        return std::get<OwnT>(_value);
+        if (std::holds_alternative<RefT>(m_value))
+            m_value = OwnT(std::get<RefT>(m_value));
+        return std::get<OwnT>(m_value);
     }
 
     template<class RefT, class OwnT> requires std::constructible_from<OwnT, RefT>
     constexpr OwnT Cow<RefT, OwnT>::AsCopy() const {
-        if (std::holds_alternative<RefT>(_value))
-            return OwnT{ std::get<RefT>(_value) };
-        return std::get<OwnT>(_value);
+        if (std::holds_alternative<RefT>(m_value))
+            return OwnT{ std::get<RefT>(m_value) };
+        return std::get<OwnT>(m_value);
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr RefT Cow<RefT, OwnT>::AsRef() const {
-        if (std::holds_alternative<RefT>(_value))
-            return std::get<RefT>(_value);
-        return RefT{ std::get<OwnT>(_value) };
+        if (std::holds_alternative<RefT>(m_value))
+            return std::get<RefT>(m_value);
+        return RefT{ std::get<OwnT>(m_value) };
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     template<class Callable>
     constexpr decltype(auto) Cow<RefT, OwnT>::Visit(Callable&& callable) {
-        return std::visit(std::forward<Callable>(callable), _value);
+        return std::visit(std::forward<Callable>(callable), m_value);
     }
 
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     template<class Callable>
     constexpr decltype(auto) Cow<RefT, OwnT>::Visit(Callable&& callable) const {
-        return std::visit(std::forward<Callable>(callable), _value);
+        return std::visit(std::forward<Callable>(callable), m_value);
     }
 
 

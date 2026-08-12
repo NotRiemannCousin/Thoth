@@ -58,15 +58,15 @@ namespace Thoth::Dsa {
         //! @brief Returns a reference of the value as RefT without modifying it.
         [[nodiscard]] constexpr RefT AsRef() const;
 
-        //! @brief convenient call to std::visit() on _value.
+        //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         constexpr decltype(auto) Visit(Callable&& callable);
 
-        //! @brief convenient call to std::visit() on _value.
+        //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
     private:
-        ValueType _value;
+        ValueType m_value;
     };
 
 

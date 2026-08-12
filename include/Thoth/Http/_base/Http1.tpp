@@ -2,22 +2,57 @@
 #pragma region Macros
 #pragma push_macro("ASSERT_OR_RET_ERROR")
 #pragma push_macro("SEND_OR_RET_ERROR")
+#pragma push_macro("HTTP11_FORWARD")
 #undef ASSERT_OR_RET_ERROR
 #undef SEND_OR_RET_ERROR
+#undef HTTP11_FORWARD
 
 #define ASSERT_OR_RET_ERROR(cond, error) do {                        \
     if (!(cond)) return std::unexpected{ ExchangeError{ (error) } }; \
 } while (0)
 
 #define SEND_OR_RET_ERROR(varName, input) do {                     \
-    const auto [_ ## varName, varName]{ socket.Send(input) };      \
+    const auto [m_ ## varName, varName]{ socket.Send(input) };     \
     ASSERT_OR_RET_ERROR(varName, varName.error());                 \
 } while (0)
+
+#define HTTP11_FORWARD(methodName) ([](auto stage) { return Http1::methodName(std::move(stage)); })
 #pragma endregion
 
 namespace Thoth::Http::details_ {
-    template <class Stream>
-    std::expected<ResponseParseStage<Stream>, ExchangeError> Http11::ParseResponseLine(ResponseParseStage<Stream> stage) {
+
+    template<class Method, WritableBodyConcept ResponseBody, class F, class Stream>
+        requires ResponseBodyFactoryConcept<F, ResponseBody>
+    std::expected<Response<Method, ResponseBody>, ExchangeError> Http1::BuildResponse(Stream&& stream, F&& bodyFactory) {
+        using HeadStage     = ResponseParseStage<Stream>;
+        using CompleteStage = ResponseParseCompleteStage<Stream, ResponseBody>;
+
+        const auto createResponseStream{ [&](auto&& s) -> std::expected<HeadStage, ExchangeError> {
+            return HeadStage{ ResponseHead{}, s };
+        } };
+
+        const auto initializeBody{ [&](HeadStage stage) -> std::expected<CompleteStage, ExchangeError> {
+            auto bodyExp{ std::invoke(bodyFactory, stage.data) };
+            ASSERT_OR_RET_ERROR(bodyExp, bodyExp.error());
+
+            return CompleteStage{ { std::move(stage.data), std::move(stage.stream) }, std::move(*bodyExp) };
+        } };
+
+        const auto createResponse{ [](CompleteStage&& stage) {
+            return Response<Method, ResponseBody>{ stage.data, std::move(stage.body) };
+        } };
+
+        return createResponseStream(std::forward<Stream>(stream))
+                .and_then(HTTP11_FORWARD(ParseResponseLine))
+                .and_then(HTTP11_FORWARD(ParseHeaders))
+                .and_then(initializeBody)
+                .and_then(HTTP11_FORWARD(ParseBody))
+                .transform(createResponse);
+    }
+
+
+    template<class Stream>
+    std::expected<ResponseParseStage<Stream>, ExchangeError> Http1::ParseResponseLine(ResponseParseStage<Stream> stage) {
         namespace rg = std::ranges;
         using namespace std::literals;
 
@@ -42,7 +77,7 @@ namespace Thoth::Http::details_ {
     }
 
     template<class Stream, class Head>
-        std::expected<ParseStage<Stream, Head>, ExchangeError> Http11::ParseHeaders(ParseStage<Stream, Head> stage) {
+        std::expected<ParseStage<Stream, Head>, ExchangeError> Http1::ParseHeaders(ParseStage<Stream, Head> stage) {
         using namespace std::literals;
         using HeadersType = decltype(stage.data.headers);
 
@@ -62,7 +97,7 @@ namespace Thoth::Http::details_ {
 
 
     template<ReadableBodyConcept Body>
-    void Http11::PrepareBodyHeaders(Headers& headers, const Body& body) {
+    void Http1::PrepareBodyHeaders(Headers& headers, const Body& body) {
         if constexpr (SizedReadableBodyConcept<Body>) {
             headers.ContentLength().Set(std::ranges::size(body));
         } else {
@@ -71,7 +106,7 @@ namespace Thoth::Http::details_ {
     }
 
 template<class Stream, WritableBodyConcept Body, class Head>
-    std::expected<ParseCompleteStage<Stream, Head, Body>, ExchangeError> Http11::ParseBody(
+    std::expected<ParseCompleteStage<Stream, Head, Body>, ExchangeError> Http1::ParseBody(
         ParseCompleteStage<Stream, Head, Body> stage)
     {
         namespace rg = std::ranges;
@@ -155,17 +190,17 @@ template<class Stream, WritableBodyConcept Body, class Head>
         return std::move(stage);
     }
 
-    template<MethodConcept Method, class Head, WireSocketConcept Socket>
+    template<MethodConcept Method, class Head, ConnectionConcept Socket>
         requires (std::same_as<Head, RequestHead> || std::same_as<Head, ResponseHead>)
-    std::expected<std::monostate, ExchangeError> Http11::SendMessageHead(Socket& socket, const Head& head) {
+    std::expected<std::monostate, ExchangeError> Http1::SendMessageHead(Socket& socket, const Head& head) {
         std::string requestStr{ std::format("{} {}", Method::MethodName(), head) };
         SEND_OR_RET_ERROR(res, requestStr);
 
         return std::monostate{};
     }
 
-    template<WireSocketConcept Socket, ReadableBodyConcept Body>
-    std::expected<size_t, ExchangeError> Http11::SendBody(Socket& socket, const Body& body) {
+    template<ConnectionConcept Socket, ReadableBodyConcept Body>
+    std::expected<size_t, ExchangeError> Http1::SendBody(Socket& socket, const Body& body) {
         namespace rg = std::ranges;
         size_t totalBytes{};
 
@@ -195,5 +230,6 @@ template<class Stream, WritableBodyConcept Body, class Head>
     }
 }
 
+#pragma pop_macro("HTTP11_FORWARD")
 #pragma pop_macro("SEND_OR_RET_ERROR")
 #pragma pop_macro("ASSERT_OR_RET_ERROR")

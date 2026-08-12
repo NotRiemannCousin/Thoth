@@ -36,7 +36,7 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
 
 #pragma region Lambdas
 
-    static constexpr auto s_getTab = [](const std::string& name) {
+    static constexpr auto getTab = [](const std::string& name) {
         return [&](const Json& tab) {
             if (const auto title{ tab.Find(tabTitleKeys) }; title)
                 return **title == Json{ name };
@@ -44,7 +44,7 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
         };
     };
 
-    static constexpr auto s_printAlbumName = [](const Array* arr, const std::string& tabName) {
+    static constexpr auto printAlbumName = [](const Array* arr, const std::string& tabName) {
         std::print("\n\n{}:\n", tabName);
 
         for (const auto& album : *arr) {
@@ -56,14 +56,14 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
         return 0;
     };
 
-    static constexpr auto s_printCollections = [](const Json& content) {
+    static constexpr auto printCollections = [](const Json& content) {
         for (const std::string tabName : { "Albuns", "Videos", "Singles & EPs", "Live performances" }) {
-            const auto tab{ content.Search(s_getTab(tabName)) };
+            const auto tab{ content.Search(getTab(tabName)) };
             if (!tab) continue;
 
             (*tab)->Find(tabContentKeys)
                     .and_then(&Json::EnsureRef<Array>)
-                    .transform(std::bind_back(s_printAlbumName, tabName));
+                    .transform(std::bind_back(printAlbumName, tabName));
 
             if ((*tab)->Find(moreContentButtonKeys))
                 std::println("\tMore...");
@@ -71,7 +71,7 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
         return std::monostate{};
     };
 
-    static constexpr auto s_processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::ExchangeError> {
+    static constexpr auto processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::ExchangeError> {
         switch (req.status) {
             case NHttp::StatusCodeEnum::Ok:
                 return std::move(req);
@@ -100,16 +100,16 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
 
     return NHttp::PostRequest::FromUrl(url, body)
                 .and_then(NHttp::Client::H_Send())
-                .and_then(s_processRequest)
+                .and_then(processRequest)
                 .and_then(&NHttp::PostResponse::AsJson<>)
 
                 .and_then(std::bind_back(&Json::FindAndMoveOrError, musicTabKeys))
-                .transform(s_printCollections);
+                .transform(printCollections);
 }
 
 
 int main() {
-
+    std::println("sla");
     /* "UCTmoyDN-uokTbzk_xXKcx6w" */
     if (const auto oper{ PrintInfo("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
         std::println("{}", oper.error());

@@ -12,19 +12,19 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     struct ListProxy {
-        static constexpr std::size_t Count{ sizeof...(Ts) };
-        static constexpr bool Single{ sizeof...(Ts) == 1 };
+        static constexpr std::size_t k_count{ sizeof...(Ts) };
+        static constexpr bool k_single{ sizeof...(Ts) == 1 };
 
         static_assert(sizeof...(Ts) >= 1, "At least 1 type must be provided.");
 
         using HeaderType  = std::conditional_t<IsConst, const Headers, Headers>;
-        using PatternType = std::conditional_t<Single, std::string_view, std::array<std::string_view, Count>>;
+        using PatternType = std::conditional_t<k_single, std::string_view, std::array<std::string_view, k_count>>;
 #ifdef __cpp_pack_indexing
-        using ElemType    = std::conditional_t<Single, Ts...[0], std::variant<Ts...>>;
+        using ElemType    = std::conditional_t<k_single, Ts...[0], std::variant<Ts...>>;
         // Lets go Microslop, where is my pack indexing?
 #else
         template<class F, class...> struct First { using Type = F; };
-        using ElemType    = std::conditional_t<Single, typename First<Ts...>::Type, std::variant<Ts...>>;
+        using ElemType    = std::conditional_t<k_single, typename First<Ts...>::Type, std::variant<Ts...>>;
 #endif
 
         using Type        = std::vector<ElemType>;
@@ -58,9 +58,9 @@ namespace Thoth::Http::NHeaders {
         static std::optional<std::vector<U>> ParseList(const HeaderValue* val, std::string_view pattern);
 
     private:
-        const PatternType inPattern;
-        const std::string_view key;
-        HeaderType& headers;
+        const PatternType m_inPattern;
+        const std::string_view m_key;
+        HeaderType& m_headers;
     };
 }
 

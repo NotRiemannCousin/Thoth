@@ -21,11 +21,11 @@ namespace Thoth::Http {
 
         //! @brief Gets a view of the contents of this headers collection that does
         //! not parse nor validate data.
-        [[nodiscard]] [[nodiscard]] auto GetNonValidatedView() const;
+        [[nodiscard]] auto GetNonValidatedView() const;
 
         //! @brief Gets a readonly view of all Cookie values.
         //! @warning Risk of dangling reference if the underlying collection is modified.
-        [[nodiscard]] [[nodiscard]] auto GetCookiesView() const;
+        [[nodiscard]] auto GetCookiesView() const;
 
         //! @}
 #pragma endregion

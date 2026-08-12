@@ -28,14 +28,14 @@ std::expected<std::vector<Json>, NHttp::ExchangeError> GetMembers(size_t id) {
 
 
 int main() {
-    static constexpr auto s_getName = [](const Json& member) {
+    static constexpr auto getName = [](const Json& member) {
         return member.Get("name")
                 .and_then(&Json::EnsureRef<NJson::String>)
                 .transform(&NJson::String::AsCopy) // converting from Thoth Strings (that are COW) to std::string
                 .value_or("<unnamed>");
     };
 
-    static constexpr auto s_printNames = [](auto&& names) {
+    static constexpr auto printNames = [](auto&& names) {
         std::println("- Members:");
         for (std::string&& name : names)
             std::println("{}", name);
@@ -43,7 +43,7 @@ int main() {
         return std::monostate{};
     };
 
-    static constexpr auto s_errorHandler = [](auto&& error) {
+    static constexpr auto errorHandler = [](auto&& error) {
         std::println("An error occurred: {}", error);
 
         if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
@@ -55,9 +55,9 @@ int main() {
 
     auto _{
         GetMembers(4001234)
-                .transform(std::views::transform(s_getName))
-                .transform(s_printNames)
-                .transform_error(s_errorHandler)
+                .transform(std::views::transform(getName))
+                .transform(printNames)
+                .transform_error(errorHandler)
     };
 
     return 0;

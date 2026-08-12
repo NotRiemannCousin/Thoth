@@ -7,7 +7,7 @@ namespace vs = std::views;
 
 
 // TODO: FUTURE: get from env
-constexpr auto downTime{ std::chrono::seconds{ 60 } };
+constexpr auto downTime { std::chrono::seconds{ 60 } };
 constexpr auto sleepTime{ std::chrono::seconds{ 30 } };
 
 Thoth::Http::ClientJanitor & Thoth::Http::ClientJanitor::Instance() {
@@ -16,32 +16,29 @@ Thoth::Http::ClientJanitor & Thoth::Http::ClientJanitor::Instance() {
     return instance;
 }
 
-void Thoth::Http::ClientJanitor::JanitorLoop() {
-    while (_isRunning) {
-        std::this_thread::sleep_for(sleepTime);
-        std::lock_guard lock(poolMutex);
+void Thoth::Http::ClientJanitor::JanitorLoop(std::stop_token stopToken) {
+    std::mutex sleepMutex;
+    std::condition_variable_any sleepCv;
+    std::unique_lock sleepLock{ sleepMutex };
 
+    while (!sleepCv.wait_for(sleepLock, stopToken, sleepTime, [&] { return stopToken.stop_requested(); })) {
+        std::lock_guard lock{ poolMutex };
         const auto deadTime{ std::chrono::steady_clock::now() - downTime };
 
+        using SocketPool = decltype(connectionPool)::value_type;
+        using Connection = decltype(SocketPool::second)::value_type;
 
-        std::erase_if(connectionPool, [deadTime](decltype(connectionPool)::value_type& connsToEndpoint) {
-            std::erase_if(connsToEndpoint.second, [deadTime](const decltype(connsToEndpoint.second)::value_type& conn) {
+        std::erase_if(connectionPool, [deadTime](SocketPool& connsToEndpoint) {
+            std::erase_if(connsToEndpoint.second, [deadTime](const Connection& conn) {
                 return conn->lastUsed < deadTime;
             });
 
             return connsToEndpoint.second.empty();
         });
-    }
+    };
 }
 
 
 
 
-Thoth::Http::ClientJanitor::ClientJanitor() {
-    _janitorThread = std::jthread(&ClientJanitor::JanitorLoop, this);
-}
-Thoth::Http::ClientJanitor::~ClientJanitor() {
-    _isRunning = false;
-    _janitorThread.join();
-}
-
+Thoth::Http::ClientJanitor::ClientJanitor() : m_janitorThread{ std::bind_front(&ClientJanitor::JanitorLoop, this) } {}

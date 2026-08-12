@@ -96,7 +96,7 @@ namespace Thoth::Http{
         //! @return True if both queries match.
         bool operator==(const QueryParams& other) const;
     private:
-        MapType _elements;
+        MapType m_elements;
 
         friend struct std::formatter<QueryParams>;
         friend struct std::hash<QueryParams>;

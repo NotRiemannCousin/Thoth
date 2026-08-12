@@ -50,7 +50,7 @@ namespace Thoth::Dsa {
 
     template<Hermes::ByteLike T>
     constexpr auto FileOutputRange<T>::H_AsBody(FileBuilderParams&& params) {
-        return [params = std::move(params)](const Http::ResponseHead& head) mutable -> BodyType {
+        return [params = std::move(params)](const Http::ResponseHead& head) -> BodyType {
             using Exp = std::expected<std::monostate, Http::ExchangeError>;
 
             auto checkLen{ [&]() -> Exp {
@@ -88,26 +88,26 @@ namespace Thoth::Dsa {
     }
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(const std::filesystem::path& path, const int mode) : _outStream{ path, Mode() | mode } {}
+    FileOutputRange<T>::FileOutputRange(const std::filesystem::path& path, const int mode) : m_outStream{ path, Mode() | mode } {}
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(std::filesystem::path&& path, const int mode) : _outStream{ std::move(path), Mode() | mode } {}
+    FileOutputRange<T>::FileOutputRange(std::filesystem::path&& path, const int mode) : m_outStream{ std::move(path), Mode() | mode } {}
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(std::basic_ofstream<T> &&file) : _outStream{ std::move(file) } {}
+    FileOutputRange<T>::FileOutputRange(std::basic_ofstream<T> &&file) : m_outStream{ std::move(file) } {}
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(FileOutputRange&& other) noexcept : _outStream{ std::move(other._outStream) } {}
+    FileOutputRange<T>::FileOutputRange(FileOutputRange&& other) noexcept : m_outStream{ std::move(other.m_outStream) } {}
 
     template<Hermes::ByteLike T>
     FileOutputRange<T> & FileOutputRange<T>::operator=(FileOutputRange &&other) noexcept {
-        _outStream = std::move(other._outStream);
+        m_outStream = std::move(other.m_outStream);
         return *this;
     }
 
     template<Hermes::ByteLike T>
     std::ostream_iterator<T, T> FileOutputRange<T>::begin() {
-        return std::ostream_iterator<T, T>(_outStream);
+        return std::ostream_iterator<T, T>(m_outStream);
     }
 
     template<Hermes::ByteLike T>

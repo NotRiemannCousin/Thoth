@@ -241,15 +241,15 @@ namespace Thoth::NJson {
 #pragma endregion
 
 
-        //! @brief convenient call to std::visit() on _value.
+        //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         constexpr decltype(auto) Visit(Callable&& callable);
 
-        //! @brief convenient call to std::visit() on _value.
+        //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
     private:
-        Value _value;
+        Value m_value;
     };
 
     inline static constexpr Null NullV{};

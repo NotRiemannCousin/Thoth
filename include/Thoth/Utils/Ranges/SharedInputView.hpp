@@ -24,8 +24,8 @@ namespace Thoth::Utils {
         static std::default_sentinel_t end();
 
     private:
-        std::ranges::iterator_t<Range> _current;
-        std::ranges::sentinel_t<Range> _end;
+        std::ranges::iterator_t<Range> m_current;
+        std::ranges::sentinel_t<Range> m_end;
     };
 }
 

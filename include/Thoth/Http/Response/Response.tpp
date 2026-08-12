@@ -44,10 +44,10 @@ namespace Thoth::Http {
 
 
     namespace details_ {
-        template <class Stream>
+        template<class Stream>
         using ResponseParseStage = ParseStage<Stream, ResponseHead>;
 
-        template <class Stream, WritableBodyConcept Body>
+        template<class Stream, WritableBodyConcept Body>
         using ResponseParseCompleteStage = ParseCompleteStage<Stream, ResponseHead, Body>;
     }
 }

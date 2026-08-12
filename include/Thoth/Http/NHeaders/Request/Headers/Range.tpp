@@ -24,12 +24,12 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Range> {
     std::optional<Range> Scan(std::string_view input) {
         String::Trim(input);
 
-        static constexpr std::string_view prefix{ "bytes=" };
+        static constexpr std::string_view k_prefix{ "bytes=" };
 
-        if (!input.starts_with(prefix))
+        if (!input.starts_with(k_prefix))
             return std::nullopt;
 
-        input.remove_prefix(prefix.size());
+        input.remove_prefix(k_prefix.size());
 
         if (input.empty() || (input[0] != '-' && !isdigit(input[0])))
             return std::nullopt;

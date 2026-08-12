@@ -4,12 +4,12 @@
 namespace Thoth::Utils {
     template<std::ranges::input_range Range>
     typename SharedInputView<Range>::Iterator::value_type SharedInputView<Range>::Iterator::operator*() const {
-        return *view->_current;
+        return *view->m_current;
     }
 
     template<std::ranges::input_range Range>
     typename SharedInputView<Range>::Iterator& SharedInputView<Range>::Iterator::operator++() {
-        ++view->_current;
+        ++view->m_current;
         return *this;
     }
 
@@ -20,14 +20,14 @@ namespace Thoth::Utils {
 
     template<std::ranges::input_range Range>
     bool SharedInputView<Range>::Iterator::operator==(std::default_sentinel_t) const {
-        return view->_current == view->_end;
+        return view->m_current == view->m_end;
     }
 
 
     template<std::ranges::input_range Range>
     SharedInputView<Range>::SharedInputView(Range&& range)
-        : _current(std::ranges::begin(range))
-        , _end(std::ranges::end(range)) {
+        : m_current(std::ranges::begin(range))
+        , m_end(std::ranges::end(range)) {
     }
 
 

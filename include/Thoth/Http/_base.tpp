@@ -1,7 +1,7 @@
 #pragma once
 #include <format>
 
-template <>
+template<>
 struct std::formatter<Thoth::Http::VersionEnum> {
     template<class FormatContext>
     constexpr auto parse(FormatContext& ctx) { return ctx.begin(); }

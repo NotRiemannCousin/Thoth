@@ -50,11 +50,11 @@ static constexpr const char* kPostPath = "/post";
 // ======================================================================
 
 namespace Curl {
-    static std::size_t S_SinkWrite(char*, std::size_t, std::size_t nmemb, void*) {
+    static std::size_t SinkWrite(char*, std::size_t, std::size_t nmemb, void*) {
         return nmemb;
     }
 
-    static std::size_t S_StringWrite(char* ptr, std::size_t, std::size_t nmemb, void* userdata) {
+    static std::size_t StringWrite(char* ptr, std::size_t, std::size_t nmemb, void* userdata) {
         reinterpret_cast<std::string*>(userdata)->append(ptr, nmemb);
         return nmemb;
     }
@@ -72,7 +72,7 @@ namespace Curl {
         explicit Session(const std::string& url) : h{ curl_easy_init() } {
             if (h) {
                 curl_easy_setopt(h, CURLOPT_URL, url.c_str());
-                curl_easy_setopt(h, CURLOPT_WRITEFUNCTION, S_SinkWrite);
+                curl_easy_setopt(h, CURLOPT_WRITEFUNCTION, SinkWrite);
                 curl_easy_setopt(h, CURLOPT_SSL_VERIFYPEER, 0L);
                 curl_easy_setopt(h, CURLOPT_SSL_VERIFYHOST, 0L);
                 curl_easy_setopt(h, CURLOPT_TCP_KEEPALIVE, 1L);
@@ -90,19 +90,19 @@ namespace Curl {
 namespace ThothHttp {
     using namespace Thoth::Http;
 
-    static std::string S_BaseUrl() {
+    static std::string BaseUrl() {
         return std::format("https://{}:{}{}", kHost, kPort, kPath);
     }
 
-    static bool S_GetWarm() {
-        auto req = GetRequest::FromUrl(S_BaseUrl());
+    static bool GetWarm() {
+        auto req = GetRequest::FromUrl(BaseUrl());
         if (!req) return false;
         auto resp = Client::Send(std::move(*req));
         return resp.has_value();
     }
 
-    static bool S_GetCold() {
-        auto req = GetRequest::FromUrl(S_BaseUrl());
+    static bool GetCold() {
+        auto req = GetRequest::FromUrl(BaseUrl());
         if (!req) return false;
         // Força fechar a conexão para evitar o pool automático e testar Handshake
         req->headers.Add("connection", "close");
@@ -110,7 +110,7 @@ namespace ThothHttp {
         return resp.has_value();
     }
 
-    static bool S_PostWarm(std::string_view body) {
+    static bool PostWarm(std::string_view body) {
         std::string url = std::format("https://{}:{}{}", kHost, kPort, kPostPath);
         auto req = PostRequest::FromUrl(url, std::string(body));
         if (!req) return false;
@@ -125,17 +125,17 @@ namespace ThothHttp {
 
 static void BM_Thoth_Cold_Get(benchmark::State& state) {
     for (auto _ : state) {
-        bool ok = ThothHttp::S_GetCold();
+        bool ok = ThothHttp::GetCold();
         benchmark::DoNotOptimize(ok);
     }
 }
 
 static void BM_Curl_Cold_Get(benchmark::State& state) {
-    std::string url = ThothHttp::S_BaseUrl();
+    std::string url = ThothHttp::BaseUrl();
     for (auto _ : state) {
         Curl::Handle c;
         curl_easy_setopt(c.h, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(c.h, CURLOPT_WRITEFUNCTION, Curl::S_SinkWrite);
+        curl_easy_setopt(c.h, CURLOPT_WRITEFUNCTION, Curl::SinkWrite);
         curl_easy_setopt(c.h, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(c.h, CURLOPT_FORBID_REUSE, 1L);
         bool ok = curl_easy_perform(c.h) == CURLE_OK;
@@ -158,12 +158,12 @@ static void BM_Httplib_Cold_Get(benchmark::State& state) {
 
 static void BM_Thoth_Warm_Get(benchmark::State& state) {
     for (auto _ : state) {
-        benchmark::DoNotOptimize(ThothHttp::S_GetWarm());
+        benchmark::DoNotOptimize(ThothHttp::GetWarm());
     }
 }
 
 static void BM_Curl_Warm_Get(benchmark::State& state) {
-    Curl::Session sess{ ThothHttp::S_BaseUrl() };
+    Curl::Session sess{ ThothHttp::BaseUrl() };
     for (auto _ : state) {
         benchmark::DoNotOptimize(sess.Perform());
     }
@@ -184,14 +184,14 @@ static void BM_Httplib_Warm_Get(benchmark::State& state) {
 static void BM_Thoth_Sequential_Get(benchmark::State& state) {
     const int n = static_cast<int>(state.range(0));
     for (auto _ : state) {
-        for (int i = 0; i < n; ++i) benchmark::DoNotOptimize(ThothHttp::S_GetWarm());
+        for (int i = 0; i < n; ++i) benchmark::DoNotOptimize(ThothHttp::GetWarm());
     }
     state.SetItemsProcessed(state.iterations() * n);
 }
 
 static void BM_Curl_Sequential_Get(benchmark::State& state) {
     const int n = static_cast<int>(state.range(0));
-    Curl::Session sess{ ThothHttp::S_BaseUrl() };
+    Curl::Session sess{ ThothHttp::BaseUrl() };
     for (auto _ : state) {
         for (int i = 0; i < n; ++i) benchmark::DoNotOptimize(sess.Perform());
     }
@@ -202,8 +202,8 @@ static void BM_Curl_Sequential_Get(benchmark::State& state) {
 //  CENÁRIO 4 – Parallel (T threads martelando o servidor)
 // ======================================================================
 
-template<typename Fn>
-static void S_RunParallel(benchmark::State& state, Fn&& work) {
+template<class Fn>
+static void RunParallel(benchmark::State& state, Fn&& work) {
     const int t = static_cast<int>(state.range(0));
     for (auto _ : state) {
         state.PauseTiming();
@@ -223,12 +223,12 @@ static void S_RunParallel(benchmark::State& state, Fn&& work) {
 }
 
 static void BM_Thoth_Parallel_Get(benchmark::State& state) {
-    S_RunParallel(state, [] { benchmark::DoNotOptimize(ThothHttp::S_GetWarm()); });
+    RunParallel(state, [] { benchmark::DoNotOptimize(ThothHttp::GetWarm()); });
 }
 
 static void BM_Curl_Parallel_Get(benchmark::State& state) {
-    std::string url = ThothHttp::S_BaseUrl();
-    S_RunParallel(state, [&] {
+    std::string url = ThothHttp::BaseUrl();
+    RunParallel(state, [&] {
         Curl::Session sess{ url };
         benchmark::DoNotOptimize(sess.Perform());
     });
@@ -240,7 +240,7 @@ static void BM_Curl_Parallel_Get(benchmark::State& state) {
 
 static void BM_Thoth_BodyToString_Get(benchmark::State& state) {
     for (auto _ : state) {
-        auto req = GetRequest::FromUrl(ThothHttp::S_BaseUrl());
+        auto req = GetRequest::FromUrl(ThothHttp::BaseUrl());
         auto resp = Client::Send(std::move(*req));
         std::string body = std::move(*resp).MoveBody();
         benchmark::DoNotOptimize(body);
@@ -249,7 +249,7 @@ static void BM_Thoth_BodyToString_Get(benchmark::State& state) {
 
 static void BM_Thoth_Post_WithBody(benchmark::State& state) {
     for (auto _ : state) {
-        benchmark::DoNotOptimize(ThothHttp::S_PostWarm(kPostBody));
+        benchmark::DoNotOptimize(ThothHttp::PostWarm(kPostBody));
     }
 }
 

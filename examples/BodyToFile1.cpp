@@ -9,7 +9,7 @@ static std::expected<std::monostate, Thoth::Http::ExchangeError> SaveImage(const
     using     FileT = Thoth::Dsa::BinFileOutputRange;
 
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody({ "./output.jpg" })))
+            .and_then(NHttp::Client::H_SendAsAndParse<FileT>(FileT::H_AsBody({ "./output.jpg" })))
             .transform([](auto){ return std::monostate{}; });
 }
 

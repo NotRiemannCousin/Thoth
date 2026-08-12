@@ -97,7 +97,7 @@ namespace Thoth::Http {
     //     } };
     //
     //
-    //     return _headers
+    //     return m_headers
     //             | std::views::filter(cmp)
     //             | std::views::transform(&HeaderPair::second);
     // }
@@ -113,7 +113,7 @@ struct std::formatter<T>{
 
     template<class FormatContext>
     auto format(const T& headers, FormatContext& ctx) const {
-        for (const auto& p : headers._headers)
+        for (const auto& p : headers.m_headers)
             format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
 
         return ctx.out();

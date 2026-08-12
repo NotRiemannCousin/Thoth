@@ -22,19 +22,19 @@ JsonObject::~JsonObject() {
 
 JsonObject::JsonObject(const JsonObject& other) {
     DEBUG_PRINT("JsonObject => const JsonVal& other");
-    _pairs = other._pairs;
+    m_pairs = other.m_pairs;
     // If the buffer isn't user managed carries the reference, so when you delete the parent but not the children the
-    // Cow still works. Yeah, given the necessity of `_bufferView` (user managed buffers) the `_buffer` itself it's
+    // Cow still works. Yeah, given the necessity of `m_bufferView` (user managed buffers) the `m_buffer` itself it's
     // kinda dummy, it just holds the reference.
 }
 
-JsonObject::JsonObject(JsonObject&& other) noexcept : _pairs{ std::move(other._pairs) } {
+JsonObject::JsonObject(JsonObject&& other) noexcept : m_pairs{ std::move(other.m_pairs) } {
     DEBUG_PRINT("JsonObject => JsonVal&& other");
 }
 
-JsonObject::JsonObject(MapType&& initAs) : _pairs{ std::move(initAs) } { }
+JsonObject::JsonObject(MapType&& initAs) : m_pairs{ std::move(initAs) } { }
 
-JsonObject::JsonObject(std::initializer_list<JsonPair> init) : _pairs{ init } {
+JsonObject::JsonObject(std::initializer_list<JsonPair> init) : m_pairs{ init } {
     DEBUG_PRINT("JsonObject initializer_list");
 }
 
@@ -45,26 +45,26 @@ JsonObject& JsonObject::operator=(const JsonObject& other) {
         return *this;
 
     DEBUG_PRINT("JsonObject equals operator => const JsonVal& other");
-    _pairs = other._pairs;
+    m_pairs = other.m_pairs;
 
     return *this;
 }
 
 JsonObject & JsonObject::operator=(std::initializer_list<JsonPair> list) {
-    _pairs = list;
+    m_pairs = list;
     DEBUG_PRINT("JsonObject equals operator => initializer_list");
     return *this;
 }
 
 JsonObject& JsonObject::operator=(JsonObject&& other) noexcept {
-    _pairs = std::move(other._pairs);
+    m_pairs = std::move(other.m_pairs);
     DEBUG_PRINT("JsonObject equals operator => const JsonVal& other");
     return *this;
 }
 
 
 bool JsonObject::Exists(JsonObjKeyRef key) const {
-    return _pairs.contains(key);
+    return m_pairs.contains(key);
 }
 
 bool JsonObject::Exists(JsonPairRef p) const {
@@ -72,9 +72,9 @@ bool JsonObject::Exists(JsonPairRef p) const {
 }
 
 bool JsonObject::Exists(JsonObjKeyRef key, JsonValRef val) const {
-    const auto it{ _pairs.find(key) };
+    const auto it{ m_pairs.find(key) };
 
-    return it != _pairs.end()&& it->second == val;
+    return it != m_pairs.end()&& it->second == val;
 }
 
 void JsonObject::Set(JsonPairRef p) {
@@ -82,11 +82,11 @@ void JsonObject::Set(JsonPairRef p) {
 }
 
 void JsonObject::Set(JsonObjKeyRef key, JsonValRef val) {
-    _pairs.insert_or_assign(key, val);
+    m_pairs.insert_or_assign(key, val);
 }
 
 bool JsonObject::Remove(JsonObjKeyRef key) {
-    return _pairs.erase(key);
+    return m_pairs.erase(key);
 }
 
 
@@ -95,26 +95,26 @@ bool JsonObject::SetIfNull(JsonPairRef p) {
 }
 
 bool JsonObject::SetIfNull(JsonObjKeyRef key, JsonValRef val) {
-    auto [_, tookPlace]{ _pairs.try_emplace(key, val) };
+    auto [_, tookPlace]{ m_pairs.try_emplace(key, val) };
 
     return tookPlace;
 }
 
 
 OptRefValWrapper JsonObject::Get(JsonObjKeyRef key) {
-    if (const auto it{ _pairs.find(key) }; it != _pairs.end())
+    if (const auto it{ m_pairs.find(key) }; it != m_pairs.end())
         return &it->second;
     return std::nullopt;
 }
 
 OptCRefValWrapper JsonObject::Get(JsonObjKeyRef key) const {
-    if (const auto it{ _pairs.find(key) }; it != _pairs.end())
+    if (const auto it{ m_pairs.find(key) }; it != m_pairs.end())
         return &it->second;
     return std::nullopt;
 }
 
 OptValWrapper JsonObject::GetCopy(JsonObjKeyRef key) const {
-    if (const auto it{ _pairs.find(key) }; it != _pairs.end())
+    if (const auto it{ m_pairs.find(key) }; it != m_pairs.end())
         return it->second;
     return std::nullopt;
 }
@@ -125,41 +125,41 @@ ValWrapper JsonObject::GetCopyOrNull(JsonObjKeyRef key) const {
 
 
 OptValWrapper JsonObject::GetAndMove(JsonObjKeyRef key) && {
-    if (const auto it{ _pairs.find(key) }; it != _pairs.end())
+    if (const auto it{ m_pairs.find(key) }; it != m_pairs.end())
         return std::move(it->second);
     return std::nullopt;
 }
 
 ValWrapper JsonObject::GetOrNullAndMove(JsonObjKeyRef key) && {
-    if (const auto it{ _pairs.find(key) }; it != _pairs.end())
+    if (const auto it{ m_pairs.find(key) }; it != m_pairs.end())
         return std::move(it->second);
     return NullJ;
 }
 
 
 void JsonObject::Clear() {
-    _pairs.clear();
+    m_pairs.clear();
 }
 
 size_t JsonObject::Size() const {
-    return _pairs.size();
+    return m_pairs.size();
 }
 
 bool JsonObject::Empty() const {
-    return _pairs.empty();
+    return m_pairs.empty();
 }
 
 Json& JsonObject::operator[](JsonObjKeyRef key) {
-    const auto [it, _]{ _pairs.try_emplace(key, NullV) };
+    const auto [it, _]{ m_pairs.try_emplace(key, NullV) };
 
     return it->second;
 }
 
 const Json& JsonObject::operator[](JsonObjKeyRef key) const {
-    const auto it{ _pairs.find(key) };
-    return it != _pairs.end() ? it->second : NullJ;
+    const auto it{ m_pairs.find(key) };
+    return it != m_pairs.end() ? it->second : NullJ;
 }
 
 bool JsonObject::operator==(const JsonObject& other) const {
-    return _pairs == other._pairs;
+    return m_pairs == other.m_pairs;
 }

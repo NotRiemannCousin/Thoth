@@ -70,9 +70,4 @@ namespace Thoth::NJson {
 
     using Key  = std::variant<int, JsonObjKey>;
     using Keys = std::span<const Key>;
-
-
-    template<class ...T>
-    requires ((std::unsigned_integral<T> || std::convertible_to<T, std::string_view>) &&...)
-    auto MakeKeys(const T&... keys) { return std::array<Key, sizeof...(T)>{ (keys, ...) }; }
 }

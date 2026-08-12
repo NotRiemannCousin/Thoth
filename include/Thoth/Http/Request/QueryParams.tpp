@@ -40,7 +40,7 @@ namespace std {
 #endif
 
             return std::ranges::copy(
-                query._elements
+                query.m_elements
                         | views::transform(getEveryPair)
                         | views::join
                         | std::views::transform(singleParam)

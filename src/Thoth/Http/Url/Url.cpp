@@ -3,6 +3,33 @@
 
 #include <Thoth/String/Utils.hpp>
 
+#pragma push_macro("FAIL_WITH")
+#pragma push_macro("REBIND_ALL")
+#undef FAIL_WITH
+#undef REBIND_ALL
+
+#define FAIL_WITH(x) return std::unexpected{ ExchangeError{ UrlParseErrorEnum::x } }
+
+#define REBIND_ALL(OTHER_URL) do {                                          \
+    const auto rebind{ Rebinder(m_rawUrl, (OTHER_URL)) };                   \
+                                                                            \
+    m_scheme = rebind(other.m_scheme);                                      \
+    m_path   = rebind(other.m_path  );                                      \
+    m_query  = rebind(other.m_query );                                      \
+    m_frag   = rebind(other.m_frag  );                                      \
+                                                                            \
+    m_authority = other.m_authority.transform([&](Authority auth) {         \
+        auth.userinfo = rebind(auth.userinfo);                              \
+                                                                            \
+        std::visit([&]<class T>(T& host) {                                  \
+            if constexpr (std::same_as<std::decay_t<T>, std::string_view>)  \
+                host = rebind(host);                                        \
+        }, auth.host);                                                      \
+        return auth;                                                        \
+    });                                                                     \
+} while(false)
+
+
 using Thoth::Http::Url;
 using std::string_view;
 using std::string;
@@ -22,8 +49,6 @@ std::string Thoth::Http::Authority::GetHostString() const {
         }, host);
 }
 
-#define FAIL_WITH(x) return std::unexpected{ ExchangeError{ UrlParseErrorEnum::x } }
-
 std::optional<std::uint16_t> Thoth::Http::GetDefaultPort(const std::string_view scheme) noexcept {
     if (scheme == "http"  ) return 80;
     if (scheme == "https" ) return 443;
@@ -36,24 +61,6 @@ std::optional<std::uint16_t> Thoth::Http::GetDefaultPort(const std::string_view 
 }
 
 
-#define REBIND_ALL(OTHER_URL)                                              \
-        const auto rebind{ Rebinder(rawUrl, (OTHER_URL)) };                \
-                                                                           \
-        scheme = rebind(other.scheme);                                     \
-        path   = rebind(other.path  );                                     \
-        query  = rebind(other.query );                                     \
-        frag   = rebind(other.frag  );                                     \
-                                                                           \
-        authority = other.authority.transform([&](Authority auth) {        \
-            auth.userinfo = rebind(auth.userinfo);                         \
-                                                                           \
-            std::visit([&]<class T>(T& host) {                             \
-                if constexpr (std::same_as<std::decay_t<T>, std::string_view>)  \
-                    host = rebind(host);                                   \
-            }, auth.host);                                                 \
-            return auth;                                                   \
-        });                                                                \
-
 auto Rebinder(std::string_view url, std::string_view otherUrl) {
     return [=](const std::string_view old) -> std::string_view {
         return std::string_view{
@@ -65,59 +72,53 @@ auto Rebinder(std::string_view url, std::string_view otherUrl) {
 
 
 Url::Url(const Url& other) {
-    rawUrl = other.rawUrl;
+    m_rawUrl = other.m_rawUrl;
 
-    REBIND_ALL(other.rawUrl)
+    REBIND_ALL(other.m_rawUrl);
 }
 
 Url::Url(Url&& other) noexcept {
-    rawUrl = std::move(other.rawUrl);
+    m_rawUrl = std::move(other.m_rawUrl);
 
-    const std::string_view otherUrl{ rawUrl };
+    const std::string_view otherUrl{ m_rawUrl };
 
-    REBIND_ALL(otherUrl)
+    REBIND_ALL(otherUrl);
 }
 
 Url& Url::operator=(const Url& other) {
-    rawUrl = other.rawUrl;
+    m_rawUrl = other.m_rawUrl;
 
-    REBIND_ALL(other.rawUrl)
+    REBIND_ALL(other.m_rawUrl);
 
     return *this;
 }
 
 Url& Url::operator=(Url&& other) noexcept {
-    rawUrl = std::move(other.rawUrl);
+    m_rawUrl = std::move(other.m_rawUrl);
 
-    const std::string_view otherUrl{ other.rawUrl };
+    const std::string_view otherUrl{ other.m_rawUrl };
 
-    REBIND_ALL(otherUrl)
+    REBIND_ALL(otherUrl);
 
     return *this;
 }
 
-#undef REBIND_ALL
+
+std::string_view                      Url::GetScheme()    const noexcept { return m_scheme;    }
+std::optional<Thoth::Http::Authority> Url::GetAuthority() const noexcept { return m_authority; }
+std::string_view                      Url::GetPath()      const noexcept { return m_path;      }
+std::string_view                      Url::GetQuery()     const noexcept { return m_query;     }
+std::string_view                      Url::GetFragment()  const noexcept { return m_frag;      }
 
 
 
 
+std::string_view Url::GetPathOrSep() const noexcept { return m_path.empty() ? "/" : m_path; }
 
-
-std::string_view                      Url::GetScheme()    const noexcept { return scheme;    }
-std::optional<Thoth::Http::Authority> Url::GetAuthority() const noexcept { return authority; }
-std::string_view                      Url::GetPath()      const noexcept { return path;      }
-std::string_view                      Url::GetQuery()     const noexcept { return query;     }
-std::string_view                      Url::GetFragment()  const noexcept { return frag;      }
-
-
-
-
-std::string_view Url::GetPathOrSep() const noexcept { return path.empty() ? "/" : path; }
-
-Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(query); }
+Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(m_query); }
 
 std::string_view Url::GetUrlWithoutFragment() const noexcept {
-    return rawUrl.substr(frag.empty() ? std::string::npos : std::distance(rawUrl.data(), frag.data()) - 1);
+    return m_rawUrl.substr(m_frag.empty() ? std::string::npos : std::distance(m_rawUrl.data(), m_frag.data()) - 1);
 }
 
 
@@ -153,7 +154,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     // * Just `hier-part = authority path-abempty` is implemented
 
     // TODO: reinforce the scheme check
-    // if (!rawUrl.starts_with("http:") && !rawUrl.starts_with("https:")) // its URL after all
+    // if (!m_rawUrl.starts_with("http:") && !m_rawUrl.starts_with("https:")) // its URL after all
     //     FAIL_WITH(InvalidScheme); // ill-formed, scheme is mandatory
 
     const auto schemeIdx{ rawUrlView.find(':') };
@@ -164,7 +165,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     scheme = string_view(rawUrlView.data(), schemeIdx);
 
     static constexpr auto a_acceptedSchemeChars = [](char c) {
-        constexpr auto bitset{ String::MakeBitset({ String::CharSequences::alphanumeric, "+-." }) };
+        constexpr auto bitset{ String::MakeBitset({ String::CharSequences::k_alphanumeric, "+-." }) };
         return bitset[c];
     };
     if (scheme.empty() || !isalpha(scheme[0]) || !rg::all_of(scheme, a_acceptedSchemeChars))
@@ -277,7 +278,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     // h16         = 1*4HEXDIG
     //             ; 16 bits of address represented in hexadecimal
 
-    const auto s_readIpv6 = [hostStr]() -> std::optional<Host> {
+    const auto readIpv6 = [hostStr]() -> std::optional<Host> {
         return std::nullopt;
     };
     // TODO: implement IPv6 someday (not today)
@@ -289,7 +290,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     //             / "2" %x30-34 DIGIT     ; 200-249
     //             / "25" %x30-35          ; 250-255
 
-    const auto s_readIpv4 = [hostStr]() -> std::optional<Host> {
+    const auto readIpv4 = [hostStr]() -> std::optional<Host> {
         Hermes::IpAddress::Ipv4Type ip{};
 
         const char* ptr{ hostStr.data() };
@@ -317,8 +318,8 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
 
     // reg-name    = *( unreserved / pct-encoded / sub-delims )
 
-    auto s_readRegName = [hostStr]() -> std::optional<Host> {
-        constexpr auto set{ String::MakeBitset({ String::CharSequences::Http::url }) };
+    auto readRegName = [hostStr]() -> std::optional<Host> {
+        constexpr auto set{ String::MakeBitset({ String::CharSequences::Http::k_url }) };
 
         for (size_t i{}; i < hostStr.size(); ++i) {
             const char c{ hostStr[i] };
@@ -342,7 +343,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
         return hostStr;
     };
 
-    if (auto host{ s_readIpv6().or_else(s_readIpv4).or_else(s_readRegName) }; host)
+    if (auto host{ readIpv6().or_else(readIpv4).or_else(readRegName) }; host)
         auth.host = *host;
     else
         FAIL_WITH(HostIsRequired);
@@ -397,12 +398,12 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
 
     Url res{};
 
-    res.rawUrl    = std::move(rawUrl);
-    res.scheme    = scheme;
-    res.authority = auth;
-    res.path      = path;
-    res.query     = query;
-    res.frag      = frag;
+    res.m_rawUrl    = std::move(rawUrl);
+    res.m_scheme    = scheme;
+    res.m_authority = auth;
+    res.m_path      = path;
+    res.m_query     = query;
+    res.m_frag      = frag;
 
     return res;
 }
@@ -421,7 +422,7 @@ std::string Url::Encode(std::string_view str) {
 }
 
 
-constexpr auto s_hexCharToInt = [] {
+constexpr auto hexCharToInt = [] {
     std::array<int, 256> toHex{};
     for (char c{'0'}; c <= '9'; c++) toHex[c] = c - '0';
     for (char c{'a'}; c <= 'z'; c++) toHex[c] = c - 'a' + 10;
@@ -441,8 +442,8 @@ std::expected<string, Thoth::Http::ExchangeError> Url::TryDecode(std::string_vie
             if (i + 2 >= str.length() || !std::isxdigit(str[i + 1]) || !std::isxdigit(str[i + 2]))
                 FAIL_WITH(IllFormed);
 
-            const int high{ s_hexCharToInt[str[i + 1]] };
-            const int low{ s_hexCharToInt[str[i + 2]] };
+            const int high{ hexCharToInt[str[i + 1]] };
+            const int low{ hexCharToInt[str[i + 2]] };
             buffer += static_cast<char>((high << 4) + low);
 
             i += 2;
@@ -455,5 +456,9 @@ std::expected<string, Thoth::Http::ExchangeError> Url::TryDecode(std::string_vie
 }
 
 bool Url::operator==(const Url& other) const noexcept {
-    return rawUrl == other.rawUrl;
+    return m_rawUrl == other.m_rawUrl;
 }
+
+
+#pragma pop_macro("FAIL_WITH")
+#pragma pop_macro("REBIND_ALL")

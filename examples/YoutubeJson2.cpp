@@ -29,14 +29,14 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> MakeRequest() {
 
 
 
-    constexpr auto s_extractJson = [](const std::string& body) {
+    constexpr auto extractJson = [](const std::string& body) {
         constexpr std::string_view target{ "ytInitialData = " };
         const auto jsonStart{ body.substr(body.find(target) + target.size()) };
 
         return Json::ParseText(jsonStart, true, false);
     };
 
-    constexpr auto s_printAlbums = [](NJson::Array&& albums) -> std::monostate{
+    constexpr auto printAlbums = [](NJson::Array&& albums) -> std::monostate{
 
         for (const auto& album: albums) {
             const auto name{ album.Find(albumNameKey) };
@@ -53,11 +53,11 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> MakeRequest() {
                 .and_then(NHttp::Client::H_Send())
 
                 .transform(&NHttp::Response<>::MoveBody)
-                .and_then(s_extractJson)
+                .and_then(extractJson)
                 .and_then(std::bind_back(&Json::FindAndMoveOrError, contentKeys))
                 .and_then(&Json::EnsureMovOrError<NJson::Array>)
 
-                .transform(s_printAlbums);
+                .transform(printAlbums);
 }
 
 

@@ -27,12 +27,12 @@ namespace Thoth::Http {
     //! be safely evicted.
     struct ClientConnection {
         // TODO: FUTURE: Implement HTTP2 and Quic
-        // using ClientSocketType = std::variant<Hermes::RawTcpClient     , Hermes::RawTlsClient      ,
-        //                                       Hermes::AsyncRawTcpClient, Hermes::AsyncRawTlsClient>;
+        using SocketType = std::variant<Hermes::RawTcpClient, Hermes::RawTlsClient>;
+
         //! The Hermes TLS client socket. Ensure that any operation on this
         //! socket respects thread-safety constraints; ClientJanitor may access sockets
         //! from a background thread.
-        Hermes::RawTlsClient socket;
+        SocketType socket;
         //! The HTTP version of the connection (e.g., HTTP/1.1). Future HTTP/2
         //! or QUIC support will extend this field.
         VersionEnum version;
@@ -40,6 +40,12 @@ namespace Thoth::Http {
         //! A timestamp marking the most recent use of this socket. ClientJanitor uses this to detect
         //! idle connections.
         std::chrono::steady_clock::time_point lastUsed;
+
+
+        template<class T>
+        auto Send(const T& data);
+        void Close();
+        void Abort();
     };
 
 
@@ -67,7 +73,7 @@ namespace Thoth::Http {
     struct ClientJanitor {
 
         static ClientJanitor& Instance();
-        void JanitorLoop();
+        void JanitorLoop(std::stop_token stopToken);
 
         std::mutex poolMutex;
 
@@ -75,11 +81,9 @@ namespace Thoth::Http {
         //! to not break other threads.
         std::unordered_map<Hermes::IpEndpoint, std::vector<std::shared_ptr<ClientConnection>>> connectionPool;
     private:
-        std::atomic_bool _isRunning{ true };
         ClientJanitor();
-        ~ClientJanitor();
 
-        std::jthread _janitorThread;
+        std::jthread m_janitorThread;
     };
 
 
@@ -97,7 +101,7 @@ namespace Thoth::Http {
         //!
         //! @tparam Method The HTTP method used for the request and present in the response.
         //! @tparam Body The body type of the response (e.g., String, Json, etc.).
-        template<class Method, BodyConcept Body>
+        template<class Method,  WritableBodyConcept Body>
         using ExpResponse = std::expected<Response<Method, Body>, ExchangeError>;
 
         using SocketPtr = std::shared_ptr<ClientConnection>;
@@ -187,7 +191,7 @@ namespace Thoth::Http {
 
         template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ExchangeError> ParseHttp11_(SocketPtr infoPtr, F&& bodyFactory);
+        static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ExchangeError> ParseHttp1_(SocketPtr infoPtr, F&& bodyFactory);
 
         // template<MethodConcept Method, WritableBodyConcept ResponseBody>
         // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ExchangeError> request();
@@ -199,3 +203,8 @@ namespace Thoth::Http {
 }
 
 #include <Thoth/Http/Client.tpp>
+
+
+namespace Thoth::Http {
+    static_assert(ConnectionConcept<ClientConnection>);
+}

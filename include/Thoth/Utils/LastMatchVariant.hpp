@@ -5,8 +5,8 @@
 namespace Thoth::Utils {
     template<class T, class Variant, template<class, class> class Relation, std::size_t Index = 0>
     consteval size_t FindMatchIndexImpl() {
-        constexpr size_t size{ std::variant_size_v<Variant> };
-        static_assert(Index != size, "No type in the variant satisfies the specified relation.");
+        constexpr size_t k_size{ std::variant_size_v<Variant> };
+        static_assert(Index != k_size, "No type in the variant satisfies the specified relation.");
 
         if constexpr (Relation<T, std::variant_alternative_t<Index, Variant>>::value)
             return Index;

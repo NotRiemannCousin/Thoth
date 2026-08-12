@@ -9,7 +9,7 @@ static std::expected<std::monostate, Thoth::Http::ExchangeError> SavePdf(const s
     using     FileT = Thoth::Dsa::BinFileOutputRange;
 
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAndRecvAsInto<FileT>(FileT::H_AsBody({ "./pg-17-never-forget.pdf" })))
+            .and_then(NHttp::Client::H_SendAsAndParse<FileT>(FileT::H_AsBody({ "./pg-17-never-forget.pdf" })))
             .transform([](auto){ return std::monostate{}; });
 }
 

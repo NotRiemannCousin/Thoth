@@ -7,21 +7,21 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     ListProxy<IsConst, Ts...>::ListProxy(std::string_view key, HeaderType& headers, PatternType inPattern)
-            : key{ key }, headers{ headers }, inPattern{ inPattern } { }
+            : m_key{ key }, m_headers{ headers }, m_inPattern{ inPattern } { }
 
     template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::GetAsOpt() && -> std::optional<Type> {
-        auto val{ headers.Get(key) };
+        auto val{ m_headers.Get(m_key) };
 
         if (!val || (*val)->empty()) return std::nullopt;
 
-        if constexpr (Single) {
-            return ParseList<Ts...[0]>(*val, inPattern);
+        if constexpr (k_single) {
+            return ParseList<Ts...[0]>(*val, m_inPattern);
         } else {
             std::optional<Type> result;
             std::size_t i{};
             (std::invoke([&] {
-                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ ParseList<Ts>(*val, m_inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
@@ -34,19 +34,19 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::Get() && -> std::expected<Type, HeaderErrorEnum> {
-        auto val{ headers.Get(key) };
+        auto val{ m_headers.Get(m_key) };
 
         if (!val)            return std::unexpected{ HeaderErrorEnum::NotFound };
         if ((*val)->empty()) return std::unexpected{ HeaderErrorEnum::EmptyValue };
 
-        if constexpr (Single) {
-            if (auto parsed{ ParseList<Ts...[0]>(*val, inPattern) }; parsed)
+        if constexpr (k_single) {
+            if (auto parsed{ ParseList<Ts...[0]>(*val, m_inPattern) }; parsed)
                 return std::move(*parsed);
         } else {
             std::optional<Type> result;
             std::size_t i{};
             (std::invoke([&] {
-                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ ParseList<Ts>(*val, m_inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
@@ -60,18 +60,18 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     auto ListProxy<IsConst, Ts...>::GetWithDefault(Type defaultValue) && -> std::expected<Type, InvalidHeaderFormat> {
-        auto val{ headers.Get(key) };
+        auto val{ m_headers.Get(m_key) };
 
         if (!val || (*val)->empty()) return defaultValue;
 
-        if constexpr (Single) {
-            if (auto parsed{ ParseList<Ts...[0]>(*val, inPattern) }; parsed)
+        if constexpr (k_single) {
+            if (auto parsed{ ParseList<Ts...[0]>(*val, m_inPattern) }; parsed)
                 return std::move(*parsed);
         } else {
             std::optional<Type> result;
             std::size_t i{};
             (std::invoke([&] {
-                if (auto parsed{ ParseList<Ts>(*val, inPattern[i++]) }; parsed) {
+                if (auto parsed{ ParseList<Ts>(*val, m_inPattern[i++]) }; parsed) {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
@@ -96,11 +96,11 @@ namespace Thoth::Http::NHeaders {
     template<std::ranges::range R>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::Set(R&& newValue) && {
-        static constexpr auto format{ [](auto& obj) {
+        static constexpr auto k_format{ [](auto& obj) {
             return std::format("{}", obj);
         } };
-        headers.Set(key, newValue
-            | std::views::transform(format)
+        m_headers.Set(m_key, newValue
+            | std::views::transform(k_format)
             | std::views::join_with(',')
             | std::ranges::to<std::string>());
     }
@@ -109,11 +109,11 @@ namespace Thoth::Http::NHeaders {
     template<class>
         requires (!IsConst)
     void ListProxy<IsConst, Ts...>::Add(const ElemType& newItem) && {
-        if constexpr (Single) {
-            headers.Add(key, std::format("{}", newItem));
+        if constexpr (k_single) {
+            m_headers.Add(m_key, std::format("{}", newItem));
         } else {
             std::visit([&](const auto& item) {
-                headers.Add(key, std::format("{}", item));
+                m_headers.Add(m_key, std::format("{}", item));
             }, newItem);
         }
     }
@@ -123,8 +123,8 @@ namespace Thoth::Http::NHeaders {
         requires (!IsConst)
     bool ListProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
         HeaderValue temp{ newValue };
-        if constexpr (Single) {
-            auto parsed{ ParseList<Ts...[0]>(&temp, inPattern) };
+        if constexpr (k_single) {
+            auto parsed{ ParseList<Ts...[0]>(&temp, m_inPattern) };
             if (!parsed) return false;
             std::move(*this).Set(std::move(*parsed));
             return true;
@@ -133,7 +133,7 @@ namespace Thoth::Http::NHeaders {
             std::size_t i{};
             (std::invoke([&] {
                 if (!set)
-                    if (auto parsed{ ParseList<Ts>(&temp, inPattern[i]) }; parsed) {
+                    if (auto parsed{ ParseList<Ts>(&temp, m_inPattern[i]) }; parsed) {
                         std::move(*this).Set(std::move(*parsed));
                         set = true;
                     }

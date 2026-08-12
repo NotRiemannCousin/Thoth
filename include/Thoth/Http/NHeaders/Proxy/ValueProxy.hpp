@@ -8,20 +8,20 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     struct ValueProxy{
-        static constexpr int Count{ sizeof...(Ts) };
-        static constexpr int Single{ sizeof...(Ts) == 1 };
+        static constexpr int k_count{ sizeof...(Ts) };
+        static constexpr int k_single{ sizeof...(Ts) == 1 };
 
 
         static_assert(sizeof...(Ts) >= 1 && "At least 1 type must be provided.");
 
         using HeaderType  = std::conditional_t<IsConst, const Headers, Headers>;
-        using PatternType = std::conditional_t<Single, std::string_view, std::array<std::string_view, Count>>;
+        using PatternType = std::conditional_t<k_single, std::string_view, std::array<std::string_view, k_count>>;
 #ifdef __cpp_pack_indexing
-        using Type        = std::conditional_t<Single, Ts...[0], std::variant<Ts...>>;
+        using Type        = std::conditional_t<k_single, Ts...[0], std::variant<Ts...>>;
         // Lets go Microslop
 #else
         template<class F, class...> struct First { using Type = F; };
-        using Type        = std::conditional_t<Single, typename First<Ts...>::Type, std::variant<Ts...>>;
+        using Type        = std::conditional_t<k_single, typename First<Ts...>::Type, std::variant<Ts...>>;
 #endif
 
         ValueProxy(ValueProxy&&) = delete;
@@ -55,10 +55,10 @@ namespace Thoth::Http::NHeaders {
         bool TrySet(std::string_view newValue) &&;
 
     private:
-        const PatternType inPattern;
-        const std::string_view key;
-        // const PatternType outPattern;
-        HeaderType& headers;
+        // const PatternType      m_outPattern;
+        const PatternType      m_inPattern;
+        const std::string_view m_key;
+        HeaderType& m_headers;
     };
 }
 

@@ -19,26 +19,26 @@ namespace Thoth::NJson {
     template<class T>
         requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json::Json(T other) {
-        _value = static_cast<Number>(other);
+        m_value = static_cast<Number>(other);
     }
 
     template<class T>
     requires std::constructible_from<std::string, T>
     Json::Json(T&& other) {
-        _value = String::FromOwned(std::string{ std::forward<T>(other) });
+        m_value = String::FromOwned(std::string{ std::forward<T>(other) });
     }
 
     template<class T>
     requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json& Json::operator=(T other) {
-        _value = static_cast<Number>(other);
+        m_value = static_cast<Number>(other);
         return *this;
     }
 
     template<class T>
         requires std::constructible_from<std::string, T>
     Json& Json::operator=(T&& other) {
-        _value = String::FromOwned(std::forward<T>(other));
+        m_value = String::FromOwned(std::forward<T>(other));
         return *this;
     }
 
@@ -46,17 +46,17 @@ namespace Thoth::NJson {
 
     template<class T>
     bool Json::IsOfType(const Json& val) {
-        return std::holds_alternative<T>(val._value);
+        return std::holds_alternative<T>(val.m_value);
     }
 
     template<class T>
     bool Json::IsOf() const {
-        return std::holds_alternative<T>(_value);
+        return std::holds_alternative<T>(m_value);
     }
 
     template<class T>
     T& Json::AsType(Json& val) {
-        return std::get<T>(val._value);
+        return std::get<T>(val.m_value);
     }
 
 
@@ -92,7 +92,7 @@ namespace Thoth::NJson {
 
 #define ERROR \
     std::unexpected{ Http::ExchangeError{ Http::JsonWrongTypeError{ \
-        Http::JsonWrongTypeError::IndexOf<T>, _value.index() } } }
+        Http::JsonWrongTypeError::IndexOf<T>, m_value.index() } } }
 
 #pragma endregion
 
@@ -100,7 +100,7 @@ namespace Thoth::NJson {
 
     template<class T, class Self>
     decltype(auto) Json::As(this Self&& self) {
-        return std::get<T>(std::forward_like<Self>(self._value));
+        return std::get<T>(std::forward_like<Self>(self.m_value));
     }
 
     template<class T> T        Json::AsCpy() const& { return As<T>();           }
@@ -158,12 +158,12 @@ namespace Thoth::NJson {
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
-        return std::visit(std::forward<Callable>(callable), _value);
+        return std::visit(std::forward<Callable>(callable), m_value);
     }
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) const {
-        return std::visit(std::forward<Callable>(callable), _value);
+        return std::visit(std::forward<Callable>(callable), m_value);
     }
 
 
@@ -184,12 +184,12 @@ namespace Thoth::NJson {
 }
 
 
-    template <class Pred> requires std::predicate<Pred, Json>
+    template<class Pred> requires std::predicate<Pred, Json>
     OptRefValWrapper Json::Search(Pred&& pred) {
         RETURN_IF_MATCH(auto &obj, &obj);
         return std::nullopt;
     }
-    template <class Pred> requires std::predicate<Pred, Json>
+    template<class Pred> requires std::predicate<Pred, Json>
     [[nodiscard]] OptCRefValWrapper Json::Search(Pred&& pred) const {
         RETURN_IF_MATCH(const auto &obj, &obj);
         return std::nullopt;
@@ -276,14 +276,14 @@ namespace Thoth::NJson {
 
                         if (d < 32) {
                             UPDATE(i);
-                            static constexpr auto& hex{ Thoth::String::CharSequences::hexLower };
+                            static constexpr auto& k_hex{ Thoth::String::CharSequences::k_hexLower };
 
                             *it++ = '\\';
                             *it++ = 'u';
                             *it++ = '0';
                             *it++ = '0';
-                            *it++ = hex[d >> 4];
-                            *it++ = hex[d & 0x0F];
+                            *it++ = k_hex[d >> 4];
+                            *it++ = k_hex[d & 0x0F];
                         }
                     }
                 }
@@ -373,14 +373,14 @@ namespace Thoth::NJson {
         template<class OutIt>
         void FormatJsonVal(const Json& val, bool pretty, const std::string& indent,
             const size_t indentDepth, OutIt& it) {
-            static constexpr std::string_view nullStr{ "null" };
+            static constexpr std::string_view k_nullStr{ "null" };
 
-            static constexpr std::string_view falseStr{ "false" };
-            static constexpr std::string_view trueStr{ "true" };
+            static constexpr std::string_view k_falseStr{ "false" };
+            static constexpr std::string_view k_trueStr{ "true" };
 
             const auto formatNumber{ [&](const Number num) {
                 if (!std::isfinite(num)) {
-                    it = std::ranges::copy(nullStr, it).out;
+                    it = std::ranges::copy(k_nullStr, it).out;
                     return;
                 }
 
@@ -391,7 +391,7 @@ namespace Thoth::NJson {
                 if (ec == std::errc{})
                     it = std::ranges::copy(buf.data(), ptr, it).out;
                 else
-                    it = std::ranges::copy(nullStr, it).out;
+                    it = std::ranges::copy(k_nullStr, it).out;
             } };
 
             const auto formatString{ [&](const String& str) {
@@ -412,10 +412,10 @@ namespace Thoth::NJson {
             std::visit(Hermes::Utils::Overloaded{
                 formatString,
                 formatNumber,
-                [&](const Bool    bln){ it = std::ranges::copy(bln ? trueStr : falseStr, it).out; },
+                [&](const Bool    bln){ it = std::ranges::copy(bln ? k_trueStr : k_falseStr, it).out; },
                 [&](const Object& obj){ FormatJsonObj(*obj, pretty, indent, indentDepth, it); },
                 [&](const Array&  arr){ FormatJsonArr(arr, pretty, indent, indentDepth, it); },
-                [&](const Null&      ){ it = std::ranges::copy(nullStr, it).out; }
+                [&](const Null&      ){ it = std::ranges::copy(k_nullStr, it).out; }
             }, static_cast<const Json::Value&>(val));
         }
     }

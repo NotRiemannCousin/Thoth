@@ -101,10 +101,10 @@ namespace Thoth::NJson {
 
 
 
-        IterType begin()                      { return _pairs.begin(); }
-        IterType end()                        { return _pairs.end(); }
-        [[nodiscard]] CIterType begin() const { return _pairs.cbegin(); }
-        [[nodiscard]] CIterType end() const   { return _pairs.cend(); }
+        IterType begin()                      { return m_pairs.begin(); }
+        IterType end()                        { return m_pairs.end(); }
+        [[nodiscard]] CIterType begin() const { return m_pairs.cbegin(); }
+        [[nodiscard]] CIterType end() const   { return m_pairs.cend(); }
 
 
 
@@ -132,7 +132,7 @@ namespace Thoth::NJson {
         friend Json;
         friend bool details_::ReadObject(std::string_view& input, auto& val, const details_::BufferInfo& info);
     private:
-        MapType _pairs{};
+        MapType m_pairs{};
 
         friend struct std::formatter<JsonObject>;
     };

@@ -15,7 +15,7 @@ namespace Thoth::String {
     struct UnicodeViewer {
         using  StringViewType = std::basic_string_view<CharT>;
 
-        constexpr explicit UnicodeViewer(StringViewType str) : _ref{ str } { }
+        constexpr explicit UnicodeViewer(StringViewType str) : m_ref{ str } { }
 
 
         struct Iterator {
@@ -32,14 +32,14 @@ namespace Thoth::String {
             constexpr Iterator operator++(int);
 
         private:
-            StringViewType::const_iterator _curIt{};
-            StringViewType::const_iterator _end{};
-            size_t _accInvalid{};
-            value_type _currValue{};
+            StringViewType::const_iterator m_curIt{};
+            StringViewType::const_iterator m_end{};
+            size_t     m_accInvalid{};
+            value_type m_currValue{};
         };
 
-        [[nodiscard]] constexpr Iterator begin() noexcept{        return Iterator{ _ref.begin(), _ref.end() }; }
-        [[nodiscard]] constexpr Iterator cbegin() const noexcept{ return Iterator{ _ref.begin(), _ref.end() }; }
+        [[nodiscard]] constexpr Iterator begin() noexcept{        return Iterator{ m_ref.begin(), m_ref.end() }; }
+        [[nodiscard]] constexpr Iterator cbegin() const noexcept{ return Iterator{ m_ref.begin(), m_ref.end() }; }
         [[nodiscard]] constexpr std::default_sentinel_t end() noexcept{        return std::default_sentinel_t{}; }
         [[nodiscard]] constexpr std::default_sentinel_t cend() const noexcept{ return std::default_sentinel_t{}; }
 
@@ -50,7 +50,7 @@ namespace Thoth::String {
         template<UnicodeCharConcept NewCharT>
         static constexpr std::basic_string<NewCharT> ConvertTo(StringViewType str);
     private:
-        StringViewType _ref{};
+        StringViewType m_ref{};
     };
 
     using Utf8View  = UnicodeViewer<char8_t>;

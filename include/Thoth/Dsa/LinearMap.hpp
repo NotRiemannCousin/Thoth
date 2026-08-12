@@ -8,7 +8,7 @@
 
 namespace Thoth::Dsa {
 
-    template <class Key, class Relation>
+    template<class Key, class Relation>
     concept strong_order_relation =
            requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::same_as<std::strong_ordering>; }
         || requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::convertible_to<bool>; };
@@ -26,16 +26,16 @@ namespace Thoth::Dsa {
         using size_type      = container_type::size_type;
 
     private:
-        container_type _data;
-        [[no_unique_address]] key_compare _compare; // Otimização para comparadores sem estado (stateless)
+        container_type m_data;
+        [[no_unique_address]] key_compare m_compare; // Otimização para comparadores sem estado (stateless)
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr iterator find_position(const LookupKeyT& key);
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr const_iterator find_position(const LookupKeyT& key) const;
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr bool is_equivalent(const_iterator it, const LookupKeyT& key) const;
 
     public:
@@ -63,31 +63,31 @@ namespace Thoth::Dsa {
         [[nodiscard]] constexpr bool empty() const;
         constexpr size_type size() const;
 
-        template <class LookupKeyT, class MappedT>
+        template<class LookupKeyT, class MappedT>
         constexpr std::pair<iterator, bool> try_emplace(LookupKeyT&& key, MappedT&& val);
 
-        template <class LookupKeyT, class MappedT>
+        template<class LookupKeyT, class MappedT>
         constexpr std::pair<iterator, bool> insert_or_assign(LookupKeyT&& key, MappedT&& val);
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr bool erase(const LookupKeyT& key);
 
         constexpr iterator erase(iterator pos);
         constexpr iterator erase(const_iterator pos);
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr iterator find(const LookupKeyT& key);
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr const_iterator find(const LookupKeyT& key) const;
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr bool exists(const LookupKeyT& key) const;
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         constexpr bool contains(const LookupKeyT& key) const;
 
-        template <class LookupKeyT>
+        template<class LookupKeyT>
         ValT& operator[](LookupKeyT&& key);
     };
 }

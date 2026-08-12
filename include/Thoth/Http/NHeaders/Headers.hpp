@@ -230,7 +230,7 @@ namespace Thoth::Http {
         //! @return True if both headers match.
         bool operator==(const Headers& other) const;
     protected:
-        MapType _headers;
+        MapType m_headers;
 
         friend struct std::formatter<Headers>;
         friend struct std::formatter<RequestHeaders>;

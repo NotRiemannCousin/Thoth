@@ -38,21 +38,21 @@ namespace Thoth::Utils {
     template<std::integral T>
     struct Scanner<T> {
     private:
-        int base{ 10 };
+        int m_base{ 10 };
     public:
         bool Parse(const std::string_view str) {
             if (str.empty()) return true;
-            if (str == "b") { base =  2; return true; }
-            if (str == "x") { base = 16; return true; }
+            if (str == "b") { m_base =  2; return true; }
+            if (str == "x") { m_base = 16; return true; }
 
-            const auto [_, ec]{ std::from_chars(str.data(), str.data() + str.size(), base) };
+            const auto [_, ec]{ std::from_chars(str.data(), str.data() + str.size(), m_base) };
 
 
-            return ec == std::errc() && base >= 1 && base <= 36;
+            return ec == std::errc() && m_base >= 1 && m_base <= 36;
         }
         std::optional<T> Scan(const std::string_view str) {
             T val;
-            const auto [ptr, ec]{ std::from_chars(str.data(), str.data() + str.size(), val, base) };
+            const auto [ptr, ec]{ std::from_chars(str.data(), str.data() + str.size(), val, m_base) };
 
             if (ec != std::errc{} || ptr != str.data() + str.size())
                 return std::nullopt;
@@ -91,14 +91,14 @@ namespace Thoth::Utils {
 
         static std::optional<std::chrono::utc_clock::time_point> Scan(std::string_view input) {
             using TimePoint = std::chrono::utc_clock::time_point;
-            static constexpr char outputFormat[]{ "%Y-%m-%d %H:%M:%S %z" };
+            static constexpr char k_outputFormat[]{ "%Y-%m-%d %H:%M:%S %z" };
 
             if (input.empty()) return std::nullopt;
 
             std::istringstream ss{ std::string{ input } };
 
 
-            if (TimePoint clock; std::chrono::from_stream(ss, outputFormat, clock))
+            if (TimePoint clock; std::chrono::from_stream(ss, k_outputFormat, clock))
                 return clock;
 
             return std::nullopt;

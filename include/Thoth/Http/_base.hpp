@@ -51,8 +51,9 @@ namespace Thoth::Http {
     //! uses today); it should be revisited when sending chunks (types beyond
     //! std::string_view) is tested.
     template<class S>
-    concept WireSocketConcept = requires(S s, std::string_view data) {
-        { s.Send(data) };
+    concept ConnectionConcept = requires(S s, std::string_view data) {
+        { s.socket };
+        { s.Send(data) } -> std::same_as<Hermes::StreamByteOper>;
         { s.Close() } -> std::same_as<void>;
         { s.Abort() } -> std::same_as<void>;
     };
