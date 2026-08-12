@@ -15,9 +15,9 @@ var searchData=
   ['transformoptifimpl_12',['TransformOptIfImpl',['../namespace_thoth_1_1_utils.html#ac31c13eba41f9cb6bafa07b9856c03c2',1,'Thoth::Utils']]],
   ['transformoptifnot_13',['transformoptifnot',['../namespace_thoth_1_1_utils.html#af59278d314753de189960ac4442ec1ca',1,'Thoth::Utils::TransformOptIfNot(Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a54e5679faa93b76ea2400a3f7ee8acaf',1,'Thoth::Utils::TransformOptIfNot(Trans &amp;&amp;trans, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a7bd04b2f48678089b6e921f42e5495d3',1,'Thoth::Utils::TransformOptIfNot(Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)']]],
   ['transformoptifnothof_14',['transformoptifnothof',['../namespace_thoth_1_1_utils.html#a45f7543f8d3e70e04b2c5adbc96f7c13',1,'Thoth::Utils::TransformOptIfNotHof(Trans &amp;&amp;trans)'],['../namespace_thoth_1_1_utils.html#a8e1e136b3ade47d7dde5d634757ba617',1,'Thoth::Utils::TransformOptIfNotHof(Pred &amp;&amp;pred, Trans &amp;&amp;trans)'],['../namespace_thoth_1_1_utils.html#ad8855f06b76ff591c39a01ddd591b1c7',1,'Thoth::Utils::TransformOptIfNotHof()']]],
-  ['trim_15',['Trim',['../namespace_thoth_1_1_string.html#ab9109807085c377fdbaceb7eebba74a4',1,'Thoth::String']]],
-  ['trimmed_16',['Trimmed',['../namespace_thoth_1_1_string.html#ac05cde6589176a4ec42c3dbe3684f1b5',1,'Thoth::String']]],
-  ['trimmedstr_17',['TrimmedStr',['../namespace_thoth_1_1_string.html#a11053c2550329fbd13021724261360fe',1,'Thoth::String']]],
+  ['trim_15',['Trim',['../namespace_thoth_1_1_string.html#a0120eee3cbffaec46f560742256e6554',1,'Thoth::String']]],
+  ['trimmed_16',['Trimmed',['../namespace_thoth_1_1_string.html#af149152913e9a130947ce8cbaec8518b',1,'Thoth::String']]],
+  ['trimmedstr_17',['TrimmedStr',['../namespace_thoth_1_1_string.html#a21ce4fcfe2e2acc5df7c5b5a798d1b90',1,'Thoth::String']]],
   ['try_5femplace_18',['try_emplace',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a24707b69d1e27ce24d5c6002efcf7646',1,'Thoth::Dsa::LinearMap']]],
   ['trydecode_19',['TryDecode',['../struct_thoth_1_1_http_1_1_url.html#a087bd46a7af71d25159eb9d878746da4',1,'Thoth::Http::Url']]],
   ['tryset_20',['tryset',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a04c8847bca0f28c2d0f22c0dd6dcb034',1,'Thoth::Http::NHeaders::ListProxy::TrySet()'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a01e185e3b350938b5a83e1aaeedbc124',1,'Thoth::Http::NHeaders::ValueProxy::TrySet()']]]

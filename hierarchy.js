@@ -23,7 +23,7 @@ var hierarchy =
     ] ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
-    [ "Thoth::Http::details_::Http11", "struct_thoth_1_1_http_1_1details___1_1_http11.html", null ],
+    [ "Thoth::Http::details_::Http1", "struct_thoth_1_1_http_1_1details___1_1_http1.html", null ],
     [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer< CharT >::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
@@ -62,6 +62,7 @@ var hierarchy =
     [ "Thoth::Utils::Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
     [ "Thoth::Utils::Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", null ],
     [ "Thoth::Http::Server", "struct_thoth_1_1_http_1_1_server.html", null ],
+    [ "Thoth::Http::ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ],
     [ "Thoth::Utils::SharedInputView< Range >", "struct_thoth_1_1_utils_1_1_shared_input_view.html", null ],
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],
     [ "Thoth::Http::NHeaders::SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", null ],
@@ -71,7 +72,6 @@ var hierarchy =
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy< IsConst, Ts >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
-      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
-      [ "Thoth::Http::ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ]
+      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ]
     ] ]
 ];

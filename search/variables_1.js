@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['acceptedtypes_0',['acceptedTypes',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#aa59d593f6bc6fd5305a6bd981f6cb968',1,'Thoth::Dsa::FileBuilderParams']]],
-  ['alpha_1',['alpha',['../struct_thoth_1_1_string_1_1_char_sequences.html#a88bce0089c6d2509bec080b6858aa2c7',1,'Thoth::String::CharSequences']]],
-  ['alphalower_2',['alphaLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9ced9a1583c310dfa86d9cd3d34510d9',1,'Thoth::String::CharSequences']]],
-  ['alphanumeric_3',['alphanumeric',['../struct_thoth_1_1_string_1_1_char_sequences.html#ae1e08aa0dd8f8c7040422f284c992c91',1,'Thoth::String::CharSequences']]],
-  ['alphaupper_4',['alphaUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a1e0295877d151fcb9afa075f6c559a93',1,'Thoth::String::CharSequences']]],
-  ['appjson_5',['appJson',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7',1,'Thoth::Http::NHeaders::MimeTypes']]],
-  ['appoctetstream_6',['appOctetStream',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a44c9bb493e0541edb8dcd209a8b332ce',1,'Thoth::Http::NHeaders::MimeTypes']]],
-  ['appxml_7',['appXml',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a5911bfde2d2c3e41f2e32bc8a1ba20ab',1,'Thoth::Http::NHeaders::MimeTypes']]]
+  ['body_0',['body',['../struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5',1,'Thoth::Http::details_::ParseCompleteStage::body'],['../struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143',1,'Thoth::Http::Request::body'],['../struct_thoth_1_1_http_1_1_response.html#ae32b14d3e677ba1c88924c2765bc767d',1,'Thoth::Http::Response::body']]],
+  ['buffer_1',['buffer',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#a6d1b11406a5296a7859bb1ef2b1228ee',1,'Thoth::NJson::details_::BufferInfo']]],
+  ['bufferview_2',['bufferView',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#afc51d443c5057fbb2ec0b7ed477c837e',1,'Thoth::NJson::details_::BufferInfo']]]
 ];

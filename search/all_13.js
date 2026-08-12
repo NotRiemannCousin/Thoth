@@ -29,9 +29,9 @@ var searchData=
   ['responseheaders_26',['ResponseHeaders',['../struct_thoth_1_1_http_1_1_response_headers.html',1,'Thoth::Http']]],
   ['responseheaders_2ehpp_27',['ResponseHeaders.hpp',['../_response_headers_8hpp.html',1,'']]],
   ['retryafter_28',['retryafter',['../struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46',1,'Thoth::Http::ResponseHeaders::RetryAfter() const'],['../struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807',1,'Thoth::Http::ResponseHeaders::RetryAfter()']]],
-  ['righttrim_29',['RightTrim',['../namespace_thoth_1_1_string.html#a17a95ca565a76e2041d14b8772a5fa93',1,'Thoth::String']]],
-  ['righttrimmed_30',['RightTrimmed',['../namespace_thoth_1_1_string.html#a675419e8074e03bcf60edfc542964c56',1,'Thoth::String']]],
-  ['righttrimmedstr_31',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#ab6fad7f546d1056c87f6904991984491',1,'Thoth::String']]],
+  ['righttrim_29',['RightTrim',['../namespace_thoth_1_1_string.html#a0a827fa53ea354149c3b214771bf5f40',1,'Thoth::String']]],
+  ['righttrimmed_30',['RightTrimmed',['../namespace_thoth_1_1_string.html#ad2b514531b6fab3937666b1386f84513',1,'Thoth::String']]],
+  ['righttrimmedstr_31',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#a33aa2d36af56a7fc14845c7d0e7f86a8',1,'Thoth::String']]],
   ['ritertype_32',['RIterType',['../struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579',1,'Thoth::Http::Headers']]],
   ['rune_33',['Rune',['../namespace_thoth_1_1_string.html#a6e9441aef99bad6e567745dd9f89cdaa',1,'Thoth::String']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['key_0',['key',['../struct_thoth_1_1_http_1_1_json_get_error.html#a72c61cb860f3c1f2a0ef69e39211ad5d',1,'Thoth::Http::JsonGetError::key'],['../struct_thoth_1_1_http_1_1_json_find_error.html#aac00ad925caba37de975b24aadffbe12',1,'Thoth::Http::JsonFindError::key']]]
+  ['last_0',['last',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#a1161220e331314c0f1f7f930e3458347',1,'Thoth::Http::NHeaders::SuffixedRange']]],
+  ['lastused_1',['lastUsed',['../struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416',1,'Thoth::Http::ClientConnection']]]
 ];

@@ -790,7 +790,7 @@ $(document).ready(function(){initNavTree('_functional_8hpp_source.html',''); ini
 <div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>        <span class="keyword">using </span>ValT = std::remove_cvref_t&lt;Val&gt;;</div>
 <div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>        <span class="keyword">using </span>ErrT = std::remove_cvref_t&lt;Err&gt;;</div>
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
-<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>        AccT accumulator = std::forward&lt;Acc&gt;(initial);</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>        AccT accumulator{ std::forward&lt;Acc&gt;(initial) };</div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
 <div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp;&amp; val : range) {</div>
 <div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>            <span class="keywordflow">if</span> (!val)</div>

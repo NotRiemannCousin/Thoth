@@ -234,7 +234,7 @@ Concepts</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">BodyFactoryConcept</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_wire_socket_concept.html">WireSocketConcept</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_connection_concept.html">ConnectionConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for any synchronous Hermes socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. Hermes' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">ResponseBodyFactoryConcept</a></td></tr>
@@ -270,10 +270,10 @@ Typedefs</h2></td></tr>
 <tr class="separator:a1f9f982a0c7ce740b6f72d03d5cdefcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4946cfe487bc759632539e71e043b055" id="r_a4946cfe487bc759632539e71e043b055"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a4946cfe487bc759632539e71e043b055">PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184">Dsa::TextFileOutputRange</a> &gt;</td></tr>
 <tr class="separator:a4946cfe487bc759632539e71e043b055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8b78e72060a2aa644664c97b8511ac0" id="r_ae8b78e72060a2aa644664c97b8511ac0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#ae8b78e72060a2aa644664c97b8511ac0">GetFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt; std::byte &gt; &gt;</td></tr>
-<tr class="separator:ae8b78e72060a2aa644664c97b8511ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabb991e3b9646d4bac7528897c0a2320" id="r_aabb991e3b9646d4bac7528897c0a2320"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#aabb991e3b9646d4bac7528897c0a2320">PostFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt; std::byte &gt; &gt;</td></tr>
-<tr class="separator:aabb991e3b9646d4bac7528897c0a2320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57d457d5459a31cf722ada9dd4e14d18" id="r_a57d457d5459a31cf722ada9dd4e14d18"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a57d457d5459a31cf722ada9dd4e14d18">GetFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">Dsa::BinFileOutputRange</a> &gt;</td></tr>
+<tr class="separator:a57d457d5459a31cf722ada9dd4e14d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f93d303e332e1f93b8ca761163a2ca0" id="r_a6f93d303e332e1f93b8ca761163a2ca0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a6f93d303e332e1f93b8ca761163a2ca0">PostFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">Dsa::BinFileOutputRange</a> &gt;</td></tr>
+<tr class="separator:a6f93d303e332e1f93b8ca761163a2ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a129f8acf563a2d60f4d2a9ee3812eaf3" id="r_a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a> = std::expected&lt; T, <a class="el" href="namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> &gt;</td></tr>
 <tr class="separator:a129f8acf563a2d60f4d2a9ee3812eaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -472,14 +472,14 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="ae8b78e72060a2aa644664c97b8511ac0" name="ae8b78e72060a2aa644664c97b8511ac0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8b78e72060a2aa644664c97b8511ac0">&#9670;&#160;</a></span>GetFileBinResponse</h2>
+<a id="a57d457d5459a31cf722ada9dd4e14d18" name="a57d457d5459a31cf722ada9dd4e14d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57d457d5459a31cf722ada9dd4e14d18">&#9670;&#160;</a></span>GetFileBinResponse</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#ae8b78e72060a2aa644664c97b8511ac0">Thoth::Http::GetFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a57d457d5459a31cf722ada9dd4e14d18">Thoth::Http::GetFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">Dsa::BinFileOutputRange</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -570,14 +570,14 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="aabb991e3b9646d4bac7528897c0a2320" name="aabb991e3b9646d4bac7528897c0a2320"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabb991e3b9646d4bac7528897c0a2320">&#9670;&#160;</a></span>PostFileBinResponse</h2>
+<a id="a6f93d303e332e1f93b8ca761163a2ca0" name="a6f93d303e332e1f93b8ca761163a2ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f93d303e332e1f93b8ca761163a2ca0">&#9670;&#160;</a></span>PostFileBinResponse</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#aabb991e3b9646d4bac7528897c0a2320">Thoth::Http::PostFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespace_thoth_1_1_http.html#a6f93d303e332e1f93b8ca761163a2ca0">Thoth::Http::PostFileBinResponse</a> = typedef <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#ae6bfb4be382192bfaa27de82985eff25">Dsa::BinFileOutputRange</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

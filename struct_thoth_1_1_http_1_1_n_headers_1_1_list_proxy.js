@@ -1,9 +1,9 @@
 var struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy =
 [
     [ "First", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy_1_1_first.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy_1_1_first" ],
-    [ "ElemType", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#abd661b0e347e6bbdf507668b2ad9790b", null ],
+    [ "ElemType", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ab16d3663f1afd37cf829917f9c172dfd", null ],
     [ "HeaderType", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a892f439effdeba3163cdccedd956bcd9", null ],
-    [ "PatternType", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a01faca8ced705779fa4fa74d21daee06", null ],
+    [ "PatternType", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a7f43820f8f1dfa9c5b25e5b843d1e7b6", null ],
     [ "Type", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be", null ],
     [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a75d93be0e3dcc528efc6fdcbfc46159a", null ],
     [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a6c70a63c5c4b29f2e97a7c33109b9d2a", null ],

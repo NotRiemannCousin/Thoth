@@ -132,16 +132,122 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_server_conne
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_thoth_1_1_http_1_1_server_connection-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Thoth::Http::ServerConnection Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="_server_8hpp_source.html">Server.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for Thoth::Http::ServerConnection:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="struct_thoth_1_1_http_1_1_server_connection__inherit__graph.svg" width="230" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a303b5f885a9a01964fbac23c40118ad8" id="r_a303b5f885a9a01964fbac23c40118ad8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8">SocketType</a> = std::variant&lt; Hermes::RawTcpServer, Hermes::RawTlsServer &gt;</td></tr>
+<tr class="separator:a303b5f885a9a01964fbac23c40118ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c3b463bba1c41a1ee2571b3804f831a" id="r_a8c3b463bba1c41a1ee2571b3804f831a"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a8c3b463bba1c41a1ee2571b3804f831a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a8c3b463bba1c41a1ee2571b3804f831a">Send</a> (const T &amp;data)</td></tr>
+<tr class="separator:a8c3b463bba1c41a1ee2571b3804f831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ba2b99b75487e52675ac4ec936dead" id="r_a20ba2b99b75487e52675ac4ec936dead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a20ba2b99b75487e52675ac4ec936dead">Close</a> ()</td></tr>
+<tr class="separator:a20ba2b99b75487e52675ac4ec936dead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90cbf503b6335df550b8b0347fae86c0" id="r_a90cbf503b6335df550b8b0347fae86c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a90cbf503b6335df550b8b0347fae86c0">Abort</a> ()</td></tr>
+<tr class="separator:a90cbf503b6335df550b8b0347fae86c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae244cfafc4ba96f03dfb1f6b18089c4a" id="r_ae244cfafc4ba96f03dfb1f6b18089c4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8">SocketType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#ae244cfafc4ba96f03dfb1f6b18089c4a">socket</a></td></tr>
+<tr class="separator:ae244cfafc4ba96f03dfb1f6b18089c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a303b5f885a9a01964fbac23c40118ad8" name="a303b5f885a9a01964fbac23c40118ad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a303b5f885a9a01964fbac23c40118ad8">&#9670;&#160;</a></span>SocketType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8">Thoth::Http::ServerConnection::SocketType</a> =  std::variant&lt;Hermes::RawTcpServer, Hermes::RawTlsServer&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a90cbf503b6335df550b8b0347fae86c0" name="a90cbf503b6335df550b8b0347fae86c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90cbf503b6335df550b8b0347fae86c0">&#9670;&#160;</a></span>Abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::ServerConnection::Abort </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20ba2b99b75487e52675ac4ec936dead" name="a20ba2b99b75487e52675ac4ec936dead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20ba2b99b75487e52675ac4ec936dead">&#9670;&#160;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thoth::Http::ServerConnection::Close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c3b463bba1c41a1ee2571b3804f831a" name="a8c3b463bba1c41a1ee2571b3804f831a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3b463bba1c41a1ee2571b3804f831a">&#9670;&#160;</a></span>Send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::ServerConnection::Send </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae244cfafc4ba96f03dfb1f6b18089c4a" name="ae244cfafc4ba96f03dfb1f6b18089c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae244cfafc4ba96f03dfb1f6b18089c4a">&#9670;&#160;</a></span>socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8">SocketType</a> Thoth::Http::ServerConnection::socket</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/Thoth/Http/<a class="el" href="_server_8hpp_source.html">Server.hpp</a></li>
 </ul>

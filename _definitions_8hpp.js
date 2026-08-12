@@ -22,6 +22,5 @@ var _definitions_8hpp =
     [ "OptValWrapper", "_definitions_8hpp.html#af0d2d424642a836b4b8d9016b4da0a04", null ],
     [ "RefValWrapper", "_definitions_8hpp.html#accc650df3cc2d4060b5bcd1e2df3f583", null ],
     [ "String", "_definitions_8hpp.html#a09693e413ce01b74bf25059d3508aa4d", null ],
-    [ "ValWrapper", "_definitions_8hpp.html#afd44f0bb01bdff6ab57fe889260fb8e8", null ],
-    [ "MakeKeys", "_definitions_8hpp.html#a671d80ae10be053e360cc17d0791dd91", null ]
+    [ "ValWrapper", "_definitions_8hpp.html#afd44f0bb01bdff6ab57fe889260fb8e8", null ]
 ];

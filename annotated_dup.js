@@ -12,7 +12,7 @@ var annotated_dup =
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
         [ "details_", "namespace_thoth_1_1_http_1_1details__.html", [
-          [ "Http11", "struct_thoth_1_1_http_1_1details___1_1_http11.html", null ],
+          [ "Http1", "struct_thoth_1_1_http_1_1details___1_1_http1.html", null ],
           [ "ParseCompleteStage", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage" ],
           [ "ParseStage", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_stage" ]
         ] ],
@@ -55,7 +55,7 @@ var annotated_dup =
         [ "ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", "struct_thoth_1_1_http_1_1_response_head" ],
         [ "ResponseHeaders", "struct_thoth_1_1_http_1_1_response_headers.html", "struct_thoth_1_1_http_1_1_response_headers" ],
         [ "Server", "struct_thoth_1_1_http_1_1_server.html", "struct_thoth_1_1_http_1_1_server" ],
-        [ "ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ],
+        [ "ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", "struct_thoth_1_1_http_1_1_server_connection" ],
         [ "TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]
       ] ],

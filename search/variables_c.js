@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['newlines_0',['newlines',['../struct_thoth_1_1_string_1_1_char_sequences.html#a68aad4b9f61cae7931ca81a545b32f99',1,'Thoth::String::CharSequences']]],
-  ['nonprintable_1',['nonPrintable',['../struct_thoth_1_1_string_1_1_char_sequences.html#aa8ed0aadfe1c2d0300f9a4e25c08f0aa',1,'Thoth::String::CharSequences']]]
+  ['path_0',['path',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a53b04ec2463e776c30555873592b0cce',1,'Thoth::Dsa::FileBuilderParams']]],
+  ['pattern_1',['pattern',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html#afb6467b20c7b252ea1b577b70ed2c3e7',1,'Thoth::Utils::Scanner&lt; std::chrono::utc_clock::time_point &gt;']]],
+  ['poolmutex_2',['poolMutex',['../struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd',1,'Thoth::Http::ClientJanitor']]],
+  ['port_3',['port',['../struct_thoth_1_1_http_1_1_authority.html#a7e3da879c4774bd4027862b57d05bf38',1,'Thoth::Http::Authority']]],
+  ['protocol_4',['protocol',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html#a5e7aba1ecd96917623e2528eb1fb80fa',1,'Thoth::Http::NHeaders::Upgrade']]]
 ];

@@ -147,7 +147,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a36b4ac4a3bfe315e9d23fb8310025257" id="r_a36b4ac4a3bfe315e9d23fb8310025257"><td class="memTemplParams" colspan="2">template&lt;class Method , BodyConcept Body&gt; </td></tr>
+<tr class="memitem:a36b4ac4a3bfe315e9d23fb8310025257" id="r_a36b4ac4a3bfe315e9d23fb8310025257"><td class="memTemplParams" colspan="2">template&lt;class Method , WritableBodyConcept Body&gt; </td></tr>
 <tr class="memitem:a36b4ac4a3bfe315e9d23fb8310025257"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">ExpResponse</a> = std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, Body &gt;, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;</td></tr>
 <tr class="memdesc:a36b4ac4a3bfe315e9d23fb8310025257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for <code>std::expected</code> containing a <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a> or a <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>.  <br /></td></tr>
 <tr class="separator:a36b4ac4a3bfe315e9d23fb8310025257"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,7 +202,7 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Method , BodyConcept Body&gt; </div>
+template&lt;class Method , WritableBodyConcept Body&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a36b4ac4a3bfe315e9d23fb8310025257">Thoth::Http::Client::ExpResponse</a> =  std::expected&lt;<a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;Method, Body&gt;, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a>&gt;</td>

@@ -15,7 +15,7 @@ var searchData=
   ['getcopyorerror_12',['GetCopyOrError',['../struct_thoth_1_1_n_json_1_1_json.html#ac28fbbe961f147b1f0bd268ab8ca0f62',1,'Thoth::NJson::Json']]],
   ['getcopyornull_13',['getcopyornull',['../struct_thoth_1_1_n_json_1_1_json.html#ac9e277cbc57e4ecdf34a8bb1a4dfa3e3',1,'Thoth::NJson::Json::GetCopyOrNull()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a295e0d6475e1e8e07efa76a64dd04da3',1,'Thoth::NJson::JsonObject::GetCopyOrNull()']]],
   ['getdefaultport_14',['GetDefaultPort',['../namespace_thoth_1_1_http.html#a2b28c97564db3adc49d3439fc450b2ab',1,'Thoth::Http']]],
-  ['getfilebinresponse_15',['GetFileBinResponse',['../namespace_thoth_1_1_http.html#ae8b78e72060a2aa644664c97b8511ac0',1,'Thoth::Http']]],
+  ['getfilebinresponse_15',['GetFileBinResponse',['../namespace_thoth_1_1_http.html#a57d457d5459a31cf722ada9dd4e14d18',1,'Thoth::Http']]],
   ['getfileresponse_16',['GetFileResponse',['../namespace_thoth_1_1_http.html#a1f9f982a0c7ce740b6f72d03d5cdefcc',1,'Thoth::Http']]],
   ['getfragment_17',['GetFragment',['../struct_thoth_1_1_http_1_1_url.html#afe056173ad1f70c42956ff25b3d75825',1,'Thoth::Http::Url']]],
   ['gethoststring_18',['GetHostString',['../struct_thoth_1_1_http_1_1_authority.html#a1cf96428aeaba03032b08df1523108db',1,'Thoth::Http::Authority']]],

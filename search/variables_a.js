@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['last_0',['last',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#a1161220e331314c0f1f7f930e3458347',1,'Thoth::Http::NHeaders::SuffixedRange']]],
-  ['lastused_1',['lastUsed',['../struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416',1,'Thoth::Http::ClientConnection']]],
-  ['linearwhitespace_2',['linearWhitespace',['../struct_thoth_1_1_string_1_1_char_sequences.html#aeee9ace99202beef46757f1e67430ec7',1,'Thoth::String::CharSequences']]]
+  ['m_5fheaders_0',['m_headers',['../struct_thoth_1_1_http_1_1_headers.html#a3e43708b3a94b22c0b00e936e3759b4a',1,'Thoth::Http::Headers']]],
+  ['maxsize_1',['maxSize',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a629832e85350a773aef6ca9ca2ffe71f',1,'Thoth::Dsa::FileBuilderParams']]],
+  ['mode_2',['mode',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a8decb585cccdd49a3ccad2983a2c9749',1,'Thoth::Dsa::FileBuilderParams']]],
+  ['multipartform_3',['multipartForm',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a2355dcf7ada4ae278001686fc5138b1d',1,'Thoth::Http::NHeaders::MimeTypes']]]
 ];

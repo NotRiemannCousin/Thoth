@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['headers_0',['headers',['../struct_thoth_1_1_http_1_1_request_head.html#af1902368b69df67e8edf659654524af3',1,'Thoth::Http::RequestHead::headers'],['../struct_thoth_1_1_http_1_1_response_head.html#a9f2476f1208473fa57eb6bdf84329ed1',1,'Thoth::Http::ResponseHead::headers']]],
-  ['hex_1',['hex',['../struct_thoth_1_1_string_1_1_char_sequences.html#a88f3fe33cb9fcc7647023c445c9a2a40',1,'Thoth::String::CharSequences']]],
-  ['hexlower_2',['hexLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a0b57e428c43374df2450859a2a99836b',1,'Thoth::String::CharSequences']]],
-  ['hexupper_3',['hexUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a8b45d3ed35c39de52a9b0b41f10b781c',1,'Thoth::String::CharSequences']]],
-  ['host_4',['host',['../struct_thoth_1_1_http_1_1_authority.html#aff590335dc0632ddda19752c2d5eaa82',1,'Thoth::Http::Authority']]]
+  ['idx_0',['idx',['../struct_thoth_1_1_http_1_1_json_parse_error.html#afcda06c997e3c6ca8d66eb8dcb11c045',1,'Thoth::Http::JsonParseError']]],
+  ['idxexpected_1',['idxExpected',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#a45d62bfe2a443465cfeee2f33569051e',1,'Thoth::Http::JsonWrongTypeError']]],
+  ['idxgot_2',['idxGot',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#afcc395e9d1f3b0f341f3a85ade6ec5eb',1,'Thoth::Http::JsonWrongTypeError']]],
+  ['imagejpeg_3',['imageJpeg',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a962ba790e016b284bde2bd4fe3b229ae',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['imagepng_4',['imagePng',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a7ab7aa1eca27e8b5eb289b1c44b769e8',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['indexof_5',['IndexOf',['../struct_thoth_1_1_http_1_1_json_wrong_type_error.html#ac8c8343c928efd2b808b85135ec58e20',1,'Thoth::Http::JsonWrongTypeError']]],
+  ['isweak_6',['isWeak',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html#aa31da502a6e8cfa66b3fdda55cf665cd',1,'Thoth::Http::NHeaders::EntityTag']]]
 ];

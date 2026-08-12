@@ -11,7 +11,7 @@ var concepts =
         [ "WritableBodyConcept", "concept_thoth_1_1_http_1_1_writable_body_concept.html", null ],
         [ "BodyConcept", "concept_thoth_1_1_http_1_1_body_concept.html", null ],
         [ "BodyFactoryConcept", "concept_thoth_1_1_http_1_1_body_factory_concept.html", null ],
-        [ "WireSocketConcept", "concept_thoth_1_1_http_1_1_wire_socket_concept.html", null ],
+        [ "ConnectionConcept", "concept_thoth_1_1_http_1_1_connection_concept.html", null ],
         [ "ResponseBodyFactoryConcept", "concept_thoth_1_1_http_1_1_response_body_factory_concept.html", null ],
         [ "MethodConcept", "concept_thoth_1_1_http_1_1_method_concept.html", null ]
       ] ],

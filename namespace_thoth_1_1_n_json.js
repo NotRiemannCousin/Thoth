@@ -27,6 +27,5 @@ var namespace_thoth_1_1_n_json =
     [ "String", "namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d", null ],
     [ "ValWrapper", "namespace_thoth_1_1_n_json.html#afd44f0bb01bdff6ab57fe889260fb8e8", null ],
     [ "MakeArray", "namespace_thoth_1_1_n_json.html#a2ee79c9b3917b8642394d68c4b3e9576", null ],
-    [ "MakeKeys", "namespace_thoth_1_1_n_json.html#a671d80ae10be053e360cc17d0791dd91", null ],
     [ "MakeObject", "namespace_thoth_1_1_n_json.html#ae7bf13278dcf9aa87d3d3fa3497be9dd", null ]
 ];
