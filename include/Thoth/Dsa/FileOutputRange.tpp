@@ -106,8 +106,8 @@ namespace Thoth::Dsa {
     }
 
     template<Hermes::ByteLike T>
-    std::ostream_iterator<T, T> FileOutputRange<T>::begin() {
-        return std::ostream_iterator<T, T>(m_outStream);
+    FileOutputIterator<T> FileOutputRange<T>::begin() {
+        return FileOutputIterator<T>{ &m_outStream };
     }
 
     template<Hermes::ByteLike T>

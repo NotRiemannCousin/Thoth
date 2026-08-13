@@ -27,24 +27,26 @@ namespace std {
         template<class FormatContext>
         auto format(const Thoth::Http::QueryParams &query, FormatContext& ctx) const {
             using Pair = std::pair<std::string_view, std::string_view>;
+            namespace vs = std::views;
+
+            static constexpr auto getEveryPair{ [](const Thoth::Http::QueryParams::MapType::value_type& p) {
+                return p.second | vs::transform([&](std::string_view val) { return Pair{ p.first, val }; });
+            } };
 
             static constexpr auto singleParam{ [] (const Pair p) {
-                return std::format("{}={}", p.first, p.second);
 #ifdef __cpp_lib_ranges_concat
-                return std::views::concat(p.first, std::views::single('='), p.second | std::views::join_with(','));
+                return vs::concat(p.first, vs::single('='), p.second);
 #else
-            } };
-            static constexpr auto getEveryPair{ [](const Thoth::Http::QueryParams::MapType::value_type& p) {
-                return p.second | views::transform([&](std::string_view val) { return Pair{ p.first, val }; });
-            } };
+                return std::format("{}={}", p.first, p.second);
 #endif
+            } };
 
             return std::ranges::copy(
                 query.m_elements
-                        | views::transform(getEveryPair)
-                        | views::join
-                        | std::views::transform(singleParam)
-                        | views::join_with('&'),
+                        | vs::transform(getEveryPair)
+                        | vs::join
+                        | vs::transform(singleParam)
+                        | vs::join_with('&'),
                 ctx.out()).out;
         }
     };

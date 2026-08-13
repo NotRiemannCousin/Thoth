@@ -13,6 +13,22 @@ namespace Thoth::Dsa {
         int mode{};
     };
 
+    template<Hermes::ByteLike T>
+    struct FileOutputIterator {
+        std::ofstream* stream{};
+        using difference_type = std::ptrdiff_t;
+
+        FileOutputIterator& operator*() { return *this; }
+        FileOutputIterator& operator++() { return *this; }
+        FileOutputIterator operator++(int) { return *this; }
+
+        FileOutputIterator& operator=(T val) {
+            stream->put(static_cast<char>(val));
+            return *this;
+        }
+    };
+
+
     template<Hermes::ByteLike T = char>
     struct FileOutputRange {
 
@@ -38,12 +54,12 @@ namespace Thoth::Dsa {
 
         constexpr bool operator==(const FileOutputRange& other) const = default;
 
-        [[nodiscard]] std::ostream_iterator<T, T> begin();
+        [[nodiscard]] FileOutputIterator<T> begin();
 
         [[nodiscard]] static std::unreachable_sentinel_t end();
 
     private:
-        std::basic_ofstream<T> m_outStream;
+        std::ofstream m_outStream;
     };
 
     using TextFileOutputRange = FileOutputRange<>;
