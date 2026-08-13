@@ -19,6 +19,54 @@ namespace Thoth::Http {
     concept ResponseBodyFactoryConcept = BodyFactoryConcept<F, Body, ResponseHead>;
 
 
+
+
+    //! @brief Configuration options for HTTP exchanges performed by @ref Client.
+    //!
+    //! Options related to connection establishment (@ref connectionTimeout,
+    //! @ref handshakeTimeout, @ref ignoreCertificateErrors, @ref requestMutualAuth)
+    //! are applied only when a new connection is created. When a pooled connection
+    //! is reused, these fields are silently ignored.
+    struct ClientOptions {
+
+        //! @brief Maximum duration allowed for a complete HTTP exchange (send + receive).
+        //!
+        //! Measured from the moment the request is handed to the socket until the
+        //! last byte of the response body is received.
+        //!
+        //! @note Not yet enforced. Implementation is pending changes to @ref Hermes::DefaultSocketData.
+        std::chrono::milliseconds requestTimeout{ std::chrono::milliseconds::max() };
+
+        //! @brief Maximum duration allowed for establishing a TCP connection.
+        //!
+        //! Ignored when a pooled connection is reused.
+        std::chrono::milliseconds connectionTimeout{ std::chrono::seconds{ 300 } };
+
+        //! @brief Maximum duration allowed for the TLS handshake.
+        //!
+        //! Has no effect on plain HTTP connections.
+        //! Ignored when a pooled connection is reused.
+        std::chrono::milliseconds handshakeTimeout{ std::chrono::seconds{ 300 } };
+
+        //! @brief If `true`, TLS certificate validation errors are suppressed.
+        //!
+        //! @warning Disabling certificate validation exposes the connection to
+        //! man-in-the-middle attacks. Use only in controlled environments.
+        //!
+        //! Has no effect on plain HTTP connections.
+        //! Ignored when a pooled connection is reused.
+        bool ignoreCertificateErrors{};
+
+        //! @brief If `true`, mutual TLS authentication is requested during the handshake.
+        //!
+        //! Requires the peer to present a valid certificate in addition to the server's own.
+        //!
+        //! Has no effect on plain HTTP connections.
+        //! Ignored when a pooled connection is reused.
+        bool requestMutualAuth{};
+    };
+
+
     //! @brief Stores per-connection information for an open socket managed by a Thoth HTTP client.
     //! @details
     //! Aggregates the low-level socket (Hermes::RawTlsClient), the HTTP version
@@ -126,20 +174,21 @@ namespace Thoth::Http {
         //! @tparam Method The HTTP method type (e.g., `Methods::Get`).
         //! @tparam Body The body type for both request and response. Must be default-initializable.
         //! @param request The fully configured HTTP request to send.
+        //! @param opts Connection options.
         //! @return `ExpResponse<Method, Body>` containing the populated response or an error.
         template<MethodConcept Method, BodyConcept Body>
             requires std::default_initializable<Body>
-        static auto Send(Request<Method, Body> request) -> ExpResponse<Method, Body>;
+        static auto Send(Request<Method, Body> request, ClientOptions opts = {}) -> ExpResponse<Method, Body>;
 
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, BodyConcept Body, class F>
             requires ResponseBodyFactoryConcept<F, Body>
-        static auto SendAndParse(Request<Method, Body> request, F&& bodyFactory) -> ExpResponse<Method, Body>;
+        static auto SendAndParse(Request<Method, Body> request, F&& bodyFactory, ClientOptions opts = {}) -> ExpResponse<Method, Body>;
 
         //! @brief Sends synced (thread blocking) requests.
         template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody>
             requires std::default_initializable<ResponseBody>
-        static auto SendAs(Request<Method, RequestBody> request) -> ExpResponse<Method, ResponseBody>;
+        static auto SendAs(Request<Method, RequestBody> request, ClientOptions opts = {}) -> ExpResponse<Method, ResponseBody>;
 
         //! @brief Sends a request with one body type and receives a response of another, constructed via factory.
         //! @details
@@ -164,25 +213,26 @@ namespace Thoth::Http {
         //! @tparam F The factory type (callable).
         //! @param request The HTTP request to send.
         //! @param bodyFactory A callable `F(const ResponseHead&)` returning `std::expected<ResponseBody, ExchangeError>`.
+        //! @param opts Connection Options.
         //! @return `ExpResponse<Method, ResponseBody>` containing the response.
         template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static auto SendAsAndParse(Request<Method, RequestBody> request, F&& bodyFactory) -> ExpResponse<Method, ResponseBody>;
+        static auto SendAsAndParse(Request<Method, RequestBody> request, F&& bodyFactory, ClientOptions opts = {}) -> ExpResponse<Method, ResponseBody>;
 
         //! @hof{Send}
-        static constexpr auto H_Send();
+        static constexpr auto H_Send(ClientOptions opts = {});
 
         template<class F>
-        static auto H_SendAndParse(F&& bodyFactory);
+        static auto H_SendAndParse(F&& bodyFactory, ClientOptions opts = {});
 
         //! @hof{SendAs}
         template<WritableBodyConcept ResponseBody>
-        static constexpr auto H_SendAs();
+        static constexpr auto H_SendAs(ClientOptions opts = {});
 
         //! @hof{SendAsAndParse}
         template<WritableBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static auto H_SendAsAndParse(F&& bodyFactory);
+        static auto H_SendAsAndParse(F&& bodyFactory, ClientOptions opts = {});
 
     private:
         // I will do it when... Idk

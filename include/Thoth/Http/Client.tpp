@@ -37,24 +37,24 @@ namespace Thoth::Http {
 
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
-    auto Client::Send(Request<Method, Body> request) -> ExpResponse<Method, Body> {
+    auto Client::Send(Request<Method, Body> request, ClientOptions opts) -> ExpResponse<Method, Body> {
         return SendAsAndParse<Method, Body, Body>(
-            request,[](const ResponseHead&) -> std::expected<Body, ExchangeError> { return {}; }
+            request,[](const ResponseHead&) -> std::expected<Body, ExchangeError> { return {}; }, opts
         );
     }
 
     template<MethodConcept Method, BodyConcept Body, class F>
         requires ResponseBodyFactoryConcept<F, Body>
-    auto Client::SendAndParse(Request<Method, Body> request, F&& bodyFactory) -> ExpResponse<Method, Body> {
-        return SendAsAndParse<Method, Body, Body>(request, std::forward<F>(bodyFactory));
+    auto Client::SendAndParse(Request<Method, Body> request, F&& bodyFactory, ClientOptions opts) -> ExpResponse<Method, Body> {
+        return SendAsAndParse<Method, Body, Body>(request, std::forward<F>(bodyFactory), opts);
     }
 
 
     template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody>
         requires std::default_initializable<ResponseBody>
-    auto Client::SendAs(Request<Method, RequestBody> request) -> ExpResponse<Method, ResponseBody> {
-        return SendAsAndParse<Method, ReadableBodyConcept, ResponseBody>(
-            request, [](const ResponseHead&) -> std::expected<ResponseBody, ExchangeError> { return {}; }
+    auto Client::SendAs(Request<Method, RequestBody> request, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
+        return SendAsAndParse<Method, RequestBody, ResponseBody>(
+            request, [](const ResponseHead&) -> std::expected<ResponseBody, ExchangeError> { return {}; }, opts
         );
     }
 
@@ -62,7 +62,7 @@ namespace Thoth::Http {
     template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     auto Client::SendAsAndParse(
-        Request<Method, RequestBody> request, F&& bodyFactory) -> ExpResponse<Method, ResponseBody> {
+        Request<Method, RequestBody> request, F&& bodyFactory, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
 
         static constexpr auto toExchangeError{ [](const auto err) {
             return ExchangeError{ err };
@@ -106,11 +106,26 @@ namespace Thoth::Http {
             } };
 
             const auto createNewSocket{ [&]() -> std::optional<SocketPtr> {
-                auto newSocketResult{ Hermes::RawTlsClient::Connect(Hermes::TlsSocketData{ endpoint, hostname }) };
-                if (!newSocketResult)
-                    return std::nullopt;
+                using RawData = Hermes::DefaultSocketData<>;
+                using TlsData = Hermes::TlsSocketData<>;
+                using TlsSocket = Hermes::RawTlsClient;
+                using RawSocket = Hermes::RawTcpClient;
 
-                return std::make_shared<ClientConnection>(std::move(*newSocketResult));
+                Hermes::DefaultConnectPolicy<>::Options connOpts{ .connectionTimeout = opts.connectionTimeout };
+
+                if (scheme == "https") {
+                    Hermes::TlsConnectPolicy<>::Options tlsConnOpts{
+                        connOpts                    , opts.handshakeTimeout,
+                        opts.ignoreCertificateErrors, opts.requestMutualAuth,
+                    };
+                    if (auto res{ TlsSocket::Connect( TlsData{ endpoint, hostname }, tlsConnOpts) })
+                        return std::make_shared<ClientConnection>(std::move(*res));
+                    return std::nullopt;
+                }
+
+                if (auto res{ RawSocket::Connect( RawData{ endpoint }, connOpts) })
+                    return std::make_shared<ClientConnection>(std::move(*res));
+                return std::nullopt;
             } };
 
             const auto cleanupSocket{ [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
@@ -172,32 +187,32 @@ namespace Thoth::Http {
                 .and_then(establishConnection);
     }
 
-    constexpr auto Client::H_Send() {
-        return []<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
-            return Send<Method, Body>(request);
+    constexpr auto Client::H_Send(ClientOptions opts) {
+        return [opts]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) {
+            return Send<Method, Body>(request, opts);
         };
     }
 
 
     template<class F>
-    auto Client::H_SendAndParse(F&& bodyFactory) {
-        return [factory{ std::forward<F>(bodyFactory) }]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) mutable {
-            return SendAndParse<Method, Body>(std::move(request), std::forward<F>(factory));
+    auto Client::H_SendAndParse(F&& bodyFactory, ClientOptions opts) {
+        return [factory{ std::forward<F>(bodyFactory) }, opts]<MethodConcept Method, BodyConcept Body>(Request<Method, Body> request) mutable {
+            return SendAndParse<Method, Body>(std::move(request), std::forward<F>(factory), opts);
         };
     }
 
     template<WritableBodyConcept ResponseBody>
-    constexpr auto Client::H_SendAs() {
-        return []<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
-            return SendAs<Method, RequestBody, ResponseBody>(request);
+    constexpr auto Client::H_SendAs(ClientOptions opts) {
+        return [opts]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAs<Method, RequestBody, ResponseBody>(request, opts);
         };
     }
 
     template<WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    auto Client::H_SendAsAndParse(F&& bodyFactory) {
-        return [factory{ std::forward<F>(bodyFactory) }]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
-            return SendAsAndParse<Method, RequestBody, ResponseBody>(std::move(request), std::move(factory));
+    auto Client::H_SendAsAndParse(F&& bodyFactory, ClientOptions opts) {
+        return [factory{ std::forward<F>(bodyFactory) }, opts]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+            return SendAsAndParse<Method, RequestBody, ResponseBody>(std::move(request), std::move(factory), opts);
         };
     }
 

@@ -19,7 +19,7 @@ namespace Thoth::String {
 
 
         struct Iterator {
-            using iterator_category = std::output_iterator_tag;
+            using iterator_category = std::input_iterator_tag;
             using value_type = Rune;
             using difference_type = std::ptrdiff_t;
 

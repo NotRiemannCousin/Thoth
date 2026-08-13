@@ -115,7 +115,7 @@ TEST_F(RequestAuthProxyTest, Authorization_Missing_ReturnsFalse) {
 #pragma region RequestHeaders - Referrer Proxy
 
 struct RequestReferrerProxyTest : testing::Test {
-    RequestHeaders h{{ { "referrer", "https://origin.com" } }};
+    RequestHeaders h{{ { "referer", "https://origin.com" } }};
 };
 
 TEST_F(RequestReferrerProxyTest, Referrer_Get_ReturnsValue) {
@@ -125,7 +125,7 @@ TEST_F(RequestReferrerProxyTest, Referrer_Get_ReturnsValue) {
 
 TEST_F(RequestReferrerProxyTest, Referrer_Set_UpdatesHeader) {
     h.Referrer().Set("https://new.com");
-    EXPECT_TRUE(h.Exists("referrer", "https://new.com"));
+    EXPECT_TRUE(h.Exists("referer", "https://new.com"));
 }
 
 #pragma endregion

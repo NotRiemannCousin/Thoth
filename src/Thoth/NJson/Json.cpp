@@ -323,7 +323,7 @@ static bool details_::ReadNumber(std::string_view& input, auto& val) {
     constexpr auto validChars{ []{
         std::bitset<256> res{};
 
-        for (const char c :std::string_view{ "01234567899.-eE" })
+        for (const char c : std::string_view{ "0123456789.-eE" })
             res.set(c);
 
         return res;
@@ -334,18 +334,10 @@ static bool details_::ReadNumber(std::string_view& input, auto& val) {
 
     const auto closeValNumber{ input.data() };
 
-    Number number{};
+    auto parsed{ Number::TryParse({ openValNumber, closeValNumber }) };
+    if (!parsed) return false;
 
-    auto [ptr, err] {
-        std::from_chars(
-        & *openValNumber,
-        & *closeValNumber,
-                number
-            )};
-    if (err != std::errc{} || ptr != closeValNumber)
-        return false;
-
-    val = number;
+    val = *parsed;
     return true;
 }
 static bool details_::ReadObject(std::string_view& input, auto& val, const BufferInfo& info) {

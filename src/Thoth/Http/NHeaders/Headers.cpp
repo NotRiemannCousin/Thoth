@@ -1,4 +1,3 @@
-#pragma once
 #include <Thoth/Http/NHeaders/Headers.hpp>
 
 #include <algorithm>
@@ -37,6 +36,8 @@ namespace Thoth::Http {
             "last-modified",
             "if-modified-since",
             "if-unmodified-since",
+            "if-range",
+            "retry-after",
 
             // Numeric Headers
             "age",
@@ -46,10 +47,15 @@ namespace Thoth::Http {
             // Location/Redirect Headers
             "location",
             "refresh",
+            "content-location",
 
             // Entity Headers
             "etag",
             "server",
+            "content-type",
+            "host",
+            "origin",
+            "from",
 
             // Authorization
             "authorization",
@@ -152,7 +158,7 @@ namespace Thoth::Http {
         if (CanMerge(p.first) )
             if (const auto it{ FindInsensitiveKey(m_headers, p.first) }; it != m_headers.end()) {
 #ifdef __cpp_lib_ranges_concat
-                it->second = vs::concat(it->second, sep, p.second);
+                it->second.assign_range(vs::concat(it->second, sep, p.second));
 #else
                 it->second += sep;
                 it->second += p.second;
@@ -387,5 +393,12 @@ namespace Thoth::Http {
         return m_headers.back().second;
     }
 
-    bool Headers::operator==(const Headers& other) const = default;
+    bool Headers::operator==(const Headers& other) const {
+        static constexpr auto headerEqual{ [](const auto &a, const auto &b) {
+            return std::ranges::equal(a.first, b.first, String::CaseInsensitiveCompare) && a.second == b.second;
+        } };
+
+        return std::ranges::is_permutation(m_headers, other.m_headers, headerEqual);
+
+    }
 }

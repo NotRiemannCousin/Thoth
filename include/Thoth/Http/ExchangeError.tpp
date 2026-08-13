@@ -68,7 +68,8 @@ struct std::formatter<Thoth::Http::ExchangeError> {
                     constexpr const char* desc[]{ // will be changed to reflection in the future
                         "EmptyUrl: The URL is empty",
                         "InvalidScheme: Thoth only supports http or https",
-                        "IllFormed: unknown error, probably a invalid character",
+                        "IllFormed: unknown error, probably an invalid character",
+                        "HostIsRequired: no host found in URL",
                         "InvalidPort: make sure that the port is a integer between 0 a 65535"
                     };
                     std::format_to(ctx.out(), "{}", desc[to_underlying(e)]);

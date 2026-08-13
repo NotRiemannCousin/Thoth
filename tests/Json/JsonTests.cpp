@@ -66,14 +66,14 @@ TEST_F(JsonTypeTest, As_Bool_ReturnsValue) {
 }
  
 TEST_F(JsonTypeTest, As_Number_ReturnsValue) {
-    EXPECT_DOUBLE_EQ(static_cast<double>(intJ.As<Number>()), 42.0);
+    EXPECT_DOUBLE_EQ((intJ.As<Number>().AsFloat()), 42.0);
 }
  
 TEST_F(JsonTypeTest, CopyAssign_Number) {
     Json j{};
     j = 99;
     EXPECT_TRUE(j.IsOf<Number>());
-    EXPECT_DOUBLE_EQ(static_cast<double>(j.As<Number>()), 99.0);
+    EXPECT_DOUBLE_EQ((j.As<Number>().AsFloat()), 99.0);
 }
  
 TEST_F(JsonTypeTest, CopyAssign_Bool) {
@@ -123,19 +123,19 @@ TEST_F(JsonParseTest, Parse_BoolFalse_Succeeds) {
 TEST_F(JsonParseTest, Parse_Integer_Succeeds) {
     const auto r{ Json::Parse("42") };
     ASSERT_TRUE(r);
-    EXPECT_DOUBLE_EQ(static_cast<double>(r->As<Number>()), 42.0);
+    EXPECT_DOUBLE_EQ((r->As<Number>().AsFloat()), 42.0);
 }
  
 TEST_F(JsonParseTest, Parse_NegativeNumber_Succeeds) {
     const auto r{ Json::Parse("-7") };
     ASSERT_TRUE(r);
-    EXPECT_DOUBLE_EQ(static_cast<double>(r->As<Number>()), -7.0);
+    EXPECT_DOUBLE_EQ((r->As<Number>().AsFloat()), -7.0);
 }
  
 TEST_F(JsonParseTest, Parse_Float_Succeeds) {
     const auto r{ Json::Parse("3.14") };
     ASSERT_TRUE(r);
-    EXPECT_NEAR(static_cast<double>(r->As<Number>()), 3.14, 1e-9);
+    EXPECT_NEAR((r->As<Number>().AsFloat()), 3.14, 1e-9);
 }
  
 TEST_F(JsonParseTest, Parse_SimpleString_Succeeds) {
@@ -289,7 +289,7 @@ TEST_F(JsonGetTest, Get_NonExistentKey_ReturnsNullopt) {
 TEST_F(JsonGetTest, Get_ByIndex_ReturnsElement) {
     auto result{ arr.Get(Key{ 0 }) };
     ASSERT_TRUE(result);
-    EXPECT_DOUBLE_EQ(static_cast<double>((*result)->As<Number>()), 10.0);
+    EXPECT_DOUBLE_EQ(((*result)->As<Number>().AsFloat()), 10.0);
 }
  
 TEST_F(JsonGetTest, Get_IndexOutOfRange_ReturnsNullopt) {
@@ -301,7 +301,7 @@ TEST_F(JsonGetTest, Get_NegativeIndex_ReturnsFromEnd) {
     // -1 = last element
     auto result{ arr.Get(Key{ -1 }) };
     ASSERT_TRUE(result);
-    EXPECT_DOUBLE_EQ(static_cast<double>((*result)->As<Number>()), 30.0);
+    EXPECT_DOUBLE_EQ(((*result)->As<Number>().AsFloat()), 30.0);
 }
  
 TEST_F(JsonGetTest, GetOrError_ExistingKey_HasValue) {
@@ -322,7 +322,7 @@ TEST_F(JsonGetTest, GetCopy_ReturnsIndependentCopy) {
     // Original must be untouched
     auto original{ obj.GetOrError(Key{ std::string("score") }) };
     ASSERT_TRUE(original);
-    EXPECT_DOUBLE_EQ(static_cast<double>((*original)->As<Number>()), 99.0);
+    EXPECT_DOUBLE_EQ(((*original)->As<Number>().AsFloat()), 99.0);
 }
  
 TEST_F(JsonGetTest, GetCopyOrNull_Missing_ReturnsNull) {
@@ -613,7 +613,7 @@ TEST_F(JsonObjectTest, Set_UpdatesExistingKey) {
     tmp.Set("key1", newVal);
     const auto result{ tmp.Get("key1") };
     ASSERT_TRUE(result);
-    EXPECT_DOUBLE_EQ(static_cast<double>((*result)->As<Number>()), 999.0);
+    EXPECT_DOUBLE_EQ(((*result)->As<Number>().AsFloat()), 999.0);
 }
  
 TEST_F(JsonObjectTest, Set_AddsNewKey) {

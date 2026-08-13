@@ -47,7 +47,7 @@ static std::optional<std::string> Interpolate(const std::string& str) {
     retBuffer.reserve(str.size());
 
     size_t lastIdx{}, idx{};
-    size_t bracketLevel{};
+    int64_t bracketLevel{};
 
     const auto computeEscapedChar = [&] {
         if(++idx == str.size())
@@ -125,7 +125,7 @@ struct Equal {
 
 using Map = unordered_map<std::string, std::string, Hash, Equal>;
 
-static optional<Map> GetMap() {
+static optional<Map> ParseMap() {
     Map vars;
 
     ifstream file(".env", ios::binary);
@@ -218,13 +218,15 @@ static optional<Map> GetMap() {
         while (file.get(c) && c != '=' && c != '\r' && c != '\n')
             key.push_back(c);
 
+        if (isspace(c) && ranges::all_of(key, isSpace))
+            continue;
+
+        if (key.empty()) return std::nullopt;
+
         if (key[0] == '#') {
             getline(file, key);
             continue;
         }
-
-        if (isspace(c) && ranges::all_of(key, isSpace))
-            continue;
 
         if (c != '=')
             return std::nullopt;
@@ -236,7 +238,8 @@ static optional<Map> GetMap() {
             return std::nullopt;
 
 
-        getValue();
+        if (!getValue())
+            return std::nullopt;
 
         if (behaviour.useInterpolation)
             val = Interpolate(val).value_or(""); // Maybe this will cause a serious bug someday but anyway
@@ -247,9 +250,15 @@ static optional<Map> GetMap() {
     return vars;
 }
 
+static const optional<Map>& GetMap() {
+    static auto envVars{ ParseMap() };
 
-std::optional<const std::string_view> Thoth::Utils::Env(std::string_view envkey) {
-    static auto envVars{ GetMap() };
+    return envVars;
+}
+
+
+std::optional<std::string_view> Thoth::Utils::Env(std::string_view envkey) {
+    auto& envVars{ GetMap() };
 
     if (!envVars)
         return std::nullopt;
@@ -261,8 +270,8 @@ std::optional<const std::string_view> Thoth::Utils::Env(std::string_view envkey)
 
     return it->second;
 }
-std::optional<const std::u8string_view> Thoth::Utils::Utf8Env(std::string_view envkey) {
-    static auto envVars{ GetMap() };
+std::optional<std::u8string_view> Thoth::Utils::Utf8Env(std::string_view envkey) {
+    auto& envVars{ GetMap() };
 
     if (!envVars)
         return std::nullopt;

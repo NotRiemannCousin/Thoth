@@ -45,7 +45,19 @@ namespace Thoth::Http {
         //! @param rawUrl the given URL.
         //! @return The Url if succeeded, std::nullopt if it fails.
         static std::expected<Url, ExchangeError> FromUrl(std::string rawUrl);
+        //! @brief Resolves a URI reference against this URL as base, per RFC 3986 §5.2.2.
+        //!
+        //! Supports absolute references (returned verbatim as a parsed @ref Url),
+        //! relative-path references (@c "../v2/users"), same-document references (@c ""),
+        //! and fragment-only references (@c "#section").
+        //!
+        //! @param reference A URI reference. Does not need to be absolute.
+        //! @return The resolved absolute @ref Url, or an @ref ExchangeError if the
+        //! resolved result fails parsing (e.g. produces an invalid scheme).
+        [[nodiscard]] std::expected<Url, ExchangeError> Resolve(std::string_view reference) const;
 
+        //! @brief Static version of @ref Resolve.
+        static std::expected<Url, ExchangeError> ResolveRelative(const Url& url, std::string_view reference);
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
         //! Percent-Encoding</a>.

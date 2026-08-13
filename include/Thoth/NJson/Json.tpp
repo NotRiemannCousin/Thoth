@@ -19,7 +19,12 @@ namespace Thoth::NJson {
     template<class T>
         requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json::Json(T other) {
-        m_value = static_cast<Number>(other);
+        if constexpr (std::floating_point<T>)
+            m_value = Number{ static_cast<double>(other)   };
+        else if constexpr (std::signed_integral<T>)
+            m_value = Number{ static_cast<int64_t>(other)  };
+        else
+            m_value = Number{ static_cast<uint64_t>(other) };
     }
 
     template<class T>
@@ -31,7 +36,12 @@ namespace Thoth::NJson {
     template<class T>
     requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json& Json::operator=(T other) {
-        m_value = static_cast<Number>(other);
+        if constexpr (std::floating_point<T>)
+            m_value = Number{ static_cast<double>(other)   };
+        else if constexpr (std::signed_integral<T>)
+            m_value = Number{ static_cast<int64_t>(other)  };
+        else
+            m_value = Number{ static_cast<uint64_t>(other) };
         return *this;
     }
 
@@ -379,14 +389,19 @@ namespace Thoth::NJson {
             static constexpr std::string_view k_trueStr{ "true" };
 
             const auto formatNumber{ [&](const Number num) {
-                if (!std::isfinite(num)) {
-                    it = std::ranges::copy(k_nullStr, it).out;
-                    return;
-                }
-
                 std::array<char, 330> buf;
 
-                const auto [ptr, ec]{ std::to_chars(buf.data(), buf.data() + buf.size(), num, std::chars_format::fixed) };
+                const auto [ptr, ec]{ std::visit(
+                    Hermes::Utils::Overloaded{
+                        [&buf](const double val) {
+                            if (!std::isfinite(val))
+                                return std::to_chars_result{ buf.data(), std::errc::result_out_of_range };
+                            return std::to_chars(buf.data(), buf.data() + buf.size(), val, std::chars_format::fixed);
+                        },
+                        [&buf](const auto val) {
+                            return std::to_chars(buf.data(), buf.data() + buf.size(), val);
+                        }
+                    }, num) };
 
                 if (ec == std::errc{})
                     it = std::ranges::copy(buf.data(), ptr, it).out;

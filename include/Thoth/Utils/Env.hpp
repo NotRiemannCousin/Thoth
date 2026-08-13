@@ -20,8 +20,8 @@ namespace Thoth::Utils {
     //! {echo same as before but can use commands"}
     //! """
     //! @endcode
-    std::optional<const std::string_view> Env(std::string_view envkey);
+    std::optional<std::string_view> Env(std::string_view envkey);
 
     //! @copydoc Env
-    std::optional<const std::u8string_view> Utf8Env(std::string_view envkey);
+    std::optional<std::u8string_view> Utf8Env(std::string_view envkey);
 }

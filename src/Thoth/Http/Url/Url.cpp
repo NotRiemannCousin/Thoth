@@ -38,6 +38,104 @@ namespace rg = std::ranges;
 namespace vs = std::views;
 
 
+namespace {
+    // RFC 3986 §5.2.4 — Remove Dot Segments
+    std::string RemoveDotSegments(std::string_view path) {
+        std::string out;
+        out.reserve(path.size());
+
+        while (!path.empty()) {
+            // A: strip leading "../" or "./"
+            if      (path.starts_with("../")) { path.remove_prefix(3); }
+            else if (path.starts_with("./" )) { path.remove_prefix(2); }
+            // B: collapse "/./" → "/"
+            else if (path.starts_with("/./")) { path.remove_prefix(2); }
+            else if (path == "/."           ) { path = "/";            }
+            // C: collapse "/../" → "/" and pop last output segment
+            else if (path.starts_with("/../")) {
+                path.remove_prefix(3);
+                if (const auto p{ out.rfind('/') }; p != std::string::npos)
+                    out.erase(p);
+            }
+            else if (path == "/.." ) {
+                path = "/";
+                if (const auto p{ out.rfind('/') }; p != std::string::npos)
+                    out.erase(p);
+            }
+            // D: lone "." or ".." — discard
+            else if (path == "." || path == "..") { break; }
+            // E: move first segment (including leading "/" if any) to output
+            else {
+                const auto segEnd{ path.find('/', path[0] == '/' ? 1 : 0) };
+                const auto take  { segEnd == std::string_view::npos ? path.size() : segEnd };
+                out  += path.substr(0, take);
+                path.remove_prefix(take);
+            }
+        }
+        return out;
+    }
+
+    struct ParsedRef {
+        std::string_view scheme{};
+        std::string_view authority{};
+        std::string_view path{};
+        std::string_view query{};
+        std::string_view fragment{};
+        bool hasScheme{};
+        bool hasAuthority{};
+        bool hasQuery{};
+        bool hasFragment{};
+    };
+
+    // Lightweight reference parser — does NOT validate, just splits components.
+    ParsedRef ParseRef(std::string_view ref) {
+        ParsedRef r;
+        std::string_view rest{ ref };
+
+        // Fragment — must come first so '?' inside fragment is not misread as query
+        if (const auto pos{ rest.find('#') }; pos != std::string_view::npos) {
+            r.fragment    = rest.substr(pos + 1);
+            r.hasFragment = true;
+            rest.remove_suffix(rest.size() - pos);
+        }
+
+        // Query
+        if (const auto pos{ rest.find('?') }; pos != std::string_view::npos) {
+            r.query    = rest.substr(pos + 1);
+            r.hasQuery = true;
+            rest.remove_suffix(rest.size() - pos);
+        }
+
+        // Scheme — ALPHA *( ALPHA / DIGIT / "+" / "-" / "." ) ":"
+        {
+            std::size_t i{};
+            bool valid{ !rest.empty() && std::isalpha(static_cast<unsigned char>(rest[0])) };
+            while (valid && i < rest.size() && rest[i] != ':' && rest[i] != '/') {
+                const char c{ rest[i++] };
+                valid = std::isalnum(static_cast<unsigned char>(c))
+                     || c == '+' || c == '-' || c == '.';
+            }
+            if (valid && i < rest.size() && rest[i] == ':') {
+                r.scheme    = rest.substr(0, i);
+                r.hasScheme = true;
+                rest.remove_prefix(i + 1);
+            }
+        }
+
+        // Authority
+        if (rest.size() >= 2 && rest[0] == '/' && rest[1] == '/') {
+            rest.remove_prefix(2);
+            const auto pos{ rest.find('/') };
+            r.authority    = rest.substr(0, pos);
+            r.hasAuthority = true;
+            rest = (pos != std::string_view::npos) ? rest.substr(pos) : std::string_view{};
+        }
+
+        r.path = rest;
+        return r;
+    }
+} // anonymous namespace
+
 
 
 std::string Thoth::Http::Authority::GetHostString() const {
@@ -96,7 +194,7 @@ Url& Url::operator=(const Url& other) {
 Url& Url::operator=(Url&& other) noexcept {
     m_rawUrl = std::move(other.m_rawUrl);
 
-    const std::string_view otherUrl{ other.m_rawUrl };
+    const std::string_view otherUrl{ m_rawUrl };
 
     REBIND_ALL(otherUrl);
 
@@ -118,7 +216,10 @@ std::string_view Url::GetPathOrSep() const noexcept { return m_path.empty() ? "/
 Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(m_query); }
 
 std::string_view Url::GetUrlWithoutFragment() const noexcept {
-    return m_rawUrl.substr(m_frag.empty() ? std::string::npos : std::distance(m_rawUrl.data(), m_frag.data()) - 1);
+    return string_view{ m_rawUrl }
+    .substr(0, m_frag.empty()
+            ? std::string::npos
+            : std::distance(m_rawUrl.data(), m_frag.data()) - 1);
 }
 
 
@@ -232,7 +333,15 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
 
     // TODO: check chars from userinfo
 
-    auto portIdx{ hierPart.find(':') };
+    size_t portIdx;
+    if (hierPart.starts_with('[')) {
+        const auto closeBracket{ hierPart.find(']') };
+        if (closeBracket == string_view::npos)
+            FAIL_WITH(IllFormed);
+        portIdx = hierPart.find(':', closeBracket + 1);
+    } else {
+        portIdx = hierPart.find(':');
+    }
 
     if (portIdx == string_view::npos) // no port
         hostStr = hierPart;
@@ -279,9 +388,17 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     //             ; 16 bits of address represented in hexadecimal
 
     const auto readIpv6 = [hostStr]() -> std::optional<Host> {
-        return std::nullopt;
+        if (!hostStr.starts_with('[') || !hostStr.ends_with(']'))
+            return std::nullopt;
+
+        const std::string inner{ hostStr.substr(1, hostStr.size() - 2) };
+        auto ip{ Hermes::IpAddress::TryParse(inner) };
+
+        if (!ip || !ip->IsIpv6())
+            return std::nullopt;
+
+        return Host{ *ip };
     };
-    // TODO: implement IPv6 someday (not today)
 
     // IPv4address = dec-octet "." dec-octet "." dec-octet "." dec-octet
     // dec-octet   = DIGIT                 ; 0-9
@@ -406,6 +523,112 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     res.m_frag      = frag;
 
     return res;
+}
+
+std::expected<Url, Thoth::Http::ExchangeError> Url::Resolve(std::string_view reference) const {
+    // RFC 3986 §5.2.2
+    const ParsedRef r{ ParseRef(reference) };
+
+    std::string tScheme, tAuthority, tPath, tQuery, tFragment;
+    bool hasAuthority{}, hasQuery{};
+
+    // Reconstruct the base authority string (userinfo@host:port).
+    const auto baseAuthority{ [&]() -> std::string {
+    const auto auth{ GetAuthority() };
+    if (!auth) return {};
+
+    std::string s;
+    if (!auth->userinfo.empty()) { s += auth->userinfo; s += '@'; }
+
+    // URL authority requer brackets em IPv6 (RFC 3986 §3.2.2: IP-literal = "[" IPv6address "]")
+    // Não usar GetHostString() aqui — ele omite os brackets intencionalmente para uso em SNI/DNS.
+    s += std::visit([]<class T>(T host) -> std::string {
+        if constexpr (std::same_as<T, std::string_view>)
+            return std::string{ host };
+        else
+            return std::format("{:b}", host); // :b = com brackets
+    }, auth->host);
+
+    if (auth->port) { s += ':'; s += std::to_string(*auth->port); }
+    return s;
+    } };
+
+    if (r.hasScheme) {
+        // Absolute reference — use R directly.
+        tScheme      = r.scheme;
+        hasAuthority = r.hasAuthority;
+        tAuthority   = r.authority;
+        tPath        = RemoveDotSegments(r.path);
+        hasQuery     = r.hasQuery;
+        tQuery       = r.query;
+    } else {
+        if (r.hasAuthority) {
+            hasAuthority = true;
+            tAuthority   = r.authority;
+            tPath        = RemoveDotSegments(r.path);
+            hasQuery     = r.hasQuery;
+            tQuery       = r.query;
+        } else {
+            if (r.path.empty()) {
+                // Same-document or fragment-only reference — keep base path.
+                tPath = GetPath();
+                if (r.hasQuery) {
+                    hasQuery = true;
+                    tQuery   = r.query;
+                } else {
+                    // Preserve base query only if non-empty.
+                    const auto bq{ GetQuery() };
+                    if (!bq.empty()) { hasQuery = true; tQuery = bq; }
+                }
+            } else {
+                if (r.path.starts_with('/')) {
+                    tPath = RemoveDotSegments(r.path);
+                } else {
+                    // Merge: base path up to and including last '/' + R path.
+                    const auto basePath{ GetPath() };
+                    std::string merged;
+
+                    if (GetAuthority() && basePath.empty()) {
+                        merged  = '/';
+                        merged += r.path;
+                    } else {
+                        const auto slash{ basePath.rfind('/') };
+                        if (slash != std::string_view::npos)
+                            merged = std::string{ basePath.substr(0, slash + 1) };
+                        merged += r.path;
+                    }
+                    tPath = RemoveDotSegments(merged);
+                }
+                hasQuery = r.hasQuery;
+                tQuery   = r.query;
+            }
+
+            // Inherit base authority.
+            const auto ba{ baseAuthority() };
+            hasAuthority = !ba.empty();
+            tAuthority   = ba;
+        }
+        tScheme = GetScheme();
+    }
+
+    tFragment = r.fragment;
+
+    // Reconstruct absolute URL string.
+    std::string target;
+    target.reserve(tScheme.size() + 3 + tAuthority.size()
+                 + tPath.size() + tQuery.size() + tFragment.size() + 4);
+    target += tScheme;
+    target += ':';
+    if (hasAuthority)                 { target += "//"; target += tAuthority; }
+    target                            += tPath;
+    if (hasQuery)                     { target += '?';  target += tQuery;     }
+    if (r.hasFragment)                { target += '#';  target += tFragment;  }
+
+    return Url::FromUrl(std::move(target));
+}
+
+std::expected<Url, Thoth::Http::ExchangeError> Url::ResolveRelative(const Url& url, std::string_view reference) {
+    return url.Resolve(reference);
 }
 
 std::string Url::Encode(std::string_view str) {

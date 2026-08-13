@@ -10,6 +10,22 @@ ValueProxy<true, AcceptRanges> Thoth::Http::ResponseHeaders::AcceptRanges() cons
     return { "accept-ranges", *this };
 }
 
+ListProxy<false, MimeType> Thoth::Http::ResponseHeaders::AcceptPatch() {
+    return { "accept-patch", *this };
+}
+
+ListProxy<true, MimeType> Thoth::Http::ResponseHeaders::AcceptPatch() const {
+    return { "accept-patch", *this };
+}
+
+ListProxy<false, MimeType> Thoth::Http::ResponseHeaders::AcceptPost() {
+    return { "accept-post", *this };
+}
+
+ListProxy<true, MimeType> Thoth::Http::ResponseHeaders::AcceptPost() const {
+    return { "accept-post", *this };
+}
+
 ValueProxy<false, std::chrono::seconds> Thoth::Http::ResponseHeaders::Age() {
     return { "age", *this }; // %Q for outPattern
 }

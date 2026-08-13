@@ -24,12 +24,12 @@ namespace Thoth::Http {
         //! @brief The value of the Accept-Patch header.
         NHeaders::ListProxy<false, NHeaders::MimeType> AcceptPatch();
         //! @copybrief AcceptPatch
-        NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPatch() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPatch() const;
 
         //! @brief The value of the Accept-Patch header.
         NHeaders::ListProxy<false, NHeaders::MimeType> AcceptPost();
         //! @copybrief AcceptPost
-        NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPost() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPost() const;
 
 
         //! @brief Get how old this response has generated in the server, useful for caching.
@@ -48,7 +48,9 @@ namespace Thoth::Http {
         [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::EntityTag> EntityTag() const;
 
         //! @brief The URL where this response pointers to.
-        NHeaders::ValueProxy<false, std::string> Location(); // TODO: Improve Url before change the type
+        //!
+        //! @note Can be a relative URL, resolves via @ref Url::Resolve using a proper URL.
+        NHeaders::ValueProxy<false, std::string> Location();
         //! @copybrief Location
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> Location() const;
 

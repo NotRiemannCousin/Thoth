@@ -25,7 +25,7 @@ namespace Thoth::Http::NHeaders {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
-                return true;
+                return false;
             }) || ...);
             if (result) return result;
         }
@@ -50,7 +50,7 @@ namespace Thoth::Http::NHeaders {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
-                return true;
+                return false;
             }) || ...);
             if (result) return std::move(*result);
         }
@@ -75,9 +75,8 @@ namespace Thoth::Http::NHeaders {
                     result = Type{ std::in_place_type<std::vector<Ts>>, std::move(*parsed) };
                     return true;
                 }
-                return true;
+                return false;
             }) || ...);
-            if (result) return result;
             if (result) return std::move(*result);
         }
 

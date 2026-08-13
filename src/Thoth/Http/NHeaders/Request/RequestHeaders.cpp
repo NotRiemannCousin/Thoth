@@ -14,23 +14,23 @@ ValueProxy<false, std::string> RequestHeaders::Authorization() {
 ValueProxy<true, std::string> RequestHeaders::Authorization() const {
     return { "authorization", *this };
 }
-ValueProxy<false, RequestHeaders::Url> RequestHeaders::Host() {
+ValueProxy<false, std::string> RequestHeaders::Host() {
     return { "host", *this };
 }
 
-ValueProxy<true, RequestHeaders::Url> RequestHeaders::Host() const {
+ValueProxy<true, std::string> RequestHeaders::Host() const {
     return { "host", *this };
 }
-ValueProxy<false, RequestHeaders::Url> RequestHeaders::Referrer() {
-    return { "referrer", *this };
+ValueProxy<false, std::string> RequestHeaders::Referrer() {
+    return { "referer", *this }; //* intentional typo
 }
-ValueProxy<true, RequestHeaders::Url> RequestHeaders::Referrer() const {
-    return { "referrer", *this };
+ValueProxy<true, std::string> RequestHeaders::Referrer() const {
+    return { "referer", *this }; //* intentional typo
 }
-ValueProxy<false, RequestHeaders::Url, std::monostate> RequestHeaders::Origin() {
+ValueProxy<false, std::string, std::monostate> RequestHeaders::Origin() {
     return { "origin", *this };
 }
-ValueProxy<true, RequestHeaders::Url, std::monostate> RequestHeaders::Origin() const {
+ValueProxy<true, std::string, std::monostate> RequestHeaders::Origin() const {
     return { "origin", *this };
 };
 ValueProxy<false, std::string> RequestHeaders::From() {

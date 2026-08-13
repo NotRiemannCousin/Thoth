@@ -14,7 +14,7 @@ namespace Thoth::Utils {
     }
 
     template<std::ranges::input_range Range>
-    typename SharedInputView<Range>::Iterator& SharedInputView<Range>::Iterator::operator++(int) {
+    typename SharedInputView<Range>::Iterator SharedInputView<Range>::Iterator::operator++(int) {
         return ++(*this);
     }
 

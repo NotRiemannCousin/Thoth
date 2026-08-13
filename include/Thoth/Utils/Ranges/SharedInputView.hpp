@@ -14,7 +14,7 @@ namespace Thoth::Utils {
 
             [[nodiscard]] value_type operator*() const;
             Iterator& operator++();
-            Iterator& operator++(int);
+            Iterator operator++(int);
             [[nodiscard]] bool operator==(std::default_sentinel_t) const;
         };
 
