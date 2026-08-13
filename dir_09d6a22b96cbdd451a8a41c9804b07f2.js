@@ -1,7 +1,7 @@
 var dir_09d6a22b96cbdd451a8a41c9804b07f2 =
 [
     [ "_base", "dir_89c63d373f4c9055d88d4b9aac460ae7.html", "dir_89c63d373f4c9055d88d4b9aac460ae7" ],
-    [ "ConnectMethod.hpp", "_connect_method_8hpp.html", "_connect_method_8hpp" ],
+    [ "ConnectMethod.hpp", "_connect_method_8hpp.html", null ],
     [ "DeleteMethod.hpp", "_delete_method_8hpp.html", "_delete_method_8hpp" ],
     [ "GetMethod.hpp", "_get_method_8hpp.html", "_get_method_8hpp" ],
     [ "HeadMethod.hpp", "_head_method_8hpp.html", "_head_method_8hpp" ],

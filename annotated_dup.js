@@ -7,6 +7,7 @@ var annotated_dup =
       [ "Dsa", "namespace_thoth_1_1_dsa.html", [
         [ "Cow", "struct_thoth_1_1_dsa_1_1_cow.html", "struct_thoth_1_1_dsa_1_1_cow" ],
         [ "FileBuilderParams", "struct_thoth_1_1_dsa_1_1_file_builder_params.html", "struct_thoth_1_1_dsa_1_1_file_builder_params" ],
+        [ "FileOutputIterator", "struct_thoth_1_1_dsa_1_1_file_output_iterator.html", "struct_thoth_1_1_dsa_1_1_file_output_iterator" ],
         [ "FileOutputRange", "struct_thoth_1_1_dsa_1_1_file_output_range.html", "struct_thoth_1_1_dsa_1_1_file_output_range" ],
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
@@ -32,7 +33,6 @@ var annotated_dup =
         [ "ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", "struct_thoth_1_1_http_1_1_client_connection" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ClientOptions", "struct_thoth_1_1_http_1_1_client_options.html", "struct_thoth_1_1_http_1_1_client_options" ],
-        [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
         [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
         [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
         [ "GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],

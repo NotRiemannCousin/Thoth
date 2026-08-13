@@ -5,6 +5,6 @@ var searchData=
   ['status_2',['status',['../struct_thoth_1_1_http_1_1_response_head.html#a1771892d996918d81f19c1177b74fbc0',1,'Thoth::Http::ResponseHead']]],
   ['statusmessage_3',['statusMessage',['../struct_thoth_1_1_http_1_1_response_head.html#a6acd1d6217337a45c6fa0e94792e7306',1,'Thoth::Http::ResponseHead']]],
   ['str_4',['str',['../struct_thoth_1_1_n_json_1_1_string_ref.html#a9a50b1c6eb0a946b052e60dd390c7494',1,'Thoth::NJson::StringRef']]],
-  ['stream_5',['stream',['../struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632',1,'Thoth::Http::details_::ParseStage']]],
+  ['stream_5',['stream',['../struct_thoth_1_1_dsa_1_1_file_output_iterator.html#a25d98e1a9df07d37baaaa77c78179553',1,'Thoth::Dsa::FileOutputIterator::stream'],['../struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632',1,'Thoth::Http::details_::ParseStage::stream']]],
   ['subtype_6',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a7bbec6b05517aa5a6e033466177fdf0d',1,'Thoth::Http::NHeaders::MimeType']]]
 ];

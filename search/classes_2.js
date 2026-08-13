@@ -5,6 +5,5 @@ var searchData=
   ['clientconnection_2',['ClientConnection',['../struct_thoth_1_1_http_1_1_client_connection.html',1,'Thoth::Http']]],
   ['clientjanitor_3',['ClientJanitor',['../struct_thoth_1_1_http_1_1_client_janitor.html',1,'Thoth::Http']]],
   ['clientoptions_4',['ClientOptions',['../struct_thoth_1_1_http_1_1_client_options.html',1,'Thoth::Http']]],
-  ['connectmethod_5',['ConnectMethod',['../struct_thoth_1_1_http_1_1_connect_method.html',1,'Thoth::Http']]],
-  ['cow_6',['Cow',['../struct_thoth_1_1_dsa_1_1_cow.html',1,'Thoth::Dsa']]]
+  ['cow_5',['Cow',['../struct_thoth_1_1_dsa_1_1_cow.html',1,'Thoth::Dsa']]]
 ];

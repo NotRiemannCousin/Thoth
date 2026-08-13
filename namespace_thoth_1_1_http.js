@@ -7,7 +7,6 @@ var namespace_thoth_1_1_http =
     [ "ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", "struct_thoth_1_1_http_1_1_client_connection" ],
     [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
     [ "ClientOptions", "struct_thoth_1_1_http_1_1_client_options.html", "struct_thoth_1_1_http_1_1_client_options" ],
-    [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
     [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
     [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
     [ "GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
