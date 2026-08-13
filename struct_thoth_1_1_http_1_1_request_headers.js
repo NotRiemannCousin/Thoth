@@ -1,6 +1,5 @@
 var struct_thoth_1_1_http_1_1_request_headers =
 [
-    [ "Url", "struct_thoth_1_1_http_1_1_request_headers.html#a164808688f8d64f4f3272ac03d9fb85d", null ],
     [ "AcceptLanguage", "struct_thoth_1_1_http_1_1_request_headers.html#aa3391cfe912f01acf3572974c77fc19c", null ],
     [ "AcceptLanguage", "struct_thoth_1_1_http_1_1_request_headers.html#a297544e0c7c07b60121d1bc644473ebb", null ],
     [ "Authorization", "struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038", null ],
@@ -9,8 +8,8 @@ var struct_thoth_1_1_http_1_1_request_headers =
     [ "From", "struct_thoth_1_1_http_1_1_request_headers.html#a51bf3712dd9a8c1bda4676184c69061b", null ],
     [ "GetCookiesView", "struct_thoth_1_1_http_1_1_request_headers.html#a8a261b1c7b908d48714c42267be80e74", null ],
     [ "GetNonValidatedView", "struct_thoth_1_1_http_1_1_request_headers.html#acc229fe0d8d000d34f0c525f179d4a9f", null ],
-    [ "Host", "struct_thoth_1_1_http_1_1_request_headers.html#a0b098a7053bf95c6c8c35e90ce729014", null ],
-    [ "Host", "struct_thoth_1_1_http_1_1_request_headers.html#a7db65325d10615e1047ab1a05cf59334", null ],
+    [ "Host", "struct_thoth_1_1_http_1_1_request_headers.html#ad416ee3cc8ccd96e2e4b3856b0ccc529", null ],
+    [ "Host", "struct_thoth_1_1_http_1_1_request_headers.html#a4d186872e0e6a578cf35b9193cbb1fa0", null ],
     [ "IfMatch", "struct_thoth_1_1_http_1_1_request_headers.html#a167f7315a4c2755374f4e927dfc242b3", null ],
     [ "IfMatch", "struct_thoth_1_1_http_1_1_request_headers.html#ae9a65a984a90850d1a3282f8aff04c3a", null ],
     [ "IfModifiedSince", "struct_thoth_1_1_http_1_1_request_headers.html#a58b9380a864953bf4b96b70828332ed9", null ],
@@ -23,14 +22,14 @@ var struct_thoth_1_1_http_1_1_request_headers =
     [ "IfUnmodifiedSince", "struct_thoth_1_1_http_1_1_request_headers.html#abf192e659648d227e70305dfd7144a7d", null ],
     [ "MaxForwards", "struct_thoth_1_1_http_1_1_request_headers.html#a9fe71a599ed1bda34d6e9388df43d99f", null ],
     [ "MaxForwards", "struct_thoth_1_1_http_1_1_request_headers.html#a72a93b8a64c463063a9ab995e3bda400", null ],
-    [ "Origin", "struct_thoth_1_1_http_1_1_request_headers.html#aed5ca219e849119a838a67262e168c99", null ],
-    [ "Origin", "struct_thoth_1_1_http_1_1_request_headers.html#a11861c7d7183f56bc4c5af82f9fd99af", null ],
+    [ "Origin", "struct_thoth_1_1_http_1_1_request_headers.html#af93ab0eee3e65cac5b1ca135c6a0a604", null ],
+    [ "Origin", "struct_thoth_1_1_http_1_1_request_headers.html#a51a14ece0dc16ab77ac3b1becd82c5ed", null ],
     [ "ProxyAuthorization", "struct_thoth_1_1_http_1_1_request_headers.html#a0ec48fcef5ad451f7128a088882db4bf", null ],
     [ "ProxyAuthorization", "struct_thoth_1_1_http_1_1_request_headers.html#a721815bb2cbd07a2d5201da0d9509379", null ],
     [ "Range", "struct_thoth_1_1_http_1_1_request_headers.html#a1c021b434aba661347b825417a2ba7b3", null ],
     [ "Range", "struct_thoth_1_1_http_1_1_request_headers.html#a2c8fe050ffb90db85400a3d1b5dc6c62", null ],
-    [ "Referrer", "struct_thoth_1_1_http_1_1_request_headers.html#a0dbc085543dd17b962192cdd8f1ecc2d", null ],
-    [ "Referrer", "struct_thoth_1_1_http_1_1_request_headers.html#afb376e619c55eaf27988ba757eecacc2", null ],
+    [ "Referrer", "struct_thoth_1_1_http_1_1_request_headers.html#a7fcbfbf53c91083ec015b0b1166300b8", null ],
+    [ "Referrer", "struct_thoth_1_1_http_1_1_request_headers.html#a0b872f0dbdfa8997e269337833832193", null ],
     [ "Te", "struct_thoth_1_1_http_1_1_request_headers.html#a56583191ffbd72619d8c726501eb4302", null ],
     [ "Te", "struct_thoth_1_1_http_1_1_request_headers.html#a861c98c21300e5c872a0f49c23abebed", null ]
 ];

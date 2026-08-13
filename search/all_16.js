@@ -8,11 +8,11 @@ var searchData=
   ['unprocessablecontent_5',['UnprocessableContent',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ae805bd51ab7638a29ea9c6ee60749132',1,'Thoth::Http']]],
   ['unsupportedmediatype_6',['UnsupportedMediaType',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aa3219a6843adbb23de79b4df9c307f5d',1,'Thoth::Http']]],
   ['unused_7',['Unused',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a92e592d90b9548016776a6fb68dccded',1,'Thoth::Http']]],
-  ['upgrade_8',['upgrade',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html',1,'Thoth::Http::NHeaders::Upgrade'],['../struct_thoth_1_1_http_1_1_headers.html#a9872847930a784f68295a2bbc2ea80c0',1,'Thoth::Http::Headers::Upgrade() const'],['../struct_thoth_1_1_http_1_1_headers.html#a0458433b66f6f64bd6826fbb7f846712',1,'Thoth::Http::Headers::Upgrade()']]],
+  ['upgrade_8',['upgrade',['../struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html',1,'Thoth::Http::NHeaders::Upgrade'],['../struct_thoth_1_1_http_1_1_headers.html#a0458433b66f6f64bd6826fbb7f846712',1,'Thoth::Http::Headers::Upgrade()'],['../struct_thoth_1_1_http_1_1_headers.html#a9872847930a784f68295a2bbc2ea80c0',1,'Thoth::Http::Headers::Upgrade() const']]],
   ['upgrade_2ehpp_9',['Upgrade.hpp',['../_upgrade_8hpp.html',1,'']]],
   ['upgraderequired_10',['UpgradeRequired',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ae0eaea96be1ec038b859e02cc5330827',1,'Thoth::Http']]],
   ['uritoolong_11',['UriTooLong',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af72866c1bbf28a47b9bb1c8846e03313',1,'Thoth::Http']]],
-  ['url_12',['url',['../struct_thoth_1_1_http_1_1_request_headers.html#a164808688f8d64f4f3272ac03d9fb85d',1,'Thoth::Http::RequestHeaders::Url'],['../struct_thoth_1_1_http_1_1_url.html#ad057a14b4f10a782866042324a83e7ba',1,'Thoth::Http::Url::Url(const Url &amp;other)'],['../struct_thoth_1_1_http_1_1_url.html#a11638280a3369585e7ecfeb420d22759',1,'Thoth::Http::Url::Url(Url &amp;&amp;other) noexcept'],['../struct_thoth_1_1_http_1_1_request_head.html#a24becb574a68a2a3ff3a38f44d443a20',1,'Thoth::Http::RequestHead::url'],['../struct_thoth_1_1_http_1_1_url.html',1,'Thoth::Http::Url']]],
+  ['url_12',['url',['../struct_thoth_1_1_http_1_1_request_head.html#a24becb574a68a2a3ff3a38f44d443a20',1,'Thoth::Http::RequestHead::url'],['../struct_thoth_1_1_http_1_1_url.html#a11638280a3369585e7ecfeb420d22759',1,'Thoth::Http::Url::Url(Url &amp;&amp;other) noexcept'],['../struct_thoth_1_1_http_1_1_url.html#ad057a14b4f10a782866042324a83e7ba',1,'Thoth::Http::Url::Url(const Url &amp;other)'],['../struct_thoth_1_1_http_1_1_url.html',1,'Thoth::Http::Url']]],
   ['url_2ehpp_13',['Url.hpp',['../_url_8hpp.html',1,'']]],
   ['urlbuilder_14',['UrlBuilder',['../struct_thoth_1_1_http_1_1_url.html#a5685b39bea8e81ec7c915f7b4f155b2d',1,'Thoth::Http::Url']]],
   ['urlparseerrorenum_15',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]],
@@ -20,7 +20,7 @@ var searchData=
   ['userinfo_17',['userinfo',['../struct_thoth_1_1_http_1_1_authority.html#a0cd8c915c810d4c96c9f9f752c52b9e1',1,'Thoth::Http::Authority']]],
   ['utf16view_18',['Utf16View',['../namespace_thoth_1_1_string.html#a5d2612b50ded1adc4f40bc9e0f5dc0da',1,'Thoth::String']]],
   ['utf32view_19',['Utf32View',['../namespace_thoth_1_1_string.html#a320cc6ad2f6cc4af0d4c9765c02cc7e2',1,'Thoth::String']]],
-  ['utf8env_20',['Utf8Env',['../namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0',1,'Thoth::Utils']]],
+  ['utf8env_20',['Utf8Env',['../namespace_thoth_1_1_utils.html#a71a8bd88f0962c8b039ea0ebab2bb2db',1,'Thoth::Utils']]],
   ['utf8view_21',['Utf8View',['../namespace_thoth_1_1_string.html#a5674b9c06b2549b276de490efa7cf6ea',1,'Thoth::String']]],
   ['utils_2ehpp_22',['utils.hpp',['../_string_2_utils_8hpp.html',1,'(Global Namespace)'],['../_n_json_2_utils_8hpp.html',1,'(Global Namespace)']]]
 ];

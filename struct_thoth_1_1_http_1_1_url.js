@@ -13,6 +13,7 @@ var struct_thoth_1_1_http_1_1_url =
     [ "operator=", "struct_thoth_1_1_http_1_1_url.html#ae5d6f84ad5e79e1052cbe5aa1c790478", null ],
     [ "operator=", "struct_thoth_1_1_http_1_1_url.html#a0b4dbe3f4878b0b4a6b369eb5a589b1f", null ],
     [ "operator==", "struct_thoth_1_1_http_1_1_url.html#a1d8750b8d017a21455881fbc2d08e5ec", null ],
+    [ "Resolve", "struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32", null ],
     [ "std::formatter< Url >", "struct_thoth_1_1_http_1_1_url.html#acf55916f535372d81c7cae8409a95e20", null ],
     [ "std::hash< Url >", "struct_thoth_1_1_http_1_1_url.html#a481c48d2a0da36c4e9b0514f54464a77", null ],
     [ "UrlBuilder", "struct_thoth_1_1_http_1_1_url.html#a5685b39bea8e81ec7c915f7b4f155b2d", null ]

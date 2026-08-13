@@ -26,7 +26,7 @@ var namespace_thoth_1_1_utils =
     [ "CallIfErrorNotHof", "namespace_thoth_1_1_utils.html#a19ec9fedd7d422f08790e358d0fbe7a1", null ],
     [ "Const", "namespace_thoth_1_1_utils.html#a127449d996997262ef3ba680e924f1c1", null ],
     [ "ConstFn", "namespace_thoth_1_1_utils.html#a51e6e43fdf180adfccad34329f71935f", null ],
-    [ "Env", "namespace_thoth_1_1_utils.html#a458b9ac394d515a2ab95955de8535e67", null ],
+    [ "Env", "namespace_thoth_1_1_utils.html#a5dac49848337993fa3b1351256948167", null ],
     [ "ErrorIf", "namespace_thoth_1_1_utils.html#a1b553f3aaafa18d4d0c433f5fd6ea0be", null ],
     [ "ErrorIf", "namespace_thoth_1_1_utils.html#a7760b78c133849c3d87b61aeaede1d79", null ],
     [ "ErrorIfHof", "namespace_thoth_1_1_utils.html#ac17748a34b0f659ac9d5d0dd37ca8876", null ],
@@ -87,7 +87,7 @@ var namespace_thoth_1_1_utils =
     [ "TransformOptIfNotHof", "namespace_thoth_1_1_utils.html#ad8855f06b76ff591c39a01ddd591b1c7", null ],
     [ "TransformOptIfNotHof", "namespace_thoth_1_1_utils.html#a8e1e136b3ade47d7dde5d634757ba617", null ],
     [ "TransformOptIfNotHof", "namespace_thoth_1_1_utils.html#a45f7543f8d3e70e04b2c5adbc96f7c13", null ],
-    [ "Utf8Env", "namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0", null ],
+    [ "Utf8Env", "namespace_thoth_1_1_utils.html#a71a8bd88f0962c8b039ea0ebab2bb2db", null ],
     [ "ValueOr", "namespace_thoth_1_1_utils.html#a45f009d19d7b37e4595d20a1d68082c5", null ],
     [ "ValueOrHof", "namespace_thoth_1_1_utils.html#a2245da06206e12517b4ad14225d92d34", null ]
 ];

@@ -10,7 +10,6 @@ var struct_thoth_1_1_http_1_1_headers =
     [ "HeaderValueRef", "struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6", null ],
     [ "IterType", "struct_thoth_1_1_http_1_1_headers.html#a57b0ff6d4940181a2a7997ccde2e61fa", null ],
     [ "MapType", "struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5", null ],
-    [ "MapType", "struct_thoth_1_1_http_1_1_headers.html#ae8493bbbf9abcbb5a51d2c9fc07431d9", null ],
     [ "RIterType", "struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847", null ],
     [ "Headers", "struct_thoth_1_1_http_1_1_headers.html#a24c65b704ffc9065b6105aa3f5344c54", null ],

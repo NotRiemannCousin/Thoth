@@ -176,12 +176,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a458b9ac394d515a2ab95955de8535e67" id="r_a458b9ac394d515a2ab95955de8535e67"><td class="memItemLeft" align="right" valign="top">std::optional&lt; const std::string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a458b9ac394d515a2ab95955de8535e67">Env</a> (std::string_view envkey)</td></tr>
-<tr class="memdesc:a458b9ac394d515a2ab95955de8535e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get variables from the ".env" file. Supports command execution and multiline.  <br /></td></tr>
-<tr class="separator:a458b9ac394d515a2ab95955de8535e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb3401b3fe4a20444770bff021e15e0" id="r_aadb3401b3fe4a20444770bff021e15e0"><td class="memItemLeft" align="right" valign="top">std::optional&lt; const std::u8string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#aadb3401b3fe4a20444770bff021e15e0">Utf8Env</a> (std::string_view envkey)</td></tr>
-<tr class="memdesc:aadb3401b3fe4a20444770bff021e15e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get variables from the ".env" file. Supports command execution and multiline.    <br /></td></tr>
-<tr class="separator:aadb3401b3fe4a20444770bff021e15e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dac49848337993fa3b1351256948167" id="r_a5dac49848337993fa3b1351256948167"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a5dac49848337993fa3b1351256948167">Env</a> (std::string_view envkey)</td></tr>
+<tr class="memdesc:a5dac49848337993fa3b1351256948167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get variables from the ".env" file. Supports command execution and multiline.  <br /></td></tr>
+<tr class="separator:a5dac49848337993fa3b1351256948167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a8bd88f0962c8b039ea0ebab2bb2db" id="r_a71a8bd88f0962c8b039ea0ebab2bb2db"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::u8string_view &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a71a8bd88f0962c8b039ea0ebab2bb2db">Utf8Env</a> (std::string_view envkey)</td></tr>
+<tr class="memdesc:a71a8bd88f0962c8b039ea0ebab2bb2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get variables from the ".env" file. Supports command execution and multiline.    <br /></td></tr>
+<tr class="separator:a71a8bd88f0962c8b039ea0ebab2bb2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b698f9e305ec3d41539545fe50cc2a4" id="r_a1b698f9e305ec3d41539545fe50cc2a4"><td class="memTemplParams" colspan="2">template&lt;auto V&gt; </td></tr>
 <tr class="memitem:a1b698f9e305ec3d41539545fe50cc2a4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue</a> ()</td></tr>
 <tr class="memdesc:a1b698f9e305ec3d41539545fe50cc2a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the template parameter is a value, then returns it. If is a type then construct and returns it.  <br /></td></tr>
@@ -1055,14 +1055,14 @@ template&lt;class Ret , class Class , class... Args&gt; </div>
 
 </div>
 </div>
-<a id="a458b9ac394d515a2ab95955de8535e67" name="a458b9ac394d515a2ab95955de8535e67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a458b9ac394d515a2ab95955de8535e67">&#9670;&#160;</a></span>Env()</h2>
+<a id="a5dac49848337993fa3b1351256948167" name="a5dac49848337993fa3b1351256948167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dac49848337993fa3b1351256948167">&#9670;&#160;</a></span>Env()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt; const std::string_view &gt; Thoth::Utils::Env </td>
+          <td class="memname">std::optional&lt; std::string_view &gt; Thoth::Utils::Env </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>envkey</em></td><td>)</td>
@@ -3254,14 +3254,14 @@ template&lt;auto Pred, class Trans &gt; </div>
 
 </div>
 </div>
-<a id="aadb3401b3fe4a20444770bff021e15e0" name="aadb3401b3fe4a20444770bff021e15e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadb3401b3fe4a20444770bff021e15e0">&#9670;&#160;</a></span>Utf8Env()</h2>
+<a id="a71a8bd88f0962c8b039ea0ebab2bb2db" name="a71a8bd88f0962c8b039ea0ebab2bb2db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a8bd88f0962c8b039ea0ebab2bb2db">&#9670;&#160;</a></span>Utf8Env()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt; const std::u8string_view &gt; Thoth::Utils::Utf8Env </td>
+          <td class="memname">std::optional&lt; std::u8string_view &gt; Thoth::Utils::Utf8Env </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>envkey</em></td><td>)</td>

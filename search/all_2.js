@@ -23,12 +23,15 @@ var searchData=
   ['as_20',['As',['../struct_thoth_1_1_n_json_1_1_json.html#a04bcf4b42cd695398d14d1a016d4e5ab',1,'Thoth::NJson::Json']]],
   ['ascopy_21',['AsCopy',['../struct_thoth_1_1_dsa_1_1_cow.html#a606d4e8b1525e4daab7c446b9c38ee19',1,'Thoth::Dsa::Cow']]],
   ['ascpy_22',['AsCpy',['../struct_thoth_1_1_n_json_1_1_json.html#a4a9ca6275e87c6f92207297d3135db41',1,'Thoth::NJson::Json']]],
-  ['asjson_23',['AsJson',['../struct_thoth_1_1_http_1_1_response.html#ac3bda874a5fdf2273dcf08f8587add64',1,'Thoth::Http::Response']]],
-  ['asmov_24',['AsMov',['../struct_thoth_1_1_n_json_1_1_json.html#ae1ca9efea2cc9fe0f9bed6ba3e6d3e81',1,'Thoth::NJson::Json']]],
-  ['asmut_25',['AsMut',['../struct_thoth_1_1_n_json_1_1_json.html#aeb82e8e0dde421697d36eb3d4a09631d',1,'Thoth::NJson::Json']]],
-  ['asowned_26',['AsOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa55b58778db1c48185913fbca3a99d53',1,'Thoth::Dsa::Cow']]],
-  ['asref_27',['asref',['../struct_thoth_1_1_dsa_1_1_cow.html#af4a1287733d359cf7f33bb3eae31921b',1,'Thoth::Dsa::Cow::AsRef()'],['../struct_thoth_1_1_n_json_1_1_json.html#a83434f4f8326a422576b57991e3047ca',1,'Thoth::NJson::Json::AsRef() const &amp;']]],
-  ['astype_28',['AsType',['../struct_thoth_1_1_n_json_1_1_json.html#a5ba143a8fe3321e3fa63c02fe753f17d',1,'Thoth::NJson::Json']]],
-  ['authority_29',['Authority',['../struct_thoth_1_1_http_1_1_authority.html',1,'Thoth::Http']]],
-  ['authorization_30',['authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]]
+  ['asfloat_23',['AsFloat',['../struct_thoth_1_1_n_json_1_1_number.html#a89b68a6c50b934bf6c34299de8962c10',1,'Thoth::NJson::Number']]],
+  ['asi64_24',['AsI64',['../struct_thoth_1_1_n_json_1_1_number.html#a1e5ea807d8ce03497af8fd1f89f8662f',1,'Thoth::NJson::Number']]],
+  ['asjson_25',['AsJson',['../struct_thoth_1_1_http_1_1_response.html#ac3bda874a5fdf2273dcf08f8587add64',1,'Thoth::Http::Response']]],
+  ['asmov_26',['AsMov',['../struct_thoth_1_1_n_json_1_1_json.html#ae1ca9efea2cc9fe0f9bed6ba3e6d3e81',1,'Thoth::NJson::Json']]],
+  ['asmut_27',['AsMut',['../struct_thoth_1_1_n_json_1_1_json.html#aeb82e8e0dde421697d36eb3d4a09631d',1,'Thoth::NJson::Json']]],
+  ['asowned_28',['AsOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa55b58778db1c48185913fbca3a99d53',1,'Thoth::Dsa::Cow']]],
+  ['asref_29',['asref',['../struct_thoth_1_1_dsa_1_1_cow.html#af4a1287733d359cf7f33bb3eae31921b',1,'Thoth::Dsa::Cow::AsRef()'],['../struct_thoth_1_1_n_json_1_1_json.html#a83434f4f8326a422576b57991e3047ca',1,'Thoth::NJson::Json::AsRef() const &amp;']]],
+  ['astype_30',['AsType',['../struct_thoth_1_1_n_json_1_1_json.html#a5ba143a8fe3321e3fa63c02fe753f17d',1,'Thoth::NJson::Json']]],
+  ['asui64_31',['AsUI64',['../struct_thoth_1_1_n_json_1_1_number.html#a244b1896270670069469b73749e439d3',1,'Thoth::NJson::Number']]],
+  ['authority_32',['Authority',['../struct_thoth_1_1_http_1_1_authority.html',1,'Thoth::Http']]],
+  ['authorization_33',['authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]]
 ];

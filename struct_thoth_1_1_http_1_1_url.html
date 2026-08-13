@@ -169,6 +169,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa1e288a779c54a13550cc435fe07a893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67cf8cdf2471047268347e5c43ca532c" id="r_a67cf8cdf2471047268347e5c43ca532c"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a67cf8cdf2471047268347e5c43ca532c">GetUrlWithoutFragment</a> () const noexcept</td></tr>
 <tr class="separator:a67cf8cdf2471047268347e5c43ca532c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09ad18340ef4aa36a423f8d3d59e3e32" id="r_a09ad18340ef4aa36a423f8d3d59e3e32"><td class="memItemLeft" align="right" valign="top">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Resolve</a> (std::string_view reference) const</td></tr>
+<tr class="memdesc:a09ad18340ef4aa36a423f8d3d59e3e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves a URI reference against this URL as base, per RFC 3986 §5.2.2.  <br /></td></tr>
+<tr class="separator:a09ad18340ef4aa36a423f8d3d59e3e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d8750b8d017a21455881fbc2d08e5ec" id="r_a1d8750b8d017a21455881fbc2d08e5ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a1d8750b8d017a21455881fbc2d08e5ec">operator==</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &amp;other) const noexcept</td></tr>
 <tr class="separator:a1d8750b8d017a21455881fbc2d08e5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -177,6 +180,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a32cb38ae2c8677bb0f6e9764089493c2" id="r_a32cb38ae2c8677bb0f6e9764089493c2"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a32cb38ae2c8677bb0f6e9764089493c2">FromUrl</a> (std::string rawUrl)</td></tr>
 <tr class="memdesc:a32cb38ae2c8677bb0f6e9764089493c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into URL.  <br /></td></tr>
 <tr class="separator:a32cb38ae2c8677bb0f6e9764089493c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0539658f20076cd16df9dfe488398a38" id="r_a0539658f20076cd16df9dfe488398a38"><td class="memItemLeft" align="right" valign="top">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#a0539658f20076cd16df9dfe488398a38">ResolveRelative</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &amp;url, std::string_view reference)</td></tr>
+<tr class="memdesc:a0539658f20076cd16df9dfe488398a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static version of <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Resolve</a>.  <br /></td></tr>
+<tr class="separator:a0539658f20076cd16df9dfe488398a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace68089aab5879c69433c82d67734cb4" id="r_ace68089aab5879c69433c82d67734cb4"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_url.html#ace68089aab5879c69433c82d67734cb4">Encode</a> (std::string_view str)</td></tr>
 <tr class="memdesc:ace68089aab5879c69433c82d67734cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
 <tr class="separator:ace68089aab5879c69433c82d67734cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -568,6 +574,72 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09ad18340ef4aa36a423f8d3d59e3e32" name="a09ad18340ef4aa36a423f8d3d59e3e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09ad18340ef4aa36a423f8d3d59e3e32">&#9670;&#160;</a></span>Resolve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; Thoth::Http::Url::Resolve </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>reference</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resolves a URI reference against this URL as base, per RFC 3986 §5.2.2. </p>
+<p>Supports absolute references (returned verbatim as a parsed <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>), relative-path references (<code>"../v2/users"</code>), same-document references (<code>""</code>), and fragment-only references (<code>"#section"</code>).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reference</td><td>A URI reference. Does not need to be absolute. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The resolved absolute <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, or an <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> if the resolved result fails parsing (e.g. produces an invalid scheme). </dd></dl>
+
+</div>
+</div>
+<a id="a0539658f20076cd16df9dfe488398a38" name="a0539658f20076cd16df9dfe488398a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0539658f20076cd16df9dfe488398a38">&#9670;&#160;</a></span>ResolveRelative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a>, <a class="el" href="struct_thoth_1_1_http_1_1_exchange_error.html">ExchangeError</a> &gt; Thoth::Http::Url::ResolveRelative </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a> &amp;&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>reference</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static version of <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Resolve</a>. </p>
 
 </div>
 </div>

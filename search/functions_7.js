@@ -5,10 +5,10 @@ var searchData=
   ['h_5fmoveas_2',['H_MoveAs',['../namespace_thoth_1_1_utils.html#a9f3d62d7e448f8b7016bb3c23729866f',1,'Thoth::Utils']]],
   ['h_5fpmove_3',['H_PMove',['../namespace_thoth_1_1_utils.html#a9769ff5c48d2905204b526ede15c7058',1,'Thoth::Utils']]],
   ['h_5fpmoveas_4',['H_PMoveAs',['../namespace_thoth_1_1_utils.html#a2bf1f6eebfe8763838712e850a7d31d5',1,'Thoth::Utils']]],
-  ['h_5fsend_5',['H_Send',['../struct_thoth_1_1_http_1_1_client.html#a6406ca8c7442733c5776dda3a954f221',1,'Thoth::Http::Client']]],
-  ['h_5fsendandparse_6',['H_SendAndParse',['../struct_thoth_1_1_http_1_1_client.html#a0e043f075204adaff4927894932b15ce',1,'Thoth::Http::Client']]],
-  ['h_5fsendas_7',['H_SendAs',['../struct_thoth_1_1_http_1_1_client.html#adc95735af9d5fe527c1d6fba543ef612',1,'Thoth::Http::Client']]],
-  ['h_5fsendasandparse_8',['H_SendAsAndParse',['../struct_thoth_1_1_http_1_1_client.html#af9a4b27fa597b6efeae3b26a75b6419d',1,'Thoth::Http::Client']]],
+  ['h_5fsend_5',['H_Send',['../struct_thoth_1_1_http_1_1_client.html#a8f477ad7128301089c7f36f72c77e6c6',1,'Thoth::Http::Client']]],
+  ['h_5fsendandparse_6',['H_SendAndParse',['../struct_thoth_1_1_http_1_1_client.html#ae9c6963c279177d958aec5756b39ff78',1,'Thoth::Http::Client']]],
+  ['h_5fsendas_7',['H_SendAs',['../struct_thoth_1_1_http_1_1_client.html#a201494b1e975b67066d498f3b30f9231',1,'Thoth::Http::Client']]],
+  ['h_5fsendasandparse_8',['H_SendAsAndParse',['../struct_thoth_1_1_http_1_1_client.html#a74e8e756b090ff57c7215865d2fc7794',1,'Thoth::Http::Client']]],
   ['headers_9',['headers',['../struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847',1,'Thoth::Http::Headers::Headers()'],['../struct_thoth_1_1_http_1_1_headers.html#a24c65b704ffc9065b6105aa3f5344c54',1,'Thoth::Http::Headers::Headers(const MapType &amp;initAs)'],['../struct_thoth_1_1_http_1_1_headers.html#ae4cb9d11a5d95c5a8ef7fcf8f5071032',1,'Thoth::Http::Headers::Headers(std::initializer_list&lt; HeaderPair &gt; init)'],['../struct_thoth_1_1_http_1_1_headers.html#a2b2aef4ef6eb965a5d09f49c9364d516',1,'Thoth::Http::Headers::Headers(std::initializer_list&lt; std::initializer_list&lt; HeaderPair &gt; &gt;)=delete']]],
-  ['host_10',['host',['../struct_thoth_1_1_http_1_1_request_headers.html#a0b098a7053bf95c6c8c35e90ce729014',1,'Thoth::Http::RequestHeaders::Host()'],['../struct_thoth_1_1_http_1_1_request_headers.html#a7db65325d10615e1047ab1a05cf59334',1,'Thoth::Http::RequestHeaders::Host() const']]]
+  ['host_10',['host',['../struct_thoth_1_1_http_1_1_request_headers.html#ad416ee3cc8ccd96e2e4b3856b0ccc529',1,'Thoth::Http::RequestHeaders::Host()'],['../struct_thoth_1_1_http_1_1_request_headers.html#a4d186872e0e6a578cf35b9193cbb1fa0',1,'Thoth::Http::RequestHeaders::Host() const']]]
 ];

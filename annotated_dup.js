@@ -31,6 +31,7 @@ var annotated_dup =
         [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
         [ "ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", "struct_thoth_1_1_http_1_1_client_connection" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
+        [ "ClientOptions", "struct_thoth_1_1_http_1_1_client_options.html", "struct_thoth_1_1_http_1_1_client_options" ],
         [ "ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
         [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
         [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
@@ -65,6 +66,7 @@ var annotated_dup =
         ] ],
         [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
         [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],
+        [ "Number", "struct_thoth_1_1_n_json_1_1_number.html", "struct_thoth_1_1_n_json_1_1_number" ],
         [ "StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", "struct_thoth_1_1_n_json_1_1_string_ref" ]
       ] ],
       [ "String", "namespace_thoth_1_1_string.html", [

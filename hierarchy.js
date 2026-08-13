@@ -6,6 +6,7 @@ var hierarchy =
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
     [ "Thoth::Http::ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", null ],
     [ "Thoth::Http::ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", null ],
+    [ "Thoth::Http::ClientOptions", "struct_thoth_1_1_http_1_1_client_options.html", null ],
     [ "Thoth::Http::ConnectMethod", "struct_thoth_1_1_http_1_1_connect_method.html", null ],
     [ "Thoth::Dsa::Cow< RefT, OwnT >", "struct_thoth_1_1_dsa_1_1_cow.html", null ],
     [ "Thoth::Http::DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
@@ -72,6 +73,7 @@ var hierarchy =
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy< IsConst, Ts >", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
-      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ]
+      [ "Thoth::Http::ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
+      [ "Thoth::NJson::Number", "struct_thoth_1_1_n_json_1_1_number.html", null ]
     ] ]
 ];

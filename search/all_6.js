@@ -2,7 +2,7 @@ var searchData=
 [
   ['earlyhints_0',['EarlyHints',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a7ff9f49506fe347fab32eb5ff72feda9',1,'Thoth::Http']]],
   ['elemtype_1',['ElemType',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ab16d3663f1afd37cf829917f9c172dfd',1,'Thoth::Http::NHeaders::ListProxy']]],
-  ['empty_2',['empty',['../struct_thoth_1_1_http_1_1_headers.html#a0275316907b93dcd13c5dd675a7fc738',1,'Thoth::Http::Headers::Empty()'],['../struct_thoth_1_1_http_1_1_query_params.html#a498710a0b6cf75e8e07f491ad25d285c',1,'Thoth::Http::QueryParams::Empty()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a5070a9c23a1913595b2be6a48895cac0',1,'Thoth::NJson::JsonObject::Empty()'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a209d01e34bb060efd96262e732159fc7',1,'Thoth::Dsa::LinearMap::empty()']]],
+  ['empty_2',['empty',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a209d01e34bb060efd96262e732159fc7',1,'Thoth::Dsa::LinearMap::empty()'],['../struct_thoth_1_1_http_1_1_headers.html#a0275316907b93dcd13c5dd675a7fc738',1,'Thoth::Http::Headers::Empty()'],['../struct_thoth_1_1_http_1_1_query_params.html#a498710a0b6cf75e8e07f491ad25d285c',1,'Thoth::Http::QueryParams::Empty()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a5070a9c23a1913595b2be6a48895cac0',1,'Thoth::NJson::JsonObject::Empty()']]],
   ['emptyurl_3',['EmptyUrl',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05',1,'Thoth::Http']]],
   ['emptyvalue_4',['EmptyValue',['../namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dda9fe4ecba9a7a3d5f14c1daec645608d5',1,'Thoth::Http::NHeaders']]],
   ['encode_5',['Encode',['../struct_thoth_1_1_http_1_1_url.html#ace68089aab5879c69433c82d67734cb4',1,'Thoth::Http::Url']]],
@@ -20,7 +20,7 @@ var searchData=
   ['ensuresuccess_17',['EnsureSuccess',['../struct_thoth_1_1_http_1_1_response.html#ae744a538d9369ee0796aef76477743d1',1,'Thoth::Http::Response']]],
   ['entitytag_18',['entitytag',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html',1,'Thoth::Http::NHeaders::EntityTag'],['../struct_thoth_1_1_http_1_1_response_headers.html#ac03b61d968e831d17985cfa2539fbcea',1,'Thoth::Http::ResponseHeaders::EntityTag()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a3d4430afe3391764ceabc300c365c0e0',1,'Thoth::Http::ResponseHeaders::EntityTag() const']]],
   ['entitytag_2ehpp_19',['EntityTag.hpp',['../_entity_tag_8hpp.html',1,'']]],
-  ['env_20',['Env',['../namespace_thoth_1_1_utils.html#a458b9ac394d515a2ab95955de8535e67',1,'Thoth::Utils']]],
+  ['env_20',['Env',['../namespace_thoth_1_1_utils.html#a5dac49848337993fa3b1351256948167',1,'Thoth::Utils']]],
   ['env_2ehpp_21',['Env.hpp',['../_env_8hpp.html',1,'']]],
   ['erase_22',['erase',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a6549dd123ce8448c9251a4b5c74e2596',1,'Thoth::Dsa::LinearMap::erase(iterator pos)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a23277ba79bd657f3f37469bd433f2ffd',1,'Thoth::Dsa::LinearMap::erase(const_iterator pos)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#aec181a4e091a4d691f2e040eaddd7045',1,'Thoth::Dsa::LinearMap::erase(const LookupKeyT &amp;key)']]],
   ['error_23',['error',['../struct_thoth_1_1_http_1_1_generic_error.html#a2096fe41359de674603e2528ff3144eb',1,'Thoth::Http::GenericError']]],
