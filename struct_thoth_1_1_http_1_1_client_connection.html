@@ -133,6 +133,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client_conne
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -144,18 +145,28 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client_conne
 <p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client.  
  <a href="struct_thoth_1_1_http_1_1_client_connection.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_http_2_client_2_definitions_8hpp_source.html">Definitions.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">SendOptions</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a0383c687a4625db13171bf8886c7ac97" id="r_a0383c687a4625db13171bf8886c7ac97"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97">SocketType</a> = std::variant&lt; Hermes::RawTcpClient, Hermes::RawTlsClient &gt;</td></tr>
 <tr class="separator:a0383c687a4625db13171bf8886c7ac97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfdaa5a332b6dbae4c7769a55d864dd5" id="r_acfdaa5a332b6dbae4c7769a55d864dd5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#acfdaa5a332b6dbae4c7769a55d864dd5">Deadline</a> = Hermes::DefaultTransferPolicy&lt;&gt;::Deadline</td></tr>
+<tr class="separator:acfdaa5a332b6dbae4c7769a55d864dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2fac020388b9f18259564724011b003" id="r_ac2fac020388b9f18259564724011b003"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ac2fac020388b9f18259564724011b003"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#ac2fac020388b9f18259564724011b003">Send</a> (const T &amp;data)</td></tr>
 <tr class="separator:ac2fac020388b9f18259564724011b003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b4799bad1b3cdedabbae018f80642c" id="r_af4b4799bad1b3cdedabbae018f80642c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af4b4799bad1b3cdedabbae018f80642c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#af4b4799bad1b3cdedabbae018f80642c">Send</a> (const T &amp;data, <a class="el" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">SendOptions</a> options)</td></tr>
+<tr class="separator:af4b4799bad1b3cdedabbae018f80642c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8508404f5b278f81dfd609154d23335c" id="r_a8508404f5b278f81dfd609154d23335c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#a8508404f5b278f81dfd609154d23335c">Close</a> ()</td></tr>
 <tr class="separator:a8508404f5b278f81dfd609154d23335c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc633997284182961037d60daf4b72df" id="r_acc633997284182961037d60daf4b72df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#acc633997284182961037d60daf4b72df">Abort</a> ()</td></tr>
@@ -174,6 +185,20 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>Stores per-connection information for an open socket managed by a <a class="el" href="namespace_thoth.html">Thoth</a> HTTP client. </p>
 <p>Aggregates the low-level socket (Hermes::RawTlsClient), the HTTP version negotiated for the connection, and the timestamp of the last use. This struct is used internally by <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> to decide when a socket can be safely evicted. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="acfdaa5a332b6dbae4c7769a55d864dd5" name="acfdaa5a332b6dbae4c7769a55d864dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdaa5a332b6dbae4c7769a55d864dd5">&#9670;&#160;</a></span>Deadline</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html#acfdaa5a332b6dbae4c7769a55d864dd5">Thoth::Http::ClientConnection::Deadline</a> =  Hermes::DefaultTransferPolicy&lt;&gt;::Deadline</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0383c687a4625db13171bf8886c7ac97" name="a0383c687a4625db13171bf8886c7ac97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0383c687a4625db13171bf8886c7ac97">&#9670;&#160;</a></span>SocketType</h2>
 
@@ -224,7 +249,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a id="ac2fac020388b9f18259564724011b003" name="ac2fac020388b9f18259564724011b003"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2fac020388b9f18259564724011b003">&#9670;&#160;</a></span>Send()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2fac020388b9f18259564724011b003">&#9670;&#160;</a></span>Send() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,6 +262,36 @@ template&lt;class T &gt; </div>
           <td class="paramtype">const T &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4b4799bad1b3cdedabbae018f80642c" name="af4b4799bad1b3cdedabbae018f80642c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b4799bad1b3cdedabbae018f80642c">&#9670;&#160;</a></span>Send() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::ClientConnection::Send </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">SendOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -270,7 +325,7 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The Hermes TLS client socket. Ensure that any operation on this socket respects thread-safety constraints; <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> may access sockets from a background thread. </p>
+<p>The <a class="el" href="namespace_hermes.html">Hermes</a> TLS client socket. Ensure that any operation on this socket respects thread-safety constraints; <a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html" title="Manages a pool of reusable HTTP sockets to optimize consecutive calls.">ClientJanitor</a> may access sockets from a background thread. </p>
 
 </div>
 </div>
@@ -290,7 +345,7 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Thoth/Http/<a class="el" href="_client_8hpp_source.html">Client.hpp</a></li>
+<li>include/Thoth/Http/Client/<a class="el" href="_http_2_client_2_definitions_8hpp_source.html">Definitions.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

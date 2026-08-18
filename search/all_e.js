@@ -17,7 +17,7 @@ var searchData=
   ['mimetype_2ehpp_14',['MimeType.hpp',['../_mime_type_8hpp.html',1,'']]],
   ['mimetypes_15',['mimetypes',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html',1,'Thoth::Http::NHeaders::MimeTypes'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#ab0204fdaf3dac04709b8210839f7857e',1,'Thoth::Http::NHeaders::MimeTypes::MimeTypes()']]],
   ['misdirectedrequest_16',['MisdirectedRequest',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ac110d06054539d0031cbefdf78d1fdd6',1,'Thoth::Http']]],
-  ['mode_17',['mode',['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a8decb585cccdd49a3ccad2983a2c9749',1,'Thoth::Dsa::FileBuilderParams::mode'],['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a738d6a5decb74a05595f84ddb582a262',1,'Thoth::Dsa::FileOutputRange::Mode()']]],
+  ['mode_17',['mode',['../struct_thoth_1_1_dsa_1_1_file_output_range.html#a738d6a5decb74a05595f84ddb582a262',1,'Thoth::Dsa::FileOutputRange::Mode()'],['../struct_thoth_1_1_dsa_1_1_file_builder_params.html#a8decb585cccdd49a3ccad2983a2c9749',1,'Thoth::Dsa::FileBuilderParams::mode']]],
   ['monostate_2ehpp_18',['Monostate.hpp',['../_monostate_8hpp.html',1,'']]],
   ['movebody_19',['MoveBody',['../struct_thoth_1_1_http_1_1_response.html#aa24a60d3fa71bff58660486cffb8e16a',1,'Thoth::Http::Response']]],
   ['movedpermanently_20',['MovedPermanently',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a32638c25f4c913fce6214c2c4afff9dc',1,'Thoth::Http']]],

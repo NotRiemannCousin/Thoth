@@ -285,6 +285,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_abe3d6933f484bf5986199b9d8220211d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#abe3d6933f484bf5986199b9d8220211d">Set</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> key, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a8d69ecd4575d37625ae75c14d5f009e6">HeaderValueRef</a> val)</td></tr>
 <tr class="memdesc:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">same as <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac01f0d57b008af3aab2d5cdacd413d19">Add(HeaderPairRef p)</a>.  <br /></td></tr>
 <tr class="separator:abe3d6933f484bf5986199b9d8220211d inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23773ec6b8c5350d38f1e8b1e952abdb inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a23773ec6b8c5350d38f1e8b1e952abdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a23773ec6b8c5350d38f1e8b1e952abdb">Remove</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a39e9b9b7aab9a1a89986ba24d1a8d6f6">HeaderKeyRef</a> k)</td></tr>
+<tr class="memdesc:a23773ec6b8c5350d38f1e8b1e952abdb inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a value with the specified key.  <br /></td></tr>
+<tr class="separator:a23773ec6b8c5350d38f1e8b1e952abdb inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a6a77fba1c8c2d373d6ebf8f3febe2893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a6a77fba1c8c2d373d6ebf8f3febe2893">Remove</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a536935553203c43bf4ee9d497d927d84">HeaderPairRef</a> p)</td></tr>
 <tr class="memdesc:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a value with the specified key.  <br /></td></tr>
 <tr class="separator:a6a77fba1c8c2d373d6ebf8f3febe2893 inherit pub_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -411,15 +414,15 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a29a0c4a9e03404fdd93014490d5f3a76" id="r_a29a0c4a9e03404fdd93014490d5f3a76"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:a29a0c4a9e03404fdd93014490d5f3a76"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html#a29a0c4a9e03404fdd93014490d5f3a76">Parse</a> (R &amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:a29a0c4a9e03404fdd93014490d5f3a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.    <br /></td></tr>
-<tr class="separator:a29a0c4a9e03404fdd93014490d5f3a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3c8ea97a5df16a242f4af1e1654a3e" id="r_a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html#a1c3c8ea97a5df16a242f4af1e1654a3e">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.    <br /></td></tr>
+<tr class="separator:a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_struct_thoth_1_1_http_1_1_headers')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
-<tr class="memitem:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a4867c9b77857dca60eb1eccb726244f7"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a4867c9b77857dca60eb1eccb726244f7">Parse</a> (R &amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
-<tr class="separator:a4867c9b77857dca60eb1eccb726244f7 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_af82fca4b81040dbc1e6f8f850b1b183d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af82fca4b81040dbc1e6f8f850b1b183d">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:af82fca4b81040dbc1e6f8f850b1b183d inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
+<tr class="separator:af82fca4b81040dbc1e6f8f850b1b183d inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
 <tr class="separator:a47e8a0ea4bc89eddd8626be4a630e639 inherit pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -624,7 +627,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Host header. Essential for HTTP/1.1 and SNI. </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL. </dd></dl>
 
 </div>
 </div>
@@ -644,7 +647,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Host header. Essential for HTTP/1.1 and SNI.   </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL.   </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL.   </dd></dl>
 
 </div>
 </div>
@@ -892,7 +895,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Origin header. Used for CORS requests. </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL. </dd></dl>
 
 </div>
 </div>
@@ -912,12 +915,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Origin header. Used for CORS requests.   </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL.   </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL.   </dd></dl>
 
 </div>
 </div>
-<a id="a29a0c4a9e03404fdd93014490d5f3a76" name="a29a0c4a9e03404fdd93014490d5f3a76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29a0c4a9e03404fdd93014490d5f3a76">&#9670;&#160;</a></span>Parse()</h2>
+<a id="a1c3c8ea97a5df16a242f4af1e1654a3e" name="a1c3c8ea97a5df16a242f4af1e1654a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3c8ea97a5df16a242f4af1e1654a3e">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -930,7 +933,7 @@ template&lt;std::ranges::input_range R&gt; </div>
         <tr>
           <td class="memname">static <a class="el" href="namespace_thoth_1_1_http.html#a129f8acf563a2d60f4d2a9ee3812eaf3">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt; Thoth::Http::RequestHeaders::Parse </td>
           <td>(</td>
-          <td class="paramtype">R &amp;&#160;</td>
+          <td class="paramtype">R &amp;&amp;&#160;</td>
           <td class="paramname"><em>headers</em>, </td>
         </tr>
         <tr>
@@ -1056,7 +1059,7 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Referer header (yes, it's misspelled in RFC). </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL. </dd></dl>
 
 </div>
 </div>
@@ -1076,7 +1079,7 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Referer header (yes, it's misspelled in RFC).   </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#a09ad18340ef4aa36a423f8d3d59e3e32">Url::Resolve</a> using a proper URL.   </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767">Url::Resolve</a> using a proper URL.   </dd></dl>
 
 </div>
 </div>

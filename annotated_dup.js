@@ -29,21 +29,16 @@ var annotated_dup =
           [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
         ] ],
         [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
+        [ "AuthorityView", "struct_thoth_1_1_http_1_1_authority_view.html", "struct_thoth_1_1_http_1_1_authority_view" ],
         [ "Client", "struct_thoth_1_1_http_1_1_client.html", "struct_thoth_1_1_http_1_1_client" ],
         [ "ClientConnection", "struct_thoth_1_1_http_1_1_client_connection.html", "struct_thoth_1_1_http_1_1_client_connection" ],
+        [ "ClientConnectionKey", "struct_thoth_1_1_http_1_1_client_connection_key.html", "struct_thoth_1_1_http_1_1_client_connection_key" ],
         [ "ClientJanitor", "struct_thoth_1_1_http_1_1_client_janitor.html", "struct_thoth_1_1_http_1_1_client_janitor" ],
         [ "ClientOptions", "struct_thoth_1_1_http_1_1_client_options.html", "struct_thoth_1_1_http_1_1_client_options" ],
         [ "DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
-        [ "ExchangeError", "struct_thoth_1_1_http_1_1_exchange_error.html", null ],
-        [ "GenericError", "struct_thoth_1_1_http_1_1_generic_error.html", "struct_thoth_1_1_http_1_1_generic_error" ],
         [ "GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
         [ "Headers", "struct_thoth_1_1_http_1_1_headers.html", "struct_thoth_1_1_http_1_1_headers" ],
         [ "HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
-        [ "JsonFindError", "struct_thoth_1_1_http_1_1_json_find_error.html", "struct_thoth_1_1_http_1_1_json_find_error" ],
-        [ "JsonGetError", "struct_thoth_1_1_http_1_1_json_get_error.html", "struct_thoth_1_1_http_1_1_json_get_error" ],
-        [ "JsonParseError", "struct_thoth_1_1_http_1_1_json_parse_error.html", "struct_thoth_1_1_http_1_1_json_parse_error" ],
-        [ "JsonSearchError", "struct_thoth_1_1_http_1_1_json_search_error.html", null ],
-        [ "JsonWrongTypeError", "struct_thoth_1_1_http_1_1_json_wrong_type_error.html", "struct_thoth_1_1_http_1_1_json_wrong_type_error" ],
         [ "OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
         [ "PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
         [ "PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
@@ -65,7 +60,12 @@ var annotated_dup =
           [ "BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info" ]
         ] ],
         [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
+        [ "JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", "struct_thoth_1_1_n_json_1_1_json_find_error" ],
+        [ "JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", "struct_thoth_1_1_n_json_1_1_json_get_error" ],
         [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],
+        [ "JsonParseError", "struct_thoth_1_1_n_json_1_1_json_parse_error.html", "struct_thoth_1_1_n_json_1_1_json_parse_error" ],
+        [ "JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", null ],
+        [ "JsonWrongTypeError", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error" ],
         [ "Number", "struct_thoth_1_1_n_json_1_1_number.html", "struct_thoth_1_1_n_json_1_1_number" ],
         [ "StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", "struct_thoth_1_1_n_json_1_1_string_ref" ]
       ] ],
@@ -81,6 +81,8 @@ var annotated_dup =
         [ "Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
         [ "Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4" ],
         [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ]
-      ] ]
+      ] ],
+      [ "GenericError", "struct_thoth_1_1_generic_error.html", "struct_thoth_1_1_generic_error" ],
+      [ "ThothError", "struct_thoth_1_1_thoth_error.html", "struct_thoth_1_1_thoth_error" ]
     ] ]
 ];

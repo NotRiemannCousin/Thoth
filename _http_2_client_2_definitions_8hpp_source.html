@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/Http/Client/Definitions.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_http_2_client_2_definitions_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Definitions.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_http_2_client_2_definitions_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Hermes/Endpoint/IpEndpoint/IpAddress.hpp&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>        <span class="keyword">template</span>&lt;MethodConcept Method, WritableBodyConcept ResponseBody&gt;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">struct </span>Response;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> F, <span class="keyword">class</span> Body&gt;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">   10</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">ResponseBodyFactoryConcept</a> = <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">BodyFactoryConcept&lt;F, Body, ResponseHead&gt;</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html">   21</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_options.html">ClientOptions</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html#aa3023f155e7fa39b305b7388c3d8912a">   28</a></span>        std::chrono::milliseconds <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_options.html#aa3023f155e7fa39b305b7388c3d8912a">requestTimeout</a>{ std::chrono::milliseconds::max() };</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html#a2463de1d54ef0a4e750b7ee14a7179f8">   33</a></span>        std::chrono::milliseconds <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_options.html#a2463de1d54ef0a4e750b7ee14a7179f8">connectionTimeout</a>{ std::chrono::seconds{ 300 } };</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html#a2ad5c299780dccefee2a0f1e327dc6da">   39</a></span>        std::chrono::milliseconds <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_options.html#a2ad5c299780dccefee2a0f1e327dc6da">handshakeTimeout</a>{ std::chrono::seconds{ 300 } };</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html#a8e4f006c329b8b820a6a67ca18b95040">   48</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_options.html#a8e4f006c329b8b820a6a67ca18b95040">ignoreCertificateErrors</a>{};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_options.html#a18e477ebecf36dd59b21f27154db504f">   56</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_options.html#a18e477ebecf36dd59b21f27154db504f">requestMutualAuth</a>{};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    };</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html">   66</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a> {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">// TODO: FUTURE: Implement HTTP2 and Quic</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97">   68</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97">SocketType</a> = std::variant&lt;Hermes::RawTcpClient, Hermes::RawTlsClient&gt;;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#acfdaa5a332b6dbae4c7769a55d864dd5">   69</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_client_connection.html#acfdaa5a332b6dbae4c7769a55d864dd5">Deadline</a>   = Hermes::DefaultTransferPolicy&lt;&gt;::Deadline;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html#ae297d4211a909c2cd95135006386f1c9">   71</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">SendOptions</a> { std::optional&lt;Deadline&gt; <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html#ae297d4211a909c2cd95135006386f1c9">deadline</a>{}; };</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#a62fcf594beaa0a20cf6f6144f7e4c3d1">   76</a></span>        <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97">SocketType</a> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection.html#a62fcf594beaa0a20cf6f6144f7e4c3d1">socket</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#a234cda0915b4fe892e537b31a9943a1d">   79</a></span>        <a class="code hl_enumeration" href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection.html#a234cda0915b4fe892e537b31a9943a1d">version</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416">   83</a></span>        std::chrono::steady_clock::time_point <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416">lastUsed</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#ac2fac020388b9f18259564724011b003">   87</a></span>        <span class="keyword">auto</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_connection.html#ac2fac020388b9f18259564724011b003">Send</a>(<span class="keyword">const</span> T&amp; data);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#af4b4799bad1b3cdedabbae018f80642c">   90</a></span>        <span class="keyword">auto</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_connection.html#af4b4799bad1b3cdedabbae018f80642c">Send</a>(<span class="keyword">const</span> T&amp; data, <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">SendOptions</a> options);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#a8508404f5b278f81dfd609154d23335c">   92</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_connection.html#a8508404f5b278f81dfd609154d23335c">Close</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection.html#acc633997284182961037d60daf4b72df">   93</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_connection.html#acc633997284182961037d60daf4b72df">Abort</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    };</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="};">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_key.html">   96</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_connection_key.html">ClientConnectionKey</a> {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_key.html#a7a777b67831105a18ff8eb721a9f897a">   97</a></span>        Hermes::IpEndpoint <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection_key.html#a7a777b67831105a18ff8eb721a9f897a">endpoint</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_key.html#ad33591ace356466a49419d0a241a393f">   98</a></span>        std::string <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection_key.html#ad33591ace356466a49419d0a241a393f">scheme</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_key.html#a2206e1b8f463e30469e667f3de56d8c6">   99</a></span>        std::string <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_connection_key.html#a2206e1b8f463e30469e667f3de56d8c6">hostname</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_connection_key.html#aeebe1d170d71e0f8372e3421b55189a3">  101</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_connection_key.html#aeebe1d170d71e0f8372e3421b55189a3">operator==</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_client_connection_key.html">ClientConnectionKey</a>&amp; other) <span class="keyword">const</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    };</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#include &lt;Thoth/Http/Client/Definitions.tpp&gt;</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">static_assert</span>(ConnectionConcept&lt;ClientConnection&gt;);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:40</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_response_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">Thoth::Http::ResponseBodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:10</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0db"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">Thoth::Http::VersionEnum</a></div><div class="ttdeci">VersionEnum</div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_1_1_send_options_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html">Thoth::Http::ClientConnection::SendOptions</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:71</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_1_1_send_options_html_ae297d4211a909c2cd95135006386f1c9"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html#ae297d4211a909c2cd95135006386f1c9">Thoth::Http::ClientConnection::SendOptions::deadline</a></div><div class="ttdeci">std::optional&lt; Deadline &gt; deadline</div><div class="ttdef"><b>Definition</b> Definitions.hpp:71</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html">Thoth::Http::ClientConnection</a></div><div class="ttdoc">Stores per-connection information for an open socket managed by a Thoth HTTP client.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:66</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_a0383c687a4625db13171bf8886c7ac97"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97">Thoth::Http::ClientConnection::SocketType</a></div><div class="ttdeci">std::variant&lt; Hermes::RawTcpClient, Hermes::RawTlsClient &gt; SocketType</div><div class="ttdef"><b>Definition</b> Definitions.hpp:68</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_a1efa5466132346bbbf1951e7fd928416"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416">Thoth::Http::ClientConnection::lastUsed</a></div><div class="ttdeci">std::chrono::steady_clock::time_point lastUsed</div><div class="ttdef"><b>Definition</b> Definitions.hpp:83</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_a234cda0915b4fe892e537b31a9943a1d"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#a234cda0915b4fe892e537b31a9943a1d">Thoth::Http::ClientConnection::version</a></div><div class="ttdeci">VersionEnum version</div><div class="ttdef"><b>Definition</b> Definitions.hpp:79</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_a62fcf594beaa0a20cf6f6144f7e4c3d1"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#a62fcf594beaa0a20cf6f6144f7e4c3d1">Thoth::Http::ClientConnection::socket</a></div><div class="ttdeci">SocketType socket</div><div class="ttdef"><b>Definition</b> Definitions.hpp:76</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_a8508404f5b278f81dfd609154d23335c"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#a8508404f5b278f81dfd609154d23335c">Thoth::Http::ClientConnection::Close</a></div><div class="ttdeci">void Close()</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_ac2fac020388b9f18259564724011b003"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#ac2fac020388b9f18259564724011b003">Thoth::Http::ClientConnection::Send</a></div><div class="ttdeci">auto Send(const T &amp;data)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_acc633997284182961037d60daf4b72df"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#acc633997284182961037d60daf4b72df">Thoth::Http::ClientConnection::Abort</a></div><div class="ttdeci">void Abort()</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_acfdaa5a332b6dbae4c7769a55d864dd5"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#acfdaa5a332b6dbae4c7769a55d864dd5">Thoth::Http::ClientConnection::Deadline</a></div><div class="ttdeci">Hermes::DefaultTransferPolicy&lt;&gt;::Deadline Deadline</div><div class="ttdef"><b>Definition</b> Definitions.hpp:69</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_html_af4b4799bad1b3cdedabbae018f80642c"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection.html#af4b4799bad1b3cdedabbae018f80642c">Thoth::Http::ClientConnection::Send</a></div><div class="ttdeci">auto Send(const T &amp;data, SendOptions options)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_key_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_key.html">Thoth::Http::ClientConnectionKey</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:96</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_key_html_a2206e1b8f463e30469e667f3de56d8c6"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_key.html#a2206e1b8f463e30469e667f3de56d8c6">Thoth::Http::ClientConnectionKey::hostname</a></div><div class="ttdeci">std::string hostname</div><div class="ttdef"><b>Definition</b> Definitions.hpp:99</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_key_html_a7a777b67831105a18ff8eb721a9f897a"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_key.html#a7a777b67831105a18ff8eb721a9f897a">Thoth::Http::ClientConnectionKey::endpoint</a></div><div class="ttdeci">Hermes::IpEndpoint endpoint</div><div class="ttdef"><b>Definition</b> Definitions.hpp:97</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_key_html_ad33591ace356466a49419d0a241a393f"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_key.html#ad33591ace356466a49419d0a241a393f">Thoth::Http::ClientConnectionKey::scheme</a></div><div class="ttdeci">std::string scheme</div><div class="ttdef"><b>Definition</b> Definitions.hpp:98</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_connection_key_html_aeebe1d170d71e0f8372e3421b55189a3"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_connection_key.html#aeebe1d170d71e0f8372e3421b55189a3">Thoth::Http::ClientConnectionKey::operator==</a></div><div class="ttdeci">bool operator==(const ClientConnectionKey &amp;other) const =default</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html">Thoth::Http::ClientOptions</a></div><div class="ttdoc">Configuration options for HTTP exchanges performed by Client.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:21</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html_a18e477ebecf36dd59b21f27154db504f"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html#a18e477ebecf36dd59b21f27154db504f">Thoth::Http::ClientOptions::requestMutualAuth</a></div><div class="ttdeci">bool requestMutualAuth</div><div class="ttdoc">If true, mutual TLS authentication is requested during the handshake.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:56</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html_a2463de1d54ef0a4e750b7ee14a7179f8"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html#a2463de1d54ef0a4e750b7ee14a7179f8">Thoth::Http::ClientOptions::connectionTimeout</a></div><div class="ttdeci">std::chrono::milliseconds connectionTimeout</div><div class="ttdoc">Maximum duration allowed for establishing a TCP connection.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:33</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html_a2ad5c299780dccefee2a0f1e327dc6da"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html#a2ad5c299780dccefee2a0f1e327dc6da">Thoth::Http::ClientOptions::handshakeTimeout</a></div><div class="ttdeci">std::chrono::milliseconds handshakeTimeout</div><div class="ttdoc">Maximum duration allowed for the TLS handshake.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:39</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html_a8e4f006c329b8b820a6a67ca18b95040"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html#a8e4f006c329b8b820a6a67ca18b95040">Thoth::Http::ClientOptions::ignoreCertificateErrors</a></div><div class="ttdeci">bool ignoreCertificateErrors</div><div class="ttdoc">If true, TLS certificate validation errors are suppressed.</div><div class="ttdef"><b>Definition</b> Definitions.hpp:48</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_options_html_aa3023f155e7fa39b305b7388c3d8912a"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_options.html#aa3023f155e7fa39b305b7388c3d8912a">Thoth::Http::ClientOptions::requestTimeout</a></div><div class="ttdeci">std::chrono::milliseconds requestTimeout</div><div class="ttdoc">Maximum duration allowed for a complete HTTP exchange (send + receive).</div><div class="ttdef"><b>Definition</b> Definitions.hpp:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a class="el" href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a class="el" href="dir_34181a9d08d1fd632c23cab62e0cd30c.html">Client</a></li><li class="navelem"><a class="el" href="_http_2_client_2_definitions_8hpp.html">Definitions.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -21,5 +21,5 @@ var searchData=
   ['k_5ftchar_18',['k_tchar',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a2cecfa163158715b5e19508a4db5ea18',1,'Thoth::String::CharSequences::Http']]],
   ['k_5furl_19',['k_url',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a63038d05f9e315e0bb67e2ab229b8cb6',1,'Thoth::String::CharSequences::Http']]],
   ['k_5fwhitespace_20',['k_whitespace',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a167d7f57bf68c60accefead3067c8cff',1,'Thoth::String::CharSequences::Http::k_whitespace'],['../struct_thoth_1_1_string_1_1_char_sequences.html#a67d2c32490bb9911901a7ea2ecf76ea9',1,'Thoth::String::CharSequences::k_whitespace']]],
-  ['key_21',['key',['../struct_thoth_1_1_http_1_1_json_get_error.html#a72c61cb860f3c1f2a0ef69e39211ad5d',1,'Thoth::Http::JsonGetError::key'],['../struct_thoth_1_1_http_1_1_json_find_error.html#aac00ad925caba37de975b24aadffbe12',1,'Thoth::Http::JsonFindError::key']]]
+  ['key_21',['key',['../struct_thoth_1_1_n_json_1_1_json_get_error.html#a814067f068c9337faa4820782b9f1825',1,'Thoth::NJson::JsonGetError::key'],['../struct_thoth_1_1_n_json_1_1_json_find_error.html#a149f00058632e2a3d25132ffe4de886c',1,'Thoth::NJson::JsonFindError::key']]]
 ];

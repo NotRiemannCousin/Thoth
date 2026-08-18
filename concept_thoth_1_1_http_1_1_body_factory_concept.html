@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('concept_thoth_1_1_http_1_1_body_factor
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> F, <span class="keyword">class</span> Body, <span class="keyword">class</span> Head&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a> =  <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_writable_body_concept.html">WritableBodyConcept&lt;Body&gt;</a> &amp;&amp;</div>
 <div class="line">    <span class="keyword">requires</span> (F f, <span class="keyword">const</span> Head&amp; head) {</div>
-<div class="line">        { std::invoke(f, head) } -&gt; std::same_as&lt;std::expected&lt;Body, ExchangeError&gt;&gt;;</div>
+<div class="line">        { std::invoke(f, head) } -&gt; std::same_as&lt;std::expected&lt;Body, ThothError&gt;&gt;;</div>
 <div class="line">    }</div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:40</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_writable_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_writable_body_concept.html">Thoth::Http::WritableBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:29</div></div>

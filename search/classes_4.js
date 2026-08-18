@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['entitytag_0',['EntityTag',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html',1,'Thoth::Http::NHeaders']]],
-  ['exchangeerror_1',['ExchangeError',['../struct_thoth_1_1_http_1_1_exchange_error.html',1,'Thoth::Http']]]
+  ['entitytag_0',['EntityTag',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html',1,'Thoth::Http::NHeaders']]]
 ];

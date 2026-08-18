@@ -50,6 +50,7 @@ var struct_thoth_1_1_http_1_1_headers =
     [ "operator[]", "struct_thoth_1_1_http_1_1_headers.html#ad3d0f8f5008c360acd184e3e541f6aed", null ],
     [ "rbegin", "struct_thoth_1_1_http_1_1_headers.html#a54795e2d126e3c2c991e442406656126", null ],
     [ "rbegin", "struct_thoth_1_1_http_1_1_headers.html#a9cf9dec93266fd512584200751cf36e0", null ],
+    [ "Remove", "struct_thoth_1_1_http_1_1_headers.html#a23773ec6b8c5350d38f1e8b1e952abdb", null ],
     [ "Remove", "struct_thoth_1_1_http_1_1_headers.html#a4d20a216594694269d4ad47e26e2469c", null ],
     [ "Remove", "struct_thoth_1_1_http_1_1_headers.html#a6a77fba1c8c2d373d6ebf8f3febe2893", null ],
     [ "rend", "struct_thoth_1_1_http_1_1_headers.html#af3d9e2d46258484f669e5904584d2b40", null ],

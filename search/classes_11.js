@@ -6,9 +6,10 @@ var searchData=
   ['scanner_3c_20std_3a_3amonostate_20_3e_3',['Scanner&lt; std::monostate &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html',1,'Thoth::Utils']]],
   ['scanner_3c_20std_3a_3astring_20_3e_4',['Scanner&lt; std::string &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html',1,'Thoth::Utils']]],
   ['scanner_3c_20t_20_3e_5',['Scanner&lt; T &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html',1,'Thoth::Utils']]],
-  ['server_6',['Server',['../struct_thoth_1_1_http_1_1_server.html',1,'Thoth::Http']]],
-  ['serverconnection_7',['ServerConnection',['../struct_thoth_1_1_http_1_1_server_connection.html',1,'Thoth::Http']]],
-  ['sharedinputview_8',['SharedInputView',['../struct_thoth_1_1_utils_1_1_shared_input_view.html',1,'Thoth::Utils']]],
-  ['stringref_9',['StringRef',['../struct_thoth_1_1_n_json_1_1_string_ref.html',1,'Thoth::NJson']]],
-  ['suffixedrange_10',['SuffixedRange',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html',1,'Thoth::Http::NHeaders']]]
+  ['sendoptions_6',['SendOptions',['../struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html',1,'Thoth::Http::ClientConnection']]],
+  ['server_7',['Server',['../struct_thoth_1_1_http_1_1_server.html',1,'Thoth::Http']]],
+  ['serverconnection_8',['ServerConnection',['../struct_thoth_1_1_http_1_1_server_connection.html',1,'Thoth::Http']]],
+  ['sharedinputview_9',['SharedInputView',['../struct_thoth_1_1_utils_1_1_shared_input_view.html',1,'Thoth::Utils']]],
+  ['stringref_10',['StringRef',['../struct_thoth_1_1_n_json_1_1_string_ref.html',1,'Thoth::NJson']]],
+  ['suffixedrange_11',['SuffixedRange',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html',1,'Thoth::Http::NHeaders']]]
 ];

@@ -143,6 +143,9 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_n_headers_1_
 </div><!--header-->
 <div class="contents">
 
+<p>Typed proxy for a comma-separated header value.  
+ <a href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_list_proxy_8hpp_source.html">ListProxy.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -168,34 +171,43 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c70a63c5c4b29f2e97a7c33109b9d2a" id="r_a6c70a63c5c4b29f2e97a7c33109b9d2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a6c70a63c5c4b29f2e97a7c33109b9d2a">ListProxy</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">ListProxy</a> &amp;)=delete</td></tr>
 <tr class="separator:a6c70a63c5c4b29f2e97a7c33109b9d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a857df81bd3ea55ee3b24c33e793bd74c" id="r_a857df81bd3ea55ee3b24c33e793bd74c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a857df81bd3ea55ee3b24c33e793bd74c">ListProxy</a> (std::string_view key, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a892f439effdeba3163cdccedd956bcd9">HeaderType</a> &amp;headers, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a7f43820f8f1dfa9c5b25e5b843d1e7b6">PatternType</a> inPattern={})</td></tr>
+<tr class="memdesc:a857df81bd3ea55ee3b24c33e793bd74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a proxy for <code>key</code> in <code>headers</code>.  <br /></td></tr>
 <tr class="separator:a857df81bd3ea55ee3b24c33e793bd74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e33fa3a9c2c636acbe9f1e728606be" id="r_a29e33fa3a9c2c636acbe9f1e728606be"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be">Type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a29e33fa3a9c2c636acbe9f1e728606be">GetAsOpt</a> () &amp;&amp;</td></tr>
+<tr class="memdesc:a29e33fa3a9c2c636acbe9f1e728606be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the header, returning no value when it is absent, empty or invalid.  <br /></td></tr>
 <tr class="separator:a29e33fa3a9c2c636acbe9f1e728606be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5654955857b09a647bc8fe3c1ce73994" id="r_a5654955857b09a647bc8fe3c1ce73994"><td class="memItemLeft" align="right" valign="top">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be">Type</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a5654955857b09a647bc8fe3c1ce73994">Get</a> () &amp;&amp;</td></tr>
+<tr class="memdesc:a5654955857b09a647bc8fe3c1ce73994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the header and reports absence, emptiness or invalid format.  <br /></td></tr>
 <tr class="separator:a5654955857b09a647bc8fe3c1ce73994"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae303a64dab24f7325e36ba541ed1b135" id="r_ae303a64dab24f7325e36ba541ed1b135"><td class="memItemLeft" align="right" valign="top">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be">Type</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ae303a64dab24f7325e36ba541ed1b135">GetWithDefault</a> (<a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be">Type</a> defaultValue) &amp;&amp;</td></tr>
+<tr class="memdesc:ae303a64dab24f7325e36ba541ed1b135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the header, using <code>defaultValue</code> when it is absent or empty.  <br /></td></tr>
 <tr class="separator:ae303a64dab24f7325e36ba541ed1b135"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a978801c6594882ecb80dbb8147068b6b" id="r_a978801c6594882ecb80dbb8147068b6b"><td class="memTemplParams" colspan="2">template&lt;std::ranges::range R&gt; <br />
 requires (!IsConst)</td></tr>
 <tr class="memitem:a978801c6594882ecb80dbb8147068b6b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a978801c6594882ecb80dbb8147068b6b">operator=</a> (R &amp;&amp;newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:a978801c6594882ecb80dbb8147068b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the header with the serialized values from <code>newValue</code>.  <br /></td></tr>
 <tr class="separator:a978801c6594882ecb80dbb8147068b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6e75290a362309fd8200cac88b8e578" id="r_aa6e75290a362309fd8200cac88b8e578"><td class="memTemplParams" colspan="2">template&lt;std::ranges::range R&gt; <br />
 requires (!IsConst)</td></tr>
 <tr class="memitem:aa6e75290a362309fd8200cac88b8e578"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#aa6e75290a362309fd8200cac88b8e578">Set</a> (R &amp;&amp;newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:aa6e75290a362309fd8200cac88b8e578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the header with the serialized values from <code>newValue</code>.  <br /></td></tr>
 <tr class="separator:aa6e75290a362309fd8200cac88b8e578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af416f240add7aa091a3dfedc7cadedbe" id="r_af416f240add7aa091a3dfedc7cadedbe"><td class="memTemplParams" colspan="2">template&lt;class  = void&gt; <br />
 requires (!IsConst)</td></tr>
 <tr class="memitem:af416f240add7aa091a3dfedc7cadedbe"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#af416f240add7aa091a3dfedc7cadedbe">Add</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ab16d3663f1afd37cf829917f9c172dfd">ElemType</a> &amp;newItem) &amp;&amp;</td></tr>
+<tr class="memdesc:af416f240add7aa091a3dfedc7cadedbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds one item to the header using the container's merge policy.  <br /></td></tr>
 <tr class="separator:af416f240add7aa091a3dfedc7cadedbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04c8847bca0f28c2d0f22c0dd6dcb034" id="r_a04c8847bca0f28c2d0f22c0dd6dcb034"><td class="memTemplParams" colspan="2">template&lt;class  = void&gt; <br />
 requires (!IsConst)</td></tr>
 <tr class="memitem:a04c8847bca0f28c2d0f22c0dd6dcb034"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a04c8847bca0f28c2d0f22c0dd6dcb034">TrySet</a> (std::string_view newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:a04c8847bca0f28c2d0f22c0dd6dcb034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses and replaces the header from a raw comma-separated value.  <br /></td></tr>
 <tr class="separator:a04c8847bca0f28c2d0f22c0dd6dcb034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3245e51d55a22a89893e5248b6cce9a8" id="r_a3245e51d55a22a89893e5248b6cce9a8"><td class="memTemplParams" colspan="2">template&lt;class U &gt; </td></tr>
 <tr class="memitem:a3245e51d55a22a89893e5248b6cce9a8"><td class="memTemplItemLeft" align="right" valign="top">static std::optional&lt; std::vector&lt; U &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a3245e51d55a22a89893e5248b6cce9a8">ParseList</a> (const <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ac8fec1b666df0ee86fd2062bebca6fed">HeaderValue</a> *val, std::string_view pattern)</td></tr>
+<tr class="memdesc:a3245e51d55a22a89893e5248b6cce9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a raw comma-separated header value into typed elements.  <br /></td></tr>
 <tr class="separator:a3245e51d55a22a89893e5248b6cce9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -205,7 +217,19 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ae10d0a6eae41ce91fb90b8e9d297aa30" id="r_ae10d0a6eae41ce91fb90b8e9d297aa30"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ae10d0a6eae41ce91fb90b8e9d297aa30">k_single</a> { sizeof...(Ts) == 1 }</td></tr>
 <tr class="separator:ae10d0a6eae41ce91fb90b8e9d297aa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;bool IsConst, Utils::Serializable ... Ts&gt;<br />
+struct Thoth::Http::NHeaders::ListProxy&lt; IsConst, Ts &gt;</div><p>Typed proxy for a comma-separated header value. </p>
+<p>A <code><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html" title="Typed proxy for a comma-separated header value.">ListProxy</a></code> adapts one header field to a typed list. The proxy itself is a short-lived accessor.</p>
+<dl class="section note"><dt>Note</dt><dd>Given that it can't be stored in any sense, it is intentionally not a <code>std::ranges::range</code>. Call <code><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a5654955857b09a647bc8fe3c1ce73994" title="Parses the header and reports absence, emptiness or invalid format.">Get()</a></code> or <code><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a29e33fa3a9c2c636acbe9f1e728606be" title="Parses the header, returning no value when it is absent, empty or invalid.">GetAsOpt()</a></code> to materialize the parsed <code>std::vector</code>.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IsConst</td><td>Whether the proxy can modify its <code><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a></code> object. </td></tr>
+    <tr><td class="paramname">Ts</td><td>Serializable element types accepted by the list proxy. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ab16d3663f1afd37cf829917f9c172dfd" name="ab16d3663f1afd37cf829917f9c172dfd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab16d3663f1afd37cf829917f9c172dfd">&#9670;&#160;</a></span>ElemType</h2>
 
@@ -361,6 +385,8 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a proxy for <code>key</code> in <code>headers</code>. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -385,6 +411,8 @@ requires (!IsConst)</div>
       </table>
 </div><div class="memdoc">
 
+<p>Adds one item to the header using the container's merge policy. </p>
+
 </div>
 </div>
 <a id="a5654955857b09a647bc8fe3c1ce73994" name="a5654955857b09a647bc8fe3c1ce73994"></a>
@@ -403,6 +431,9 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the header and reports absence, emptiness or invalid format. </p>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
 
 </div>
 </div>
@@ -423,6 +454,9 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Parses the header, returning no value when it is absent, empty or invalid. </p>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
 </div>
 </div>
 <a id="ae303a64dab24f7325e36ba541ed1b135" name="ae303a64dab24f7325e36ba541ed1b135"></a>
@@ -442,6 +476,10 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the header, using <code>defaultValue</code> when it is absent or empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>The parsed list, or <code><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a></code> when a present value is invalid. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
 
 </div>
 </div>
@@ -465,6 +503,8 @@ requires (!IsConst)</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Replaces the header with the serialized values from <code>newValue</code>. </p>
 
 </div>
 </div>
@@ -506,6 +546,9 @@ template&lt;class U &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Parses a raw comma-separated header value into typed elements. </p>
+<dl class="section return"><dt>Returns</dt><dd>The parsed list, or <code>std::nullopt</code> when any element is invalid. </dd></dl>
+
 </div>
 </div>
 <a id="aa6e75290a362309fd8200cac88b8e578" name="aa6e75290a362309fd8200cac88b8e578"></a>
@@ -529,6 +572,8 @@ requires (!IsConst)</div>
       </table>
 </div><div class="memdoc">
 
+<p>Replaces the header with the serialized values from <code>newValue</code>. </p>
+
 </div>
 </div>
 <a id="a04c8847bca0f28c2d0f22c0dd6dcb034" name="a04c8847bca0f28c2d0f22c0dd6dcb034"></a>
@@ -551,6 +596,9 @@ requires (!IsConst)</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses and replaces the header from a raw comma-separated value. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> when the value was parsed and stored; otherwise leaves the header unchanged. </dd></dl>
 
 </div>
 </div>

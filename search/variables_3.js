@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['data_0',['data',['../struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5',1,'Thoth::Http::details_::ParseStage']]]
+  ['data_0',['data',['../struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5',1,'Thoth::Http::details_::ParseStage']]],
+  ['deadline_1',['deadline',['../struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html#ae297d4211a909c2cd95135006386f1c9',1,'Thoth::Http::ClientConnection::SendOptions']]]
 ];

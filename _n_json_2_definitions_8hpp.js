@@ -1,0 +1,26 @@
+var _n_json_2_definitions_8hpp =
+[
+    [ "Thoth::NJson::details_::BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info" ],
+    [ "Array", "_n_json_2_definitions_8hpp.html#a0d2ee1e007b09fd0a0c27ac41868f668", null ],
+    [ "Bool", "_n_json_2_definitions_8hpp.html#ac9807384fc0a6d2dff1fefc0c5a40cf5", null ],
+    [ "CRefValWrapper", "_n_json_2_definitions_8hpp.html#a7743a0e142fc4b885a2c4e9e945174af", null ],
+    [ "CValWrapper", "_n_json_2_definitions_8hpp.html#a829cd5ffbf6740e7923f1d7402a17d65", null ],
+    [ "ExpCRefValWrapper", "_n_json_2_definitions_8hpp.html#a8c40371d6b94401e91d12ef72d04d725", null ],
+    [ "ExpCValWrapper", "_n_json_2_definitions_8hpp.html#aab16960b05738dae992e42a7ff81dc2f", null ],
+    [ "ExpRefValWrapper", "_n_json_2_definitions_8hpp.html#a8e11e59c29c9251995473c84e2a68939", null ],
+    [ "ExpValWrapper", "_n_json_2_definitions_8hpp.html#a7eaed228814d56ad86fa01ec170a86b6", null ],
+    [ "JsonObjKey", "_n_json_2_definitions_8hpp.html#ac018fa19f2f2b9f98d487fcb85970b97", null ],
+    [ "JsonObjKeyRef", "_n_json_2_definitions_8hpp.html#a3f767c8e0ac9ce417d45274a80cb8512", null ],
+    [ "Key", "_n_json_2_definitions_8hpp.html#a6b3ffb5f3e2c190d5530cc47ed479b69", null ],
+    [ "Keys", "_n_json_2_definitions_8hpp.html#aaa1ed1c7d9c743117960806e849aae7c", null ],
+    [ "Null", "_n_json_2_definitions_8hpp.html#a99bfc72251b2966b098a93ebf8ba94cd", null ],
+    [ "Number", "_n_json_2_definitions_8hpp.html#ac98a5e98346a5ab9142f9dc70c514bea", null ],
+    [ "Object", "_n_json_2_definitions_8hpp.html#a1d4dbb36608aa59b881f51eb1f24a2a5", null ],
+    [ "OptCRefValWrapper", "_n_json_2_definitions_8hpp.html#a4eb195e73f981721f9426844c0a6a3cb", null ],
+    [ "OptCValWrapper", "_n_json_2_definitions_8hpp.html#a068ce1a46702fb9bec57675bfb053f39", null ],
+    [ "OptRefValWrapper", "_n_json_2_definitions_8hpp.html#ab61ded3e391b6ca8e7f4ac7c14eb071c", null ],
+    [ "OptValWrapper", "_n_json_2_definitions_8hpp.html#af0d2d424642a836b4b8d9016b4da0a04", null ],
+    [ "RefValWrapper", "_n_json_2_definitions_8hpp.html#accc650df3cc2d4060b5bcd1e2df3f583", null ],
+    [ "String", "_n_json_2_definitions_8hpp.html#a09693e413ce01b74bf25059d3508aa4d", null ],
+    [ "ValWrapper", "_n_json_2_definitions_8hpp.html#afd44f0bb01bdff6ab57fe889260fb8e8", null ]
+];

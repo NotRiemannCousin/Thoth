@@ -136,22 +136,22 @@ $(document).ready(function(){initNavTree('concept_thoth_1_1_http_1_1_connection_
 </div><!--header-->
 <div class="contents">
 
-<p>Concept for any synchronous Hermes socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. Hermes' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket.  
+<p>Concept for any synchronous <a class="el" href="namespace_hermes.html">Hermes</a> socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. <a class="el" href="namespace_hermes.html">Hermes</a>' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket.  
 <a href="concept_thoth_1_1_http_1_1_connection_concept.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> S&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_connection_concept.html">Thoth::Http::ConnectionConcept</a> =  <span class="keyword">requires</span>(S s, std::string_view data) {</div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_connection_concept.html">Thoth::Http::ConnectionConcept</a> =  <span class="keyword">requires</span>(S s, std::string_view data, <span class="keyword">typename</span> S::SendOptions options) {</div>
 <div class="line">        { s.socket };</div>
-<div class="line">        { s.Send(data) } -&gt; std::same_as&lt;Hermes::StreamByteOper&gt;;</div>
+<div class="line">        { s.Send(data, options) } -&gt; std::same_as&lt;Hermes::StreamByteOper&gt;;</div>
 <div class="line">        { s.Close() } -&gt; std::same_as&lt;void&gt;;</div>
 <div class="line">        { s.Abort() } -&gt; std::same_as&lt;void&gt;;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_connection_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_connection_concept.html">Thoth::Http::ConnectionConcept</a></div><div class="ttdoc">Concept for any synchronous Hermes socket (Client or Server-side) over which Thoth's wire algorithms ...</div><div class="ttdef"><b>Definition</b> _base.hpp:54</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_connection_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_connection_concept.html">Thoth::Http::ConnectionConcept</a></div><div class="ttdoc">Concept for any synchronous Hermes socket (Client or Server-side) over which Thoth's wire algorithms ...</div><div class="ttdef"><b>Definition</b> _base.hpp:55</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Concept for any synchronous Hermes socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. Hermes' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket. </p>
-<dl class="section note"><dt>Note</dt><dd>The signature required here is purposely minimal (what SendBody actually uses today); it should be revisited when sending chunks (types beyond std::string_view) is tested. </dd></dl>
+<div class="textblock"><p>Concept for any synchronous <a class="el" href="namespace_hermes.html">Hermes</a> socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. <a class="el" href="namespace_hermes.html">Hermes</a>' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket. </p>
+<dl class="section note"><dt>Note</dt><dd>The signature required here is purposely limited to the transfer surface needed by HTTP/1. It includes the socket's typed send options so an absolute exchange deadline can be propagated without exposing a transport-specific concrete socket type. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

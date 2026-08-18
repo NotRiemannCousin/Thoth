@@ -144,7 +144,7 @@ $(document).ready(function(){initNavTree('struct_thoth_1_1_http_1_1_client_janit
 <p>Manages a pool of reusable HTTP sockets to optimize consecutive calls.  
  <a href="struct_thoth_1_1_http_1_1_client_janitor.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_client_8hpp_source.html">Client.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_client_janitor_8hpp_source.html">ClientJanitor.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -160,9 +160,9 @@ Static Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8859c9e78721242af20538be63a42efd" id="r_a8859c9e78721242af20538be63a42efd"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">poolMutex</a></td></tr>
 <tr class="separator:a8859c9e78721242af20538be63a42efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf5ea5a82b79de2988ca09516d180378" id="r_aaf5ea5a82b79de2988ca09516d180378"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; Hermes::IpEndpoint, std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#aaf5ea5a82b79de2988ca09516d180378">connectionPool</a></td></tr>
-<tr class="memdesc:aaf5ea5a82b79de2988ca09516d180378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not break other threads.  <br /></td></tr>
-<tr class="separator:aaf5ea5a82b79de2988ca09516d180378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae25464220ffbebc7d09392c3334ad43" id="r_aae25464220ffbebc7d09392c3334ad43"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="struct_thoth_1_1_http_1_1_client_connection_key.html">ClientConnectionKey</a>, std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">connectionPool</a></td></tr>
+<tr class="memdesc:aae25464220ffbebc7d09392c3334ad43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not break other threads.  <br /></td></tr>
+<tr class="separator:aae25464220ffbebc7d09392c3334ad43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages a pool of reusable HTTP sockets to optimize consecutive calls. </p>
@@ -225,14 +225,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aaf5ea5a82b79de2988ca09516d180378" name="aaf5ea5a82b79de2988ca09516d180378"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf5ea5a82b79de2988ca09516d180378">&#9670;&#160;</a></span>connectionPool</h2>
+<a id="aae25464220ffbebc7d09392c3334ad43" name="aae25464220ffbebc7d09392c3334ad43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae25464220ffbebc7d09392c3334ad43">&#9670;&#160;</a></span>connectionPool</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;Hermes::IpEndpoint, std::vector&lt;std::shared_ptr&lt;<a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a>&gt; &gt; &gt; Thoth::Http::ClientJanitor::connectionPool</td>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="struct_thoth_1_1_http_1_1_client_connection_key.html">ClientConnectionKey</a>, std::vector&lt;std::shared_ptr&lt;<a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a>&gt; &gt; &gt; Thoth::Http::ClientJanitor::connectionPool</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -256,7 +256,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Thoth/Http/<a class="el" href="_client_8hpp_source.html">Client.hpp</a></li>
+<li>include/Thoth/Http/Client/<a class="el" href="_client_janitor_8hpp_source.html">ClientJanitor.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
