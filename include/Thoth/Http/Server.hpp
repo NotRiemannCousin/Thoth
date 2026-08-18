@@ -3,7 +3,7 @@
 
 #include <Hermes/Socket/Sync/ServerSocket.hpp>
 
-#include <Thoth/Http/ExchangeError.hpp>
+#include <Thoth/ThothError.hpp>
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
 
@@ -23,7 +23,7 @@ namespace Thoth::Http {
     struct Server {
         template<class BodyType, MethodConcept... RequestTypes>
             requires (sizeof...(RequestTypes) > 0)
-        ExchangeResult<std::variant<Request<RequestTypes, BodyType>...>> Receive(ServerConnection& conn);
+        ThothResult<std::variant<Request<RequestTypes, BodyType>...>> Receive(ServerConnection& conn);
 
     };
 }

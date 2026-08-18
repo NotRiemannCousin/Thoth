@@ -1,7 +1,15 @@
 #include <Thoth/String/Utils.hpp>
 
 
-bool Thoth::String::CaseInsensitiveCompare(char c1, char c2) {
+char Thoth::String::ToLower(unsigned char c) {
+    return tolower(c);
+}
+
+char Thoth::String::ToUpper(unsigned char c) {
+    return toupper(c);
+}
+
+bool Thoth::String::CaseInsensitiveCompare(unsigned char c1, unsigned char c2) {
     return tolower(c1) == tolower(c2);
 }
 

@@ -61,7 +61,7 @@ namespace Thoth::Http {
         //! @return A Headers if the parse success, @ref "bad request" StatusCodeEnum::BAD_REQUEST if the parse
         //! fails and @ref "content too large" StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.
         template<std::ranges::input_range R>
-        static WebResult<Headers> Parse(R& headers, size_t maxHeadersLength = 1<<16);
+        static WebResult<Headers> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 
         static Headers DefaultHeaders();
@@ -97,6 +97,10 @@ namespace Thoth::Http {
 
         //! @brief same as @ref Add(HeaderPairRef) "Add(HeaderPairRef p)".
         void Set(HeaderKeyRef key, HeaderValueRef val);
+
+        //! @brief Remove a value with the specified key.
+        //! @param k A The key to be removed.
+        bool Remove(HeaderKeyRef k);
 
         //! @brief Remove a value with the specified key.
         //! @param p A pair with the key and the value to be removed.

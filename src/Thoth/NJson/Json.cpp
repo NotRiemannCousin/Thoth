@@ -6,13 +6,13 @@
 #include <expected>
 
 #include <Thoth/String/UnicodeViewer.hpp>
-#include <Thoth/Http/ExchangeError.hpp>
+#include <Thoth/ThothError.hpp>
 #include <Thoth/Utils/Functional.hpp>
 #include <Thoth/NJson/Json.hpp>
 
 using namespace Thoth::NJson;
 using namespace Thoth::Http;
-
+using Thoth::ThothError;
 
 #ifdef DENSE_DEBUG_JSON
 #include <print>
@@ -453,11 +453,11 @@ static bool details_::ReadArray(std::string_view& input, auto& val, const Buffer
 #pragma endregion
 
 
-std::expected<Json, ExchangeError> Json::Parse(std::string_view input) {
+std::expected<Json, ThothError> Json::Parse(std::string_view input) {
     return ParseText(input);
 }
 
-std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
+std::expected<Json, ThothError> Json::ParseText(std::string_view input, bool copyData, bool checkFinal) {
     details_::BufferInfo info{};
 
     if (copyData) {
@@ -468,10 +468,10 @@ std::expected<Json, ExchangeError> Json::ParseText(std::string_view input, bool 
     else
         info.bufferView = input;
 
-    const auto error = [&]() -> std::unexpected<ExchangeError>{
+    const auto error = [&]() -> std::unexpected<ThothError>{
         if (input.empty())
-            return std::unexpected{ ExchangeError{ GenericError{ "Input for Json is empty" } } };
-        return std::unexpected{ ExchangeError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
+            return std::unexpected{ ThothError{ GenericError{ "Input for Json is empty" } } };
+        return std::unexpected{ ThothError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
     };
 
 #define return return error(); // I hate to do it
@@ -589,7 +589,7 @@ ValWrapper Json::GetAndMoveOrNull(const Key key) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ ExchangeError{ JsonGetError{ key } } }
+#define KEY_NOT_FOUND std::unexpected{ ThothError{ JsonGetError{ key } } }
 
 ExpRefValWrapper Json::GetOrError(const Key key) {
     OptRefValWrapper curr{ this };
@@ -647,7 +647,7 @@ ValWrapper Json::FindAndMoveOrNull(const Keys keys) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ ExchangeError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
+#define KEY_NOT_FOUND std::unexpected{ ThothError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
 
 ExpRefValWrapper Json::FindOrError(const Keys keys) {
     OptRefValWrapper curr{ this };

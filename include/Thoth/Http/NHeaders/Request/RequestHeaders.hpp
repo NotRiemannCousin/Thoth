@@ -12,7 +12,7 @@ namespace Thoth::Http {
     struct RequestHeaders : Headers {
         //! @copydoc Headers::Parse
         template<std::ranges::input_range R>
-        static WebResult<RequestHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
+        static WebResult<RequestHeaders> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Raw and Collection Views
         //! @name Raw and Collection Views

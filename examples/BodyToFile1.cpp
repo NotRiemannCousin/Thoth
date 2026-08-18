@@ -2,9 +2,9 @@
 #include <chrono>
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/Client.hpp>
+#include <Thoth/Http/Client/Client.hpp>
 
-static std::expected<std::monostate, Thoth::Http::ExchangeError> SaveImage(const std::string_view url) {
+static std::expected<std::monostate, Thoth::ThothError> SaveImage(const std::string_view url) {
     namespace NHttp = Thoth::Http;
     using     FileT = Thoth::Dsa::BinFileOutputRange;
 

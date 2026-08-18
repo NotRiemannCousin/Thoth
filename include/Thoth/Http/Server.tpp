@@ -21,8 +21,8 @@ namespace Thoth::Http {
 
     template<class BodyType, MethodConcept... RequestTypes>
         requires (sizeof...(RequestTypes) > 0)
-    ExchangeResult<std::variant<Request<RequestTypes, BodyType>...>> Server::Receive(ServerConnection& conn) {
-        ExchangeResult<std::variant<Request<RequestTypes, BodyType>...>> result;
+    ThothResult<std::variant<Request<RequestTypes, BodyType>...>> Server::Receive(ServerConnection& conn) {
+        ThothResult<std::variant<Request<RequestTypes, BodyType>...>> result;
 
         static constexpr auto createHead{ [](auto&& socket) {
             return details_::Http1::ParseResponseLine(std::move(socket));

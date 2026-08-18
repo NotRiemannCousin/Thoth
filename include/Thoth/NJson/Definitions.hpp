@@ -13,8 +13,8 @@
 #include <Thoth/NJson/Number.hpp>
 
 
-namespace Thoth::Http {
-    struct ExchangeError;
+namespace Thoth {
+    struct ThothError;
 }
 
 namespace Thoth::NJson {
@@ -51,8 +51,8 @@ namespace Thoth::NJson {
     using OptRefValWrapper = std::optional<RefValWrapper>;
     using OptCRefValWrapper = std::optional<CRefValWrapper>;
 
-    using ExpRefValWrapper = std::expected<RefValWrapper, Http::ExchangeError>;
-    using ExpCRefValWrapper = std::expected<CRefValWrapper, Http::ExchangeError>;
+    using ExpRefValWrapper = std::expected<RefValWrapper, ThothError>;
+    using ExpCRefValWrapper = std::expected<CRefValWrapper, ThothError>;
 
     using ValWrapper = Json;
     using CValWrapper = const Json;
@@ -60,8 +60,8 @@ namespace Thoth::NJson {
     using OptValWrapper = std::optional<ValWrapper>;
     using OptCValWrapper = std::optional<CValWrapper>;
 
-    using ExpValWrapper = std::expected<ValWrapper, Http::ExchangeError>;
-    using ExpCValWrapper = std::expected<CValWrapper, Http::ExchangeError>;
+    using ExpValWrapper = std::expected<ValWrapper, ThothError>;
+    using ExpCValWrapper = std::expected<CValWrapper, ThothError>;
 #pragma endregion
 
 

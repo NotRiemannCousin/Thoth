@@ -1,24 +1,26 @@
 #include <print>
 #include <chrono>
-#pragma warning(disable: 4455)
 
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/Client.hpp>
-#include <Thoth/Utils/Functional.hpp>
+#include <Thoth/Http/Client/Client.hpp>
 
-std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_view id) {
+#pragma warning(disable: 4455)
+
+std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
 
     using Thoth::NJson::Key;
-    using CRef = Thoth::NJson::CRefValWrapper;
 
     using Thoth::NJson::Json;
     using Thoth::NJson::Array;
     using Thoth::NJson::JsonObject;
     using Thoth::NJson::String;
+
+    using Thoth::ThothError;
+    using Thoth::GenericError;
 
 
     using std::operator ""s;
@@ -36,13 +38,13 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
 
 #pragma region Lambdas
 
-    static constexpr auto getTab = [](const std::string& name) {
+    static constexpr auto getTab{ [](const std::string& name) {
         return [&](const Json& tab) {
             if (const auto title{ tab.Find(tabTitleKeys) }; title)
                 return **title == Json{ name };
             return false;
         };
-    };
+    } };
 
     static constexpr auto printAlbumName = [](const Array* arr, const std::string& tabName) {
         std::print("\n\n{}:\n", tabName);
@@ -71,14 +73,14 @@ std::expected<std::monostate, Thoth::Http::ExchangeError> PrintInfo(std::string_
         return std::monostate{};
     };
 
-    static constexpr auto processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, NHttp::ExchangeError> {
+    static constexpr auto processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, ThothError> {
         switch (req.status) {
             case NHttp::StatusCodeEnum::Ok:
                 return std::move(req);
             case NHttp::StatusCodeEnum::BadRequest:
-                return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
+                return std::unexpected{ ThothError{ GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
             default:
-                return std::unexpected{ NHttp::ExchangeError{ NHttp::GenericError{ "Invalid Request" } } };
+                return std::unexpected{ ThothError{ GenericError{ "Invalid Request" } } };
         }
     };
 

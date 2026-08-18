@@ -58,7 +58,10 @@ namespace Thoth::String {
         //! @}
     };
 
-    bool CaseInsensitiveCompare(char c1, char c2);
+    char ToLower(unsigned char c);
+    char ToUpper(unsigned char c);
+
+    bool CaseInsensitiveCompare(unsigned char c1, unsigned char c2);
 
     void Trim(std::string_view& str, std::string_view trim = CharSequences::k_whitespace);
     void LeftTrim(std::string_view& str, std::string_view trim = CharSequences::k_whitespace);

@@ -2,6 +2,9 @@
 #include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/Request/QueryParams.hpp>
 
+#include <string>
+#include <utility>
+
 using namespace Thoth::Http;
 
 
@@ -174,6 +177,171 @@ TEST_F(QueryParamsTest, Format_RoundTrip) {
 
 struct UrlTest : testing::Test {};
 
+TEST_F(UrlTest, Copy_ShortUrl_PreservesAllViews) {
+    const auto parsed{ Url::FromUrl("https://u:p@example.com:8443/a?b=c#d") };
+    ASSERT_TRUE(parsed);
+
+    const Url copy{ *parsed };
+    EXPECT_EQ(copy.GetScheme(), "https");
+    ASSERT_TRUE(copy.GetAuthority());
+    EXPECT_EQ(copy.GetAuthority()->userinfo, "u:p");
+    EXPECT_EQ(copy.GetAuthority()->GetHostString(), "example.com");
+    ASSERT_TRUE(copy.GetAuthority()->port);
+    EXPECT_EQ(*copy.GetAuthority()->port, 8443u);
+    EXPECT_EQ(copy.GetPath(), "/a");
+    EXPECT_EQ(copy.GetQuery(), "b=c");
+    EXPECT_EQ(copy.GetFragment(), "d");
+}
+
+TEST_F(UrlTest, Copy_LongUrl_Heap_PreservesAllViews) {
+    const std::string raw{
+        "https://user:password@very-long-hostname.example.com:9443/"
+        "a/long/path/that/forces/a/heap/allocation?query=with-many-values#fragment"
+    };
+    const auto parsed{ Url::FromUrl(raw) };
+    ASSERT_TRUE(parsed);
+
+    const Url copy{ *parsed };
+    EXPECT_EQ(copy.GetScheme(), "https");
+    ASSERT_TRUE(copy.GetAuthority());
+    EXPECT_EQ(copy.GetAuthority()->userinfo, "user:password");
+    EXPECT_EQ(copy.GetAuthority()->GetHostString(), "very-long-hostname.example.com");
+    ASSERT_TRUE(copy.GetAuthority()->port);
+    EXPECT_EQ(*copy.GetAuthority()->port, 9443u);
+    EXPECT_EQ(copy.GetPath(), "/a/long/path/that/forces/a/heap/allocation");
+    EXPECT_EQ(copy.GetQuery(), "query=with-many-values");
+    EXPECT_EQ(copy.GetFragment(), "fragment");
+}
+
+TEST_F(UrlTest, Move_ShortUrl_PreservesAllViews) {
+    auto parsed{ Url::FromUrl("https://example.com/sso/path?q=1#frag") };
+    ASSERT_TRUE(parsed);
+
+    Url moved{ std::move(*parsed) };
+    EXPECT_EQ(moved.GetScheme(), "https");
+    ASSERT_TRUE(moved.GetAuthority());
+    EXPECT_EQ(moved.GetAuthority()->GetHostString(), "example.com");
+    EXPECT_EQ(moved.GetPath(), "/sso/path");
+    EXPECT_EQ(moved.GetQuery(), "q=1");
+    EXPECT_EQ(moved.GetFragment(), "frag");
+}
+
+TEST_F(UrlTest, Move_LongUrl_Heap_PreservesAllViews) {
+    const std::string raw{
+        "https://very-long-hostname.example.com/"
+        "a/long/path/that/forces/a/heap/allocation?query=with-many-values#fragment"
+    };
+    auto parsed{ Url::FromUrl(raw) };
+    ASSERT_TRUE(parsed);
+
+    Url moved{ std::move(*parsed) };
+    EXPECT_EQ(moved.GetScheme(), "https");
+    ASSERT_TRUE(moved.GetAuthority());
+    EXPECT_EQ(moved.GetAuthority()->GetHostString(), "very-long-hostname.example.com");
+    EXPECT_EQ(moved.GetPath(), "/a/long/path/that/forces/a/heap/allocation");
+    EXPECT_EQ(moved.GetQuery(), "query=with-many-values");
+    EXPECT_EQ(moved.GetFragment(), "fragment");
+}
+
+TEST_F(UrlTest, Copy_SsoUrl_PreservesViews) {
+    const auto parsed{ Url::FromUrl("http://a") };
+    ASSERT_TRUE(parsed);
+
+    const Url copy{ *parsed };
+    EXPECT_EQ(copy.GetScheme(), "http");
+    ASSERT_TRUE(copy.GetAuthority());
+    EXPECT_EQ(copy.GetAuthority()->GetHostString(), "a");
+    EXPECT_TRUE(copy.GetPath().empty());
+    EXPECT_TRUE(copy.GetQuery().empty());
+    EXPECT_TRUE(copy.GetFragment().empty());
+}
+
+TEST_F(UrlTest, Move_SsoUrl_PreservesViews) {
+    auto parsed{ Url::FromUrl("http://a") };
+    ASSERT_TRUE(parsed);
+
+    Url moved{ std::move(*parsed) };
+    EXPECT_EQ(moved.GetScheme(), "http");
+    ASSERT_TRUE(moved.GetAuthority());
+    EXPECT_EQ(moved.GetAuthority()->GetHostString(), "a");
+    EXPECT_TRUE(moved.GetPath().empty());
+    EXPECT_TRUE(moved.GetQuery().empty());
+    EXPECT_TRUE(moved.GetFragment().empty());
+}
+
+TEST_F(UrlTest, MoveAssignment_ExistingTarget_PreservesMovedViews) {
+    auto source{ Url::FromUrl("https://source.example.com/source/path?q=source#source") };
+    auto target{ Url::FromUrl("http://target.example.com/target/path?q=target#target") };
+    ASSERT_TRUE(source && target);
+
+    *target = std::move(*source);
+    EXPECT_EQ(target->GetScheme(), "https");
+    ASSERT_TRUE(target->GetAuthority());
+    EXPECT_EQ(target->GetAuthority()->GetHostString(), "source.example.com");
+    EXPECT_EQ(target->GetPath(), "/source/path");
+    EXPECT_EQ(target->GetQuery(), "q=source");
+    EXPECT_EQ(target->GetFragment(), "source");
+}
+
+TEST_F(UrlTest, CopyAssignment_ExistingTarget_PreservesCopiedViews) {
+    const auto source{ Url::FromUrl("https://source.example.com/source/path?q=source#source") };
+    auto target{ Url::FromUrl("http://target.example.com/target/path?q=target#target") };
+    ASSERT_TRUE(source && target);
+
+    *target = *source;
+    EXPECT_EQ(target->GetScheme(), "https");
+    ASSERT_TRUE(target->GetAuthority());
+    EXPECT_EQ(target->GetAuthority()->GetHostString(), "source.example.com");
+    EXPECT_EQ(target->GetPath(), "/source/path");
+    EXPECT_EQ(target->GetQuery(), "q=source");
+    EXPECT_EQ(target->GetFragment(), "source");
+}
+
+TEST_F(UrlTest, CopyAccessors_ReturnIndependentValues) {
+    const auto parsed{ Url::FromUrl("https://user@example.com:8443/path?q=1#frag") };
+    ASSERT_TRUE(parsed);
+
+    EXPECT_EQ(parsed->CopyScheme(), "https");
+    EXPECT_EQ(parsed->CopyPath(), "/path");
+    EXPECT_EQ(parsed->CopyQuery(), "q=1");
+    EXPECT_EQ(parsed->CopyFragment(), "frag");
+
+    const auto authority{ parsed->CopyAuthority() };
+    ASSERT_TRUE(authority);
+    EXPECT_EQ(authority->userinfo, "user");
+    EXPECT_EQ(authority->GetHostString(), "example.com");
+    ASSERT_TRUE(authority->port);
+    EXPECT_EQ(*authority->port, 8443u);
+}
+
+TEST_F(UrlTest, Parse_Ipv4Host_ExtractsAddress) {
+    const auto parsed{ Url::FromUrl("http://192.0.2.1/resource") };
+    ASSERT_TRUE(parsed);
+    const auto authority{ parsed->GetAuthority() };
+    ASSERT_TRUE(authority);
+    EXPECT_EQ(authority->GetHostString(), "192.0.2.1");
+}
+
+TEST_F(UrlTest, Parse_Ipv6Host_ExtractsAddress) {
+    const auto parsed{ Url::FromUrl("http://[2001:db8::1]/resource") };
+    ASSERT_TRUE(parsed);
+    const auto authority{ parsed->GetAuthority() };
+    ASSERT_TRUE(authority);
+    EXPECT_EQ(authority->GetHostString(), "2001:db8::1");
+}
+
+TEST_F(UrlTest, GetUrlWithoutFragment_EmptyFragment_RemovesDelimiter) {
+    const auto parsed{ Url::FromUrl("https://example.com/path#") };
+    ASSERT_TRUE(parsed);
+    EXPECT_EQ(parsed->GetUrlWithoutFragment(), "https://example.com/path");
+}
+
+TEST_F(UrlTest, GetUrlWithoutFragment_NoFragment_ReturnsOriginalUrl) {
+    const auto parsed{ Url::FromUrl("https://example.com/path?q=1") };
+    ASSERT_TRUE(parsed);
+    EXPECT_EQ(parsed->GetUrlWithoutFragment(), "https://example.com/path?q=1");
+}
+
 TEST_F(UrlTest, Parse_SimpleHttps_Succeeds) {
     const auto r{ Url::FromUrl("https://example.com/path") };
     ASSERT_TRUE(r);
@@ -212,6 +380,18 @@ TEST_F(UrlTest, Parse_Port_IsExtracted) {
     ASSERT_TRUE(auth);
     ASSERT_TRUE(auth->port);
     EXPECT_EQ(*auth->port, 8080u);
+}
+
+TEST_F(UrlTest, Parse_Ipv6Host_WithPort_PreservesAuthority) {
+    const auto r{ Url::FromUrl("http://[2001:db8::1]:8080/resource") };
+    ASSERT_TRUE(r);
+
+    const auto authority{ r->GetAuthority() };
+    ASSERT_TRUE(authority);
+    EXPECT_EQ(authority->GetHostString(), "2001:db8::1");
+    ASSERT_TRUE(authority->port);
+    EXPECT_EQ(*authority->port, 8080u);
+    EXPECT_EQ(r->GetUrlWithoutFragment(), "http://[2001:db8::1]:8080/resource");
 }
 
 TEST_F(UrlTest, Parse_Fragment_IsExtracted) {

@@ -4,30 +4,9 @@
 #include <Thoth/String/Utils.hpp>
 
 #pragma push_macro("FAIL_WITH")
-#pragma push_macro("REBIND_ALL")
 #undef FAIL_WITH
-#undef REBIND_ALL
 
-#define FAIL_WITH(x) return std::unexpected{ ExchangeError{ UrlParseErrorEnum::x } }
-
-#define REBIND_ALL(OTHER_URL) do {                                          \
-    const auto rebind{ Rebinder(m_rawUrl, (OTHER_URL)) };                   \
-                                                                            \
-    m_scheme = rebind(other.m_scheme);                                      \
-    m_path   = rebind(other.m_path  );                                      \
-    m_query  = rebind(other.m_query );                                      \
-    m_frag   = rebind(other.m_frag  );                                      \
-                                                                            \
-    m_authority = other.m_authority.transform([&](Authority auth) {         \
-        auth.userinfo = rebind(auth.userinfo);                              \
-                                                                            \
-        std::visit([&]<class T>(T& host) {                                  \
-            if constexpr (std::same_as<std::decay_t<T>, std::string_view>)  \
-                host = rebind(host);                                        \
-        }, auth.host);                                                      \
-        return auth;                                                        \
-    });                                                                     \
-} while(false)
+#define FAIL_WITH(x) return std::unexpected{ ThothError{ UrlParseErrorEnum::x } }
 
 
 using Thoth::Http::Url;
@@ -137,14 +116,22 @@ namespace {
 } // anonymous namespace
 
 
-
 std::string Thoth::Http::Authority::GetHostString() const {
-    return std::visit([]<class T>(T host) -> std::string {
-            if constexpr (std::same_as<T, std::string_view>)
-                return std::string{ host };
-            else
-                return std::format("{}", Hermes::IpAddress(host));
-        }, host);
+    using Hermes::IpAddress;
+
+    return std::visit(Hermes::Utils::Overloaded{
+        [](string    str){ return std::move(str); },
+        [](IpAddress ip ){ return std::format("{}", ip); }
+    }, host);
+}
+
+std::string Thoth::Http::AuthorityView::GetHostString() const {
+    using Hermes::IpAddress;
+
+    return std::visit(Hermes::Utils::Overloaded{
+        [](string_view str){ return std::string{ str }; },
+        [](IpAddress   ip ){ return std::format("{}", ip); }
+    }, host);
 }
 
 std::optional<std::uint16_t> Thoth::Http::GetDefaultPort(const std::string_view scheme) noexcept {
@@ -159,67 +146,98 @@ std::optional<std::uint16_t> Thoth::Http::GetDefaultPort(const std::string_view 
 }
 
 
-auto Rebinder(std::string_view url, std::string_view otherUrl) {
-    return [=](const std::string_view old) -> std::string_view {
-        return std::string_view{
-            url.data() + std::distance(otherUrl.data(), old.data()),
-            old.size()
-        };
+
+
+
+
+
+
+std::string_view Url::View(const RangeIdx range) const noexcept {
+    const auto [l, r] { range };
+    return string_view{ m_rawUrl }.substr(l, r);
+}
+
+Url::RangeIdx Url::MakeRange(const std::string& source, const std::string_view view) noexcept {
+    if (view.data() == nullptr)
+        return {};
+
+    return {
+        static_cast<std::size_t>(view.data() - source.data()),
+        view.size()
     };
 }
 
+std::string_view Url::GetScheme() const noexcept {
+    return View(m_schemeIdx);
+}
+Url::AuthorityViewOpt Url::GetAuthority() const noexcept {
+    if (!m_authority)
+        return std::nullopt;
 
-Url::Url(const Url& other) {
-    m_rawUrl = other.m_rawUrl;
+    AuthorityView result;
+    result.userinfo = View(m_authority->userinfo);
+    result.port     = m_authority->port;
+    result.host     = std::visit([this](const auto& host) -> HostView {
+        using T = std::decay_t<decltype(host)>;
+        if constexpr (std::same_as<T, RangeIdx>)
+            return View(host);
+        else
+            return host;
+    }, m_authority->host);
 
-    REBIND_ALL(other.m_rawUrl);
+    return result;
+}
+std::string_view Url::GetPath() const noexcept {
+    return View(m_pathIdx);
+}
+std::string_view Url::GetQuery() const noexcept {
+    return m_queryIdx ? View(*m_queryIdx) : std::string_view{};
+}
+std::string_view Url::GetFragment() const noexcept {
+    return m_fragIdx ? View(*m_fragIdx) : std::string_view{};
 }
 
-Url::Url(Url&& other) noexcept {
-    m_rawUrl = std::move(other.m_rawUrl);
-
-    const std::string_view otherUrl{ m_rawUrl };
-
-    REBIND_ALL(otherUrl);
+std::string Url::CopyScheme() const noexcept {
+    const auto [l, r] { m_schemeIdx };
+    return m_rawUrl.substr(l, r);
 }
 
-Url& Url::operator=(const Url& other) {
-    m_rawUrl = other.m_rawUrl;
+Url::AuthorityOpt Url::CopyAuthority() const noexcept {
+    if (!m_authority)
+        return std::nullopt;
 
-    REBIND_ALL(other.m_rawUrl);
+    const auto port{ m_authority->port };
+    auto uInfo{ std::string{ View(m_authority->userinfo) } };
 
-    return *this;
+    return std::visit(Hermes::Utils::Overloaded{
+        [this, &uInfo, port](RangeIdx range) { return Authority{ uInfo, { std::string{ View(range) } }, port }; },
+        [&uInfo, port](Hermes::IpAddress val) { return Authority{ uInfo, val, port }; }
+    }, m_authority->host);
 }
 
-Url& Url::operator=(Url&& other) noexcept {
-    m_rawUrl = std::move(other.m_rawUrl);
+std::string Url::CopyPath() const noexcept {
+    const auto [l, r] { m_pathIdx };
+    return m_rawUrl.substr(l, r);
+}
 
-    const std::string_view otherUrl{ m_rawUrl };
+std::string Url::CopyQuery() const noexcept {
+    return m_queryIdx ? std::string{ View(*m_queryIdx) } : std::string{};
+}
 
-    REBIND_ALL(otherUrl);
-
-    return *this;
+std::string Url::CopyFragment() const noexcept {
+    return m_fragIdx ? std::string{ View(*m_fragIdx) } : std::string{};
 }
 
 
-std::string_view                      Url::GetScheme()    const noexcept { return m_scheme;    }
-std::optional<Thoth::Http::Authority> Url::GetAuthority() const noexcept { return m_authority; }
-std::string_view                      Url::GetPath()      const noexcept { return m_path;      }
-std::string_view                      Url::GetQuery()     const noexcept { return m_query;     }
-std::string_view                      Url::GetFragment()  const noexcept { return m_frag;      }
+std::string_view Url::GetPathOrSep() const noexcept { return GetPath().empty() ? "/" : GetPath(); }
 
-
-
-
-std::string_view Url::GetPathOrSep() const noexcept { return m_path.empty() ? "/" : m_path; }
-
-Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(m_query); }
+Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(GetQuery()); }
 
 std::string_view Url::GetUrlWithoutFragment() const noexcept {
     return string_view{ m_rawUrl }
-    .substr(0, m_frag.empty()
-            ? std::string::npos
-            : std::distance(m_rawUrl.data(), m_frag.data()) - 1);
+    .substr(0, m_fragIdx
+            ? m_fragIdx->first - 1
+            : std::string::npos);
 }
 
 
@@ -229,13 +247,15 @@ std::string_view Url::GetUrlWithoutFragment() const noexcept {
 // URL parsing from RFC3986
 
 
-std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) {
+std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
     if (rawUrl.empty() || !isalpha(rawUrl.front()))
         FAIL_WITH(EmptyUrl);
 
-    std::string_view rawUrlView{ rawUrl };
+    Url url{};
+    url.m_rawUrl = std::move(rawUrl);
+    std::string_view rawUrlView{ url.m_rawUrl };
     std::string_view scheme;
-    Authority auth;
+    AuthorityView    auth;
     std::string_view hostStr;
     std::string_view path;
     std::string_view query;
@@ -387,7 +407,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     // h16         = 1*4HEXDIG
     //             ; 16 bits of address represented in hexadecimal
 
-    const auto readIpv6 = [hostStr]() -> std::optional<Host> {
+    const auto readIpv6 = [hostStr]() -> std::optional<HostView> {
         if (!hostStr.starts_with('[') || !hostStr.ends_with(']'))
             return std::nullopt;
 
@@ -397,7 +417,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
         if (!ip || !ip->IsIpv6())
             return std::nullopt;
 
-        return Host{ *ip };
+        return HostView{ *ip };
     };
 
     // IPv4address = dec-octet "." dec-octet "." dec-octet "." dec-octet
@@ -407,7 +427,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
     //             / "2" %x30-34 DIGIT     ; 200-249
     //             / "25" %x30-35          ; 250-255
 
-    const auto readIpv4 = [hostStr]() -> std::optional<Host> {
+    const auto readIpv4 = [hostStr]() -> std::optional<HostView> {
         Hermes::IpAddress::Ipv4Type ip{};
 
         const char* ptr{ hostStr.data() };
@@ -435,7 +455,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
 
     // reg-name    = *( unreserved / pct-encoded / sub-delims )
 
-    auto readRegName = [hostStr]() -> std::optional<Host> {
+    auto readRegName = [hostStr]() -> std::optional<HostView> {
         constexpr auto set{ String::MakeBitset({ String::CharSequences::Http::k_url }) };
 
         for (size_t i{}; i < hostStr.size(); ++i) {
@@ -511,21 +531,29 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::FromUrl(std::string rawUrl) 
 
 
 
+    Url::AuthorityIdx authority{};
+    authority.userinfo = MakeRange(url.m_rawUrl, auth.userinfo);
+    authority.host = std::visit([&](const auto& host) -> std::variant<Url::RangeIdx, Hermes::IpAddress> {
+        using T = std::decay_t<decltype(host)>;
+        if constexpr (std::same_as<T, std::string_view>)
+            return MakeRange(url.m_rawUrl, host);
+        else
+            return host;
+    }, auth.host);
+    authority.port = auth.port;
 
+    url.m_authority = std::move(authority);
+    url.m_schemeIdx = MakeRange(url.m_rawUrl, scheme);
+    url.m_pathIdx   = MakeRange(url.m_rawUrl, path);
+    if (query.data() != nullptr)
+        url.m_queryIdx = MakeRange(url.m_rawUrl, query);
+    if (frag.data() != nullptr)
+        url.m_fragIdx = MakeRange(url.m_rawUrl, frag);
 
-    Url res{};
-
-    res.m_rawUrl    = std::move(rawUrl);
-    res.m_scheme    = scheme;
-    res.m_authority = auth;
-    res.m_path      = path;
-    res.m_query     = query;
-    res.m_frag      = frag;
-
-    return res;
+    return url;
 }
 
-std::expected<Url, Thoth::Http::ExchangeError> Url::Resolve(std::string_view reference) const {
+std::expected<Url, Thoth::ThothError> Url::Resolve(std::string_view reference) const {
     // RFC 3986 §5.2.2
     const ParsedRef r{ ParseRef(reference) };
 
@@ -627,7 +655,7 @@ std::expected<Url, Thoth::Http::ExchangeError> Url::Resolve(std::string_view ref
     return Url::FromUrl(std::move(target));
 }
 
-std::expected<Url, Thoth::Http::ExchangeError> Url::ResolveRelative(const Url& url, std::string_view reference) {
+std::expected<Url, Thoth::ThothError> Url::ResolveRelative(const Url& url, std::string_view reference) {
     return url.Resolve(reference);
 }
 
@@ -655,7 +683,7 @@ constexpr auto hexCharToInt = [] {
 }();
 
 
-std::expected<string, Thoth::Http::ExchangeError> Url::TryDecode(std::string_view str) {
+std::expected<string, Thoth::ThothError> Url::TryDecode(std::string_view str) {
     std::string buffer;
     buffer.reserve(str.length());
 
@@ -684,4 +712,3 @@ bool Url::operator==(const Url& other) const noexcept {
 
 
 #pragma pop_macro("FAIL_WITH")
-#pragma pop_macro("REBIND_ALL")

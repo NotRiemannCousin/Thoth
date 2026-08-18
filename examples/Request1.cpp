@@ -1,20 +1,20 @@
 #pragma warning(disable: 4455)
 #include <print>
 
-#include <Thoth/Http/Client.hpp>
+#include <Thoth/Http/Client/Client.hpp>
 
 
 namespace NHttp = Thoth::Http;
 namespace NJson = Thoth::NJson;
 using NJson::Json;
 
-std::expected<std::vector<Json>, NHttp::ExchangeError> GetMembers(size_t id) {
+std::expected<std::vector<Json>, ThothError> GetMembers(size_t id) {
     using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 
     //trying to make the request, send to the server and then convert the body to JSON.
     return NHttp::GetRequest::FromUrl(std::format("https://api.discogs.com/artists/{}", id))
-            // All these functions have the same error type `ExchangeError`, a std::variant with each specific error.
+            // All these functions have the same error type `ThothError`, a std::variant with each specific error.
             .and_then(NHttp::Client::H_Send())
             .and_then(&NHttp::Response<>::AsJson<>)
 

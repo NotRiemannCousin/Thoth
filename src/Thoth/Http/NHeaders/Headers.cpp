@@ -186,8 +186,19 @@ namespace Thoth::Http {
         Set({key, val});
     }
 
+
+    bool Headers::Remove(HeaderKeyRef k) {
+        auto&& it{ FindInsensitiveKey(m_headers, k) };
+        if (it == m_headers.end())
+            return false;
+
+        m_headers.erase(it);
+
+        return true;
+    }
+
     bool Headers::Remove(const HeaderPairRef p) {
-        auto&& it{ FindInsensitiveKeyWithPair(m_headers,  p) };
+        auto&& it{ FindInsensitiveKeyWithPair(m_headers, p) };
         if (it == m_headers.end())
             return false;
 

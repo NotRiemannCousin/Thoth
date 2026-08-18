@@ -258,7 +258,7 @@ TEST_F(JsonEnsureTest, EnsureOrError_CorrectType_HasValue) {
 TEST_F(JsonEnsureTest, EnsureOrError_WrongType_HasError) {
     const auto result{ numJ.EnsureOrError<Bool>() };
     EXPECT_FALSE(result);
-    EXPECT_TRUE(std::holds_alternative<Thoth::Http::JsonWrongTypeError>(result.error()));
+    EXPECT_TRUE(std::holds_alternative<Thoth::NJson::JsonWrongTypeError>(result.error()));
 }
  
 TEST_F(JsonEnsureTest, EnsureRef_CorrectType_HasValue) {
@@ -312,7 +312,7 @@ TEST_F(JsonGetTest, GetOrError_ExistingKey_HasValue) {
 TEST_F(JsonGetTest, GetOrError_MissingKey_HasError) {
     auto result{ obj.GetOrError(Key{ std::string("ghost") }) };
     EXPECT_FALSE(result);
-    EXPECT_TRUE(std::holds_alternative<Thoth::Http::JsonGetError>(result.error()));
+    EXPECT_TRUE(std::holds_alternative<Thoth::NJson::JsonGetError>(result.error()));
 }
  
 TEST_F(JsonGetTest, GetCopy_ReturnsIndependentCopy) {
@@ -432,7 +432,7 @@ TEST_F(JsonSearchTest, SearchOrError_NoMatch_HasError) {
     auto pred = [](const Json& j) { return j.IsOf<Array>(); };
     auto result{ arr.SearchOrError(pred) };
     EXPECT_FALSE(result);
-    EXPECT_TRUE(std::holds_alternative<Thoth::Http::JsonSearchError>(result.error()));
+    EXPECT_TRUE(std::holds_alternative<Thoth::NJson::JsonSearchError>(result.error()));
 }
  
 TEST_F(JsonSearchTest, SearchCopyOrNull_NoMatch_ReturnsNull) {

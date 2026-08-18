@@ -6,7 +6,7 @@ namespace Thoth::Http {
     template<class T>
         requires Hermes::ByteLike<std::ranges::range_value_t<T>>
                 || (std::same_as<Body, std::string> && std::formattable<T, char>)
-    std::expected<Request<Method, Body>, ExchangeError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
+    std::expected<Request<Method, Body>, ThothError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
         static constexpr auto makeBody{ [](T&& body) {
             if constexpr (Hermes::ByteLike<std::ranges::range_value_t<T>>)
                 return std::forward<T>(body) | std::ranges::to<Body>();

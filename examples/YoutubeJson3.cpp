@@ -4,10 +4,10 @@
 
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/Client.hpp>
+#include <Thoth/Http/Client/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::Http::ExchangeError> SaveImage(std::string_view id) {
+std::expected<std::monostate, Thoth::ThothError> SaveImage(std::string_view id) {
 #pragma region Aliases
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;

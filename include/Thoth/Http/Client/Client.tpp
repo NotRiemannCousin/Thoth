@@ -1,9 +1,11 @@
 #pragma once
 #include <Thoth/Http/_base/Http1.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/ExchangeError.hpp>
+#include <Thoth/ThothError.hpp>
 #include <Hermes/Utils/Overloads.hpp>
 #include <string_view>
+
+#include <Thoth/Http/Client/ClientJanitor.hpp>
 
 #pragma region Macros
 #pragma push_macro("ASSERT_OR_RET_ERROR")
@@ -14,32 +16,18 @@
 #define ASSERT_OR_RET_ERROR(cond, error) do {       \
     if (!(cond)) return std::unexpected{ (error) }; \
 } while (0)
-#define ASSERT_OR_RET_EXC_ERROR(cond, error) ASSERT_OR_RET_ERROR(cond, ExchangeError{ (error) })
+#define ASSERT_OR_RET_EXC_ERROR(cond, error) ASSERT_OR_RET_ERROR(cond, ThothError{ (error) })
 
 #pragma endregion
 
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
-    template<class T>
-    auto ClientConnection::Send(const T& data) {
-        return std::visit([&](auto& sock) { return sock.Send(data); }, socket);
-    }
-    inline void ClientConnection::Close() {
-        std::visit([](auto& sock) { sock.Close(); }, socket);
-    }
-    inline void ClientConnection::Abort() {
-        std::visit([](auto& sock) { sock.Abort(); }, socket);
-    }
-
-
-
-
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
     auto Client::Send(Request<Method, Body> request, ClientOptions opts) -> ExpResponse<Method, Body> {
         return SendAsAndParse<Method, Body, Body>(
-            request,[](const ResponseHead&) -> std::expected<Body, ExchangeError> { return {}; }, opts
+            request,[](const ResponseHead&) -> std::expected<Body, ThothError> { return {}; }, opts
         );
     }
 
@@ -54,7 +42,7 @@ namespace Thoth::Http {
         requires std::default_initializable<ResponseBody>
     auto Client::SendAs(Request<Method, RequestBody> request, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
         return SendAsAndParse<Method, RequestBody, ResponseBody>(
-            request, [](const ResponseHead&) -> std::expected<ResponseBody, ExchangeError> { return {}; }, opts
+            request, [](const ResponseHead&) -> std::expected<ResponseBody, ThothError> { return {}; }, opts
         );
     }
 
@@ -64,12 +52,14 @@ namespace Thoth::Http {
     auto Client::SendAsAndParse(
         Request<Method, RequestBody> request, F&& bodyFactory, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
 
-        static constexpr auto toExchangeError{ [](const auto err) {
-            return ExchangeError{ err };
+        static constexpr auto toThothError{ [](const auto err) {
+            return ThothError{ err };
         } };
 
         const auto scheme{ request.url.GetScheme() };
         ASSERT_OR_RET_EXC_ERROR(scheme == "http" || scheme == "https", GenericError{ "Invalid scheme" });
+
+
 
         const auto auth{ request.url.GetAuthority() };
         ASSERT_OR_RET_EXC_ERROR(auth, GenericError{ "No authority provided" });
@@ -88,13 +78,13 @@ namespace Thoth::Http {
         ClientJanitor& janitor{ ClientJanitor::Instance() };
 
         const auto establishConnection{ [&](Hermes::IpEndpoint&& endpoint) {
-
+            const ClientConnectionKey key{ endpoint, std::string{ scheme }, hostname };
 #pragma region create socket
 
             const auto getSocketFromPool{ [&]() -> std::optional<SocketPtr> {
                 std::lock_guard lock{ janitor.poolMutex };
 
-                const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(endpoint) };
+                const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(key) };
 
                 if (connContainerIt == janitor.connectionPool.end() || connContainerIt->second.empty())
                     return std::nullopt;
@@ -130,26 +120,37 @@ namespace Thoth::Http {
 
             const auto cleanupSocket{ [&](std::pair<SocketPtr, Response<Method, ResponseBody>> val) {
                 std::lock_guard lock{ janitor.poolMutex };
+                auto& [sock, response]{ val };
 
-                static Headers::HeaderValue closeConnectionVal{ "close" };
-                static Headers::HeaderValue keepAliveConnectionVal{ "keep-alive" };
 
-                const auto connectionHeader{
-                    *val.second.headers.Get("connection")
-                            .value_or(val.second.version == VersionEnum::HTTP1_0
-                                ? &closeConnectionVal
-                                : &keepAliveConnectionVal)
-                };
+                const auto defaultConnValue{ response.version == VersionEnum::HTTP1_0 ? "close" : "keep-alive" };
+                static constexpr auto isCloseValue{ [](std::string_view val) {
+                    return std::ranges::equal(val, std::string_view{ "close" }, &String::CaseInsensitiveCompare);
+                } };
 
-                if (val.first != nullptr && connectionHeader != closeConnectionVal)
-                    janitor.connectionPool[endpoint].emplace_back(std::move(val.first));
+                if (sock != nullptr) {
+                    sock->lastUsed = std::chrono::steady_clock::now();
 
-                return std::move(val.second);
+                    const auto connection{ response.headers.Connection().GetWithDefault({ defaultConnValue }) };
+                    if (connection && !std::ranges::any_of(*connection, isCloseValue))
+                        janitor.connectionPool[key].emplace_back(std::move(sock));
+                }
+
+                return std::move(response);
             } };
 
 #pragma endregion
 
             auto infoPtr{ getSocketFromPool().or_else(createNewSocket).value_or(nullptr) };
+
+            const std::optional requestDeadline{
+                opts.requestTimeout == std::chrono::milliseconds::max()
+                    ? std::nullopt
+                    : std::optional{
+                        std::chrono::steady_clock::now()
+                        + std::max(opts.requestTimeout, std::chrono::milliseconds::zero())
+                    }
+            };
 
 #pragma region check and send
 
@@ -158,15 +159,19 @@ namespace Thoth::Http {
                 return std::monostate{};
             } };
 
-            const auto sendRequest{ [&](std::monostate) -> std::expected<SocketPtr, ExchangeError> {
+            const auto sendRequest{ [&](std::monostate) -> std::expected<SocketPtr, ThothError> {
                 request.headers.Add("host", hostname);
 
                 details_::Http1::PrepareBodyHeaders(request.headers, request.body);
 
-                auto headRes{ details_::Http1::SendMessageHead<Method, RequestHead>(*infoPtr, request) };
+                const ClientConnection::SendOptions transferOptions{ .deadline = requestDeadline };
+
+                auto headRes{
+                    details_::Http1::SendMessageHead<Method, RequestHead>(*infoPtr, request, transferOptions)
+                };
                 ASSERT_OR_RET_ERROR(headRes, headRes.error());
 
-                auto bodyRes{ details_::Http1::SendBody(*infoPtr, request.body) };
+                auto bodyRes{ details_::Http1::SendBody(*infoPtr, request.body, transferOptions) };
                 ASSERT_OR_RET_ERROR(bodyRes, bodyRes.error());
 
                 return std::move(infoPtr);
@@ -175,15 +180,18 @@ namespace Thoth::Http {
 #pragma endregion
 
             return isSocketValid()
-                    .transform_error(toExchangeError)
+                    .transform_error(toThothError)
                     .and_then(sendRequest)
-                    .and_then(std::bind_back(ParseHttp1_<Method, ResponseBody, F>, std::forward<F>(bodyFactory)))
+                    .and_then(std::bind_back(
+                        ParseHttp1_<Method, ResponseBody, F>,
+                        std::forward<F>(bodyFactory),
+                        requestDeadline))
                     .transform(cleanupSocket);
         } };
 
 
-        return Hermes::IpEndpoint::TryResolve(hostname, std::string{ request.url.GetScheme() })
-                .transform_error(toExchangeError)
+        return Hermes::IpEndpoint::TryResolve(hostname, std::to_string(*port))
+                .transform_error(toThothError)
                 .and_then(establishConnection);
     }
 
@@ -219,16 +227,20 @@ namespace Thoth::Http {
 
     template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ExchangeError> Client::ParseHttp1_(
-        SocketPtr infoPtr, F&& bodyFactory) {
+    std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ThothError> Client::ParseHttp1_(
+        SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline) {
 
         const auto forwardBoth{ [&infoPtr](Response<Method, ResponseBody>&& response) {
             return std::pair<SocketPtr, Response<Method, ResponseBody>>{ std::move(infoPtr), std::move(response) };
         } };
 
-        auto createResponse{ [bFactory = std::forward<F>(bodyFactory)](auto&& sock) mutable {
+        auto createResponse{[bFactory = std::forward<F>(bodyFactory), deadline]<typename T>(T&& sock) mutable {
+            using Socket = std::remove_cvref_t<T>;
+            typename Socket::RecvOptions recvOptions{};
+            recvOptions.deadline = deadline;
+
             return details_::Http1::BuildResponse<Method, ResponseBody>(
-                sock.template RecvStream<char>(),
+                sock.template RecvStream<char>(recvOptions),
                 std::forward<F>(bFactory)
             );
         } };

@@ -7,7 +7,7 @@ namespace Thoth::Http {
     struct ResponseHeaders : Headers {
         //! @copydoc Headers::Parse
         template<std::ranges::input_range R>
-        static WebResult<ResponseHeaders> Parse(R& headers, size_t maxHeadersLength = 1<<16);
+        static WebResult<ResponseHeaders> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Response Specific Proxies
 

@@ -3,10 +3,10 @@
 
 #include <Thoth/Http/Request/Request.hpp>
 #include <Thoth/Http/Response/Response.hpp>
-#include <Thoth/Http/Client.hpp>
+#include <Thoth/Http/Client/Client.hpp>
 
 
-std::expected<std::monostate, Thoth::Http::ExchangeError> MakeRequest() {
+std::expected<std::monostate, Thoth::ThothError> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
     namespace NJson = Thoth::NJson;

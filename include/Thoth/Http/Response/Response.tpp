@@ -16,7 +16,7 @@ namespace Thoth::Http {
     template<MethodConcept Method, WritableBodyConcept Body>
     template<class>
         requires std::same_as<Body, std::string>
-    std::expected<NJson::Json, ExchangeError> Response<Method, Body>::AsJson() const {
+    std::expected<NJson::Json, ThothError> Response<Method, Body>::AsJson() const {
         return NJson::Json::Parse(body);
     }
 
@@ -26,12 +26,12 @@ namespace Thoth::Http {
     }
 
     template<MethodConcept Method, WritableBodyConcept Body>
-    std::expected<Response<Method, Body>, ExchangeError> Response<Method, Body>::EnsureSuccess(Response &&response) {
+    std::expected<Response<Method, Body>, ThothError> Response<Method, Body>::EnsureSuccess(Response &&response) {
         if (response.Successful())
             return std::move(response);
 
         return std::unexpected{
-            ExchangeError{ GenericError{
+            ThothError{ GenericError{
                 std::format("Invalid response status code: {}", std::to_underlying(response.status))
             } }
         };

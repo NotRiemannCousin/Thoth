@@ -368,6 +368,21 @@ TEST_F(HeadersTest, Parse_EmptyValue_Succeeds) {
     EXPECT_TRUE(result->Exists("x-empty"));
 }
 
+TEST_F(HeadersTest, Parse_MissingColon_ReturnsBadRequest) {
+    const auto result{ Headers::Parse("missing-colon\r\n") };
+    ASSERT_FALSE(result);
+    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+}
+
+TEST_F(HeadersTest, Parse_HeadersAboveLimit_ReturnsContentTooLarge) {
+    std::string raw{ "x-header: value\r\n" };
+    const auto result{ Headers::Parse(raw, 4) };
+    ASSERT_FALSE(result);
+    EXPECT_EQ(result.error(), StatusCodeEnum::ContentTooLarge);
+}
+
+
+
 // TEST_F(HeadersTest, Parse_MultipleCookies_AllPresent) {
 //     std::string_view raw{
 //         "set-cookie: a=1\r\n"

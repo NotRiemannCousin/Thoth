@@ -508,6 +508,23 @@ TEST_F(RetryAfterProxyTest, GetWithDefault_FallsBackOnMissing) {
 #pragma endregion
 
 
+#pragma region Headers - Connection Proxy
+
+struct ConnectionProxyTest : testing::Test {
+    Headers h{{ "connection", "keep-alive, close" }};
+};
+
+TEST_F(ConnectionProxyTest, Get_MultipleTokens_TrimsWhitespace) {
+    const auto result{ h.Connection().Get() };
+    ASSERT_TRUE(result);
+    ASSERT_EQ(result->size(), 2u);
+    EXPECT_EQ(result->at(0), "keep-alive");
+    EXPECT_EQ(result->at(1), "close");
+}
+
+#pragma endregion
+
+
 #pragma region Proxy Error Handling (List & Value)
 
 struct ProxyErrorTest : testing::Test {

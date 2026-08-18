@@ -3,35 +3,46 @@
 #pragma push_macro("ASSERT_OR_RET_ERROR")
 #pragma push_macro("SEND_OR_RET_ERROR")
 #pragma push_macro("HTTP11_FORWARD")
+#pragma push_macro("VALID_STREAM")
 #undef ASSERT_OR_RET_ERROR
 #undef SEND_OR_RET_ERROR
 #undef HTTP11_FORWARD
+#undef VALID_STREAM
 
-#define ASSERT_OR_RET_ERROR(cond, error) do {                        \
-    if (!(cond)) return std::unexpected{ ExchangeError{ (error) } }; \
+#define ASSERT_OR_RET_ERROR(cond, error) do {                     \
+    if (!(cond)) return std::unexpected{ ThothError{ (error) } }; \
 } while (0)
 
-#define SEND_OR_RET_ERROR(varName, input) do {                     \
-    const auto [m_ ## varName, varName]{ socket.Send(input) };     \
-    ASSERT_OR_RET_ERROR(varName, varName.error());                 \
+#define SEND_OR_RET_ERROR(varName, input) do {                           \
+    const auto [m_ ## varName, varName]{ socket.Send(input, options) };  \
+    ASSERT_OR_RET_ERROR(varName, varName.error());                       \
 } while (0)
 
 #define HTTP11_FORWARD(methodName) ([](auto stage) { return Http1::methodName(std::move(stage)); })
+
+#define VALID_STREAM(stream) do {                                      \
+    if constexpr (requires { (stream).Error(); }) {                   \
+        const auto streamError{ (stream).Error() };                    \
+        if (!streamError)                                               \
+            return std::unexpected{ ThothError{ streamError.error() } }; \
+    }                                                                    \
+} while (0)
+
 #pragma endregion
 
 namespace Thoth::Http::details_ {
 
     template<class Method, WritableBodyConcept ResponseBody, class F, class Stream>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<Response<Method, ResponseBody>, ExchangeError> Http1::BuildResponse(Stream&& stream, F&& bodyFactory) {
+    std::expected<Response<Method, ResponseBody>, ThothError> Http1::BuildResponse(Stream&& stream, F&& bodyFactory) {
         using HeadStage     = ResponseParseStage<Stream>;
         using CompleteStage = ResponseParseCompleteStage<Stream, ResponseBody>;
 
-        const auto createResponseStream{ [&](auto&& s) -> std::expected<HeadStage, ExchangeError> {
+        const auto createResponseStream{ [&](auto&& s) -> std::expected<HeadStage, ThothError> {
             return HeadStage{ ResponseHead{}, s };
         } };
 
-        const auto initializeBody{ [&](HeadStage stage) -> std::expected<CompleteStage, ExchangeError> {
+        const auto initializeBody{ [&](HeadStage stage) -> std::expected<CompleteStage, ThothError> {
             auto bodyExp{ std::invoke(bodyFactory, stage.data) };
             ASSERT_OR_RET_ERROR(bodyExp, bodyExp.error());
 
@@ -52,7 +63,7 @@ namespace Thoth::Http::details_ {
 
 
     template<class Stream>
-    std::expected<ResponseParseStage<Stream>, ExchangeError> Http1::ParseResponseLine(ResponseParseStage<Stream> stage) {
+    std::expected<ResponseParseStage<Stream>, ThothError> Http1::ParseResponseLine(ResponseParseStage<Stream> stage) {
         namespace rg = std::ranges;
         using namespace std::literals;
 
@@ -61,7 +72,7 @@ namespace Thoth::Http::details_ {
         switch (*stage.stream.begin()) {
             case '0': stage.data.version = VersionEnum::HTTP1_0; break;
             case '1': stage.data.version = VersionEnum::HTTP1_1; break;
-            default: return std::unexpected{ ExchangeError{ MessageParseErrorEnum::InvalidVersion } };
+            default: return std::unexpected{ ThothError{ MessageParseErrorEnum::InvalidVersion } };
         }
         ++stage.stream.begin();
 
@@ -72,17 +83,19 @@ namespace Thoth::Http::details_ {
 
         stage.data.status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
         stage.data.statusMessage = stage.stream | Hermes::Utils::UntilMatch(k_crlf) | rg::to<std::string>();
+        VALID_STREAM(stage.stream);
 
         return std::move(stage);
     }
 
     template<class Stream, class Head>
-        std::expected<ParseStage<Stream, Head>, ExchangeError> Http1::ParseHeaders(ParseStage<Stream, Head> stage) {
+        std::expected<ParseStage<Stream, Head>, ThothError> Http1::ParseHeaders(ParseStage<Stream, Head> stage) {
         using namespace std::literals;
         using HeadersType = decltype(stage.data.headers);
 
         auto rawHeaders{ stage.stream | Hermes::Utils::UntilMatch(k_crlfCrlf) };
         const auto headersParseRes{ HeadersType::Parse(rawHeaders) };
+        VALID_STREAM(stage.stream);
 
         ASSERT_OR_RET_ERROR(headersParseRes, MessageParseErrorEnum::InvalidHeaders);
 
@@ -98,6 +111,9 @@ namespace Thoth::Http::details_ {
 
     template<ReadableBodyConcept Body>
     void Http1::PrepareBodyHeaders(Headers& headers, const Body& body) {
+        headers.Remove("transfer-encoding");
+        headers.Remove("content-length");
+
         if constexpr (SizedReadableBodyConcept<Body>) {
             headers.ContentLength().Set(std::ranges::size(body));
         } else {
@@ -106,7 +122,7 @@ namespace Thoth::Http::details_ {
     }
 
 template<class Stream, WritableBodyConcept Body, class Head>
-    std::expected<ParseCompleteStage<Stream, Head, Body>, ExchangeError> Http1::ParseBody(
+    std::expected<ParseCompleteStage<Stream, Head, Body>, ThothError> Http1::ParseBody(
         ParseCompleteStage<Stream, Head, Body> stage)
     {
         namespace rg = std::ranges;
@@ -124,7 +140,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
         using TransferValue = std::variant<std::monostate, size_t>;
         using State1 = std::expected<TransferValue, HeaderErrEnum>;
-        using State2 = std::expected<TransferValue, ExchangeError>;
+        using State2 = std::expected<TransferValue, ThothError>;
 
         const auto extractChunked{ [](const std::vector<TransEncodingErrEnum>& values) -> State1 {
             if (rg::contains(values, TransEncodingErrEnum::Chunked))
@@ -137,11 +153,11 @@ template<class Stream, WritableBodyConcept Body, class Head>
                 if (const auto res{ stage.data.headers.ContentLength().GetWithDefault(0) }; res)
                     return TransferValue{*res};
 
-            return std::unexpected{ ExchangeError{ ParseErrEnum::InvalidHeaders } };
+            return std::unexpected{ ThothError{ ParseErrEnum::InvalidHeaders } };
         } };
 
-        const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ExchangeError> {
-            const auto readSizedLength{ [&](const size_t contentSize) -> std::expected<std::monostate, ExchangeError> {
+        const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ThothError> {
+            const auto readSizedLength{ [&](const size_t contentSize) -> std::expected<std::monostate, ThothError> {
                 if constexpr (requires (Body b){ { b.reserve(0) }; })
                     stage.body.reserve(contentSize);
 
@@ -149,10 +165,12 @@ template<class Stream, WritableBodyConcept Body, class Head>
                     stage.stream | vs::take(contentSize) | vs::transform(cvt),
                     GetInserterIterator(stage.body)
                 );
+
+                VALID_STREAM(stage.stream);
                 return std::monostate{};
             } };
 
-            const auto readChunked{ [&](std::monostate) -> std::expected<std::monostate, ExchangeError> {
+            const auto readChunked{ [&](std::monostate) -> std::expected<std::monostate, ThothError> {
                 ASSERT_OR_RET_ERROR(stage.data.version != VersionEnum::HTTP1_0, ParseErrEnum::VersionNeedsContentLength);
 
                 std::string chunkLengthStr;
@@ -161,6 +179,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
                 do {
                     chunkLengthStr.clear();
                     rg::copy(stage.stream | Hermes::Utils::UntilMatch(k_crlf), std::back_inserter(chunkLengthStr));
+                    VALID_STREAM(stage.stream);
                     chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
 
                     ASSERT_OR_RET_ERROR(chunkLength, ParseErrEnum::InvalidStartLine);
@@ -169,9 +188,9 @@ template<class Stream, WritableBodyConcept Body, class Head>
                         stage.stream | vs::take(*chunkLength) | vs::transform(cvt),
                         GetInserterIterator(stage.body)
                     );
+                    VALID_STREAM(stage.stream);
 
                     ASSERT_OR_RET_ERROR(rg::starts_with(stage.stream, k_crlf), ParseErrEnum::InvalidStartLine);
-
                 } while (chunkLength != 0);
 
                 return std::monostate{};
@@ -192,7 +211,8 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
     template<MethodConcept Method, class Head, ConnectionConcept Socket>
         requires (std::same_as<Head, RequestHead> || std::same_as<Head, ResponseHead>)
-    std::expected<std::monostate, ExchangeError> Http1::SendMessageHead(Socket& socket, const Head& head) {
+    std::expected<std::monostate, ThothError> Http1::SendMessageHead(
+        Socket& socket, const Head& head, typename Socket::SendOptions options) {
         std::string requestStr{ std::format("{} {}", Method::MethodName(), head) };
         SEND_OR_RET_ERROR(res, requestStr);
 
@@ -200,7 +220,8 @@ template<class Stream, WritableBodyConcept Body, class Head>
     }
 
     template<ConnectionConcept Socket, ReadableBodyConcept Body>
-    std::expected<size_t, ExchangeError> Http1::SendBody(Socket& socket, const Body& body) {
+    std::expected<size_t, ThothError> Http1::SendBody(
+        Socket& socket, const Body& body, typename Socket::SendOptions options) {
         namespace rg = std::ranges;
         size_t totalBytes{};
 
@@ -230,6 +251,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
     }
 }
 
+#pragma pop_macro("VALID_STREAM")
 #pragma pop_macro("HTTP11_FORWARD")
 #pragma pop_macro("SEND_OR_RET_ERROR")
 #pragma pop_macro("ASSERT_OR_RET_ERROR")

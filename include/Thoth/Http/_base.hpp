@@ -39,7 +39,7 @@ namespace Thoth::Http {
     template<class F, class Body, class Head>
     concept BodyFactoryConcept = WritableBodyConcept<Body> &&
     requires (F f, const Head& head) {
-        { std::invoke(f, head) } -> std::same_as<std::expected<Body, ExchangeError>>;
+        { std::invoke(f, head) } -> std::same_as<std::expected<Body, ThothError>>;
     };
 
     //! @brief Concept for any synchronous Hermes socket (Client or Server-side) over
@@ -47,13 +47,14 @@ namespace Thoth::Http {
     //! are already structurally identical on this transfer surface — this concept
     //! simply formalizes it on Thoth's side, so HTTP algorithms don't need to know
     //! whether they are talking to a client or server socket.
-    //! @note The signature required here is purposely minimal (what SendBody actually
-    //! uses today); it should be revisited when sending chunks (types beyond
-    //! std::string_view) is tested.
+    //! @note The signature required here is purposely limited to the transfer
+    //! surface needed by HTTP/1. It includes the socket's typed send options so
+    //! an absolute exchange deadline can be propagated without exposing a
+    //! transport-specific concrete socket type.
     template<class S>
-    concept ConnectionConcept = requires(S s, std::string_view data) {
+    concept ConnectionConcept = requires(S s, std::string_view data, typename S::SendOptions options) {
         { s.socket };
-        { s.Send(data) } -> std::same_as<Hermes::StreamByteOper>;
+        { s.Send(data, options) } -> std::same_as<Hermes::StreamByteOper>;
         { s.Close() } -> std::same_as<void>;
         { s.Abort() } -> std::same_as<void>;
     };

@@ -22,6 +22,7 @@ add_executable(
         Utils/UtilsTests.cpp
         Http/TypedHeaderTests.cpp
         Dsa/FileOutputTests.cpp
+        Http/ClientTests.cpp
 )
 
 target_include_directories(

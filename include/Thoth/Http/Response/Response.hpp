@@ -9,8 +9,11 @@
 #include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
 
 
+namespace Thoth {
+    struct ThothError;
+}
+
 namespace Thoth::Http {
-    struct ExchangeError;
 
     template<WritableBodyConcept Body>
     auto GetInserterIterator(Body& body);
@@ -24,13 +27,13 @@ namespace Thoth::Http {
 
         template<class = void>
             requires std::same_as<Body, std::string>
-        [[nodiscard]] std::expected<NJson::Json, ExchangeError> AsJson() const;
+        [[nodiscard]] std::expected<NJson::Json, ThothError> AsJson() const;
 
         //! @brief Returns if the response is 2XX.
         [[nodiscard]] bool Successful() const;
 
 
-        static std::expected<Response, ExchangeError> EnsureSuccess(Response&& response);
+        static std::expected<Response, ThothError> EnsureSuccess(Response&& response);
 
         // template<>
         // static std::expected<Response, Response> SplitResult();

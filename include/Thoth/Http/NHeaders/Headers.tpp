@@ -2,7 +2,9 @@
 #include <algorithm>
 #include <bitset>
 #include <functional>
+#include <limits>
 #include <ranges>
+
 #include <Hermes/Utils/UntilMatch.hpp>
 
 #include <Thoth/Http/NHeaders/Proxy/ValueProxy.hpp>
@@ -12,7 +14,7 @@
 namespace Thoth::Http {
     // TODO: Reinforce this constraint
     template<std::ranges::input_range R>
-    WebResult<Headers> Headers::Parse(R& headers, const size_t maxHeadersLength) {
+    WebResult<Headers> Headers::Parse(R&& headers, const size_t maxHeadersLength) {
         namespace rg = std::ranges;
         namespace vs = std::views;
         using std::string_view;
@@ -24,7 +26,7 @@ namespace Thoth::Http {
                 return c - 'A' + 'a';
             return c;
         } };
-        constexpr auto isCharAllowed{ [](const char c) -> bool {
+        constexpr auto isCharAllowed{ [](const unsigned char c) -> bool {
             constexpr auto allowedChars{ std::invoke([] {
                 std::bitset<256> res{};
 
@@ -43,43 +45,58 @@ namespace Thoth::Http {
 
         constexpr string_view delimiter { "\r\n" };
 
-        auto headersView{ std::invoke([&] mutable {
-            if constexpr (std::constructible_from<string_view, R>)
-                return string_view{ headers };
-            else
-                return std::forward<R>(headers);
-        }) };
+        string materializedHeaders;
+        string_view headersView;
+
+        if constexpr (std::constructible_from<string_view, R>) {
+            const string_view input{ headers };
+            if (input.size() > maxHeadersLength)
+                return std::unexpected{ StatusCodeEnum::ContentTooLarge };
+
+            headersView = input;
+        } else {
+            const auto boundedLength{
+                maxHeadersLength == std::numeric_limits<size_t>::max()
+                    ? maxHeadersLength
+                    : maxHeadersLength + 1
+            };
+
+            materializedHeaders = std::forward<R>(headers)
+                    | vs::take(boundedLength)
+                    | rg::to<string>();
+
+            if (materializedHeaders.size() > maxHeadersLength)
+                return std::unexpected{ StatusCodeEnum::ContentTooLarge };
+
+            headersView = materializedHeaders;
+        }
 
         Headers res;
 
-        while (true) {
-            if (headersView.begin() == headersView.end())
-                break;
-
+        while (!headersView.empty()) {
             auto headerRaw{ headersView | Hermes::Utils::ExclusiveUntilMatch(delimiter) };
+            string headerLine{ headerRaw | rg::to<string>() };
+            const auto colon{ headerLine.find(':') };
 
-            string headerKey{ headerRaw | vs::take_while(
-                    [](const char c) { return c != ':'; }) | rg::to<string>() };
-            ++headerRaw.begin();
-            string headerVal{ headerRaw | vs::drop_while(
-                    [](const char c) { return c == ' '; }) | rg::to<string>() };
+            if (colon == string::npos)
+                return std::unexpected{ StatusCodeEnum::BadRequest };
 
+            string headerKey{ headerLine.substr(0, colon) };
+            string headerVal{ headerLine.substr(colon + 1) };
 
-            if constexpr (std::constructible_from<string_view, R>) {
-                auto broPleaseWhereIsMy_to_input_itsAlready2ndQuarterOf2026{
-                    headersView | Hermes::Utils::InclusiveUntilMatch(delimiter)
-                };
-
-                headersView.remove_prefix(rg::distance(broPleaseWhereIsMy_to_input_itsAlready2ndQuarterOf2026));
-            }
-
+            auto consumedHeader{
+                headersView | Hermes::Utils::InclusiveUntilMatch(delimiter)
+            };
+            headersView.remove_prefix(rg::distance(consumedHeader));
 
             while (!headerKey.empty() && headerKey.back() == ' ')
                 headerKey.pop_back();
 
+            while (!headerVal.empty() && headerVal.front() == ' ')
+                headerVal.erase(headerVal.begin());
+
             while (!headerVal.empty() && headerVal.back() == ' ')
                 headerVal.pop_back();
-
 
             if (headerKey.empty() || !rg::all_of(headerKey, isCharAllowed))
                 return std::unexpected{ StatusCodeEnum::BadRequest };

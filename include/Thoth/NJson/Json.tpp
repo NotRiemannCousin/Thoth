@@ -2,12 +2,12 @@
 #include <format>
 #include <ranges>
 
-#include <Thoth/Http/ExchangeError.hpp>
+#include <Thoth/ThothError.hpp>
 #include <Thoth/Utils/LastMatchVariant.hpp>
 #include <Hermes/Utils/Overloads.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
 
-#include "Thoth/String/Utils.hpp"
+#include <Thoth/String/Utils.hpp>
 
 // TODO: FUTURE: Encapsulate loops for array and objects in JsonUtil? also a nested find (e.g. (json, "map", "continents", "countries"))?
 
@@ -101,8 +101,8 @@ namespace Thoth::NJson {
     // even with std::optional<T*>, will I still need to use T* because of expected? aff, hard life
 
 #define ERROR \
-    std::unexpected{ Http::ExchangeError{ Http::JsonWrongTypeError{ \
-        Http::JsonWrongTypeError::IndexOf<T>, m_value.index() } } }
+    std::unexpected{ ThothError{ JsonWrongTypeError{          \
+        JsonWrongTypeError::IndexOf<T>, m_value.index() } } } \
 
 #pragma endregion
 
@@ -137,7 +137,7 @@ namespace Thoth::NJson {
 #pragma region EnsureOrError
 
 #undef RETURN_TYPE
-#define RETURN_TYPE(RET) std::expected<RET, Http::ExchangeError>
+#define RETURN_TYPE(RET) std::expected<RET, ThothError>
 
     template<class T> RET_MUT Json::EnsureOrError() &      { CHECK_TYPE(&As<T>(), ERROR);          }
     template<class T> RET_MOV Json::EnsureOrError() &&     { CHECK_TYPE(MOV_FROM(As<T>()), ERROR); }
@@ -231,22 +231,22 @@ namespace Thoth::NJson {
     template<class Pred> requires std::predicate<Pred, Json>
     ExpRefValWrapper Json::SearchOrError(Pred &&pred) {
         RETURN_IF_MATCH(auto &obj, &obj);
-        return std::unexpected{ Http::ExchangeError{ Http::JsonSearchError{} } };
+        return ThothUnex{{  JsonSearchError{}  }};
     }
     template<class Pred> requires std::predicate<Pred, Json>
     ExpCRefValWrapper Json::SearchOrError(Pred &&pred) const {
         RETURN_IF_MATCH(auto &obj, &obj);
-        return std::unexpected{ Http::ExchangeError{ Http::JsonSearchError{} } };
+        return ThothUnex{{  JsonSearchError{}  }};
     }
     template<class Pred> requires std::predicate<Pred, Json>
     ExpValWrapper Json::SearchCopyOrError(Pred &&pred) const {
         RETURN_IF_MATCH(auto &obj, obj);
-        return std::unexpected{ Http::ExchangeError{ Http::JsonSearchError{} } };
+        return ThothUnex{{  JsonSearchError{}  }};
     }
     template<class Pred> requires std::predicate<Pred, Json>
     ExpValWrapper Json::SearchAndMoveOrError(Pred &&pred) && {
         RETURN_IF_MATCH(auto &obj, std::move(obj));
-        return std::unexpected{ Http::ExchangeError{ Http::JsonSearchError{} } };
+        return ThothUnex{{  JsonSearchError{}  }};
     }
 
 #pragma pop_macro("RETURN_IF_MATCH")

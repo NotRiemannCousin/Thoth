@@ -20,7 +20,7 @@ namespace Thoth::Http {
 		template<class T = std::string_view>
 			requires Hermes::ByteLike<std::ranges::range_value_t<T>>
 	                || (std::same_as<Body, std::string> && std::formattable<T, char>)
-		static std::expected<Request, ExchangeError> FromUrl(
+		static std::expected<Request, ThothError> FromUrl(
 			std::string_view url, T&& body = {}, Headers headers = Headers::DefaultHeaders());
 	};
 

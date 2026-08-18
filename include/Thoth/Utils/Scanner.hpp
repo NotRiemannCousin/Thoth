@@ -146,5 +146,4 @@ namespace Thoth::Utils {
     };
 
     static_assert(Serializable<std::monostate>);
-
 }
