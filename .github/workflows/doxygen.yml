@@ -16,8 +16,14 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y graphviz mscgen
+
+      - name: Install Doxygen 1.18
+        run: |
+          wget https://github.com/doxygen/doxygen/releases/download/Release_1_18_0/doxygen-1.18.0.linux.bin.tar.gz
+          tar -xzf doxygen-1.18.0.linux.bin.tar.gz
+          sudo mv doxygen-1.18.0/bin/doxygen /usr/local/bin/
 
       - name: Generate docs
         run: doxygen docs/doxygen/Doxyfile
