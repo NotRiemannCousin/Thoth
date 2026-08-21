@@ -1,10 +1,10 @@
 var _http_2_n_headers_2__base_8hpp =
 [
-    [ "HeaderKey", "_http_2_n_headers_2__base_8hpp.html#a8854f8d0964c3df83f254f22c62a8c0a", null ],
-    [ "HeaderKeyRef", "_http_2_n_headers_2__base_8hpp.html#a313440daf55066d19909d4a9b60ca31e", null ],
-    [ "HeaderPair", "_http_2_n_headers_2__base_8hpp.html#ad18c23d4601603e2cc9042962b484d25", null ],
-    [ "HeaderPairRef", "_http_2_n_headers_2__base_8hpp.html#a8217e3e781bce447f80e5fab3d2b7e01", null ],
-    [ "HeaderValue", "_http_2_n_headers_2__base_8hpp.html#ac8fec1b666df0ee86fd2062bebca6fed", null ],
-    [ "HeaderValueRef", "_http_2_n_headers_2__base_8hpp.html#aeca7b3978394ba0ac4cca91e3a42bd95", null ],
-    [ "MapType", "_http_2_n_headers_2__base_8hpp.html#ab11732724c2ec519aa611955d769991a", null ]
+    [ "Thoth::Http::NHeaders::HeaderKey", "namespace_thoth_1_1_http_1_1_n_headers.html#a04e303fc87d6ee3c715c2031258c1041", null ],
+    [ "Thoth::Http::NHeaders::HeaderKeyRef", "namespace_thoth_1_1_http_1_1_n_headers.html#ae14081803bc9dbc18b4cdb8423cf4dde", null ],
+    [ "Thoth::Http::NHeaders::HeaderPair", "namespace_thoth_1_1_http_1_1_n_headers.html#a157158ad7506ceb5ed9dabcdf1336646", null ],
+    [ "Thoth::Http::NHeaders::HeaderPairRef", "namespace_thoth_1_1_http_1_1_n_headers.html#a501d65e752cf1f989761307b587d7fef", null ],
+    [ "Thoth::Http::NHeaders::HeaderValue", "namespace_thoth_1_1_http_1_1_n_headers.html#a8c8f12cc12ea8446bc851983c1cb70eb", null ],
+    [ "Thoth::Http::NHeaders::HeaderValueRef", "namespace_thoth_1_1_http_1_1_n_headers.html#a52e8a508437046deb10ebc02454a1c52", null ],
+    [ "Thoth::Http::NHeaders::MapType", "namespace_thoth_1_1_http_1_1_n_headers.html#a0604b686b3c7aec9270a5551b82d9d1a", null ]
 ];

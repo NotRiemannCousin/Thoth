@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/Http/NHeaders/Proxy/MultiValueProxy.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_multi_value_proxy_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">MultiValueProxy.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_multi_value_proxy_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2_n_headers_2__base_8hpp.html">Thoth/Http/NHeaders/_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="_headers_8hpp.html">Thoth/Http/NHeaders/Headers.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2_n_headers_2_proxy_2__base_8hpp.html">Thoth/Http/NHeaders/Proxy/_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> IsConst, Utils::Serializable ...Ts&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">   23</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">MultiValueProxy</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6624f90926f81b4a5632a7623838292e">   24</a></span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6624f90926f81b4a5632a7623838292e">k_count</a>{ <span class="keyword">sizeof</span>...(Ts) };</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2">   25</a></span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2">k_single</a>{ <span class="keyword">sizeof</span>...(Ts) == 1 };</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Ts) &gt;= 1, <span class="stringliteral">&quot;At least 1 type must be provided.&quot;</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a58ea26f211d0849446af734bd7d877df">   29</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a58ea26f211d0849446af734bd7d877df">HeaderType</a>  = std::conditional_t&lt;IsConst, const Headers, Headers&gt;;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343">   30</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343">PatternType</a> = std::conditional_t&lt;k_single, std::string_view, std::array&lt;std::string_view, k_count&gt;&gt;;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#ifdef __cpp_pack_indexing</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>    = std::conditional_t&lt;<a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, Ts...[0], std::variant&lt;Ts...&gt;&gt;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// Lets go Microslop, where is my pack indexing?</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html#a1b2068ed2f863591e519f21734bbd296">   35</a></span>        <span class="keyword">template</span>&lt;<span class="keyword">class </span>F, <span class="keyword">class</span>...&gt; <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">First</a> { <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html#a1b2068ed2f863591e519f21734bbd296">Type</a> = F; };</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">   36</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>    = std::conditional_t&lt;<a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, <span class="keyword">typename</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">First</a>&lt;Ts...&gt;<a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6e4d49fe34b56133819ba585a7a7ae82">::Type</a>, std::variant&lt;Ts...&gt;&gt;;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6e4d49fe34b56133819ba585a7a7ae82">   39</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>         = std::vector&lt;ElemType&gt;;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a53373b399b6a464829c54d6eefee22ab">   40</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a53373b399b6a464829c54d6eefee22ab">ValueType</a>    = std::conditional_t&lt;IsConst, const HeaderPair*, HeaderPair*&gt;;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a04cfccfec8d320a740b92bc1d2080bb6">   41</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a04cfccfec8d320a740b92bc1d2080bb6">ValuesType</a>   = std::vector&lt;ValueType&gt;;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">   43</a></span>        <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">MultiValueProxy</a>(<a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">MultiValueProxy</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ad4dc974312a9ab60a0c1a8b088519088">   44</a></span>        <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ad4dc974312a9ab60a0c1a8b088519088">MultiValueProxy</a>(<span class="keyword">const</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">MultiValueProxy</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab15b2d8c3ecb9c4ebe17e61da7d041df">   47</a></span>        <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab15b2d8c3ecb9c4ebe17e61da7d041df">MultiValueProxy</a>(std::string_view key, <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a58ea26f211d0849446af734bd7d877df">HeaderType</a>&amp; headers, <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343">PatternType</a> inPattern = {});</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a1c7475f4eb2f7dd285d58979e81d7dc7">   51</a></span>        std::optional&lt;Type&gt; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a1c7475f4eb2f7dd285d58979e81d7dc7">GetAsOpt</a>() &amp;&amp;;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#afdbe2718453e7b24f5df163c2edce932">   55</a></span>        std::expected&lt;Type, HeaderErrorEnum&gt; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#afdbe2718453e7b24f5df163c2edce932">Get</a>() &amp;&amp;;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a2f97984dde70a9457b12582f29627604">   60</a></span>        std::expected&lt;Type, InvalidHeaderFormat&gt; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a2f97984dde70a9457b12582f29627604">GetWithDefault</a>(<a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> defaultValue) &amp;&amp;;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keyword">template</span>&lt;std::ranges::range R&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aec06cdc612276ce5b4eb8c87fd1df495">   64</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aec06cdc612276ce5b4eb8c87fd1df495">operator=</a>(R&amp;&amp; newValue) &amp;&amp;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keyword">requires</span> (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">template</span>&lt;std::ranges::range R&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6c1060a55dd4bffcc17e493ea9815853">   69</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6c1060a55dd4bffcc17e493ea9815853">Set</a>(R&amp;&amp; newValue) &amp;&amp;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keyword">requires</span> (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a515ce7f3856813e0acdff365cf8f3867">   74</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a515ce7f3856813e0acdff365cf8f3867">Add</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&amp; newItem) &amp;&amp;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keyword">requires</span> (!IsConst);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> = <span class="keywordtype">void</span>&gt;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aee857ca9c1f1c4a96ed2e1950ee3e9b2">   80</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aee857ca9c1f1c4a96ed2e1950ee3e9b2">TrySet</a>(std::string_view newValue) &amp;&amp;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keyword">requires</span> (!IsConst);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        [[nodiscard]] <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a04cfccfec8d320a740b92bc1d2080bb6">ValuesType</a> GetValues() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343">PatternType</a> m_inPattern;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">const</span> std::string_view m_key;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a58ea26f211d0849446af734bd7d877df">HeaderType</a>&amp; m_headers;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    };</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#include &lt;Thoth/Http/NHeaders/Proxy/MultiValueProxy.tpp&gt;</span></div>
+<div class="ttc" id="a_headers_8hpp_html"><div class="ttname"><a href="_headers_8hpp.html">Headers.hpp</a></div></div>
+<div class="ttc" id="a_http_2_n_headers_2__base_8hpp_html"><div class="ttname"><a href="_http_2_n_headers_2__base_8hpp.html">_base.hpp</a></div></div>
+<div class="ttc" id="a_http_2_n_headers_2_proxy_2__base_8hpp_html"><div class="ttname"><a href="_http_2_n_headers_2_proxy_2__base_8hpp.html">_base.hpp</a></div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a></div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_headers_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></div><div class="ttdoc">This class stores the headers from HTTP.</div><div class="ttdef"><b>Definition</b> Headers.hpp:40</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">Thoth::Http::NHeaders::MultiValueProxy::First</a></div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:35</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first_html_a1b2068ed2f863591e519f21734bbd296"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html#a1b2068ed2f863591e519f21734bbd296">Thoth::Http::NHeaders::MultiValueProxy::First::Type</a></div><div class="ttdeci">F Type</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:35</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a04cfccfec8d320a740b92bc1d2080bb6"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a04cfccfec8d320a740b92bc1d2080bb6">Thoth::Http::NHeaders::MultiValueProxy::ValuesType</a></div><div class="ttdeci">std::vector&lt; ValueType &gt; ValuesType</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:41</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a0a8be0a09dcd50a6df248d0114f099bf"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a0a8be0a09dcd50a6df248d0114f099bf">Thoth::Http::NHeaders::MultiValueProxy::ElemType</a></div><div class="ttdeci">std::conditional_t&lt; k_single, typename First&lt; Ts... &gt;::Type, std::variant&lt; Ts... &gt; &gt; ElemType</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:36</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a1c7475f4eb2f7dd285d58979e81d7dc7"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a1c7475f4eb2f7dd285d58979e81d7dc7">Thoth::Http::NHeaders::MultiValueProxy::GetAsOpt</a></div><div class="ttdeci">std::optional&lt; Type &gt; GetAsOpt() &amp;&amp;</div><div class="ttdoc">Parses all values, returning no value when the header is absent or invalid.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a201500d69283ff004d2b84a9fecf0343"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343">Thoth::Http::NHeaders::MultiValueProxy::PatternType</a></div><div class="ttdeci">std::conditional_t&lt; k_single, std::string_view, std::array&lt; std::string_view, k_count &gt; &gt; PatternType</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:30</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a2f97984dde70a9457b12582f29627604"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a2f97984dde70a9457b12582f29627604">Thoth::Http::NHeaders::MultiValueProxy::GetWithDefault</a></div><div class="ttdeci">std::expected&lt; Type, InvalidHeaderFormat &gt; GetWithDefault(Type defaultValue) &amp;&amp;</div><div class="ttdoc">Parses all values, using defaultValue when the header is absent or empty.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a515ce7f3856813e0acdff365cf8f3867"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a515ce7f3856813e0acdff365cf8f3867">Thoth::Http::NHeaders::MultiValueProxy::Add</a></div><div class="ttdeci">void Add(const ElemType &amp;newItem) &amp;&amp;</div><div class="ttdoc">Adds one value to the header using the container&#39;s merge policy.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a53373b399b6a464829c54d6eefee22ab"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a53373b399b6a464829c54d6eefee22ab">Thoth::Http::NHeaders::MultiValueProxy::ValueType</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, const HeaderPair *, HeaderPair * &gt; ValueType</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:40</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a536236f8045fc94e973e0fe216e74bb2"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2">Thoth::Http::NHeaders::MultiValueProxy::k_single</a></div><div class="ttdeci">static constexpr bool k_single</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:25</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a58ea26f211d0849446af734bd7d877df"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a58ea26f211d0849446af734bd7d877df">Thoth::Http::NHeaders::MultiValueProxy::HeaderType</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, const Headers, Headers &gt; HeaderType</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:29</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a6624f90926f81b4a5632a7623838292e"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6624f90926f81b4a5632a7623838292e">Thoth::Http::NHeaders::MultiValueProxy::k_count</a></div><div class="ttdeci">static constexpr std::size_t k_count</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:24</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a6c1060a55dd4bffcc17e493ea9815853"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6c1060a55dd4bffcc17e493ea9815853">Thoth::Http::NHeaders::MultiValueProxy::Set</a></div><div class="ttdeci">void Set(R &amp;&amp;newValue) &amp;&amp;</div><div class="ttdoc">Replaces the header with the serialized values from newValue.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_a6e4d49fe34b56133819ba585a7a7ae82"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6e4d49fe34b56133819ba585a7a7ae82">Thoth::Http::NHeaders::MultiValueProxy::Type</a></div><div class="ttdeci">std::vector&lt; ElemType &gt; Type</div><div class="ttdef"><b>Definition</b> MultiValueProxy.hpp:39</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_ab15b2d8c3ecb9c4ebe17e61da7d041df"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab15b2d8c3ecb9c4ebe17e61da7d041df">Thoth::Http::NHeaders::MultiValueProxy::MultiValueProxy</a></div><div class="ttdeci">MultiValueProxy(std::string_view key, HeaderType &amp;headers, PatternType inPattern={})</div><div class="ttdoc">Creates a proxy for key in headers.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_ab7ade253c75307118b112c517a36ec7f"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ab7ade253c75307118b112c517a36ec7f">Thoth::Http::NHeaders::MultiValueProxy::MultiValueProxy</a></div><div class="ttdeci">MultiValueProxy(MultiValueProxy &amp;&amp;)=delete</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_ad4dc974312a9ab60a0c1a8b088519088"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#ad4dc974312a9ab60a0c1a8b088519088">Thoth::Http::NHeaders::MultiValueProxy::MultiValueProxy</a></div><div class="ttdeci">MultiValueProxy(const MultiValueProxy &amp;)=delete</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_aec06cdc612276ce5b4eb8c87fd1df495"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aec06cdc612276ce5b4eb8c87fd1df495">Thoth::Http::NHeaders::MultiValueProxy::operator=</a></div><div class="ttdeci">void operator=(R &amp;&amp;newValue) &amp;&amp;</div><div class="ttdoc">Replaces the header with the serialized values from newValue.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_aee857ca9c1f1c4a96ed2e1950ee3e9b2"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#aee857ca9c1f1c4a96ed2e1950ee3e9b2">Thoth::Http::NHeaders::MultiValueProxy::TrySet</a></div><div class="ttdeci">bool TrySet(std::string_view newValue) &amp;&amp;</div><div class="ttdoc">Parses and replaces the header from a raw value.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_html_afdbe2718453e7b24f5df163c2edce932"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#afdbe2718453e7b24f5df163c2edce932">Thoth::Http::NHeaders::MultiValueProxy::Get</a></div><div class="ttdeci">std::expected&lt; Type, HeaderErrorEnum &gt; Get() &amp;&amp;</div><div class="ttdoc">Parses all values and reports absence, emptiness or invalid format.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_608161aafd2af5389d03134ffea49c9f.html">NHeaders</a></li><li class="navelem"><a href="dir_dd71f3166bacf351e5f3385b2e578806.html">Proxy</a></li><li class="navelem"><a href="_multi_value_proxy_8hpp.html">MultiValueProxy.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

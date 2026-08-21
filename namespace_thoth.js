@@ -7,8 +7,8 @@ var namespace_thoth =
     [ "Utils", "namespace_thoth_1_1_utils.html", "namespace_thoth_1_1_utils" ],
     [ "GenericError", "struct_thoth_1_1_generic_error.html", "struct_thoth_1_1_generic_error" ],
     [ "ThothError", "struct_thoth_1_1_thoth_error.html", "struct_thoth_1_1_thoth_error" ],
-    [ "ThothErrorBase", "namespace_thoth.html#aec71d5240abafaef3b97c295d5a24289", null ],
-    [ "ThothResult", "namespace_thoth.html#a2f7ced65be40e844cf2799c6c2273691", null ],
-    [ "ThothResultOper", "namespace_thoth.html#a79bec3eedf79c623fc15c825118d8640", null ],
-    [ "ThothUnex", "namespace_thoth.html#ad9b0db7cd53f3544cb739adc6aa4be9d", null ]
+    [ "ThothErrorBase", "namespace_thoth.html#acd19c37c5b414778713d87a3cefb655b", null ],
+    [ "ThothResult", "namespace_thoth.html#a4c132a13d16342b33acb2e52b38ebc8d", null ],
+    [ "ThothResultOper", "namespace_thoth.html#ac7b6f36412f832a8ac0a8fad687ae7df", null ],
+    [ "ThothUnex", "namespace_thoth.html#ad884980932a442517ed1f3d0ccbc941f", null ]
 ];

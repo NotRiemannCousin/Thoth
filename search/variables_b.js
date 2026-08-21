@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['options_0',['options',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html#a692f1c4c525c22488aacf25060321e9e',1,'Thoth::Http::NHeaders::MimeType']]]
+  ['name_0',['name',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#a176df6befc26dde3661c08934eb35540',1,'Thoth::Http::NHeaders::Cookie']]]
 ];

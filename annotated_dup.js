@@ -1,7 +1,7 @@
 var annotated_dup =
 [
     [ "std", null, [
-      [ "formatter< std::monostate >", "structstd_1_1formatter_3_01std_1_1monostate_01_4.html", "structstd_1_1formatter_3_01std_1_1monostate_01_4" ]
+      [ "formatter&lt; std::monostate &gt;", "structstd_1_1formatter_3_01std_1_1monostate_01_4.html", "structstd_1_1formatter_3_01std_1_1monostate_01_4" ]
     ] ],
     [ "Thoth", "namespace_thoth.html", [
       [ "Dsa", "namespace_thoth_1_1_dsa.html", [
@@ -18,15 +18,22 @@ var annotated_dup =
           [ "ParseStage", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_stage" ]
         ] ],
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
+          [ "Challenge", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge" ],
+          [ "Cookie", "struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_cookie" ],
+          [ "DispositionTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header" ],
           [ "EntityTag", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag" ],
           [ "InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
+          [ "LinkHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_link_header" ],
           [ "ListProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy" ],
-          [ "MimeType", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type" ],
+          [ "MimeTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header" ],
           [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
+          [ "MultiValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy" ],
+          [ "Parameterized", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized" ],
           [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
           [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
-          [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ]
+          [ "ValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy" ],
+          [ "Weighted", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted" ]
         ] ],
         [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
         [ "AuthorityView", "struct_thoth_1_1_http_1_1_authority_view.html", "struct_thoth_1_1_http_1_1_authority_view" ],
@@ -75,11 +82,11 @@ var annotated_dup =
       ] ],
       [ "Utils", "namespace_thoth_1_1_utils.html", [
         [ "Scanner", "struct_thoth_1_1_utils_1_1_scanner.html", "struct_thoth_1_1_utils_1_1_scanner" ],
-        [ "Scanner< std::chrono::duration< Ped, Ratio > >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
-        [ "Scanner< std::chrono::utc_clock::time_point >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
-        [ "Scanner< std::monostate >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html", null ],
-        [ "Scanner< std::string >", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
-        [ "Scanner< T >", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4" ],
+        [ "Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4" ],
+        [ "Scanner&lt; std::chrono::utc_clock::time_point &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4" ],
+        [ "Scanner&lt; std::monostate &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4" ],
+        [ "Scanner&lt; std::string &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4" ],
+        [ "Scanner&lt; T &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4" ],
         [ "SharedInputView", "struct_thoth_1_1_utils_1_1_shared_input_view.html", "struct_thoth_1_1_utils_1_1_shared_input_view" ]
       ] ],
       [ "GenericError", "struct_thoth_1_1_generic_error.html", "struct_thoth_1_1_generic_error" ],

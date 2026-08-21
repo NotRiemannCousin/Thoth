@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['patterntype_0',['patterntype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a7f43820f8f1dfa9c5b25e5b843d1e7b6',1,'Thoth::Http::NHeaders::ListProxy::PatternType'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a83751af183930fbb341aef12452a0a88',1,'Thoth::Http::NHeaders::ValueProxy::PatternType']]],
-  ['postbinrequest_1',['PostBinRequest',['../namespace_thoth_1_1_http.html#a768f872667ab7f23ddfb16c31e8485d0',1,'Thoth::Http']]],
-  ['postbinresponse_2',['PostBinResponse',['../namespace_thoth_1_1_http.html#a072f6f1000bbb673f468633bb6453889',1,'Thoth::Http']]],
-  ['postfilebinresponse_3',['PostFileBinResponse',['../namespace_thoth_1_1_http.html#a6f93d303e332e1f93b8ca761163a2ca0',1,'Thoth::Http']]],
-  ['postfileresponse_4',['PostFileResponse',['../namespace_thoth_1_1_http.html#a4946cfe487bc759632539e71e043b055',1,'Thoth::Http']]],
-  ['postrequest_5',['PostRequest',['../namespace_thoth_1_1_http.html#af1b32b79eda86ad7068fea4156a55f00',1,'Thoth::Http']]],
-  ['postresponse_6',['PostResponse',['../namespace_thoth_1_1_http.html#a9d0ffa4a5170ca15ae1ac3f130b7dede',1,'Thoth::Http']]],
-  ['predicatepointer_7',['PredicatePointer',['../struct_thoth_1_1_n_json_1_1_json.html#ae7eeb915ba5e7f2b445e5c3857bbfdff',1,'Thoth::NJson::Json']]]
+  ['object_0',['Object',['../namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978',1,'Thoth::NJson']]],
+  ['optcrefvalwrapper_1',['OptCRefValWrapper',['../namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb',1,'Thoth::NJson']]],
+  ['optcvalwrapper_2',['OptCValWrapper',['../namespace_thoth_1_1_n_json.html#a2ecf60bd8015f46f5a46c5a696c8c789',1,'Thoth::NJson']]],
+  ['optrefvalwrapper_3',['OptRefValWrapper',['../namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8',1,'Thoth::NJson']]],
+  ['optvalwrapper_4',['OptValWrapper',['../namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8',1,'Thoth::NJson']]],
+  ['owntype_5',['OwnType',['../struct_thoth_1_1_dsa_1_1_cow.html#a02d916000dcc9a47883580b3e39842d4',1,'Thoth::Dsa::Cow']]]
 ];

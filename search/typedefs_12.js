@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['textfileoutputrange_0',['TextFileOutputRange',['../namespace_thoth_1_1_dsa.html#a6288619c1e8f23eaee72deaa84e1d184',1,'Thoth::Dsa']]],
-  ['thotherrorbase_1',['ThothErrorBase',['../namespace_thoth.html#aec71d5240abafaef3b97c295d5a24289',1,'Thoth']]],
-  ['thothresult_2',['ThothResult',['../namespace_thoth.html#a2f7ced65be40e844cf2799c6c2273691',1,'Thoth']]],
-  ['thothresultoper_3',['ThothResultOper',['../namespace_thoth.html#a79bec3eedf79c623fc15c825118d8640',1,'Thoth']]],
-  ['thothunex_4',['ThothUnex',['../namespace_thoth.html#ad9b0db7cd53f3544cb739adc6aa4be9d',1,'Thoth']]],
-  ['type_5',['type',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy_1_1_first.html#a8ce8a54c7f4332471befb283189a1b06',1,'Thoth::Http::NHeaders::ListProxy::First::Type'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ada2e4f91c569442b2e54e630caa593be',1,'Thoth::Http::NHeaders::ListProxy::Type'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy_1_1_first.html#a84ff05fb2463486e86bb8366c3e83cc2',1,'Thoth::Http::NHeaders::ValueProxy::First::Type'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a4f34d45059f0553ece30ab8e7d36a4d2',1,'Thoth::Http::NHeaders::ValueProxy::Type']]]
+  ['size_5ftype_0',['size_type',['../struct_thoth_1_1_dsa_1_1_linear_map.html#aa8e8d8e4b42e537869dc123f82b293ff',1,'Thoth::Dsa::LinearMap']]],
+  ['socketptr_1',['SocketPtr',['../struct_thoth_1_1_http_1_1_client.html#af0b124137e0db97296ceb0ec2f82b208',1,'Thoth::Http::Client']]],
+  ['sockettype_2',['SocketType',['../struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97',1,'Thoth::Http::ClientConnection::SocketType'],['../struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8',1,'Thoth::Http::ServerConnection::SocketType']]],
+  ['string_3',['String',['../namespace_thoth_1_1_n_json.html#a8cc73e4a9a5d840836c4d2dd35d94913',1,'Thoth::NJson']]],
+  ['stringviewtype_4',['StringViewType',['../struct_thoth_1_1_string_1_1_unicode_viewer.html#a54e54e7f07e82fd962b47836d3c09265',1,'Thoth::String::UnicodeViewer']]]
 ];

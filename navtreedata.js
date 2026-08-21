@@ -59,15 +59,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_accept_encoding_enum_8hpp.html",
-"_request_8hpp.html#a8519e3b7adb92d999d0dce8ad36d63a2",
-"functions_i.html",
-"namespace_thoth_1_1_utils.html#a2bf1f6eebfe8763838712e850a7d31d5",
-"struct_thoth_1_1_http_1_1_authority_view.html#a5464916ca78543c314ff3e66fd4c1bb6",
-"struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#af416f240add7aa091a3dfedc7cadedbe",
-"struct_thoth_1_1_http_1_1_response_headers.html#a1ea02076638cb756bc2fccb56d0a6e2e",
-"struct_thoth_1_1_n_json_1_1_json.html#ac9e277cbc57e4ecdf34a8bb1a4dfa3e3",
-"struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html#a761f875c17eea71d778e5ecd4f2539ac"
+"functions_vars.html",
+"namespace_thoth_1_1_utils.html#a24b3eeb3011c910195246b4d2d55934b",
+"struct_thoth_1_1_http_1_1_authority_view.html#a47190daa9b867afc9f224a916d802392",
+"struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#ac22a3c62dbad60b98eb06e7b3dbafd3a",
+"struct_thoth_1_1_http_1_1_query_params.html#a9d1713e367204c28fab731980ad3c02c",
+"struct_thoth_1_1_http_1_1_url.html#ade226360c26cb3a996dc13e73b0c65ad",
+"struct_thoth_1_1_n_json_1_1_json_object.html#ad245291592da02b7661adeded6575c39"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

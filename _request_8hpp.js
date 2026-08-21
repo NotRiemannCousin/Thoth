@@ -1,8 +1,8 @@
 var _request_8hpp =
 [
-    [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
-    [ "GetBinRequest", "_request_8hpp.html#a8519e3b7adb92d999d0dce8ad36d63a2", null ],
-    [ "GetRequest", "_request_8hpp.html#ac372604fd377e070576be6639ec2c300", null ],
-    [ "PostBinRequest", "_request_8hpp.html#a768f872667ab7f23ddfb16c31e8485d0", null ],
-    [ "PostRequest", "_request_8hpp.html#af1b32b79eda86ad7068fea4156a55f00", null ]
+    [ "Thoth::Http::Request&lt; Method, Body &gt;", "struct_thoth_1_1_http_1_1_request.html", "struct_thoth_1_1_http_1_1_request" ],
+    [ "Thoth::Http::GetBinRequest", "namespace_thoth_1_1_http.html#a953aa84d429692d59ede836e38f2d90c", null ],
+    [ "Thoth::Http::GetRequest", "namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd", null ],
+    [ "Thoth::Http::PostBinRequest", "namespace_thoth_1_1_http.html#a17a1d35cbb78e22310bd4bf478581063", null ],
+    [ "Thoth::Http::PostRequest", "namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf", null ]
 ];

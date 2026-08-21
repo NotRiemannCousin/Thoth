@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['querykey_0',['QueryKey',['../struct_thoth_1_1_http_1_1_query_params.html#a442c169f5b5e0a4c2ac840ed4794f869',1,'Thoth::Http::QueryParams']]],
-  ['querykeyref_1',['QueryKeyRef',['../struct_thoth_1_1_http_1_1_query_params.html#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e',1,'Thoth::Http::QueryParams']]],
-  ['querypair_2',['QueryPair',['../struct_thoth_1_1_http_1_1_query_params.html#a2d0b58041cd0868e9c0d4110aced1b57',1,'Thoth::Http::QueryParams']]],
-  ['queryvalue_3',['QueryValue',['../struct_thoth_1_1_http_1_1_query_params.html#a0dc0303dcc318126de3d207349bae5a5',1,'Thoth::Http::QueryParams']]],
-  ['queryvalueref_4',['QueryValueRef',['../struct_thoth_1_1_http_1_1_query_params.html#a1e6e106cc156b28586c3f22877105e15',1,'Thoth::Http::QueryParams']]],
-  ['queryvalues_5',['QueryValues',['../struct_thoth_1_1_http_1_1_query_params.html#a84daad9b3d157918711c0d70003c473f',1,'Thoth::Http::QueryParams']]]
+  ['patterntype_0',['PatternType',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a5076876d598122fdbc25a97d567b6192',1,'Thoth::Http::NHeaders::ListProxy::PatternType'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343',1,'Thoth::Http::NHeaders::MultiValueProxy::PatternType'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#aa6d08614bfa2eed6153339b0fbc89b4e',1,'Thoth::Http::NHeaders::ValueProxy::PatternType']]],
+  ['postbinrequest_1',['PostBinRequest',['../namespace_thoth_1_1_http.html#a17a1d35cbb78e22310bd4bf478581063',1,'Thoth::Http']]],
+  ['postbinresponse_2',['PostBinResponse',['../namespace_thoth_1_1_http.html#a0fc5aead40764f2e0eb5becb8c78fd85',1,'Thoth::Http']]],
+  ['postfilebinresponse_3',['PostFileBinResponse',['../namespace_thoth_1_1_http.html#a7eaf9c34d8b4b60a674c811cdf6138ea',1,'Thoth::Http']]],
+  ['postfileresponse_4',['PostFileResponse',['../namespace_thoth_1_1_http.html#abbc435da6152754f918ab209154301a7',1,'Thoth::Http']]],
+  ['postrequest_5',['PostRequest',['../namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf',1,'Thoth::Http']]],
+  ['postresponse_6',['PostResponse',['../namespace_thoth_1_1_http.html#a406725da08567057c843e7aca9772dd7',1,'Thoth::Http']]],
+  ['predicatepointer_7',['PredicatePointer',['../struct_thoth_1_1_n_json_1_1_json.html#ae7eeb915ba5e7f2b445e5c3857bbfdff',1,'Thoth::NJson::Json']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['unknownchar_0',['UnknownChar',['../namespace_thoth_1_1_string.html#ab59da787e3f16012202445597fa7bc3c',1,'Thoth::String']]],
-  ['url_1',['url',['../struct_thoth_1_1_http_1_1_request_head.html#a24becb574a68a2a3ff3a38f44d443a20',1,'Thoth::Http::RequestHead']]],
-  ['userinfo_2',['userinfo',['../struct_thoth_1_1_http_1_1_authority.html#aa33e6522ec0c5312b87918c2c1c5df77',1,'Thoth::Http::Authority::userinfo'],['../struct_thoth_1_1_http_1_1_authority_view.html#a0a0d4dcdbfc772a9ab6c0feb36ba7ed3',1,'Thoth::Http::AuthorityView::userinfo']]]
+  ['tag_0',['tag',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html#af75caf77b11e3b50845c281c876a1f3e',1,'Thoth::Http::NHeaders::EntityTag']]],
+  ['texthtml_1',['textHtml',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a6a1424fde08481565e28bd94f5213a86',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['textplain_2',['textPlain',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a4e1b1847ff2729cec2942a4ac9e23ce4',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['type_3',['type',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html#a2b742e0633dbaea9f8f5e9756d1cba07',1,'Thoth::Http::NHeaders::MimeTypeHeader::type'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html#a1374ee9d2818b865abdfa68a5729ff05',1,'Thoth::Http::NHeaders::DispositionTypeHeader::type']]]
 ];

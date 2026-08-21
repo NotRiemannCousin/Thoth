@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['size_5ftype_0',['size_type',['../struct_thoth_1_1_dsa_1_1_linear_map.html#aa8e8d8e4b42e537869dc123f82b293ff',1,'Thoth::Dsa::LinearMap']]],
-  ['socketptr_1',['SocketPtr',['../struct_thoth_1_1_http_1_1_client.html#af0b124137e0db97296ceb0ec2f82b208',1,'Thoth::Http::Client']]],
-  ['sockettype_2',['sockettype',['../struct_thoth_1_1_http_1_1_client_connection.html#a0383c687a4625db13171bf8886c7ac97',1,'Thoth::Http::ClientConnection::SocketType'],['../struct_thoth_1_1_http_1_1_server_connection.html#a303b5f885a9a01964fbac23c40118ad8',1,'Thoth::Http::ServerConnection::SocketType']]],
-  ['string_3',['String',['../namespace_thoth_1_1_n_json.html#a09693e413ce01b74bf25059d3508aa4d',1,'Thoth::NJson']]],
-  ['stringviewtype_4',['StringViewType',['../struct_thoth_1_1_string_1_1_unicode_viewer.html#a54e54e7f07e82fd962b47836d3c09265',1,'Thoth::String::UnicodeViewer']]]
+  ['range_0',['Range',['../namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00',1,'Thoth::Http::NHeaders']]],
+  ['rangeidx_1',['RangeIdx',['../struct_thoth_1_1_http_1_1_url.html#a23414bf47c7693e434b85be51e65895d',1,'Thoth::Http::Url']]],
+  ['reftype_2',['RefType',['../struct_thoth_1_1_dsa_1_1_cow.html#ad1747aa346267fa00570de7fcbf66f21',1,'Thoth::Dsa::Cow']]],
+  ['refvalwrapper_3',['RefValWrapper',['../namespace_thoth_1_1_n_json.html#a98685e1be27c4ed0dddeab78245fdf7b',1,'Thoth::NJson']]],
+  ['ritertype_4',['RIterType',['../struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579',1,'Thoth::Http::Headers']]],
+  ['rune_5',['Rune',['../namespace_thoth_1_1_string.html#a862012f96e4f6605a17d7b2548ae3f7f',1,'Thoth::String']]]
 ];

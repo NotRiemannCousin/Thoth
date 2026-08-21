@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt; Struct Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html','','struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt; Struct Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Typed proxy for multiple header values.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_multi_value_proxy_8hpp_source.html">MultiValueProxy.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:First" id="r_First"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">First</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a58ea26f211d0849446af734bd7d877df" id="r_a58ea26f211d0849446af734bd7d877df"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a58ea26f211d0849446af734bd7d877df">HeaderType</a> = std::conditional_t&lt;IsConst, const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&gt;</td></tr>
+<tr class="memitem:a201500d69283ff004d2b84a9fecf0343" id="r_a201500d69283ff004d2b84a9fecf0343"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a201500d69283ff004d2b84a9fecf0343">PatternType</a> = std::conditional_t&lt;<a class="el" href="#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, std::string_view, std::array&lt;std::string_view, <a class="el" href="#a6624f90926f81b4a5632a7623838292e">k_count</a>&gt;&gt;</td></tr>
+<tr class="memitem:a0a8be0a09dcd50a6df248d0114f099bf" id="r_a0a8be0a09dcd50a6df248d0114f099bf"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a> = std::conditional_t&lt;<a class="el" href="#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, typename <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">First</a>&lt;Ts...&gt;<a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">::Type</a>, std::variant&lt;Ts...&gt;&gt;</td></tr>
+<tr class="memitem:a6e4d49fe34b56133819ba585a7a7ae82" id="r_a6e4d49fe34b56133819ba585a7a7ae82"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> = std::vector&lt;<a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;</td></tr>
+<tr class="memitem:a53373b399b6a464829c54d6eefee22ab" id="r_a53373b399b6a464829c54d6eefee22ab"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a53373b399b6a464829c54d6eefee22ab">ValueType</a> = std::conditional_t&lt;IsConst, const <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a157158ad7506ceb5ed9dabcdf1336646">HeaderPair</a>*, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a157158ad7506ceb5ed9dabcdf1336646">HeaderPair</a>*&gt;</td></tr>
+<tr class="memitem:a04cfccfec8d320a740b92bc1d2080bb6" id="r_a04cfccfec8d320a740b92bc1d2080bb6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a04cfccfec8d320a740b92bc1d2080bb6">ValuesType</a> = std::vector&lt;<a class="el" href="#a53373b399b6a464829c54d6eefee22ab">ValueType</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab7ade253c75307118b112c517a36ec7f" id="r_ab7ade253c75307118b112c517a36ec7f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab7ade253c75307118b112c517a36ec7f">MultiValueProxy</a> (MultiValueProxy &amp;&amp;)=delete</td></tr>
+<tr class="memitem:ad4dc974312a9ab60a0c1a8b088519088" id="r_ad4dc974312a9ab60a0c1a8b088519088"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad4dc974312a9ab60a0c1a8b088519088">MultiValueProxy</a> (const MultiValueProxy &amp;)=delete</td></tr>
+<tr class="memitem:ab15b2d8c3ecb9c4ebe17e61da7d041df" id="r_ab15b2d8c3ecb9c4ebe17e61da7d041df"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab15b2d8c3ecb9c4ebe17e61da7d041df">MultiValueProxy</a> (std::string_view key, <a class="el" href="#a58ea26f211d0849446af734bd7d877df">HeaderType</a> &amp;headers, <a class="el" href="#a201500d69283ff004d2b84a9fecf0343">PatternType</a> inPattern={})</td></tr>
+<tr class="memdesc:ab15b2d8c3ecb9c4ebe17e61da7d041df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a proxy for <span class="tt">key</span> in <span class="tt">headers</span>.  <br /></td></tr>
+<tr class="memitem:a1c7475f4eb2f7dd285d58979e81d7dc7" id="r_a1c7475f4eb2f7dd285d58979e81d7dc7"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1c7475f4eb2f7dd285d58979e81d7dc7">GetAsOpt</a> () &amp;&amp;</td></tr>
+<tr class="memdesc:a1c7475f4eb2f7dd285d58979e81d7dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all values, returning no value when the header is absent or invalid.  <br /></td></tr>
+<tr class="memitem:afdbe2718453e7b24f5df163c2edce932" id="r_afdbe2718453e7b24f5df163c2edce932"><td class="memItemLeft">std::expected&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#afdbe2718453e7b24f5df163c2edce932">Get</a> () &amp;&amp;</td></tr>
+<tr class="memdesc:afdbe2718453e7b24f5df163c2edce932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all values and reports absence, emptiness or invalid format.  <br /></td></tr>
+<tr class="memitem:a2f97984dde70a9457b12582f29627604" id="r_a2f97984dde70a9457b12582f29627604"><td class="memItemLeft">std::expected&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2f97984dde70a9457b12582f29627604">GetWithDefault</a> (<a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> defaultValue) &amp;&amp;</td></tr>
+<tr class="memdesc:a2f97984dde70a9457b12582f29627604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all values, using <span class="tt">defaultValue</span> when the header is absent or empty.  <br /></td></tr>
+<tr class="memitem:aec06cdc612276ce5b4eb8c87fd1df495" id="r_aec06cdc612276ce5b4eb8c87fd1df495"><td class="memTemplParams" colspan="2">template&lt;std::ranges::range R&gt; <br />
+requires (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;)</td></tr>
+<tr class="memitem:aec06cdc612276ce5b4eb8c87fd1df495 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aec06cdc612276ce5b4eb8c87fd1df495">operator=</a> (R &amp;&amp;newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:aec06cdc612276ce5b4eb8c87fd1df495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the header with the serialized values from <span class="tt">newValue</span>.  <br /></td></tr>
+<tr class="memitem:a6c1060a55dd4bffcc17e493ea9815853" id="r_a6c1060a55dd4bffcc17e493ea9815853"><td class="memTemplParams" colspan="2">template&lt;std::ranges::range R&gt; <br />
+requires (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;)</td></tr>
+<tr class="memitem:a6c1060a55dd4bffcc17e493ea9815853 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6c1060a55dd4bffcc17e493ea9815853">Set</a> (R &amp;&amp;newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:a6c1060a55dd4bffcc17e493ea9815853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the header with the serialized values from <span class="tt">newValue</span>.  <br /></td></tr>
+<tr class="memitem:a515ce7f3856813e0acdff365cf8f3867" id="r_a515ce7f3856813e0acdff365cf8f3867"><td class="memTemplParams" colspan="2">template&lt;class = void&gt; <br />
+requires (!IsConst)</td></tr>
+<tr class="memitem:a515ce7f3856813e0acdff365cf8f3867 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a515ce7f3856813e0acdff365cf8f3867">Add</a> (const <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a> &amp;newItem) &amp;&amp;</td></tr>
+<tr class="memdesc:a515ce7f3856813e0acdff365cf8f3867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds one value to the header using the container's merge policy.  <br /></td></tr>
+<tr class="memitem:aee857ca9c1f1c4a96ed2e1950ee3e9b2" id="r_aee857ca9c1f1c4a96ed2e1950ee3e9b2"><td class="memTemplParams" colspan="2">template&lt;class = void&gt; <br />
+requires (!IsConst)</td></tr>
+<tr class="memitem:aee857ca9c1f1c4a96ed2e1950ee3e9b2 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aee857ca9c1f1c4a96ed2e1950ee3e9b2">TrySet</a> (std::string_view newValue) &amp;&amp;</td></tr>
+<tr class="memdesc:aee857ca9c1f1c4a96ed2e1950ee3e9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses and replaces the header from a raw value.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a6624f90926f81b4a5632a7623838292e" id="r_a6624f90926f81b4a5632a7623838292e"><td class="memItemLeft">static constexpr std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#a6624f90926f81b4a5632a7623838292e">k_count</a> { sizeof...(Ts) }</td></tr>
+<tr class="memitem:a536236f8045fc94e973e0fe216e74bb2" id="r_a536236f8045fc94e973e0fe216e74bb2"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a536236f8045fc94e973e0fe216e74bb2">k_single</a> { sizeof...(Ts) == 1 }</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;bool IsConst, Utils::Serializable ... Ts&gt;<br />
+struct Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt;</div><p>Typed proxy for multiple header values. </p>
+<p>A <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html" title="Typed proxy for multiple header values.">MultiValueProxy</a></span> adapts one header field to a typed vector. The proxy itself is a short-lived accessor.</p>
+<dl class="section note"><dt>Note</dt><dd>Given that it can't be stored in any sense, it is intentionally not a <span class="tt">std::ranges::range</span>. Call <span class="tt"><a class="el" href="#afdbe2718453e7b24f5df163c2edce932" title="Parses all values and reports absence, emptiness or invalid format.">Get()</a></span> or <span class="tt"><a class="el" href="#a1c7475f4eb2f7dd285d58979e81d7dc7" title="Parses all values, returning no value when the header is absent or invalid.">GetAsOpt()</a></span> to materialize the parsed <span class="tt">std::vector</span>.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IsConst</td><td>Whether the proxy can modify its <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a></span> object. </td></tr>
+    <tr><td class="paramname">Ts</td><td>Serializable value types accepted by the multi-value proxy. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a0a8be0a09dcd50a6df248d0114f099bf" name="a0a8be0a09dcd50a6df248d0114f099bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8be0a09dcd50a6df248d0114f099bf">&#9670;&#160;</a></span>ElemType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::ElemType = std::conditional_t&lt;<a class="el" href="#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, typename <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html">First</a>&lt;Ts...&gt;<a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">::Type</a>, std::variant&lt;Ts...&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58ea26f211d0849446af734bd7d877df" name="a58ea26f211d0849446af734bd7d877df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58ea26f211d0849446af734bd7d877df">&#9670;&#160;</a></span>HeaderType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::HeaderType = std::conditional_t&lt;IsConst, const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>, <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a201500d69283ff004d2b84a9fecf0343" name="a201500d69283ff004d2b84a9fecf0343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201500d69283ff004d2b84a9fecf0343">&#9670;&#160;</a></span>PatternType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::PatternType = std::conditional_t&lt;<a class="el" href="#a536236f8045fc94e973e0fe216e74bb2">k_single</a>, std::string_view, std::array&lt;std::string_view, <a class="el" href="#a6624f90926f81b4a5632a7623838292e">k_count</a>&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e4d49fe34b56133819ba585a7a7ae82" name="a6e4d49fe34b56133819ba585a7a7ae82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e4d49fe34b56133819ba585a7a7ae82">&#9670;&#160;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::Type = std::vector&lt;<a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04cfccfec8d320a740b92bc1d2080bb6" name="a04cfccfec8d320a740b92bc1d2080bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04cfccfec8d320a740b92bc1d2080bb6">&#9670;&#160;</a></span>ValuesType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::ValuesType = std::vector&lt;<a class="el" href="#a53373b399b6a464829c54d6eefee22ab">ValueType</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a53373b399b6a464829c54d6eefee22ab" name="a53373b399b6a464829c54d6eefee22ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53373b399b6a464829c54d6eefee22ab">&#9670;&#160;</a></span>ValueType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::ValueType = std::conditional_t&lt;IsConst, const <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a157158ad7506ceb5ed9dabcdf1336646">HeaderPair</a>*, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a157158ad7506ceb5ed9dabcdf1336646">HeaderPair</a>*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab7ade253c75307118b112c517a36ec7f" name="ab7ade253c75307118b112c517a36ec7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7ade253c75307118b112c517a36ec7f">&#9670;&#160;</a></span>MultiValueProxy() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::MultiValueProxy </td>
+          <td>(</td>
+          <td class="paramtype">MultiValueProxy&lt; IsConst, Ts &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4dc974312a9ab60a0c1a8b088519088" name="ad4dc974312a9ab60a0c1a8b088519088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4dc974312a9ab60a0c1a8b088519088">&#9670;&#160;</a></span>MultiValueProxy() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::MultiValueProxy </td>
+          <td>(</td>
+          <td class="paramtype">const MultiValueProxy&lt; IsConst, Ts &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab15b2d8c3ecb9c4ebe17e61da7d041df" name="ab15b2d8c3ecb9c4ebe17e61da7d041df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab15b2d8c3ecb9c4ebe17e61da7d041df">&#9670;&#160;</a></span>MultiValueProxy() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::MultiValueProxy </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a58ea26f211d0849446af734bd7d877df">HeaderType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a201500d69283ff004d2b84a9fecf0343">PatternType</a></td>          <td class="paramname"><span class="paramname"><em>inPattern</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a proxy for <span class="tt">key</span> in <span class="tt">headers</span>. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a515ce7f3856813e0acdff365cf8f3867" name="a515ce7f3856813e0acdff365cf8f3867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515ce7f3856813e0acdff365cf8f3867">&#9670;&#160;</a></span>Add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<div class="memtemplate">
+template&lt;class = void&gt; <br />
+requires (!IsConst)</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::Add </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>newItem</em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds one value to the header using the container's merge policy. </p>
+
+</div>
+</div>
+<a id="afdbe2718453e7b24f5df163c2edce932" name="afdbe2718453e7b24f5df163c2edce932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdbe2718453e7b24f5df163c2edce932">&#9670;&#160;</a></span>Get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::expected&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#abfba8c695632baa83d33e0f1f597e9dd">HeaderErrorEnum</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::Get </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses all values and reports absence, emptiness or invalid format. </p>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
+</div>
+</div>
+<a id="a1c7475f4eb2f7dd285d58979e81d7dc7" name="a1c7475f4eb2f7dd285d58979e81d7dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7475f4eb2f7dd285d58979e81d7dc7">&#9670;&#160;</a></span>GetAsOpt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::GetAsOpt </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses all values, returning no value when the header is absent or invalid. </p>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
+</div>
+</div>
+<a id="a2f97984dde70a9457b12582f29627604" name="a2f97984dde70a9457b12582f29627604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f97984dde70a9457b12582f29627604">&#9670;&#160;</a></span>GetWithDefault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::expected&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> &gt; <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::GetWithDefault </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a></td>          <td class="paramname"><span class="paramname"><em>defaultValue</em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses all values, using <span class="tt">defaultValue</span> when the header is absent or empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>The parsed values, or <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a></span> when a present value is invalid. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
+</div>
+</div>
+<a id="aec06cdc612276ce5b4eb8c87fd1df495" name="aec06cdc612276ce5b4eb8c87fd1df495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec06cdc612276ce5b4eb8c87fd1df495">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<div class="memtemplate">
+template&lt;std::ranges::range R&gt; <br />
+requires (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;)</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>newValue</em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces the header with the serialized values from <span class="tt">newValue</span>. </p>
+
+</div>
+</div>
+<a id="a6c1060a55dd4bffcc17e493ea9815853" name="a6c1060a55dd4bffcc17e493ea9815853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1060a55dd4bffcc17e493ea9815853">&#9670;&#160;</a></span>Set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<div class="memtemplate">
+template&lt;std::ranges::range R&gt; <br />
+requires (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;)</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::Set </td>
+          <td>(</td>
+          <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>newValue</em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces the header with the serialized values from <span class="tt">newValue</span>. </p>
+
+</div>
+</div>
+<a id="aee857ca9c1f1c4a96ed2e1950ee3e9b2" name="aee857ca9c1f1c4a96ed2e1950ee3e9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee857ca9c1f1c4a96ed2e1950ee3e9b2">&#9670;&#160;</a></span>TrySet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<div class="memtemplate">
+template&lt;class = void&gt; <br />
+requires (!IsConst)</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::TrySet </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>newValue</em></span></td><td>)</td>
+          <td> &amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses and replaces the header from a raw value. </p>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the value was parsed and stored; otherwise leaves the header unchanged. </dd></dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a6624f90926f81b4a5632a7623838292e" name="a6624f90926f81b4a5632a7623838292e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6624f90926f81b4a5632a7623838292e">&#9670;&#160;</a></span>k_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::k_count { sizeof...(Ts) }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a536236f8045fc94e973e0fe216e74bb2" name="a536236f8045fc94e973e0fe216e74bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536236f8045fc94e973e0fe216e74bb2">&#9670;&#160;</a></span>k_single</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::k_single { sizeof...(Ts) == 1 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>include/Thoth/Http/NHeaders/<a class="el" href="_headers_8hpp_source.html">Headers.hpp</a></li>
+<li>include/Thoth/Http/NHeaders/Proxy/<a class="el" href="_multi_value_proxy_8hpp_source.html">MultiValueProxy.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a href="namespace_thoth_1_1_http.html">Http</a></li><li class="navelem"><a href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></li><li class="navelem"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">MultiValueProxy</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>
