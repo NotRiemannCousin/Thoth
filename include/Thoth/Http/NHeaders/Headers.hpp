@@ -5,18 +5,24 @@
 #include <format>
 #include <vector>
 #include <ranges>
+#include <string_view>
+#include <utility>
 
 #include <Thoth/Http/Url/Url.hpp>
 #include <Thoth/Http/NHeaders/_base.hpp>
 
 #include <Thoth/Http/NHeaders/Headers/_pch.hpp>
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
+#include <Thoth/Http/NHeaders/_base/Weighted.hpp>
+#include <Thoth/Http/NHeaders/_base/Parameterized.hpp>
 
 namespace Thoth::Http::NHeaders {
     template<bool IsConst, Utils::Serializable ...T>
     struct ListProxy;
     template<bool IsConst, Utils::Serializable ...T>
     struct ValueProxy;
+    template<bool IsConst, Utils::Serializable ...T>
+    struct MultiValueProxy;
 }
 
 
@@ -26,6 +32,9 @@ namespace Thoth::Http {
 
     struct RequestHeaders;
     struct ResponseHeaders;
+
+    bool InsensitiveCmp(std::string_view elem1, std::string_view elem2);
+    bool IsSingleValue(std::string_view key);
 
     //! @brief This class stores the headers from HTTP.
     struct Headers {
@@ -37,6 +46,8 @@ namespace Thoth::Http {
 
         using HeaderPair     = NHeaders::HeaderPair;
         using HeaderPairRef  = NHeaders::HeaderPairRef;
+        using HeaderRef      = HeaderPair*;
+        using ConstHeaderRef = const HeaderPair*;
         using MapType        = NHeaders::MapType;
 
         using IterType       = decltype(MapType{}.begin());
@@ -129,20 +140,28 @@ namespace Thoth::Http {
         //! @return const HeaderValue* if the key exists, std::nullopt otherwise.
         [[nodiscard]] std::optional<const HeaderValue*> Get(HeaderKeyRef key) const;
 
+        //! @brief Get all the references associated with a key.
+        //! @param key The key.
+        //! @return HeaderRef for every matching header.
+        std::vector<HeaderRef> GetAll(HeaderKeyRef key);
+
+        //! @copydoc GetAll
+        [[nodiscard]] std::vector<ConstHeaderRef> GetAll(HeaderKeyRef key) const;
+
 
         //! @{
         //! @name Proxies
         //! Convenient calls to some headers.
 
-        //! @brief Accept-Encoding header (gzip, br, etc).
+        //! @brief Accept header, media types accepted with an optional preference weight.
         NHeaders::ListProxy<false, NHeaders::MimeType> Accept();
         //! @copydoc Accept
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> Accept() const;
 
-        //! @brief Accept-Encoding header (gzip, br, etc).
-        NHeaders::ListProxy<false, NHeaders::AcceptEncodingEnum> AcceptEncoding();
+        //! @brief Accept-Encoding header (gzip, br, etc), with an optional preference weight.
+        NHeaders::ListProxy<false, NHeaders::AcceptEncoding> AcceptEncoding();
         //! @copydoc AcceptEncoding
-        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::AcceptEncodingEnum> AcceptEncoding() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::AcceptEncoding> AcceptEncoding() const;
 
 
         //! @brief Defines the media type of the resource (MIME).
@@ -199,6 +218,11 @@ namespace Thoth::Http {
         NHeaders::ListProxy<false, std::string> Via();
         //! @copydoc Via
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Via() const;
+
+        //! @brief Parses the Link header.
+        NHeaders::ListProxy<false, NHeaders::Link> Link();
+        //! @copydoc Link
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Link> Link() const;
 
         //! @}
 

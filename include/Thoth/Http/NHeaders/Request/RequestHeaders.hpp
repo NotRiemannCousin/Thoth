@@ -15,15 +15,12 @@ namespace Thoth::Http {
         static WebResult<RequestHeaders> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Raw and Collection Views
+
         //! @name Raw and Collection Views
         //! Methods for accessing headers without immediate parsing or as raw collections.
         //! @{
 
-        //! @brief Gets a view of the contents of this headers collection that does
-        //! not parse nor validate data.
-        [[nodiscard]] auto GetNonValidatedView() const;
-
-        //! @brief Gets a readonly view of all Cookie values.
+        //! @brief Gets a readonly view of all Cookie values (name/value pairs, no attributes).
         //! @warning Risk of dangling reference if the underlying collection is modified.
         [[nodiscard]] auto GetCookiesView() const;
 
@@ -37,7 +34,7 @@ namespace Thoth::Http {
         //! @{
         //! Convenient calls to some headers.
 
-        // TODO: Implement (someday)    
+        // TODO: Implement (someday)
         //! @brief Gets the Authorization header (e.g., Bearer, Basic).
         NHeaders::ValueProxy<false, std::string> Authorization();
         //! @copydoc Authorization
@@ -115,22 +112,34 @@ namespace Thoth::Http {
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::EntityTag> IfMatch() const;
 
         //! @brief The value of the If-None-Match header.
-        NHeaders::ValueProxy<false, NHeaders::EntityTag> IfNoneMatch();
+        NHeaders::ListProxy<false, NHeaders::EntityTag> IfNoneMatch();
         //! @copydoc IfNoneMatch
-        [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::EntityTag> IfNoneMatch() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::EntityTag> IfNoneMatch() const;
         //! @}
 
 
-        //! @brief The value of the Accept-Language header.
-        NHeaders::ListProxy<false, std::string> AcceptLanguage();
+        //! @brief The value of the Accept-Language header, with an optional preference weight.
+        NHeaders::ListProxy<false, NHeaders::FreeWeightedHeader> AcceptLanguage();
         //! @copydoc AcceptLanguage
-        [[nodiscard]] NHeaders::ListProxy<true, std::string> AcceptLanguage() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::FreeWeightedHeader> AcceptLanguage() const;
 
-        //! @brief The value of the TE (Transfer Encoding) header.
-        NHeaders::ListProxy<false, NHeaders::TeEnum> Te();
+        //! @brief The value of the TE (Transfer Encoding) header, with an optional preference weight.
+        //! @note Per RFC 9110 §10.1.4, "trailers" itself doesn't take a weight; this doesn't enforce that.
+        NHeaders::ListProxy<false, NHeaders::Te> Te();
         //! @copydoc Te
-        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::TeEnum> Te() const;
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Te> Te() const;
 
+
+
+        //! @brief The value of the Prefer header, with.
+        NHeaders::ListProxy<false, NHeaders::FreeParameterizedHeader> Prefer();
+        //! @copydoc Prefer
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::FreeParameterizedHeader> Prefer() const;
+
+        //! @brief The value of the Expect header.
+        NHeaders::ListProxy<false, NHeaders::FreeParameterizedHeader> Expect();
+        //! @copydoc Expect
+        [[nodiscard]] NHeaders::ListProxy<true, NHeaders::FreeParameterizedHeader> Expect() const;
         //! @}
 #pragma endregion
 

@@ -100,9 +100,9 @@ namespace Thoth::NJson {
 #define MOV_FROM(FROM) std::move(*this).template FROM
     // even with std::optional<T*>, will I still need to use T* because of expected? aff, hard life
 
-#define ERROR \
-    std::unexpected{ ThothError{ JsonWrongTypeError{          \
-        JsonWrongTypeError::IndexOf<T>, m_value.index() } } } \
+#define ERROR                                               \
+    ThothUnex{ JsonWrongTypeError{                          \
+        JsonWrongTypeError::IndexOf<T>, m_value.index() } } \
 
 #pragma endregion
 

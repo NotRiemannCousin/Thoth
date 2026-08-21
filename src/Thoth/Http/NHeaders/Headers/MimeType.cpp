@@ -12,7 +12,7 @@ bool MimeType::operator==(const MimeType &other) const {
             && a.second == b.second;
     } };
 
-    return std::ranges::equal(String::Trimmed(type)   , String::Trimmed(other.type)   , String::CaseInsensitiveCompare)
-        && std::ranges::equal(String::Trimmed(subtype), String::Trimmed(other.subtype), String::CaseInsensitiveCompare)
-        && std::ranges::is_permutation(options, other.options, optionEqual);
+    return std::ranges::equal(String::Trimmed(value.type)   , String::Trimmed(other.value.type)   , String::CaseInsensitiveCompare)
+        && std::ranges::equal(String::Trimmed(value.subtype), String::Trimmed(other.value.subtype), String::CaseInsensitiveCompare)
+        && std::ranges::is_permutation(params, other.params, optionEqual);
 }

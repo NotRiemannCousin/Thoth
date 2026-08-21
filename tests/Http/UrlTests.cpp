@@ -562,4 +562,60 @@ TEST_F(UrlDefaultPortTest, DefaultPort_Unknown_ReturnsNullopt) {
     EXPECT_FALSE(GetDefaultPort("myproto"));
 }
 
+// — Resolve —
+
+TEST_F(UrlTest, Resolve_RelativePath_ResolvesAgainstBasePath) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ base->Resolve("../v2/users") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "https://example.com/a/v2/users");
+}
+
+TEST_F(UrlTest, Resolve_AbsolutePath_ReplacesBasePath) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ base->Resolve("/v2/users") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "https://example.com/v2/users");
+}
+
+TEST_F(UrlTest, Resolve_FragmentOnly_PreservesBaseDocument) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c?query=value") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ base->Resolve("#section") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "https://example.com/a/b/c?query=value#section");
+}
+
+TEST_F(UrlTest, Resolve_EmptyReference_PreservesBaseUrl) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c?query=value") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ base->Resolve("") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "https://example.com/a/b/c?query=value");
+}
+
+TEST_F(UrlTest, Resolve_AbsoluteReference_ReturnsReferencedUrl) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ base->Resolve("http://other.example.com/v1/users") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "http://other.example.com/v1/users");
+}
+
+TEST_F(UrlTest, ResolveRelative_RelativePath_ResolvesAgainstBasePath) {
+    const auto base{ Url::FromUrl("https://example.com/a/b/c") };
+    ASSERT_TRUE(base);
+
+    const auto resolved{ Url::ResolveRelative(*base, "../v2/users") };
+    ASSERT_TRUE(resolved);
+    EXPECT_EQ(std::format("{}", *resolved), "https://example.com/a/v2/users");
+}
+
 #pragma endregion

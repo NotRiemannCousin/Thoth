@@ -1,5 +1,6 @@
 #pragma once
 #include <Thoth/Http/NHeaders/Headers.hpp>
+#include <Thoth/Http/NHeaders/Proxy/MultiValueProxy.hpp>
 #include <Thoth/Http/NHeaders/Response/Headers/_pch.hpp>
 
 namespace Thoth::Http {
@@ -9,11 +10,49 @@ namespace Thoth::Http {
         template<std::ranges::input_range R>
         static WebResult<ResponseHeaders> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
+#pragma region Raw and Collection Views
+
+        //! @name Raw and Collection Views
+        //! Methods for accessing headers without immediate parsing or as raw collections.
+        //! @{
+
+        //! @brief Gets a readonly view of all Set-Cookie values (name/value pairs, no attributes).
+        //! @warning Risk of dangling reference if the underlying collection is modified.
+        [[nodiscard]] auto GetSetCookiesView() const;
+
+        //! @}
+#pragma endregion
+
 #pragma region Response Specific Proxies
 
         //! @name Response Specific Proxies
         //! @{
         //! Convenient calls to some headers.
+
+
+#pragma region Multi Value Proxies
+        //! @brief All Set-Cookie challenges present on the response.
+        //! @note Each Set-Cookie header line is one cookie — use @ref MultiValueProxy::Get to read them all.
+        NHeaders::MultiValueProxy<false, NHeaders::Cookie> SetCookie();
+        [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Cookie> SetCookie() const;
+
+        //! @brief The types of authentication that the server utilizes.
+        //! @note May appear multiple times (one challenge per offered scheme).
+        NHeaders::MultiValueProxy<false, NHeaders::Challenge> WwwAuthenticate();
+        [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Challenge> WwwAuthenticate() const;
+
+        //! @brief The "proxy-authenticate" header.
+        //! @note May appear multiple times (one challenge per offered scheme).
+        NHeaders::MultiValueProxy<false, NHeaders::Challenge> ProxyAuthenticate();
+        [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Challenge> ProxyAuthenticate() const;
+#pragma endregion
+
+
+
+        //! @brief The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename.
+        NHeaders::ValueProxy<false, NHeaders::ContentDisposition> ContentDisposition();
+        //! @copybrief ContentDisposition
+        [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::ContentDisposition> ContentDisposition() const;
 
 
         //! @brief Defines if the response accepts bytes or no (just "bytes" or "none" is available).
@@ -54,16 +93,6 @@ namespace Thoth::Http {
         //! @copybrief Location
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> Location() const;
 
-        // //! @brief Gets a view of the contents of this headers collection that does not parse nor validate the data upon access.
-        // NHeaders::ValueProxy<false, bool> NonValidated();
-        // //! @copybrief NonValidated
-        // [[nodiscard]] NHeaders::ValueProxy<true, bool> NonValidated() const;
-
-        //! @brief The "proxy-authenticate" header.
-        NHeaders::ValueProxy<false, std::string> ProxyAuthenticate();
-        //! @copybrief ProxyAuthenticate
-        [[nodiscard]] NHeaders::ValueProxy<true, std::string> ProxyAuthenticate() const;
-
         //! @brief The date or cooldown when the endpoint will accept new responses.
         NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point, std::chrono::seconds> RetryAfter();
         //! @copybrief RetryAfter
@@ -85,12 +114,6 @@ namespace Thoth::Http {
         NHeaders::ListProxy<false, std::string> Vary();
         //! @copybrief Vary
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Vary() const;
-
-
-        //! @brief The types of authentication that the server utilizes.
-        NHeaders::ValueProxy<false, std::string> WwwAuthenticate();
-        //! @copybrief WwwAuthenticate
-        [[nodiscard]] NHeaders::ValueProxy<true, std::string> WwwAuthenticate() const;
 
         //! @}
 

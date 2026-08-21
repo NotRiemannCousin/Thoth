@@ -6,7 +6,7 @@
 #pragma push_macro("FAIL_WITH")
 #undef FAIL_WITH
 
-#define FAIL_WITH(x) return std::unexpected{ ThothError{ UrlParseErrorEnum::x } }
+#define FAIL_WITH(x) return ThothUnex{ UrlParseErrorEnum::x }
 
 
 using Thoth::Http::Url;

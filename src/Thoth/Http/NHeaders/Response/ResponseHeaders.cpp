@@ -1,6 +1,36 @@
 #include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
+#include <Thoth/Http/NHeaders/Proxy/MultiValueProxy.hpp>
 
 using namespace Thoth::Http::NHeaders;
+
+MultiValueProxy<false, Cookie> Thoth::Http::ResponseHeaders::SetCookie() {
+    return { "set-cookie", *this };
+}
+MultiValueProxy<true, Cookie> Thoth::Http::ResponseHeaders::SetCookie() const {
+    return { "set-cookie", *this };
+}
+
+MultiValueProxy<false, Challenge> Thoth::Http::ResponseHeaders::WwwAuthenticate() {
+    return { "www-authenticate", *this };
+}
+MultiValueProxy<true, Challenge> Thoth::Http::ResponseHeaders::WwwAuthenticate() const {
+    return { "www-authenticate", *this };
+}
+
+MultiValueProxy<false, Challenge> Thoth::Http::ResponseHeaders::ProxyAuthenticate() {
+    return { "proxy-authenticate", *this };
+}
+MultiValueProxy<true, Challenge> Thoth::Http::ResponseHeaders::ProxyAuthenticate() const {
+    return { "proxy-authenticate", *this };
+}
+
+ValueProxy<false, ContentDisposition> Thoth::Http::ResponseHeaders::ContentDisposition() {
+    return { "content-disposition", *this };
+}
+ValueProxy<true, ContentDisposition> Thoth::Http::ResponseHeaders::ContentDisposition() const {
+    return { "content-disposition", *this };
+}
+
 
 ValueProxy<false, AcceptRanges> Thoth::Http::ResponseHeaders::AcceptRanges() {
     return { "accept-ranges", *this };
@@ -50,13 +80,6 @@ ValueProxy<true, std::string> Thoth::Http::ResponseHeaders::Location() const {
     return { "location", *this };
 }
 
-ValueProxy<false, std::string> Thoth::Http::ResponseHeaders::ProxyAuthenticate() {
-    return { "proxy-authenticate", *this };
-}
-
-ValueProxy<true, std::string> Thoth::Http::ResponseHeaders::ProxyAuthenticate() const {
-    return { "proxy-authenticate", *this };
-}
 
 ValueProxy<false, std::chrono::utc_clock::time_point, std::chrono::seconds> Thoth::Http::ResponseHeaders::RetryAfter() {
     return { "retry-after", *this }; // %Q for outPattern
@@ -80,12 +103,4 @@ ListProxy<false, std::string> Thoth::Http::ResponseHeaders::Vary() {
 
 ListProxy<true, std::string> Thoth::Http::ResponseHeaders::Vary() const {
     return { "vary", *this };
-}
-
-ValueProxy<false, std::string> Thoth::Http::ResponseHeaders::WwwAuthenticate() {
-    return { "www-authenticate", *this };
-}
-
-ValueProxy<true, std::string> Thoth::Http::ResponseHeaders::WwwAuthenticate() const {
-    return { "www-authenticate", *this };
 }

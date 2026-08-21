@@ -86,15 +86,15 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<std::ranges::range R>
-        requires (!IsConst)
-    void ListProxy<IsConst, Ts...>::operator=(R&& newValue) && {
+    void ListProxy<IsConst, Ts...>::operator=(R&& newValue) &&
+        requires (!IsConst && std::convertible_to<std::ranges::range_reference_t<R>, ElemType>) {
         std::move(*this).Set(std::forward<R>(newValue));
     }
 
     template<bool IsConst, Utils::Serializable ...Ts>
     template<std::ranges::range R>
-        requires (!IsConst)
-    void ListProxy<IsConst, Ts...>::Set(R&& newValue) && {
+    void ListProxy<IsConst, Ts...>::Set(R&& newValue) &&
+        requires (!IsConst && std::convertible_to<std::ranges::range_reference_t<R>, ElemType>) {
         static constexpr auto k_format{ [](auto& obj) {
             return std::format("{}", obj);
         } };
@@ -106,8 +106,8 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     template<class>
-        requires (!IsConst)
-    void ListProxy<IsConst, Ts...>::Add(const ElemType& newItem) && {
+    void ListProxy<IsConst, Ts...>::Add(const ElemType& newItem) &&
+        requires (!IsConst) {
         if constexpr (k_single) {
             m_headers.Add(m_key, std::format("{}", newItem));
         } else {
@@ -119,8 +119,8 @@ namespace Thoth::Http::NHeaders {
 
     template<bool IsConst, Utils::Serializable ...Ts>
     template<class>
-        requires (!IsConst)
-    bool ListProxy<IsConst, Ts...>::TrySet(std::string_view newValue) && {
+    bool ListProxy<IsConst, Ts...>::TrySet(std::string_view newValue) &&
+        requires (!IsConst) {
         HeaderValue temp{ newValue };
         if constexpr (k_single) {
             auto parsed{ ParseList<Ts...[0]>(&temp, m_inPattern) };

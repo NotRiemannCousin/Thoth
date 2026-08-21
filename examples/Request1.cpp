@@ -8,7 +8,7 @@ namespace NHttp = Thoth::Http;
 namespace NJson = Thoth::NJson;
 using NJson::Json;
 
-std::expected<std::vector<Json>, ThothError> GetMembers(size_t id) {
+std::expected<std::vector<Json>, Thoth::ThothError> GetMembers(size_t id) {
     using std::string_literals::operator ""s;
     namespace Utils = Thoth::Utils;
 

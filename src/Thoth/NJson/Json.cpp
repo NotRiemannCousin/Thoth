@@ -470,8 +470,8 @@ std::expected<Json, ThothError> Json::ParseText(std::string_view input, bool cop
 
     const auto error = [&]() -> std::unexpected<ThothError>{
         if (input.empty())
-            return std::unexpected{ ThothError{ GenericError{ "Input for Json is empty" } } };
-        return std::unexpected{ ThothError{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } } };
+            return ThothUnex{ GenericError{ "Input for Json is empty" } };
+        return ThothUnex{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } };
     };
 
 #define return return error(); // I hate to do it
@@ -589,7 +589,7 @@ ValWrapper Json::GetAndMoveOrNull(const Key key) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ ThothError{ JsonGetError{ key } } }
+#define KEY_NOT_FOUND ThothUnex{ JsonGetError{ key } }
 
 ExpRefValWrapper Json::GetOrError(const Key key) {
     OptRefValWrapper curr{ this };
@@ -647,11 +647,11 @@ ValWrapper Json::FindAndMoveOrNull(const Keys keys) && {
 }
 
 
-#define KEY_NOT_FOUND std::unexpected{ ThothError{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } } }
+#define KEY_NOT_FOUND ThothUnex{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } }
 
 ExpRefValWrapper Json::FindOrError(const Keys keys) {
     OptRefValWrapper curr{ this };
-    auto sla = keys | std::ranges::to<std::vector>();
+    auto sla{ keys | std::ranges::to<std::vector>() };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }

@@ -1,3 +1,4 @@
+// ReSharper disable CppUseDesignatedInitializers
 #include <gtest/gtest.h>
 #include <Thoth/Http/NHeaders/Request/RequestHeaders.hpp>
 #include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
@@ -244,13 +245,160 @@ struct ResponseProxyAuthTest : testing::Test {
     ResponseHeaders h{{ { "proxy-authenticate", R"(Basic realm="Proxy")" } }};
 };
 
-TEST_F(ResponseProxyAuthTest, ProxyAuthenticate_Get_ReturnsValue) {
-    EXPECT_TRUE(h.ProxyAuthenticate().Get());
+TEST_F(ResponseProxyAuthTest, ProxyAuthenticate_Get_ReturnsParsedValue) {
+    const auto proxy{ h.ProxyAuthenticate().Get() };
+    ASSERT_TRUE(proxy);
+    ASSERT_EQ(proxy->size(), 1u);
+    EXPECT_EQ(proxy->at(0).scheme, "Basic");
+    ASSERT_EQ(proxy->at(0).params.size(), 1u);
+    EXPECT_EQ(proxy->at(0).params[0].first, "realm");
+    EXPECT_EQ(proxy->at(0).params[0].second, "Proxy");
 }
 
 TEST_F(ResponseProxyAuthTest, ProxyAuthenticate_Set_UpdatesHeader) {
-    h.ProxyAuthenticate().Set("Bearer");
+    std::vector<NHeaders::Challenge> challenges{ {"Bearer", {}} };
+    h.ProxyAuthenticate().Set(challenges);
     EXPECT_TRUE(h.Exists("proxy-authenticate", "Bearer"));
+}
+
+TEST_F(ResponseProxyAuthTest, ProxyAuthenticate_TrySet_UpdatesHeader) {
+    EXPECT_TRUE(h.ProxyAuthenticate().TrySet("Bearer"));
+    EXPECT_TRUE(h.Exists("proxy-authenticate", "Bearer"));
+}
+
+TEST_F(ResponseProxyAuthTest, ProxyAuthenticate_Add_AppendsChallenge) {
+    h.ProxyAuthenticate().Add(NHeaders::Challenge{"Digest", {{"qop", "auth"}}});
+    EXPECT_TRUE(h.Exists("proxy-authenticate", R"(Basic realm="Proxy")"));
+    EXPECT_TRUE(h.Exists("proxy-authenticate", R"(Digest qop="auth")"));
+}
+
+#pragma endregion
+
+
+#pragma region ResponseHeaders - WwwAuthenticate Proxy
+
+struct ResponseWwwAuthTest : testing::Test {
+    ResponseHeaders h{{
+        { "www-authenticate", R"(Newauth realm="apps", type="1")" },
+        { "www-authenticate", R"(Basic realm="simple")" }
+    }};
+};
+
+TEST_F(ResponseWwwAuthTest, WwwAuthenticate_Get_ReturnsParsedValues) {
+    const auto res{ h.WwwAuthenticate().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 2u);
+
+    EXPECT_EQ(res->at(0).scheme, "Newauth");
+    ASSERT_EQ(res->at(0).params.size(), 2u);
+    EXPECT_EQ(res->at(0).params[0].first, "realm");
+    EXPECT_EQ(res->at(0).params[0].second, "apps");
+    EXPECT_EQ(res->at(0).params[1].first, "type");
+    EXPECT_EQ(res->at(0).params[1].second, "1");
+
+    EXPECT_EQ(res->at(1).scheme, "Basic");
+    ASSERT_EQ(res->at(1).params.size(), 1u);
+    EXPECT_EQ(res->at(1).params[0].first, "realm");
+    EXPECT_EQ(res->at(1).params[0].second, "simple");
+}
+
+#pragma endregion
+
+
+#pragma region ResponseHeaders - SetCookie Proxy
+
+struct ResponseSetCookieTest : testing::Test {
+    ResponseHeaders h{{
+        { "set-cookie", "session=abc; Path=/; Secure; HttpOnly" },
+        { "set-cookie", "theme=dark; SameSite=Lax" }
+    }};
+};
+
+TEST_F(ResponseSetCookieTest, SetCookie_Get_ReturnsParsedCookies) {
+    const auto res{ h.SetCookie().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 2u);
+
+    EXPECT_EQ(res->at(0).name, "session");
+    EXPECT_EQ(res->at(0).value, "abc");
+    EXPECT_TRUE(res->at(0).path);
+    EXPECT_EQ(*res->at(0).path, "/");
+    EXPECT_TRUE(res->at(0).secure);
+    EXPECT_TRUE(res->at(0).httpOnly);
+
+    EXPECT_EQ(res->at(1).name, "theme");
+    EXPECT_EQ(res->at(1).value, "dark");
+    EXPECT_TRUE(res->at(1).sameSite);
+    EXPECT_EQ(*res->at(1).sameSite, NHeaders::SameSiteEnum::Lax);
+}
+
+TEST_F(ResponseSetCookieTest, SetCookie_Add_IncreasesCount) {
+    NHeaders::Cookie c{ .name = "new", .value = "val", .maxAge = 3600 };
+    h.SetCookie().Add(c);
+
+    const auto res{ h.SetCookie().Get() };
+    ASSERT_TRUE(res);
+    EXPECT_EQ(res->size(), 3u);
+    EXPECT_EQ(res->at(2).name, "new");
+    EXPECT_EQ(res->at(2).maxAge, 3600);
+}
+
+TEST_F(ResponseSetCookieTest, SetCookie_TrySet_ReplacesValues) {
+    EXPECT_TRUE(h.SetCookie().TrySet("a=1"));
+
+    const auto res{ h.SetCookie().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 1u);
+    EXPECT_EQ(res->at(0).name, "a");
+    EXPECT_EQ(res->at(0).value, "1");
+}
+
+#pragma endregion
+
+
+#pragma region Headers - Challenge (Scanner & Formatter)
+
+struct ChallengeScannerTest : testing::Test {
+    Thoth::Utils::Scanner<NHeaders::Challenge> scanner{};
+};
+
+TEST_F(ChallengeScannerTest, Scan_BareScheme) {
+    const auto res{ scanner.Scan("Bearer") };
+    ASSERT_TRUE(res);
+    EXPECT_EQ(res->scheme, "Bearer");
+    EXPECT_TRUE(res->params.empty());
+}
+
+TEST_F(ChallengeScannerTest, Scan_Token68) {
+    const auto res{ scanner.Scan("Negotiate a874bg==") };
+    ASSERT_TRUE(res);
+    EXPECT_EQ(res->scheme, "Negotiate");
+    ASSERT_EQ(res->params.size(), 1u);
+    EXPECT_EQ(res->params[0].first, "token68");
+    EXPECT_EQ(res->params[0].second, "a874bg==");
+}
+
+TEST_F(ChallengeScannerTest, Scan_MultipleParams) {
+    const auto res{ scanner.Scan(R"(Digest realm="testrealm@host.com", qop="auth,auth-int", nonce="dcd98b7102dd2f0e8b11d0f600bfb0c093")") };
+    ASSERT_TRUE(res);
+    EXPECT_EQ(res->scheme, "Digest");
+    ASSERT_EQ(res->params.size(), 3u);
+    EXPECT_EQ(res->params[0].first, "realm");
+    EXPECT_EQ(res->params[0].second, "testrealm@host.com");
+    EXPECT_EQ(res->params[1].first, "qop");
+    EXPECT_EQ(res->params[1].second, "auth,auth-int");
+    EXPECT_EQ(res->params[2].first, "nonce");
+    EXPECT_EQ(res->params[2].second, "dcd98b7102dd2f0e8b11d0f600bfb0c093");
+}
+
+TEST_F(ChallengeScannerTest, Formatter_FormatsCorrectly) {
+    NHeaders::Challenge c1{ "Bearer", {} };
+    NHeaders::Challenge c2{ "Basic", {{"realm", "Secure Area"}} };
+    NHeaders::Challenge c3{ "Negotiate", {{"token68", "abc123=="}} };
+
+    EXPECT_EQ(std::format("{}", c1), "Bearer");
+    EXPECT_EQ(std::format("{}", c2), R"(Basic realm="Secure Area")");
+    EXPECT_EQ(std::format("{}", c3), "Negotiate abc123==");
 }
 
 #pragma endregion
@@ -264,19 +412,19 @@ struct ContentTypeProxyTest : testing::Test {
 TEST_F(ContentTypeProxyTest, Get_ReturnsParsedMimeType) {
     const auto res{ h.ContentType().Get() };
     ASSERT_TRUE(res);
-    EXPECT_EQ(res->type, "application");
-    EXPECT_EQ(res->subtype, "json");
-    ASSERT_EQ(res->options.size(), 2);
-    EXPECT_EQ(res->options[0].first, "charset");
-    EXPECT_EQ(res->options[0].second, "utf-8");
-    EXPECT_EQ(res->options[1].first, "boundary");
-    EXPECT_EQ(res->options[1].second, "something");
+    EXPECT_EQ(res->value.type, "application");
+    EXPECT_EQ(res->value.subtype, "json");
+    ASSERT_EQ(res->params.size(), 2);
+    EXPECT_EQ(res->params[0].first, "charset");
+    EXPECT_EQ(res->params[0].second, "utf-8");
+    EXPECT_EQ(res->params[1].first, "boundary");
+    EXPECT_EQ(res->params[1].second, "something");
 }
 
 TEST_F(ContentTypeProxyTest, Set_FormatsMimeTypeCorrectly) {
     Headers tmp{};
 
-    NHeaders::MimeType mime{ "text", "html", {{"charset", "utf-8"}} };
+    NHeaders::MimeType mime{ NHeaders::MimeTypeHeader{ "text", "html" }, {{"charset", "utf-8"}} };
     tmp.ContentType().Set(mime);
 
     EXPECT_TRUE(tmp.Exists("content-type", "text/html;charset=utf-8"));
@@ -304,10 +452,10 @@ TEST_F(AcceptEncodingProxyTest, Get_ReturnsParsedEnums) {
 }
 
 TEST_F(AcceptEncodingProxyTest, Set_FormatsEnumsCorrectly) {
-    using NHeaders::AcceptEncodingEnum;
+    using enum NHeaders::AcceptEncodingEnum;
 
     Headers tmp{};
-    std::vector encodings{ AcceptEncodingEnum::Zstd, AcceptEncodingEnum::Dcb };
+    std::vector<NHeaders::AcceptEncoding> encodings{ { Zstd }, { Dcb } };
     tmp.AcceptEncoding().Set(encodings);
 
     EXPECT_TRUE(tmp.Exists("accept-encoding", "zstd,dcb"));
@@ -562,18 +710,204 @@ TEST_F(ProxyErrorTest, ListProxy_Get_ReturnsEmptyValue) {
 
 TEST_F(ProxyErrorTest, ListProxy_GetWithDefault_ReturnsDefaultOnMissing) {
     Headers empty{};
-    const std::vector<NHeaders::MimeType> def{{ "text", "plain" }};
+    const std::vector<NHeaders::MimeType> def{{ NHeaders::MimeTypeHeader{ "text", "plain" } }};
 
     auto res{ empty.Accept().GetWithDefault(def) };
     ASSERT_TRUE(res);
     ASSERT_EQ(res->size(), 1);
-    EXPECT_EQ(res->at(0).type, "text");
+    EXPECT_EQ(res->at(0).value.type, "text");
 }
 
 TEST_F(ProxyErrorTest, ListProxy_TrySet_FailsOnInvalidInput) {
     Headers empty{};
     EXPECT_FALSE(empty.AcceptEncoding().TrySet("not_an_enum_value"));
     EXPECT_TRUE(empty.Empty());
+}
+
+#pragma endregion
+
+
+
+#pragma region RequestHeaders - GetCookiesView
+
+struct RequestCookiesViewTest : testing::Test {};
+
+using StrViewPair = std::pair<std::string_view, std::string_view>;
+
+TEST_F(RequestCookiesViewTest, GetCookiesView_ParsesStandardFormat) {
+    RequestHeaders h{ Headers{ {"cookie", "session_id=12345; theme=dark; logged_in=true"} } };
+    constexpr StrViewPair expected[] { { "session_id", "12345" }, { "theme", "dark" }, { "logged_in", "true" } };
+
+    EXPECT_TRUE(std::ranges::equal(h.GetCookiesView(), expected));
+}
+
+TEST_F(RequestCookiesViewTest, GetCookiesView_HandlesMissingSpacesAndTrailingSemicolons) {
+    RequestHeaders h{ Headers{ {"cookie", "a=1;b=2;; c=3;"} } };
+    constexpr StrViewPair expected[] { { "a", "1" }, { "b", "2" }, { "c", "3" } };
+
+    EXPECT_TRUE(std::ranges::equal(h.GetCookiesView(), expected));
+}
+
+TEST_F(RequestCookiesViewTest, GetCookiesView_HandlesCookiesWithoutValues) {
+    RequestHeaders h{ Headers{ {"cookie", "flag_cookie; other=val"} } };
+    constexpr StrViewPair expected[] { {"flag_cookie", "" }, {"other", "val" } };
+
+    EXPECT_TRUE(std::ranges::equal(h.GetCookiesView(), expected));
+}
+
+TEST_F(RequestCookiesViewTest, GetCookiesView_EmptyOrMissingCookie_ReturnsEmptyView) {
+    RequestHeaders emptyH{};
+    EXPECT_EQ(std::ranges::distance(emptyH.GetCookiesView()), 0);
+
+    RequestHeaders onlySpaces{ Headers{ {"cookie", "   ;   "} } };
+    EXPECT_EQ(std::ranges::distance(onlySpaces.GetCookiesView()), 0);
+}
+
+#pragma endregion
+
+
+#pragma region ResponseHeaders - GetSetCookiesView
+
+struct ResponseSetCookiesViewTest : testing::Test {};
+
+TEST_F(ResponseSetCookiesViewTest, GetSetCookiesView_ExtractsNameValueAndIgnoresAttributes) {
+    ResponseHeaders h{{
+        { "set-cookie", "session_id=12345; Path=/; Secure; HttpOnly" },
+        { "set-cookie", "theme=dark; SameSite=Lax" }
+    }};
+
+    constexpr StrViewPair expected[] {
+        { "session_id", "12345" },
+        { "theme", "dark" }
+    };
+
+    EXPECT_TRUE(std::ranges::equal(h.GetSetCookiesView(), expected));
+}
+
+TEST_F(ResponseSetCookiesViewTest, GetSetCookiesView_HandlesMissingValuesAndUglySpacing) {
+    ResponseHeaders h{ Headers{
+        { "set-cookie", "  flag_cookie  ; Path=/" },
+        { "set-cookie", "a=1" }
+    } };
+
+    constexpr StrViewPair expected[] {
+        { "flag_cookie", "" },
+        { "a", "1" }
+    };
+
+    EXPECT_TRUE(std::ranges::equal(h.GetSetCookiesView(), expected));
+}
+
+TEST_F(ResponseSetCookiesViewTest, GetSetCookiesView_EmptyReturnsEmptyView) {
+    ResponseHeaders emptyH{};
+    EXPECT_EQ(std::ranges::distance(emptyH.GetSetCookiesView()), 0);
+}
+
+#pragma endregion
+
+
+#pragma region Headers - Link (ListProxy<Link>)
+
+struct LinkProxyTest : testing::Test {
+    Headers h{ { "link", R"(<https://example.com>; rel="preload", <https://other.com>; rel="alternate"; type="text/html")" } };
+};
+
+TEST_F(LinkProxyTest, Get_ReturnsParsedLinksAndParams) {
+    const auto res{ h.Link().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 2u);
+
+    EXPECT_EQ(res->at(0).value.uri, "https://example.com");
+    ASSERT_EQ(res->at(0).params.size(), 1u);
+    EXPECT_EQ(res->at(0).params[0].first, "rel");
+    EXPECT_EQ(res->at(0).params[0].second, "preload");
+
+    EXPECT_EQ(res->at(1).value.uri, "https://other.com");
+    ASSERT_EQ(res->at(1).params.size(), 2u);
+    EXPECT_EQ(res->at(1).params[0].first, "rel");
+    EXPECT_EQ(res->at(1).params[0].second, "alternate");
+    EXPECT_EQ(res->at(1).params[1].first, "type");
+    EXPECT_EQ(res->at(1).params[1].second, "text/html");
+}
+
+TEST_F(LinkProxyTest, Set_FormatsLinksCorrectly) {
+    Headers tmp{};
+    std::vector<NHeaders::Link> links{
+        { NHeaders::LinkHeader{"https://a.com"}, {{"rel", "next"}} }
+    };
+    tmp.Link().Set(links);
+
+    EXPECT_TRUE(tmp.Exists("link", R"(<https://a.com>;rel=next)"));
+}
+
+#pragma endregion
+
+
+#pragma region RequestHeaders - Prefer & Expect (ListProxy<Parameterized<string>>)
+
+struct FreeParameterizedProxyTest : testing::Test {
+    RequestHeaders h{{
+        { "prefer", "return=representation, wait=10" },
+        { "expect", "100-continue; ext=val" }
+    }};
+};
+
+TEST_F(FreeParameterizedProxyTest, Prefer_Get_ReturnsParsedPreferences) {
+    const auto res{ h.Prefer().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 2u);
+
+    EXPECT_EQ(res->at(0).value, "return=representation");
+    EXPECT_TRUE(res->at(0).params.empty());
+
+    EXPECT_EQ(res->at(1).value, "wait=10");
+    EXPECT_TRUE(res->at(1).params.empty());
+}
+
+TEST_F(FreeParameterizedProxyTest, Expect_Get_ReturnsParsedExpectations) {
+    const auto res{ h.Expect().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 1u);
+
+    EXPECT_EQ(res->at(0).value, "100-continue");
+    ASSERT_EQ(res->at(0).params.size(), 1u);
+    EXPECT_EQ(res->at(0).params[0].first, "ext");
+    EXPECT_EQ(res->at(0).params[0].second, "val");
+}
+
+#pragma endregion
+
+
+#pragma region RequestHeaders - AcceptLanguage (ListProxy<Weighted<string>>)
+
+struct AcceptLanguageProxyTest : testing::Test {
+    RequestHeaders h{{ { "accept-language", "pt-BR, en-US;q=0.8, en;q=0.5" } }};
+};
+
+TEST_F(AcceptLanguageProxyTest, Get_ReturnsParsedLanguagesAndWeights) {
+    const auto res{ h.AcceptLanguage().Get() };
+    ASSERT_TRUE(res);
+    ASSERT_EQ(res->size(), 3u);
+
+    EXPECT_EQ(res->at(0).value, "pt-BR");
+    EXPECT_DOUBLE_EQ(res->at(0).q, 1.0); // Default weight
+
+    EXPECT_EQ(res->at(1).value, "en-US");
+    EXPECT_DOUBLE_EQ(res->at(1).q, 0.8);
+
+    EXPECT_EQ(res->at(2).value, "en");
+    EXPECT_DOUBLE_EQ(res->at(2).q, 0.5);
+}
+
+TEST_F(AcceptLanguageProxyTest, Set_FormatsWeightsCorrectly) {
+    RequestHeaders tmp{};
+    std::vector<NHeaders::FreeWeightedHeader> langs{
+        { "fr-FR", 1.0 },
+        { "fr", 0.9 }
+    };
+    tmp.AcceptLanguage().Set(langs);
+
+    EXPECT_TRUE(tmp.Exists("accept-language", "fr-FR,fr;q=0.900"));
 }
 
 #pragma endregion

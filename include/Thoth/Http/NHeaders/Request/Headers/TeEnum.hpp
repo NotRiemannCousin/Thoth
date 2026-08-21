@@ -1,4 +1,5 @@
 #pragma once
+#include <Thoth/Http/NHeaders/_base/Weighted.hpp>
 
 namespace Thoth::Http::NHeaders {
     enum class TeEnum {
@@ -11,4 +12,8 @@ namespace Thoth::Http::NHeaders {
 
 #include <Thoth/Http/NHeaders/Request/Headers/TeEnum.tpp>
 
-static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::TeEnum>);
+namespace Thoth::Http::NHeaders {
+    using Te = Weighted<TeEnum>;
+
+    static_assert(Thoth::Utils::Serializable<Te>);
+}

@@ -9,8 +9,8 @@
 #undef HTTP11_FORWARD
 #undef VALID_STREAM
 
-#define ASSERT_OR_RET_ERROR(cond, error) do {                     \
-    if (!(cond)) return std::unexpected{ ThothError{ (error) } }; \
+#define ASSERT_OR_RET_ERROR(cond, error) do { \
+    if (!(cond)) return ThothUnex{ (error) }; \
 } while (0)
 
 #define SEND_OR_RET_ERROR(varName, input) do {                           \
@@ -20,12 +20,12 @@
 
 #define HTTP11_FORWARD(methodName) ([](auto stage) { return Http1::methodName(std::move(stage)); })
 
-#define VALID_STREAM(stream) do {                                      \
-    if constexpr (requires { (stream).Error(); }) {                   \
-        const auto streamError{ (stream).Error() };                    \
-        if (!streamError)                                               \
-            return std::unexpected{ ThothError{ streamError.error() } }; \
-    }                                                                    \
+#define VALID_STREAM(stream) do {                    \
+    if constexpr (requires { (stream).Error(); }) {  \
+        const auto streamError{ (stream).Error() };  \
+        if (!streamError)                            \
+            return ThothUnex{ streamError.error() }; \
+    }                                                \
 } while (0)
 
 #pragma endregion
@@ -72,7 +72,7 @@ namespace Thoth::Http::details_ {
         switch (*stage.stream.begin()) {
             case '0': stage.data.version = VersionEnum::HTTP1_0; break;
             case '1': stage.data.version = VersionEnum::HTTP1_1; break;
-            default: return std::unexpected{ ThothError{ MessageParseErrorEnum::InvalidVersion } };
+            default: return ThothUnex{ MessageParseErrorEnum::InvalidVersion };
         }
         ++stage.stream.begin();
 
@@ -88,6 +88,20 @@ namespace Thoth::Http::details_ {
         return std::move(stage);
     }
 
+    inline std::expected<std::monostate, ThothError> Http1::ValidateFraming(const Headers& headers) {
+        if (headers.Exists("content-length") && headers.Exists("transfer-encoding"))
+            return ThothUnex{ MessageParseErrorEnum::InvalidHeaders };;
+
+        if (headers.Exists("transfer-encoding")) {
+            const auto transferEncoding{ headers.TransferEncoding().Get() };
+            if (!transferEncoding || transferEncoding->size() != 1
+                || transferEncoding->front() != NHeaders::TransferEncodingEnum::Chunked)
+                return ThothUnex{ MessageParseErrorEnum::InvalidHeaders };;
+        }
+
+        return std::monostate{};
+    }
+
     template<class Stream, class Head>
         std::expected<ParseStage<Stream, Head>, ThothError> Http1::ParseHeaders(ParseStage<Stream, Head> stage) {
         using namespace std::literals;
@@ -98,6 +112,7 @@ namespace Thoth::Http::details_ {
         VALID_STREAM(stage.stream);
 
         ASSERT_OR_RET_ERROR(headersParseRes, MessageParseErrorEnum::InvalidHeaders);
+        ASSERT_OR_RET_ERROR(ValidateFraming(*headersParseRes), MessageParseErrorEnum::InvalidHeaders);
 
         stage.data.headers = std::move(*headersParseRes);
 
@@ -153,7 +168,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
                 if (const auto res{ stage.data.headers.ContentLength().GetWithDefault(0) }; res)
                     return TransferValue{*res};
 
-            return std::unexpected{ ThothError{ ParseErrEnum::InvalidHeaders } };
+            return ThothUnex{ ParseErrEnum::InvalidHeaders };
         } };
 
         const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ThothError> {

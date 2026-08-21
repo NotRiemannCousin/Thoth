@@ -1,4 +1,7 @@
 #pragma once
+#include <chrono>
+#include <variant>
+
 #include <Thoth/Utils/Monostate.hpp>
 #include <Thoth/String/Utils.hpp>
 

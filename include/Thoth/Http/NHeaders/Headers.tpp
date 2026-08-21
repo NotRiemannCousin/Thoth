@@ -89,35 +89,27 @@ namespace Thoth::Http {
             };
             headersView.remove_prefix(rg::distance(consumedHeader));
 
-            while (!headerKey.empty() && headerKey.back() == ' ')
-                headerKey.pop_back();
-
-            while (!headerVal.empty() && headerVal.front() == ' ')
-                headerVal.erase(headerVal.begin());
-
-            while (!headerVal.empty() && headerVal.back() == ' ')
-                headerVal.pop_back();
-
-            if (headerKey.empty() || !rg::all_of(headerKey, isCharAllowed))
+            if (headerKey.empty() || headerKey.back() == ' ' || headerKey.back() == '\t'
+                || !rg::all_of(headerKey, isCharAllowed))
                 return std::unexpected{ StatusCodeEnum::BadRequest };
 
+            while (!headerVal.empty() && (headerVal.front() == ' ' || headerVal.front() == '\t'))
+                headerVal.erase(headerVal.begin());
+
+            while (!headerVal.empty() && (headerVal.back() == ' ' || headerVal.back() == '\t'))
+                headerVal.pop_back();
+
             rg::transform(headerKey, headerKey.begin(), toLower);
+
+            if (IsSingleValue(headerKey) && res.Exists(headerKey))
+                return std::unexpected{ StatusCodeEnum::BadRequest };
+
             res.Add(headerKey, headerVal);
         }
 
         return res;
     }
 
-    // inline auto Headers::GetSetCookieView() const {
-    //     constexpr auto cmp{ [](const auto& p) {
-    //         return p.first == "set-cookie";
-    //     } };
-    //
-    //
-    //     return m_headers
-    //             | std::views::filter(cmp)
-    //             | std::views::transform(&HeaderPair::second);
-    // }
 
 }
 

@@ -6,4 +6,5 @@
 #include <Thoth/Http/NHeaders/Headers/ContentEncodingEnum.hpp>
 #include <Thoth/Http/NHeaders/Headers/Upgrade.hpp>
 #include <Thoth/Http/NHeaders/Headers/EntityTag.hpp>
+#include <Thoth/Http/NHeaders/Headers/Link.hpp>
 #include <Thoth/Http/NHeaders/Headers/TransferEncodingEnum.hpp>

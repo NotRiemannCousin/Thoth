@@ -3,6 +3,7 @@
 #include <Thoth/Http/_base.hpp>
 #include <Thoth/ThothError.hpp>
 #include <Thoth/Http/NHeaders/Headers.hpp>
+#include <charconv>
 #include <expected>
 #include <variant>
 
@@ -27,6 +28,8 @@ namespace Thoth::Http::details_ {
         //! @brief Parses the Http headers extracted from a stream.
         template<class Stream, class Head>
         static std::expected<ParseStage<Stream, Head>, ThothError> ParseHeaders(ParseStage<Stream, Head> stage);
+
+        static std::expected<std::monostate, ThothError> ValidateFraming(const Headers& headers);
 
 
         //! @brief Parses the Http message body.

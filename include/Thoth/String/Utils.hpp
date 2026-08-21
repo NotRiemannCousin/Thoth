@@ -63,6 +63,13 @@ namespace Thoth::String {
 
     bool CaseInsensitiveCompare(unsigned char c1, unsigned char c2);
 
+    std::string_view AsView(std::string_view str);
+
+    template<std::ranges::range R>
+    std::string_view ForceView(R&& str);
+
+    constexpr auto H_ForceView();
+
     void Trim(std::string_view& str, std::string_view trim = CharSequences::k_whitespace);
     void LeftTrim(std::string_view& str, std::string_view trim = CharSequences::k_whitespace);
     void RightTrim(std::string_view& str, std::string_view trim = CharSequences::k_whitespace);

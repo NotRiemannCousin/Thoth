@@ -13,6 +13,10 @@ bool Thoth::String::CaseInsensitiveCompare(unsigned char c1, unsigned char c2) {
     return tolower(c1) == tolower(c2);
 }
 
+std::string_view Thoth::String::AsView(std::string_view str) {
+    return str;
+}
+
 void Thoth::String::Trim(std::string_view &str, std::string_view trim) {
     LeftTrim(str, trim);
     RightTrim(str, trim);

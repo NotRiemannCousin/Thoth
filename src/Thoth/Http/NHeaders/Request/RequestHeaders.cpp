@@ -3,11 +3,6 @@
 using namespace Thoth::Http::NHeaders;
 using namespace Thoth::Http;
 
-// //! not parse nor validate data.
-// auto RequestHeaders::GetNonValidatedView() const;
-// //! @warning Risk of dangling reference if the underlying collection is modified.
-// auto RequestHeaders::GetCookiesView() const;
-
 ValueProxy<false, std::string> RequestHeaders::Authorization() {
     return { "authorization", *this };
 }
@@ -87,23 +82,39 @@ ListProxy<false, EntityTag> RequestHeaders::IfMatch() {
 ListProxy<true, EntityTag> RequestHeaders::IfMatch() const {
     return { "if-match", *this };
 }
-ValueProxy<false, EntityTag> RequestHeaders::IfNoneMatch() {
+ListProxy<false, EntityTag> RequestHeaders::IfNoneMatch() {
     return { "if-none-match", *this };
 }
-ValueProxy<true, EntityTag> RequestHeaders::IfNoneMatch() const {
+ListProxy<true, EntityTag> RequestHeaders::IfNoneMatch() const {
     return { "if-none-match", *this };
 }
-ListProxy<false, std::string> RequestHeaders::AcceptLanguage() {
+ListProxy<false, FreeWeightedHeader> RequestHeaders::AcceptLanguage() {
     return { "accept-language", *this };
 }
-ListProxy<true, std::string> RequestHeaders::AcceptLanguage() const {
+ListProxy<true, FreeWeightedHeader> RequestHeaders::AcceptLanguage() const {
     return { "accept-language", *this };
 }
-ListProxy<false, TeEnum> RequestHeaders::Te() {
+ListProxy<false, Te> RequestHeaders::Te() {
     return { "te", *this };
 }
-ListProxy<true, TeEnum> RequestHeaders::Te() const {
+ListProxy<true, Te> RequestHeaders::Te() const {
     return { "te", *this };
+}
+
+ListProxy<false, NHeaders::FreeParameterizedHeader> RequestHeaders::Prefer() {
+    return { "prefer", *this };
+}
+
+ListProxy<true, NHeaders::FreeParameterizedHeader> RequestHeaders::Prefer() const {
+    return { "prefer", *this };
+}
+
+ListProxy<false, NHeaders::FreeParameterizedHeader> RequestHeaders::Expect() {
+    return { "expect", *this };
+}
+
+ListProxy<true, NHeaders::FreeParameterizedHeader> RequestHeaders::Expect() const {
+    return { "expect", *this };
 }
 
 

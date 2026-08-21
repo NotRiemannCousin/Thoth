@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <Thoth/Http/NHeaders/Headers.hpp>
+#include <Thoth/Http/NHeaders/Proxy/MultiValueProxy.hpp>
 
 #include <ranges>
 
@@ -127,6 +128,33 @@ TEST_F(HeadersTest, Add_MultipleValues_SameKey_CookieSeparator) {
     EXPECT_NE((*r)->find("b=2"), std::string::npos);
 }
 
+TEST_F(HeadersTest, GetAll_ExistingKey_ReturnsAllReferences) {
+    Headers tmp{ h2 };
+    const auto r{ tmp.GetAll("set-cookie") };
+    ASSERT_EQ(r.size(), 2u);
+    EXPECT_EQ(r[0]->second, "session=abc; Path=/");
+    EXPECT_EQ(r[1]->second, "theme=dark; Secure");
+}
+
+TEST_F(HeadersTest, GetAll_ConstHeaders_ReturnsAllReferences) {
+    const Headers tmp{ h2 };
+    const auto r{ tmp.GetAll("set-cookie") };
+    ASSERT_EQ(r.size(), 2u);
+    EXPECT_EQ(r[0]->second, "session=abc; Path=/");
+    EXPECT_EQ(r[1]->second, "theme=dark; Secure");
+}
+
+TEST_F(HeadersTest, MultiValue_Add_NonMergeableHeader_PreservesValues) {
+    Headers tmp{};
+    NHeaders::MultiValueProxy<false, std::string>{ "set-cookie", tmp }.Add("a=1");
+    NHeaders::MultiValueProxy<false, std::string>{ "set-cookie", tmp }.Add("b=2");
+    const auto r{ NHeaders::MultiValueProxy<true, std::string>{ "set-cookie", tmp }.Get() };
+    ASSERT_TRUE(r);
+    ASSERT_EQ(r->size(), 2u);
+    EXPECT_EQ((*r)[0], "a=1");
+    EXPECT_EQ((*r)[1], "b=2");
+}
+
 #pragma endregion
 
 
@@ -145,11 +173,16 @@ TEST_F(HeadersTest, Set_NewKey_AddsIt) {
     EXPECT_TRUE(tmp.Exists("brand-new", "value"));
 }
 
-// TEST_F(HeadersTest, Set_SetCookie_ReplacesAll) {
-//     Headers tmp{ h2 };
-//     tmp.Set("Set-Cookie", "only=one");
-//     EXPECT_EQ(tmp.GetSetCookie().size(), 1u);
-// }
+TEST_F(HeadersTest, MultiValue_Set_ReplacesValues) {
+    Headers tmp{};
+    NHeaders::MultiValueProxy<false, std::string>{ "set-cookie", tmp }.Add("old=1");
+    NHeaders::MultiValueProxy<false, std::string>{ "set-cookie", tmp }.Set(std::vector<std::string>{ "a=1", "b=2" });
+    const auto r{ NHeaders::MultiValueProxy<true, std::string>{ "set-cookie", tmp }.Get() };
+    ASSERT_TRUE(r);
+    ASSERT_EQ(r->size(), 2u);
+    EXPECT_EQ((*r)[0], "a=1");
+    EXPECT_EQ((*r)[1], "b=2");
+}
 
 #pragma endregion
 
@@ -366,6 +399,30 @@ TEST_F(HeadersTest, Parse_EmptyValue_Succeeds) {
     const auto result{ Headers::Parse("x-empty:    \r\n") };
     ASSERT_TRUE(result);
     EXPECT_TRUE(result->Exists("x-empty"));
+}
+
+TEST_F(HeadersTest, Parse_WhitespaceBeforeColon_ReturnsBadRequest) {
+    const auto result{ Headers::Parse("content-type : application/json\r\n") };
+    EXPECT_FALSE(result);
+    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+}
+
+TEST_F(HeadersTest, Parse_SingleValueDuplicate_ReturnsBadRequest) {
+    const auto result{ Headers::Parse("content-type: text/plain\r\ncontent-type: text/html\r\n") };
+    EXPECT_FALSE(result);
+    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+}
+
+TEST_F(HeadersTest, Parse_OptionalWhitespaceWithTab_IsTrimmed) {
+    const auto result{ Headers::Parse("content-type:\t application/json \t\r\n") };
+    ASSERT_TRUE(result);
+    EXPECT_EQ(**result->Get("content-type"), "application/json");
+}
+
+TEST_F(HeadersTest, Parse_SetCookieDuplicate_Succeeds) {
+    const auto result{ Headers::Parse("set-cookie: a=1\r\nset-cookie: b=2\r\n") };
+    ASSERT_TRUE(result);
+    EXPECT_EQ(result->Size(), 2u);
 }
 
 TEST_F(HeadersTest, Parse_MissingColon_ReturnsBadRequest) {

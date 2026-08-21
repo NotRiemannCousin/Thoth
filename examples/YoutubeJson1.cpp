@@ -78,9 +78,9 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
             case NHttp::StatusCodeEnum::Ok:
                 return std::move(req);
             case NHttp::StatusCodeEnum::BadRequest:
-                return std::unexpected{ ThothError{ GenericError{ std::format("Bad Request:\n\n{}", req.body) } } };
+                return Thoth::ThothUnex{ GenericError{ std::format("Bad Request:\n\n{}", req.body) } };
             default:
-                return std::unexpected{ ThothError{ GenericError{ "Invalid Request" } } };
+                return Thoth::ThothUnex{ GenericError{ "Invalid Request" } };
         }
     };
 
@@ -111,7 +111,6 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
 
 
 int main() {
-    std::println("sla");
     /* "UCTmoyDN-uokTbzk_xXKcx6w" */
     if (const auto oper{ PrintInfo("UCTmoyDN-uokTbzk_xXKcx6w") }; !oper)
         std::println("{}", oper.error());

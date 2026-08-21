@@ -1,5 +1,4 @@
 #include <Thoth/Http/NHeaders/Headers.hpp>
-
 #include <algorithm>
 #include <functional>
 #include <ranges>
@@ -243,6 +242,26 @@ namespace Thoth::Http {
         return std::nullopt;
     }
 
+    std::vector<Headers::HeaderRef> Headers::GetAll(const HeaderKeyRef key) {
+        std::vector<HeaderRef> res;
+
+        for (auto& p : m_headers)
+            if (InsensitiveCmp(p.first, key))
+                res.push_back(&p);
+
+        return res;
+    }
+
+    std::vector<Headers::ConstHeaderRef> Headers::GetAll(const HeaderKeyRef key) const {
+        std::vector<ConstHeaderRef> res;
+
+        for (const auto& p : m_headers)
+            if (InsensitiveCmp(p.first, key))
+                res.push_back(&p);
+
+        return res;
+    }
+
     NHeaders::ListProxy<false, NHeaders::MimeType> Headers::Accept() {
         return { "accept", *this };
     }
@@ -252,11 +271,11 @@ namespace Thoth::Http {
     }
 
 
-    NHeaders::ListProxy<false, NHeaders::AcceptEncodingEnum> Headers::AcceptEncoding() {
+    NHeaders::ListProxy<false, NHeaders::AcceptEncoding> Headers::AcceptEncoding() {
         return { "accept-encoding", *this };
     }
 
-    NHeaders::ListProxy<true, NHeaders::AcceptEncodingEnum> Headers::AcceptEncoding() const {
+    NHeaders::ListProxy<true, NHeaders::AcceptEncoding> Headers::AcceptEncoding() const {
         return { "accept-encoding", *this };
     }
 
@@ -359,15 +378,13 @@ namespace Thoth::Http {
         return { "via", *this };
     }
 
+    NHeaders::ListProxy<false, NHeaders::Link> Headers::Link() {
+        return { "link", *this };
+    }
 
-
-
-    // std::vector<Headers::HeaderValue> Headers::GetSetCookie() const {
-    //     return GetSetCookieView() | rg::to<std::vector>();
-    // }
-    //
-
-
+    NHeaders::ListProxy<true, NHeaders::Link> Headers::Link() const {
+        return { "link", *this };
+    }
 
 
     Headers::IterType Headers::begin() { return m_headers.begin(); }

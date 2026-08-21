@@ -10,17 +10,17 @@ namespace Thoth::Http {
 
 namespace Thoth::Http::NHeaders {
 
-    //! @brief Typed proxy for a comma-separated header value.
+    //! @brief Typed proxy for multiple header values.
     //!
-    //! A `ListProxy` adapts one header field to a typed list. The proxy itself is a short-lived accessor.
+    //! A `MultiValueProxy` adapts one header field to a typed vector. The proxy itself is a short-lived accessor.
     //!
     //! @note Given that it can't be stored in any sense, it is intentionally not a `std::ranges::range`. Call `Get()`
     //! or `GetAsOpt()` to materialize the parsed `std::vector`.
     //!
     //! @tparam IsConst Whether the proxy can modify its `Headers` object.
-    //! @tparam Ts Serializable element types accepted by the list proxy.
+    //! @tparam Ts Serializable value types accepted by the multi-value proxy.
     template<bool IsConst, Utils::Serializable ...Ts>
-    struct ListProxy {
+    struct MultiValueProxy {
         static constexpr std::size_t k_count{ sizeof...(Ts) };
         static constexpr bool k_single{ sizeof...(Ts) == 1 };
 
@@ -36,24 +36,26 @@ namespace Thoth::Http::NHeaders {
         using ElemType    = std::conditional_t<k_single, typename First<Ts...>::Type, std::variant<Ts...>>;
 #endif
 
-        using Type        = std::vector<ElemType>;
+        using Type         = std::vector<ElemType>;
+        using ValueType    = std::conditional_t<IsConst, const HeaderPair*, HeaderPair*>;
+        using ValuesType   = std::vector<ValueType>;
 
-        ListProxy(ListProxy&&) = delete;
-        ListProxy(const ListProxy&) = delete;
+        MultiValueProxy(MultiValueProxy&&) = delete;
+        MultiValueProxy(const MultiValueProxy&) = delete;
 
         //! @brief Creates a proxy for `key` in `headers`.
-        ListProxy(std::string_view key, HeaderType& headers, PatternType inPattern = {});
+        MultiValueProxy(std::string_view key, HeaderType& headers, PatternType inPattern = {});
 
-        //! @brief Parses the header, returning no value when it is absent, empty or invalid.
+        //! @brief Parses all values, returning no value when the header is absent or invalid.
         //! @note Consumes the proxy.
         std::optional<Type> GetAsOpt() &&;
 
-        //! @brief Parses the header and reports absence, emptiness or invalid format.
+        //! @brief Parses all values and reports absence, emptiness or invalid format.
         //! @note Consumes the proxy.
         std::expected<Type, HeaderErrorEnum> Get() &&;
 
-        //! @brief Parses the header, using `defaultValue` when it is absent or empty.
-        //! @return The parsed list, or `InvalidHeaderFormat` when a present value is invalid.
+        //! @brief Parses all values, using `defaultValue` when the header is absent or empty.
+        //! @return The parsed values, or `InvalidHeaderFormat` when a present value is invalid.
         //! @note Consumes the proxy.
         std::expected<Type, InvalidHeaderFormat> GetWithDefault(Type defaultValue) &&;
 
@@ -67,27 +69,24 @@ namespace Thoth::Http::NHeaders {
         void Set(R&& newValue) &&
             requires (!IsConst && std::convertible_to<std::ranges::range_reference_t<R>, ElemType>);
 
-        //! @brief Adds one item to the header using the container's merge policy.
+        //! @brief Adds one value to the header using the container's merge policy.
         template<class = void>
         void Add(const ElemType& newItem) &&
             requires (!IsConst);
 
-        //! @brief Parses and replaces the header from a raw comma-separated value.
+        //! @brief Parses and replaces the header from a raw value.
         //! @return `true` when the value was parsed and stored; otherwise leaves the header unchanged.
         template<class = void>
         bool TrySet(std::string_view newValue) &&
             requires (!IsConst);
 
-        //! @brief Parses a raw comma-separated header value into typed elements.
-        //! @return The parsed list, or `std::nullopt` when any element is invalid.
-        template<class U>
-        static std::optional<std::vector<U>> ParseList(const HeaderValue* val, std::string_view pattern);
-
     private:
+        [[nodiscard]] ValuesType GetValues() const;
+
         const PatternType m_inPattern;
         const std::string_view m_key;
         HeaderType& m_headers;
     };
 }
 
-#include <Thoth/Http/NHeaders/Proxy/ListProxy.tpp>
+#include <Thoth/Http/NHeaders/Proxy/MultiValueProxy.tpp>
