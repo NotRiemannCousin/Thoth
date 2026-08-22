@@ -10,7 +10,6 @@ var namespace_thoth_1_1_http_1_1_n_headers =
     [ "MimeTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header" ],
     [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
     [ "MultiValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy" ],
-    [ "Parameterized", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized" ],
     [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
     [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
     [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],
@@ -42,10 +41,6 @@ var namespace_thoth_1_1_http_1_1_n_headers =
       [ "Identity", "namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99dac9c5c65fb4af9cf90eb99b3b84424189", null ],
       [ "Wildcard", "namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99dac4a0dbaac3bd0f3bf581ad822f5fb4b4", null ]
     ] ],
-    [ "AcceptRanges", "namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035c", [
-      [ "None", "namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035ca6adf97f83acf6453d4a6a4b1070f3754", null ],
-      [ "Bytes", "namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035ca600e754f49b68aa0fc90a9cd64eb7051", null ]
-    ] ],
     [ "ContentEncodingEnum", "namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc", [
       [ "Gzip", "namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c", null ],
       [ "Compress", "namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8fa4fcfcda70410e089984d5f51ae97d", null ],
@@ -76,5 +71,11 @@ var namespace_thoth_1_1_http_1_1_n_headers =
       [ "Compress", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba8fa4fcfcda70410e089984d5f51ae97d", null ],
       [ "Deflate", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90bae2430ff724c45c3d68893fb1a3584426", null ],
       [ "Gzip", "namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba2548e50da66f41afea53de1cbbf3b30c", null ]
-    ] ]
+    ] ],
+    [ "Param", "namespace_thoth_1_1_http_1_1_n_headers.html#a374bb75173685ebff9f36c1e28a1963c", null ],
+    [ "Transform", "namespace_thoth_1_1_http_1_1_n_headers.html#aa3eb26b289da89a4ba11dac30e72e3a4", null ],
+    [ "WithoutParam", "namespace_thoth_1_1_http_1_1_n_headers.html#a6ccc8d98b178c14b6e18de258b6092ab", null ],
+    [ "WithoutParam", "namespace_thoth_1_1_http_1_1_n_headers.html#a47c86745888270f0d86f1e57143c1004", null ],
+    [ "WithParam", "namespace_thoth_1_1_http_1_1_n_headers.html#a45a468ef23f2e7fdfea2bade2f42281a", null ],
+    [ "WithParam", "namespace_thoth_1_1_http_1_1_n_headers.html#a7225381c6dbe796a28f4886c949bc489", null ]
 ];

@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>Common media type constants for proxy assignment and comparison.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_mime_type_8hpp_source.html">MimeType.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -172,7 +175,12 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a962ba790e016b284bde2bd4fe3b229ae" id="r_a962ba790e016b284bde2bd4fe3b229ae"><td class="memItemLeft">static const <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">MimeType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a962ba790e016b284bde2bd4fe3b229ae">imageJpeg</a> { <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html">MimeTypeHeader</a>{ &quot;image&quot; , &quot;jpeg&quot; } }</td></tr>
 <tr class="memitem:a2355dcf7ada4ae278001686fc5138b1d" id="r_a2355dcf7ada4ae278001686fc5138b1d"><td class="memItemLeft">static const <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">MimeType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2355dcf7ada4ae278001686fc5138b1d">multipartForm</a> { <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html">MimeTypeHeader</a>{ &quot;multipart&quot; , &quot;form-data&quot; } }</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Common media type constants for proxy assignment and comparison. </p>
+<p>The constants contain only the base <span class="tt">type/subtype</span>, add parameters with <span class="tt">MimeType::WithParam()</span> when needed. </p><dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> json{ <a class="code hl_variable" href="#a055201eef1f237fa42464ccd735a4ba7">MimeTypes::appJson</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>) };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_types_html_a055201eef1f237fa42464ccd735a4ba7"><div class="ttname"><a href="#a055201eef1f237fa42464ccd735a4ba7">Thoth::Http::NHeaders::MimeTypes::appJson</a></div><div class="ttdeci">static const MimeType appJson</div><div class="ttdef"><b>Definition</b> MimeType.hpp:44</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab0204fdaf3dac04709b8210839f7857e" name="ab0204fdaf3dac04709b8210839f7857e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0204fdaf3dac04709b8210839f7857e">&#9670;&#160;</a></span>MimeTypes()</h2>
 

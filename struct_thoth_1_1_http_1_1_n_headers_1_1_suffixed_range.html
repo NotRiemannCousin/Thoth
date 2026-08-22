@@ -155,13 +155,22 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>A suffix byte range requesting the last <span class="tt"><a class="el" href="#a1161220e331314c0f1f7f930e3458347" title="Number of bytes requested from the end of the representation.">last</a></span> bytes (RFC 9110 §14.2).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_range_8hpp_source.html">Range.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1161220e331314c0f1f7f930e3458347" id="r_a1161220e331314c0f1f7f930e3458347"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a1161220e331314c0f1f7f930e3458347">last</a></td></tr>
+<tr class="memdesc:a1161220e331314c0f1f7f930e3458347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes requested from the end of the representation.  <br /></td></tr>
 </table>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A suffix byte range requesting the last <span class="tt"><a class="el" href="#a1161220e331314c0f1f7f930e3458347" title="Number of bytes requested from the end of the representation.">last</a></span> bytes (RFC 9110 §14.2). </p>
+<p>This represents the <span class="tt">bytes=-42</span> form of the HTTP <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00" title="The supported byte-range forms of the HTTP Range header (RFC 9110 §14.2).">Range</a></span> header. </p><dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html">SuffixedRange</a> range{ 42u }; <span class="comment">// bytes=-42</span></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html">Thoth::Http::NHeaders::SuffixedRange</a></div><div class="ttdoc">A suffix byte range requesting the last last bytes (RFC 9110 §14.2).</div><div class="ttdef"><b>Definition</b> Range.hpp:29</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a1161220e331314c0f1f7f930e3458347" name="a1161220e331314c0f1f7f930e3458347"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1161220e331314c0f1f7f930e3458347">&#9670;&#160;</a></span>last</h2>
 
@@ -173,6 +182,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of bytes requested from the end of the representation. </p>
 
 </div>
 </div>

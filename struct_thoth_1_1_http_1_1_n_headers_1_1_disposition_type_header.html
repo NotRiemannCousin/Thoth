@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>The disposition-type token of a Content-Disposition header (RFC 6266), e.g. "attachment", "inline". Stored lowercased - disposition-type is case-insensitive per the RFC.  
+<p>The disposition-type token of a <span class="tt">Content-Disposition</span> header (RFC 6266 §4).  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_content_disposition_8hpp_source.html">ContentDisposition.hpp</a>&gt;</code></p>
@@ -167,9 +167,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1374ee9d2818b865abdfa68a5729ff05" id="r_a1374ee9d2818b865abdfa68a5729ff05"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a1374ee9d2818b865abdfa68a5729ff05">type</a> {}</td></tr>
+<tr class="memdesc:a1374ee9d2818b865abdfa68a5729ff05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowercase disposition token.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The disposition-type token of a Content-Disposition header (RFC 6266), e.g. "attachment", "inline". Stored lowercased - disposition-type is case-insensitive per the RFC. </p>
+<div class="textblock"><p>The disposition-type token of a <span class="tt">Content-Disposition</span> header (RFC 6266 §4). </p>
+<p>Typical values are <span class="tt">attachment</span> and <span class="tt">inline</span>. The scanner stores the token lowercased because the disposition type is case-insensitive. Parameters such as <span class="tt">filename</span> belong to <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a" title="Parameterized version of DispositionTypeHeader.">ContentDisposition</a></span>. </p><dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html">DispositionTypeHeader</a> disposition{ <span class="stringliteral">&quot;attachment&quot;</span> };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html">Thoth::Http::NHeaders::DispositionTypeHeader</a></div><div class="ttdoc">The disposition-type token of a Content-Disposition header (RFC 6266 §4).</div><div class="ttdef"><b>Definition</b> ContentDisposition.hpp:16</div></div>
+</div><!-- fragment --> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a7d4d0788a436fbad04ee400d02db99e4" name="a7d4d0788a436fbad04ee400d02db99e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d4d0788a436fbad04ee400d02db99e4">&#9670;&#160;</a></span>operator==()</h2>
@@ -208,6 +212,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Lowercase disposition token. </p>
 
 </div>
 </div>

@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>The <span class="tt">type/subtype</span> portion of a media type (RFC 9110 §8.3.1).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_mime_type_8hpp_source.html">MimeType.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -166,7 +169,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2b742e0633dbaea9f8f5e9756d1cba07" id="r_a2b742e0633dbaea9f8f5e9756d1cba07"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a2b742e0633dbaea9f8f5e9756d1cba07">type</a> {}</td></tr>
 <tr class="memitem:abc941bacbdc576f2ff2bc7be8e5f30ee" id="r_abc941bacbdc576f2ff2bc7be8e5f30ee"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#abc941bacbdc576f2ff2bc7be8e5f30ee">subtype</a> {}</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <span class="tt">type/subtype</span> portion of a media type (RFC 9110 §8.3.1). </p>
+<p>Examples include <span class="tt">text/plain</span> and <span class="tt">application/json</span>. Parameters such as <span class="tt">charset</span> belong to the <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123" title="Parameterized version of MimeTypeHeader.">MimeType</a></span> wrapper rather than this struct.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html">MimeTypeHeader</a> json{ <span class="stringliteral">&quot;application&quot;</span>, <span class="stringliteral">&quot;json&quot;</span> };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html">Thoth::Http::NHeaders::MimeTypeHeader</a></div><div class="ttdoc">The type/subtype portion of a media type (RFC 9110 §8.3.1).</div><div class="ttdef"><b>Definition</b> MimeType.hpp:17</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a198794e2a9c5a3004449a332af217059" name="a198794e2a9c5a3004449a332af217059"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a198794e2a9c5a3004449a332af217059">&#9670;&#160;</a></span>operator==()</h2>
 

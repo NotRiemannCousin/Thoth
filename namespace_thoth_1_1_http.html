@@ -176,7 +176,7 @@ Classes</h2></td></tr>
 <tr class="memitem:DeleteMethod" id="r_DeleteMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_delete_method.html">DeleteMethod</a></td></tr>
 <tr class="memitem:GetMethod" id="r_GetMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a></td></tr>
 <tr class="memitem:Headers" id="r_Headers"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class stores the headers from HTTP.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the common header fields of an HTTP message.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:HeadMethod" id="r_HeadMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a></td></tr>
 <tr class="memitem:OptionsMethod" id="r_OptionsMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_options_method.html">OptionsMethod</a></td></tr>
 <tr class="memitem:PatchMethod" id="r_PatchMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_patch_method.html">PatchMethod</a></td></tr>
@@ -186,10 +186,11 @@ Classes</h2></td></tr>
 <tr class="memitem:Request" id="r_Request"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a></td></tr>
 <tr class="memitem:RequestHead" id="r_RequestHead"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a></td></tr>
 <tr class="memitem:RequestHeaders" id="r_RequestHeaders"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.  <a href="struct_thoth_1_1_http_1_1_request_headers.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the request-specific HTTP header fields.  <a href="struct_thoth_1_1_http_1_1_request_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Response" id="r_Response"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a></td></tr>
 <tr class="memitem:ResponseHead" id="r_ResponseHead"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a></td></tr>
 <tr class="memitem:ResponseHeaders" id="r_ResponseHeaders"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the response-specific HTTP header fields.  <a href="struct_thoth_1_1_http_1_1_response_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Server" id="r_Server"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Server</a></td></tr>
 <tr class="memitem:ServerConnection" id="r_ServerConnection"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a></td></tr>
 <tr class="memitem:TraceMethod" id="r_TraceMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_trace_method.html">TraceMethod</a></td></tr>
@@ -247,10 +248,14 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a2bf11744ec8f13e9d75fe88e28f7326caa51712bd03bd8b6560b9c57b5ff92690">InvalidPort</a>
 <br />
  }</td></tr>
-<tr class="memitem:a8e58d1d4b4fcb6af2eee47c9a3a12388" id="r_a8e58d1d4b4fcb6af2eee47c9a3a12388"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> { <a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d">InvalidStartLine</a>
+<tr class="memitem:a8e58d1d4b4fcb6af2eee47c9a3a12388" id="r_a8e58d1d4b4fcb6af2eee47c9a3a12388"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> { <br />
+&#160;&#160;<a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d">InvalidStartLine</a>
 , <a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0">InvalidVersion</a>
 , <a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c">InvalidHeaders</a>
-, <a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3">VersionNeedsContentLength</a>
+, <a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388a286bd75cc34708b988157e0200c06a13">HeadersTooLarge</a>
+, <br />
+&#160;&#160;<a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3">VersionNeedsContentLength</a>
+<br />
  }</td></tr>
 <tr class="memitem:a6a0a61c5077e5cb3aaa952aba4b824c7" id="r_a6a0a61c5077e5cb3aaa952aba4b824c7"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> { <br />
 &#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe">Continue</a> = 100
@@ -620,6 +625,7 @@ template&lt;class T&gt; </div>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d"></a>InvalidStartLine&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0"></a>InvalidVersion&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c"></a>InvalidHeaders&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a286bd75cc34708b988157e0200c06a13" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a286bd75cc34708b988157e0200c06a13"></a>HeadersTooLarge&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3" name="a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3"></a>VersionNeedsContentLength&#160;</td><td class="fielddoc"></td></tr>
 </table>
 

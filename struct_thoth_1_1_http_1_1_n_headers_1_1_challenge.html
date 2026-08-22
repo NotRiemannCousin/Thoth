@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>One "WWW-Authenticate"/"Proxy-Authenticate" challenge (RFC 7235 §4.1).  
+<p>One authentication challenge from <span class="tt">WWW-Authenticate</span> or <span class="tt">Proxy-Authenticate</span> (RFC 9110 §§11.6.1, 11.7.1).  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_challenge_8hpp_source.html">Challenge.hpp</a>&gt;</code></p>
@@ -163,15 +163,26 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3caec42dea2fb1acde9bfdb7e0082d9b" id="r_a3caec42dea2fb1acde9bfdb7e0082d9b"><td class="memItemLeft">std::optional&lt; std::string_view &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3caec42dea2fb1acde9bfdb7e0082d9b">Param</a> (std::string_view key) const</td></tr>
+<tr class="memdesc:a3caec42dea2fb1acde9bfdb7e0082d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up a challenge parameter by name.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae58a98256ffd42fd1ef95d67f77297b8" id="r_ae58a98256ffd42fd1ef95d67f77297b8"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae58a98256ffd42fd1ef95d67f77297b8">scheme</a> {}</td></tr>
+<tr class="memdesc:ae58a98256ffd42fd1ef95d67f77297b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authentication scheme, for example <span class="tt">Basic</span>, <span class="tt">Bearer</span> or <span class="tt">Digest</span>.  <br /></td></tr>
 <tr class="memitem:a3ec93ac3baa069d548399114008d4391" id="r_a3ec93ac3baa069d548399114008d4391"><td class="memItemLeft">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3ec93ac3baa069d548399114008d4391">params</a> {}</td></tr>
+<tr class="memdesc:a3ec93ac3baa069d548399114008d4391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsed unescaped challenge parameters in wire order.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>One "WWW-Authenticate"/"Proxy-Authenticate" challenge (RFC 7235 §4.1). </p>
-<dl class="section note"><dt>Note</dt><dd>Params are stored unescaped, as key/value pairs. Token68 challenges (schemes with no <span class="tt">key=value</span> params, e.g. some "Negotiate" tokens) are stored as a single param named "token68". </dd></dl>
+<div class="textblock"><p>One authentication challenge from <span class="tt">WWW-Authenticate</span> or <span class="tt">Proxy-Authenticate</span> (RFC 9110 §§11.6.1, 11.7.1). </p>
+<p><span class="tt"><a class="el" href="#ae58a98256ffd42fd1ef95d67f77297b8" title="Authentication scheme, for example Basic, Bearer or Digest.">scheme</a></span> stores the authentication scheme and <span class="tt"><a class="el" href="#a3ec93ac3baa069d548399114008d4391" title="Parsed unescaped challenge parameters in wire order.">params</a></span> stores its parsed parameters as unescaped key/value pairs. A token68 challenge, such as <span class="tt">Negotiate a874bg==</span>, is represented by a parameter named <span class="tt">token68</span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">Challenge</a> challenge{</div>
+<div class="line">    <span class="stringliteral">&quot;Digest&quot;</span>,</div>
+<div class="line">    {{ <span class="stringliteral">&quot;realm&quot;</span>, <span class="stringliteral">&quot;users&quot;</span> }, { <span class="stringliteral">&quot;qop&quot;</span>, <span class="stringliteral">&quot;auth&quot;</span> }}</div>
+<div class="line">};</div>
+<div class="line"><span class="keyword">auto</span> realm{ challenge.<a class="code hl_function" href="#a3caec42dea2fb1acde9bfdb7e0082d9b">Param</a>(<span class="stringliteral">&quot;realm&quot;</span>) };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_challenge_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">Thoth::Http::NHeaders::Challenge</a></div><div class="ttdoc">One authentication challenge from WWW-Authenticate or Proxy-Authenticate (RFC 9110 §§11....</div><div class="ttdef"><b>Definition</b> Challenge.hpp:24</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_challenge_html_a3caec42dea2fb1acde9bfdb7e0082d9b"><div class="ttname"><a href="#a3caec42dea2fb1acde9bfdb7e0082d9b">Thoth::Http::NHeaders::Challenge::Param</a></div><div class="ttdeci">std::optional&lt; std::string_view &gt; Param(std::string_view key) const</div><div class="ttdoc">Looks up a challenge parameter by name.</div></div>
+</div><!-- fragment --> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a3caec42dea2fb1acde9bfdb7e0082d9b" name="a3caec42dea2fb1acde9bfdb7e0082d9b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3caec42dea2fb1acde9bfdb7e0082d9b">&#9670;&#160;</a></span>Param()</h2>
@@ -191,10 +202,19 @@ Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Looks up a challenge parameter by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Parameter name, compared case-insensitively. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The parameter value, or <span class="tt">std::nullopt</span> when it is absent. </dd></dl>
 
 </div>
 </div>
@@ -211,6 +231,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parsed unescaped challenge parameters in wire order. </p>
+
 </div>
 </div>
 <a id="ae58a98256ffd42fd1ef95d67f77297b8" name="ae58a98256ffd42fd1ef95d67f77297b8"></a>
@@ -224,6 +246,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Authentication scheme, for example <span class="tt">Basic</span>, <span class="tt">Bearer</span> or <span class="tt">Digest</span>. </p>
 
 </div>
 </div>

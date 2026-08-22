@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>One protocol offered by the <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html" title="One protocol offered by the Upgrade header (RFC 9110 §7.8).">Upgrade</a></span> header (RFC 9110 §7.8).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_upgrade_8hpp_source.html">Upgrade.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -164,9 +167,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5e7aba1ecd96917623e2528eb1fb80fa" id="r_a5e7aba1ecd96917623e2528eb1fb80fa"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5e7aba1ecd96917623e2528eb1fb80fa">protocol</a> {}</td></tr>
+<tr class="memdesc:a5e7aba1ecd96917623e2528eb1fb80fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol name, such as <span class="tt">websocket</span>.  <br /></td></tr>
 <tr class="memitem:a6a14045eb89cba5f428ab4ab245b93f9" id="r_a6a14045eb89cba5f428ab4ab245b93f9"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6a14045eb89cba5f428ab4ab245b93f9">version</a> {}</td></tr>
+<tr class="memdesc:a6a14045eb89cba5f428ab4ab245b93f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional protocol version.  <br /></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>One protocol offered by the <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html" title="One protocol offered by the Upgrade header (RFC 9110 §7.8).">Upgrade</a></span> header (RFC 9110 §7.8). </p>
+<p>The protocol name is stored in <span class="tt"><a class="el" href="#a5e7aba1ecd96917623e2528eb1fb80fa" title="Protocol name, such as websocket.">protocol</a></span>, an optional slash-separated version is stored in <span class="tt"><a class="el" href="#a6a14045eb89cba5f428ab4ab245b93f9" title="Optional protocol version.">version</a></span>. For example, <span class="tt">websocket/13</span> becomes <span class="tt">{ "websocket", "13" }</span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Upgrade</a> websocket{ <span class="stringliteral">&quot;websocket&quot;</span>, <span class="stringliteral">&quot;13&quot;</span> };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_upgrade_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Thoth::Http::NHeaders::Upgrade</a></div><div class="ttdoc">One protocol offered by the Upgrade header (RFC 9110 §7.8).</div><div class="ttdef"><b>Definition</b> Upgrade.hpp:15</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a0096c01c77b7b794674deecfa1ac7e9e" name="a0096c01c77b7b794674deecfa1ac7e9e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0096c01c77b7b794674deecfa1ac7e9e">&#9670;&#160;</a></span>operator==()</h2>
 
@@ -205,6 +216,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Protocol name, such as <span class="tt">websocket</span>. </p>
+
 </div>
 </div>
 <a id="a6a14045eb89cba5f428ab4ab245b93f9" name="a6a14045eb89cba5f428ab4ab245b93f9"></a>
@@ -218,6 +231,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optional protocol version. </p>
 
 </div>
 </div>

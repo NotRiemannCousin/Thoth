@@ -1,4 +1,4 @@
-var _te_enum_8hpp =
+var _te_8hpp =
 [
     [ "Thoth::Http::NHeaders::Te", "namespace_thoth_1_1_http_1_1_n_headers.html#a2f2dde4af2a211fe9f3f3a530d10cbf5", null ],
     [ "Thoth::Http::NHeaders::TeEnum", "namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63d", [

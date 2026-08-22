@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>Wraps a header value with an RFC 9110 §12.4.2 <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde">q</a></span> weight (0.000-1.000, default 1.0).  
+<p>Associates a header value with an RFC 9110 §12.4.2 quality weight.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_weighted_8hpp_source.html">Weighted.hpp</a>&gt;</code></p>
@@ -175,17 +175,31 @@ requires Utils::Serializable&lt;std::invoke_result_t&lt;Fn, const T&amp;&gt;&gt;
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6eeeff4621e7640a76948aa1d48fd8a0" id="r_a6eeeff4621e7640a76948aa1d48fd8a0"><td class="memTemplParams" colspan="2">template&lt;class Fn&gt; </td></tr>
 <tr class="memitem:a6eeeff4621e7640a76948aa1d48fd8a0 template"><td class="memItemLeft">static auto&#160;</td><td class="memItemRight"><a class="el" href="#a6eeeff4621e7640a76948aa1d48fd8a0">H_Transform</a> (Fn fn)</td></tr>
-<tr class="memdesc:a6eeeff4621e7640a76948aa1d48fd8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">@hof{Transform}  <br /></td></tr>
+<tr class="memdesc:a6eeeff4621e7640a76948aa1d48fd8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Curried form of <span class="tt"><a class="el" href="#ad808a0463f0c46c7d138c485b5dbad53" title="Applies fn to the wrapped value, keeping the same weight.">Transform</a></span> for use in a monadic pipeline.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae08b2d3cdceaa65efea9ef359fb94664" id="r_ae08b2d3cdceaa65efea9ef359fb94664"><td class="memItemLeft">T&#160;</td><td class="memItemRight"><a class="el" href="#ae08b2d3cdceaa65efea9ef359fb94664">value</a> {}</td></tr>
+<tr class="memdesc:ae08b2d3cdceaa65efea9ef359fb94664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsed header value.  <br /></td></tr>
 <tr class="memitem:ad292d7f40785194f4eabb66fb56bddde" id="r_ad292d7f40785194f4eabb66fb56bddde"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde">q</a> { 1.0 }</td></tr>
+<tr class="memdesc:ad292d7f40785194f4eabb66fb56bddde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preference weight, normally serialized with three decimal places.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;Utils::Serializable T&gt;<br />
-struct Thoth::Http::NHeaders::Weighted&lt; T &gt;</div><p>Wraps a header value with an RFC 9110 §12.4.2 <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde">q</a></span> weight (0.000-1.000, default 1.0). </p>
-<dl class="section note"><dt>Note</dt><dd>Only extracts the <span class="tt">;<a class="el" href="#ad292d7f40785194f4eabb66fb56bddde">q</a>=</span> segment from the raw value. Any other parameter present (media-type params before <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde">q</a></span> on Accept, accept-ext after it) is left untouched for <span class="tt">T</span>'s own Scanner - <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html" title="Wraps a header value with an RFC 9110 §12.4.2 q weight (0.000-1.000, default 1.0).">Weighted</a> doesn't otherwise interpret the grammar of <span class="tt">T</span>. </dd></dl>
+struct Thoth::Http::NHeaders::Weighted&lt; T &gt;</div><p>Associates a header value with an RFC 9110 §12.4.2 quality weight. </p>
+<p>The <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde" title="Preference weight, normally serialized with three decimal places.">q</a></span> member is in the inclusive range <span class="tt">0.000</span> to <span class="tt">1.000</span> and defaults to <span class="tt">1.0</span> when the wire value does not contain a <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde" title="Preference weight, normally serialized with three decimal places.">q</a></span> parameter. This type is used for comma-separated preference headers such as <span class="tt">Accept-Encoding</span> and <span class="tt">Accept-Language</span>.</p>
+<p><span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html" title="Associates a header value with an RFC 9110 §12.4.2 quality weight.">Weighted</a>&lt;T&gt;</span> stores the parsed value in <span class="tt"><a class="el" href="#ae08b2d3cdceaa65efea9ef359fb94664" title="Parsed header value.">value</a></span> and the preference in <span class="tt"><a class="el" href="#ad292d7f40785194f4eabb66fb56bddde" title="Preference weight, normally serialized with three decimal places.">q</a></span>. It only extracts the <span class="tt">;<a class="el" href="#ad292d7f40785194f4eabb66fb56bddde" title="Preference weight, normally serialized with three decimal places.">q</a>=</span> segment.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Serializable value carried by the weighted header element.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">using </span>Language = <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html">Weighted&lt;std::string&gt;</a>;</div>
+<div class="line">Language preferred{ <span class="stringliteral">&quot;pt-BR&quot;</span>, 1.0 };</div>
+<div class="line"><span class="keyword">auto</span> fallback{ preferred.WithWeight(0.8) };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_weighted_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html">Thoth::Http::NHeaders::Weighted</a></div><div class="ttdoc">Associates a header value with an RFC 9110 §12.4.2 quality weight.</div><div class="ttdef"><b>Definition</b> Weighted.hpp:25</div></div>
+</div><!-- fragment --> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a6eeeff4621e7640a76948aa1d48fd8a0" name="a6eeeff4621e7640a76948aa1d48fd8a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6eeeff4621e7640a76948aa1d48fd8a0">&#9670;&#160;</a></span>H_Transform()</h2>
@@ -214,7 +228,7 @@ template&lt;class Fn&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>@hof{Transform} </p>
+<p>Curried form of <span class="tt"><a class="el" href="#ad808a0463f0c46c7d138c485b5dbad53" title="Applies fn to the wrapped value, keeping the same weight.">Transform</a></span> for use in a monadic pipeline. </p>
 
 </div>
 </div>
@@ -277,6 +291,13 @@ requires Utils::Serializable&lt;std::invoke_result_t&lt;Fn, const T&amp;&gt;&gt;
 </div><div class="memdoc">
 
 <p>Applies <span class="tt">fn</span> to the wrapped value, keeping the same weight. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fn</td><td>Transformation applied to <span class="tt"><a class="el" href="#ae08b2d3cdceaa65efea9ef359fb94664" title="Parsed header value.">value</a></span>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A weighted wrapper around the transformed value. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Meant for use with <span class="tt">std::optional::transform</span>/<span class="tt">std::expected::transform</span>; see <a class="el" href="#a6eeeff4621e7640a76948aa1d48fd8a0" title="H_Transform">H_Transform</a> for a curried form ready to drop into a <span class="tt">.transform(...)</span> chain. </dd></dl>
 
 </div>
@@ -307,6 +328,12 @@ template&lt;Utils::Serializable T&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns a copy with the weight replaced by <span class="tt">newQ</span>, keeping the same value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newQ</td><td>New preference weight. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -325,6 +352,8 @@ template&lt;Utils::Serializable T&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Preference weight, normally serialized with three decimal places. </p>
+
 </div>
 </div>
 <a id="ae08b2d3cdceaa65efea9ef359fb94664" name="ae08b2d3cdceaa65efea9ef359fb94664"></a>
@@ -340,6 +369,8 @@ template&lt;Utils::Serializable T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parsed header value. </p>
 
 </div>
 </div>

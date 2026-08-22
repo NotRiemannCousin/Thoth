@@ -1,4 +1,4 @@
-var _accept_encoding_enum_8hpp =
+var _accept_encoding_8hpp =
 [
     [ "Thoth::Http::NHeaders::AcceptEncoding", "namespace_thoth_1_1_http_1_1_n_headers.html#af59de170af93ac305353ed6bbb74060b", null ],
     [ "Thoth::Http::NHeaders::AcceptEncodingEnum", "namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99d", [

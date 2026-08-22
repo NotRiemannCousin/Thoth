@@ -58,6 +58,7 @@ var namespace_thoth_1_1_http =
       [ "InvalidStartLine", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d", null ],
       [ "InvalidVersion", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0", null ],
       [ "InvalidHeaders", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c", null ],
+      [ "HeadersTooLarge", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a286bd75cc34708b988157e0200c06a13", null ],
       [ "VersionNeedsContentLength", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3", null ]
     ] ],
     [ "StatusCodeEnum", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7", [

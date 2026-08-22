@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>This class stores the headers from HTTP.  
+<p>Stores the common header fields of an HTTP message.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_headers_8hpp_source.html">Headers.hpp</a>&gt;</code></p>
@@ -296,9 +296,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d" id="r_af82fca4b81040dbc1e6f8f850b1b183d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d template"><td class="memItemLeft">static <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="#a1d83300c0da8ca20f55374139098c847">Headers</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af82fca4b81040dbc1e6f8f850b1b183d">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:af82fca4b81040dbc1e6f8f850b1b183d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f" id="r_a61fe93ceefe6c1085dd552ef2bbdb33f"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#a1d83300c0da8ca20f55374139098c847">Headers</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a61fe93ceefe6c1085dd552ef2bbdb33f">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a61fe93ceefe6c1085dd552ef2bbdb33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
 <tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft">static <a class="el" href="#a1d83300c0da8ca20f55374139098c847">Headers</a>&#160;</td><td class="memItemRight"><a class="el" href="#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -312,7 +312,20 @@ Friends</h2></td></tr>
 <tr class="memitem:a214bcfac71d0984ad477b74d9586acf9" id="r_a214bcfac71d0984ad477b74d9586acf9"><td class="memItemLeft">struct&#160;</td><td class="memItemRight"><a class="el" href="#a214bcfac71d0984ad477b74d9586acf9">std::formatter&lt; ResponseHeaders &gt;</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class stores the headers from HTTP. </p>
+<div class="textblock"><p>Stores the common header fields of an HTTP message. </p>
+<p>Its typed accessors expose concrete models from <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></span>, including <span class="tt">MimeType</span>, <span class="tt"><a class="el" href="#a5bfcdfec37fd6e1fe71737e9df5ccab2" title="Accept-Encoding header (gzip, br, etc), with an optional preference weight.">AcceptEncoding</a></span>, <span class="tt">ContentEncodingEnum</span>, <span class="tt">TransferEncodingEnum</span>, <span class="tt"><a class="el" href="#a0458433b66f6f64bd6826fbb7f846712" title="Used to signal a protocol change (e.g., &quot;websocket&quot;).">Upgrade</a></span> and <span class="tt"><a class="el" href="#abb0042a57e5879ab4cddb84339b1bdc2" title="Parses the Link header.">Link</a></span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_function" href="#a1d83300c0da8ca20f55374139098c847">Headers</a> headers;</div>
+<div class="line"><span class="keyword">auto</span> json{ <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">NHeaders::MimeTypes::appJson</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>) };</div>
+<div class="line">headers.<a class="code hl_function" href="#adc52925cf1dabca9fb66b3dbf1a015de">ContentType</a>().Set(json);</div>
+<div class="line">headers.<a class="code hl_function" href="#aebc1a1ac3eaa75258ce6714aabfd92d9">ContentEncoding</a>().Add(<a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c">NHeaders::ContentEncodingEnum::Gzip</a>);</div>
+<div class="line"><span class="keyword">auto</span> length{ headers.<a class="code hl_function" href="#a0a1b9ebfad030bb769ba6e4d18abf4a1">ContentLength</a>().GetWithDefault(std::uint64_t{ 0 }) };</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c">Thoth::Http::NHeaders::ContentEncodingEnum::Gzip</a></div><div class="ttdeci">@ Gzip</div><div class="ttdoc">GNU zip coding (gzip).</div><div class="ttdef"><b>Definition</b> ContentEncodingEnum.hpp:10</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_headers_html_a0a1b9ebfad030bb769ba6e4d18abf4a1"><div class="ttname"><a href="#a0a1b9ebfad030bb769ba6e4d18abf4a1">Thoth::Http::Headers::ContentLength</a></div><div class="ttdeci">NHeaders::ValueProxy&lt; false, uint64_t &gt; ContentLength()</div><div class="ttdoc">The size of the entity-body in bytes.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_headers_html_a1d83300c0da8ca20f55374139098c847"><div class="ttname"><a href="#a1d83300c0da8ca20f55374139098c847">Thoth::Http::Headers::Headers</a></div><div class="ttdeci">Headers()</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_headers_html_adc52925cf1dabca9fb66b3dbf1a015de"><div class="ttname"><a href="#adc52925cf1dabca9fb66b3dbf1a015de">Thoth::Http::Headers::ContentType</a></div><div class="ttdeci">NHeaders::ValueProxy&lt; false, NHeaders::MimeType &gt; ContentType()</div><div class="ttdoc">Defines the media type of the resource (MIME).</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_headers_html_aebc1a1ac3eaa75258ce6714aabfd92d9"><div class="ttname"><a href="#aebc1a1ac3eaa75258ce6714aabfd92d9">Thoth::Http::Headers::ContentEncoding</a></div><div class="ttdeci">NHeaders::ListProxy&lt; false, NHeaders::ContentEncodingEnum &gt; ContentEncoding()</div><div class="ttdoc">List of encodings (compression) applied to the entity.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_types_html_a055201eef1f237fa42464ccd735a4ba7"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">Thoth::Http::NHeaders::MimeTypes::appJson</a></div><div class="ttdeci">static const MimeType appJson</div><div class="ttdef"><b>Definition</b> MimeType.hpp:44</div></div>
+</div><!-- fragment --> </dd></dl>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a852a4171401a49de51c90f8849baf8e4" name="a852a4171401a49de51c90f8849baf8e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a852a4171401a49de51c90f8849baf8e4">&#9670;&#160;</a></span>CIterType</h2>
@@ -600,6 +613,10 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Accept header, media types accepted with an optional preference weight. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> html{ <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a6a1424fde08481565e28bd94f5213a86">NHeaders::MimeTypes::textHtml</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>) };</div>
+<div class="line">headers.Accept().Add(html);</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_types_html_a6a1424fde08481565e28bd94f5213a86"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a6a1424fde08481565e28bd94f5213a86">Thoth::Http::NHeaders::MimeTypes::textHtml</a></div><div class="ttdeci">static const MimeType textHtml</div><div class="ttdef"><b>Definition</b> MimeType.hpp:43</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -627,6 +644,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Accept header, media types accepted with an optional preference weight.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> html{ <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a6a1424fde08481565e28bd94f5213a86">NHeaders::MimeTypes::textHtml</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>) };</div>
+<div class="line">headers.Accept().Add(html);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -646,6 +666,11 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Accept-Encoding header (gzip, br, etc), with an optional preference weight. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> br{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#af59de170af93ac305353ed6bbb74060b">NHeaders::AcceptEncoding</a>{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2">NHeaders::AcceptEncodingEnum::Br</a> } };</div>
+<div class="line">headers.AcceptEncoding().Add(br.WithWeight(0.8));</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2">Thoth::Http::NHeaders::AcceptEncodingEnum::Br</a></div><div class="ttdeci">@ Br</div><div class="ttdoc">Brotli coding (br).</div><div class="ttdef"><b>Definition</b> AcceptEncoding.hpp:17</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_af59de170af93ac305353ed6bbb74060b"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#af59de170af93ac305353ed6bbb74060b">Thoth::Http::NHeaders::AcceptEncoding</a></div><div class="ttdeci">Weighted&lt; AcceptEncodingEnum &gt; AcceptEncoding</div><div class="ttdoc">Weighted version of AcceptEncodingEnum.</div><div class="ttdef"><b>Definition</b> AcceptEncoding.hpp:36</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -673,6 +698,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Accept-Encoding header (gzip, br, etc), with an optional preference weight.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> br{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#af59de170af93ac305353ed6bbb74060b">NHeaders::AcceptEncoding</a>{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2">NHeaders::AcceptEncodingEnum::Br</a> } };</div>
+<div class="line">headers.AcceptEncoding().Add(br.WithWeight(0.8));</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -801,6 +829,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Options for the current connection. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Connection().TrySet(<span class="stringliteral">&quot;keep-alive&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span> connection{ headers.Connection().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -828,6 +859,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Options for the current connection.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Connection().TrySet(<span class="stringliteral">&quot;keep-alive&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span> connection{ headers.Connection().GetAsOpt() };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -847,6 +881,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List of encodings (compression) applied to the entity. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentEncoding().Add(<a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c">NHeaders::ContentEncodingEnum::Gzip</a>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -874,6 +910,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List of encodings (compression) applied to the entity.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentEncoding().Add(<a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca2548e50da66f41afea53de1cbbf3b30c">NHeaders::ContentEncodingEnum::Gzip</a>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -893,6 +931,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Natural languages for the intended audience (e.g., "en-US"). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentLanguage().Set(std::vector&lt;std::string&gt;{ <span class="stringliteral">&quot;pt-BR&quot;</span>, <span class="stringliteral">&quot;en-US&quot;</span> });</div>
+<div class="line"><span class="keyword">auto</span> languages{ headers.ContentLanguage().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -920,6 +961,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Natural languages for the intended audience (e.g., "en-US").    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentLanguage().Set(std::vector&lt;std::string&gt;{ <span class="stringliteral">&quot;pt-BR&quot;</span>, <span class="stringliteral">&quot;en-US&quot;</span> });</div>
+<div class="line"><span class="keyword">auto</span> languages{ headers.ContentLanguage().GetAsOpt() };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -939,6 +983,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The size of the entity-body in bytes. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> length{ headers.ContentLength().GetWithDefault(std::uint64_t{ 0 }) };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -966,6 +1012,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The size of the entity-body in bytes.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> length{ headers.ContentLength().GetWithDefault(std::uint64_t{ 0 }) };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -985,6 +1033,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The specific location for the entity-body. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentLocation().TrySet(<span class="stringliteral">&quot;/documents/42&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1012,6 +1062,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The specific location for the entity-body.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentLocation().TrySet(<span class="stringliteral">&quot;/documents/42&quot;</span>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1031,6 +1083,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines the media type of the resource (MIME). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentType().Set(</div>
+<div class="line">    <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">NHeaders::MimeTypes::appJson</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>));</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1058,6 +1113,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines the media type of the resource (MIME).    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ContentType().Set(</div>
+<div class="line">    <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">NHeaders::MimeTypes::appJson</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>));</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1077,6 +1135,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Date and time at which the message was originated. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> date{ headers.Date().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1104,6 +1164,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Date and time at which the message was originated.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> date{ headers.Date().GetAsOpt() };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1443,6 +1505,12 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Parses the Link header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> next{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29">NHeaders::Link</a>{ <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html">NHeaders::LinkHeader</a>{</div>
+<div class="line">    <span class="stringliteral">&quot;https://example.test/next&quot;</span> } }.WithParam(<span class="stringliteral">&quot;rel&quot;</span>, <span class="stringliteral">&quot;next&quot;</span>) };</div>
+<div class="line">headers.Link().Add(next);</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a359d4b70f8b2b46912fec51bc2866b29"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29">Thoth::Http::NHeaders::Link</a></div><div class="ttdeci">Parameterized&lt; LinkHeader &gt; Link</div><div class="ttdoc">Parameterized version of LinkHeader.</div><div class="ttdef"><b>Definition</b> Link.hpp:28</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_link_header_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html">Thoth::Http::NHeaders::LinkHeader</a></div><div class="ttdoc">The URI portion of one Link field value (RFC 8288 §3.1).</div><div class="ttdef"><b>Definition</b> Link.hpp:16</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1470,6 +1538,10 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Parses the Link header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> next{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29">NHeaders::Link</a>{ <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html">NHeaders::LinkHeader</a>{</div>
+<div class="line">    <span class="stringliteral">&quot;https://example.test/next&quot;</span> } }.WithParam(<span class="stringliteral">&quot;rel&quot;</span>, <span class="stringliteral">&quot;next&quot;</span>) };</div>
+<div class="line">headers.Link().Add(next);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1509,8 +1581,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="af82fca4b81040dbc1e6f8f850b1b183d" name="af82fca4b81040dbc1e6f8f850b1b183d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af82fca4b81040dbc1e6f8f850b1b183d">&#9670;&#160;</a></span>Parse()</h2>
+<a id="a61fe93ceefe6c1085dd552ef2bbdb33f" name="a61fe93ceefe6c1085dd552ef2bbdb33f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61fe93ceefe6c1085dd552ef2bbdb33f">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1521,7 +1593,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="#a1d83300c0da8ca20f55374139098c847">Headers</a> &gt; Thoth::Http::Headers::Parse </td>
+          <td class="memname">std::expected&lt; <a class="el" href="#a1d83300c0da8ca20f55374139098c847">Headers</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt; Thoth::Http::Headers::Parse </td>
           <td>(</td>
           <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
         </tr>
@@ -1546,7 +1618,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Stores the common header fields of an HTTP message.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long. </dd></dl>
 
 </div>
 </div>
@@ -1847,6 +1919,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Indicates header fields present in the trailer of a chunked message. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Trailer().Set(std::vector&lt;std::string&gt;{ <span class="stringliteral">&quot;X-Checksum&quot;</span>, <span class="stringliteral">&quot;X-Signature&quot;</span> });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1874,6 +1948,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Indicates header fields present in the trailer of a chunked message.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Trailer().Set(std::vector&lt;std::string&gt;{ <span class="stringliteral">&quot;X-Checksum&quot;</span>, <span class="stringliteral">&quot;X-Signature&quot;</span> });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1893,6 +1969,10 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>List of compression applied to the entity. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.TransferEncoding().Set(</div>
+<div class="line">    std::vector{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f">NHeaders::TransferEncodingEnum::Chunked</a> });</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f">Thoth::Http::NHeaders::TransferEncodingEnum::Chunked</a></div><div class="ttdeci">@ Chunked</div><div class="ttdoc">Chunked transfer coding.</div><div class="ttdef"><b>Definition</b> TransferEncodingEnum.hpp:10</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1920,6 +2000,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>List of compression applied to the entity.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.TransferEncoding().Set(</div>
+<div class="line">    std::vector{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90ba7920ba6b75e24916e97632ed0bafec4f">NHeaders::TransferEncodingEnum::Chunked</a> });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1939,6 +2022,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Used to signal a protocol change (e.g., "websocket"). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Upgrade().Add(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">NHeaders::Upgrade</a>{ <span class="stringliteral">&quot;websocket&quot;</span>, <span class="stringliteral">&quot;13&quot;</span> });</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_upgrade_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">Thoth::Http::NHeaders::Upgrade</a></div><div class="ttdoc">One protocol offered by the Upgrade header (RFC 9110 §7.8).</div><div class="ttdef"><b>Definition</b> Upgrade.hpp:15</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1966,6 +2052,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Used to signal a protocol change (e.g., "websocket").    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Upgrade().Add(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html">NHeaders::Upgrade</a>{ <span class="stringliteral">&quot;websocket&quot;</span>, <span class="stringliteral">&quot;13&quot;</span> });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1985,6 +2073,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Path taken by the request/response through proxies (free std::string). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Via().Add(<span class="stringliteral">&quot;1.1 proxy.example&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -2012,6 +2102,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>Path taken by the request/response through proxies (free std::string).    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Via().Add(<span class="stringliteral">&quot;1.1 proxy.example&quot;</span>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>

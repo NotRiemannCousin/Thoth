@@ -48,7 +48,6 @@ var hierarchy =
     [ "Thoth::Http::NHeaders::MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
     [ "Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html", null ],
     [ "Thoth::Http::OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
-    [ "Thoth::Http::NHeaders::Parameterized&lt; T &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html", null ],
     [ "Thoth::Http::details_::ParseStage&lt; Stream, Head &gt;", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", [
       [ "Thoth::Http::details_::ParseCompleteStage< Stream, Head, Body >", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", null ]
     ] ],

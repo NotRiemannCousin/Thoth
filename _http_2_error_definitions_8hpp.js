@@ -5,6 +5,7 @@ var _http_2_error_definitions_8hpp =
       [ "Thoth::Http::MessageParseErrorEnum::InvalidStartLine", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d", null ],
       [ "Thoth::Http::MessageParseErrorEnum::InvalidVersion", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0", null ],
       [ "Thoth::Http::MessageParseErrorEnum::InvalidHeaders", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a89a8b7dbbd610306770222afabd44e4c", null ],
+      [ "Thoth::Http::MessageParseErrorEnum::HeadersTooLarge", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a286bd75cc34708b988157e0200c06a13", null ],
       [ "Thoth::Http::MessageParseErrorEnum::VersionNeedsContentLength", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3", null ]
     ] ],
     [ "Thoth::Http::UrlParseErrorEnum", "namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c", [

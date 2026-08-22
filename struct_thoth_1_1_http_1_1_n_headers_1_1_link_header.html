@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>The URI portion of one <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29" title="Parameterized version of LinkHeader.">Link</a></span> field value (RFC 8288 §3.1).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_link_8hpp_source.html">Link.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -165,7 +168,13 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa3b0c7246d352ccf87184e14186b5f4d" id="r_aa3b0c7246d352ccf87184e14186b5f4d"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aa3b0c7246d352ccf87184e14186b5f4d">uri</a> {}</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The URI portion of one <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29" title="Parameterized version of LinkHeader.">Link</a></span> field value (RFC 8288 §3.1). </p>
+<p>The wire representation encloses this URI in angle brackets. <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29" title="Parameterized version of LinkHeader.">Link</a> parameters such as <span class="tt">rel</span>, <span class="tt">type</span> and <span class="tt">hreflang</span> are stored by the <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a359d4b70f8b2b46912fec51bc2866b29" title="Parameterized version of LinkHeader.">Link</a></span> wrapper.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html">LinkHeader</a> target{ <span class="stringliteral">&quot;https://example.test/next&quot;</span> };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_link_header_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html">Thoth::Http::NHeaders::LinkHeader</a></div><div class="ttdoc">The URI portion of one Link field value (RFC 8288 §3.1).</div><div class="ttdef"><b>Definition</b> Link.hpp:16</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a207a27e82ad04337a95dddbb2967faf6" name="a207a27e82ad04337a95dddbb2967faf6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a207a27e82ad04337a95dddbb2967faf6">&#9670;&#160;</a></span>operator==()</h2>
 

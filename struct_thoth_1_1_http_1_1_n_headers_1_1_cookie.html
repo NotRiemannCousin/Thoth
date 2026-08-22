@@ -155,26 +155,54 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>A <span class="tt">Set-Cookie</span> response field value (RFC 6265 §§4.1, 4.2).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_cookie_8hpp_source.html">Cookie.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:aeb5e44855cd2be01e82d5733a2f22c49" id="r_aeb5e44855cd2be01e82d5733a2f22c49"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aeb5e44855cd2be01e82d5733a2f22c49">Date</a> = std::chrono::system_clock::time_point</td></tr>
+<tr class="memdesc:aeb5e44855cd2be01e82d5733a2f22c49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for the time point used by the cookie expiry attribute.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a176df6befc26dde3661c08934eb35540" id="r_a176df6befc26dde3661c08934eb35540"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a176df6befc26dde3661c08934eb35540">name</a> {}</td></tr>
+<tr class="memdesc:a176df6befc26dde3661c08934eb35540"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html" title="A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).">Cookie</a> name from the <span class="tt"><a class="el" href="#a176df6befc26dde3661c08934eb35540" title="Cookie name from the name=value pair.">name</a>=<a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a" title="Cookie value from the name=value pair.">value</a></span> pair.  <br /></td></tr>
 <tr class="memitem:ac22a3c62dbad60b98eb06e7b3dbafd3a" id="r_ac22a3c62dbad60b98eb06e7b3dbafd3a"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a">value</a> {}</td></tr>
+<tr class="memdesc:ac22a3c62dbad60b98eb06e7b3dbafd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html" title="A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).">Cookie</a> value from the <span class="tt"><a class="el" href="#a176df6befc26dde3661c08934eb35540" title="Cookie name from the name=value pair.">name</a>=<a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a" title="Cookie value from the name=value pair.">value</a></span> pair.  <br /></td></tr>
 <tr class="memitem:aec9d3bd51c5d45677ccbff08c57deb40" id="r_aec9d3bd51c5d45677ccbff08c57deb40"><td class="memItemLeft">std::optional&lt; <a class="el" href="#aeb5e44855cd2be01e82d5733a2f22c49">Date</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aec9d3bd51c5d45677ccbff08c57deb40">expires</a> {}</td></tr>
+<tr class="memdesc:aec9d3bd51c5d45677ccbff08c57deb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional absolute expiration time.  <br /></td></tr>
 <tr class="memitem:ae505a35a8db9359eb5770d1b653aabfe" id="r_ae505a35a8db9359eb5770d1b653aabfe"><td class="memItemLeft">std::optional&lt; int64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae505a35a8db9359eb5770d1b653aabfe">maxAge</a> {}</td></tr>
+<tr class="memdesc:ae505a35a8db9359eb5770d1b653aabfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional lifetime in seconds.  <br /></td></tr>
 <tr class="memitem:acebe7d000d59f3e87973150999d81902" id="r_acebe7d000d59f3e87973150999d81902"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acebe7d000d59f3e87973150999d81902">domain</a> {}</td></tr>
+<tr class="memdesc:acebe7d000d59f3e87973150999d81902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional domain attribute.  <br /></td></tr>
 <tr class="memitem:a6024542338a5e60bcfef8c26008b3a16" id="r_a6024542338a5e60bcfef8c26008b3a16"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6024542338a5e60bcfef8c26008b3a16">path</a> {}</td></tr>
+<tr class="memdesc:a6024542338a5e60bcfef8c26008b3a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional path attribute.  <br /></td></tr>
 <tr class="memitem:a7934260b06bad988877bc6752404f67b" id="r_a7934260b06bad988877bc6752404f67b"><td class="memItemLeft">std::optional&lt; <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ae21029dc3f33394684835157090f25f3">SameSiteEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7934260b06bad988877bc6752404f67b">sameSite</a> {}</td></tr>
+<tr class="memdesc:a7934260b06bad988877bc6752404f67b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional SameSite delivery policy.  <br /></td></tr>
 <tr class="memitem:a54395c064beb8e161838b0cd765629c7" id="r_a54395c064beb8e161838b0cd765629c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a54395c064beb8e161838b0cd765629c7">partitioned</a> {}</td></tr>
+<tr class="memdesc:a54395c064beb8e161838b0cd765629c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the <span class="tt">Partitioned</span> attribute is emitted.  <br /></td></tr>
 <tr class="memitem:a4b074ab729f28b9ba5b979ae01667f56" id="r_a4b074ab729f28b9ba5b979ae01667f56"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4b074ab729f28b9ba5b979ae01667f56">secure</a> {}</td></tr>
+<tr class="memdesc:a4b074ab729f28b9ba5b979ae01667f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the <span class="tt">Secure</span> attribute is emitted.  <br /></td></tr>
 <tr class="memitem:a4f308750987e07a5ddb4ff5b867e70a2" id="r_a4f308750987e07a5ddb4ff5b867e70a2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4f308750987e07a5ddb4ff5b867e70a2">httpOnly</a> {}</td></tr>
+<tr class="memdesc:a4f308750987e07a5ddb4ff5b867e70a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the <span class="tt">HttpOnly</span> attribute is emitted.  <br /></td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A <span class="tt">Set-Cookie</span> response field value (RFC 6265 §§4.1, 4.2). </p>
+<p>The first two fields form the required <span class="tt"><a class="el" href="#a176df6befc26dde3661c08934eb35540" title="Cookie name from the name=value pair.">name</a>=<a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a" title="Cookie value from the name=value pair.">value</a></span> pair. The remaining fields model common cookie attributes, an unset optional attribute is not emitted. Boolean attributes such as <span class="tt">Secure</span> and <span class="tt">HttpOnly</span> are emitted when their flags are <span class="tt">true</span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">Cookie</a> session{</div>
+<div class="line">    .name = <span class="stringliteral">&quot;session&quot;</span>,</div>
+<div class="line">    .value = <span class="stringliteral">&quot;abc&quot;</span>,</div>
+<div class="line">    .path = <span class="stringliteral">&quot;/&quot;</span>,</div>
+<div class="line">    .sameSite = <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#ae21029dc3f33394684835157090f25f3a6f0170fbfae85ec13f565665b8d74f3b">SameSiteEnum::Lax</a>,</div>
+<div class="line">    .secure = <span class="keyword">true</span>,</div>
+<div class="line">    .httpOnly = <span class="keyword">true</span></div>
+<div class="line">};</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_ae21029dc3f33394684835157090f25f3a6f0170fbfae85ec13f565665b8d74f3b"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#ae21029dc3f33394684835157090f25f3a6f0170fbfae85ec13f565665b8d74f3b">Thoth::Http::NHeaders::SameSiteEnum::Lax</a></div><div class="ttdeci">@ Lax</div><div class="ttdoc">Use the browser&#39;s lax cross-site delivery policy.</div><div class="ttdef"><b>Definition</b> Cookie.hpp:18</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_cookie_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">Thoth::Http::NHeaders::Cookie</a></div><div class="ttdoc">A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).</div><div class="ttdef"><b>Definition</b> Cookie.hpp:38</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="aeb5e44855cd2be01e82d5733a2f22c49" name="aeb5e44855cd2be01e82d5733a2f22c49"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb5e44855cd2be01e82d5733a2f22c49">&#9670;&#160;</a></span>Date</h2>
 
@@ -186,6 +214,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Alias for the time point used by the cookie expiry attribute. </p>
 
 </div>
 </div>
@@ -202,6 +232,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Optional domain attribute. </p>
+
 </div>
 </div>
 <a id="aec9d3bd51c5d45677ccbff08c57deb40" name="aec9d3bd51c5d45677ccbff08c57deb40"></a>
@@ -215,6 +247,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optional absolute expiration time. </p>
 
 </div>
 </div>
@@ -230,6 +264,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Whether the <span class="tt">HttpOnly</span> attribute is emitted. </p>
+
 </div>
 </div>
 <a id="ae505a35a8db9359eb5770d1b653aabfe" name="ae505a35a8db9359eb5770d1b653aabfe"></a>
@@ -243,6 +279,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optional lifetime in seconds. </p>
 
 </div>
 </div>
@@ -258,6 +296,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html" title="A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).">Cookie</a> name from the <span class="tt"><a class="el" href="#a176df6befc26dde3661c08934eb35540" title="Cookie name from the name=value pair.">name</a>=<a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a" title="Cookie value from the name=value pair.">value</a></span> pair. </p>
+
 </div>
 </div>
 <a id="a54395c064beb8e161838b0cd765629c7" name="a54395c064beb8e161838b0cd765629c7"></a>
@@ -271,6 +311,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Whether the <span class="tt">Partitioned</span> attribute is emitted. </p>
 
 </div>
 </div>
@@ -286,6 +328,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Optional path attribute. </p>
+
 </div>
 </div>
 <a id="a7934260b06bad988877bc6752404f67b" name="a7934260b06bad988877bc6752404f67b"></a>
@@ -299,6 +343,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optional SameSite delivery policy. </p>
 
 </div>
 </div>
@@ -314,6 +360,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Whether the <span class="tt">Secure</span> attribute is emitted. </p>
+
 </div>
 </div>
 <a id="ac22a3c62dbad60b98eb06e7b3dbafd3a" name="ac22a3c62dbad60b98eb06e7b3dbafd3a"></a>
@@ -327,6 +375,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html" title="A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).">Cookie</a> value from the <span class="tt"><a class="el" href="#a176df6befc26dde3661c08934eb35540" title="Cookie name from the name=value pair.">name</a>=<a class="el" href="#ac22a3c62dbad60b98eb06e7b3dbafd3a" title="Cookie value from the name=value pair.">value</a></span> pair. </p>
 
 </div>
 </div>

@@ -214,7 +214,7 @@ struct Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt;</div><p>Typed
 <dl class="section note"><dt>Note</dt><dd>Given that it can't be stored in any sense, it is intentionally not a <span class="tt">std::ranges::range</span>. Call <span class="tt"><a class="el" href="#afdbe2718453e7b24f5df163c2edce932" title="Parses all values and reports absence, emptiness or invalid format.">Get()</a></span> or <span class="tt"><a class="el" href="#a1c7475f4eb2f7dd285d58979e81d7dc7" title="Parses all values, returning no value when the header is absent or invalid.">GetAsOpt()</a></span> to materialize the parsed <span class="tt">std::vector</span>.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">IsConst</td><td>Whether the proxy can modify its <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a></span> object. </td></tr>
+    <tr><td class="paramname">IsConst</td><td>Whether the proxy can modify its <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Stores the common header fields of an HTTP message.">Headers</a></span> object. </td></tr>
     <tr><td class="paramname">Ts</td><td>Serializable value types accepted by the multi-value proxy. </td></tr>
   </table>
   </dd>
@@ -562,7 +562,7 @@ requires (!IsConst)</div>
 </div><div class="memdoc">
 
 <p>Parses and replaces the header from a raw value. </p>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the value was parsed and stored; otherwise leaves the header unchanged. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the value was parsed and stored, otherwise leaves the header unchanged. </dd></dl>
 
 </div>
 </div>

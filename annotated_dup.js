@@ -28,7 +28,6 @@ var annotated_dup =
           [ "MimeTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header" ],
           [ "MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types" ],
           [ "MultiValueProxy", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy" ],
-          [ "Parameterized", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized" ],
           [ "PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range" ],
           [ "SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range" ],
           [ "Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade" ],

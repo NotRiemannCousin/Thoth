@@ -155,14 +155,26 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>An HTTP entity tag used for cache validation (RFC 9110 §8.8.3).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_entity_tag_8hpp_source.html">EntityTag.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af75caf77b11e3b50845c281c876a1f3e" id="r_af75caf77b11e3b50845c281c876a1f3e"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af75caf77b11e3b50845c281c876a1f3e">tag</a></td></tr>
+<tr class="memdesc:af75caf77b11e3b50845c281c876a1f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque entity-tag content without quotes.  <br /></td></tr>
 <tr class="memitem:aa31da502a6e8cfa66b3fdda55cf665cd" id="r_aa31da502a6e8cfa66b3fdda55cf665cd"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa31da502a6e8cfa66b3fdda55cf665cd">isWeak</a></td></tr>
+<tr class="memdesc:aa31da502a6e8cfa66b3fdda55cf665cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this is a weak validator.  <br /></td></tr>
 </table>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An HTTP entity tag used for cache validation (RFC 9110 §8.8.3). </p>
+<p><span class="tt"><a class="el" href="#aa31da502a6e8cfa66b3fdda55cf665cd" title="Whether this is a weak validator.">isWeak</a></span> distinguishes a weak validator (<span class="tt">W/"<a class="el" href="#af75caf77b11e3b50845c281c876a1f3e" title="Opaque entity-tag content without quotes.">tag</a>"</span>) from a strong validator (<span class="tt">"<a class="el" href="#af75caf77b11e3b50845c281c876a1f3e" title="Opaque entity-tag content without quotes.">tag</a>"</span>). The <span class="tt"><a class="el" href="#af75caf77b11e3b50845c281c876a1f3e" title="Opaque entity-tag content without quotes.">tag</a></span> member stores the opaque tag content without the surrounding quotes or the optional <span class="tt">W/</span> prefix.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">EntityTag</a> <a class="code hl_variable" href="#af75caf77b11e3b50845c281c876a1f3e">tag</a>{ <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">true</span> }; <span class="comment">// formats as W/&quot;0815&quot;</span></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">Thoth::Http::NHeaders::EntityTag</a></div><div class="ttdoc">An HTTP entity tag used for cache validation (RFC 9110 §8.8.3).</div><div class="ttdef"><b>Definition</b> EntityTag.hpp:14</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag_html_af75caf77b11e3b50845c281c876a1f3e"><div class="ttname"><a href="#af75caf77b11e3b50845c281c876a1f3e">Thoth::Http::NHeaders::EntityTag::tag</a></div><div class="ttdeci">std::string tag</div><div class="ttdoc">Opaque entity-tag content without quotes.</div><div class="ttdef"><b>Definition</b> EntityTag.hpp:16</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="aa31da502a6e8cfa66b3fdda55cf665cd" name="aa31da502a6e8cfa66b3fdda55cf665cd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa31da502a6e8cfa66b3fdda55cf665cd">&#9670;&#160;</a></span>isWeak</h2>
 
@@ -174,6 +186,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Whether this is a weak validator. </p>
 
 </div>
 </div>
@@ -188,6 +202,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Opaque entity-tag content without quotes. </p>
 
 </div>
 </div>

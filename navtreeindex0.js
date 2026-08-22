@@ -1,7 +1,7 @@
 var NAVTREEINDEX0 =
 {
-"_accept_encoding_enum_8hpp.html":[5,0,0,0,1,3,1,2],
-"_accept_encoding_enum_8hpp_source.html":[5,0,0,0,1,3,1,2],
+"_accept_encoding_8hpp.html":[5,0,0,0,1,3,1,2],
+"_accept_encoding_8hpp_source.html":[5,0,0,0,1,3,1,2],
 "_accept_ranges_8hpp.html":[5,0,0,0,1,3,4,0,1],
 "_accept_ranges_8hpp_source.html":[5,0,0,0,1,3,4,0,1],
 "_base64_viewer_8hpp.html":[5,0,0,0,3,1],
@@ -130,8 +130,8 @@ var NAVTREEINDEX0 =
 "_string_2_utils_8hpp_source.html":[5,0,0,0,3,3],
 "_string_ref_8hpp.html":[5,0,0,0,2,5],
 "_string_ref_8hpp_source.html":[5,0,0,0,2,5],
-"_te_enum_8hpp.html":[5,0,0,0,1,3,3,0,2],
-"_te_enum_8hpp_source.html":[5,0,0,0,1,3,3,0,2],
+"_te_8hpp.html":[5,0,0,0,1,3,3,0,2],
+"_te_8hpp_source.html":[5,0,0,0,1,3,3,0,2],
 "_thoth_error_8hpp.html":[5,0,0,0,5],
 "_thoth_error_8hpp_source.html":[5,0,0,0,5],
 "_trace_method_8hpp.html":[5,0,0,0,1,2,9],

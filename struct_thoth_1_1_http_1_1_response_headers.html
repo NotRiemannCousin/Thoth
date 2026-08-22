@@ -155,6 +155,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the response-specific HTTP header fields.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_response_headers_8hpp_source.html">ResponseHeaders.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Thoth::Http::ResponseHeaders:</div>
@@ -173,54 +176,54 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Convenient calls to some headers. </p>
 </div></td></tr>
 <tr class="memitem:a27331ab9b5d7ce31d9dddd67f37d7425" id="r_a27331ab9b5d7ce31d9dddd67f37d7425"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; false, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">NHeaders::Cookie</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a27331ab9b5d7ce31d9dddd67f37d7425">SetCookie</a> ()</td></tr>
-<tr class="memdesc:a27331ab9b5d7ce31d9dddd67f37d7425"><td class="mdescLeft">&#160;</td><td class="mdescRight">All Set-Cookie challenges present on the response.  <br /></td></tr>
+<tr class="memdesc:a27331ab9b5d7ce31d9dddd67f37d7425"><td class="mdescLeft">&#160;</td><td class="mdescRight">All <span class="tt">Set-Cookie</span> field values present on the response.  <br /></td></tr>
 <tr class="memitem:acd938adebb85842b72e3247dafbcfaab" id="r_acd938adebb85842b72e3247dafbcfaab"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; true, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">NHeaders::Cookie</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acd938adebb85842b72e3247dafbcfaab">SetCookie</a> () const</td></tr>
 <tr class="memitem:a01dbd1bd9e174fd597a30aa9c2f35080" id="r_a01dbd1bd9e174fd597a30aa9c2f35080"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; false, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">NHeaders::Challenge</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a01dbd1bd9e174fd597a30aa9c2f35080">WwwAuthenticate</a> ()</td></tr>
-<tr class="memdesc:a01dbd1bd9e174fd597a30aa9c2f35080"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of authentication that the server utilizes.  <br /></td></tr>
+<tr class="memdesc:a01dbd1bd9e174fd597a30aa9c2f35080"><td class="mdescLeft">&#160;</td><td class="mdescRight">The authentication challenges offered by the server.  <br /></td></tr>
 <tr class="memitem:a379716fc3848bfcac20a38c7dc9be178" id="r_a379716fc3848bfcac20a38c7dc9be178"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; true, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">NHeaders::Challenge</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a379716fc3848bfcac20a38c7dc9be178">WwwAuthenticate</a> () const</td></tr>
 <tr class="memitem:a87985fc6c0a1e40ddfc3206b84179913" id="r_a87985fc6c0a1e40ddfc3206b84179913"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; false, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">NHeaders::Challenge</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a87985fc6c0a1e40ddfc3206b84179913">ProxyAuthenticate</a> ()</td></tr>
-<tr class="memdesc:a87985fc6c0a1e40ddfc3206b84179913"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "proxy-authenticate" header.  <br /></td></tr>
+<tr class="memdesc:a87985fc6c0a1e40ddfc3206b84179913"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">Proxy-Authenticate</span> header.  <br /></td></tr>
 <tr class="memitem:a69354da2e008f771f8f6a953bb7b1006" id="r_a69354da2e008f771f8f6a953bb7b1006"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">NHeaders::MultiValueProxy</a>&lt; true, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">NHeaders::Challenge</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a69354da2e008f771f8f6a953bb7b1006">ProxyAuthenticate</a> () const</td></tr>
 <tr class="memitem:a9147e0beec8f4a2a0678f8de64a77df7" id="r_a9147e0beec8f4a2a0678f8de64a77df7"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a">NHeaders::ContentDisposition</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9147e0beec8f4a2a0678f8de64a77df7">ContentDisposition</a> ()</td></tr>
-<tr class="memdesc:a9147e0beec8f4a2a0678f8de64a77df7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename.  <br /></td></tr>
+<tr class="memdesc:a9147e0beec8f4a2a0678f8de64a77df7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">Content-Disposition</span> header (RFC 6266).  <br /></td></tr>
 <tr class="memitem:a9b3a898129615b8002c887ac8cda5737" id="r_a9b3a898129615b8002c887ac8cda5737"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a">NHeaders::ContentDisposition</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9b3a898129615b8002c887ac8cda5737">ContentDisposition</a> () const</td></tr>
-<tr class="memdesc:a9b3a898129615b8002c887ac8cda5737"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename.     <br /></td></tr>
-<tr class="memitem:a0ac5495c87a7ed0eb6809072e6a0b7ed" id="r_a0ac5495c87a7ed0eb6809072e6a0b7ed"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035c">NHeaders::AcceptRanges</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0ac5495c87a7ed0eb6809072e6a0b7ed">AcceptRanges</a> ()</td></tr>
-<tr class="memdesc:a0ac5495c87a7ed0eb6809072e6a0b7ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines if the response accepts bytes or no (just "bytes" or "none" is available).  <br /></td></tr>
-<tr class="memitem:a26fa4374f2e45a1395f07ee19034124f" id="r_a26fa4374f2e45a1395f07ee19034124f"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035c">NHeaders::AcceptRanges</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a26fa4374f2e45a1395f07ee19034124f">AcceptRanges</a> () const</td></tr>
-<tr class="memdesc:a26fa4374f2e45a1395f07ee19034124f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines if the response accepts bytes or no (just "bytes" or "none" is available).     <br /></td></tr>
+<tr class="memdesc:a9b3a898129615b8002c887ac8cda5737"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">Content-Disposition</span> header (RFC 6266).     <br /></td></tr>
+<tr class="memitem:a0ac5495c87a7ed0eb6809072e6a0b7ed" id="r_a0ac5495c87a7ed0eb6809072e6a0b7ed"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, NHeaders::AcceptRanges &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0ac5495c87a7ed0eb6809072e6a0b7ed">AcceptRanges</a> ()</td></tr>
+<tr class="memdesc:a0ac5495c87a7ed0eb6809072e6a0b7ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines whether the response accepts byte ranges.  <br /></td></tr>
+<tr class="memitem:a26fa4374f2e45a1395f07ee19034124f" id="r_a26fa4374f2e45a1395f07ee19034124f"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, NHeaders::AcceptRanges &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a26fa4374f2e45a1395f07ee19034124f">AcceptRanges</a> () const</td></tr>
+<tr class="memdesc:a26fa4374f2e45a1395f07ee19034124f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines whether the response accepts byte ranges.     <br /></td></tr>
 <tr class="memitem:a1ea02076638cb756bc2fccb56d0a6e2e" id="r_a1ea02076638cb756bc2fccb56d0a6e2e"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; false, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">NHeaders::MimeType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1ea02076638cb756bc2fccb56d0a6e2e">AcceptPatch</a> ()</td></tr>
-<tr class="memdesc:a1ea02076638cb756bc2fccb56d0a6e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the Accept-Patch header.  <br /></td></tr>
+<tr class="memdesc:a1ea02076638cb756bc2fccb56d0a6e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Media types accepted for a PATCH request.  <br /></td></tr>
 <tr class="memitem:a5cb0ea2d3d2609aed7e938838d69821a" id="r_a5cb0ea2d3d2609aed7e938838d69821a"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; true, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">NHeaders::MimeType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5cb0ea2d3d2609aed7e938838d69821a">AcceptPatch</a> () const</td></tr>
-<tr class="memdesc:a5cb0ea2d3d2609aed7e938838d69821a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the Accept-Patch header.     <br /></td></tr>
+<tr class="memdesc:a5cb0ea2d3d2609aed7e938838d69821a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Media types accepted for a PATCH request.     <br /></td></tr>
 <tr class="memitem:a14dc632607afc861ab41fe209164b7bb" id="r_a14dc632607afc861ab41fe209164b7bb"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; false, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">NHeaders::MimeType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a14dc632607afc861ab41fe209164b7bb">AcceptPost</a> ()</td></tr>
-<tr class="memdesc:a14dc632607afc861ab41fe209164b7bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the Accept-Patch header.  <br /></td></tr>
+<tr class="memdesc:a14dc632607afc861ab41fe209164b7bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Media types accepted for a POST request.  <br /></td></tr>
 <tr class="memitem:a7831a11a3f033ee3bc1ed54190bce1ba" id="r_a7831a11a3f033ee3bc1ed54190bce1ba"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; true, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#ab839cd8c84976329bb15d21ed168f123">NHeaders::MimeType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7831a11a3f033ee3bc1ed54190bce1ba">AcceptPost</a> () const</td></tr>
-<tr class="memdesc:a7831a11a3f033ee3bc1ed54190bce1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of the Accept-Patch header.     <br /></td></tr>
+<tr class="memdesc:a7831a11a3f033ee3bc1ed54190bce1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Media types accepted for a POST request.     <br /></td></tr>
 <tr class="memitem:ab61a51f17aabe1cd9bf5c1ee02238a37" id="r_ab61a51f17aabe1cd9bf5c1ee02238a37"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, std::chrono::seconds &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab61a51f17aabe1cd9bf5c1ee02238a37">Age</a> ()</td></tr>
-<tr class="memdesc:ab61a51f17aabe1cd9bf5c1ee02238a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get how old this response has generated in the server, useful for caching.  <br /></td></tr>
+<tr class="memdesc:ab61a51f17aabe1cd9bf5c1ee02238a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">The apparent age of the response, in seconds.  <br /></td></tr>
 <tr class="memitem:acb60f45f2177ccbe8cfba37924a5b225" id="r_acb60f45f2177ccbe8cfba37924a5b225"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, std::chrono::seconds &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acb60f45f2177ccbe8cfba37924a5b225">Age</a> () const</td></tr>
-<tr class="memdesc:acb60f45f2177ccbe8cfba37924a5b225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get how old this response has generated in the server, useful for caching.     <br /></td></tr>
+<tr class="memdesc:acb60f45f2177ccbe8cfba37924a5b225"><td class="mdescLeft">&#160;</td><td class="mdescRight">The apparent age of the response, in seconds.     <br /></td></tr>
 <tr class="memitem:ac03b61d968e831d17985cfa2539fbcea" id="r_ac03b61d968e831d17985cfa2539fbcea"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">NHeaders::EntityTag</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac03b61d968e831d17985cfa2539fbcea">EntityTag</a> ()</td></tr>
-<tr class="memdesc:ac03b61d968e831d17985cfa2539fbcea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "ETag" header.  <br /></td></tr>
+<tr class="memdesc:ac03b61d968e831d17985cfa2539fbcea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">ETag</span> validator of the selected representation.  <br /></td></tr>
 <tr class="memitem:a3d4430afe3391764ceabc300c365c0e0" id="r_a3d4430afe3391764ceabc300c365c0e0"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">NHeaders::EntityTag</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3d4430afe3391764ceabc300c365c0e0">EntityTag</a> () const</td></tr>
-<tr class="memdesc:a3d4430afe3391764ceabc300c365c0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "ETag" header.     <br /></td></tr>
+<tr class="memdesc:a3d4430afe3391764ceabc300c365c0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">ETag</span> validator of the selected representation.     <br /></td></tr>
 <tr class="memitem:a3c1bbda35fc56f7b05e74c98dd3ae9fe" id="r_a3c1bbda35fc56f7b05e74c98dd3ae9fe"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3c1bbda35fc56f7b05e74c98dd3ae9fe">Location</a> ()</td></tr>
-<tr class="memdesc:a3c1bbda35fc56f7b05e74c98dd3ae9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL where this response pointers to.  <br /></td></tr>
+<tr class="memdesc:a3c1bbda35fc56f7b05e74c98dd3ae9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL to which this response points.  <br /></td></tr>
 <tr class="memitem:a2a1d9d62a6a72c5496d3c1f1155b8cb6" id="r_a2a1d9d62a6a72c5496d3c1f1155b8cb6"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2a1d9d62a6a72c5496d3c1f1155b8cb6">Location</a> () const</td></tr>
-<tr class="memdesc:a2a1d9d62a6a72c5496d3c1f1155b8cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL where this response pointers to.     <br /></td></tr>
+<tr class="memdesc:a2a1d9d62a6a72c5496d3c1f1155b8cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL to which this response points.     <br /></td></tr>
 <tr class="memitem:aa657d80aff957fbec4f48f0d0a2ad807" id="r_aa657d80aff957fbec4f48f0d0a2ad807"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, std::chrono::utc_clock::time_point, std::chrono::seconds &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa657d80aff957fbec4f48f0d0a2ad807">RetryAfter</a> ()</td></tr>
-<tr class="memdesc:aa657d80aff957fbec4f48f0d0a2ad807"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date or cooldown when the endpoint will accept new responses.  <br /></td></tr>
+<tr class="memdesc:aa657d80aff957fbec4f48f0d0a2ad807"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date or delay after which the request may be retried.  <br /></td></tr>
 <tr class="memitem:a1187812f9ccf92f0279fc91526da3e46" id="r_a1187812f9ccf92f0279fc91526da3e46"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, std::chrono::utc_clock::time_point, std::chrono::seconds &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1187812f9ccf92f0279fc91526da3e46">RetryAfter</a> () const</td></tr>
-<tr class="memdesc:a1187812f9ccf92f0279fc91526da3e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date or cooldown when the endpoint will accept new responses.     <br /></td></tr>
+<tr class="memdesc:a1187812f9ccf92f0279fc91526da3e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date or delay after which the request may be retried.     <br /></td></tr>
 <tr class="memitem:a2405fdc56018fae569650862d356d1fa" id="r_a2405fdc56018fae569650862d356d1fa"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2405fdc56018fae569650862d356d1fa">Server</a> ()</td></tr>
-<tr class="memdesc:a2405fdc56018fae569650862d356d1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of server.  <br /></td></tr>
+<tr class="memdesc:a2405fdc56018fae569650862d356d1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the software that generated the response.  <br /></td></tr>
 <tr class="memitem:aa92b559d8c6da9c90411791a2d2e2980" id="r_aa92b559d8c6da9c90411791a2d2e2980"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa92b559d8c6da9c90411791a2d2e2980">Server</a> () const</td></tr>
-<tr class="memdesc:aa92b559d8c6da9c90411791a2d2e2980"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of server.     <br /></td></tr>
+<tr class="memdesc:aa92b559d8c6da9c90411791a2d2e2980"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the software that generated the response.     <br /></td></tr>
 <tr class="memitem:af2ba0a89f782771c7c78c70019ed671b" id="r_af2ba0a89f782771c7c78c70019ed671b"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; false, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af2ba0a89f782771c7c78c70019ed671b">Vary</a> ()</td></tr>
-<tr class="memdesc:af2ba0a89f782771c7c78c70019ed671b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "vary" header.  <br /></td></tr>
+<tr class="memdesc:af2ba0a89f782771c7c78c70019ed671b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> headers that select the representation in the response.  <br /></td></tr>
 <tr class="memitem:ae915a6d1684d548d659f8679352003c2" id="r_ae915a6d1684d548d659f8679352003c2"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html">NHeaders::ListProxy</a>&lt; true, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae915a6d1684d548d659f8679352003c2">Vary</a> () const</td></tr>
-<tr class="memdesc:ae915a6d1684d548d659f8679352003c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "vary" header.     <br /></td></tr>
+<tr class="memdesc:ae915a6d1684d548d659f8679352003c2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> headers that select the representation in the response.     <br /></td></tr>
 <tr class="inherit_header pub_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2">Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
 <tr class="memitem:a1d83300c0da8ca20f55374139098c847 pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a1d83300c0da8ca20f55374139098c847"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a> ()</td></tr>
 <tr class="memitem:a24c65b704ffc9065b6105aa3f5344c54 pub_methods_struct_thoth_1_1_http_1_1_headers" id="r_a24c65b704ffc9065b6105aa3f5344c54"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a24c65b704ffc9065b6105aa3f5344c54">Headers</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a> &amp;initAs)</td></tr>
@@ -332,13 +335,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a85273172cbc4f2f197baa03c6ee23d7f" id="r_a85273172cbc4f2f197baa03c6ee23d7f"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:a85273172cbc4f2f197baa03c6ee23d7f template"><td class="memItemLeft">static <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a85273172cbc4f2f197baa03c6ee23d7f">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:a85273172cbc4f2f197baa03c6ee23d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.     <br /></td></tr>
+<tr class="memitem:aecf0269510e202874643ee9cf20ce15b" id="r_aecf0269510e202874643ee9cf20ce15b"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:aecf0269510e202874643ee9cf20ce15b template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aecf0269510e202874643ee9cf20ce15b">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:aecf0269510e202874643ee9cf20ce15b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.     <br /></td></tr>
 <tr class="inherit_header pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_af82fca4b81040dbc1e6f8f850b1b183d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers template"><td class="memItemLeft">static <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af82fca4b81040dbc1e6f8f850b1b183d">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a61fe93ceefe6c1085dd552ef2bbdb33f"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a61fe93ceefe6c1085dd552ef2bbdb33f">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
 <tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639 pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft">static <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a>&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
@@ -360,7 +363,19 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_struct_thoth_1_1_http_1_1_headers"><td colspan="2">Protected Attributes inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
 <tr class="memitem:a3e43708b3a94b22c0b00e936e3759b4a pro_attribs_struct_thoth_1_1_http_1_1_headers" id="r_a3e43708b3a94b22c0b00e936e3759b4a"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a3e43708b3a94b22c0b00e936e3759b4a">m_headers</a></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the response-specific HTTP header fields. </p>
+<p>The typed accessors use concrete models such as <span class="tt">Cookie</span>, <span class="tt">Challenge</span>, <span class="tt"><a class="el" href="#a9147e0beec8f4a2a0678f8de64a77df7" title="The Content-Disposition header (RFC 6266).">ContentDisposition</a></span>, <span class="tt"><a class="el" href="#a0ac5495c87a7ed0eb6809072e6a0b7ed" title="Defines whether the response accepts byte ranges.">AcceptRanges</a></span> and <span class="tt"><a class="el" href="#ac03b61d968e831d17985cfa2539fbcea" title="The ETag validator of the selected representation.">EntityTag</a></span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a> headers;</div>
+<div class="line">headers.<a class="code hl_function" href="#a2405fdc56018fae569650862d356d1fa">Server</a>().Set(<span class="stringliteral">&quot;thoth&quot;</span>);</div>
+<div class="line">headers.<a class="code hl_function" href="#a27331ab9b5d7ce31d9dddd67f37d7425">SetCookie</a>().Add(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">NHeaders::Cookie</a>{ .name = <span class="stringliteral">&quot;session&quot;</span>, .value = <span class="stringliteral">&quot;abc&quot;</span>, .httpOnly = <span class="keyword">true</span> });</div>
+<div class="line"><span class="keyword">auto</span> server{ headers.<a class="code hl_function" href="#a2405fdc56018fae569650862d356d1fa">Server</a>().Get() };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_cookie_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">Thoth::Http::NHeaders::Cookie</a></div><div class="ttdoc">A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).</div><div class="ttdef"><b>Definition</b> Cookie.hpp:38</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_response_headers_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_response_headers.html">Thoth::Http::ResponseHeaders</a></div><div class="ttdoc">Represents the response-specific HTTP header fields.</div><div class="ttdef"><b>Definition</b> ResponseHeaders.hpp:20</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_response_headers_html_a2405fdc56018fae569650862d356d1fa"><div class="ttname"><a href="#a2405fdc56018fae569650862d356d1fa">Thoth::Http::ResponseHeaders::Server</a></div><div class="ttdeci">NHeaders::ValueProxy&lt; false, std::string &gt; Server()</div><div class="ttdoc">Identifies the software that generated the response.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_response_headers_html_a27331ab9b5d7ce31d9dddd67f37d7425"><div class="ttname"><a href="#a27331ab9b5d7ce31d9dddd67f37d7425">Thoth::Http::ResponseHeaders::SetCookie</a></div><div class="ttdeci">NHeaders::MultiValueProxy&lt; false, NHeaders::Cookie &gt; SetCookie()</div><div class="ttdoc">All Set-Cookie field values present on the response.</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a1ea02076638cb756bc2fccb56d0a6e2e" name="a1ea02076638cb756bc2fccb56d0a6e2e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ea02076638cb756bc2fccb56d0a6e2e">&#9670;&#160;</a></span>AcceptPatch() <span class="overload">[1/2]</span></h2>
 
@@ -376,7 +391,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The value of the Accept-Patch header. </p>
+<p>Media types accepted for a PATCH request. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.AcceptPatch().Add(</div>
+<div class="line">    <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">NHeaders::MimeTypes::appJson</a>.WithParam(<span class="stringliteral">&quot;charset&quot;</span>, <span class="stringliteral">&quot;utf-8&quot;</span>));</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_types_html_a055201eef1f237fa42464ccd735a4ba7"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">Thoth::Http::NHeaders::MimeTypes::appJson</a></div><div class="ttdeci">static const MimeType appJson</div><div class="ttdef"><b>Definition</b> MimeType.hpp:44</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -403,7 +422,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The value of the Accept-Patch header.    </p>
+<p>Media types accepted for a PATCH request.    </p>
 
 </div>
 </div>
@@ -422,7 +441,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The value of the Accept-Patch header. </p>
+<p>Media types accepted for a POST request. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.AcceptPost().Set(std::vector&lt;NHeaders::MimeType&gt;{</div>
+<div class="line">    <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a055201eef1f237fa42464ccd735a4ba7">NHeaders::MimeTypes::appJson</a>, <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a5911bfde2d2c3e41f2e32bc8a1ba20ab">NHeaders::MimeTypes::appXml</a> });</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_mime_types_html_a5911bfde2d2c3e41f2e32bc8a1ba20ab"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a5911bfde2d2c3e41f2e32bc8a1ba20ab">Thoth::Http::NHeaders::MimeTypes::appXml</a></div><div class="ttdeci">static const MimeType appXml</div><div class="ttdef"><b>Definition</b> MimeType.hpp:45</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -449,7 +472,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The value of the Accept-Patch header.    </p>
+<p>Media types accepted for a POST request.    </p>
 
 </div>
 </div>
@@ -460,7 +483,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035c">NHeaders::AcceptRanges</a> &gt; Thoth::Http::ResponseHeaders::AcceptRanges </td>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; false, NHeaders::AcceptRanges &gt; Thoth::Http::ResponseHeaders::AcceptRanges </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -468,7 +491,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Defines if the response accepts bytes or no (just "bytes" or "none" is available). </p>
+<p>Defines whether the response accepts byte ranges. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.AcceptRanges().Set(NHeaders::AcceptRanges::Bytes);</div>
+<div class="line"><span class="keyword">auto</span> ranges{ headers.AcceptRanges().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -482,7 +508,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, <a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a999e944622712c0ee0090e841610035c">NHeaders::AcceptRanges</a> &gt; Thoth::Http::ResponseHeaders::AcceptRanges </td>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">NHeaders::ValueProxy</a>&lt; true, NHeaders::AcceptRanges &gt; Thoth::Http::ResponseHeaders::AcceptRanges </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -495,7 +521,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Defines if the response accepts bytes or no (just "bytes" or "none" is available).    </p>
+<p>Defines whether the response accepts byte ranges.    </p>
 
 </div>
 </div>
@@ -514,7 +540,9 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get how old this response has generated in the server, useful for caching. </p>
+<p>The apparent age of the response, in seconds. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> age{ headers.Age().GetWithDefault(std::chrono::seconds{ 0 }) };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -541,7 +569,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get how old this response has generated in the server, useful for caching.    </p>
+<p>The apparent age of the response, in seconds.    </p>
 
 </div>
 </div>
@@ -560,7 +588,14 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename. </p>
+<p>The <span class="tt">Content-Disposition</span> header (RFC 6266). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> attachment{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a">NHeaders::ContentDisposition</a>{</div>
+<div class="line">    <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html">NHeaders::DispositionTypeHeader</a>{ <span class="stringliteral">&quot;attachment&quot;</span> }}</div>
+<div class="line">    .WithParam(<span class="stringliteral">&quot;filename&quot;</span>, <span class="stringliteral">&quot;report.txt&quot;</span>) };</div>
+<div class="line">headers.ContentDisposition().Set(attachment);</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a81907a4519a8bcb9b4b9daf5ad8f525a"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a">Thoth::Http::NHeaders::ContentDisposition</a></div><div class="ttdeci">Parameterized&lt; DispositionTypeHeader &gt; ContentDisposition</div><div class="ttdoc">Parameterized version of DispositionTypeHeader.</div><div class="ttdef"><b>Definition</b> ContentDisposition.hpp:29</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html">Thoth::Http::NHeaders::DispositionTypeHeader</a></div><div class="ttdoc">The disposition-type token of a Content-Disposition header (RFC 6266 §4).</div><div class="ttdef"><b>Definition</b> ContentDisposition.hpp:16</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -587,7 +622,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename.    </p>
+<p>The <span class="tt">Content-Disposition</span> header (RFC 6266).    </p>
 
 </div>
 </div>
@@ -606,7 +641,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The "ETag" header. </p>
+<p>The <span class="tt">ETag</span> validator of the selected representation. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.EntityTag().Set(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">NHeaders::EntityTag</a>{ <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">true</span> });</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">Thoth::Http::NHeaders::EntityTag</a></div><div class="ttdoc">An HTTP entity tag used for cache validation (RFC 9110 §8.8.3).</div><div class="ttdef"><b>Definition</b> EntityTag.hpp:14</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -633,7 +671,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The "ETag" header.    </p>
+<p>The <span class="tt">ETag</span> validator of the selected representation.    </p>
 
 </div>
 </div>
@@ -680,8 +718,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The URL where this response pointers to. </p>
+<p>The URL to which this response points. </p>
 <dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Location().TrySet(<span class="stringliteral">&quot;/documents/42&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -708,12 +748,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The URL where this response pointers to.    </p>
+<p>The URL to which this response points.    </p>
 
 </div>
 </div>
-<a id="a85273172cbc4f2f197baa03c6ee23d7f" name="a85273172cbc4f2f197baa03c6ee23d7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85273172cbc4f2f197baa03c6ee23d7f">&#9670;&#160;</a></span>Parse()</h2>
+<a id="aecf0269510e202874643ee9cf20ce15b" name="aecf0269510e202874643ee9cf20ce15b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf0269510e202874643ee9cf20ce15b">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -724,7 +764,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a> &gt; Thoth::Http::ResponseHeaders::Parse </td>
+          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt; Thoth::Http::ResponseHeaders::Parse </td>
           <td>(</td>
           <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
         </tr>
@@ -749,7 +789,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.    </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Stores the common header fields of an HTTP message.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.    </dd></dl>
 
 </div>
 </div>
@@ -768,8 +808,11 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>The "proxy-authenticate" header. </p>
+<p>The <span class="tt">Proxy-Authenticate</span> header. </p>
 <dl class="section note"><dt>Note</dt><dd>May appear multiple times (one challenge per offered scheme). </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ProxyAuthenticate().Set(std::vector&lt;NHeaders::Challenge&gt;{</div>
+<div class="line">    { <span class="stringliteral">&quot;Basic&quot;</span>, {{ <span class="stringliteral">&quot;realm&quot;</span>, <span class="stringliteral">&quot;proxy&quot;</span> }} } });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -813,7 +856,9 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>The date or cooldown when the endpoint will accept new responses. </p>
+<p>The date or delay after which the request may be retried. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> retryAfter{ headers.RetryAfter().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -840,7 +885,7 @@ template&lt;std::ranges::input_range R&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The date or cooldown when the endpoint will accept new responses.    </p>
+<p>The date or delay after which the request may be retried.    </p>
 
 </div>
 </div>
@@ -859,7 +904,9 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>The type of server. </p>
+<p>Identifies the software that generated the response. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Server().Set(<span class="stringliteral">&quot;thoth/1.0&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -886,7 +933,7 @@ template&lt;std::ranges::input_range R&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The type of server.    </p>
+<p>Identifies the software that generated the response.    </p>
 
 </div>
 </div>
@@ -905,8 +952,14 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>All Set-Cookie challenges present on the response. </p>
-<dl class="section note"><dt>Note</dt><dd>Each Set-Cookie header line is one cookie — use MultiValueProxy::Get to read them all. </dd></dl>
+<p>All <span class="tt">Set-Cookie</span> field values present on the response. </p>
+<dl class="section note"><dt>Note</dt><dd>Each Set-Cookie header line is one <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html" title="A Set-Cookie response field value (RFC 6265 §§4.1, 4.2).">NHeaders::Cookie</a></span>. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html">NHeaders::Cookie</a> session{</div>
+<div class="line">    .name = <span class="stringliteral">&quot;session&quot;</span>, .value = <span class="stringliteral">&quot;abc&quot;</span>, .path = <span class="stringliteral">&quot;/&quot;</span>, .secure = <span class="keyword">true</span> };</div>
+<div class="line">headers.SetCookie().Set(std::vector&lt;NHeaders::Cookie&gt;{ session });</div>
+<div class="line">headers.SetCookie().Add(NHeaders::Cookie{</div>
+<div class="line">    .name = <span class="stringliteral">&quot;theme&quot;</span>, .value = <span class="stringliteral">&quot;dark&quot;</span> });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -950,7 +1003,9 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>The "vary" header. </p>
+<p><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> headers that select the representation in the response. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Vary().Set(std::vector&lt;std::string&gt;{ <span class="stringliteral">&quot;Accept&quot;</span>, <span class="stringliteral">&quot;Accept-Encoding&quot;</span> });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -977,7 +1032,7 @@ template&lt;std::ranges::input_range R&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The "vary" header.    </p>
+<p><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> headers that select the representation in the response.    </p>
 
 </div>
 </div>
@@ -996,8 +1051,15 @@ template&lt;std::ranges::input_range R&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>The types of authentication that the server utilizes. </p>
+<p>The authentication challenges offered by the server. </p>
 <dl class="section note"><dt>Note</dt><dd>May appear multiple times (one challenge per offered scheme). </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">NHeaders::Challenge</a> bearer{</div>
+<div class="line">    <span class="stringliteral">&quot;Bearer&quot;</span>, {{ <span class="stringliteral">&quot;realm&quot;</span>, <span class="stringliteral">&quot;api&quot;</span> }} };</div>
+<div class="line">headers.WwwAuthenticate().Add(bearer);</div>
+<div class="line"><span class="keyword">auto</span> realm{ bearer.<a class="code hl_function" href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html#a3caec42dea2fb1acde9bfdb7e0082d9b">Param</a>(<span class="stringliteral">&quot;realm&quot;</span>) };</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_challenge_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html">Thoth::Http::NHeaders::Challenge</a></div><div class="ttdoc">One authentication challenge from WWW-Authenticate or Proxy-Authenticate (RFC 9110 §§11....</div><div class="ttdef"><b>Definition</b> Challenge.hpp:24</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_challenge_html_a3caec42dea2fb1acde9bfdb7e0082d9b"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html#a3caec42dea2fb1acde9bfdb7e0082d9b">Thoth::Http::NHeaders::Challenge::Param</a></div><div class="ttdeci">std::optional&lt; std::string_view &gt; Param(std::string_view key) const</div><div class="ttdoc">Looks up a challenge parameter by name.</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>

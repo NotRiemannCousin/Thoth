@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders.  
+<p>Represents the request-specific HTTP header fields.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_request_headers_8hpp_source.html">RequestHeaders.hpp</a>&gt;</code></p>
@@ -354,13 +354,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1c3c8ea97a5df16a242f4af1e1654a3e" id="r_a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:a1c3c8ea97a5df16a242f4af1e1654a3e template"><td class="memItemLeft">static <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1c3c8ea97a5df16a242f4af1e1654a3e">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:a1c3c8ea97a5df16a242f4af1e1654a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.     <br /></td></tr>
+<tr class="memitem:a16998576e7f8f208178df8d7eb0174b3" id="r_a16998576e7f8f208178df8d7eb0174b3"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a16998576e7f8f208178df8d7eb0174b3 template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a16998576e7f8f208178df8d7eb0174b3">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a16998576e7f8f208178df8d7eb0174b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.     <br /></td></tr>
 <tr class="inherit_header pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Thoth::Http::Headers</a></td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_af82fca4b81040dbc1e6f8f850b1b183d"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
-<tr class="memitem:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers template"><td class="memItemLeft">static <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#af82fca4b81040dbc1e6f8f850b1b183d">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
-<tr class="memdesc:af82fca4b81040dbc1e6f8f850b1b183d pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a61fe93ceefe6c1085dd552ef2bbdb33f"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; </td></tr>
+<tr class="memitem:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a61fe93ceefe6c1085dd552ef2bbdb33f">Parse</a> (R &amp;&amp;headers, size_t maxHeadersLength=1&lt;&lt; 16)</td></tr>
+<tr class="memdesc:a61fe93ceefe6c1085dd552ef2bbdb33f pub_static_methods_struct_thoth_1_1_http_1_1_headers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the headers from the raw TCP std::string.  <br /></td></tr>
 <tr class="memitem:a47e8a0ea4bc89eddd8626be4a630e639 pub_static_methods_struct_thoth_1_1_http_1_1_headers" id="r_a47e8a0ea4bc89eddd8626be4a630e639"><td class="memItemLeft">static <a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a1d83300c0da8ca20f55374139098c847">Headers</a>&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a47e8a0ea4bc89eddd8626be4a630e639">DefaultHeaders</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
@@ -383,7 +383,19 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a3e43708b3a94b22c0b00e936e3759b4a pro_attribs_struct_thoth_1_1_http_1_1_headers" id="r_a3e43708b3a94b22c0b00e936e3759b4a"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#ac52fd3e99c1bda26096706af33f691f5">MapType</a>&#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html#a3e43708b3a94b22c0b00e936e3759b4a">m_headers</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents the collection of HTTP headers associated with a request. Based on modern HTTP RFCs and inspired by .NET's HttpRequestHeaders. </p>
+<div class="textblock"><p>Represents the request-specific HTTP header fields. </p>
+<p>The typed accessors use concrete models such as <span class="tt"><a class="el" href="#a1c021b434aba661347b825417a2ba7b3" title="The value of the Range header for partial content requests.">Range</a></span>, <span class="tt">EntityTag</span>, <span class="tt"><a class="el" href="#a0d49d376417730b88fe1fd3b99de9f95" title="The value of the TE (Transfer Encoding) header, with an optional preference weight.">Te</a></span>, <span class="tt">FreeWeightedHeader</span> and <span class="tt">FreeParameterizedHeader</span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> headers;</div>
+<div class="line">headers.<a class="code hl_function" href="#ad416ee3cc8ccd96e2e4b3856b0ccc529">Host</a>().Set(<span class="stringliteral">&quot;example.test&quot;</span>);</div>
+<div class="line">headers.<a class="code hl_function" href="#a1c021b434aba661347b825417a2ba7b3">Range</a>().Add(<a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00">NHeaders::Range</a>{</div>
+<div class="line">    <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">NHeaders::PrefixedRange</a>{ 0u, 1023u } });</div>
+<div class="line"><span class="keyword">auto</span> host{ headers.<a class="code hl_function" href="#ad416ee3cc8ccd96e2e4b3856b0ccc529">Host</a>().Get() };</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a3b28677257936fc2dbe1189cafac2a00"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00">Thoth::Http::NHeaders::Range</a></div><div class="ttdeci">std::variant&lt; PrefixedRange, SuffixedRange &gt; Range</div><div class="ttdoc">The supported byte-range forms of the HTTP Range header (RFC 9110 §14.2).</div><div class="ttdef"><b>Definition</b> Range.hpp:42</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">Thoth::Http::NHeaders::PrefixedRange</a></div><div class="ttdoc">A byte range with an explicit starting offset (RFC 9110 §14.2).</div><div class="ttdef"><b>Definition</b> Range.hpp:15</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_headers_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_request_headers.html">Thoth::Http::RequestHeaders</a></div><div class="ttdoc">Represents the request-specific HTTP header fields.</div><div class="ttdef"><b>Definition</b> RequestHeaders.hpp:22</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_headers_html_a1c021b434aba661347b825417a2ba7b3"><div class="ttname"><a href="#a1c021b434aba661347b825417a2ba7b3">Thoth::Http::RequestHeaders::Range</a></div><div class="ttdeci">NHeaders::ListProxy&lt; false, NHeaders::Range &gt; Range()</div><div class="ttdoc">The value of the Range header for partial content requests.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_headers_html_ad416ee3cc8ccd96e2e4b3856b0ccc529"><div class="ttname"><a href="#ad416ee3cc8ccd96e2e4b3856b0ccc529">Thoth::Http::RequestHeaders::Host</a></div><div class="ttdeci">NHeaders::ValueProxy&lt; false, std::string &gt; Host()</div><div class="ttdoc">Gets the Host header. Essential for HTTP/1.1 and SNI.</div></div>
+</div><!-- fragment --> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a89a6a89e744e94223c9fd315f459ed49" name="a89a6a89e744e94223c9fd315f459ed49"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89a6a89e744e94223c9fd315f459ed49">&#9670;&#160;</a></span>AcceptLanguage() <span class="overload">[1/2]</span></h2>
@@ -401,6 +413,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Accept-Language header, with an optional preference weight. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> portuguese{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa6066766f1c4d6b8ec3230a86e846ae7">NHeaders::FreeWeightedHeader</a>{ <span class="stringliteral">&quot;pt-BR&quot;</span> } };</div>
+<div class="line">headers.AcceptLanguage().Add(portuguese.WithWeight(0.9));</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_aa6066766f1c4d6b8ec3230a86e846ae7"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#aa6066766f1c4d6b8ec3230a86e846ae7">Thoth::Http::NHeaders::FreeWeightedHeader</a></div><div class="ttdeci">Weighted&lt; std::string &gt; FreeWeightedHeader</div><div class="ttdoc">Weighted version of std::string.</div><div class="ttdef"><b>Definition</b> Weighted.hpp:57</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -428,6 +444,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Accept-Language header, with an optional preference weight.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> portuguese{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa6066766f1c4d6b8ec3230a86e846ae7">NHeaders::FreeWeightedHeader</a>{ <span class="stringliteral">&quot;pt-BR&quot;</span> } };</div>
+<div class="line">headers.AcceptLanguage().Add(portuguese.WithWeight(0.9));</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -447,6 +466,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Authorization header (e.g., Bearer, Basic). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> authorization{ headers.Authorization().GetAsOpt() }; <span class="comment">// string</span></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -474,6 +495,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Authorization header (e.g., Bearer, Basic).    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> authorization{ headers.Authorization().GetAsOpt() }; <span class="comment">// string</span></div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -493,6 +516,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Expect header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Expect().Add(</div>
+<div class="line">    <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">NHeaders::FreeParameterizedHeader</a>{ <span class="stringliteral">&quot;100-continue&quot;</span> });</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a43870e86a0837b3bd6cc69e7350238d2"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">Thoth::Http::NHeaders::FreeParameterizedHeader</a></div><div class="ttdeci">Parameterized&lt; std::string &gt; FreeParameterizedHeader</div><div class="ttdoc">Parameterized version of std::string.</div><div class="ttdef"><b>Definition</b> Parameterized.hpp:77</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -520,6 +547,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Expect header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Expect().Add(</div>
+<div class="line">    <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">NHeaders::FreeParameterizedHeader</a>{ <span class="stringliteral">&quot;100-continue&quot;</span> });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -539,6 +569,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the From header (email address of the user). </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> from{ headers.From().GetAsOpt() }; <span class="comment">// string</span></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -566,6 +598,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the From header (email address of the user).    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> from{ headers.From().GetAsOpt() }; <span class="comment">// string</span></div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -614,6 +648,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Gets the Host header. Essential for HTTP/1.1 and SNI. </p>
 <dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Host().Set(<span class="stringliteral">&quot;example.test:443&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span> host{ headers.Host().Get() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -641,7 +678,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Host header. Essential for HTTP/1.1 and SNI.    </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL.    </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Host().Set(<span class="stringliteral">&quot;example.test:443&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span> host{ headers.Host().Get() };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -661,6 +701,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Match header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.IfMatch().Add(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">NHeaders::EntityTag</a>{ <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">false</span> });</div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">Thoth::Http::NHeaders::EntityTag</a></div><div class="ttdoc">An HTTP entity tag used for cache validation (RFC 9110 §8.8.3).</div><div class="ttdef"><b>Definition</b> EntityTag.hpp:14</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -688,6 +731,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Match header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.IfMatch().Add(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html">NHeaders::EntityTag</a>{ <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">false</span> });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -707,6 +752,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Modified-Since header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> since{ headers.IfModifiedSince().GetAsOpt() }; <span class="comment">// utc_clock::time_point</span></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -734,6 +781,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Modified-Since header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> since{ headers.IfModifiedSince().GetAsOpt() }; <span class="comment">// utc_clock::time_point</span></div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -753,6 +802,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-None-Match header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.IfNoneMatch().Set(std::vector&lt;NHeaders::EntityTag&gt;{ { <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">false</span> }, { <span class="stringliteral">&quot;cached&quot;</span>, <span class="keyword">true</span> } });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -780,6 +831,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-None-Match header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.IfNoneMatch().Set(std::vector&lt;NHeaders::EntityTag&gt;{ { <span class="stringliteral">&quot;0815&quot;</span>, <span class="keyword">false</span> }, { <span class="stringliteral">&quot;cached&quot;</span>, <span class="keyword">true</span> } });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -799,6 +852,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Range header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> range{ headers.IfRange().GetAsOpt() };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -826,6 +881,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Range header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> range{ headers.IfRange().GetAsOpt() };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -845,6 +902,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Unmodified-Since header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> since{ headers.IfUnmodifiedSince().GetAsOpt() }; <span class="comment">// utc_clock::time_point</span></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -872,6 +931,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the If-Unmodified-Since header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> since{ headers.IfUnmodifiedSince().GetAsOpt() }; <span class="comment">// utc_clock::time_point</span></div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -891,6 +952,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Max-Forwards header for limiting proxy hops. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.MaxForwards().Set(5u);</div>
+<div class="line"><span class="keyword">auto</span> hops{ headers.MaxForwards().GetWithDefault(0u) };</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -918,6 +982,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Max-Forwards header for limiting proxy hops.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.MaxForwards().Set(5u);</div>
+<div class="line"><span class="keyword">auto</span> hops{ headers.MaxForwards().GetWithDefault(0u) };</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -938,6 +1005,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The value of the Origin header. Used for CORS requests. </p>
 <dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Origin().TrySet(<span class="stringliteral">&quot;https://app.example&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -965,12 +1034,14 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The value of the Origin header. Used for CORS requests.    </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL.    </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Origin().TrySet(<span class="stringliteral">&quot;https://app.example&quot;</span>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
-<a id="a1c3c8ea97a5df16a242f4af1e1654a3e" name="a1c3c8ea97a5df16a242f4af1e1654a3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c3c8ea97a5df16a242f4af1e1654a3e">&#9670;&#160;</a></span>Parse()</h2>
+<a id="a16998576e7f8f208178df8d7eb0174b3" name="a16998576e7f8f208178df8d7eb0174b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16998576e7f8f208178df8d7eb0174b3">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -981,7 +1052,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a> &gt; Thoth::Http::RequestHeaders::Parse </td>
+          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a>, <a class="el" href="namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a> &gt; Thoth::Http::RequestHeaders::Parse </td>
           <td>(</td>
           <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
         </tr>
@@ -1006,7 +1077,7 @@ template&lt;std::ranges::input_range R&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="This class stores the headers from HTTP.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.    </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="struct_thoth_1_1_http_1_1_headers.html" title="Stores the common header fields of an HTTP message.">Headers</a> if the parse success, bad request StatusCodeEnum::BAD_REQUEST if the parse fails and content too large StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.    </dd></dl>
 
 </div>
 </div>
@@ -1026,6 +1097,10 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Prefer header, with. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> async{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">NHeaders::FreeParameterizedHeader</a>{ <span class="stringliteral">&quot;respond-async&quot;</span> }</div>
+<div class="line">    .WithParam(<span class="stringliteral">&quot;wait&quot;</span>, <span class="stringliteral">&quot;10&quot;</span>) };</div>
+<div class="line">headers.Prefer().Add(async);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1053,6 +1128,10 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Prefer header, with.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">auto</span> async{ <a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">NHeaders::FreeParameterizedHeader</a>{ <span class="stringliteral">&quot;respond-async&quot;</span> }</div>
+<div class="line">    .WithParam(<span class="stringliteral">&quot;wait&quot;</span>, <span class="stringliteral">&quot;10&quot;</span>) };</div>
+<div class="line">headers.Prefer().Add(async);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1072,6 +1151,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Proxy-Authorization header. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ProxyAuthorization().TrySet(<span class="stringliteral">&quot;Basic dXNlcjpwYXNz&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1099,6 +1180,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Proxy-Authorization header.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.ProxyAuthorization().TrySet(<span class="stringliteral">&quot;Basic dXNlcjpwYXNz&quot;</span>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1118,6 +1201,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Range header for partial content requests. </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Range().Add(<a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00">NHeaders::Range</a>{</div>
+<div class="line">    <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">NHeaders::PrefixedRange</a>{ 0u, 1023u } });</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1145,6 +1231,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Range header for partial content requests.    </p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Range().Add(<a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00">NHeaders::Range</a>{</div>
+<div class="line">    <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">NHeaders::PrefixedRange</a>{ 0u, 1023u } });</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1165,6 +1254,8 @@ template&lt;std::ranges::input_range R&gt; </div>
 
 <p>The value of the Referer header (yes, it's misspelled in RFC). </p>
 <dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Referrer().TrySet(<span class="stringliteral">&quot;https://origin.example/doc&quot;</span>);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1192,7 +1283,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the Referer header (yes, it's misspelled in RFC).    </p>
-<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL.    </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Can be a relative URL, resolves via <a class="el" href="struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767" title="Url::Resolve">Url::Resolve</a> using a proper URL. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Referrer().TrySet(<span class="stringliteral">&quot;https://origin.example/doc&quot;</span>);</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>
@@ -1212,7 +1305,11 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the TE (Transfer Encoding) header, with an optional preference weight. </p>
-<dl class="section note"><dt>Note</dt><dd>Per RFC 9110 §10.1.4, "trailers" itself doesn't take a weight; this doesn't enforce that. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Per RFC 9110 §10.1.4, "trailers" itself doesn't take a weight, this doesn't enforce that. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Te().Add(<a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a2f2dde4af2a211fe9f3f3a530d10cbf5">NHeaders::Te</a>{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63da2548e50da66f41afea53de1cbbf3b30c">NHeaders::TeEnum::Gzip</a> }.WithWeight(0.5));</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_a2f2dde4af2a211fe9f3f3a530d10cbf5"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#a2f2dde4af2a211fe9f3f3a530d10cbf5">Thoth::Http::NHeaders::Te</a></div><div class="ttdeci">Weighted&lt; TeEnum &gt; Te</div><div class="ttdoc">Weighted version of TeEnum.</div><div class="ttdef"><b>Definition</b> Te.hpp:26</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_1_1_n_headers_html_aa777948ee8bbaee801f344e714eda63da2548e50da66f41afea53de1cbbf3b30c"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63da2548e50da66f41afea53de1cbbf3b30c">Thoth::Http::NHeaders::TeEnum::Gzip</a></div><div class="ttdeci">@ Gzip</div><div class="ttdoc">gzip transfer coding.</div><div class="ttdef"><b>Definition</b> Te.hpp:15</div></div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1240,7 +1337,9 @@ template&lt;std::ranges::input_range R&gt; </div>
 </div><div class="memdoc">
 
 <p>The value of the TE (Transfer Encoding) header, with an optional preference weight.    </p>
-<dl class="section note"><dt>Note</dt><dd>Per RFC 9110 §10.1.4, "trailers" itself doesn't take a weight; this doesn't enforce that.    </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Per RFC 9110 §10.1.4, "trailers" itself doesn't take a weight, this doesn't enforce that. </dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line">headers.Te().Add(<a class="code hl_typedef" href="namespace_thoth_1_1_http_1_1_n_headers.html#a2f2dde4af2a211fe9f3f3a530d10cbf5">NHeaders::Te</a>{ <a class="code hl_enumvalue" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63da2548e50da66f41afea53de1cbbf3b30c">NHeaders::TeEnum::Gzip</a> }.WithWeight(0.5));</div>
+</div><!-- fragment -->    </dd></dl>
 
 </div>
 </div>

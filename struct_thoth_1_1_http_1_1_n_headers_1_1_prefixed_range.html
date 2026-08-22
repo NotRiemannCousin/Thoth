@@ -155,14 +155,25 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
+<p>A byte range with an explicit starting offset (RFC 9110 §14.2).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_range_8hpp_source.html">Range.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a2de46acb65e19ca115105de6e61cc35c" id="r_a2de46acb65e19ca115105de6e61cc35c"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a2de46acb65e19ca115105de6e61cc35c">start</a></td></tr>
+<tr class="memdesc:a2de46acb65e19ca115105de6e61cc35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">First requested byte offset.  <br /></td></tr>
 <tr class="memitem:aaf3bf5c1650b3bc5c5c708eb5133e80f" id="r_aaf3bf5c1650b3bc5c5c708eb5133e80f"><td class="memItemLeft">std::optional&lt; unsigned int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aaf3bf5c1650b3bc5c5c708eb5133e80f">end</a></td></tr>
+<tr class="memdesc:aaf3bf5c1650b3bc5c5c708eb5133e80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional inclusive last byte offset.  <br /></td></tr>
 </table>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A byte range with an explicit starting offset (RFC 9110 §14.2). </p>
+<p><span class="tt"><a class="el" href="#aaf3bf5c1650b3bc5c5c708eb5133e80f" title="Optional inclusive last byte offset.">end</a></span> is present for a closed range such as <span class="tt">bytes=200-1000</span> and absent for an open-ended range such as <span class="tt">bytes=500-</span>.</p>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">PrefixedRange</a> range{ 200u, 1000u }; <span class="comment">// bytes=200-1000</span></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">Thoth::Http::NHeaders::PrefixedRange</a></div><div class="ttdoc">A byte range with an explicit starting offset (RFC 9110 §14.2).</div><div class="ttdef"><b>Definition</b> Range.hpp:15</div></div>
+</div><!-- fragment --> </dd></dl>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="aaf3bf5c1650b3bc5c5c708eb5133e80f" name="aaf3bf5c1650b3bc5c5c708eb5133e80f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf3bf5c1650b3bc5c5c708eb5133e80f">&#9670;&#160;</a></span>end</h2>
 
@@ -174,6 +185,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optional inclusive last byte offset. </p>
 
 </div>
 </div>
@@ -188,6 +201,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>First requested byte offset. </p>
 
 </div>
 </div>

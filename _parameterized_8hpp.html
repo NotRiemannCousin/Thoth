@@ -175,11 +175,6 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="_parameterized_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3ANHeaders_3A_3AParameterized_3C_20T_20_3E" id="r_Thoth_3A_3AHttp_3A_3ANHeaders_3A_3AParameterized_3C_20T_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html">Thoth::Http::NHeaders::Parameterized&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a header value with a generic, unbounded <span class="tt">;key=<a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html#ac3556b77b18e02a59f0436a07fb657cc">value</a></span> parameter list (RFC 9110 §5.6.6 parameters grammar).  <a href="struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html#details">More...</a><br /></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
@@ -188,7 +183,25 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a43870e86a0837b3bd6cc69e7350238d2" id="r_a43870e86a0837b3bd6cc69e7350238d2"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">Thoth::Http::NHeaders::FreeParameterizedHeader</a> = <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_parameterized.html">Parameterized</a>&lt;std::string&gt;</td></tr>
+<tr class="memitem:a43870e86a0837b3bd6cc69e7350238d2" id="r_a43870e86a0837b3bd6cc69e7350238d2"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a43870e86a0837b3bd6cc69e7350238d2">Thoth::Http::NHeaders::FreeParameterizedHeader</a> = Parameterized&lt;std::string&gt;</td></tr>
+<tr class="memdesc:a43870e86a0837b3bd6cc69e7350238d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized version of <span class="tt">std::string</span>.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a374bb75173685ebff9f36c1e28a1963c" id="r_a374bb75173685ebff9f36c1e28a1963c"><td class="memItemLeft">std::optional&lt; std::string_view &gt;&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a374bb75173685ebff9f36c1e28a1963c">Thoth::Http::NHeaders::Param</a> (std::string_view key) const</td></tr>
+<tr class="memdesc:a374bb75173685ebff9f36c1e28a1963c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Associates a serializable header value with arbitrary named parameters.  <br /></td></tr>
+<tr class="memitem:a7225381c6dbe796a28f4886c949bc489" id="r_a7225381c6dbe796a28f4886c949bc489"><td class="memItemLeft">Parameterized&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a7225381c6dbe796a28f4886c949bc489">Thoth::Http::NHeaders::WithParam</a> (std::string key, std::string val) const &amp;</td></tr>
+<tr class="memdesc:a7225381c6dbe796a28f4886c949bc489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy with <span class="tt">key</span> set to <span class="tt">val</span>, replacing any existing parameter with that key.  <br /></td></tr>
+<tr class="memitem:a45a468ef23f2e7fdfea2bade2f42281a" id="r_a45a468ef23f2e7fdfea2bade2f42281a"><td class="memItemLeft">Parameterized&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a45a468ef23f2e7fdfea2bade2f42281a">Thoth::Http::NHeaders::WithParam</a> (std::string key, std::string val) &amp;&amp;</td></tr>
+<tr class="memdesc:a45a468ef23f2e7fdfea2bade2f42281a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy with <span class="tt">key</span> set to <span class="tt">val</span>, replacing any existing parameter with that key.     <br /></td></tr>
+<tr class="memitem:a47c86745888270f0d86f1e57143c1004" id="r_a47c86745888270f0d86f1e57143c1004"><td class="memItemLeft">Parameterized&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a47c86745888270f0d86f1e57143c1004">Thoth::Http::NHeaders::WithoutParam</a> (std::string_view key) const &amp;</td></tr>
+<tr class="memdesc:a47c86745888270f0d86f1e57143c1004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy with any parameter named <span class="tt">key</span> removed. No-op if <span class="tt">key</span> is not present.  <br /></td></tr>
+<tr class="memitem:a6ccc8d98b178c14b6e18de258b6092ab" id="r_a6ccc8d98b178c14b6e18de258b6092ab"><td class="memItemLeft">Parameterized&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a6ccc8d98b178c14b6e18de258b6092ab">Thoth::Http::NHeaders::WithoutParam</a> (std::string_view key) &amp;&amp;</td></tr>
+<tr class="memdesc:a6ccc8d98b178c14b6e18de258b6092ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy with any parameter named <span class="tt">key</span> removed. No-op if <span class="tt">key</span> is not present.     <br /></td></tr>
+<tr class="memitem:aa3eb26b289da89a4ba11dac30e72e3a4" id="r_aa3eb26b289da89a4ba11dac30e72e3a4"><td class="memTemplParams" colspan="2">template&lt;class Fn&gt; <br />
+requires Utils::Serializable&lt;std::invoke_result_t&lt;Fn, const T&amp;&gt;&gt;</td></tr>
+<tr class="memitem:aa3eb26b289da89a4ba11dac30e72e3a4 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#aa3eb26b289da89a4ba11dac30e72e3a4">Thoth::Http::NHeaders::Transform</a> (Fn &amp;&amp;fn) const -&gt; Parameterized&lt; std::invoke_result_t&lt; Fn, const T &amp; &gt; &gt;</td></tr>
+<tr class="memdesc:aa3eb26b289da89a4ba11dac30e72e3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies <span class="tt">fn</span> to the wrapped value, keeping the same parameters.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
