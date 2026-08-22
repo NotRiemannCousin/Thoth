@@ -3,6 +3,17 @@
 #include <optional>
 #include <Thoth/String/Utils.hpp>
 
+
+namespace Thoth::Http::NHeaders {
+    inline std::optional<std::string_view> Challenge::Param(std::string_view key) const {
+        const auto it{ std::ranges::find_if(params, [&](const auto& p) {
+            return std::ranges::equal(p.first, key, String::CaseInsensitiveCompare);
+        }) };
+        if (it == params.end()) return std::nullopt;
+        return it->second;
+    }
+}
+
 template<>
 struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Challenge> {
     using Challenge = Http::NHeaders::Challenge;

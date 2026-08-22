@@ -65,7 +65,10 @@ namespace Thoth::Http::details_ {
     template<class Stream>
     std::expected<ResponseParseStage<Stream>, ThothError> Http1::ParseResponseLine(ResponseParseStage<Stream> stage) {
         namespace rg = std::ranges;
+        namespace vs = std::views;
         using namespace std::literals;
+
+        static constexpr auto k_maxStatusMessageSize{ 1024 };
 
         ASSERT_OR_RET_ERROR(rg::starts_with(stage.stream, "HTTP/1."sv), MessageParseErrorEnum::InvalidStartLine);
 
@@ -82,7 +85,16 @@ namespace Thoth::Http::details_ {
                             MessageParseErrorEnum::InvalidStartLine);
 
         stage.data.status = static_cast<StatusCodeEnum>((arr[1] - '0') * 100 + (arr[2] - '0') * 10 + (arr[3] - '0'));
-        stage.data.statusMessage = stage.stream | Hermes::Utils::UntilMatch(k_crlf) | rg::to<std::string>();
+        stage.data.statusMessage = stage.stream
+                | vs::take(k_maxStatusMessageSize + k_crlf.size())
+                | Hermes::Utils::UntilMatch<true>(k_crlf)
+                | rg::to<std::string>();
+
+        if (!stage.data.statusMessage.ends_with(k_crlf))
+            return std::unexpected{ MessageParseErrorEnum::InvalidStartLine };
+
+        for (auto _ : k_crlf) stage.data.statusMessage.pop_back();
+
         VALID_STREAM(stage.stream);
 
         return std::move(stage);
@@ -111,15 +123,15 @@ namespace Thoth::Http::details_ {
         const auto headersParseRes{ HeadersType::Parse(rawHeaders) };
         VALID_STREAM(stage.stream);
 
-        ASSERT_OR_RET_ERROR(headersParseRes, MessageParseErrorEnum::InvalidHeaders);
+        // headersParseRes.error() is a StatusCodeEnum (BadRequest / ContentTooLarge) - requires
+        // Http::StatusCodeEnum to be a ThothErrorBase alternative (see ThothError.hpp) to compile.
+        ASSERT_OR_RET_ERROR(headersParseRes, headersParseRes.error());
         ASSERT_OR_RET_ERROR(ValidateFraming(*headersParseRes), MessageParseErrorEnum::InvalidHeaders);
 
         stage.data.headers = std::move(*headersParseRes);
 
         return std::move(stage);
     }
-
-
 
 
 
@@ -149,6 +161,9 @@ template<class Stream, WritableBodyConcept Body, class Head>
         using HeaderErrEnum        = NHeaders::HeaderErrorEnum;
         using TransEncodingErrEnum = NHeaders::TransferEncodingEnum;
 
+        static constexpr auto k_maxBodyLength{ 0x14000000 }; // TODO: Make it configurable.
+        static constexpr auto k_maxChunkLineLength{ 64 };
+
         static constexpr auto cvt{ [](const char c) {
             return std::bit_cast<ValueType>(c);
         } };
@@ -173,6 +188,9 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
         const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ThothError> {
             const auto readSizedLength{ [&](const size_t contentSize) -> std::expected<std::monostate, ThothError> {
+                if (contentSize > k_maxBodyLength)
+                    return ThothUnex{ ParseErrEnum::InvalidHeaders };
+
                 if constexpr (requires (Body b){ { b.reserve(0) }; })
                     stage.body.reserve(contentSize);
 
@@ -190,14 +208,26 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
                 std::string chunkLengthStr;
                 decltype(Utils::Scan<size_t>(chunkLengthStr)) chunkLength;
+                size_t totalBodySize{};
 
                 do {
                     chunkLengthStr.clear();
-                    rg::copy(stage.stream | Hermes::Utils::UntilMatch(k_crlf), std::back_inserter(chunkLengthStr));
+                    rg::copy(
+                        stage.stream
+                            | vs::take(k_maxChunkLineLength + k_crlf.size())
+                            | Hermes::Utils::UntilMatch<true>(k_crlf),
+                        std::back_inserter(chunkLengthStr)
+                    );
                     VALID_STREAM(stage.stream);
-                    chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
 
+                    ASSERT_OR_RET_ERROR(chunkLengthStr.ends_with(k_crlf), ParseErrEnum::InvalidStartLine);
+                    for (auto _ : k_crlf) chunkLengthStr.pop_back();
+
+                    chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
                     ASSERT_OR_RET_ERROR(chunkLength, ParseErrEnum::InvalidStartLine);
+
+                    ASSERT_OR_RET_ERROR(totalBodySize + *chunkLength <= k_maxBodyLength, ParseErrEnum::InvalidHeaders);
+                    totalBodySize += *chunkLength;
 
                     rg::copy(
                         stage.stream | vs::take(*chunkLength) | vs::transform(cvt),

@@ -14,7 +14,7 @@
 namespace Thoth::Http {
     // TODO: Reinforce this constraint
     template<std::ranges::input_range R>
-    WebResult<Headers> Headers::Parse(R&& headers, const size_t maxHeadersLength) {
+    std::expected<Headers, MessageParseErrorEnum> Headers::Parse(R&& headers, const size_t maxHeadersLength) {
         namespace rg = std::ranges;
         namespace vs = std::views;
         using std::string_view;
@@ -51,7 +51,7 @@ namespace Thoth::Http {
         if constexpr (std::constructible_from<string_view, R>) {
             const string_view input{ headers };
             if (input.size() > maxHeadersLength)
-                return std::unexpected{ StatusCodeEnum::ContentTooLarge };
+                return std::unexpected{ MessageParseErrorEnum::HeadersTooLarge };
 
             headersView = input;
         } else {
@@ -66,7 +66,7 @@ namespace Thoth::Http {
                     | rg::to<string>();
 
             if (materializedHeaders.size() > maxHeadersLength)
-                return std::unexpected{ StatusCodeEnum::ContentTooLarge };
+                return std::unexpected{ MessageParseErrorEnum::HeadersTooLarge };
 
             headersView = materializedHeaders;
         }
@@ -79,7 +79,7 @@ namespace Thoth::Http {
             const auto colon{ headerLine.find(':') };
 
             if (colon == string::npos)
-                return std::unexpected{ StatusCodeEnum::BadRequest };
+                return std::unexpected{ MessageParseErrorEnum::InvalidHeaders };
 
             string headerKey{ headerLine.substr(0, colon) };
             string headerVal{ headerLine.substr(colon + 1) };
@@ -91,7 +91,7 @@ namespace Thoth::Http {
 
             if (headerKey.empty() || headerKey.back() == ' ' || headerKey.back() == '\t'
                 || !rg::all_of(headerKey, isCharAllowed))
-                return std::unexpected{ StatusCodeEnum::BadRequest };
+                return std::unexpected{ MessageParseErrorEnum::InvalidHeaders };
 
             while (!headerVal.empty() && (headerVal.front() == ' ' || headerVal.front() == '\t'))
                 headerVal.erase(headerVal.begin());
@@ -102,7 +102,7 @@ namespace Thoth::Http {
             rg::transform(headerKey, headerKey.begin(), toLower);
 
             if (IsSingleValue(headerKey) && res.Exists(headerKey))
-                return std::unexpected{ StatusCodeEnum::BadRequest };
+                return std::unexpected{ MessageParseErrorEnum::InvalidHeaders };
 
             res.Add(headerKey, headerVal);
         }

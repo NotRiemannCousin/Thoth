@@ -1,6 +1,5 @@
 #pragma once
 #include <expected>
-#include <optional>
 
 
 namespace Thoth::Http {

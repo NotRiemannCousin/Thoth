@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Thoth/Http/NHeaders/Headers/AcceptEncodingEnum.hpp>
+#include <Thoth/Http/NHeaders/Headers/AcceptEncoding.hpp>
 #include <Thoth/Http/NHeaders/Headers/CacheControl.hpp>
 #include <Thoth/Http/NHeaders/Headers/MimeType.hpp>
 #include <Thoth/Http/NHeaders/Headers/ContentEncodingEnum.hpp>

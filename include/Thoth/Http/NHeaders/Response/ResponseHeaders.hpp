@@ -5,10 +5,22 @@
 
 namespace Thoth::Http {
     // based in Microslop's HttpResponseHeaders
+    //! @brief Represents the response-specific HTTP header fields.
+    //!
+    //! The typed accessors use concrete models such as `Cookie`, `Challenge`, `ContentDisposition`, `AcceptRanges` and
+    //! `EntityTag`.
+    //!
+    //! @par Example
+    //! @code{.cpp}
+    //! ResponseHeaders headers;
+    //! headers.Server().Set("thoth");
+    //! headers.SetCookie().Add(NHeaders::Cookie{ .name = "session", .value = "abc", .httpOnly = true });
+    //! auto server{ headers.Server().Get() };
+    //! @endcode
     struct ResponseHeaders : Headers {
         //! @copydoc Headers::Parse
         template<std::ranges::input_range R>
-        static WebResult<ResponseHeaders> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
+        static std::expected<ResponseHeaders, MessageParseErrorEnum> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 #pragma region Raw and Collection Views
 
@@ -31,47 +43,93 @@ namespace Thoth::Http {
 
 
 #pragma region Multi Value Proxies
-        //! @brief All Set-Cookie challenges present on the response.
-        //! @note Each Set-Cookie header line is one cookie — use @ref MultiValueProxy::Get to read them all.
+        //! @brief All `Set-Cookie` field values present on the response.
+        //! @note Each Set-Cookie header line is one `NHeaders::Cookie`.
+        //! @par Example
+        //! @code{.cpp}
+        //! NHeaders::Cookie session{
+        //!     .name = "session", .value = "abc", .path = "/", .secure = true };
+        //! headers.SetCookie().Set(std::vector<NHeaders::Cookie>{ session });
+        //! headers.SetCookie().Add(NHeaders::Cookie{
+        //!     .name = "theme", .value = "dark" });
+        //! @endcode
         NHeaders::MultiValueProxy<false, NHeaders::Cookie> SetCookie();
         [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Cookie> SetCookie() const;
 
-        //! @brief The types of authentication that the server utilizes.
+        //! @brief The authentication challenges offered by the server.
         //! @note May appear multiple times (one challenge per offered scheme).
+        //! @par Example
+        //! @code{.cpp}
+        //! NHeaders::Challenge bearer{
+        //!     "Bearer", {{ "realm", "api" }} };
+        //! headers.WwwAuthenticate().Add(bearer);
+        //! auto realm{ bearer.Param("realm") };
+        //! @endcode
         NHeaders::MultiValueProxy<false, NHeaders::Challenge> WwwAuthenticate();
         [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Challenge> WwwAuthenticate() const;
 
-        //! @brief The "proxy-authenticate" header.
+        //! @brief The `Proxy-Authenticate` header.
         //! @note May appear multiple times (one challenge per offered scheme).
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.ProxyAuthenticate().Set(std::vector<NHeaders::Challenge>{
+        //!     { "Basic", {{ "realm", "proxy" }} } });
+        //! @endcode
         NHeaders::MultiValueProxy<false, NHeaders::Challenge> ProxyAuthenticate();
         [[nodiscard]] NHeaders::MultiValueProxy<true, NHeaders::Challenge> ProxyAuthenticate() const;
 #pragma endregion
 
 
 
-        //! @brief The Content-Disposition header (RFC 6266) - "attachment" vs "inline", with params like filename.
+        //! @brief The `Content-Disposition` header (RFC 6266).
+        //! @par Example
+        //! @code{.cpp}
+        //! auto attachment{ NHeaders::ContentDisposition{
+        //!     NHeaders::DispositionTypeHeader{ "attachment" }}
+        //!     .WithParam("filename", "report.txt") };
+        //! headers.ContentDisposition().Set(attachment);
+        //! @endcode
         NHeaders::ValueProxy<false, NHeaders::ContentDisposition> ContentDisposition();
         //! @copybrief ContentDisposition
         [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::ContentDisposition> ContentDisposition() const;
 
 
-        //! @brief Defines if the response accepts bytes or no (just "bytes" or "none" is available).
+        //! @brief Defines whether the response accepts byte ranges.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.AcceptRanges().Set(NHeaders::AcceptRanges::Bytes);
+        //! auto ranges{ headers.AcceptRanges().GetAsOpt() };
+        //! @endcode
         NHeaders::ValueProxy<false, NHeaders::AcceptRanges> AcceptRanges();
         //! @copybrief AcceptRanges
         [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::AcceptRanges> AcceptRanges() const;
 
-        //! @brief The value of the Accept-Patch header.
+        //! @brief Media types accepted for a PATCH request.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.AcceptPatch().Add(
+        //!     NHeaders::MimeTypes::appJson.WithParam("charset", "utf-8"));
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::MimeType> AcceptPatch();
         //! @copybrief AcceptPatch
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPatch() const;
 
-        //! @brief The value of the Accept-Patch header.
+        //! @brief Media types accepted for a POST request.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.AcceptPost().Set(std::vector<NHeaders::MimeType>{
+        //!     NHeaders::MimeTypes::appJson, NHeaders::MimeTypes::appXml });
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::MimeType> AcceptPost();
         //! @copybrief AcceptPost
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> AcceptPost() const;
 
 
-        //! @brief Get how old this response has generated in the server, useful for caching.
+        //! @brief The apparent age of the response, in seconds.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto age{ headers.Age().GetWithDefault(std::chrono::seconds{ 0 }) };
+        //! @endcode
         NHeaders::ValueProxy<false, std::chrono::seconds> Age();
         //! @copybrief Age
         [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::seconds> Age() const;
@@ -81,24 +139,40 @@ namespace Thoth::Http {
         // //! @copybrief CacheControl
         // [[nodiscard]] NHeaders::ValueProxy<true, bool> CacheControl() const;
 
-        //! @brief The "ETag" header.
+        //! @brief The `ETag` validator of the selected representation.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.EntityTag().Set(NHeaders::EntityTag{ "0815", true });
+        //! @endcode
         NHeaders::ValueProxy<false, NHeaders::EntityTag> EntityTag();
         //! @copybrief EntityTag
         [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::EntityTag> EntityTag() const;
 
-        //! @brief The URL where this response pointers to.
+        //! @brief The URL to which this response points.
         //!
         //! @note Can be a relative URL, resolves via @ref Url::Resolve using a proper URL.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Location().TrySet("/documents/42");
+        //! @endcode
         NHeaders::ValueProxy<false, std::string> Location();
         //! @copybrief Location
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> Location() const;
 
-        //! @brief The date or cooldown when the endpoint will accept new responses.
+        //! @brief The date or delay after which the request may be retried.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto retryAfter{ headers.RetryAfter().GetAsOpt() };
+        //! @endcode
         NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point, std::chrono::seconds> RetryAfter();
         //! @copybrief RetryAfter
         [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point, std::chrono::seconds> RetryAfter() const;
 
-        //! @brief The type of server.
+        //! @brief Identifies the software that generated the response.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Server().Set("thoth/1.0");
+        //! @endcode
         NHeaders::ValueProxy<false, std::string> Server();
         //! @copybrief Server
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> Server() const;
@@ -110,7 +184,11 @@ namespace Thoth::Http {
         // [[nodiscard]] NHeaders::ValueProxy<true, bool> Trailer() const;
 
 
-        //! @brief The "vary" header.
+        //! @brief Request headers that select the representation in the response.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Vary().Set(std::vector<std::string>{ "Accept", "Accept-Encoding" });
+        //! @endcode
         NHeaders::ListProxy<false, std::string> Vary();
         //! @copybrief Vary
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Vary() const;

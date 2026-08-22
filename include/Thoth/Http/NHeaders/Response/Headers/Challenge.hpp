@@ -8,22 +8,29 @@
 #include <algorithm>
 
 namespace Thoth::Http::NHeaders {
-    //! @brief One "WWW-Authenticate"/"Proxy-Authenticate" challenge (RFC 7235 §4.1).
+    //! @brief One authentication challenge from `WWW-Authenticate` or `Proxy-Authenticate` (RFC 9110 §§11.6.1, 11.7.1).
     //!
-    //! @note Params are stored unescaped, as key/value pairs. Token68 challenges
-    //! (schemes with no `key=value` params, e.g. some "Negotiate" tokens) are stored
-    //! as a single param named "token68".
+    //! `scheme` stores the authentication scheme and `params` stores its parsed  parameters as unescaped key/value
+    //! pairs. A token68 challenge, such as  `Negotiate a874bg==`, is represented by a parameter named `token68`.
+    //!
+    //! @par Example
+    //! @code{.cpp}
+    //! Challenge challenge{
+    //!     "Digest",
+    //!     {{ "realm", "users" }, { "qop", "auth" }}
+    //! };
+    //! auto realm{ challenge.Param("realm") };
+    //! @endcode
     struct Challenge {
+        //! Authentication scheme, for example `Basic`, `Bearer` or `Digest`.
         std::string scheme{};
+        //! Parsed unescaped challenge parameters in wire order.
         std::vector<std::pair<std::string, std::string>> params{};
 
-        [[nodiscard]] std::optional<std::string_view> Param(std::string_view key) const {
-            const auto it{ std::ranges::find_if(params, [&](const auto& p) {
-                return std::ranges::equal(p.first, key, String::CaseInsensitiveCompare);
-            }) };
-            if (it == params.end()) return std::nullopt;
-            return it->second;
-        }
+        //! @brief Looks up a challenge parameter by name.
+        //! @param key Parameter name, compared case-insensitively.
+        //! @return The parameter value, or `std::nullopt` when it is absent.
+        [[nodiscard]] std::optional<std::string_view> Param(std::string_view key) const;
     };
 }
 

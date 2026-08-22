@@ -36,7 +36,19 @@ namespace Thoth::Http {
     bool InsensitiveCmp(std::string_view elem1, std::string_view elem2);
     bool IsSingleValue(std::string_view key);
 
-    //! @brief This class stores the headers from HTTP.
+    //! @brief Stores the common header fields of an HTTP message.
+    //!
+    //! Its typed accessors expose concrete models from `NHeaders`, including `MimeType`, `AcceptEncoding`,
+    //! `ContentEncodingEnum`, `TransferEncodingEnum`, `Upgrade` and `Link`.
+    //!
+    //! @par Example
+    //! @code{.cpp}
+    //! Headers headers;
+    //! auto json{ NHeaders::MimeTypes::appJson.WithParam("charset", "utf-8") };
+    //! headers.ContentType().Set(json);
+    //! headers.ContentEncoding().Add(NHeaders::ContentEncodingEnum::Gzip);
+    //! auto length{ headers.ContentLength().GetWithDefault(std::uint64_t{ 0 }) };
+    //! @endcode
     struct Headers {
         using HeaderKey      = NHeaders::HeaderKey;
         using HeaderKeyRef   = NHeaders::HeaderKeyRef;
@@ -72,7 +84,7 @@ namespace Thoth::Http {
         //! @return A Headers if the parse success, @ref "bad request" StatusCodeEnum::BAD_REQUEST if the parse
         //! fails and @ref "content too large" StatusCodeEnum::CONTENT_TOO_LARGE if the header is too long.
         template<std::ranges::input_range R>
-        static WebResult<Headers> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
+        static std::expected<Headers, MessageParseErrorEnum> Parse(R&& headers, size_t maxHeadersLength = 1<<16);
 
 
         static Headers DefaultHeaders();
@@ -154,72 +166,136 @@ namespace Thoth::Http {
         //! Convenient calls to some headers.
 
         //! @brief Accept header, media types accepted with an optional preference weight.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto html{ NHeaders::MimeTypes::textHtml.WithParam("charset", "utf-8") };
+        //! headers.Accept().Add(html);
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::MimeType> Accept();
         //! @copydoc Accept
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::MimeType> Accept() const;
 
         //! @brief Accept-Encoding header (gzip, br, etc), with an optional preference weight.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto br{ NHeaders::AcceptEncoding{ NHeaders::AcceptEncodingEnum::Br } };
+        //! headers.AcceptEncoding().Add(br.WithWeight(0.8));
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::AcceptEncoding> AcceptEncoding();
         //! @copydoc AcceptEncoding
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::AcceptEncoding> AcceptEncoding() const;
 
 
         //! @brief Defines the media type of the resource (MIME).
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.ContentType().Set(
+        //!     NHeaders::MimeTypes::appJson.WithParam("charset", "utf-8"));
+        //! @endcode
         NHeaders::ValueProxy<false, NHeaders::MimeType> ContentType();
         //! @copydoc ContentType
         [[nodiscard]] NHeaders::ValueProxy<true, NHeaders::MimeType> ContentType() const;
 
         //! @brief The size of the entity-body in bytes.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto length{ headers.ContentLength().GetWithDefault(std::uint64_t{ 0 }) };
+        //! @endcode
         NHeaders::ValueProxy<false, uint64_t> ContentLength();
         //! @copydoc ContentLength
         [[nodiscard]] NHeaders::ValueProxy<true, uint64_t> ContentLength() const;
 
         //! @brief List of encodings (compression) applied to the entity.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.ContentEncoding().Add(NHeaders::ContentEncodingEnum::Gzip);
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::ContentEncodingEnum> ContentEncoding();
         //! @copydoc ContentEncoding
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::ContentEncodingEnum> ContentEncoding() const;
 
         //! @brief List of compression applied to the entity.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.TransferEncoding().Set(
+        //!     std::vector{ NHeaders::TransferEncodingEnum::Chunked });
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::TransferEncodingEnum> TransferEncoding();
         //! @copydoc TransferEncoding
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::TransferEncodingEnum> TransferEncoding() const;
 
         //! @brief Natural languages for the intended audience (e.g., "en-US").
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.ContentLanguage().Set(std::vector<std::string>{ "pt-BR", "en-US" });
+        //! auto languages{ headers.ContentLanguage().GetAsOpt() };
+        //! @endcode
         NHeaders::ListProxy<false, std::string> ContentLanguage();
         //! @copydoc ContentLanguage
         [[nodiscard]] NHeaders::ListProxy<true, std::string> ContentLanguage() const;
 
         //! @brief The specific location for the entity-body.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.ContentLocation().TrySet("/documents/42");
+        //! @endcode
         NHeaders::ValueProxy<false, std::string> ContentLocation();
         //! @copydoc ContentLocation
         [[nodiscard]] NHeaders::ValueProxy<true, std::string> ContentLocation() const;
 
         //! @brief Date and time at which the message was originated.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto date{ headers.Date().GetAsOpt() };
+        //! @endcode
         NHeaders::ValueProxy<false, std::chrono::utc_clock::time_point> Date();
         //! @copydoc Date
         [[nodiscard]] NHeaders::ValueProxy<true, std::chrono::utc_clock::time_point> Date() const;
 
         //! @brief Options for the current connection.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Connection().TrySet("keep-alive");
+        //! auto connection{ headers.Connection().GetAsOpt() };
+        //! @endcode
         NHeaders::ListProxy<false, std::string> Connection();
         //! @copydoc Connection
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Connection() const;
 
         //! @brief Used to signal a protocol change (e.g., "websocket").
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Upgrade().Add(NHeaders::Upgrade{ "websocket", "13" });
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::Upgrade> Upgrade();
         //! @copydoc Upgrade
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Upgrade> Upgrade() const;
 
         //! @brief Indicates header fields present in the trailer of a chunked message.
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Trailer().Set(std::vector<std::string>{ "X-Checksum", "X-Signature" });
+        //! @endcode
         NHeaders::ListProxy<false, std::string> Trailer();
         //! @copydoc Trailer
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Trailer() const;
 
         //! @brief Path taken by the request/response through proxies (free std::string).
+        //! @par Example
+        //! @code{.cpp}
+        //! headers.Via().Add("1.1 proxy.example");
+        //! @endcode
         NHeaders::ListProxy<false, std::string> Via();
         //! @copydoc Via
         [[nodiscard]] NHeaders::ListProxy<true, std::string> Via() const;
 
         //! @brief Parses the Link header.
+        //! @par Example
+        //! @code{.cpp}
+        //! auto next{ NHeaders::Link{ NHeaders::LinkHeader{
+        //!     "https://example.test/next" } }.WithParam("rel", "next") };
+        //! headers.Link().Add(next);
+        //! @endcode
         NHeaders::ListProxy<false, NHeaders::Link> Link();
         //! @copydoc Link
         [[nodiscard]] NHeaders::ListProxy<true, NHeaders::Link> Link() const;

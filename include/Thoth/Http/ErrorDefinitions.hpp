@@ -19,6 +19,7 @@ namespace Thoth::Http {
         InvalidStartLine,
         InvalidVersion,
         InvalidHeaders,
+        HeadersTooLarge,
         VersionNeedsContentLength
     };
 }

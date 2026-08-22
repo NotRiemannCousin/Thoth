@@ -73,7 +73,7 @@ namespace Thoth::Http::NHeaders {
         void Set(T&& newValue) &&;
 
         //! @brief Parses and replaces the header from a raw value.
-        //! @return `true` when the value was parsed and stored; otherwise leaves the header unchanged.
+        //! @return `true` when the value was parsed and stored. otherwise leaves the header unchanged.
         template<class = void>
             requires (!IsConst)
         bool TrySet(std::string_view newValue) &&;

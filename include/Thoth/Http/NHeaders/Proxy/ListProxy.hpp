@@ -73,7 +73,7 @@ namespace Thoth::Http::NHeaders {
             requires (!IsConst);
 
         //! @brief Parses and replaces the header from a raw comma-separated value.
-        //! @return `true` when the value was parsed and stored; otherwise leaves the header unchanged.
+        //! @return `true` when the value was parsed and stored, otherwise leaves the header unchanged.
         template<class = void>
         bool TrySet(std::string_view newValue) &&
             requires (!IsConst);
