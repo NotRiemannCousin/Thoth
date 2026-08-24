@@ -1,5 +1,4 @@
 #pragma once
-#include <Thoth/Http/Middleware/FollowSeeOther.hpp>
 
 namespace Thoth::Http {
     template<class Next>

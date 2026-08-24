@@ -511,7 +511,7 @@ namespace Thoth::Utils {
         requires std::predicate<Pred&, Val&>
     constexpr std::optional<std::remove_cvref_t<Val>>
     NulloptIfImpl(Pred&& pred, Val&& value) {
-        if (!TestIf<Negate>(pred, value))
+        if (!TestIfImpl<Negate>(pred, value))
             return std::forward<Val>(value);
         return std::nullopt;
     }

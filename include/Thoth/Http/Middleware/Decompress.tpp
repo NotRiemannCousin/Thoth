@@ -1,5 +1,4 @@
 #pragma once
-#include <Thoth/Http/Middleware/Decompress.hpp>
 
 namespace Thoth::Http {
     namespace Details_ {

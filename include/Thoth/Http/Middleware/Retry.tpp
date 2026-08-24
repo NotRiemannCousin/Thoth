@@ -1,5 +1,4 @@
 #pragma once
-#include <Thoth/Http/Middleware/Retry.hpp>
 #include <thread>
 #include <variant>
 
@@ -22,9 +21,10 @@ namespace Thoth::Http {
         namespace chr = std::chrono;
 
         static constexpr auto getTimeout{ Hermes::Utils::Overloaded{
-            [](chr::seconds val) {
+            [](const chr::seconds val) {
                 return chr::duration_cast<chr::milliseconds>(val);
-            }, [](chr::utc_clock::time_point val) {
+            },
+            [](const chr::utc_clock::time_point val) {
                 auto diff{ val - chr::utc_clock::now() };
                 return chr::duration_cast<chr::milliseconds>(std::max(diff, diff.zero()));
             }

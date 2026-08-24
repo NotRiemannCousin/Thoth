@@ -1,5 +1,4 @@
 #pragma once
-#include <Thoth/Http/Middleware/FollowRedirects.hpp>
 #include <Thoth/String/Utils.hpp>
 
 namespace Thoth::Http::details_ {
