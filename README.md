@@ -8,10 +8,29 @@ Powered by the [Hermes](https://github.com/NotRiemannCousin/Hermes) library, Tho
 for creating robust, high-performance web applications.
 
 Inspired by the egyptian god of knowledge, magic and the moon, Thoth embraces a philosophy of
-strong type safety and compile-time checks without sacrificing usability or elegance. It heavily
-utilizes coroutines and functional programming concepts to offer a natural and expressive API
-for tasks.
+strong type safety and compile-time checks without sacrificing usability or elegance.
 
+[//]: # (It heavily)
+[//]: # (utilizes coroutines and functional programming concepts to offer a natural and expressive API)
+[//]: # (for tasks.)
+
+> Server side connections are under development, only client connections are availabe.
+> CMake says C++23 but is because MSVC is lazy
+
+## Middlewares
+
+Client requests can be wrapped with composable middlewares. Each one takes a handler
+(`Request<Method, Body> -> ExpResponse<Method, Body>`, the same shape as `Client::H_Send()`) and
+returns a new handler, so they nest around the base send call:
+
+```cpp
+NHttp::GetRequest::FromUrl(url)
+    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))
+```
+
+Available today: `FollowRedirects` (307/308), `FollowSeeOther` (303), `Retry` (idempotent methods only, exponential
+backoff with configurable support to `Retry-After` header), and `Decompress` (gzip/deflate). You can define your own
+middlewares too.
 
 ## Examples
 ```cpp
@@ -25,9 +44,7 @@ std::expected<std::vector<Json>, std::string> GetMembers(size_t id) {
 
     //trying to make the request, send to the server and then convert the body to JSON.
     return NHttp::GetRequest::FromUrl(std::format("https://api.discogs.com/artists/{}", id))
-            // At the current moment every error in this string is given by a string, but it will be changed
-            // to enums/proper structs in the future.
-            .and_then(NHttp::Client::Send<>)
+            .and_then(NHttp::Client::H_Send())
             .and_then(&NHttp::GetResponse::AsJson)
 
             // selecting "members" in the first object
@@ -41,29 +58,29 @@ std::expected<std::vector<Json>, std::string> GetMembers(size_t id) {
 
 
 int main() {
-    static constexpr auto getName = [](const Json& member) {
+    static constexpr auto getName{ [](const Json& member) {
         return member.Get("name")
                 .and_then(&Json::EnsureRef<NJson::String>)
                 .transform(&NJson::String::AsCopy) // converting from Thoth Strings (that are COW) to std::string
                 .value_or("<unnamed>");
-    };
+    } };
 
-    static auto constexpr printNames = [](auto&& names) {
+    static auto constexpr printNames{ [](auto&& names) {
         std::println("- Members:");
         for (std::string&& name : names)
             std::println("{}", name);
 
         return std::monostate{};
-    };
+    } };
 
-    static auto constexpr errorHandler = [](auto&& error) {
+    static auto constexpr errorHandler{ [](auto&& error) {
         std::println("An error occurred: {}", error);
 
         if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
             std::println("WSA error: {}", wsaError);
 
         return std::monostate{};
-    };
+    } };
 
 
     GetMembers(4001234)

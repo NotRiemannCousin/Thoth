@@ -178,14 +178,14 @@ namespace Thoth::Http {
             } };
 
 #pragma endregion
-
             return isSocketValid()
                     .transform_error(toThothError)
                     .and_then(sendRequest)
                     .and_then(std::bind_back(
                         ParseHttp1_<Method, ResponseBody, F>,
                         std::forward<F>(bodyFactory),
-                        requestDeadline))
+                        requestDeadline,
+                        opts.maxBodyLength))
                     .transform(cleanupSocket);
         } };
 
@@ -228,20 +228,21 @@ namespace Thoth::Http {
     template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ThothError> Client::ParseHttp1_(
-        SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline) {
-
+        SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline,
+        std::size_t maxBodyLength) {
         const auto forwardBoth{ [&infoPtr](Response<Method, ResponseBody>&& response) {
             return std::pair<SocketPtr, Response<Method, ResponseBody>>{ std::move(infoPtr), std::move(response) };
         } };
 
-        auto createResponse{[bFactory = std::forward<F>(bodyFactory), deadline]<typename T>(T&& sock) mutable {
+        auto createResponse{[bFactory = std::forward<F>(bodyFactory), deadline, maxBodyLength]<typename T>(T&& sock) mutable {
             using Socket = std::remove_cvref_t<T>;
             typename Socket::RecvOptions recvOptions{};
             recvOptions.deadline = deadline;
 
             return details_::Http1::BuildResponse<Method, ResponseBody>(
                 sock.template RecvStream<char>(recvOptions),
-                std::forward<F>(bFactory)
+                std::forward<F>(bFactory),
+                maxBodyLength
             );
         } };
 

@@ -54,6 +54,10 @@ namespace Thoth::Http {
         //! Has no effect on plain HTTP connections.
         //! Ignored when a pooled connection is reused.
         bool requestMutualAuth{};
+
+        //! @brief Maximum total body size accepted in the response, whether framed by
+        //! Content-Length or by the sum of all chunks in a chunked transfer.
+        std::size_t maxBodyLength{ 0x14000000 };
     };
 
 

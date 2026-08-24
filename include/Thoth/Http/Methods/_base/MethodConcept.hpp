@@ -25,4 +25,9 @@ namespace Thoth::Http {
         { T::ValidateRequest(body, url, headers)   } -> std::same_as<WebResultOper>;
         { T::ValidateResponse(statusCode, body, url, headers)  } -> std::same_as<WebResultOper>;
     };
+
+
+    //! @brief Constrains `M` to methods that are safe to send more than once.
+    template<class M>
+    concept IdempotentMethod = MethodConcept<M> && M::IsIdempotent();
 }

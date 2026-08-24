@@ -1,4 +1,3 @@
-// Http1.hpp
 #pragma once
 #include <Thoth/Http/_base.hpp>
 #include <Thoth/ThothError.hpp>
@@ -13,9 +12,12 @@ namespace Thoth::Http::details_ {
     //! Plain Http/1.0 uses the same machinery, but Http/2 and Http/3 have different
     //! semantics and require their own structs.
     struct Http1 {
+        //! @param maxBodyLength Caps the total body size accepted (sized or chunked); see
+        //! @ref Http1::ParseBody.
         template<class Method, WritableBodyConcept ResponseBody, class F, class Stream>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
-        static std::expected<Response<Method, ResponseBody>, ThothError> BuildResponse(Stream&& stream, F&& bodyFactory);
+        static std::expected<Response<Method, ResponseBody>, ThothError> BuildResponse(
+            Stream&& stream, F&& bodyFactory, std::size_t maxBodyLength = 0x14000000);
 
         //! @brief Parses the Http response line (version, status code and reason).
         template<class Stream>
@@ -33,9 +35,12 @@ namespace Thoth::Http::details_ {
 
 
         //! @brief Parses the Http message body.
+        //! @param maxBodyLength Maximum total body size accepted, checked against Content-Length
+        //! directly for a sized body and against the running sum of all chunks for a chunked one -
+        //! a peer can't get around it by splitting the body into many small chunks.
         template<class Stream, WritableBodyConcept Body, class Head>
         static std::expected<ParseCompleteStage<Stream, Head, Body>, ThothError> ParseBody(
-            ParseCompleteStage<Stream, Head, Body> stage);
+            ParseCompleteStage<Stream, Head, Body> stage, std::size_t maxBodyLength = 0x14000000);
 
         //! @brief Sets "content-length" or "transfer-encoding: chunked" on headers
         //! depending on the body type.

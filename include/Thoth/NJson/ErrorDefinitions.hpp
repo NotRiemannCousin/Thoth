@@ -2,21 +2,27 @@
 #include <Thoth/NJson/Definitions.hpp>
 
 namespace Thoth::NJson {
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonParseError {
         size_t idx;
         char c;
     };
 
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonGetError {
         Key key;
     };
+
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonFindError {
         Key key;
         std::vector<Key> currentPath;
     };
-    struct JsonSearchError {
-    };
 
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
+    struct JsonSearchError { };
+
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonWrongTypeError {
         template<class T>
         static constexpr size_t IndexOf{};

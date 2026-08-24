@@ -287,7 +287,7 @@ TEST_F(JsonGetTest, Get_NonExistentKey_ReturnsNullopt) {
 }
  
 TEST_F(JsonGetTest, Get_ByIndex_ReturnsElement) {
-    auto result{ arr.Get(Key{ 0 }) };
+    auto result{ arr.Get(Key{}) };
     ASSERT_TRUE(result);
     EXPECT_DOUBLE_EQ(((*result)->As<Number>().AsFloat()), 10.0);
 }
@@ -351,7 +351,7 @@ TEST_F(JsonFindTest, Find_ThreeLevels_Succeeds) {
     const std::array keys{
         Key{ std::string("data") },
         Key{ std::string("users") },
-        Key{ 0 },
+        Key{},
         Key{ std::string("name") }
     };
     auto result{ root.Find(keys) };

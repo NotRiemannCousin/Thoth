@@ -34,7 +34,8 @@ namespace Thoth::Http::details_ {
 
     template<class Method, WritableBodyConcept ResponseBody, class F, class Stream>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
-    std::expected<Response<Method, ResponseBody>, ThothError> Http1::BuildResponse(Stream&& stream, F&& bodyFactory) {
+    std::expected<Response<Method, ResponseBody>, ThothError> Http1::BuildResponse(
+        Stream&& stream, F&& bodyFactory, std::size_t maxBodyLength) {
         using HeadStage     = ResponseParseStage<Stream>;
         using CompleteStage = ResponseParseCompleteStage<Stream, ResponseBody>;
 
@@ -49,6 +50,10 @@ namespace Thoth::Http::details_ {
             return CompleteStage{ { std::move(stage.data), std::move(stage.stream) }, std::move(*bodyExp) };
         } };
 
+        const auto parseBody{ [maxBodyLength](CompleteStage stage) {
+            return Http1::ParseBody(std::move(stage), maxBodyLength);
+        } };
+
         const auto createResponse{ [](CompleteStage&& stage) {
             return Response<Method, ResponseBody>{ stage.data, std::move(stage.body) };
         } };
@@ -57,10 +62,9 @@ namespace Thoth::Http::details_ {
                 .and_then(HTTP11_FORWARD(ParseResponseLine))
                 .and_then(HTTP11_FORWARD(ParseHeaders))
                 .and_then(initializeBody)
-                .and_then(HTTP11_FORWARD(ParseBody))
+                .and_then(parseBody)
                 .transform(createResponse);
     }
-
 
     template<class Stream>
     std::expected<ResponseParseStage<Stream>, ThothError> Http1::ParseResponseLine(ResponseParseStage<Stream> stage) {
@@ -150,7 +154,7 @@ namespace Thoth::Http::details_ {
 
 template<class Stream, WritableBodyConcept Body, class Head>
     std::expected<ParseCompleteStage<Stream, Head, Body>, ThothError> Http1::ParseBody(
-        ParseCompleteStage<Stream, Head, Body> stage)
+        ParseCompleteStage<Stream, Head, Body> stage, std::size_t maxBodyLength)
     {
         namespace rg = std::ranges;
         namespace vs = std::views;
@@ -160,9 +164,6 @@ template<class Stream, WritableBodyConcept Body, class Head>
         using ParseErrEnum         = MessageParseErrorEnum;
         using HeaderErrEnum        = NHeaders::HeaderErrorEnum;
         using TransEncodingErrEnum = NHeaders::TransferEncodingEnum;
-
-        static constexpr auto k_maxBodyLength{ 0x14000000 }; // TODO: Make it configurable.
-        static constexpr auto k_maxChunkLineLength{ 64 };
 
         static constexpr auto cvt{ [](const char c) {
             return std::bit_cast<ValueType>(c);
@@ -188,7 +189,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
         const auto readBody{ [&](State2::value_type value) -> std::expected<std::monostate, ThothError> {
             const auto readSizedLength{ [&](const size_t contentSize) -> std::expected<std::monostate, ThothError> {
-                if (contentSize > k_maxBodyLength)
+                if (contentSize > maxBodyLength)
                     return ThothUnex{ ParseErrEnum::InvalidHeaders };
 
                 if constexpr (requires (Body b){ { b.reserve(0) }; })
@@ -205,6 +206,9 @@ template<class Stream, WritableBodyConcept Body, class Head>
 
             const auto readChunked{ [&](std::monostate) -> std::expected<std::monostate, ThothError> {
                 ASSERT_OR_RET_ERROR(stage.data.version != VersionEnum::HTTP1_0, ParseErrEnum::VersionNeedsContentLength);
+
+                // Big enough so that the parser will return a error if the pattern wasn't found.
+                static constexpr auto k_maxChunkLineLength{ 64 };
 
                 std::string chunkLengthStr;
                 decltype(Utils::Scan<size_t>(chunkLengthStr)) chunkLength;
@@ -226,7 +230,7 @@ template<class Stream, WritableBodyConcept Body, class Head>
                     chunkLength = Utils::Scan<size_t>(chunkLengthStr, "x");
                     ASSERT_OR_RET_ERROR(chunkLength, ParseErrEnum::InvalidStartLine);
 
-                    ASSERT_OR_RET_ERROR(totalBodySize + *chunkLength <= k_maxBodyLength, ParseErrEnum::InvalidHeaders);
+                    ASSERT_OR_RET_ERROR(totalBodySize + *chunkLength <= maxBodyLength, ParseErrEnum::InvalidHeaders);
                     totalBodySize += *chunkLength;
 
                     rg::copy(

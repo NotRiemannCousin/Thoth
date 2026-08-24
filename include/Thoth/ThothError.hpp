@@ -3,6 +3,7 @@
 #include <Thoth/Http/ErrorDefinitions.hpp>
 
 namespace Thoth {
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct GenericError {
         std::string error{};
     };
@@ -19,6 +20,7 @@ namespace Thoth {
         GenericError
     >;
 
+    //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct ThothError : ThothErrorBase {
         using ThothErrorBase::variant;
         using ThothErrorBase::operator=;

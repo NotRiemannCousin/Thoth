@@ -293,7 +293,7 @@ TEST(LinearMapStressTest, ManyInsertions_RemainSorted) {
 
     EXPECT_EQ(m.size(), static_cast<std::size_t>(N));
 
-    int prev{ 0 };
+    int prev{};
     for (const auto& [k, v] : m) {
         EXPECT_EQ(k, prev + 1);
         prev = k;

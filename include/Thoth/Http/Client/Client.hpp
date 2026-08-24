@@ -120,7 +120,8 @@ namespace Thoth::Http {
         template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
         static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> ParseHttp1_(
-            SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline);
+            SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline,
+            std::size_t maxBodyLength);
 
         // template<MethodConcept Method, WritableBodyConcept ResponseBody>
         // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> request();

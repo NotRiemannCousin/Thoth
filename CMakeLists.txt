@@ -41,7 +41,9 @@ enable_testing()
 include(cmake/GetCPM.cmake)
 include(cmake/Macros.cmake)
 
-add_library(Thoth)
+add_library(Thoth
+        src/Thoth/Http/Middleware/Decompress.cpp
+        src/Thoth/Http/Middleware/Retry.cpp)
 add_library(Thoth::Thoth ALIAS Thoth)
 
 set_target_properties(Thoth PROPERTIES
@@ -93,7 +95,23 @@ CPMFindPackage(
         FIND_PACKAGE_ARGUMENTS  "CONFIG"
 )
 
-target_link_libraries(Thoth PUBLIC Hermes::Hermes)
+CPMFindPackage(
+        NAME                    ZLIB
+        VERSION                 1.3.2
+        GITHUB_REPOSITORY       madler/zlib
+        GIT_TAG                 v1.3.2
+        OPTIONS                 "ZLIB_BUILD_EXAMPLES OFF"
+                                "ZLIB_BUILD_TESTING OFF"
+                                "ZLIB_BUILD_SHARED OFF"
+                                "ZLIB_INSTALL ${THOTH_INSTALL}"
+)
+
+if(TARGET zlibstatic AND NOT TARGET ZLIB::ZLIB)
+    add_library(ZLIB::ZLIB ALIAS zlibstatic)
+endif()
+
+target_link_libraries(Thoth PUBLIC  Hermes::Hermes)
+target_link_libraries(Thoth PRIVATE ZLIB::ZLIB)
 
 if(TARGET ThothCompilerFlags)
     target_link_libraries(Thoth PRIVATE $<BUILD_INTERFACE:ThothCompilerFlags>)

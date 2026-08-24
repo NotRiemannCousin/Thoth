@@ -22,23 +22,24 @@ namespace Thoth::Http {
     template<class BodyType, MethodConcept... RequestTypes>
         requires (sizeof...(RequestTypes) > 0)
     ThothResult<std::variant<Request<RequestTypes, BodyType>...>> Server::Receive(ServerConnection& conn) {
-        ThothResult<std::variant<Request<RequestTypes, BodyType>...>> result;
-
-        static constexpr auto createHead{ [](auto&& socket) {
-            return details_::Http1::ParseResponseLine(std::move(socket));
-        } };
-
-        auto lineRes{ std::visit(createHead, conn) };
-        if (!lineRes) return std::unexpected{ lineRes.error() };
-
-        const auto& [method, stage]{ *lineRes };
-
-        (std::invoke([&] {
-            if (!result && RequestTypes::MethodName() == method)
-                result.emplace(Request<RequestTypes, BodyType>{});
-        }), ...);
-
-        return result;
+        // ThothResult<std::variant<Request<RequestTypes, BodyType>...>> result;
+        //
+        // static constexpr auto createHead{ [](auto&& socket) {
+        //     return details_::Http1::ParseResponseLine(std::move(socket));
+        // } };
+        //
+        // auto lineRes{ std::visit(createHead, conn) };
+        // if (!lineRes) return std::unexpected{ lineRes.error() };
+        //
+        // const auto& [method, stage]{ *lineRes };
+        //
+        // (std::invoke([&] {
+        //     if (!result && RequestTypes::MethodName() == method)
+        //         result.emplace(Request<RequestTypes, BodyType>{});
+        // }), ...);
+        //
+        // return result;
+        static_assert(false && "Not implemented yet");
     }
 }
 
