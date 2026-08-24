@@ -719,7 +719,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_functional_8h
 <div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keyword">constexpr</span> std::optional&lt;std::remove_cvref_t&lt;Val&gt;&gt;</div>
 <div class="foldopen" id="foldopen00513" data-start="{" data-end="}">
 <div class="line"><a id="l00513" name="l00513"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a76ce0ff0906a30ad5f16d6e4b9da34ec">  513</a></span>    <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a76ce0ff0906a30ad5f16d6e4b9da34ec">NulloptIfImpl</a>(Pred&amp;&amp; pred, Val&amp;&amp; value) {</div>
-<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>        <span class="keywordflow">if</span> (!TestIf&lt;Negate&gt;(pred, value))</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespace_thoth_1_1_utils.html#aebf850919eb337a7faeb8352cbee2468">TestIfImpl&lt;Negate&gt;</a>(pred, value))</div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>            <span class="keywordflow">return</span> std::forward&lt;Val&gt;(value);</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>        <span class="keywordflow">return</span> std::nullopt;</div>
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    }</div>
