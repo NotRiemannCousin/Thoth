@@ -172,6 +172,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a8e4f006c329b8b820a6a67ca18b95040"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <span class="tt">true</span>, TLS certificate validation errors are suppressed.  <br /></td></tr>
 <tr class="memitem:a18e477ebecf36dd59b21f27154db504f" id="r_a18e477ebecf36dd59b21f27154db504f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a18e477ebecf36dd59b21f27154db504f">requestMutualAuth</a> {}</td></tr>
 <tr class="memdesc:a18e477ebecf36dd59b21f27154db504f"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <span class="tt">true</span>, mutual TLS authentication is requested during the handshake.  <br /></td></tr>
+<tr class="memitem:af3f8006187b276e83d39f8c332c2e761" id="r_af3f8006187b276e83d39f8c332c2e761"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#af3f8006187b276e83d39f8c332c2e761">maxBodyLength</a> { 0x14000000 }</td></tr>
+<tr class="memdesc:af3f8006187b276e83d39f8c332c2e761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum total body size accepted in the response, whether framed by Content-Length or by the sum of all chunks in a chunked transfer.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration options for HTTP exchanges performed by <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Client">Client</a>. </p>
@@ -226,6 +228,22 @@ Public Attributes</h2></td></tr>
 <p>If <span class="tt">true</span>, TLS certificate validation errors are suppressed. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Disabling certificate validation exposes the connection to man-in-the-middle attacks. Use only in controlled environments.</dd></dl>
 <p>Has no effect on plain HTTP connections. Ignored when a pooled connection is reused. </p>
+
+</div>
+</div>
+<a id="af3f8006187b276e83d39f8c332c2e761" name="af3f8006187b276e83d39f8c332c2e761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f8006187b276e83d39f8c332c2e761">&#9670;&#160;</a></span>maxBodyLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Thoth::Http::ClientOptions::maxBodyLength { 0x14000000 }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum total body size accepted in the response, whether framed by Content-Length or by the sum of all chunks in a chunked transfer. </p>
 
 </div>
 </div>

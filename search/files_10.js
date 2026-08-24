@@ -7,5 +7,6 @@ var searchData=
   ['requestheaders_2ehpp_4',['RequestHeaders.hpp',['../_request_headers_8hpp.html',1,'']]],
   ['response_2ehpp_5',['Response.hpp',['../_response_8hpp.html',1,'']]],
   ['responsehead_2ehpp_6',['ResponseHead.hpp',['../_response_head_8hpp.html',1,'']]],
-  ['responseheaders_2ehpp_7',['ResponseHeaders.hpp',['../_response_headers_8hpp.html',1,'']]]
+  ['responseheaders_2ehpp_7',['ResponseHeaders.hpp',['../_response_headers_8hpp.html',1,'']]],
+  ['retry_2ehpp_8',['Retry.hpp',['../_retry_8hpp.html',1,'']]]
 ];

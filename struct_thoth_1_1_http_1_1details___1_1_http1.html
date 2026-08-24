@@ -162,9 +162,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a0cb1c7178082fdbb23826fe7f7784b29" id="r_a0cb1c7178082fdbb23826fe7f7784b29"><td class="memTemplParams" colspan="2">template&lt;class Method, WritableBodyConcept ResponseBody, class F, class Stream&gt; <br />
+<tr class="memitem:a1e4f36fb0841c95ae06bd8d8c07df137" id="r_a1e4f36fb0841c95ae06bd8d8c07df137"><td class="memTemplParams" colspan="2">template&lt;class Method, WritableBodyConcept ResponseBody, class F, class Stream&gt; <br />
 requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
-<tr class="memitem:a0cb1c7178082fdbb23826fe7f7784b29 template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0cb1c7178082fdbb23826fe7f7784b29">BuildResponse</a> (Stream &amp;&amp;stream, F &amp;&amp;bodyFactory)</td></tr>
+<tr class="memitem:a1e4f36fb0841c95ae06bd8d8c07df137 template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; Method, ResponseBody &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1e4f36fb0841c95ae06bd8d8c07df137">BuildResponse</a> (Stream &amp;&amp;stream, F &amp;&amp;bodyFactory, std::size_t maxBodyLength=0x14000000)</td></tr>
 <tr class="memitem:acc79e78900808ab696d65913c35b8ded" id="r_acc79e78900808ab696d65913c35b8ded"><td class="memTemplParams" colspan="2">template&lt;class Stream&gt; </td></tr>
 <tr class="memitem:acc79e78900808ab696d65913c35b8ded template"><td class="memItemLeft">static std::expected&lt; ResponseParseStage&lt; Stream &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acc79e78900808ab696d65913c35b8ded">ParseResponseLine</a> (ResponseParseStage&lt; Stream &gt; stage)</td></tr>
 <tr class="memdesc:acc79e78900808ab696d65913c35b8ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <a class="el" href="namespace_thoth_1_1_http.html">Http</a> response line (version, status code and reason).  <br /></td></tr>
@@ -175,9 +175,9 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</td></tr>
 <tr class="memitem:ac434fa8be2e49ecbd5c09ec9dd3daf86 template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a>&lt; Stream, Head &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac434fa8be2e49ecbd5c09ec9dd3daf86">ParseHeaders</a> (<a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a>&lt; Stream, Head &gt; stage)</td></tr>
 <tr class="memdesc:ac434fa8be2e49ecbd5c09ec9dd3daf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <a class="el" href="namespace_thoth_1_1_http.html">Http</a> headers extracted from a stream.  <br /></td></tr>
 <tr class="memitem:a5089ef59d99acc8fa978643f3d9e18ac" id="r_a5089ef59d99acc8fa978643f3d9e18ac"><td class="memItemLeft">static std::expected&lt; std::monostate, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5089ef59d99acc8fa978643f3d9e18ac">ValidateFraming</a> (const <a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &amp;headers)</td></tr>
-<tr class="memitem:af54ed4b4dff7ca165d86ec406ea86def" id="r_af54ed4b4dff7ca165d86ec406ea86def"><td class="memTemplParams" colspan="2">template&lt;class Stream, WritableBodyConcept Body, class Head&gt; </td></tr>
-<tr class="memitem:af54ed4b4dff7ca165d86ec406ea86def template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af54ed4b4dff7ca165d86ec406ea86def">ParseBody</a> (<a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt; stage)</td></tr>
-<tr class="memdesc:af54ed4b4dff7ca165d86ec406ea86def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <a class="el" href="namespace_thoth_1_1_http.html">Http</a> message body.  <br /></td></tr>
+<tr class="memitem:a2a75ca5894e198fddc867217935bdf5e" id="r_a2a75ca5894e198fddc867217935bdf5e"><td class="memTemplParams" colspan="2">template&lt;class Stream, WritableBodyConcept Body, class Head&gt; </td></tr>
+<tr class="memitem:a2a75ca5894e198fddc867217935bdf5e template"><td class="memItemLeft">static std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2a75ca5894e198fddc867217935bdf5e">ParseBody</a> (<a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt; stage, std::size_t maxBodyLength=0x14000000)</td></tr>
+<tr class="memdesc:a2a75ca5894e198fddc867217935bdf5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <a class="el" href="namespace_thoth_1_1_http.html">Http</a> message body.  <br /></td></tr>
 <tr class="memitem:aed5995720e099d69234e0d3b11e7ecbc" id="r_aed5995720e099d69234e0d3b11e7ecbc"><td class="memTemplParams" colspan="2">template&lt;ReadableBodyConcept Body&gt; </td></tr>
 <tr class="memitem:aed5995720e099d69234e0d3b11e7ecbc template"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aed5995720e099d69234e0d3b11e7ecbc">PrepareBodyHeaders</a> (<a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a> &amp;headers, const Body &amp;body)</td></tr>
 <tr class="memdesc:aed5995720e099d69234e0d3b11e7ecbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets "content-length" or "transfer-encoding: chunked" on headers depending on the body type.  <br /></td></tr>
@@ -193,8 +193,8 @@ requires (std::same_as&lt;Head, <a class="el" href="struct_thoth_1_1_http_1_1_re
 <div class="textblock"><p>Handles the parsing and formatting of Http/1.1 messages. </p>
 <p>Reading and writing share the same knowledge about body framing. Plain Http/1.0 uses the same machinery, but Http/2 and Http/3 have different semantics and require their own structs. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a0cb1c7178082fdbb23826fe7f7784b29" name="a0cb1c7178082fdbb23826fe7f7784b29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cb1c7178082fdbb23826fe7f7784b29">&#9670;&#160;</a></span>BuildResponse()</h2>
+<a id="a1e4f36fb0841c95ae06bd8d8c07df137" name="a1e4f36fb0841c95ae06bd8d8c07df137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e4f36fb0841c95ae06bd8d8c07df137">&#9670;&#160;</a></span>BuildResponse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,7 +213,12 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">F &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>bodyFactory</em></span>&#160;)</td>
+          <td class="paramtype">F &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>bodyFactory</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>maxBodyLength</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0x14000000</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -222,11 +227,17 @@ requires ResponseBodyFactoryConcept&lt;F, ResponseBody&gt;</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxBodyLength</td><td>Caps the total body size accepted (sized or chunked); see <a class="el" href="#a2a75ca5894e198fddc867217935bdf5e" title="Http1::ParseBody">Http1::ParseBody</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="af54ed4b4dff7ca165d86ec406ea86def" name="af54ed4b4dff7ca165d86ec406ea86def"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af54ed4b4dff7ca165d86ec406ea86def">&#9670;&#160;</a></span>ParseBody()</h2>
+<a id="a2a75ca5894e198fddc867217935bdf5e" name="a2a75ca5894e198fddc867217935bdf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a75ca5894e198fddc867217935bdf5e">&#9670;&#160;</a></span>ParseBody()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,8 +250,12 @@ template&lt;class Stream, WritableBodyConcept Body, class Head&gt; </div>
         <tr>
           <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt; Thoth::Http::details_::Http1::ParseBody </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt;</td>          <td class="paramname"><span class="paramname"><em>stage</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a>&lt; Stream, Head, Body &gt;</td>          <td class="paramname"><span class="paramname"><em>stage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>maxBodyLength</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0x14000000</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -251,6 +266,12 @@ template&lt;class Stream, WritableBodyConcept Body, class Head&gt; </div>
 </div><div class="memdoc">
 
 <p>Parses the <a class="el" href="namespace_thoth_1_1_http.html">Http</a> message body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxBodyLength</td><td>Maximum total body size accepted, checked against Content-Length directly for a sized body and against the running sum of all chunks for a chunked one - a peer can't get around it by splitting the body into many small chunks. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

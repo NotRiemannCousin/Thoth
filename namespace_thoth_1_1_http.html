@@ -204,8 +204,14 @@ Concepts</h2></td></tr>
 <tr class="memitem:ChunkedReadableBodyConcept" id="r_ChunkedReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_chunked_readable_body_concept.html">ChunkedReadableBodyConcept</a></td></tr>
 <tr class="memitem:ConnectionConcept" id="r_ConnectionConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_connection_concept.html">ConnectionConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for any synchronous <a class="el" href="namespace_hermes.html">Hermes</a> socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. <a class="el" href="namespace_hermes.html">Hermes</a>' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket. <br /></td></tr>
+<tr class="memitem:HandlerConcept" id="r_HandlerConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html">HandlerConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a callable that processes a request and produces a response. Matches the signature <span class="tt">[](Request&lt;Method, Body&gt;) -&gt; Client::ExpResponse&lt;Method, Body&gt;</span>. <br /></td></tr>
+<tr class="memitem:IdempotentMethod" id="r_IdempotentMethod"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_idempotent_method.html">IdempotentMethod</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains <span class="tt">M</span> to methods that are safe to send more than once. <br /></td></tr>
 <tr class="memitem:MethodConcept" id="r_MethodConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP methods requirements following <a href="https://datatracker.ietf.org/doc/html/rfc9110#method.extensibility">RFC9110</a>. <br /></td></tr>
+<tr class="memitem:MiddlewareConcept" id="r_MiddlewareConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html">MiddlewareConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a factory that takes an inner <a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html" title="Thoth::Http::HandlerConcept">handler</a> and returns a new wrapped handler. <br /></td></tr>
 <tr class="memitem:ReadableBodyConcept" id="r_ReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_readable_body_concept.html">ReadableBodyConcept</a></td></tr>
 <tr class="memitem:ResponseBodyFactoryConcept" id="r_ResponseBodyFactoryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">ResponseBodyFactoryConcept</a></td></tr>
 <tr class="memitem:SizedReadableBodyConcept" id="r_SizedReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_sized_readable_body_concept.html">SizedReadableBodyConcept</a></td></tr>
@@ -214,6 +220,9 @@ Concepts</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:abd9e07cde439bfb5e723d453ba619b87" id="r_abd9e07cde439bfb5e723d453ba619b87"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd9e07cde439bfb5e723d453ba619b87">ConnectionErrorEnum</a> = Hermes::ConnectionErrorEnum</td></tr>
+<tr class="memitem:a5f6110120451f946ba71306abcb08600" id="r_a5f6110120451f946ba71306abcb08600"><td class="memTemplParams" colspan="2">template&lt;MethodConcept M&gt; </td></tr>
+<tr class="memitem:a5f6110120451f946ba71306abcb08600 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5f6110120451f946ba71306abcb08600">SeeOtherMethod</a> = std::conditional_t&lt;std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt; || std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a>&gt;, M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt;</td></tr>
+<tr class="memdesc:a5f6110120451f946ba71306abcb08600"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP method a request is left with after a <span class="tt">303 See Other</span> (RFC 9110 §15.4.4):  <br /></td></tr>
 <tr class="memitem:a38dd6dac102e86e63accba7e297c83dd" id="r_a38dd6dac102e86e63accba7e297c83dd"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a38dd6dac102e86e63accba7e297c83dd">GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="memitem:aefa963698d745b6ca25fa35c2849cadf" id="r_aefa963698d745b6ca25fa35c2849cadf"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aefa963698d745b6ca25fa35c2849cadf">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
 <tr class="memitem:a953aa84d429692d59ede836e38f2d90c" id="r_a953aa84d429692d59ede836e38f2d90c"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a953aa84d429692d59ede836e38f2d90c">GetBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
@@ -352,6 +361,18 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a7bedc663bde5f4726625099926f81fe8">VersionToString</a> (<a class="el" href="#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> version)</td></tr>
 <tr class="memdesc:a7bedc663bde5f4726625099926f81fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
+<tr class="memitem:ac59f07d152364c628f6e962657e16b54" id="r_ac59f07d152364c628f6e962657e16b54"><td class="memTemplParams" colspan="2">template&lt;class Next&gt; </td></tr>
+<tr class="memitem:ac59f07d152364c628f6e962657e16b54 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ac59f07d152364c628f6e962657e16b54">Decompress</a> (Next next)</td></tr>
+<tr class="memdesc:ac59f07d152364c628f6e962657e16b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a handler to reverse <span class="tt">Content-Encoding</span> on the response body (RFC 9110 §8.4). Undoes codings in reverse application order.  <br /></td></tr>
+<tr class="memitem:ae1aaf9511a66606b334cd6149c411cff" id="r_ae1aaf9511a66606b334cd6149c411cff"><td class="memTemplParams" colspan="2">template&lt;class Next&gt; </td></tr>
+<tr class="memitem:ae1aaf9511a66606b334cd6149c411cff template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ae1aaf9511a66606b334cd6149c411cff">FollowRedirects</a> (Next next, uint32_t maxHops=10)</td></tr>
+<tr class="memdesc:ae1aaf9511a66606b334cd6149c411cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a handler so <span class="tt">307</span> and <span class="tt">308</span> responses are followed automatically.  <br /></td></tr>
+<tr class="memitem:af6efda4a83534cc73242470a5009cb26" id="r_af6efda4a83534cc73242470a5009cb26"><td class="memTemplParams" colspan="2">template&lt;class Next&gt; </td></tr>
+<tr class="memitem:af6efda4a83534cc73242470a5009cb26 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#af6efda4a83534cc73242470a5009cb26">FollowSeeOther</a> (Next next, uint32_t maxHops=10)</td></tr>
+<tr class="memdesc:af6efda4a83534cc73242470a5009cb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a handler so a <span class="tt">303 See Other</span> response is followed. Downgrades to <a class="el" href="#a5f6110120451f946ba71306abcb08600" title="SeeOtherMethod">SeeOtherMethod</a> and drops the body, per RFC 9110 §15.4.4.  <br /></td></tr>
+<tr class="memitem:a23b2757dac6ce482d589521d7b1b633c" id="r_a23b2757dac6ce482d589521d7b1b633c"><td class="memTemplParams" colspan="2">template&lt;class Next&gt; </td></tr>
+<tr class="memitem:a23b2757dac6ce482d589521d7b1b633c template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a23b2757dac6ce482d589521d7b1b633c">Retry</a> (uint32_t attempts, Next next, std::chrono::milliseconds baseDelay=std::chrono::milliseconds{ 100 }, bool respectRetryAfter=true, std::chrono::milliseconds maxDelay=std::chrono::minutes{ 5 })</td></tr>
+<tr class="memdesc:a23b2757dac6ce482d589521d7b1b633c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retries <span class="tt">next</span> up to <span class="tt">attempts</span> times with exponential backoff.  <br /></td></tr>
 <tr class="memitem:aea21005cb51e392f6670bd5e199a2a1c" id="r_aea21005cb51e392f6670bd5e199a2a1c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aea21005cb51e392f6670bd5e199a2a1c">InsensitiveCmp</a> (std::string_view elem1, std::string_view elem2)</td></tr>
 <tr class="memitem:a82e39416186b866106d46b2a4d8cc6f3" id="r_a82e39416186b866106d46b2a4d8cc6f3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a82e39416186b866106d46b2a4d8cc6f3">IsSingleValue</a> (std::string_view key)</td></tr>
 <tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;WritableBodyConcept Body&gt; </td></tr>
@@ -372,6 +393,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a> "ThothError" is the centralized error type of this library. </dd></dl>
 
 </div>
 </div>
@@ -571,6 +593,29 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a5f6110120451f946ba71306abcb08600" name="a5f6110120451f946ba71306abcb08600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f6110120451f946ba71306abcb08600">&#9670;&#160;</a></span>SeeOtherMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;MethodConcept M&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a5f6110120451f946ba71306abcb08600">Thoth::Http::SeeOtherMethod</a> = std::conditional_t&lt;std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt; || std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a>&gt;, M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The HTTP method a request is left with after a <span class="tt">303 See Other</span> (RFC 9110 §15.4.4): </p>
+<ul>
+<li><span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a></span> and <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a></span> are preserved.</li>
+<li>Everything else downgrades to <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a></span>.</li>
+<li>Pure function of <span class="tt">M</span> — no runtime data needed, so no <span class="tt">std::variant</span> is required. </li>
+</ul>
+
+</div>
+</div>
 <a id="ab310f97c18cb1f367e7fa8137beebc1f" name="ab310f97c18cb1f367e7fa8137beebc1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab310f97c18cb1f367e7fa8137beebc1f">&#9670;&#160;</a></span>WebResult</h2>
 
@@ -621,6 +666,7 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a> "ThothError" is the centralized error type of this library. </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d"></a>InvalidStartLine&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0" name="a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0"></a>InvalidVersion&#160;</td><td class="fielddoc"></td></tr>
@@ -766,6 +812,7 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a> "ThothError" is the centralized error type of this library. </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05" name="a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05"></a>EmptyUrl&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276" name="a2bf11744ec8f13e9d75fe88e28f7326caa19e4f5c985e2b3f6a62facf85447276"></a>InvalidScheme&#160;</td><td class="fielddoc"></td></tr>
@@ -805,6 +852,122 @@ template&lt;class T&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ac59f07d152364c628f6e962657e16b54" name="ac59f07d152364c628f6e962657e16b54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac59f07d152364c628f6e962657e16b54">&#9670;&#160;</a></span>Decompress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Next&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::Decompress </td>
+          <td>(</td>
+          <td class="paramtype">Next</td>          <td class="paramname"><span class="paramname"><em>next</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wraps a handler to reverse <span class="tt">Content-Encoding</span> on the response body (RFC 9110 §8.4). Undoes codings in reverse application order. </p>
+<ul>
+<li>Supported: <span class="tt">gzip</span> and <span class="tt">deflate</span> (via zlib).</li>
+<li>Unsupported: <span class="tt">br</span> and <span class="tt">zstd</span> (returns an error as no codec is linked yet).</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>Scoped strictly to <span class="tt">Body = std::string</span>. Decompressing directly into an arbitrary streaming sink would need the codec itself to stream, which this doesn't do. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Next</td><td>Inner handler. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1aaf9511a66606b334cd6149c411cff" name="ae1aaf9511a66606b334cd6149c411cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1aaf9511a66606b334cd6149c411cff">&#9670;&#160;</a></span>FollowRedirects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Next&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::FollowRedirects </td>
+          <td>(</td>
+          <td class="paramtype">Next</td>          <td class="paramname"><span class="paramname"><em>next</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>maxHops</em></span><span class="paramdefsep"> = </span><span class="paramdefval">10</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wraps a handler so <span class="tt">307</span> and <span class="tt">308</span> responses are followed automatically. </p>
+<ul>
+<li>Never changes <span class="tt">Method</span> or <span class="tt">Body</span> (RFC 9110 §15.4.8-9 forbids it for these two codes).</li>
+<li>Works as a generic template-lambda: the returned handler is reusable for any <span class="tt">Method</span>/<span class="tt">Body</span>.</li>
+</ul>
+<dl class="section see"><dt>See also</dt><dd>docs/pages/Middleware.md for behavior details and composition order. </dd>
+<dd>
+<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">Thoth::Http::StatusCodeEnum</a> for more info.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Next</td><td>Inner handler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">next</td><td>Handler invoked on the first attempt and on every hop. </td></tr>
+    <tr><td class="paramname">maxHops</td><td>Maximum redirects followed before giving up. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6efda4a83534cc73242470a5009cb26" name="af6efda4a83534cc73242470a5009cb26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6efda4a83534cc73242470a5009cb26">&#9670;&#160;</a></span>FollowSeeOther()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Next&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::FollowSeeOther </td>
+          <td>(</td>
+          <td class="paramtype">Next</td>          <td class="paramname"><span class="paramname"><em>next</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>maxHops</em></span><span class="paramdefsep"> = </span><span class="paramdefval">10</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wraps a handler so a <span class="tt">303 See Other</span> response is followed. Downgrades to <a class="el" href="#a5f6110120451f946ba71306abcb08600" title="SeeOtherMethod">SeeOtherMethod</a> and drops the body, per RFC 9110 §15.4.4. </p>
+<dl class="section note"><dt>Note</dt><dd><span class="tt">next</span> must satisfy <span class="tt"><a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html" title="Defines a callable that processes a request and produces a response. Matches the signature [](Request...">HandlerConcept</a></span> for <em>both</em> the original <span class="tt">Method</span> and <span class="tt"><a class="el" href="#a5f6110120451f946ba71306abcb08600" title="The HTTP method a request is left with after a 303 See Other (RFC 9110 §15.4.4):">SeeOtherMethod</a>&lt;Method&gt;</span>. Trivially true for generic handlers like <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_client.html#a8f477ad7128301089c7f36f72c77e6c6" title="@hof{Send}">Client::H_Send</a></span>, but false for handlers fixed to a concrete <span class="tt">Method</span>. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Next</td><td>Inner handler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">next</td><td>Handler invoked with the original request, then with the downgraded one. </td></tr>
+    <tr><td class="paramname">maxHops</td><td>Maximum further 303 hops followed once already downgraded. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a2b28c97564db3adc49d3439fc450b2ab" name="a2b28c97564db3adc49d3439fc450b2ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2b28c97564db3adc49d3439fc450b2ab">&#9670;&#160;</a></span>GetDefaultPort()</h2>
 
@@ -912,6 +1075,64 @@ template&lt;WritableBodyConcept Body&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23b2757dac6ce482d589521d7b1b633c" name="a23b2757dac6ce482d589521d7b1b633c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b2757dac6ce482d589521d7b1b633c">&#9670;&#160;</a></span>Retry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Next&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::Retry </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>attempts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Next</td>          <td class="paramname"><span class="paramname"><em>next</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::milliseconds</td>          <td class="paramname"><span class="paramname"><em>baseDelay</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::chrono::milliseconds{&#160;100&#160;}</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>respectRetryAfter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::milliseconds</td>          <td class="paramname"><span class="paramname"><em>maxDelay</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::chrono::minutes{&#160;5&#160;}</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retries <span class="tt">next</span> up to <span class="tt">attempts</span> times with exponential backoff. </p>
+<p>Triggers on transport errors (<span class="tt"><a class="el" href="#abd9e07cde439bfb5e723d453ba619b87">ConnectionErrorEnum</a></span>, <span class="tt"><a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388">MessageParseErrorEnum</a></span>) or <span class="tt">5xx</span> status.</p>
+<dl class="section note"><dt>Note</dt><dd>Only compiles with idempotent methods, like defined by <a class="el" href="concept_thoth_1_1_http_1_1_method_concept.html" title="MethodConcept">MethodConcept</a>. </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Next</td><td>Inner handler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attempts</td><td>Total attempts, including the first (minimum effectively 1). </td></tr>
+    <tr><td class="paramname">next</td><td>Handler invoked on every attempt. </td></tr>
+    <tr><td class="paramname">baseDelay</td><td>Delay before the 2nd attempt; doubles each subsequent attempt. </td></tr>
+    <tr><td class="paramname">respectRetryAfter</td><td>Overrides backoff using the server's <span class="tt">Retry-After</span> header if present. </td></tr>
+    <tr><td class="paramname">maxDelay</td><td>Maximum allowed wait time. Aborts retry if exceeded. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

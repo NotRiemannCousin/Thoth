@@ -9,8 +9,9 @@ var searchData=
   ['rend_6',['rend',['../struct_thoth_1_1_http_1_1_headers.html#af3d9e2d46258484f669e5904584d2b40',1,'Thoth::Http::Headers::rend()'],['../struct_thoth_1_1_http_1_1_headers.html#af8e28bbb530cb0c557d1f3456cca827f',1,'Thoth::Http::Headers::rend() const']]],
   ['resolve_7',['Resolve',['../struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767',1,'Thoth::Http::Url']]],
   ['resolverelative_8',['ResolveRelative',['../struct_thoth_1_1_http_1_1_url.html#a9493f840dbb211d280924f4545870c97',1,'Thoth::Http::Url']]],
-  ['retryafter_9',['RetryAfter',['../struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807',1,'Thoth::Http::ResponseHeaders::RetryAfter()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46',1,'Thoth::Http::ResponseHeaders::RetryAfter() const']]],
-  ['righttrim_10',['RightTrim',['../namespace_thoth_1_1_string.html#a0a827fa53ea354149c3b214771bf5f40',1,'Thoth::String']]],
-  ['righttrimmed_11',['RightTrimmed',['../namespace_thoth_1_1_string.html#ad2b514531b6fab3937666b1386f84513',1,'Thoth::String']]],
-  ['righttrimmedstr_12',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#a33aa2d36af56a7fc14845c7d0e7f86a8',1,'Thoth::String']]]
+  ['retry_9',['Retry',['../namespace_thoth_1_1_http.html#a23b2757dac6ce482d589521d7b1b633c',1,'Thoth::Http']]],
+  ['retryafter_10',['RetryAfter',['../struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807',1,'Thoth::Http::ResponseHeaders::RetryAfter()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46',1,'Thoth::Http::ResponseHeaders::RetryAfter() const']]],
+  ['righttrim_11',['RightTrim',['../namespace_thoth_1_1_string.html#a0a827fa53ea354149c3b214771bf5f40',1,'Thoth::String']]],
+  ['righttrimmed_12',['RightTrimmed',['../namespace_thoth_1_1_string.html#ad2b514531b6fab3937666b1386f84513',1,'Thoth::String']]],
+  ['righttrimmedstr_13',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#a33aa2d36af56a7fc14845c7d0e7f86a8',1,'Thoth::String']]]
 ];

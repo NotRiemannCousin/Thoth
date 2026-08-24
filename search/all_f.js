@@ -11,11 +11,12 @@ var searchData=
   ['notimplemented_8',['NotImplemented',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a997ca4ce119685f40f03a9a8a6c5346e',1,'Thoth::Http']]],
   ['notmodified_9',['NotModified',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ac169e6d9a1b9442001384de8dcf49ab9',1,'Thoth::Http']]],
   ['null_10',['Null',['../namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2',1,'Thoth::NJson']]],
-  ['nulloptif_11',['NulloptIf',['../namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec',1,'Thoth::Utils::NulloptIf(Pred &amp;&amp;pred, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a05d0a37546a30efa72b5e0fafd9f7628',1,'Thoth::Utils::NulloptIf(Val &amp;&amp;value)']]],
-  ['nulloptifhof_12',['NulloptIfHof',['../namespace_thoth_1_1_utils.html#a56f8f5f5ad556eaf19ba354f20ceff1e',1,'Thoth::Utils::NulloptIfHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a1c40039e4a87ee05f4017a96641cb699',1,'Thoth::Utils::NulloptIfHof()']]],
-  ['nulloptifimpl_13',['NulloptIfImpl',['../namespace_thoth_1_1_utils.html#a76ce0ff0906a30ad5f16d6e4b9da34ec',1,'Thoth::Utils']]],
-  ['nulloptifnot_14',['NulloptIfNot',['../namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24',1,'Thoth::Utils::NulloptIfNot(Pred &amp;&amp;pred, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c',1,'Thoth::Utils::NulloptIfNot(Val &amp;&amp;value)']]],
-  ['nulloptifnothof_15',['NulloptIfNotHof',['../namespace_thoth_1_1_utils.html#a0222d55a46b2800dd6860ab067e99452',1,'Thoth::Utils::NulloptIfNotHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a8c180d24c9ee700339c1451cb7855d55',1,'Thoth::Utils::NulloptIfNotHof()']]],
-  ['number_16',['Number',['../struct_thoth_1_1_n_json_1_1_number.html',1,'Thoth::NJson::Number'],['../namespace_thoth_1_1_n_json.html#a3eaca3486f92043f1be722e646e8d452',1,'Thoth::NJson::Number']]],
-  ['number_2ehpp_17',['Number.hpp',['../_number_8hpp.html',1,'']]]
+  ['nullhandler_11',['nullHandler',['../namespace_thoth_1_1_http_1_1details__.html#a414d48cf76cae458fec62a4c0be05590',1,'Thoth::Http::details_']]],
+  ['nulloptif_12',['NulloptIf',['../namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec',1,'Thoth::Utils::NulloptIf(Pred &amp;&amp;pred, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a05d0a37546a30efa72b5e0fafd9f7628',1,'Thoth::Utils::NulloptIf(Val &amp;&amp;value)']]],
+  ['nulloptifhof_13',['NulloptIfHof',['../namespace_thoth_1_1_utils.html#a56f8f5f5ad556eaf19ba354f20ceff1e',1,'Thoth::Utils::NulloptIfHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a1c40039e4a87ee05f4017a96641cb699',1,'Thoth::Utils::NulloptIfHof()']]],
+  ['nulloptifimpl_14',['NulloptIfImpl',['../namespace_thoth_1_1_utils.html#a76ce0ff0906a30ad5f16d6e4b9da34ec',1,'Thoth::Utils']]],
+  ['nulloptifnot_15',['NulloptIfNot',['../namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24',1,'Thoth::Utils::NulloptIfNot(Pred &amp;&amp;pred, Val &amp;&amp;value)'],['../namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c',1,'Thoth::Utils::NulloptIfNot(Val &amp;&amp;value)']]],
+  ['nulloptifnothof_16',['NulloptIfNotHof',['../namespace_thoth_1_1_utils.html#a0222d55a46b2800dd6860ab067e99452',1,'Thoth::Utils::NulloptIfNotHof(Pred &amp;&amp;pred)'],['../namespace_thoth_1_1_utils.html#a8c180d24c9ee700339c1451cb7855d55',1,'Thoth::Utils::NulloptIfNotHof()']]],
+  ['number_17',['Number',['../struct_thoth_1_1_n_json_1_1_number.html',1,'Thoth::NJson::Number'],['../namespace_thoth_1_1_n_json.html#a3eaca3486f92043f1be722e646e8d452',1,'Thoth::NJson::Number']]],
+  ['number_2ehpp_18',['Number.hpp',['../_number_8hpp.html',1,'']]]
 ];

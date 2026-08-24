@@ -26,7 +26,8 @@ var NAVTREE =
 [
   [ "Thoth", "index.html", [
     [ "A functional, expressive, C++26 webdev library", "index.html#autotoc_md1", null ],
-    [ "Examples", "index.html#autotoc_md2", null ],
+    [ "Middlewares", "index.html#autotoc_md2", null ],
+    [ "Examples", "index.html#autotoc_md3", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -59,13 +60,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_accept_encoding_8hpp.html",
-"functions_vars.html",
-"namespace_thoth_1_1_utils.html#a20a2c9b865d066f060066d94ffa77cfd",
-"struct_thoth_1_1_http_1_1_authority_view.html#a0a0d4dcdbfc772a9ab6c0feb36ba7ed3",
-"struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#a6024542338a5e60bcfef8c26008b3a16",
-"struct_thoth_1_1_http_1_1_query_params.html#af99eb86020224614c691058d87ff8cd1",
-"struct_thoth_1_1_n_json_1_1_json.html#a00c1a8b14f05bb23a3f776081f18fdb7",
-"struct_thoth_1_1_n_json_1_1_json_object.html#af64e3baafbd8de428b638a08ef4fc799"
+"functions_h.html",
+"namespace_thoth_1_1_string.html#a4f961aceec76a64d58d8426b1a5df28d",
+"struct_thoth_1_1_dsa_1_1_linear_map.html#af27e6ac7991d37cb821cd62a340556f4",
+"struct_thoth_1_1_http_1_1_headers.html#af53923bf8042fa3035e92fa43c0e1fce",
+"struct_thoth_1_1_http_1_1_query_params.html#a5eec083e14212fa41016a6d6b87a0eb0",
+"struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767",
+"struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

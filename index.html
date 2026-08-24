@@ -159,8 +159,17 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 A functional, expressive, C++26 webdev library</h1>
 <p><img src="Thoth-logo.webp" alt="" title="Thoth, the Egyptian god of writing and wisdom" class="inline"/></p>
 <p><a class="el" href="namespace_thoth.html">Thoth</a> is a modern C++26 lib and webdev library for building both web servers and clients. Powered by the <a href="https://github.com/NotRiemannCousin/Hermes">Hermes</a> library, <a class="el" href="namespace_thoth.html">Thoth</a> is designed to harness the latest C++ features for creating robust, high-performance web applications.</p>
-<p>Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance. It heavily utilizes coroutines and functional programming concepts to offer a natural and expressive API for tasks.</p>
+<p>Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance.</p>
+<blockquote class="doxtable">
+<p>Server side connections are under development, only client connections are availabe. CMake says C++23 but is because MSVC is lazy </p>
+</blockquote>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Middlewares</h1>
+<p>Client requests can be wrapped with composable middlewares. Each one takes a handler (<span class="tt">Request&lt;Method, Body&gt; -&gt; ExpResponse&lt;Method, Body&gt;</span>, the same shape as <span class="tt">Client::H_Send()</span>) and returns a new handler, so they nest around the base send call:</p>
+<div class="fragment"><div class="line">NHttp::GetRequest::FromUrl(url)</div>
+<div class="line">    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))</div>
+</div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponential backoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your own middlewares too.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Examples</h1>
 <div class="fragment"><div class="line"><span class="keyword">namespace </span>NHttp = <a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a>;</div>
 <div class="line"><span class="keyword">namespace </span>NJson = <a class="code hl_namespace" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a>;</div>
@@ -172,9 +181,7 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">//trying to make the request, send to the server and then convert the body to JSON.</span></div>
 <div class="line">    <span class="keywordflow">return</span> NHttp::GetRequest::FromUrl(std::format(<span class="stringliteral">&quot;https://api.discogs.com/artists/{}&quot;</span>, <span class="keywordtype">id</span>))</div>
-<div class="line">            <span class="comment">// At the current moment every error in this string is given by a string, but it will be changed</span></div>
-<div class="line">            <span class="comment">// to enums/proper structs in the future.</span></div>
-<div class="line">            .and_then(NHttp::Client::Send&lt;&gt;)</div>
+<div class="line">            .and_then(NHttp::Client::H_Send())</div>
 <div class="line">            .and_then(&amp;NHttp::GetResponse::AsJson)</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// selecting &quot;members&quot; in the first object</span></div>
@@ -188,29 +195,29 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> getName = [](<span class="keyword">const</span> Json&amp; member) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> getName{ [](<span class="keyword">const</span> Json&amp; member) {</div>
 <div class="line">        <span class="keywordflow">return</span> member.Get(<span class="stringliteral">&quot;name&quot;</span>)</div>
 <div class="line">                .and_then(&amp;Json::EnsureRef&lt;NJson::String&gt;)</div>
 <div class="line">                .transform(&amp;NJson::String::AsCopy) <span class="comment">// converting from Thoth Strings (that are COW) to std::string</span></div>
 <div class="line">                .value_or(<span class="stringliteral">&quot;&lt;unnamed&gt;&quot;</span>);</div>
-<div class="line">    };</div>
+<div class="line">    } };</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> printNames = [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> printNames{ [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;- Members:&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">for</span> (std::string&amp;&amp; name : names)</div>
 <div class="line">            std::println(<span class="stringliteral">&quot;{}&quot;</span>, name);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
-<div class="line">    };</div>
+<div class="line">    } };</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> errorHandler = [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> errorHandler{ [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;An error occurred: {}&quot;</span>, error);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keywordtype">int</span> wsaError{ WSAGetLastError() }; wsaError != 0)</div>
 <div class="line">            std::println(<span class="stringliteral">&quot;WSA error: {}&quot;</span>, wsaError);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
-<div class="line">    };</div>
+<div class="line">    } };</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    GetMembers(4001234)</div>

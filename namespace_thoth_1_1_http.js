@@ -32,7 +32,10 @@ var namespace_thoth_1_1_http =
     [ "BodyFactoryConcept", "concept_thoth_1_1_http_1_1_body_factory_concept.html", null ],
     [ "ChunkedReadableBodyConcept", "concept_thoth_1_1_http_1_1_chunked_readable_body_concept.html", null ],
     [ "ConnectionConcept", "concept_thoth_1_1_http_1_1_connection_concept.html", null ],
+    [ "HandlerConcept", "concept_thoth_1_1_http_1_1_handler_concept.html", null ],
+    [ "IdempotentMethod", "concept_thoth_1_1_http_1_1_idempotent_method.html", null ],
     [ "MethodConcept", "concept_thoth_1_1_http_1_1_method_concept.html", null ],
+    [ "MiddlewareConcept", "concept_thoth_1_1_http_1_1_middleware_concept.html", null ],
     [ "ReadableBodyConcept", "concept_thoth_1_1_http_1_1_readable_body_concept.html", null ],
     [ "ResponseBodyFactoryConcept", "concept_thoth_1_1_http_1_1_response_body_factory_concept.html", null ],
     [ "SizedReadableBodyConcept", "concept_thoth_1_1_http_1_1_sized_readable_body_concept.html", null ],
@@ -52,6 +55,7 @@ var namespace_thoth_1_1_http =
     [ "PostFileResponse", "namespace_thoth_1_1_http.html#abbc435da6152754f918ab209154301a7", null ],
     [ "PostRequest", "namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf", null ],
     [ "PostResponse", "namespace_thoth_1_1_http.html#a406725da08567057c843e7aca9772dd7", null ],
+    [ "SeeOtherMethod", "namespace_thoth_1_1_http.html#a5f6110120451f946ba71306abcb08600", null ],
     [ "WebResult", "namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f", null ],
     [ "WebResultOper", "namespace_thoth_1_1_http.html#a8918bab35fab666392a85833ac746f7f", null ],
     [ "MessageParseErrorEnum", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388", [
@@ -146,10 +150,14 @@ var namespace_thoth_1_1_http =
       [ "HTTP2", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a", null ],
       [ "HTTP3", "namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738", null ]
     ] ],
+    [ "Decompress", "namespace_thoth_1_1_http.html#ac59f07d152364c628f6e962657e16b54", null ],
+    [ "FollowRedirects", "namespace_thoth_1_1_http.html#ae1aaf9511a66606b334cd6149c411cff", null ],
+    [ "FollowSeeOther", "namespace_thoth_1_1_http.html#af6efda4a83534cc73242470a5009cb26", null ],
     [ "GetDefaultPort", "namespace_thoth_1_1_http.html#a2b28c97564db3adc49d3439fc450b2ab", null ],
     [ "GetInserterIterator", "namespace_thoth_1_1_http.html#a5379080d14ac2dfa264229cc182c7dc1", null ],
     [ "GetStatusType", "namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc", null ],
     [ "InsensitiveCmp", "namespace_thoth_1_1_http.html#aea21005cb51e392f6670bd5e199a2a1c", null ],
     [ "IsSingleValue", "namespace_thoth_1_1_http.html#a82e39416186b866106d46b2a4d8cc6f3", null ],
+    [ "Retry", "namespace_thoth_1_1_http.html#a23b2757dac6ce482d589521d7b1b633c", null ],
     [ "VersionToString", "namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8", null ]
 ];

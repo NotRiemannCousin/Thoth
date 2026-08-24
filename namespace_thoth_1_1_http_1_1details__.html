@@ -161,7 +161,74 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the parsing and formatting of Http/1.1 messages.  <a href="struct_thoth_1_1_http_1_1details___1_1_http1.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ParseCompleteStage" id="r_ParseCompleteStage"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a></td></tr>
 <tr class="memitem:ParseStage" id="r_ParseStage"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a414d48cf76cae458fec62a4c0be05590" id="r_a414d48cf76cae458fec62a4c0be05590"><td class="memTemplParams" colspan="2">template&lt;BodyConcept Body&gt; </td></tr>
+<tr class="memitem:a414d48cf76cae458fec62a4c0be05590 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a414d48cf76cae458fec62a4c0be05590">nullHandler</a></td></tr>
+<tr class="memdesc:a414d48cf76cae458fec62a4c0be05590"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dummy handler used exclusively to test middleware factories in <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>. Calling it always returns an error.  <br /></td></tr>
+<tr class="memitem:a49538ae98f59224cc7280c1606ccb0f4" id="r_a49538ae98f59224cc7280c1606ccb0f4"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a49538ae98f59224cc7280c1606ccb0f4">identityMiddleware</a> { [](auto next) { return next; } }</td></tr>
+<tr class="memdesc:a49538ae98f59224cc7280c1606ccb0f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dummy middleware that returns the handler unchanged. Used to verify <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>.  <br /></td></tr>
 </table>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a49538ae98f59224cc7280c1606ccb0f4" name="a49538ae98f59224cc7280c1606ccb0f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49538ae98f59224cc7280c1606ccb0f4">&#9670;&#160;</a></span>identityMiddleware</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::details_::identityMiddleware { [](auto next) { return next; } }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A dummy middleware that returns the handler unchanged. Used to verify <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>. </p>
+
+</div>
+</div>
+<a id="a414d48cf76cae458fec62a4c0be05590" name="a414d48cf76cae458fec62a4c0be05590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a414d48cf76cae458fec62a4c0be05590">&#9670;&#160;</a></span>nullHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BodyConcept Body&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::Http::details_::nullHandler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{ []&lt;<a class="code hl_concept" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept</a> M&gt;(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_request.html">Request&lt;M, Body&gt;</a>) -&gt; <a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_client.html#afd72fc026222a8e18b385e799ae5dda1">Client::ExpResponse&lt;M, Body&gt;</a> {</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespace_thoth.html#ad884980932a442517ed1f3d0ccbc941f">ThothUnex</a>{ <a class="code hl_struct" href="struct_thoth_1_1_generic_error.html">GenericError</a>{ <span class="stringliteral">&quot;NullHandler must never actually be called&quot;</span> } };</div>
+<div class="line">        } }</div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_method_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_method_concept.html">Thoth::Http::MethodConcept</a></div><div class="ttdoc">The HTTP methods requirements following RFC9110.</div><div class="ttdef"><b>Definition</b> MethodConcept.hpp:19</div></div>
+<div class="ttc" id="anamespace_thoth_html_ad884980932a442517ed1f3d0ccbc941f"><div class="ttname"><a href="namespace_thoth.html#ad884980932a442517ed1f3d0ccbc941f">Thoth::ThothUnex</a></div><div class="ttdeci">std::unexpected&lt; ThothError &gt; ThothUnex</div><div class="ttdef"><b>Definition</b> ThothError.hpp:51</div></div>
+<div class="ttc" id="astruct_thoth_1_1_generic_error_html"><div class="ttname"><a href="struct_thoth_1_1_generic_error.html">Thoth::GenericError</a></div><div class="ttdef"><b>Definition</b> ThothError.hpp:7</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_html_afd72fc026222a8e18b385e799ae5dda1"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client.html#afd72fc026222a8e18b385e799ae5dda1">Thoth::Http::Client::ExpResponse</a></div><div class="ttdeci">std::expected&lt; Response&lt; Method, Body &gt;, ThothError &gt; ExpResponse</div><div class="ttdoc">Alias for std::expected containing a Response or a ThothError.</div><div class="ttdef"><b>Definition</b> Client.hpp:31</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a></div><div class="ttdef"><b>Definition</b> Request.hpp:14</div></div>
+</div><!-- fragment -->
+<p>A dummy handler used exclusively to test middleware factories in <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>. Calling it always returns an error. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

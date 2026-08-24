@@ -45,10 +45,12 @@ var searchData=
   ['responsehead_2ehpp_42',['ResponseHead.hpp',['../_response_head_8hpp.html',1,'']]],
   ['responseheaders_43',['ResponseHeaders',['../struct_thoth_1_1_http_1_1_response_headers.html',1,'Thoth::Http']]],
   ['responseheaders_2ehpp_44',['ResponseHeaders.hpp',['../_response_headers_8hpp.html',1,'']]],
-  ['retryafter_45',['RetryAfter',['../struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807',1,'Thoth::Http::ResponseHeaders::RetryAfter()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46',1,'Thoth::Http::ResponseHeaders::RetryAfter() const']]],
-  ['righttrim_46',['RightTrim',['../namespace_thoth_1_1_string.html#a0a827fa53ea354149c3b214771bf5f40',1,'Thoth::String']]],
-  ['righttrimmed_47',['RightTrimmed',['../namespace_thoth_1_1_string.html#ad2b514531b6fab3937666b1386f84513',1,'Thoth::String']]],
-  ['righttrimmedstr_48',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#a33aa2d36af56a7fc14845c7d0e7f86a8',1,'Thoth::String']]],
-  ['ritertype_49',['RIterType',['../struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579',1,'Thoth::Http::Headers']]],
-  ['rune_50',['Rune',['../namespace_thoth_1_1_string.html#a862012f96e4f6605a17d7b2548ae3f7f',1,'Thoth::String']]]
+  ['retry_45',['Retry',['../namespace_thoth_1_1_http.html#a23b2757dac6ce482d589521d7b1b633c',1,'Thoth::Http']]],
+  ['retry_2ehpp_46',['Retry.hpp',['../_retry_8hpp.html',1,'']]],
+  ['retryafter_47',['RetryAfter',['../struct_thoth_1_1_http_1_1_response_headers.html#aa657d80aff957fbec4f48f0d0a2ad807',1,'Thoth::Http::ResponseHeaders::RetryAfter()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a1187812f9ccf92f0279fc91526da3e46',1,'Thoth::Http::ResponseHeaders::RetryAfter() const']]],
+  ['righttrim_48',['RightTrim',['../namespace_thoth_1_1_string.html#a0a827fa53ea354149c3b214771bf5f40',1,'Thoth::String']]],
+  ['righttrimmed_49',['RightTrimmed',['../namespace_thoth_1_1_string.html#ad2b514531b6fab3937666b1386f84513',1,'Thoth::String']]],
+  ['righttrimmedstr_50',['RightTrimmedStr',['../namespace_thoth_1_1_string.html#a33aa2d36af56a7fc14845c7d0e7f86a8',1,'Thoth::String']]],
+  ['ritertype_51',['RIterType',['../struct_thoth_1_1_http_1_1_headers.html#a3b6a0f65d55f057afe90f66fc9f47579',1,'Thoth::Http::Headers']]],
+  ['rune_52',['Rune',['../namespace_thoth_1_1_string.html#a862012f96e4f6605a17d7b2548ae3f7f',1,'Thoth::String']]]
 ];

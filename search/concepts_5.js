@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unicodecharconcept_0',['UnicodeCharConcept',['../concept_thoth_1_1_string_1_1_unicode_char_concept.html',1,'Thoth::String']]]
+  ['readablebodyconcept_0',['ReadableBodyConcept',['../concept_thoth_1_1_http_1_1_readable_body_concept.html',1,'Thoth::Http']]],
+  ['responsebodyfactoryconcept_1',['ResponseBodyFactoryConcept',['../concept_thoth_1_1_http_1_1_response_body_factory_concept.html',1,'Thoth::Http']]]
 ];

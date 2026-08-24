@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Http -&gt; Request Relation</title>
+<title>Thoth: include/Thoth/Http/Middleware/Decompress.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_decompress_8hpp_source.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -150,21 +150,38 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_41cc9e0bb4
 </div>
 </div>
 
+<div class="header">
+  <div class="headertitle"><div class="title">Decompress.hpp</div></div>
+</div><!--header-->
 <div class="contents">
-<h3>Http &rarr; Request Relation</h3><table class="dirtab"><tr class="dirtab"><th class="dirtab">File in include/Thoth/Http</th><th class="dirtab">Includes file in include/Thoth/Http/Request</th></tr><tr class="dirtab"><td class="dirtab"><a class="el" href="dir_34181a9d08d1fd632c23cab62e0cd30c.html">Client</a>&#160;/&#160;<a class="el" href="_client_2_client_8hpp.html">Client.hpp</a></td><td class="dirtab"><a class="el" href="_request_8hpp.html">Request.hpp</a></td></tr><tr class="dirtab"><td class="dirtab"><a class="el" href="_server_8hpp.html">Server.hpp</a></td><td class="dirtab"><a class="el" href="_request_8hpp.html">Request.hpp</a></td></tr><tr class="dirtab"><td class="dirtab"><a class="el" href="dir_f0d5f9c2813ecd5c8dcd2e2ff3dca0a2.html">Url</a>&#160;/&#160;<a class="el" href="_url_8hpp.html">Url.hpp</a></td><td class="dirtab"><a class="el" href="_query_params_8hpp.html">QueryParams.hpp</a></td></tr></table></div><!-- contents -->
+<a href="_decompress_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2_middleware_2__base_8hpp.html">Thoth/Http/Middleware/_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="_client_2_client_8hpp.html">Thoth/Http/Client/Client.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Next&gt;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http.html#ac59f07d152364c628f6e962657e16b54">   16</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_http.html#ac59f07d152364c628f6e962657e16b54">Decompress</a>(Next next);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;Thoth/Http/Middleware/Decompress.tpp&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">static_assert</span>(MiddlewareConcept&lt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">decltype</span>([](<span class="keyword">auto</span> next) { <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_http.html#ac59f07d152364c628f6e962657e16b54">Decompress</a>(std::move(next)); }),</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        GetMethod, GetMethod, std::string</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    &gt;);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<div class="ttc" id="a_client_2_client_8hpp_html"><div class="ttname"><a href="_client_2_client_8hpp.html">Client.hpp</a></div></div>
+<div class="ttc" id="a_http_2_middleware_2__base_8hpp_html"><div class="ttname"><a href="_http_2_middleware_2__base_8hpp.html">_base.hpp</a></div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_ac59f07d152364c628f6e962657e16b54"><div class="ttname"><a href="namespace_thoth_1_1_http.html#ac59f07d152364c628f6e962657e16b54">Thoth::Http::Decompress</a></div><div class="ttdeci">auto Decompress(Next next)</div><div class="ttdoc">Wraps a handler to reverse Content-Encoding on the response body (RFC 9110 §8.4). Undoes codings in r...</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div id="page-nav" class="page-nav-panel">
-<div id="page-nav-resize-handle"></div>
-<div id="page-nav-tree">
-<div id="page-nav-contents">
-</div><!-- page-nav-contents -->
-</div><!-- page-nav-tree -->
-</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_03e56f7500b6493811e9cbaded2d4714.html">Middleware</a></li><li class="navelem"><a href="_decompress_8hpp.html">Decompress.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>
