@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_20functional_20expressive_20c_2026_20webdev_20library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
+  ['a_20functional_20expressive_20c_2026_20webdev_20library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md8',1,'']]],
   ['abort_1',['Abort',['../struct_thoth_1_1_http_1_1_client_connection.html#acc633997284182961037d60daf4b72df',1,'Thoth::Http::ClientConnection::Abort()'],['../struct_thoth_1_1_http_1_1_server_connection.html#a90cbf503b6335df550b8b0347fae86c0',1,'Thoth::Http::ServerConnection::Abort()']]],
   ['accept_2',['Accept',['../struct_thoth_1_1_http_1_1_headers.html#a1a5d54e739abeeb0717bb3aedda97acc',1,'Thoth::Http::Headers::Accept()'],['../struct_thoth_1_1_http_1_1_headers.html#a9dcf3f306dc53310a5eafefed92189ca',1,'Thoth::Http::Headers::Accept() const']]],
   ['accepted_3',['Accepted',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a382ab522931673c11e398ead1b7b1678',1,'Thoth::Http']]],
@@ -38,5 +38,5 @@ var searchData=
   ['authorityview_35',['AuthorityView',['../struct_thoth_1_1_http_1_1_authority_view.html',1,'Thoth::Http']]],
   ['authorityviewopt_36',['AuthorityViewOpt',['../struct_thoth_1_1_http_1_1_url.html#a7c6769eac5ee58da1ff4c7a9bbb291a9',1,'Thoth::Http::Url']]],
   ['authorization_37',['Authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]],
-  ['available_20variables_38',['Available variables',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md25',1,'']]]
+  ['available_20variables_38',['Available variables',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md3',1,'']]]
 ];

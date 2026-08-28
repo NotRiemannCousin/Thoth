@@ -32,7 +32,7 @@ var searchData=
   ['errorifimpl_29',['ErrorIfImpl',['../namespace_thoth_1_1_utils.html#acb0e9e929e256856f79a6d64695a6fea',1,'Thoth::Utils']]],
   ['errorifnot_30',['ErrorIfNot',['../namespace_thoth_1_1_utils.html#a9029393a395a40ce50164a7020cdf99c',1,'Thoth::Utils::ErrorIfNot(Pred &amp;&amp;pred, Val &amp;&amp;value, Err &amp;&amp;error)'],['../namespace_thoth_1_1_utils.html#a607e2acfdaf6ed55abb4c0229dcb2364',1,'Thoth::Utils::ErrorIfNot(Val &amp;&amp;value, Err &amp;&amp;error)']]],
   ['errorifnothof_31',['ErrorIfNotHof',['../namespace_thoth_1_1_utils.html#a20a2c9b865d066f060066d94ffa77cfd',1,'Thoth::Utils::ErrorIfNotHof(Pred &amp;&amp;pred, Err &amp;&amp;error)'],['../namespace_thoth_1_1_utils.html#a7381564d4b4ef7efe778a468977cbd50',1,'Thoth::Utils::ErrorIfNotHof(Err &amp;&amp;error)']]],
-  ['examples_32',['Examples',['../index.html#autotoc_md3',1,'']]],
+  ['examples_32',['Examples',['../index.html#autotoc_md14',1,'']]],
   ['exists_33',['Exists',['../struct_thoth_1_1_http_1_1_headers.html#a8d2024102673a3cda32d8622cb2abb70',1,'Thoth::Http::Headers::Exists(HeaderKeyRef key) const'],['../struct_thoth_1_1_http_1_1_headers.html#ae6d290cbda1e0b0dfaf2b7725b44cc07',1,'Thoth::Http::Headers::Exists(HeaderPairRef p) const'],['../struct_thoth_1_1_http_1_1_headers.html#a0f0b804adb648801f1c3e0780319ddd6',1,'Thoth::Http::Headers::Exists(HeaderKeyRef key, HeaderValueRef val) const'],['../struct_thoth_1_1_http_1_1_query_params.html#a3190df647c3013fb94d6f5ac051e049a',1,'Thoth::Http::QueryParams::Exists()'],['../struct_thoth_1_1_n_json_1_1_json_object.html#ab7d466cd8ea2ff26e657cc7161cbab12',1,'Thoth::NJson::JsonObject::Exists(JsonObjKeyRef key) const'],['../struct_thoth_1_1_n_json_1_1_json_object.html#ad8833603ebc6412d7093700f818b9001',1,'Thoth::NJson::JsonObject::Exists(JsonPairRef p) const'],['../struct_thoth_1_1_n_json_1_1_json_object.html#a06e413eb497da8c46289cefccc7c9503',1,'Thoth::NJson::JsonObject::Exists(JsonObjKeyRef key, JsonValRef val) const']]],
   ['exists_34',['exists',['../struct_thoth_1_1_dsa_1_1_linear_map.html#adff0389042ead66a4b7c9057cad4046d',1,'Thoth::Dsa::LinearMap']]],
   ['expcrefvalwrapper_35',['ExpCRefValWrapper',['../namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518',1,'Thoth::NJson']]],
@@ -42,7 +42,7 @@ var searchData=
   ['expires_39',['expires',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#aec9d3bd51c5d45677ccbff08c57deb40',1,'Thoth::Http::NHeaders::Cookie']]],
   ['exprefvalwrapper_40',['ExpRefValWrapper',['../namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd',1,'Thoth::NJson']]],
   ['expresponse_41',['ExpResponse',['../struct_thoth_1_1_http_1_1_client.html#afd72fc026222a8e18b385e799ae5dda1',1,'Thoth::Http::Client']]],
-  ['expressive_20c_2026_20webdev_20library_42',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
+  ['expressive_20c_2026_20webdev_20library_42',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md8',1,'']]],
   ['expvalwrapper_43',['ExpValWrapper',['../namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac',1,'Thoth::NJson']]],
   ['extensions_44',['Extensions',['../md_docs_2doxygen_2docs_2extensions.html',1,'']]],
   ['extensions_2emd_45',['extensions.md',['../extensions_8md.html',1,'']]]

@@ -156,41 +156,66 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 A functional, expressive, C++26 webdev library</h1>
 <p><img src="Thoth-logo.webp" alt="" title="Thoth, the Egyptian god of writing and wisdom" class="inline"/></p>
-<p><a class="el" href="namespace_thoth.html">Thoth</a> is a modern C++26 lib and webdev library for building both web servers and clients. Powered by the <a href="https://github.com/NotRiemannCousin/Hermes">Hermes</a> library, <a class="el" href="namespace_thoth.html">Thoth</a> is designed to harness the latest C++ features for creating robust, high-performance web applications.</p>
-<p>Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance.</p>
+<p><a class="el" href="namespace_thoth.html">Thoth</a> is a modern C++26 lib and webdev library for building both web servers and clients. Powered by the <a href="https://github.com/NotRiemannCousin/Hermes">Hermes</a> library, <a class="el" href="namespace_thoth.html">Thoth</a> is designed to harness the latest C++ features for creating robust, high-performance web applications. Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance.</p>
 <blockquote class="doxtable">
 <p>Server side connections are under development, only client connections are availabe. CMake says C++23 but is because MSVC is lazy, the target is C++26. </p>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Installation</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Manual (CMake)</h2>
+<div class="fragment"><div class="line">include(CPM.cmake)</div>
+<div class="line"> </div>
+<div class="line">CPMAddPackage(</div>
+<div class="line">        NAME Thoth</div>
+<div class="line">        GITHUB_REPOSITORY NotRiemannCousin/Thoth</div>
+<div class="line">        GIT_TAG v0.4.0</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">target_link_libraries(your_target PRIVATE Thoth)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+pixi</h2>
+<blockquote class="doxtable">
+<p><em>Coming soon.</em> </p>
+</blockquote>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+vcpkg</h2>
+<blockquote class="doxtable">
+<p><em>Maybe, someday, who knows.</em> </p>
+</blockquote>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Middlewares</h1>
 <p>Client requests can be wrapped with composable middlewares. Each one takes a handler (<span class="tt">Request&lt;Method, Body&gt; -&gt; ExpResponse&lt;Method, Body&gt;</span>, the same shape as <span class="tt">Client::H_Send()</span>) and returns a new handler, so they nest around the base send call:</p>
 <div class="fragment"><div class="line">NHttp::GetRequest::FromUrl(url)</div>
 <div class="line">    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))</div>
-</div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponential backoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your own middlewares too.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponentialbackoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your ownmiddlewares too.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Examples</h1>
-<div class="fragment"><div class="line"><span class="keyword">namespace </span>NHttp = <a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a>;</div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;print&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_client_2_client_8hpp.html">Thoth/Http/Client/Client.hpp</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>NHttp = <a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a>;</div>
 <div class="line"><span class="keyword">namespace </span>NJson = <a class="code hl_namespace" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a>;</div>
 <div class="line"><span class="keyword">using </span>NJson::Json;</div>
 <div class="line"> </div>
-<div class="line">std::expected&lt;std::vector&lt;Json&gt;, std::string&gt; GetMembers(<span class="keywordtype">size_t</span> <span class="keywordtype">id</span>) {</div>
+<div class="line">std::expected&lt;std::vector&lt;Json&gt;, <a class="code hl_struct" href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a>&gt; GetMembers(<span class="keywordtype">size_t</span> <span class="keywordtype">id</span>) {</div>
 <div class="line">    <span class="keyword">using </span>std::string_literals::operator <span class="stringliteral">&quot;&quot;</span>s;</div>
 <div class="line">    <span class="keyword">namespace </span>Utils = <a class="code hl_namespace" href="namespace_thoth_1_1_utils.html">Thoth::Utils</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">//trying to make the request, send to the server and then convert the body to JSON.</span></div>
 <div class="line">    <span class="keywordflow">return</span> NHttp::GetRequest::FromUrl(std::format(<span class="stringliteral">&quot;https://api.discogs.com/artists/{}&quot;</span>, <span class="keywordtype">id</span>))</div>
+<div class="line">            <span class="comment">// All these functions have the same error type `ThothError`, a std::variant with each specific error.</span></div>
 <div class="line">            .and_then(NHttp::Client::H_Send())</div>
-<div class="line">            .and_then(&amp;NHttp::GetResponse::AsJson)</div>
+<div class="line">            .and_then(&amp;NHttp::Response&lt;&gt;::AsJson&lt;&gt;)</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// selecting &quot;members&quot; in the first object</span></div>
-<div class="line">            .transform(std::bind_back(&amp;Json::GetAndMove, <span class="stringliteral">&quot;members&quot;</span> ))</div>
+<div class="line">            .and_then(std::bind_back(&amp;Json::GetAndMoveOrError, <span class="stringliteral">&quot;members&quot;</span> ))</div>
 <div class="line"> </div>
-<div class="line">            <span class="comment">// ensuring that it is an array</span></div>
-<div class="line">            .transform(&amp;Json::EnsureMov&lt;NJson::Array&gt;)</div>
-<div class="line">            .and_then(Utils::ValueOrHof&lt;NJson::Array&gt;(<span class="stringliteral">&quot;&#39;members&#39; array doesn&#39;t exist.&quot;</span>s));</div>
+<div class="line">            <span class="comment">// making sure that it&#39;s an array</span></div>
+<div class="line">            .and_then(&amp;Json::EnsureMovOrError&lt;NJson::Array&gt;);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -203,7 +228,7 @@ Examples</h1>
 <div class="line">                .value_or(<span class="stringliteral">&quot;&lt;unnamed&gt;&quot;</span>);</div>
 <div class="line">    } };</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> printNames{ [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> printNames{ [](<span class="keyword">auto</span>&amp;&amp; names) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;- Members:&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">for</span> (std::string&amp;&amp; name : names)</div>
 <div class="line">            std::println(<span class="stringliteral">&quot;{}&quot;</span>, name);</div>
@@ -211,7 +236,7 @@ Examples</h1>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
 <div class="line">    } };</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">auto</span> <span class="keyword">constexpr</span> errorHandler{ [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> errorHandler{ [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;An error occurred: {}&quot;</span>, error);</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keywordtype">int</span> wsaError{ WSAGetLastError() }; wsaError != 0)</div>
@@ -221,6 +246,7 @@ Examples</h1>
 <div class="line">    } };</div>
 <div class="line"> </div>
 <div class="line"> </div>
+<div class="line">    </div>
 <div class="line">    GetMembers(4001234)</div>
 <div class="line">            .transform(std::views::transform(getName))</div>
 <div class="line">            .transform(printNames)</div>
@@ -228,10 +254,20 @@ Examples</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
+<div class="ttc" id="a_client_2_client_8hpp_html"><div class="ttname"><a href="_client_2_client_8hpp.html">Client.hpp</a></div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:20</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Env.hpp:5</div></div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+<div class="ttc" id="astruct_thoth_1_1_thoth_error_html"><div class="ttname"><a href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a></div><div class="ttdef"><b>Definition</b> ThothError.hpp:24</div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+Requirements</h1>
+<ul>
+<li>Windows 10 or newer / Linux</li>
+<li>OpenSSL and liburing on Linux (<span class="tt">sudo apt install libssl-dev liburing-dev</span>)</li>
+<li>MSVC or GCC with C++26 support (GCC/Clang on Linux)</li>
+<li>CMake 3.29.1 or newer </li>
+</ul>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

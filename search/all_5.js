@@ -19,6 +19,6 @@ var searchData=
   ['disable_20dark_20mode_16',['Disable Dark Mode',['../md_docs_2doxygen_2docs_2tricks.html#tricks-darkmode',1,'']]],
   ['dispositiontypeheader_17',['DispositionTypeHeader',['../struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html',1,'Thoth::Http::NHeaders']]],
   ['domain_18',['domain',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#acebe7d000d59f3e87973150999d81902',1,'Thoth::Http::NHeaders::Cookie']]],
-  ['doxygen_20generator_19',['Doxygen generator',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md26',1,'']]],
+  ['doxygen_20generator_19',['Doxygen generator',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md4',1,'']]],
   ['duration_20',['Duration',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html#a47bf2213a5cfe28fd24cf197d96fc0e9',1,'Thoth::Utils::Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;']]]
 ];
