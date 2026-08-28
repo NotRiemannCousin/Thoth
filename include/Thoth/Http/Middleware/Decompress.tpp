@@ -1,7 +1,7 @@
 #pragma once
 
 namespace Thoth::Http {
-    namespace Details_ {
+    namespace details_ {
         // TODO: Improve return type
         std::expected<std::string, ThothError> InflateGzipOrDeflate(std::span<char> compressed);
 
@@ -38,7 +38,7 @@ namespace Thoth::Http {
                 switch (encoding) {
                     case NHeaders::ContentEncodingEnum::Gzip:
                     case NHeaders::ContentEncodingEnum::Deflate: {
-                        auto decoded{ Details_::RangeInflateGzipOrDeflate(response->body) };
+                        auto decoded{ details_::RangeInflateGzipOrDeflate(response->body) };
                         if (!decoded) return std::unexpected{ decoded.error() };
                         response->body = std::move(*decoded);
                         break;

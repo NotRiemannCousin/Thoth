@@ -1,7 +1,7 @@
 #include <Thoth/Http/Middleware/Retry.hpp>
 #include <algorithm>
 
-namespace Thoth::Http::Details_ {
+namespace Thoth::Http::details_ {
     bool IsRetryable(const ThothError& error) {
         return error.Is<ConnectionErrorEnum>() || error.Is<MessageParseErrorEnum>();
     }

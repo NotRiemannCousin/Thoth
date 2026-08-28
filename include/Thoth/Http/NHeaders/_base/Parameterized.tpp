@@ -75,7 +75,7 @@ namespace Thoth::Http::NHeaders {
         return [fn = std::move(fn)](const Parameterized& p) { return p.Transform(fn); };
     }
 
-    namespace Details_ {
+    namespace details_ {
         //! @brief Parses a `;key=value` / `;key="quoted value"` tail (RFC 9110 §5.6.6). Consumes `input`.
         //! @return nullopt on malformed input; an empty vector when there simply were no parameters.
         inline std::optional<std::vector<std::pair<std::string, std::string>>> ScanParamList(std::string_view& input) {
@@ -184,7 +184,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Parameterized<T>> {
         if (!val) return std::nullopt;
 
         std::string_view paramsPart{ input.substr(splitAt) };
-        auto params{ Http::NHeaders::Details_::ScanParamList(paramsPart) };
+        auto params{ Http::NHeaders::details_::ScanParamList(paramsPart) };
         if (!params) return std::nullopt;
 
         return Parameterized{ std::move(*val), std::move(*params) };
@@ -198,7 +198,7 @@ struct std::formatter<Thoth::Http::NHeaders::Parameterized<T>> {
     template<class FormatContext>
     auto format(const Thoth::Http::NHeaders::Parameterized<T>& p, FormatContext& ctx) const {
         auto out{ std::format_to(ctx.out(), "{}", p.value) };
-        Thoth::Http::NHeaders::Details_::FormatParamList(out, p.params);
+        Thoth::Http::NHeaders::details_::FormatParamList(out, p.params);
         return out;
     }
 };

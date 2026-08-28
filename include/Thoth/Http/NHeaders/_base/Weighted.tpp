@@ -36,7 +36,7 @@ namespace Thoth::Http::NHeaders {
         return [fn = std::move(fn)](const Weighted& w) { return w.Transform(fn); };
     }
 
-    namespace Details_ {
+    namespace details_ {
         inline std::optional<double> ScanQValue(std::string_view str) {
             String::Trim(str);
             if (str.empty()) return std::nullopt;
@@ -97,7 +97,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Weighted<T>> {
         std::string remaining{ String::TrimmedStr(input) };
         if (remaining.empty()) return std::nullopt;
 
-        const auto q{ Http::NHeaders::Details_::ExtractWeight(remaining) };
+        const auto q{ Http::NHeaders::details_::ExtractWeight(remaining) };
         if (!q) return std::nullopt;
 
         if (auto val{ Utils::Scan<T>(remaining, m_pattern) }; val)

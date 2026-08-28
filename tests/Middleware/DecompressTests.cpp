@@ -134,19 +134,19 @@ TEST_F(DecompressTest, MalformedGzipBody_ReturnsError) {
 struct InflateHelperTest : testing::Test {};
 
 TEST_F(InflateHelperTest, InflateGzipOrDeflate_GzipBytes_ReturnsPlainText) {
-    const auto result{ Details_::RangeInflateGzipOrDeflate(k_gzip) };
+    const auto result{ details_::RangeInflateGzipOrDeflate(k_gzip) };
     ASSERT_TRUE(result);
     EXPECT_EQ(*result, k_plain);
 }
 
 TEST_F(InflateHelperTest, InflateGzipOrDeflate_ZlibBytes_ReturnsPlainText) {
-    const auto result{ Details_::RangeInflateGzipOrDeflate(k_zlibDeflate) };
+    const auto result{ details_::RangeInflateGzipOrDeflate(k_zlibDeflate) };
     ASSERT_TRUE(result);
     EXPECT_EQ(*result, k_plain);
 }
 
 TEST_F(InflateHelperTest, InflateGzipOrDeflate_GarbageInput_ReturnsError) {
-    const auto result{ Details_::RangeInflateGzipOrDeflate("definitely not compressed") };
+    const auto result{ details_::RangeInflateGzipOrDeflate("definitely not compressed") };
     EXPECT_FALSE(result);
 }
 #pragma endregion

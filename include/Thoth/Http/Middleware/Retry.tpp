@@ -3,7 +3,7 @@
 #include <variant>
 
 namespace Thoth::Http {
-    namespace Details_ {
+    namespace details_ {
         bool IsRetryable(const ThothError& error);
         bool IsRetryable(StatusCodeEnum status);
 
@@ -41,8 +41,8 @@ namespace Thoth::Http {
             for (uint32_t attempt{}; attempt < total; ++attempt) {
                 result = next(request);
 
-                if (!Details_::IsRetryable(result) || attempt + 1 == total) break;
-                auto waitTime{ Details_::RetryBackoff(attempt, baseDelay) };
+                if (!details_::IsRetryable(result) || attempt + 1 == total) break;
+                auto waitTime{ details_::RetryBackoff(attempt, baseDelay) };
 
                 if (respectRetryAfter && result) {
                     if (auto retryAfter{ result->headers.RetryAfter().GetAsOpt() }) {

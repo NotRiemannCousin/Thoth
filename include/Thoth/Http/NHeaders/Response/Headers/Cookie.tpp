@@ -45,7 +45,7 @@ struct std::formatter<Thoth::Http::NHeaders::Cookie> {
 };
 
 
-namespace Thoth::Http::NHeaders::Details_ {
+namespace Thoth::Http::NHeaders::details_ {
     inline bool AttrKeyEq(std::string_view a, std::string_view b) {
         return std::ranges::equal(a, b, String::CaseInsensitiveCompare);
     }
@@ -71,7 +71,7 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Cookie> {
 
     std::optional<Cookie> Scan(std::string_view input) {
         namespace vs = std::views;
-        using namespace Thoth::Http::NHeaders::Details_;
+        using namespace Thoth::Http::NHeaders::details_;
         using Http::NHeaders::SameSiteEnum;
 
         Cookie cookie{};

@@ -2,7 +2,7 @@
 #include <zlib.h>
 #include <array>
 
-namespace Thoth::Http::Details_ {
+namespace Thoth::Http::details_ {
     std::expected<std::string, ThothError> InflateGzipOrDeflate(std::span<char> compressed) {
         z_stream stream{};
         if (inflateInit2(&stream, 32 + MAX_WBITS) != Z_OK)

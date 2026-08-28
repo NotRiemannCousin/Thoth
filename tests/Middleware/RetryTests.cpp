@@ -181,33 +181,33 @@ TEST_F(RetryTest, RetryAfter_Disabled_IgnoresHeader) {
 struct RetryHelperTest : testing::Test {};
 
 TEST_F(RetryHelperTest, IsRetryable_ConnectionError_True) {
-    EXPECT_TRUE(Details_::IsRetryable(Thoth::ThothError{ ConnectionErrorEnum::ConnectionFailed }));
+    EXPECT_TRUE(details_::IsRetryable(Thoth::ThothError{ ConnectionErrorEnum::ConnectionFailed }));
 }
 
 TEST_F(RetryHelperTest, IsRetryable_MessageParseError_True) {
-    EXPECT_TRUE(Details_::IsRetryable(Thoth::ThothError{ MessageParseErrorEnum::InvalidStartLine }));
+    EXPECT_TRUE(details_::IsRetryable(Thoth::ThothError{ MessageParseErrorEnum::InvalidStartLine }));
 }
 
 TEST_F(RetryHelperTest, IsRetryable_GenericError_False) {
-    EXPECT_FALSE(Details_::IsRetryable(Thoth::ThothError{ Thoth::GenericError{ "x" } }));
+    EXPECT_FALSE(details_::IsRetryable(Thoth::ThothError{ Thoth::GenericError{ "x" } }));
 }
 
 TEST_F(RetryHelperTest, IsRetryable_Status_500_True) {
-    EXPECT_TRUE(Details_::IsRetryable(StatusCodeEnum::InternalServerError));
+    EXPECT_TRUE(details_::IsRetryable(StatusCodeEnum::InternalServerError));
 }
 
 TEST_F(RetryHelperTest, IsRetryable_Status_404_False) {
-    EXPECT_FALSE(Details_::IsRetryable(StatusCodeEnum::NotFound));
+    EXPECT_FALSE(details_::IsRetryable(StatusCodeEnum::NotFound));
 }
 
 TEST_F(RetryHelperTest, RetryBackoff_DoublesEachAttempt) {
-    EXPECT_EQ(Details_::RetryBackoff(0, 100ms), 100ms);
-    EXPECT_EQ(Details_::RetryBackoff(1, 100ms), 200ms);
-    EXPECT_EQ(Details_::RetryBackoff(2, 100ms), 400ms);
+    EXPECT_EQ(details_::RetryBackoff(0, 100ms), 100ms);
+    EXPECT_EQ(details_::RetryBackoff(1, 100ms), 200ms);
+    EXPECT_EQ(details_::RetryBackoff(2, 100ms), 400ms);
 }
 
 TEST_F(RetryHelperTest, RetryBackoff_CapsGrowth_NoOverflow) {
-    EXPECT_NO_FATAL_FAILURE({ auto d{ Details_::RetryBackoff(1000, 100ms) }; (void)d; });
+    EXPECT_NO_FATAL_FAILURE({ auto d{ details_::RetryBackoff(1000, 100ms) }; (void)d; });
 }
 #pragma endregion
 
