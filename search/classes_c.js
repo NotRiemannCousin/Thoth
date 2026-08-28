@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['number_0',['Number',['../struct_thoth_1_1_n_json_1_1_number.html',1,'Thoth::NJson']]]
+  ['optionsmethod_0',['OptionsMethod',['../struct_thoth_1_1_http_1_1_options_method.html',1,'Thoth::Http']]]
 ];

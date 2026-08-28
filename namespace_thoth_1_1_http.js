@@ -1,6 +1,5 @@
 var namespace_thoth_1_1_http =
 [
-    [ "details_", "namespace_thoth_1_1_http_1_1details__.html", "namespace_thoth_1_1_http_1_1details__" ],
     [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", "namespace_thoth_1_1_http_1_1_n_headers" ],
     [ "Authority", "struct_thoth_1_1_http_1_1_authority.html", "struct_thoth_1_1_http_1_1_authority" ],
     [ "AuthorityView", "struct_thoth_1_1_http_1_1_authority_view.html", "struct_thoth_1_1_http_1_1_authority_view" ],

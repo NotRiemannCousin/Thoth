@@ -1,6 +1,6 @@
 var searchData=
 [
   ['setup_0',['Setup',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md6',1,'']]],
-  ['share_20your_20customizations_1',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md10',1,'']]],
+  ['share_20your_20customizations_1',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md27',1,'']]],
   ['sidebar_20width_2',['Choosing Sidebar Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'']]]
 ];

@@ -179,7 +179,6 @@ This graph shows which files directly or indirectly include this file:</div>
 Namespaces</h2></td></tr>
 <tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
 <tr class="memitem:Thoth_3A_3AHttp" id="r_Thoth_3A_3AHttp"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3Adetails_5F" id="r_Thoth_3A_3AHttp_3A_3Adetails_5F"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1details__.html">Thoth::Http::details_</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
@@ -187,14 +186,6 @@ Concepts</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a callable that processes a request and produces a response. Matches the signature <span class="tt">[](Request&lt;Method, Body&gt;) -&gt; Client::ExpResponse&lt;Method, Body&gt;</span>. <br /></td></tr>
 <tr class="memitem:Thoth_3A_3AHttp_3A_3AMiddlewareConcept" id="r_Thoth_3A_3AHttp_3A_3AMiddlewareConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html">Thoth::Http::MiddlewareConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a factory that takes an inner <a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html" title="Thoth::Http::HandlerConcept">handler</a> and returns a new wrapped handler. <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a414d48cf76cae458fec62a4c0be05590" id="r_a414d48cf76cae458fec62a4c0be05590"><td class="memTemplParams" colspan="2">template&lt;BodyConcept Body&gt; </td></tr>
-<tr class="memitem:a414d48cf76cae458fec62a4c0be05590 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1details__.html#a414d48cf76cae458fec62a4c0be05590">Thoth::Http::details_::nullHandler</a></td></tr>
-<tr class="memdesc:a414d48cf76cae458fec62a4c0be05590"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dummy handler used exclusively to test middleware factories in <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>. Calling it always returns an error.  <br /></td></tr>
-<tr class="memitem:a49538ae98f59224cc7280c1606ccb0f4" id="r_a49538ae98f59224cc7280c1606ccb0f4"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1details__.html#a49538ae98f59224cc7280c1606ccb0f4">Thoth::Http::details_::identityMiddleware</a> { [](auto next) { return next; } }</td></tr>
-<tr class="memdesc:a49538ae98f59224cc7280c1606ccb0f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dummy middleware that returns the handler unchanged. Used to verify <a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">MiddlewareConcept</a>.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

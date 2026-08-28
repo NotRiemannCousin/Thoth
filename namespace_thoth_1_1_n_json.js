@@ -1,6 +1,5 @@
 var namespace_thoth_1_1_n_json =
 [
-    [ "details_", "namespace_thoth_1_1_n_json_1_1details__.html", "namespace_thoth_1_1_n_json_1_1details__" ],
     [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
     [ "JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", "struct_thoth_1_1_n_json_1_1_json_find_error" ],
     [ "JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", "struct_thoth_1_1_n_json_1_1_json_get_error" ],

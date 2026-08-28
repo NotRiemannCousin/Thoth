@@ -212,28 +212,22 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_2__base_
 </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_http_1_1details__.html">   63</a></span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http_1_1details__.html">details_</a> {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">namespace </span>details_ {</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> Stream, <span class="keyword">class</span> Head&gt;</div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">   65</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a> {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">   66</a></span>            Head <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">data</a>{};</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">   67</a></span>            Stream <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">stream</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">struct </span>ParseStage {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            Head data{};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            Stream stream;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        };</div>
-</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> Stream, <span class="keyword">class</span> Head, WritableBodyConcept Body&gt;</div>
-<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">   71</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">ParseCompleteStage</a> : <a class="code hl_struct" href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">ParseStage</a>&lt;Stream, Head&gt; {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">   72</a></span>            Body <a class="code hl_variable" href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">body</a>{};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keyword">struct </span>ParseCompleteStage : ParseStage&lt;Stream, Head&gt; {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            Body body{};</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        };</div>
-</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_crlf     { <span class="stringliteral">&quot;\r\n&quot;</span> };</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_crlfCrlf { <span class="stringliteral">&quot;\r\n\r\n&quot;</span> };</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view k_lastChunk{ <span class="stringliteral">&quot;0\r\n\r\n&quot;</span> };</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
-</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
 </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
@@ -246,7 +240,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_2__base_
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_readable_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_readable_body_concept.html">Thoth::Http::ReadableBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:25</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_sized_readable_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_sized_readable_body_concept.html">Thoth::Http::SizedReadableBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:12</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_writable_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_writable_body_concept.html">Thoth::Http::WritableBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:29</div></div>
-<div class="ttc" id="anamespace_thoth_1_1_http_1_1details___html"><div class="ttname"><a href="namespace_thoth_1_1_http_1_1details__.html">Thoth::Http::details_</a></div><div class="ttdef"><b>Definition</b> _base.hpp:63</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_a7bedc663bde5f4726625099926f81fe8"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a7bedc663bde5f4726625099926f81fe8">Thoth::Http::VersionToString</a></div><div class="ttdeci">std::string_view VersionToString(VersionEnum version)</div><div class="ttdoc">Exactly what you think it is.</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0db"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0db">Thoth::Http::VersionEnum</a></div><div class="ttdeci">VersionEnum</div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
@@ -254,11 +247,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_2__base_
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">Thoth::Http::VersionEnum::HTTP1_1</a></div><div class="ttdeci">@ HTTP1_1</div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738">Thoth::Http::VersionEnum::HTTP3</a></div><div class="ttdeci">@ HTTP3</div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html_aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a">Thoth::Http::VersionEnum::HTTP2</a></div><div class="ttdeci">@ HTTP2</div><div class="ttdef"><b>Definition</b> _base.hpp:5</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_complete_stage_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html">Thoth::Http::details_::ParseCompleteStage</a></div><div class="ttdef"><b>Definition</b> _base.hpp:71</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_complete_stage_html_af904068dd6b5018ebf67283a1e1802d5"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html#af904068dd6b5018ebf67283a1e1802d5">Thoth::Http::details_::ParseCompleteStage::body</a></div><div class="ttdeci">Body body</div><div class="ttdef"><b>Definition</b> _base.hpp:72</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html">Thoth::Http::details_::ParseStage</a></div><div class="ttdef"><b>Definition</b> _base.hpp:65</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html_aceccf8350b1b343c5fd266c8d39e7fe5"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#aceccf8350b1b343c5fd266c8d39e7fe5">Thoth::Http::details_::ParseStage::data</a></div><div class="ttdeci">Head data</div><div class="ttdef"><b>Definition</b> _base.hpp:66</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1details___1_1_parse_stage_html_af3dce146bef4ae90584fa9e9a13f8632"><div class="ttname"><a href="struct_thoth_1_1_http_1_1details___1_1_parse_stage.html#af3dce146bef4ae90584fa9e9a13f8632">Thoth::Http::details_::ParseStage::stream</a></div><div class="ttdeci">Stream stream</div><div class="ttdef"><b>Definition</b> _base.hpp:67</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

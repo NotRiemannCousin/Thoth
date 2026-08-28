@@ -2,7 +2,6 @@ var hierarchy =
 [
     [ "Thoth::Http::Authority", "struct_thoth_1_1_http_1_1_authority.html", null ],
     [ "Thoth::Http::AuthorityView", "struct_thoth_1_1_http_1_1_authority_view.html", null ],
-    [ "Thoth::NJson::details_::BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", null ],
     [ "Thoth::Http::NHeaders::Challenge", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html", null ],
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
@@ -30,7 +29,6 @@ var hierarchy =
     ] ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
-    [ "Thoth::Http::details_::Http1", "struct_thoth_1_1_http_1_1details___1_1_http1.html", null ],
     [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer&lt; CharT &gt;::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView&lt; Range &gt;::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
@@ -48,9 +46,6 @@ var hierarchy =
     [ "Thoth::Http::NHeaders::MimeTypes", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html", null ],
     [ "Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html", null ],
     [ "Thoth::Http::OptionsMethod", "struct_thoth_1_1_http_1_1_options_method.html", null ],
-    [ "Thoth::Http::details_::ParseStage&lt; Stream, Head &gt;", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", [
-      [ "Thoth::Http::details_::ParseCompleteStage< Stream, Head, Body >", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", null ]
-    ] ],
     [ "Thoth::Http::PatchMethod", "struct_thoth_1_1_http_1_1_patch_method.html", null ],
     [ "Thoth::Http::PostMethod", "struct_thoth_1_1_http_1_1_post_method.html", null ],
     [ "Thoth::Http::NHeaders::PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", null ],

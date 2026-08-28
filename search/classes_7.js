@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['headers_0',['Headers',['../struct_thoth_1_1_http_1_1_headers.html',1,'Thoth::Http']]],
-  ['headmethod_1',['HeadMethod',['../struct_thoth_1_1_http_1_1_head_method.html',1,'Thoth::Http']]],
-  ['http_2',['Http',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html',1,'Thoth::String::CharSequences']]],
-  ['http1_3',['Http1',['../struct_thoth_1_1_http_1_1details___1_1_http1.html',1,'Thoth::Http::details_']]]
+  ['invalidheaderformat_0',['InvalidHeaderFormat',['../struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html',1,'Thoth::Http::NHeaders']]],
+  ['iterator_1',['Iterator',['../struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html',1,'Thoth::String::UnicodeViewer&lt; CharT &gt;::Iterator'],['../struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html',1,'Thoth::Utils::SharedInputView&lt; Range &gt;::Iterator']]]
 ];

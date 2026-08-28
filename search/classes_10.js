@@ -1,19 +1,15 @@
 var searchData=
 [
-  ['request_0',['Request',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
-  ['request_3c_20getmethod_2c_20std_3a_3avector_3c_20std_3a_3abyte_20_3e_20_3e_1',['Request&lt; GetMethod, std::vector&lt; std::byte &gt; &gt;',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
-  ['request_3c_20postmethod_20_3e_2',['Request&lt; PostMethod &gt;',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
-  ['request_3c_20postmethod_2c_20std_3a_3avector_3c_20std_3a_3abyte_20_3e_20_3e_3',['Request&lt; PostMethod, std::vector&lt; std::byte &gt; &gt;',['../struct_thoth_1_1_http_1_1_request.html',1,'Thoth::Http']]],
-  ['requesthead_4',['RequestHead',['../struct_thoth_1_1_http_1_1_request_head.html',1,'Thoth::Http']]],
-  ['requestheaders_5',['RequestHeaders',['../struct_thoth_1_1_http_1_1_request_headers.html',1,'Thoth::Http']]],
-  ['response_6',['Response',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20getmethod_2c_20dsa_3a_3abinfileoutputrange_20_3e_7',['Response&lt; GetMethod, Dsa::BinFileOutputRange &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20getmethod_2c_20dsa_3a_3atextfileoutputrange_20_3e_8',['Response&lt; GetMethod, Dsa::TextFileOutputRange &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20getmethod_2c_20std_3a_3avector_3c_20std_3a_3abyte_20_3e_20_3e_9',['Response&lt; GetMethod, std::vector&lt; std::byte &gt; &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20postmethod_20_3e_10',['Response&lt; PostMethod &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20postmethod_2c_20dsa_3a_3abinfileoutputrange_20_3e_11',['Response&lt; PostMethod, Dsa::BinFileOutputRange &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20postmethod_2c_20dsa_3a_3atextfileoutputrange_20_3e_12',['Response&lt; PostMethod, Dsa::TextFileOutputRange &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['response_3c_20postmethod_2c_20std_3a_3avector_3c_20std_3a_3abyte_20_3e_20_3e_13',['Response&lt; PostMethod, std::vector&lt; std::byte &gt; &gt;',['../struct_thoth_1_1_http_1_1_response.html',1,'Thoth::Http']]],
-  ['responsehead_14',['ResponseHead',['../struct_thoth_1_1_http_1_1_response_head.html',1,'Thoth::Http']]],
-  ['responseheaders_15',['ResponseHeaders',['../struct_thoth_1_1_http_1_1_response_headers.html',1,'Thoth::Http']]]
+  ['scanner_0',['Scanner',['../struct_thoth_1_1_utils_1_1_scanner.html',1,'Thoth::Utils']]],
+  ['scanner_3c_20std_3a_3achrono_3a_3aduration_3c_20ped_2c_20ratio_20_3e_20_3e_1',['Scanner&lt; std::chrono::duration&lt; Ped, Ratio &gt; &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1duration_3_01_ped_00_01_ratio_01_4_01_4.html',1,'Thoth::Utils']]],
+  ['scanner_3c_20std_3a_3achrono_3a_3autc_5fclock_3a_3atime_5fpoint_20_3e_2',['Scanner&lt; std::chrono::utc_clock::time_point &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1chrono_1_1utc__clock_1_1time__point_01_4.html',1,'Thoth::Utils']]],
+  ['scanner_3c_20std_3a_3amonostate_20_3e_3',['Scanner&lt; std::monostate &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1monostate_01_4.html',1,'Thoth::Utils']]],
+  ['scanner_3c_20std_3a_3astring_20_3e_4',['Scanner&lt; std::string &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html',1,'Thoth::Utils']]],
+  ['scanner_3c_20t_20_3e_5',['Scanner&lt; T &gt;',['../struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html',1,'Thoth::Utils']]],
+  ['sendoptions_6',['SendOptions',['../struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html',1,'Thoth::Http::ClientConnection']]],
+  ['server_7',['Server',['../struct_thoth_1_1_http_1_1_server.html',1,'Thoth::Http']]],
+  ['serverconnection_8',['ServerConnection',['../struct_thoth_1_1_http_1_1_server_connection.html',1,'Thoth::Http']]],
+  ['sharedinputview_9',['SharedInputView',['../struct_thoth_1_1_utils_1_1_shared_input_view.html',1,'Thoth::Utils']]],
+  ['stringref_10',['StringRef',['../struct_thoth_1_1_n_json_1_1_string_ref.html',1,'Thoth::NJson']]],
+  ['suffixedrange_11',['SuffixedRange',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html',1,'Thoth::Http::NHeaders']]]
 ];

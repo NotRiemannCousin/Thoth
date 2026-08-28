@@ -39,7 +39,6 @@ var struct_thoth_1_1_n_json_1_1_json_object =
     [ "SetIfNull", "struct_thoth_1_1_n_json_1_1_json_object.html#a2626de933fbf2f85d4820304c6789d4c", null ],
     [ "SetIfNull", "struct_thoth_1_1_n_json_1_1_json_object.html#a07046fe5fe480419ea866d6de865bd58", null ],
     [ "Size", "struct_thoth_1_1_n_json_1_1_json_object.html#a5616d9a772b915ce25ad68f2ddd76f85", null ],
-    [ "details_::ReadObject", "struct_thoth_1_1_n_json_1_1_json_object.html#adf3a396c9131d4104cbdde109404c352", null ],
     [ "std::formatter< JsonObject >", "struct_thoth_1_1_n_json_1_1_json_object.html#a80a416fa69a819f8be37d08ec14a82ef", null ],
     [ "Json", "struct_thoth_1_1_n_json_1_1_json_object.html#a0203945ddf877d034636db2c3a268e4d", null ]
 ];

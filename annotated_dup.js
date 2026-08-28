@@ -12,11 +12,6 @@ var annotated_dup =
         [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html", "struct_thoth_1_1_dsa_1_1_linear_map" ]
       ] ],
       [ "Http", "namespace_thoth_1_1_http.html", [
-        [ "details_", "namespace_thoth_1_1_http_1_1details__.html", [
-          [ "Http1", "struct_thoth_1_1_http_1_1details___1_1_http1.html", null ],
-          [ "ParseCompleteStage", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_complete_stage" ],
-          [ "ParseStage", "struct_thoth_1_1_http_1_1details___1_1_parse_stage.html", "struct_thoth_1_1_http_1_1details___1_1_parse_stage" ]
-        ] ],
         [ "NHeaders", "namespace_thoth_1_1_http_1_1_n_headers.html", [
           [ "Challenge", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge" ],
           [ "Cookie", "struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html", "struct_thoth_1_1_http_1_1_n_headers_1_1_cookie" ],
@@ -62,9 +57,6 @@ var annotated_dup =
         [ "Url", "struct_thoth_1_1_http_1_1_url.html", "struct_thoth_1_1_http_1_1_url" ]
       ] ],
       [ "NJson", "namespace_thoth_1_1_n_json.html", [
-        [ "details_", "namespace_thoth_1_1_n_json_1_1details__.html", [
-          [ "BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info" ]
-        ] ],
         [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
         [ "JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", "struct_thoth_1_1_n_json_1_1_json_find_error" ],
         [ "JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", "struct_thoth_1_1_n_json_1_1_json_get_error" ],

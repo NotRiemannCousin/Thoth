@@ -8,7 +8,7 @@ var searchData=
   ['weighted_3c_20acceptencodingenum_20_3e_5',['Weighted&lt; AcceptEncodingEnum &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
   ['weighted_3c_20std_3a_3astring_20_3e_6',['Weighted&lt; std::string &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
   ['weighted_3c_20teenum_20_3e_7',['Weighted&lt; TeEnum &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
-  ['width_8',['Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'Choosing Sidebar Width'],['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md25',1,'Full Width']]],
+  ['width_8',['Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'Choosing Sidebar Width'],['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md10',1,'Full Width']]],
   ['wildcard_9',['Wildcard',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99dac4a0dbaac3bd0f3bf581ad822f5fb4b4',1,'Thoth::Http::NHeaders']]],
   ['with_20graphviz_10',['Diagrams with Graphviz',['../md_docs_2doxygen_2docs_2tricks.html#tricks-graphviz',1,'']]],
   ['withoutparam_11',['WithoutParam',['../namespace_thoth_1_1_http_1_1_n_headers.html#a47c86745888270f0d86f1e57143c1004',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) const &amp;'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a6ccc8d98b178c14b6e18de258b6092ab',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) &amp;&amp;']]],

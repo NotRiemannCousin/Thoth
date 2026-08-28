@@ -1,6 +1,5 @@
 var _n_json_2_definitions_8hpp =
 [
-    [ "Thoth::NJson::details_::BufferInfo", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html", "struct_thoth_1_1_n_json_1_1details___1_1_buffer_info" ],
     [ "Thoth::NJson::Array", "namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc", null ],
     [ "Thoth::NJson::Bool", "namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be", null ],
     [ "Thoth::NJson::CRefValWrapper", "namespace_thoth_1_1_n_json.html#aeef9b8b707b08438a70ed85b014a9679", null ],

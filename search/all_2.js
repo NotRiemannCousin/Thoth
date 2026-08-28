@@ -38,5 +38,5 @@ var searchData=
   ['authorityview_35',['AuthorityView',['../struct_thoth_1_1_http_1_1_authority_view.html',1,'Thoth::Http']]],
   ['authorityviewopt_36',['AuthorityViewOpt',['../struct_thoth_1_1_http_1_1_url.html#a7c6769eac5ee58da1ff4c7a9bbb291a9',1,'Thoth::Http::Url']]],
   ['authorization_37',['Authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]],
-  ['available_20variables_38',['Available variables',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md7',1,'']]]
+  ['available_20variables_38',['Available variables',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md25',1,'']]]
 ];
