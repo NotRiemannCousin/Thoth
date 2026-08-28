@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['c_2026_20webdev_20library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]]
+  ['bordered_20images_0',['Bordered Images',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md27',1,'']]],
+  ['button_1',['Fragment Copy Button',['../md_docs_2doxygen_2docs_2extensions.html#extension-copy-button',1,'']]],
+  ['buttons_2',['Buttons',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md26',1,'']]]
 ];

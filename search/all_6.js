@@ -43,5 +43,7 @@ var searchData=
   ['exprefvalwrapper_40',['ExpRefValWrapper',['../namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd',1,'Thoth::NJson']]],
   ['expresponse_41',['ExpResponse',['../struct_thoth_1_1_http_1_1_client.html#afd72fc026222a8e18b385e799ae5dda1',1,'Thoth::Http::Client']]],
   ['expressive_20c_2026_20webdev_20library_42',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
-  ['expvalwrapper_43',['ExpValWrapper',['../namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac',1,'Thoth::NJson']]]
+  ['expvalwrapper_43',['ExpValWrapper',['../namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac',1,'Thoth::NJson']]],
+  ['extensions_44',['Extensions',['../md_docs_2doxygen_2docs_2extensions.html',1,'']]],
+  ['extensions_2emd_45',['extensions.md',['../extensions_8md.html',1,'']]]
 ];

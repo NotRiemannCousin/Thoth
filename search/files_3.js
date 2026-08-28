@@ -8,5 +8,6 @@ var searchData=
   ['contentdisposition_2ehpp_5',['ContentDisposition.hpp',['../_content_disposition_8hpp.html',1,'']]],
   ['contentencodingenum_2ehpp_6',['ContentEncodingEnum.hpp',['../_content_encoding_enum_8hpp.html',1,'']]],
   ['cookie_2ehpp_7',['Cookie.hpp',['../_cookie_8hpp.html',1,'']]],
-  ['cow_2ehpp_8',['Cow.hpp',['../_cow_8hpp.html',1,'']]]
+  ['cow_2ehpp_8',['Cow.hpp',['../_cow_8hpp.html',1,'']]],
+  ['customization_2emd_9',['customization.md',['../customization_8md.html',1,'']]]
 ];

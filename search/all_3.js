@@ -10,9 +10,12 @@ var searchData=
   ['bodyfactoryconcept_7',['BodyFactoryConcept',['../concept_thoth_1_1_http_1_1_body_factory_concept.html',1,'Thoth::Http']]],
   ['bodytype_8',['BodyType',['../struct_thoth_1_1_dsa_1_1_file_output_range.html#acd3efc69abe85f1f31e4e457ab306ea6',1,'Thoth::Dsa::FileOutputRange']]],
   ['bool_9',['Bool',['../namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be',1,'Thoth::NJson']]],
-  ['br_10',['Br',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br']]],
-  ['buffer_11',['buffer',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#a6d1b11406a5296a7859bb1ef2b1228ee',1,'Thoth::NJson::details_::BufferInfo']]],
-  ['bufferinfo_12',['BufferInfo',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html',1,'Thoth::NJson::details_']]],
-  ['bufferview_13',['bufferView',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#afc51d443c5057fbb2ec0b7ed477c837e',1,'Thoth::NJson::details_::BufferInfo']]],
-  ['buildresponse_14',['BuildResponse',['../struct_thoth_1_1_http_1_1details___1_1_http1.html#a1e4f36fb0841c95ae06bd8d8c07df137',1,'Thoth::Http::details_::Http1']]]
+  ['bordered_20images_10',['Bordered Images',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md27',1,'']]],
+  ['br_11',['Br',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br']]],
+  ['buffer_12',['buffer',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#a6d1b11406a5296a7859bb1ef2b1228ee',1,'Thoth::NJson::details_::BufferInfo']]],
+  ['bufferinfo_13',['BufferInfo',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html',1,'Thoth::NJson::details_']]],
+  ['bufferview_14',['bufferView',['../struct_thoth_1_1_n_json_1_1details___1_1_buffer_info.html#afc51d443c5057fbb2ec0b7ed477c837e',1,'Thoth::NJson::details_::BufferInfo']]],
+  ['buildresponse_15',['BuildResponse',['../struct_thoth_1_1_http_1_1details___1_1_http1.html#a1e4f36fb0841c95ae06bd8d8c07df137',1,'Thoth::Http::details_::Http1']]],
+  ['button_16',['Fragment Copy Button',['../md_docs_2doxygen_2docs_2extensions.html#extension-copy-button',1,'']]],
+  ['buttons_17',['Buttons',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md26',1,'']]]
 ];

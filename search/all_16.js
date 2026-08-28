@@ -22,11 +22,12 @@ var searchData=
   ['url_2ehpp_19',['Url.hpp',['../_url_8hpp.html',1,'']]],
   ['urlbuilder_20',['UrlBuilder',['../struct_thoth_1_1_http_1_1_url.html#a5685b39bea8e81ec7c915f7b4f155b2d',1,'Thoth::Http::Url']]],
   ['urlparseerrorenum_21',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]],
-  ['useproxydeprecated_22',['UseProxyDeprecated',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9',1,'Thoth::Http']]],
-  ['userinfo_23',['userinfo',['../struct_thoth_1_1_http_1_1_authority.html#aa33e6522ec0c5312b87918c2c1c5df77',1,'Thoth::Http::Authority::userinfo'],['../struct_thoth_1_1_http_1_1_authority_view.html#a0a0d4dcdbfc772a9ab6c0feb36ba7ed3',1,'Thoth::Http::AuthorityView::userinfo']]],
-  ['utf16view_24',['Utf16View',['../namespace_thoth_1_1_string.html#a4f961aceec76a64d58d8426b1a5df28d',1,'Thoth::String']]],
-  ['utf32view_25',['Utf32View',['../namespace_thoth_1_1_string.html#a3b88f1f77a3bad270c734bbf08453e1b',1,'Thoth::String']]],
-  ['utf8env_26',['Utf8Env',['../namespace_thoth_1_1_utils.html#a71a8bd88f0962c8b039ea0ebab2bb2db',1,'Thoth::Utils']]],
-  ['utf8view_27',['Utf8View',['../namespace_thoth_1_1_string.html#a15372d200f5740193888a45c3cb91dd9',1,'Thoth::String']]],
-  ['utils_2ehpp_28',['Utils.hpp',['../_n_json_2_utils_8hpp.html',1,'(Global Namespace)'],['../_string_2_utils_8hpp.html',1,'(Global Namespace)']]]
+  ['usage_22',['Usage',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md20',1,'Usage'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md22',1,'Usage']]],
+  ['useproxydeprecated_23',['UseProxyDeprecated',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9',1,'Thoth::Http']]],
+  ['userinfo_24',['userinfo',['../struct_thoth_1_1_http_1_1_authority.html#aa33e6522ec0c5312b87918c2c1c5df77',1,'Thoth::Http::Authority::userinfo'],['../struct_thoth_1_1_http_1_1_authority_view.html#a0a0d4dcdbfc772a9ab6c0feb36ba7ed3',1,'Thoth::Http::AuthorityView::userinfo']]],
+  ['utf16view_25',['Utf16View',['../namespace_thoth_1_1_string.html#a4f961aceec76a64d58d8426b1a5df28d',1,'Thoth::String']]],
+  ['utf32view_26',['Utf32View',['../namespace_thoth_1_1_string.html#a3b88f1f77a3bad270c734bbf08453e1b',1,'Thoth::String']]],
+  ['utf8env_27',['Utf8Env',['../namespace_thoth_1_1_utils.html#a71a8bd88f0962c8b039ea0ebab2bb2db',1,'Thoth::Utils']]],
+  ['utf8view_28',['Utf8View',['../namespace_thoth_1_1_string.html#a15372d200f5740193888a45c3cb91dd9',1,'Thoth::String']]],
+  ['utils_2ehpp_29',['Utils.hpp',['../_n_json_2_utils_8hpp.html',1,'(Global Namespace)'],['../_string_2_utils_8hpp.html',1,'(Global Namespace)']]]
 ];

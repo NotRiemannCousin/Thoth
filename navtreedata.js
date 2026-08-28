@@ -25,48 +25,51 @@
 var NAVTREE =
 [
   [ "Thoth", "index.html", [
-    [ "A functional, expressive, C++26 webdev library", "index.html#autotoc_md1", null ],
-    [ "Middlewares", "index.html#autotoc_md2", null ],
-    [ "Examples", "index.html#autotoc_md3", null ],
-    [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
-      ] ]
+    [ "Getting Started", "@ref getting-started", [
+      [ "Getting Started", "@ref getting-started", null ]
     ] ],
-    [ "Concepts", "concepts.html", "concepts" ],
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
-        [ "Related Symbols", "functions_rela.html", null ]
+    [ "GitHub Repository", "^https://github.com/NotRiemannCousin/Thoth", null ],
+    [ "API Reference", "usergroup0.html", [
+      [ "Namespaces", "namespaces.html", [
+        [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+        [ "Namespace Members", "namespacemembers.html", [
+          [ "All", "namespacemembers.html", null ],
+          [ "Functions", "namespacemembers_func.html", null ],
+          [ "Variables", "namespacemembers_vars.html", null ],
+          [ "Typedefs", "namespacemembers_type.html", null ],
+          [ "Enumerations", "namespacemembers_enum.html", null ]
+        ] ]
+      ] ],
+      [ "Concepts", "concepts.html", "concepts" ],
+      [ "Classes", "annotated.html", [
+        [ "Class List", "annotated.html", "annotated_dup" ],
+        [ "Class Index", "classes.html", null ],
+        [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+        [ "Class Members", "functions.html", [
+          [ "All", "functions.html", "functions_dup" ],
+          [ "Functions", "functions_func.html", "functions_func" ],
+          [ "Variables", "functions_vars.html", null ],
+          [ "Typedefs", "functions_type.html", null ],
+          [ "Related Symbols", "functions_rela.html", null ]
+        ] ]
+      ] ],
+      [ "Files", "files.html", [
+        [ "File List", "files.html", "files_dup" ]
       ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_accept_encoding_8hpp.html",
-"functions_h.html",
-"namespace_thoth_1_1_string.html#a4f961aceec76a64d58d8426b1a5df28d",
-"struct_thoth_1_1_dsa_1_1_linear_map.html#af27e6ac7991d37cb821cd62a340556f4",
-"struct_thoth_1_1_http_1_1_headers.html#af53923bf8042fa3035e92fa43c0e1fce",
-"struct_thoth_1_1_http_1_1_query_params.html#a5eec083e14212fa41016a6d6b87a0eb0",
-"struct_thoth_1_1_http_1_1_url.html#ab5c59439221c2311b82574fb52205767",
-"struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee"
+"@ref getting-started",
+"functions_func_u.html",
+"namespace_thoth_1_1_string.html#a3b88f1f77a3bad270c734bbf08453e1b",
+"struct_thoth_1_1_dsa_1_1_linear_map.html#aec181a4e091a4d691f2e040eaddd7045",
+"struct_thoth_1_1_http_1_1_headers.html#af3d9e2d46258484f669e5904584d2b40",
+"struct_thoth_1_1_http_1_1_query_params.html#a498710a0b6cf75e8e07f491ad25d285c",
+"struct_thoth_1_1_http_1_1_url.html#ab279d17be28c63a6dfaaf26edf8c6d0f",
+"struct_thoth_1_1_n_json_1_1_json_object.html#a917cc9c953336c61e1f5d3702ffafd67"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';
