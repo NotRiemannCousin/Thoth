@@ -46,7 +46,7 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
         };
     } };
 
-    static constexpr auto printAlbumName = [](const Array* arr, const std::string& tabName) {
+    static constexpr auto printAlbumName{ [](const Array* arr, const std::string& tabName) {
         std::print("\n\n{}:\n", tabName);
 
         for (const auto& album : *arr) {
@@ -56,9 +56,9 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
         }
 
         return 0;
-    };
+    } };
 
-    static constexpr auto printCollections = [](const Json& content) {
+    static constexpr auto printCollections{ [](const Json& content) {
         for (const std::string tabName : { "Albuns", "Videos", "Singles & EPs", "Live performances" }) {
             const auto tab{ content.Search(getTab(tabName)) };
             if (!tab) continue;
@@ -71,9 +71,9 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
                 std::println("\tMore...");
         }
         return std::monostate{};
-    };
+    } };
 
-    static constexpr auto processRequest = [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, ThothError> {
+    static constexpr auto processRequest{ [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, ThothError> {
         switch (req.status) {
             case NHttp::StatusCodeEnum::Ok:
                 return std::move(req);
@@ -82,7 +82,7 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
             default:
                 return Thoth::ThothUnex{ GenericError{ "Invalid Request" } };
         }
-    };
+    } };
 
 #pragma endregion
 

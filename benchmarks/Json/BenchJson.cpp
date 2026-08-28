@@ -469,15 +469,13 @@ static void BM_Nlohmann_PathTraversal_Nested(benchmark::State& state) {
     for (auto _ : state) {
         const nlohmann::json* cur = &parsed;
         for (int i{}; i < 10; ++i) {
-            auto it = cur->find("child");
-            if (it == cur->end()) break;
+            auto it{ cur->find("child") };            if (it == cur->end()) break;
             cur = &(*it);
         }
         std::string tag;
         auto metaIt{ cur->find("meta") };
         if (metaIt != cur->end()) {
-            auto tagIt = metaIt->find("tag");
-            if (tagIt != metaIt->end()) {
+            auto tagIt{ metaIt->find("tag") };            if (tagIt != metaIt->end()) {
                 tag = tagIt->get<std::string>();
             }
         }

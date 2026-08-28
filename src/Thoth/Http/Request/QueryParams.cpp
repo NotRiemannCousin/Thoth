@@ -19,13 +19,13 @@ namespace Thoth::Http {
             : m_elements{ init } {}
 
     QueryParams QueryParams::Parse(std::string_view paramsStr) {
-        static constexpr auto splitDelimiter = [](char c) { return c != '='; };
-        static constexpr auto splitBetween = [](const auto& str) {
+        static constexpr auto splitDelimiter{ [](char c) { return c != '='; } };
+        static constexpr auto splitBetween{ [](const auto& str) {
             return std::pair{
                 str | vs::take_while(splitDelimiter) | std::ranges::to<std::string>(),
                 str | vs::drop_while(splitDelimiter) | vs::drop(1) | std::ranges::to<std::string>()
             };
-        };
+        } };
 
         QueryParams params{};
         for (const auto rawParam : paramsStr | vs::split('&')) {

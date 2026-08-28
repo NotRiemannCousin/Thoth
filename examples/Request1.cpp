@@ -28,29 +28,29 @@ std::expected<std::vector<Json>, Thoth::ThothError> GetMembers(size_t id) {
 
 
 int main() {
-    static constexpr auto getName = [](const Json& member) {
+    static constexpr auto getName{ [](const Json& member) {
         return member.Get("name")
                 .and_then(&Json::EnsureRef<NJson::String>)
                 .transform(&NJson::String::AsCopy) // converting from Thoth Strings (that are COW) to std::string
                 .value_or("<unnamed>");
-    };
+    } };
 
-    static constexpr auto printNames = [](auto&& names) {
+    static constexpr auto printNames{ [](auto&& names) {
         std::println("- Members:");
         for (std::string&& name : names)
             std::println("{}", name);
 
         return std::monostate{};
-    };
+    } };
 
-    static constexpr auto errorHandler = [](auto&& error) {
+    static constexpr auto errorHandler{ [](auto&& error) {
         std::println("An error occurred: {}", error);
 
         if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
             std::println("WSA error: {}", wsaError);
 
         return std::monostate{};
-    };
+    } };
 
 
     auto _{

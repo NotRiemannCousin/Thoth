@@ -29,14 +29,14 @@ std::expected<std::monostate, Thoth::ThothError> MakeRequest() {
 
 
 
-    constexpr auto extractJson = [](const std::string& body) {
+    constexpr auto extractJson{ [](const std::string& body) {
         constexpr std::string_view target{ "ytInitialData = " };
         const auto jsonStart{ body.substr(body.find(target) + target.size()) };
 
         return Json::ParseText(jsonStart, true, false);
-    };
+    } };
 
-    constexpr auto printAlbums = [](NJson::Array&& albums) -> std::monostate{
+    constexpr auto printAlbums{ [](NJson::Array&& albums) -> std::monostate{
 
         for (const auto& album: albums) {
             const auto name{ album.Find(albumNameKey) };
@@ -45,7 +45,7 @@ std::expected<std::monostate, Thoth::ThothError> MakeRequest() {
         }
 
         return std::monostate{};
-    };
+    } };
 
     using std::operator ""s;
 

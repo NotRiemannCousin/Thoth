@@ -35,7 +35,7 @@ TEST_F(FollowSeeOtherTest, PostWith303_DowngradesToGetWithEmptyBody) {
     int postCalls{}, getCalls{};
     std::string getBody{ "not empty" }, getUrlPath;
 
-    auto next = [&]<MethodConcept M>(Request<M, std::string> request) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string> request) -> Client::ExpResponse<M, std::string> {
         if constexpr (std::same_as<M, PostMethod>) {
             ++postCalls;
             Response<M, std::string> r{};
@@ -51,7 +51,7 @@ TEST_F(FollowSeeOtherTest, PostWith303_DowngradesToGetWithEmptyBody) {
             r.body   = "done";
             return r;
         }
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/create", "payload") };
@@ -71,7 +71,7 @@ TEST_F(FollowSeeOtherTest, GetWith303_StaysGet) {
     int calls{};
     std::string lastPath;
 
-    auto next = [&](Request<GetMethod, std::string> request) -> Client::ExpResponse<GetMethod, std::string> {
+    auto next{ [&](Request<GetMethod, std::string> request) -> Client::ExpResponse<GetMethod, std::string> {
         ++calls;
         lastPath = request.url.GetPath();
         Response<GetMethod, std::string> r{};
@@ -82,7 +82,7 @@ TEST_F(FollowSeeOtherTest, GetWith303_StaysGet) {
             r.status = StatusCodeEnum::Ok;
         }
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<GetMethod, std::string>::FromUrl("https://example.test/start") };
@@ -98,7 +98,7 @@ TEST_F(FollowSeeOtherTest, GetWith303_StaysGet) {
 TEST_F(FollowSeeOtherTest, HeadWith303_StaysHead) {
     int calls{};
 
-    auto next = [&](Request<HeadMethod, std::string> request) -> Client::ExpResponse<HeadMethod, std::string> {
+    auto next{ [&](Request<HeadMethod, std::string> request) -> Client::ExpResponse<HeadMethod, std::string> {
         ++calls;
         Response<HeadMethod, std::string> r{};
         if (calls == 1) {
@@ -108,7 +108,7 @@ TEST_F(FollowSeeOtherTest, HeadWith303_StaysHead) {
             r.status = StatusCodeEnum::Ok;
         }
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<HeadMethod, std::string>::FromUrl("https://example.test/start") };
@@ -121,12 +121,12 @@ TEST_F(FollowSeeOtherTest, HeadWith303_StaysHead) {
 }
 
 TEST_F(FollowSeeOtherTest, NonRedirect_SameMethod_PassesThroughUnchanged) {
-    auto next = [](Request<GetMethod, std::string>) -> Client::ExpResponse<GetMethod, std::string> {
+    auto next{ [](Request<GetMethod, std::string>) -> Client::ExpResponse<GetMethod, std::string> {
         Response<GetMethod, std::string> r{};
         r.status = StatusCodeEnum::Ok;
         r.body   = "already fine";
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<GetMethod, std::string>::FromUrl("https://example.test/x") };
@@ -138,11 +138,11 @@ TEST_F(FollowSeeOtherTest, NonRedirect_SameMethod_PassesThroughUnchanged) {
 }
 
 TEST_F(FollowSeeOtherTest, NonRedirect_DifferentMethod_ReturnsError) {
-    auto next = [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
         Response<M, std::string> r{};
         r.status = StatusCodeEnum::Ok;
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };
@@ -153,11 +153,11 @@ TEST_F(FollowSeeOtherTest, NonRedirect_DifferentMethod_ReturnsError) {
 }
 
 TEST_F(FollowSeeOtherTest, MissingLocationOn303_ReturnsError) {
-    auto next = [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
         Response<M, std::string> r{};
         r.status = StatusCodeEnum::SeeOther;
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };
@@ -168,9 +168,9 @@ TEST_F(FollowSeeOtherTest, MissingLocationOn303_ReturnsError) {
 }
 
 TEST_F(FollowSeeOtherTest, TransportErrorOnFirstCall_Propagated) {
-    auto next = [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
         return std::unexpected{ Thoth::ThothError{ ConnectionErrorEnum::ConnectionFailed } };
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };
@@ -183,7 +183,7 @@ TEST_F(FollowSeeOtherTest, TransportErrorOnFirstCall_Propagated) {
 TEST_F(FollowSeeOtherTest, ChainedSeeOther_FollowsMultipleHops) {
     int getCalls{};
 
-    auto next = [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
         Response<M, std::string> r{};
         if constexpr (std::same_as<M, PostMethod>) {
             r.status = StatusCodeEnum::SeeOther;
@@ -198,7 +198,7 @@ TEST_F(FollowSeeOtherTest, ChainedSeeOther_FollowsMultipleHops) {
             }
         }
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };
@@ -211,12 +211,12 @@ TEST_F(FollowSeeOtherTest, ChainedSeeOther_FollowsMultipleHops) {
 }
 
 TEST_F(FollowSeeOtherTest, ExceedsMaxHops_ReturnsError) {
-    auto next = [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string>) -> Client::ExpResponse<M, std::string> {
         Response<M, std::string> r{};
         r.status = StatusCodeEnum::SeeOther;
         r.headers.Set("location", "/again");
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next, /*maxHops=*/2) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };
@@ -229,7 +229,7 @@ TEST_F(FollowSeeOtherTest, ExceedsMaxHops_ReturnsError) {
 TEST_F(FollowSeeOtherTest, Downgrade_StripsContentHeaders) {
     Headers seenHeaders;
 
-    auto next = [&]<MethodConcept M>(Request<M, std::string> request) -> Client::ExpResponse<M, std::string> {
+    auto next{ [&]<MethodConcept M>(Request<M, std::string> request) -> Client::ExpResponse<M, std::string> {
         Response<M, std::string> r{};
         if constexpr (std::same_as<M, PostMethod>) {
             r.status = StatusCodeEnum::SeeOther;
@@ -239,7 +239,7 @@ TEST_F(FollowSeeOtherTest, Downgrade_StripsContentHeaders) {
             r.status = StatusCodeEnum::Ok;
         }
         return r;
-    };
+    } };
 
     auto pipeline{ FollowSeeOther(next) };
     auto request{ Request<PostMethod, std::string>::FromUrl("https://example.test/x", "body") };

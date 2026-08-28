@@ -14,8 +14,9 @@ set(PROJECT_VERSION_SUFFIX "")
 set(PROJECT_VERSION_FULL "${PROJECT_VERSION}${PROJECT_VERSION_SUFFIX}")
 
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 #endregion
 
 #region options
@@ -28,11 +29,12 @@ option(THOTH_BUILD_DOCS       "Build Doxygen documentation"   OFF)
 
 #region top-level compiler options
 add_library(ThothCompilerFlags INTERFACE)
-if(CMAKE_BUILD_TYPE STREQUAL "Release" AND PROJECT_IS_TOP_LEVEL)
+if(PROJECT_IS_TOP_LEVEL)
     if(MSVC)
         target_compile_options(ThothCompilerFlags INTERFACE
-                /permissive- /O2 /GL /arch:AVX2 /Oi /Ot /GT /Gw /Gy /Zc:inline /openmp:llvm)
-        target_link_options(ThothCompilerFlags INTERFACE /LTCG)
+                $<IF:$<CONFIG:Release>,/permissive- /O2 /GL /Oi /Ot /GT /Gw /Gy /Zc:inline /openmp:llvm,>
+        )
+        target_link_options(ThothCompilerFlags INTERFACE $<IF:$<CONFIG:Release>,/LTCG,>)
     endif()
 endif()
 #endregion
@@ -40,6 +42,7 @@ endif()
 enable_testing()
 include(cmake/GetCPM.cmake)
 include(cmake/Macros.cmake)
+register_lldb_script(Thoth)
 
 add_library(Thoth
         src/Thoth/Http/Middleware/Decompress.cpp
@@ -88,9 +91,9 @@ target_sources(Thoth PRIVATE
 #region linking
 CPMFindPackage(
         NAME                    Hermes
-        VERSION                 0.5.5
+        VERSION                 0.5.6
         GITHUB_REPOSITORY       NotRiemannCousin/Hermes
-        GIT_TAG                 v0.5.5
+        GIT_TAG                 v0.5.6
         OPTIONS                 "HERMES_INSTALL ${THOTH_INSTALL}"
         FIND_PACKAGE_ARGUMENTS  "CONFIG"
 )
@@ -163,3 +166,6 @@ if(THOTH_INSTALL)
     )
 endif()
 #endregion
+
+
+generate_lldbinit()

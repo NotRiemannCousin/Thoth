@@ -285,10 +285,10 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
 
     scheme = string_view(rawUrlView.data(), schemeIdx);
 
-    static constexpr auto a_acceptedSchemeChars = [](char c) {
+    static constexpr auto a_acceptedSchemeChars{ [](char c) {
         constexpr auto bitset{ String::MakeBitset({ String::CharSequences::k_alphanumeric, "+-." }) };
         return bitset[c];
-    };
+    } };
     if (scheme.empty() || !isalpha(scheme[0]) || !rg::all_of(scheme, a_acceptedSchemeChars))
         FAIL_WITH(InvalidScheme);
 
@@ -407,7 +407,7 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
     // h16         = 1*4HEXDIG
     //             ; 16 bits of address represented in hexadecimal
 
-    const auto readIpv6 = [hostStr]() -> std::optional<HostView> {
+    const auto readIpv6{ [hostStr]() -> std::optional<HostView> {
         if (!hostStr.starts_with('[') || !hostStr.ends_with(']'))
             return std::nullopt;
 
@@ -418,7 +418,7 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
             return std::nullopt;
 
         return HostView{ *ip };
-    };
+    } };
 
     // IPv4address = dec-octet "." dec-octet "." dec-octet "." dec-octet
     // dec-octet   = DIGIT                 ; 0-9
@@ -427,7 +427,7 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
     //             / "2" %x30-34 DIGIT     ; 200-249
     //             / "25" %x30-35          ; 250-255
 
-    const auto readIpv4 = [hostStr]() -> std::optional<HostView> {
+    const auto readIpv4{ [hostStr]() -> std::optional<HostView> {
         Hermes::IpAddress::Ipv4Type ip{};
 
         const char* ptr{ hostStr.data() };
@@ -451,11 +451,11 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
         }
 
         return { Hermes::IpAddress{ ip } };
-    };
+    } };
 
     // reg-name    = *( unreserved / pct-encoded / sub-delims )
 
-    auto readRegName = [hostStr]() -> std::optional<HostView> {
+    auto readRegName{ [hostStr]() -> std::optional<HostView> {
         constexpr auto set{ String::MakeBitset({ String::CharSequences::Http::k_url }) };
 
         for (size_t i{}; i < hostStr.size(); ++i) {
@@ -478,7 +478,7 @@ std::expected<Url, Thoth::ThothError> Url::FromUrl(std::string rawUrl) {
         }
 
         return hostStr;
-    };
+    } };
 
     if (auto host{ readIpv6().or_else(readIpv4).or_else(readRegName) }; host)
         auth.host = *host;
@@ -673,14 +673,14 @@ std::string Url::Encode(std::string_view str) {
 }
 
 
-constexpr auto hexCharToInt = [] {
+constexpr auto hexCharToInt{ std::invoke([] {
     std::array<int, 256> toHex{};
     for (char c{'0'}; c <= '9'; c++) toHex[c] = c - '0';
     for (char c{'a'}; c <= 'z'; c++) toHex[c] = c - 'a' + 10;
     for (char c{'A'}; c <= 'Z'; c++) toHex[c] = c - 'A' + 10;
 
     return toHex;
-}();
+}) };
 
 
 std::expected<string, Thoth::ThothError> Url::TryDecode(std::string_view str) {

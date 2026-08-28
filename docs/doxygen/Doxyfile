@@ -839,7 +839,7 @@ FILE_VERSION_FILTER    =
 # DoxygenLayout.xml, Doxygen will parse it automatically even if the LAYOUT_FILE
 # tag is left empty.
 
-LAYOUT_FILE            =
+LAYOUT_FILE            = docs/doxygen/DoxygenLayout.xml
 
 # The CITE_BIB_FILES tag can be used to specify one or more bib files containing
 # the reference definitions. This must be a list of .bib files. The .bib
@@ -993,9 +993,7 @@ WARN_LOGFILE           =
 
 INPUT                  = include \
                          README.md \
-                         docs/extensions.md \
-                         docs/customization.md \
-                         docs/tricks.md
+                         docs
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1118,7 +1116,7 @@ EXCLUDE_PATTERNS       =
 # wildcard * is used, a substring. Examples: ANamespace, AClass,
 # ANamespace::AClass, ANamespace::*Test
 
-EXCLUDE_SYMBOLS        = EXCLUDE_SYMBOLS = Details_::* *::Details_::* Details_
+EXCLUDE_SYMBOLS        = Details_::* *::Details_::* Details_
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories
 # that contain example code fragments that are included (see the \include
@@ -1458,7 +1456,8 @@ HTML_STYLESHEET        =
 HTML_EXTRA_STYLESHEET  = docs/doxygen/doxygen-awesome.css \
                          docs/doxygen/doxygen-custom/custom.css \
                          docs/doxygen/doxygen-custom/theme-round.css \
-                         docs/doxygen/doxygen-custom/theme-robot.css
+                         docs/doxygen/doxygen-custom/theme-robot.css \
+                         docs/doxygen/doxygen-awesome-msc.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -2986,7 +2985,7 @@ DOT_CLEANUP            = YES
 # <outfile_format> -o <outputfile> <inputfile>. The external tool should support
 # output file formats "png", "eps", "svg", and "ismap".
 
-MSCGEN_TOOL            =
+MSCGEN_TOOL            = mscgen
 
 # The MSCFILE_DIRS tag can be used to specify one or more directories that
 # contain msc files that are included in the documentation (see the \mscfile

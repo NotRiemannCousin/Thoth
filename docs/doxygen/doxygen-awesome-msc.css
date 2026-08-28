@@ -1,0 +1,66 @@
+/*
+ Custom stylesheet to make Mscgen (.mscgraph) diagrams scrollable and interactive,
+ matching the behavior of .dotgraph in the doxygen-awesome-css theme.
+*/
+
+.mscgraph {
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+.mscgraph .caption {
+    position: sticky;
+    left: 0;
+}
+
+/* Wrap Mscgen graphs with the `interactive_msc` class */
+.interactive_msc .mscgraph iframe,
+.interactive_msc .mscgraph object,
+.interactive_msc .mscgraph img {
+    max-width: 100%;
+}
+
+/* Scrollbars for Webkit */
+.contents .mscgraph::-webkit-scrollbar {
+    background: transparent;
+    width: calc(var(--webkit-scrollbar-size) + var(--webkit-scrollbar-padding) + var(--webkit-scrollbar-padding));
+    height: calc(var(--webkit-scrollbar-size) + var(--webkit-scrollbar-padding) + var(--webkit-scrollbar-padding));
+}
+
+.contents .mscgraph::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: var(--webkit-scrollbar-padding) solid transparent;
+    border-radius: calc(var(--webkit-scrollbar-padding) + var(--webkit-scrollbar-padding));
+    background-clip: padding-box;
+}
+
+.contents .mscgraph:hover::-webkit-scrollbar-thumb {
+    background-color: var(--webkit-scrollbar-color);
+}
+
+.contents .mscgraph::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Scrollbars for Firefox */
+.contents .mscgraph {
+    scrollbar-width: thin;
+}
+
+/* Dark Mode Inversion */
+@media (prefers-color-scheme: dark) {
+    html:not(.light-mode) div.contents .mscgraph img,
+    html:not(.light-mode) div.contents .mscgraph iframe,
+    html:not(.light-mode) div.contents .mscgraph object {
+        filter: brightness(89%) hue-rotate(180deg) invert();
+    }
+}
+
+html.dark-mode div.contents .mscgraph img,
+html.dark-mode div.contents .mscgraph iframe,
+html.dark-mode div.contents .mscgraph object {
+    filter: brightness(89%) hue-rotate(180deg) invert();
+}
+
+
+

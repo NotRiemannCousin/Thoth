@@ -15,7 +15,7 @@ strong type safety and compile-time checks without sacrificing usability or eleg
 [//]: # (for tasks.)
 
 > Server side connections are under development, only client connections are availabe.
-> CMake says C++23 but is because MSVC is lazy
+> CMake says C++23 but is because MSVC is lazy, the target is C++26.
 
 ## Middlewares
 

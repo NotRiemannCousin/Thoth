@@ -15,7 +15,7 @@ struct ValueBehaviour {
 
 
 static std::optional<std::string> Interpolate(const std::string& str) {
-    constexpr auto execCommand = [](const std::string& command) -> std::string {
+    constexpr auto execCommand{ [](const std::string& command) -> std::string {
 #ifdef _WIN32
         const std::string cmd{ std::format(R"(powershell -NoProfile -Command "{}" 2>&1)", command) };
         const std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd.c_str(), "r"), _pclose);
@@ -40,7 +40,7 @@ static std::optional<std::string> Interpolate(const std::string& str) {
         // Vou falar em pt-br porque preguiça. O Clion tá dizendo que "result += buf.data();" é inseguro pq buf pode
         // acabar escapando. Sinceramente parece-me uma ilusão, creio que seja porque ele nn consegue inferir que se
         // fgets é sucedida o buffer é sempre null terminated. Em td caso, quero dormir.
-    };
+    } };
 
 
     std::string retBuffer, cmdBuffer;
@@ -49,7 +49,7 @@ static std::optional<std::string> Interpolate(const std::string& str) {
     size_t lastIdx{}, idx{};
     int64_t bracketLevel{};
 
-    const auto computeEscapedChar = [&] {
+    const auto computeEscapedChar{ [&] {
         if(++idx == str.size())
             return false;
 
@@ -63,12 +63,12 @@ static std::optional<std::string> Interpolate(const std::string& str) {
             default: return false;
         }
         return true;
-    };
-    const auto computeOpenBracket = [&] {
+    } };
+    const auto computeOpenBracket{ [&] {
         if (bracketLevel++ == 0)
             lastIdx = idx + 1;
-    };
-    const auto computeCloseBracket = [&] {
+    } };
+    const auto computeCloseBracket{ [&] {
         if (--bracketLevel < 0)
             return false;
         if (bracketLevel == 0) {
@@ -77,7 +77,7 @@ static std::optional<std::string> Interpolate(const std::string& str) {
             retBuffer += execCommand(cmdBuffer);
         }
         return true;
-    };
+    } };
 
     for (; idx != str.size(); ++idx) {
         if (bracketLevel == 0)
@@ -140,7 +140,7 @@ static optional<Map> ParseMap() {
 
     ValueBehaviour behaviour{};
 
-    const auto getBehaviour = [&] {
+    const auto getBehaviour{ [&] {
         constexpr ValueBehaviour behaviours[] {
             { R"(''')", true,  false },
             { R"(""")", true,  true },
@@ -160,8 +160,8 @@ static optional<Map> ParseMap() {
 
         if (behaviour.pattern != " ")
             line.erase(0, behaviour.pattern.size());
-    };
-    const auto removeInlineEndingSequence = [&] {
+    } };
+    const auto removeInlineEndingSequence{ [&] {
         size_t idx{};
 
         if (behaviour.pattern == " ") {
@@ -180,9 +180,9 @@ static optional<Map> ParseMap() {
         if (idx != string::npos)
             line.erase(idx);
         return true;
-    };
+    } };
 
-    const auto getValue = [&] {
+    const auto getValue{ [&] {
         bool firstLoop{ true };
 
         do {
@@ -208,10 +208,10 @@ static optional<Map> ParseMap() {
         } while (behaviour.isMultiline);
 
         return true;
-    };
+    } };
 
-    const auto isSpace        = [](const char c){ return c == ' '; };
-    const auto isAllowedInKey = [](const char c){ return !isalnum(c) && c != '_'; };
+    const auto isSpace       { [](const char c){ return c == ' '; } };
+    const auto isAllowedInKey{ [](const char c){ return !isalnum(c) && c != '_'; } };
 
     while (!file.eof()) {
         char c{ ' ' };

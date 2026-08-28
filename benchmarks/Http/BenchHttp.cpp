@@ -95,27 +95,21 @@ namespace ThothHttp {
     }
 
     static bool GetWarm() {
-        auto req = GetRequest::FromUrl(BaseUrl());
-        if (!req) return false;
-        auto resp = Client::Send(std::move(*req));
-        return resp.has_value();
+        auto req{ GetRequest::FromUrl(BaseUrl()) };        if (!req) return false;
+        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
     }
 
     static bool GetCold() {
-        auto req = GetRequest::FromUrl(BaseUrl());
-        if (!req) return false;
+        auto req{ GetRequest::FromUrl(BaseUrl()) };        if (!req) return false;
         // Força fechar a conexão para evitar o pool automático e testar Handshake
         req->headers.Add("connection", "close");
-        auto resp = Client::Send(std::move(*req));
-        return resp.has_value();
+        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
     }
 
     static bool PostWarm(std::string_view body) {
         std::string url = std::format("https://{}:{}{}", kHost, kPort, kPostPath);
-        auto req = PostRequest::FromUrl(url, std::string(body));
-        if (!req) return false;
-        auto resp = Client::Send(std::move(*req));
-        return resp.has_value();
+        auto req{ PostRequest::FromUrl(url, std::string(body)) };        if (!req) return false;
+        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
     }
 }
 
@@ -147,8 +141,7 @@ static void BM_Httplib_Cold_Get(benchmark::State& state) {
     for (auto _ : state) {
         httplib::SSLClient cli(kHost, kPort);
         cli.enable_server_certificate_verification(false);
-        auto res = cli.Get(kPath);
-        benchmark::DoNotOptimize(res);
+        auto res{ cli.Get(kPath) };        benchmark::DoNotOptimize(res);
     }
 }
 
@@ -240,9 +233,7 @@ static void BM_Curl_Parallel_Get(benchmark::State& state) {
 
 static void BM_Thoth_BodyToString_Get(benchmark::State& state) {
     for (auto _ : state) {
-        auto req = GetRequest::FromUrl(ThothHttp::BaseUrl());
-        auto resp = Client::Send(std::move(*req));
-        std::string body = std::move(*resp).MoveBody();
+        auto req{ GetRequest::FromUrl(ThothHttp::BaseUrl()) };        auto resp{ Client::Send(std::move(*req)) };        std::string body = std::move(*resp).MoveBody();
         benchmark::DoNotOptimize(body);
     }
 }

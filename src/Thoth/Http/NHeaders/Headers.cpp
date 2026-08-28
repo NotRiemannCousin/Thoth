@@ -78,11 +78,11 @@ namespace Thoth::Http {
     [[nodiscard]] constexpr auto FindInsensitiveKey(R&& r, const T& key) {
         const std::string_view keySv{ key };
 
-        const auto pred = [&](auto&& element) -> bool {
+        const auto pred{ [&](auto&& element) -> bool {
             const std::string_view elemKeySv{ element.first };
 
             return InsensitiveCmp(elemKeySv, keySv);
-        };
+        } };
 
         return rg::find_if(std::forward<R>(r), pred);
     }
@@ -92,12 +92,12 @@ namespace Thoth::Http {
         const std::string_view keySv{ p.first };
         const std::string_view valueSv{ p.second };
 
-        const auto pred = [&](auto&& element) -> bool {
+        const auto pred{ [&](auto&& element) -> bool {
             const std::string_view elemKeySv{ element.first };
             const std::string_view elemValueSv{ element.second };
 
             return InsensitiveCmp(keySv, elemKeySv) && rg::equal(valueSv, elemValueSv);
-        };
+        } };
 
         return rg::find_if(std::forward<R>(r), pred);
     }

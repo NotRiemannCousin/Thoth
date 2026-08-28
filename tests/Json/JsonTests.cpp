@@ -402,42 +402,36 @@ struct JsonSearchTest : testing::Test {
 };
  
 TEST_F(JsonSearchTest, Search_Array_MatchFound_ReturnsPtrToElement) {
-    auto pred = [](const Json& j) { return j.IsOf<String>(); };
-    auto result{ arr.Search(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<String>(); } };    auto result{ arr.Search(pred) };
     ASSERT_TRUE(result);
     EXPECT_EQ((*result)->As<String>().AsCopy(), "find-me");
 }
  
 TEST_F(JsonSearchTest, Search_Array_NoMatch_ReturnsNullopt) {
-    auto pred = [](const Json& j) { return j.IsOf<Object>(); };
-    auto result{ arr.Search(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<Object>(); } };    auto result{ arr.Search(pred) };
     EXPECT_FALSE(result);
 }
  
 TEST_F(JsonSearchTest, Search_Object_MatchFound) {
-    auto pred = [](const Json& j) { return j.IsOf<String>(); };
-    auto result{ obj.Search(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<String>(); } };    auto result{ obj.Search(pred) };
     ASSERT_TRUE(result);
     EXPECT_EQ((*result)->As<String>().AsCopy(), "target");
 }
  
 TEST_F(JsonSearchTest, SearchCopy_ReturnsIndependentCopy) {
-    auto pred = [](const Json& j) { return j.IsOf<Bool>(); };
-    auto copy{ arr.SearchCopy(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<Bool>(); } };    auto copy{ arr.SearchCopy(pred) };
     ASSERT_TRUE(copy);
     EXPECT_EQ(copy->As<Bool>(), true);
 }
  
 TEST_F(JsonSearchTest, SearchOrError_NoMatch_HasError) {
-    auto pred = [](const Json& j) { return j.IsOf<Array>(); };
-    auto result{ arr.SearchOrError(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<Array>(); } };    auto result{ arr.SearchOrError(pred) };
     EXPECT_FALSE(result);
     EXPECT_TRUE(std::holds_alternative<Thoth::NJson::JsonSearchError>(result.error()));
 }
  
 TEST_F(JsonSearchTest, SearchCopyOrNull_NoMatch_ReturnsNull) {
-    auto pred = [](const Json& j) { return j.IsOf<Object>(); };
-    auto result{ arr.SearchCopyOrNull(pred) };
+    auto pred{ [](const Json& j) { return j.IsOf<Object>(); } };    auto result{ arr.SearchCopyOrNull(pred) };
     EXPECT_TRUE(result.IsOf<Null>());
 }
 

@@ -195,14 +195,14 @@ bool Json::operator==(const Json& other) const {
 #pragma region Read functions
 
 static bool DecodeUtf16(std::string_view& s, std::string& out) {
-    constexpr auto hex = [](const char c) -> int {
+    constexpr auto hex{ [](const char c) -> int {
         if (c >= '0' && c <= '9') return c - '0';
         if (c >= 'a' && c <= 'f') return c - 'a' + 10;
         if (c >= 'A' && c <= 'F') return c - 'A' + 10;
         return -1;
-    };
+    } };
 
-    auto readU = [&](uint16_t& v) -> bool {
+    auto readU{ [&](uint16_t& v) -> bool {
         if (s.size() < 5 || s[0] != 'u') return false;
         uint16_t x{};
         for (int i = 1; i < 5; i++) {
@@ -213,7 +213,7 @@ static bool DecodeUtf16(std::string_view& s, std::string& out) {
         v = x;
         s.remove_prefix(5);
         return true;
-    };
+    } };
 
     uint16_t h;
     if (!readU(h)) return false;
@@ -468,11 +468,11 @@ std::expected<Json, ThothError> Json::ParseText(std::string_view input, bool cop
     else
         info.bufferView = input;
 
-    const auto error = [&]() -> std::unexpected<ThothError>{
+    const auto error{ [&]() -> std::unexpected<ThothError>{
         if (input.empty())
             return ThothUnex{ GenericError{ "Input for Json is empty" } };
         return ThothUnex{ JsonParseError{ info.bufferView.size() - input.size(), input[0] } };
-    };
+    } };
 
 #define return return error(); // I hate to do it
     ADVANCE_SPACES();
@@ -517,7 +517,7 @@ std::expected<Json, ThothError> Json::ParseText(std::string_view input, bool cop
 #undef CASE_OPEN_ARRAY
 
 
-constexpr auto resolveKeys = Hermes::Utils::Overloaded{
+constexpr auto resolveKeys{ Hermes::Utils::Overloaded{
     [](auto& curr, const int index) -> bool {
         if (!Json::IsOfType<Array>(**curr))
             return false;
@@ -552,7 +552,7 @@ constexpr auto resolveKeys = Hermes::Utils::Overloaded{
         curr = it;
         return true;
     }
-};
+} };
 
 #define RESOLVE_KEY_AND_RETURN(expected, error) \
         if (!std::visit([&](const auto& k){ return resolveKeys(curr, k); }, key)) \

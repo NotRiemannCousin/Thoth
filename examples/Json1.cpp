@@ -24,7 +24,7 @@ int main() {
         }}}
     };
 
-    const auto parsed = NJson::Json::Parse(R"(
+    const auto parsed{ NJson::Json::Parse(R"(
     {
         "info" : [
             "AiKatherine",
@@ -42,7 +42,7 @@ int main() {
             "github"  : "https://github.com/NotRiemannCousin"
         }
     }
-)");
+)") };
 
     std::print("{}", parsed && *parsed == obj);
 

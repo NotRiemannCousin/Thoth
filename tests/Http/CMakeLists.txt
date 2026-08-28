@@ -1,4 +1,4 @@
-add_thoth_test(
+add_project_test(
         ThothHttpTests
         ClientTests.cpp
         HeadersTests.cpp
