@@ -7,7 +7,7 @@
 #include <Thoth/Http/Client/Client.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
-std::expected<std::monostate, Thoth::ThothError> SaveImage(std::string_view id) {
+std::expected<void, Thoth::ThothError> SaveImage(std::string_view id) {
 #pragma region Aliases
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -39,7 +39,7 @@ std::expected<std::monostate, Thoth::ThothError> SaveImage(std::string_view id) 
                 .and_then(NHttp::Client::H_Send())
                 .and_then(&NHttp::PostResponse::AsJson<>)
 
-                .transform([](const Json& content){ return std::print("{}", content), std::monostate{}; });
+                .transform([](const Json& content){ std::print("{}", content); });
 }
 
 

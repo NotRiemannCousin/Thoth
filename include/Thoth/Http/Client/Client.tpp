@@ -156,10 +156,10 @@ namespace Thoth::Http {
 
             const auto isSocketValid{ [&]() -> Hermes::ConnectionResultOper {
                 ASSERT_OR_RET_ERROR(infoPtr, ConnectionErrorEnum::ConnectionFailed);
-                return std::monostate{};
+                return {};
             } };
 
-            const auto sendRequest{ [&](std::monostate) -> std::expected<SocketPtr, ThothError> {
+            const auto sendRequest{ [&]() -> std::expected<SocketPtr, ThothError> {
                 request.headers.Add("host", hostname);
 
                 details_::Http1::PrepareBodyHeaders(request.headers, request.body);

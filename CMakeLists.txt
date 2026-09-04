@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29.1)
 project(
         Thoth
-        VERSION 0.4.0
+        VERSION 0.4.1
         DESCRIPTION "A simple functional webdev library"
         LANGUAGES CXX
 )
@@ -44,9 +44,7 @@ include(cmake/GetCPM.cmake)
 include(cmake/Macros.cmake)
 register_lldb_script(Thoth)
 
-add_library(Thoth
-        src/Thoth/Http/Middleware/Decompress.cpp
-        src/Thoth/Http/Middleware/Retry.cpp)
+add_library(Thoth)
 add_library(Thoth::Thoth ALIAS Thoth)
 
 set_target_properties(Thoth PROPERTIES
@@ -80,6 +78,9 @@ target_sources(Thoth PRIVATE
         src/Thoth/Http/Client.cpp
         src/Thoth/Http/Request/Request.cpp
         src/Thoth/String/Utils.cpp
+
+        src/Thoth/Http/Middleware/Decompress.cpp
+        src/Thoth/Http/Middleware/Retry.cpp
         PUBLIC
         FILE_SET headers
         TYPE HEADERS
@@ -91,9 +92,9 @@ target_sources(Thoth PRIVATE
 #region linking
 CPMFindPackage(
         NAME                    Hermes
-        VERSION                 0.5.6
+        VERSION                 0.6.0
         GITHUB_REPOSITORY       NotRiemannCousin/Hermes
-        GIT_TAG                 v0.5.6
+        GIT_TAG                 v0.6.0
         OPTIONS                 "HERMES_INSTALL ${THOTH_INSTALL}"
         FIND_PACKAGE_ARGUMENTS  "CONFIG"
 )

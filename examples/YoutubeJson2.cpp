@@ -6,7 +6,7 @@
 #include <Thoth/Http/Client/Client.hpp>
 
 
-std::expected<std::monostate, Thoth::ThothError> MakeRequest() {
+std::expected<void, Thoth::ThothError> MakeRequest() {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
     namespace NJson = Thoth::NJson;
@@ -36,15 +36,10 @@ std::expected<std::monostate, Thoth::ThothError> MakeRequest() {
         return Json::ParseText(jsonStart, true, false);
     } };
 
-    constexpr auto printAlbums{ [](NJson::Array&& albums) -> std::monostate{
-
-        for (const auto& album: albums) {
-            const auto name{ album.Find(albumNameKey) };
-            if (name)
+    constexpr auto printAlbums{ [](NJson::Array&& albums) {
+        for (const auto& album: albums)
+            if (const auto name{ album.Find(albumNameKey) })
                 std::println("{}", **name);
-        }
-
-        return std::monostate{};
     } };
 
     using std::operator ""s;

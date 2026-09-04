@@ -4,13 +4,13 @@
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/Http/Client/Client.hpp>
 
-static std::expected<std::monostate, Thoth::ThothError> SavePdf(const std::string_view url) {
+static std::expected<void, Thoth::ThothError> SavePdf(const std::string_view url) {
     namespace NHttp = Thoth::Http;
     using     FileT = Thoth::Dsa::BinFileOutputRange;
 
     return NHttp::GetRequest::FromUrl(url)
             .and_then(NHttp::Client::H_SendAsAndParse<FileT>(FileT::H_AsBody({ "./pg-17-never-forget.pdf" })))
-            .transform([](auto){ return std::monostate{}; });
+            .transform([](auto){});
 }
 
 

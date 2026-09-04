@@ -7,7 +7,7 @@
 
 #pragma warning(disable: 4455)
 
-std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) {
+std::expected<void, Thoth::ThothError> PrintInfo(std::string_view id) {
 #pragma region Aliases and Key definitions
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
@@ -70,7 +70,6 @@ std::expected<std::monostate, Thoth::ThothError> PrintInfo(std::string_view id) 
             if ((*tab)->Find(moreContentButtonKeys))
                 std::println("\tMore...");
         }
-        return std::monostate{};
     } };
 
     static constexpr auto processRequest{ [](NHttp::PostResponse&& req) -> std::expected<NHttp::PostResponse, ThothError> {

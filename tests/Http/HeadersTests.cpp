@@ -392,7 +392,7 @@ TEST_F(HeadersTest, Parse_WhitespaceAroundValue_IsTrimmed) {
 TEST_F(HeadersTest, Parse_LeadingSpaceInKey_BadRequest) {
     const auto result{ Headers::Parse("   content-type: application/json\r\n") };
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+    EXPECT_EQ(result.error(), MessageParseErrorEnum::InvalidHeaders);
 }
 
 TEST_F(HeadersTest, Parse_EmptyValue_Succeeds) {
@@ -404,13 +404,13 @@ TEST_F(HeadersTest, Parse_EmptyValue_Succeeds) {
 TEST_F(HeadersTest, Parse_WhitespaceBeforeColon_ReturnsBadRequest) {
     const auto result{ Headers::Parse("content-type : application/json\r\n") };
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+    EXPECT_EQ(result.error(), MessageParseErrorEnum::InvalidHeaders);
 }
 
 TEST_F(HeadersTest, Parse_SingleValueDuplicate_ReturnsBadRequest) {
     const auto result{ Headers::Parse("content-type: text/plain\r\ncontent-type: text/html\r\n") };
     EXPECT_FALSE(result);
-    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+    EXPECT_EQ(result.error(), MessageParseErrorEnum::InvalidHeaders);
 }
 
 TEST_F(HeadersTest, Parse_OptionalWhitespaceWithTab_IsTrimmed) {
@@ -428,14 +428,14 @@ TEST_F(HeadersTest, Parse_SetCookieDuplicate_Succeeds) {
 TEST_F(HeadersTest, Parse_MissingColon_ReturnsBadRequest) {
     const auto result{ Headers::Parse("missing-colon\r\n") };
     ASSERT_FALSE(result);
-    EXPECT_EQ(result.error(), StatusCodeEnum::BadRequest);
+    EXPECT_EQ(result.error(), MessageParseErrorEnum::InvalidHeaders);
 }
 
 TEST_F(HeadersTest, Parse_HeadersAboveLimit_ReturnsContentTooLarge) {
     std::string raw{ "x-header: value\r\n" };
     const auto result{ Headers::Parse(raw, 4) };
     ASSERT_FALSE(result);
-    EXPECT_EQ(result.error(), StatusCodeEnum::ContentTooLarge);
+    EXPECT_EQ(result.error(), MessageParseErrorEnum::HeadersTooLarge);
 }
 
 

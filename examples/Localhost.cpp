@@ -9,8 +9,6 @@ int main() {
             .and_then(NHttp::Client::H_Send())
             .transform(&NHttp::GetResponse::MoveBody) };
 
-    if (body)
-        std::print("{}", *body);
-    else
-        std::print("{}\n\n{}", body.error(), WSAGetLastError());
+    if (body) std::print("{}", *body);
+    else      std::print("{}\n\n{}", body.error(), WSAGetLastError());
 }

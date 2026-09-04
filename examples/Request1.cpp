@@ -26,6 +26,18 @@ std::expected<std::vector<Json>, Thoth::ThothError> GetMembers(size_t id) {
 }
 
 
+void PrintMembers(auto&& names) {
+    std::println("- Members:");
+    for (std::string&& name : names)
+        std::println("{}", name);
+}
+
+void PrintError(auto&& error) {
+    std::println("An error occurred: {}", error);
+
+    if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
+        std::println("WSA error: {}", wsaError);
+}
 
 int main() {
     static constexpr auto getName{ [](const Json& member) {
@@ -35,30 +47,10 @@ int main() {
                 .value_or("<unnamed>");
     } };
 
-    static constexpr auto printNames{ [](auto&& names) {
-        std::println("- Members:");
-        for (std::string&& name : names)
-            std::println("{}", name);
+    auto membersExp{ GetMembers(4001234).transform(std::views::transform(getName)) };
 
-        return std::monostate{};
-    } };
-
-    static constexpr auto errorHandler{ [](auto&& error) {
-        std::println("An error occurred: {}", error);
-
-        if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
-            std::println("WSA error: {}", wsaError);
-
-        return std::monostate{};
-    } };
-
-
-    auto _{
-        GetMembers(4001234)
-                .transform(std::views::transform(getName))
-                .transform(printNames)
-                .transform_error(errorHandler)
-    };
+    if (membersExp) PrintMembers(std::move(*membersExp));
+    else            PrintError(membersExp.error());
 
     return 0;
 }
