@@ -1,0 +1,14 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux:
+    uses: NotRiemannCousin/cpp-toolchain/.github/workflows/cpp-ci-linux.yml@v1
+    with:
+      image: ghcr.io/notriemanncousin/cpp-ci-linux:gcc16.2-979cf78ac92ade7f1c72f60baa26106778d6f25f
+      cmake-args: >-
+        -DTHOTH_BUILD_TESTS=ON 
+        -DTHOTH_BUILD_EXAMPLES=OFF
+        -DTHOTH_INSTALL=OFF
