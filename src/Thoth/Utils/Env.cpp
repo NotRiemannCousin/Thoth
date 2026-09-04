@@ -218,8 +218,10 @@ static optional<Map> ParseMap() {
         while (file.get(c) && c != '=' && c != '\r' && c != '\n')
             key.push_back(c);
 
-        if (isspace(c) && ranges::all_of(key, isSpace))
+
+        if (isspace(c) && std::all_of(key.begin(), key.end(), isSpace))
             continue;
+
 
         if (key.empty()) return std::nullopt;
 
@@ -234,7 +236,7 @@ static optional<Map> ParseMap() {
 
 
 
-        if (isdigit(key[0]) || ranges::any_of(key, isAllowedInKey))
+        if (isdigit(key[0]) || std::any_of(key.begin(), key.end(), isAllowedInKey))
             return std::nullopt;
 
 

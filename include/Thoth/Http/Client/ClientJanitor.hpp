@@ -1,6 +1,7 @@
 #pragma once
 #include <mutex>
 #include <unordered_map>
+#include <thread>
 
 #include <Thoth/Http/Client/Definitions.hpp>
 #include <Thoth/Http/_base.hpp>

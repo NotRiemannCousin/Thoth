@@ -86,10 +86,12 @@ namespace Thoth::Dsa {
     }
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(const std::filesystem::path& path, const int mode) : m_outStream{ path, Mode() | mode } {}
+    FileOutputRange<T>::FileOutputRange(const std::filesystem::path& path, const int mode)
+        : m_outStream{ path, static_cast<std::ios_base::openmode>(Mode() | mode) } {}
 
     template<Hermes::ByteLike T>
-    FileOutputRange<T>::FileOutputRange(std::filesystem::path&& path, const int mode) : m_outStream{ std::move(path), Mode() | mode } {}
+    FileOutputRange<T>::FileOutputRange(std::filesystem::path&& path, const int mode)
+        : m_outStream{ std::move(path), static_cast<std::ios_base::openmode>(Mode() | mode) } {}
 
     template<Hermes::ByteLike T>
     FileOutputRange<T>::FileOutputRange(std::basic_ofstream<T> &&file) : m_outStream{ std::move(file) } {}

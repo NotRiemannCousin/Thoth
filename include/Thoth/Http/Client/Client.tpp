@@ -76,6 +76,7 @@ namespace Thoth::Http {
         };
 
         ClientJanitor& janitor{ ClientJanitor::Instance() };
+        using Iter = typename decltype(janitor.connectionPool)::iterator;
 
         const auto establishConnection{ [&](Hermes::IpEndpoint&& endpoint) {
             const ClientConnectionKey key{ endpoint, std::string{ scheme }, hostname };
@@ -84,7 +85,7 @@ namespace Thoth::Http {
             const auto getSocketFromPool{ [&]() -> std::optional<SocketPtr> {
                 std::lock_guard lock{ janitor.poolMutex };
 
-                const decltype(janitor.connectionPool)::iterator connContainerIt{ janitor.connectionPool.find(key) };
+                const Iter connContainerIt{janitor.connectionPool.find(key) };
 
                 if (connContainerIt == janitor.connectionPool.end() || connContainerIt->second.empty())
                     return std::nullopt;

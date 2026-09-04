@@ -3,6 +3,7 @@
 
 using Thoth::Http::NHeaders::MimeType;
 
+template<>
 bool MimeType::operator==(const MimeType &other) const {
     // Parameter names are case-insensitive (RFC 9110 §8.3.1) and their order carries
     // no meaning, so "a=1;b=2" must compare equal to "B=2;A=1". Values are kept

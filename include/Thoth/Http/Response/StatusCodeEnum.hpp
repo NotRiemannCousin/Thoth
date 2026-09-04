@@ -1,6 +1,6 @@
 #pragma once
 #include <expected>
-
+#include <cstddef>
 
 namespace Thoth::Http {
     enum class StatusCodeEnum {
@@ -107,5 +107,5 @@ namespace Thoth::Http {
     using WebResult = std::expected<T, StatusCodeEnum>;
 
 
-    using WebResultOper = WebResult<std::monostate>;
+    using WebResultOper = WebResult<void>;
 }

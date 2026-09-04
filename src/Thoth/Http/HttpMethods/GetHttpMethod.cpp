@@ -1,4 +1,3 @@
-#pragma once
 #include <Thoth/Http/Methods/GetMethod.hpp>
 
 
