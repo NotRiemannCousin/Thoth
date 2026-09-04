@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['examples_0',['Examples',['../index.html#autotoc_md14',1,'']]],
-  ['expressive_20c_2026_20webdev_20library_1',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md8',1,'']]],
+  ['examples_0',['Examples',['../index.html#autotoc_md7',1,'']]],
+  ['expressive_20c_2026_20webdev_20library_1',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
   ['extensions_2',['Extensions',['../md_docs_2doxygen_2docs_2extensions.html',1,'']]]
 ];

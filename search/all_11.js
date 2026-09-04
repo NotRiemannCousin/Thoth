@@ -19,7 +19,7 @@ var searchData=
   ['patterntype_16',['PatternType',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a5076876d598122fdbc25a97d567b6192',1,'Thoth::Http::NHeaders::ListProxy::PatternType'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a201500d69283ff004d2b84a9fecf0343',1,'Thoth::Http::NHeaders::MultiValueProxy::PatternType'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#aa6d08614bfa2eed6153339b0fbc89b4e',1,'Thoth::Http::NHeaders::ValueProxy::PatternType']]],
   ['paymentrequired_17',['PaymentRequired',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a4c99006c75b53fe48865cdfa0ac065ba',1,'Thoth::Http']]],
   ['permanentredirect_18',['PermanentRedirect',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7ac13fb7996808b1abe56e3ae4da84fb4a',1,'Thoth::Http']]],
-  ['pixi_19',['pixi',['../index.html#autotoc_md11',1,'']]],
+  ['pixi_19',['pixi',['../index.html#autotoc_md4',1,'']]],
   ['poolmutex_20',['poolMutex',['../struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd',1,'Thoth::Http::ClientJanitor']]],
   ['port_21',['port',['../struct_thoth_1_1_http_1_1_authority.html#a7e3da879c4774bd4027862b57d05bf38',1,'Thoth::Http::Authority::port'],['../struct_thoth_1_1_http_1_1_authority_view.html#a47190daa9b867afc9f224a916d802392',1,'Thoth::Http::AuthorityView::port']]],
   ['postbinrequest_22',['PostBinRequest',['../namespace_thoth_1_1_http.html#a17a1d35cbb78e22310bd4bf478581063',1,'Thoth::Http']]],

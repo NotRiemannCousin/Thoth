@@ -156,43 +156,43 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 A functional, expressive, C++26 webdev library</h1>
 <p><img src="Thoth-logo.webp" alt="" title="Thoth, the Egyptian god of writing and wisdom" class="inline"/></p>
 <p><a class="el" href="namespace_thoth.html">Thoth</a> is a modern C++26 lib and webdev library for building both web servers and clients. Powered by the <a href="https://github.com/NotRiemannCousin/Hermes">Hermes</a> library, <a class="el" href="namespace_thoth.html">Thoth</a> is designed to harness the latest C++ features for creating robust, high-performance web applications. Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance.</p>
 <blockquote class="doxtable">
 <p>Server side connections are under development, only client connections are availabe. CMake says C++23 but is because MSVC is lazy, the target is C++26. </p>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Installation</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Manual (CMake)</h2>
 <div class="fragment"><div class="line">include(CPM.cmake)</div>
 <div class="line"> </div>
 <div class="line">CPMAddPackage(</div>
 <div class="line">        NAME Thoth</div>
 <div class="line">        GITHUB_REPOSITORY NotRiemannCousin/Thoth</div>
-<div class="line">        GIT_TAG v0.4.0</div>
+<div class="line">        GIT_TAG v0.4.1</div>
 <div class="line">)</div>
 <div class="line"> </div>
 <div class="line">target_link_libraries(your_target PRIVATE Thoth)</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 pixi</h2>
 <blockquote class="doxtable">
 <p><em>Coming soon.</em> </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 vcpkg</h2>
 <blockquote class="doxtable">
 <p><em>Maybe, someday, who knows.</em> </p>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Middlewares</h1>
 <p>Client requests can be wrapped with composable middlewares. Each one takes a handler (<span class="tt">Request&lt;Method, Body&gt; -&gt; ExpResponse&lt;Method, Body&gt;</span>, the same shape as <span class="tt">Client::H_Send()</span>) and returns a new handler, so they nest around the base send call:</p>
 <div class="fragment"><div class="line">NHttp::GetRequest::FromUrl(url)</div>
 <div class="line">    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))</div>
 </div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponentialbackoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your ownmiddlewares too.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Examples</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;print&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_client_2_client_8hpp.html">Thoth/Http/Client/Client.hpp</a>&gt;</span></div>
@@ -259,7 +259,7 @@ Examples</h1>
 <div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:20</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Env.hpp:5</div></div>
 <div class="ttc" id="astruct_thoth_1_1_thoth_error_html"><div class="ttname"><a href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a></div><div class="ttdef"><b>Definition</b> ThothError.hpp:24</div></div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 Requirements</h1>
 <ul>
 <li>Windows 10 or newer / Linux</li>

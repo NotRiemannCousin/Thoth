@@ -10,8 +10,8 @@ var searchData=
   ['bodyfactoryconcept_7',['BodyFactoryConcept',['../concept_thoth_1_1_http_1_1_body_factory_concept.html',1,'Thoth::Http']]],
   ['bodytype_8',['BodyType',['../struct_thoth_1_1_dsa_1_1_file_output_range.html#acd3efc69abe85f1f31e4e457ab306ea6',1,'Thoth::Dsa::FileOutputRange']]],
   ['bool_9',['Bool',['../namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be',1,'Thoth::NJson']]],
-  ['bordered_20images_10',['Bordered Images',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md19',1,'']]],
+  ['bordered_20images_10',['Bordered Images',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md32',1,'']]],
   ['br_11',['Br',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99da8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cca8d37869ebc7af08a31df14fe3f48bee2',1,'Thoth::Http::NHeaders::Br']]],
   ['button_12',['Fragment Copy Button',['../md_docs_2doxygen_2docs_2extensions.html#extension-copy-button',1,'']]],
-  ['buttons_13',['Buttons',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md18',1,'']]]
+  ['buttons_13',['Buttons',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md31',1,'']]]
 ];
