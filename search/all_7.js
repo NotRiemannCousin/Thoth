@@ -40,7 +40,7 @@ var searchData=
   ['fromowned_37',['FromOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
   ['fromref_38',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
   ['fromurl_39',['FromUrl',['../struct_thoth_1_1_http_1_1_request.html#a3d1a24385157aa6982c6ddd4b2c6df02',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#ab8ac57ef6798e29d6d7f3f2724121e38',1,'Thoth::Http::Url::FromUrl()']]],
-  ['full_20width_40',['Full Width',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md30',1,'']]],
+  ['full_20width_40',['Full Width',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md19',1,'']]],
   ['functional_20expressive_20c_2026_20webdev_20library_41',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
   ['functional_2ehpp_42',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
 ];

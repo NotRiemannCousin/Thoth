@@ -158,33 +158,34 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_client_janito
 <a href="_client_janitor_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2_client_2_definitions_8hpp.html">Thoth/Http/Client/Definitions.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2__base_8hpp.html">Thoth/Http/_base.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html">   30</a></span>    <span class="keyword">struct </span>ClientJanitor {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">   32</a></span>        <span class="keyword">static</span> ClientJanitor&amp; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">Instance</a>();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#a4f40a0a89316930dff9baeca2528de98">   33</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_janitor.html#a4f40a0a89316930dff9baeca2528de98">JanitorLoop</a>(std::stop_token stopToken);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">   35</a></span>        std::mutex <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">poolMutex</a>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">   39</a></span>        std::unordered_map&lt;ClientConnectionKey, std::vector&lt;std::shared_ptr&lt;ClientConnection&gt;&gt;&gt; <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">connectionPool</a>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        ClientJanitor();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        std::jthread m_janitorThread;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    };</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2_client_2_definitions_8hpp.html">Thoth/Http/Client/Definitions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2__base_8hpp.html">Thoth/Http/_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html">   31</a></span>    <span class="keyword">struct </span>ClientJanitor {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">   33</a></span>        <span class="keyword">static</span> ClientJanitor&amp; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">Instance</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#a4f40a0a89316930dff9baeca2528de98">   34</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_client_janitor.html#a4f40a0a89316930dff9baeca2528de98">JanitorLoop</a>(std::stop_token stopToken);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">   36</a></span>        std::mutex <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">poolMutex</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">   40</a></span>        std::unordered_map&lt;ClientConnectionKey, std::vector&lt;std::shared_ptr&lt;ClientConnection&gt;&gt;&gt; <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">connectionPool</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        ClientJanitor();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        std::jthread m_janitorThread;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    };</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
 <div class="ttc" id="a_http_2__base_8hpp_html"><div class="ttname"><a href="_http_2__base_8hpp.html">_base.hpp</a></div></div>
 <div class="ttc" id="a_http_2_client_2_definitions_8hpp_html"><div class="ttname"><a href="_http_2_client_2_definitions_8hpp.html">Definitions.hpp</a></div></div>
 <div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
 <div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_a4f40a0a89316930dff9baeca2528de98"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#a4f40a0a89316930dff9baeca2528de98">Thoth::Http::ClientJanitor::JanitorLoop</a></div><div class="ttdeci">void JanitorLoop(std::stop_token stopToken)</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_a8859c9e78721242af20538be63a42efd"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">Thoth::Http::ClientJanitor::poolMutex</a></div><div class="ttdeci">std::mutex poolMutex</div><div class="ttdef"><b>Definition</b> ClientJanitor.hpp:35</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_aae25464220ffbebc7d09392c3334ad43"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">Thoth::Http::ClientJanitor::connectionPool</a></div><div class="ttdeci">std::unordered_map&lt; ClientConnectionKey, std::vector&lt; std::shared_ptr&lt; ClientConnection &gt; &gt; &gt; connectionPool</div><div class="ttdoc">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not brea...</div><div class="ttdef"><b>Definition</b> ClientJanitor.hpp:39</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_a8859c9e78721242af20538be63a42efd"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#a8859c9e78721242af20538be63a42efd">Thoth::Http::ClientJanitor::poolMutex</a></div><div class="ttdeci">std::mutex poolMutex</div><div class="ttdef"><b>Definition</b> ClientJanitor.hpp:36</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_aae25464220ffbebc7d09392c3334ad43"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#aae25464220ffbebc7d09392c3334ad43">Thoth::Http::ClientJanitor::connectionPool</a></div><div class="ttdeci">std::unordered_map&lt; ClientConnectionKey, std::vector&lt; std::shared_ptr&lt; ClientConnection &gt; &gt; &gt; connectionPool</div><div class="ttdoc">Group multiple sockets connected to the same endpoint. Before using it lock the poolMutex to not brea...</div><div class="ttdef"><b>Definition</b> ClientJanitor.hpp:40</div></div>
 <div class="ttc" id="astruct_thoth_1_1_http_1_1_client_janitor_html_ab526b4e335daf088e39deb5246369f69"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_client_janitor.html#ab526b4e335daf088e39deb5246369f69">Thoth::Http::ClientJanitor::Instance</a></div><div class="ttdeci">static ClientJanitor &amp; Instance()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

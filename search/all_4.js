@@ -11,7 +11,7 @@ var searchData=
   ['caseinsensitivecompare_8',['CaseInsensitiveCompare',['../namespace_thoth_1_1_string.html#a7c291092012adac5e744b889d2dcd6b8',1,'Thoth::String']]],
   ['cbegin_9',['cbegin',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a55b0c3e87af815b256d1be2980955259',1,'Thoth::Dsa::LinearMap::cbegin()'],['../struct_thoth_1_1_string_1_1_unicode_viewer.html#a779ecd3b7b5273e4d3c30dba0462125a',1,'Thoth::String::UnicodeViewer::cbegin()']]],
   ['cend_10',['cend',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a3ff7cffd27d4640637f37940ddc44823',1,'Thoth::Dsa::LinearMap::cend()'],['../struct_thoth_1_1_string_1_1_unicode_viewer.html#a4b0a62512254fe9ded4c438177b7cf99',1,'Thoth::String::UnicodeViewer::cend()']]],
-  ['centering_11',['Centering',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md29',1,'']]],
+  ['centering_11',['Centering',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md18',1,'']]],
   ['challenge_12',['Challenge',['../struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html',1,'Thoth::Http::NHeaders']]],
   ['challenge_2ehpp_13',['Challenge.hpp',['../_challenge_8hpp.html',1,'']]],
   ['charsequences_14',['CharSequences',['../struct_thoth_1_1_string_1_1_char_sequences.html',1,'Thoth::String']]],
@@ -76,6 +76,6 @@ var searchData=
   ['customization_73',['Customization',['../md_docs_2doxygen_2docs_2customization.html',1,'']]],
   ['customization_2emd_74',['customization.md',['../customization_8md.html',1,'']]],
   ['customizations_75',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md14',1,'']]],
-  ['customizing_76',['Customizing',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md17',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md19',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md21',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md23',1,'Customizing']]],
+  ['customizing_76',['Customizing',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md22',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md24',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md26',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md28',1,'Customizing']]],
   ['cvalwrapper_77',['CValWrapper',['../namespace_thoth_1_1_n_json.html#ac57d563496ec52612186beead7849446',1,'Thoth::NJson']]]
 ];

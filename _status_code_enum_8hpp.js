@@ -1,7 +1,7 @@
 var _status_code_enum_8hpp =
 [
     [ "Thoth::Http::WebResult", "namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f", null ],
-    [ "Thoth::Http::WebResultOper", "namespace_thoth_1_1_http.html#a8918bab35fab666392a85833ac746f7f", null ],
+    [ "Thoth::Http::WebResultOper", "namespace_thoth_1_1_http.html#a4060dc2e21c0dea1ca9e4ee9ef04cc97", null ],
     [ "Thoth::Http::StatusCodeEnum", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7", [
       [ "Thoth::Http::StatusCodeEnum::Continue", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe", null ],
       [ "Thoth::Http::StatusCodeEnum::SwitchingProtocols", "namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7a548c5a637eddf65132b21411aeafc6a1", null ],

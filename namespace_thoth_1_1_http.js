@@ -56,7 +56,7 @@ var namespace_thoth_1_1_http =
     [ "PostResponse", "namespace_thoth_1_1_http.html#a406725da08567057c843e7aca9772dd7", null ],
     [ "SeeOtherMethod", "namespace_thoth_1_1_http.html#a5f6110120451f946ba71306abcb08600", null ],
     [ "WebResult", "namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f", null ],
-    [ "WebResultOper", "namespace_thoth_1_1_http.html#a8918bab35fab666392a85833ac746f7f", null ],
+    [ "WebResultOper", "namespace_thoth_1_1_http.html#a4060dc2e21c0dea1ca9e4ee9ef04cc97", null ],
     [ "MessageParseErrorEnum", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388", [
       [ "InvalidStartLine", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a27ce866539b6e04dabda1d2e08b12f7d", null ],
       [ "InvalidVersion", "namespace_thoth_1_1_http.html#a8e58d1d4b4fcb6af2eee47c9a3a12388a47ff03d2239a69112904305444be2fc0", null ],
