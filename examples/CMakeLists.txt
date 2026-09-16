@@ -13,7 +13,7 @@ add_executable(YoutubeJson3 YoutubeJson3.cpp)
 add_executable(BodyToFile1 BodyToFile1.cpp)
 add_executable(BodyToFile2 BodyToFile2.cpp)
 
-add_executable(Localhost localhost.cpp)
+add_executable(Localhost Localhost.cpp)
 
 
 #target_compile_definitions(ThothExampleRequest1 PRIVATE -DDENSE_DEBUG_JSON)

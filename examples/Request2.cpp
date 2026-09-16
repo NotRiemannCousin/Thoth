@@ -19,7 +19,7 @@ void PrintError(Thoth::ThothError err) {
     std::println("{}", err);
 
     if (const auto error{ Hermes::GetError() }; !error)
-        std::print("\nWSA Error: {}", error.error());
+        std::print("\nOS Error: {}", error.error());
 }
 
 

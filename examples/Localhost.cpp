@@ -10,5 +10,5 @@ int main() {
             .transform(&NHttp::GetResponse::MoveBody) };
 
     if (body) std::print("{}", *body);
-    else      std::print("{}\n\n{}", body.error(), WSAGetLastError());
+    else      std::print("{}\n\n{}", body.error(), Hermes::GetError().error());
 }

@@ -1,0 +1,34 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  linux:
+    uses: NotRiemannCousin/cpp-toolchain/.github/workflows/cpp-ci-linux.yml@v1
+    with:
+      image: ghcr.io/notriemanncousin/cpp-ci-linux:gcc16.2-979cf78ac92ade7f1c72f60baa26106778d6f25f
+      cmake-args: >-
+        -DTHOTH_BUILD_TESTS=ON 
+        -DTHOTH_BUILD_EXAMPLES=OFF
+
+  windows:
+    uses: NotRiemannCousin/cpp-toolchain/.github/workflows/cpp-ci-windows.yml@v1
+    with:
+      cmake-args: >-
+        -DTHOTH_BUILD_TESTS=ON 
+        -DTHOTH_BUILD_EXAMPLES=OFF
+
+  ci-passed:
+    name: CI passed
+    needs: [linux, windows]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check results
+        run: |
+          if [ "${{ needs.linux.result }}" != "success" ] || [ "${{ needs.windows.result }}" != "success" ]; then
+            echo "One or more required jobs failed."
+            exit 1
+          fi

@@ -4,12 +4,13 @@
 #include <Thoth/Http/NHeaders/Headers.hpp>
 #include <filesystem>
 #include <fstream>
+#include <limits>
 
 namespace Thoth::Dsa {
     struct FileBuilderParams {
         std::filesystem::path path;
         std::optional<std::vector<Http::NHeaders::MimeType>> acceptedTypes{};
-        int maxSize{ INT_MAX };
+        int maxSize{ std::numeric_limits<int>::max() };
         int mode{};
     };
 

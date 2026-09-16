@@ -1,5 +1,4 @@
 #pragma once
-#include <intrin.h>
 #include <bit>
 
 namespace Thoth::String {

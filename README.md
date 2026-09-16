@@ -100,8 +100,8 @@ int main() {
     static constexpr auto errorHandler{ [](auto&& error) {
         std::println("An error occurred: {}", error);
 
-        if (const int wsaError{ WSAGetLastError() }; wsaError != 0)
-            std::println("WSA error: {}", wsaError);
+        if (const auto err{ Hermes::GetError() }; !err)
+            std::println("OS error: {}", err.error());
 
         return std::monostate{};
     } };
