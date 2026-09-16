@@ -42,7 +42,7 @@ var searchData=
   ['setowned_39',['SetOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#a0c579a8a4dc834fcff069c65c718acde',1,'Thoth::Dsa::Cow::SetOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#addae876c3d735d050859345f9f6034d5',1,'Thoth::Dsa::Cow::SetOwned(OwnT &amp;&amp;own)']]],
   ['setref_40',['SetRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a909fc9d98d629c17fec5406447f6db62',1,'Thoth::Dsa::Cow']]],
   ['setup_41',['Setup',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md11',1,'']]],
-  ['share_20your_20customizations_42',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md14',1,'']]],
+  ['share_20your_20customizations_42',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md15',1,'']]],
   ['sharedinputview_43',['SharedInputView',['../struct_thoth_1_1_utils_1_1_shared_input_view.html',1,'Thoth::Utils::SharedInputView&lt; Range &gt;'],['../struct_thoth_1_1_utils_1_1_shared_input_view.html#aa4624cb1670fd883ea1ba3460435a6cd',1,'Thoth::Utils::SharedInputView::SharedInputView()']]],
   ['sharedinputview_2ehpp_44',['SharedInputView.hpp',['../_shared_input_view_8hpp.html',1,'']]],
   ['sidebar_20width_45',['Choosing Sidebar Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'']]],
