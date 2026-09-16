@@ -498,9 +498,9 @@ TEST_F(JsonFormatTest, Format_String) {
 }
  
 TEST_F(JsonFormatTest, Format_StringWithSpecialChars_Escapes) {
-    Json j{ std::string("a\"b\\c\nd") };
+    Json j{ std::string{ "a\"b\\c\nd" } };
     const auto formatted{ std::format("{}", j) };
-    EXPECT_EQ(formatted, R"("a\"b\\c\nd")");
+    EXPECT_EQ(formatted, R"lit("a\"b\\c\nd")lit");
 }
  
 TEST_F(JsonFormatTest, Format_EmptyArray) {
@@ -527,7 +527,7 @@ TEST_F(JsonFormatTest, Format_RoundTrip_Object) {
 }
 
 TEST_F(JsonFormatTest, Format_ComplexNestedStructure_WithUtf8AndEscaping) {
-    constexpr std::string_view rawInput{ R"({
+    constexpr std::string_view rawInput{ R"lit({
         "glossary": {
             "title": "example terminology",
             "UTF-8-Check": "Ohayou sekai, good morning world! 🌍",
@@ -539,7 +539,7 @@ TEST_F(JsonFormatTest, Format_ComplexNestedStructure_WithUtf8AndEscaping) {
             }
         },
         "active": false
-    })" };
+    })lit" };
 
     const auto j{ ParseOk(rawInput) };
     const auto formatted{ std::format("{}", j) };
@@ -548,10 +548,10 @@ TEST_F(JsonFormatTest, Format_ComplexNestedStructure_WithUtf8AndEscaping) {
     ASSERT_TRUE(reparsed);
     EXPECT_EQ(*reparsed, j);
 
-    EXPECT_TRUE(formatted.find(R"("UTF-8-Check":"Ohayou sekai, good morning world! 🌍")") != std::string::npos);
-    EXPECT_TRUE(formatted.find(R"("escapes":"Tab\t, Newline\n, Quote\"")") != std::string::npos);
-    EXPECT_TRUE(formatted.find(R"([1,-2.5,null,true,"sub-string"])") != std::string::npos);
-    EXPECT_TRUE(formatted.find(R"("active":false)") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"lit("UTF-8-Check":"Ohayou sekai, good morning world! 🌍")lit") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"lit("escapes":"Tab\t, Newline\n, Quote\"")lit") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"lit([1,-2.5,null,true,"sub-string"])lit") != std::string::npos);
+    EXPECT_TRUE(formatted.find(R"lit("active":false)lit") != std::string::npos);
 
     EXPECT_EQ(std::format("{}", *reparsed), formatted);
 }
