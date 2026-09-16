@@ -239,8 +239,8 @@ Examples</h1>
 <div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> errorHandler{ [](<span class="keyword">auto</span>&amp;&amp; error) {</div>
 <div class="line">        std::println(<span class="stringliteral">&quot;An error occurred: {}&quot;</span>, error);</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keywordtype">int</span> wsaError{ WSAGetLastError() }; wsaError != 0)</div>
-<div class="line">            std::println(<span class="stringliteral">&quot;WSA error: {}&quot;</span>, wsaError);</div>
+<div class="line">        <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keyword">auto</span> err{ Hermes::GetError() }; !err)</div>
+<div class="line">            std::println(<span class="stringliteral">&quot;OS error: {}&quot;</span>, err.error());</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">return</span> std::monostate{};</div>
 <div class="line">    } };</div>

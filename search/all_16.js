@@ -22,7 +22,7 @@ var searchData=
   ['url_2ehpp_19',['Url.hpp',['../_url_8hpp.html',1,'']]],
   ['urlbuilder_20',['UrlBuilder',['../struct_thoth_1_1_http_1_1_url.html#a5685b39bea8e81ec7c915f7b4f155b2d',1,'Thoth::Http::Url']]],
   ['urlparseerrorenum_21',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]],
-  ['usage_22',['Usage',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md30',1,'Usage'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md32',1,'Usage']]],
+  ['usage_22',['Usage',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md25',1,'Usage'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md27',1,'Usage']]],
   ['useproxydeprecated_23',['UseProxyDeprecated',['../namespace_thoth_1_1_http.html#a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9',1,'Thoth::Http']]],
   ['userinfo_24',['userinfo',['../struct_thoth_1_1_http_1_1_authority.html#aa33e6522ec0c5312b87918c2c1c5df77',1,'Thoth::Http::Authority::userinfo'],['../struct_thoth_1_1_http_1_1_authority_view.html#a0a0d4dcdbfc772a9ab6c0feb36ba7ed3',1,'Thoth::Http::AuthorityView::userinfo']]],
   ['utf16view_25',['Utf16View',['../namespace_thoth_1_1_string.html#a4f961aceec76a64d58d8426b1a5df28d',1,'Thoth::String']]],
