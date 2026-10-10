@@ -92,9 +92,9 @@ target_sources(Thoth PRIVATE
 #region linking
 CPMFindPackage(
         NAME                    Hermes
-        VERSION                 0.6.1
+        VERSION                 0.6.2
         GITHUB_REPOSITORY       NotRiemannCousin/Hermes
-        GIT_TAG                 v0.6.1
+        GIT_TAG                 v0.6.2
         OPTIONS                 "HERMES_INSTALL ${THOTH_INSTALL}"
         FIND_PACKAGE_ARGUMENTS  "CONFIG"
 )

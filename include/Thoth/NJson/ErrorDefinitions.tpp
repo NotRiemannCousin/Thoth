@@ -5,10 +5,9 @@
 
 template<>
 struct std::formatter<Thoth::NJson::JsonParseError> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::JsonParseError err, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::JsonParseError err, auto& ctx) const {
         return std::format_to(ctx.out(), "Unknown character '{}' at position {}", err.c, err.idx);
     }
 };
@@ -16,11 +15,10 @@ struct std::formatter<Thoth::NJson::JsonParseError> {
 
 template<>
 struct std::formatter<Thoth::NJson::JsonGetError> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::JsonGetError err, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::JsonGetError err, auto& ctx) const {
         namespace vs = std::views;
         namespace rg = std::ranges;
 
@@ -38,10 +36,9 @@ struct std::formatter<Thoth::NJson::JsonGetError> {
 
 template<>
 struct std::formatter<Thoth::NJson::JsonFindError> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::JsonFindError err, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::JsonFindError err, auto& ctx) const {
         namespace vs = std::views;
         namespace rg = std::ranges;
 
@@ -63,10 +60,9 @@ struct std::formatter<Thoth::NJson::JsonFindError> {
 
 template<>
 struct std::formatter<Thoth::NJson::JsonSearchError> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::JsonSearchError err, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::JsonSearchError err, auto& ctx) const {
         return std::format_to(ctx.out(), "No object matches the predicate");
     }
 };
@@ -74,10 +70,9 @@ struct std::formatter<Thoth::NJson::JsonSearchError> {
 
 template<>
 struct std::formatter<Thoth::NJson::JsonWrongTypeError> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::JsonWrongTypeError err, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::JsonWrongTypeError err, auto& ctx) const {
         constexpr const char* types[] {
             "null",
             "string",

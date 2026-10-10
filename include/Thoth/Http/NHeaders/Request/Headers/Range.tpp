@@ -63,10 +63,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Range> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::Range> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Range range, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Range range, auto& ctx) const {
         using namespace Thoth::Http::NHeaders;
 
         std::visit(

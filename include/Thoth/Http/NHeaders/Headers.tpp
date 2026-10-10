@@ -118,10 +118,9 @@ template<class T>
     requires (std::derived_from<T, Thoth::Http::Headers>)
 struct std::formatter<T>{
 
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const T& headers, FormatContext& ctx) const {
+    auto format(const T& headers, auto& ctx) const {
         for (const auto& p : headers.m_headers)
             format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
 

@@ -22,10 +22,9 @@ namespace std {
     template<>
     struct formatter<Thoth::Http::QueryParams>{
 
-        static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+        static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-        template<class FormatContext>
-        auto format(const Thoth::Http::QueryParams &query, FormatContext& ctx) const {
+        auto format(const Thoth::Http::QueryParams &query, auto& ctx) const {
             using Pair = std::pair<std::string_view, std::string_view>;
             namespace vs = std::views;
 

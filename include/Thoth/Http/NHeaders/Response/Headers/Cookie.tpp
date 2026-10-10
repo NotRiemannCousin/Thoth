@@ -10,8 +10,7 @@ template<>
 struct std::formatter<Thoth::Http::NHeaders::SameSiteEnum> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::SameSiteEnum sameSite, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::SameSiteEnum sameSite, auto& ctx) const {
         using Thoth::Http::NHeaders::SameSiteEnum;
         switch (sameSite) {
             case SameSiteEnum::None:   return std::format_to(ctx.out(), "None");
@@ -26,8 +25,7 @@ template<>
 struct std::formatter<Thoth::Http::NHeaders::Cookie> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Cookie& cookie, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Cookie& cookie, auto& ctx) const {
         auto out{ std::format_to(ctx.out(), "{}={}", cookie.name, cookie.value) };
 
         if (cookie.domain)      out = std::format_to(out, "; Domain={}"                           , *cookie.domain);

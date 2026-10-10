@@ -30,10 +30,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::AcceptRanges> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::AcceptRanges> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::AcceptRanges acceptRanges, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::AcceptRanges acceptRanges, auto& ctx) const {
         using Thoth::Http::NHeaders::AcceptRanges;
 
         if (acceptRanges == AcceptRanges::None ) std::format_to(ctx.out(), "none" );

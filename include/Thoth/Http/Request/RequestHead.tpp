@@ -3,11 +3,9 @@
 
 template<>
 struct std::formatter<Thoth::Http::RequestHead> {
-    template<class FormatContext>
-    constexpr auto parse(FormatContext& ctx) { return ctx.begin(); }
+    constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::RequestHead& head, FormatContext& ctx) const {
+    auto format(const Thoth::Http::RequestHead& head, auto& ctx) const {
         using Thoth::Http::details_::k_crlf;
         const auto query{ head.url.GetQuery() };
 

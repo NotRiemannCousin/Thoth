@@ -12,15 +12,14 @@ namespace std {
     struct formatter<Thoth::Http::Url>{
         bool origin{};
 
-        constexpr auto parse(auto &ctx) {
+        constexpr auto parse(auto& ctx) {
             auto it{ ctx.begin() };
             if (it != ctx.end() && (*it == 'o' || *it == 'O'))
                 origin = true, ++it;
             return it;
         }
 
-        template<class FormatContext>
-        auto format(const Thoth::Http::Url &url, FormatContext& ctx) const {
+        auto format(const Thoth::Http::Url &url, auto& ctx) const {
             format_to(ctx.out(), "{}", url.m_rawUrl);
 
             return ctx.out();

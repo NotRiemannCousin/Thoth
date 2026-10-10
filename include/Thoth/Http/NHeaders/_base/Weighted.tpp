@@ -111,8 +111,7 @@ template<Thoth::Utils::Serializable T>
 struct std::formatter<Thoth::Http::NHeaders::Weighted<T>> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Weighted<T>& w, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Weighted<T>& w, auto& ctx) const {
         auto out{ std::format_to(ctx.out(), "{}", w.value) };
 
         if (w.q < 1.0)

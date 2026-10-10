@@ -3,11 +3,9 @@
 
 template<>
 struct std::formatter<Thoth::Http::VersionEnum> {
-    template<class FormatContext>
-    constexpr auto parse(FormatContext& ctx) { return ctx.begin(); }
+    constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::VersionEnum version, FormatContext& ctx) const {
+    auto format(const Thoth::Http::VersionEnum version, auto& ctx) const {
         using Thoth::Http::VersionEnum;
 
         switch (version) {

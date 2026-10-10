@@ -1,5 +1,3 @@
-#pragma once
-
 #include <Thoth/NJson/StringRef.hpp>
 
 using namespace Thoth::NJson;

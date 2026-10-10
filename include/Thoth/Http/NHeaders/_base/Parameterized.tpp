@@ -195,8 +195,7 @@ template<Thoth::Utils::Serializable T>
 struct std::formatter<Thoth::Http::NHeaders::Parameterized<T>> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Parameterized<T>& p, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Parameterized<T>& p, auto& ctx) const {
         auto out{ std::format_to(ctx.out(), "{}", p.value) };
         Thoth::Http::NHeaders::details_::FormatParamList(out, p.params);
         return out;

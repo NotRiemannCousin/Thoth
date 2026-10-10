@@ -38,10 +38,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::MimeTypeHeader> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::MimeTypeHeader>{
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::MimeTypeHeader& mime, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::MimeTypeHeader& mime, auto& ctx) const {
         return std::format_to(ctx.out(), "{}/{}", mime.type, mime.subtype);
     }
 };

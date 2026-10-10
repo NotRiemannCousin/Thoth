@@ -442,7 +442,7 @@ struct std::formatter<Thoth::NJson::Json> {
     bool pretty{};
     size_t indentLevel{};
 
-    constexpr auto parse(std::format_parse_context& ctx) {
+    constexpr auto parse(auto& ctx) {
         auto it{ ctx.begin() };
         if (it != ctx.end() && *it != '}') {
             ++it;
@@ -459,8 +459,7 @@ struct std::formatter<Thoth::NJson::Json> {
         return it;
     }
 
-    template<class FormatContext>
-    auto format(const Thoth::NJson::Json& val, FormatContext& ctx) const {
+    auto format(const Thoth::NJson::Json& val, auto& ctx) const {
         auto it{ ctx.out() };
 
         Thoth::NJson::detail::FormatJsonVal(val, pretty, std::string(indentLevel, ' '), 0, it);

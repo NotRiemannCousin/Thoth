@@ -32,10 +32,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::TeEnum> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::TeEnum> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::TeEnum te, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::TeEnum te, auto& ctx) const {
         using Thoth::Http::NHeaders::TeEnum;
 
         if (te == TeEnum::Compress) std::format_to(ctx.out(), "compress");

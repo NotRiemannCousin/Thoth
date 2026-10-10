@@ -25,10 +25,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::TransferEncodingEnum> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::TransferEncodingEnum> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::TransferEncodingEnum transfer, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::TransferEncodingEnum transfer, auto& ctx) const {
         using Thoth::Http::NHeaders::TransferEncodingEnum;
 
         if (transfer == TransferEncodingEnum::Chunked ) std::format_to(ctx.out(), "chunked" );

@@ -126,10 +126,9 @@ namespace Thoth::Dsa {
 template<class RefT, class OwnT>
     requires requires(RefT ref){ { std::format("{}", ref) }; } && requires(OwnT own){ { std::format("{}", own) }; }
 struct std::formatter<Thoth::Dsa::Cow<RefT, OwnT>>{
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, FormatContext& ctx) const {
+    auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, auto& ctx) const {
         cow.Visit([&](auto val){ std::format_to(ctx.out(), "{}", val); });
 
         return ctx.out();

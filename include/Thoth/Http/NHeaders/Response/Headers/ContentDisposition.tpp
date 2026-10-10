@@ -28,8 +28,7 @@ template<>
 struct std::formatter<Thoth::Http::NHeaders::DispositionTypeHeader> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::DispositionTypeHeader& d, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::DispositionTypeHeader& d, auto& ctx) const {
         return std::format_to(ctx.out(), "{}", d.type);
     }
 };

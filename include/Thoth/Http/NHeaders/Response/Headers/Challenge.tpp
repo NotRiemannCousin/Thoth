@@ -92,8 +92,7 @@ template<>
 struct std::formatter<Thoth::Http::NHeaders::Challenge> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Challenge& c, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Challenge& c, auto& ctx) const {
         auto out{ std::format_to(ctx.out(), "{}", c.scheme) };
         bool first{ true };
 

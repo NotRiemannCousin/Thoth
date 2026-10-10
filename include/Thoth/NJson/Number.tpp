@@ -3,13 +3,12 @@
 
 template<>
 struct std::formatter<Thoth::NJson::Number> {
-    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
+    constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
     //! Outputs the value in its natural format.
     //! @note @c double values with no fractional part are written with a trailing
     //! @c ".0" (e.g. @c 1.0 → @c "1.0") to preserve round-trip fidelity through JSON.
-    template<class FormatContext>
-    auto format(const Thoth::NJson::Number& n, FormatContext& ctx) const{
+    auto format(const Thoth::NJson::Number& n, auto& ctx) const{
         auto out{ ctx.out() };
         std::visit([&]<class T>(const T val) {
             if constexpr (std::same_as<T, double>) {

@@ -23,10 +23,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Upgrade> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::Upgrade> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::Upgrade& upgrade, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::Upgrade& upgrade, auto& ctx) const {
         using Thoth::Http::NHeaders::Upgrade;
 
         std::format_to(ctx.out(), "{}", upgrade.protocol);

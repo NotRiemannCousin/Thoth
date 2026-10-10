@@ -31,10 +31,9 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::AcceptEncodingEnum> {
 
 template<>
 struct std::formatter<Thoth::Http::NHeaders::AcceptEncodingEnum> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::NHeaders::AcceptEncodingEnum acceptEncoding, FormatContext& ctx) const {
+    auto format(const Thoth::Http::NHeaders::AcceptEncodingEnum acceptEncoding, auto& ctx) const {
         using Thoth::Http::NHeaders::AcceptEncodingEnum;
 
         if (acceptEncoding == AcceptEncodingEnum::Gzip    ) std::format_to(ctx.out(), "gzip"    );

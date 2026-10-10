@@ -3,11 +3,9 @@
 
 template<>
 struct std::formatter<Thoth::Http::ResponseHead> {
-    template<class FormatContext>
-    constexpr auto parse(FormatContext& ctx) { return ctx.begin(); }
+    constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::ResponseHead& head, FormatContext& ctx) const {
+    auto format(const Thoth::Http::ResponseHead& head, auto& ctx) const {
         using Thoth::Http::details_::k_crlf;
 
         return std::format_to(ctx.out(), "{} {} {}\r\n{}\r\n", head.version,

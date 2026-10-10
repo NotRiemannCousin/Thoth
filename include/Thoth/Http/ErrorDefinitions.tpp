@@ -3,10 +3,9 @@
 
 template<>
 struct std::formatter<Thoth::Http::UrlParseErrorEnum> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::UrlParseErrorEnum err, FormatContext& ctx) const {
+    auto format(const Thoth::Http::UrlParseErrorEnum err, auto& ctx) const {
         constexpr const char* desc[]{ // will be changed to reflection in the future
             "EmptyUrl: The URL is empty",
             "InvalidScheme: Thoth only supports http or https",
@@ -20,10 +19,9 @@ struct std::formatter<Thoth::Http::UrlParseErrorEnum> {
 
 template<>
 struct std::formatter<Thoth::Http::MessageParseErrorEnum> {
-    static constexpr auto parse(auto &ctx) { return ctx.begin(); }
+    static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
-    template<class FormatContext>
-    auto format(const Thoth::Http::MessageParseErrorEnum err, FormatContext& ctx) const {
+    auto format(const Thoth::Http::MessageParseErrorEnum err, auto& ctx) const {
         constexpr const char* desc[]{
             "InvalidStartLine: unknown error, probably a invalid character",
             "InvalidVersion: uses 1.0 or 1.1 (2.0 and 3.0 in the future)",

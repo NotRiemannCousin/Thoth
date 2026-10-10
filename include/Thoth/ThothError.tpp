@@ -39,12 +39,11 @@ namespace Thoth {
 
 template<>
 struct std::formatter<Thoth::GenericError> {
-    constexpr auto parse(std::format_parse_context& ctx) {
+    constexpr auto parse(auto& ctx) {
         return ctx.begin();
     }
 
-    template<class FormatContext>
-    auto format(const Thoth::GenericError err, FormatContext& ctx) const {
+    auto format(const Thoth::GenericError err, auto& ctx) const {
         return std::format_to(ctx.out(), "{}", err.error);
     }
 };
@@ -59,12 +58,11 @@ struct std::formatter<Thoth::ThothError> {
     using JsonSearchError       = Thoth::NJson::JsonSearchError;
     using GenericError          = Thoth::GenericError;
 
-    constexpr auto parse(std::format_parse_context& ctx) {
+    constexpr auto parse(auto& ctx) {
         return ctx.begin();
     }
 
-    template<class FormatContext>
-    auto format(const ThothError &error, FormatContext& ctx) const {
+    auto format(const ThothError &error, auto& ctx) const {
         namespace rg = std::ranges;
         namespace vs = std::views;
 
