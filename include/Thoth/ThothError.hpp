@@ -1,6 +1,7 @@
 #pragma once
 #include <Thoth/NJson/ErrorDefinitions.hpp>
 #include <Thoth/Http/ErrorDefinitions.hpp>
+#include <Hermes/_base/ConnectionErrorEnum.hpp>
 
 namespace Thoth {
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
