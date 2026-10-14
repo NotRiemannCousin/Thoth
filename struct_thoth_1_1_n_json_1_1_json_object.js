@@ -5,7 +5,7 @@ var struct_thoth_1_1_n_json_1_1_json_object =
     [ "JsonPair", "struct_thoth_1_1_n_json_1_1_json_object.html#a9e57edb0381fe2b5e2e21c33ca3a77ee", null ],
     [ "JsonPairRef", "struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3", null ],
     [ "JsonValRef", "struct_thoth_1_1_n_json_1_1_json_object.html#a022d2c69a39cdf0f356e4b1834193017", null ],
-    [ "MapType", "struct_thoth_1_1_n_json_1_1_json_object.html#a79510446acfcc8369e7c0e8251ce7c5d", null ],
+    [ "MapType", "struct_thoth_1_1_n_json_1_1_json_object.html#ae4817f5946a81fad5530e33c1c602fb8", null ],
     [ "~JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html#adbe79d950400f92351983cfca5a8cae4", null ],
     [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html#a1e3c7fed97d9a8e51ed8245a79527d46", null ],
     [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html#a5f03badabe9f9a13926baa3607b3d745", null ],

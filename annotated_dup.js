@@ -60,10 +60,13 @@ var annotated_dup =
         [ "Json", "struct_thoth_1_1_n_json_1_1_json.html", "struct_thoth_1_1_n_json_1_1_json" ],
         [ "JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", "struct_thoth_1_1_n_json_1_1_json_find_error" ],
         [ "JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", "struct_thoth_1_1_n_json_1_1_json_get_error" ],
+        [ "JsonKeyCompare", "struct_thoth_1_1_n_json_1_1_json_key_compare.html", "struct_thoth_1_1_n_json_1_1_json_key_compare" ],
         [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],
         [ "JsonParseError", "struct_thoth_1_1_n_json_1_1_json_parse_error.html", "struct_thoth_1_1_n_json_1_1_json_parse_error" ],
         [ "JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", null ],
         [ "JsonWrongTypeError", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error" ],
+        [ "Key", "struct_thoth_1_1_n_json_1_1_key.html", "struct_thoth_1_1_n_json_1_1_key" ],
+        [ "KeyView", "struct_thoth_1_1_n_json_1_1_key_view.html", "struct_thoth_1_1_n_json_1_1_key_view" ],
         [ "Number", "struct_thoth_1_1_n_json_1_1_number.html", "struct_thoth_1_1_n_json_1_1_number" ],
         [ "StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", "struct_thoth_1_1_n_json_1_1_string_ref" ]
       ] ],

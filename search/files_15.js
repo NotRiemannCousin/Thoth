@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weighted_2ehpp_0',['Weighted.hpp',['../_weighted_8hpp.html',1,'']]]
+  ['valueproxy_2ehpp_0',['ValueProxy.hpp',['../_value_proxy_8hpp.html',1,'']]]
 ];

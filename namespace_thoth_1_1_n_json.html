@@ -161,10 +161,15 @@ Classes</h2></td></tr>
 <tr class="memitem:Json" id="r_Json"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a></td></tr>
 <tr class="memitem:JsonFindError" id="r_JsonFindError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_find_error.html">JsonFindError</a></td></tr>
 <tr class="memitem:JsonGetError" id="r_JsonGetError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_get_error.html">JsonGetError</a></td></tr>
+<tr class="memitem:JsonKeyCompare" id="r_JsonKeyCompare"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_key_compare.html">JsonKeyCompare</a></td></tr>
 <tr class="memitem:JsonObject" id="r_JsonObject"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a></td></tr>
 <tr class="memitem:JsonParseError" id="r_JsonParseError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_parse_error.html">JsonParseError</a></td></tr>
 <tr class="memitem:JsonSearchError" id="r_JsonSearchError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_search_error.html">JsonSearchError</a></td></tr>
 <tr class="memitem:JsonWrongTypeError" id="r_JsonWrongTypeError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html">JsonWrongTypeError</a></td></tr>
+<tr class="memitem:Key" id="r_Key"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_key.html">Key</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A variant representing a JSON object key (string) or an array index (int).  <a href="struct_thoth_1_1_n_json_1_1_key.html#details">More...</a><br /></td></tr>
+<tr class="memitem:KeyView" id="r_KeyView"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A non-owning variant representing a JSON object key (string_view) or an array index (int).  <a href="struct_thoth_1_1_n_json_1_1_key_view.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Number" id="r_Number"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON number type — holds <code>int64_t</code>, <code>uint64_t</code>, or <code>double</code>.  <a href="struct_thoth_1_1_n_json_1_1_number.html#details">More...</a><br /></td></tr>
 <tr class="memitem:StringRef" id="r_StringRef"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a></td></tr>
@@ -191,8 +196,8 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ad5326e89b2ac5a802e1329cf74a995c5" id="r_ad5326e89b2ac5a802e1329cf74a995c5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ad5326e89b2ac5a802e1329cf74a995c5">ExpCValWrapper</a> = std::expected&lt;<a class="el" href="#ac57d563496ec52612186beead7849446">CValWrapper</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;</td></tr>
 <tr class="memitem:a6910fbc62d12d8c49d1da97ac0575cf2" id="r_a6910fbc62d12d8c49d1da97ac0575cf2"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6910fbc62d12d8c49d1da97ac0575cf2">JsonObjKey</a> = std::string</td></tr>
 <tr class="memitem:a4c2f6be770513bd17a5941df621b70d5" id="r_a4c2f6be770513bd17a5941df621b70d5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4c2f6be770513bd17a5941df621b70d5">JsonObjKeyRef</a> = std::string_view</td></tr>
-<tr class="memitem:ac13bf329f6dfb030f6421344e37d1474" id="r_ac13bf329f6dfb030f6421344e37d1474"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac13bf329f6dfb030f6421344e37d1474">Key</a> = std::variant&lt;int, <a class="el" href="#a6910fbc62d12d8c49d1da97ac0575cf2">JsonObjKey</a>&gt;</td></tr>
-<tr class="memitem:a81bcb32efb6d9c74b56472f509b23085" id="r_a81bcb32efb6d9c74b56472f509b23085"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a81bcb32efb6d9c74b56472f509b23085">Keys</a> = std::span&lt;const <a class="el" href="#ac13bf329f6dfb030f6421344e37d1474">Key</a>&gt;</td></tr>
+<tr class="memitem:a81bcb32efb6d9c74b56472f509b23085" id="r_a81bcb32efb6d9c74b56472f509b23085"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a81bcb32efb6d9c74b56472f509b23085">Keys</a> = std::span&lt;const <a class="el" href="struct_thoth_1_1_n_json_1_1_key.html">Key</a>&gt;</td></tr>
+<tr class="memitem:a4311863180d6e9effeb96b6148a69ce3" id="r_a4311863180d6e9effeb96b6148a69ce3"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> = std::span&lt;const <a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a>&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -346,20 +351,6 @@ requires (std::constructible_from&lt;<a class="el" href="struct_thoth_1_1_n_json
 
 </div>
 </div>
-<a id="ac13bf329f6dfb030f6421344e37d1474" name="ac13bf329f6dfb030f6421344e37d1474"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac13bf329f6dfb030f6421344e37d1474">&#9670;&#160;</a></span>Key</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#ac13bf329f6dfb030f6421344e37d1474">Thoth::NJson::Key</a> = std::variant&lt;int, <a class="el" href="#a6910fbc62d12d8c49d1da97ac0575cf2">JsonObjKey</a>&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a81bcb32efb6d9c74b56472f509b23085" name="a81bcb32efb6d9c74b56472f509b23085"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a81bcb32efb6d9c74b56472f509b23085">&#9670;&#160;</a></span>Keys</h2>
 
@@ -367,7 +358,21 @@ requires (std::constructible_from&lt;<a class="el" href="struct_thoth_1_1_n_json
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a81bcb32efb6d9c74b56472f509b23085">Thoth::NJson::Keys</a> = std::span&lt;const <a class="el" href="#ac13bf329f6dfb030f6421344e37d1474">Key</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a81bcb32efb6d9c74b56472f509b23085">Thoth::NJson::Keys</a> = std::span&lt;const <a class="el" href="struct_thoth_1_1_n_json_1_1_key.html">Key</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4311863180d6e9effeb96b6148a69ce3" name="a4311863180d6e9effeb96b6148a69ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4311863180d6e9effeb96b6148a69ce3">&#9670;&#160;</a></span>KeysView</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4311863180d6e9effeb96b6148a69ce3">Thoth::NJson::KeysView</a> = std::span&lt;const <a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

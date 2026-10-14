@@ -63,13 +63,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "@ref getting-started",
-"functions_func_u.html",
-"namespace_thoth_1_1_string.html#a7c291092012adac5e744b889d2dcd6b8",
-"struct_thoth_1_1_dsa_1_1_linear_map.html#af6395bd4d4f4cdcdfbb45e98c4f86072",
-"struct_thoth_1_1_http_1_1_headers.html#af550373a3092b1ab4a6481c5a28c2d8f",
-"struct_thoth_1_1_http_1_1_query_params.html#a74e12ee568c11d8de090add89b40c171",
-"struct_thoth_1_1_http_1_1_url.html#ac7e21b2726352f4ec8ebd2c8afd4dbb7",
-"struct_thoth_1_1_n_json_1_1_json_object.html#ae4c55a6951dd9c9e180a379180ef4847"
+"functions_func_r.html",
+"namespace_thoth_1_1_string.html#a46fc3f9ea529fbecf2fad37ae7494b4d",
+"struct_thoth_1_1_dsa_1_1_linear_map.html#ae7c9922000a8c52af158b2d86236cce4",
+"struct_thoth_1_1_http_1_1_headers.html#ae6d290cbda1e0b0dfaf2b7725b44cc07",
+"struct_thoth_1_1_http_1_1_query_params.html#a442c169f5b5e0a4c2ac840ed4794f869",
+"struct_thoth_1_1_http_1_1_url.html#aa1e288a779c54a13550cc435fe07a893",
+"struct_thoth_1_1_n_json_1_1_json_object.html#aa3fc2742c9a5bf2f6d319d4e777af1d3"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

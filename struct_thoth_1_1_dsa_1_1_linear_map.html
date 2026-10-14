@@ -175,6 +175,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae1144b2d9ee57f59ffbd8393b3c4b8cb" id="r_ae1144b2d9ee57f59ffbd8393b3c4b8cb"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ae1144b2d9ee57f59ffbd8393b3c4b8cb">LinearMap</a> (const LinearMap &amp;)=default</td></tr>
 <tr class="memitem:a36758133eb0e5d90fec743bf479606eb" id="r_a36758133eb0e5d90fec743bf479606eb"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a36758133eb0e5d90fec743bf479606eb">LinearMap</a> (LinearMap &amp;&amp;)=default</td></tr>
 <tr class="memitem:af27e6ac7991d37cb821cd62a340556f4" id="r_af27e6ac7991d37cb821cd62a340556f4"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#af27e6ac7991d37cb821cd62a340556f4">LinearMap</a> (const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;comp)</td></tr>
+<tr class="memitem:a7684912199446cde281f2f839448c6fa" id="r_a7684912199446cde281f2f839448c6fa"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a7684912199446cde281f2f839448c6fa">LinearMap</a> (<a class="el" href="#a79bf7933bafb944337caf032cf692414">container_type</a> &amp;&amp;init, const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;comp=<a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a>{})</td></tr>
+<tr class="memitem:affb6ad7d177cc48d67af00a281510f79" id="r_affb6ad7d177cc48d67af00a281510f79"><td class="memTemplParams" colspan="2">template&lt;std::ranges::input_range R&gt; <br />
+requires std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a46f05fa26a144c9c1822882300b9a9a0">value_type</a>&gt;</td></tr>
+<tr class="memitem:affb6ad7d177cc48d67af00a281510f79 template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#affb6ad7d177cc48d67af00a281510f79">LinearMap</a> (std::from_range_t, R &amp;&amp;rg, const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;comp=<a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a>{})</td></tr>
 <tr class="memitem:ab9febc54b646523e7177dcc9cdc4794c" id="r_ab9febc54b646523e7177dcc9cdc4794c"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ab9febc54b646523e7177dcc9cdc4794c">LinearMap</a> (std::initializer_list&lt; <a class="el" href="#a46f05fa26a144c9c1822882300b9a9a0">value_type</a> &gt; init, const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;comp=<a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a>{})</td></tr>
 <tr class="memitem:ae7c9922000a8c52af158b2d86236cce4" id="r_ae7c9922000a8c52af158b2d86236cce4"><td class="memItemLeft">constexpr <a class="el" href="#a01ee59883815737361d41e2e916f7032">LinearMap</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae7c9922000a8c52af158b2d86236cce4">operator=</a> (const <a class="el" href="#a01ee59883815737361d41e2e916f7032">LinearMap</a> &amp;)=default</td></tr>
 <tr class="memitem:ad3c5d74375d7f436b9521a687b71caa0" id="r_ad3c5d74375d7f436b9521a687b71caa0"><td class="memItemLeft">constexpr <a class="el" href="#a01ee59883815737361d41e2e916f7032">LinearMap</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad3c5d74375d7f436b9521a687b71caa0">operator=</a> (<a class="el" href="#a01ee59883815737361d41e2e916f7032">LinearMap</a> &amp;&amp;) noexcept=default</td></tr>
@@ -338,7 +342,7 @@ template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
 </div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a01ee59883815737361d41e2e916f7032" name="a01ee59883815737361d41e2e916f7032"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01ee59883815737361d41e2e916f7032">&#9670;&#160;</a></span>LinearMap() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ee59883815737361d41e2e916f7032">&#9670;&#160;</a></span>LinearMap() <span class="overload">[1/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -365,7 +369,7 @@ template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
 </div>
 </div>
 <a id="ae1144b2d9ee57f59ffbd8393b3c4b8cb" name="ae1144b2d9ee57f59ffbd8393b3c4b8cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1144b2d9ee57f59ffbd8393b3c4b8cb">&#9670;&#160;</a></span>LinearMap() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1144b2d9ee57f59ffbd8393b3c4b8cb">&#9670;&#160;</a></span>LinearMap() <span class="overload">[2/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +396,7 @@ template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
 </div>
 </div>
 <a id="a36758133eb0e5d90fec743bf479606eb" name="a36758133eb0e5d90fec743bf479606eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36758133eb0e5d90fec743bf479606eb">&#9670;&#160;</a></span>LinearMap() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a36758133eb0e5d90fec743bf479606eb">&#9670;&#160;</a></span>LinearMap() <span class="overload">[3/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -419,7 +423,7 @@ template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
 </div>
 </div>
 <a id="af27e6ac7991d37cb821cd62a340556f4" name="af27e6ac7991d37cb821cd62a340556f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af27e6ac7991d37cb821cd62a340556f4">&#9670;&#160;</a></span>LinearMap() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af27e6ac7991d37cb821cd62a340556f4">&#9670;&#160;</a></span>LinearMap() <span class="overload">[4/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -445,8 +449,78 @@ template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
 
 </div>
 </div>
+<a id="a7684912199446cde281f2f839448c6fa" name="a7684912199446cde281f2f839448c6fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7684912199446cde281f2f839448c6fa">&#9670;&#160;</a></span>LinearMap() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">Thoth::Dsa::LinearMap</a>&lt; KeyT, ValT, Pred &gt;::LinearMap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a79bf7933bafb944337caf032cf692414">container_type</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>init</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a>{}</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affb6ad7d177cc48d67af00a281510f79" name="affb6ad7d177cc48d67af00a281510f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affb6ad7d177cc48d67af00a281510f79">&#9670;&#160;</a></span>LinearMap() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class KeyT, class ValT, class Pred = std::less&lt;&gt;&gt; </div>
+<div class="memtemplate">
+template&lt;std::ranges::input_range R&gt; <br />
+requires std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a46f05fa26a144c9c1822882300b9a9a0">value_type</a>&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">Thoth::Dsa::LinearMap</a>&lt; KeyT, ValT, Pred &gt;::LinearMap </td>
+          <td>(</td>
+          <td class="paramtype">std::from_range_t</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>rg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#ac31b799e8a90fdf4490eeb6f221a37c2">key_compare</a>{}</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab9febc54b646523e7177dcc9cdc4794c" name="ab9febc54b646523e7177dcc9cdc4794c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9febc54b646523e7177dcc9cdc4794c">&#9670;&#160;</a></span>LinearMap() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9febc54b646523e7177dcc9cdc4794c">&#9670;&#160;</a></span>LinearMap() <span class="overload">[7/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

@@ -10,8 +10,6 @@ var _n_json_2_definitions_8hpp =
     [ "Thoth::NJson::ExpValWrapper", "namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac", null ],
     [ "Thoth::NJson::JsonObjKey", "namespace_thoth_1_1_n_json.html#a6910fbc62d12d8c49d1da97ac0575cf2", null ],
     [ "Thoth::NJson::JsonObjKeyRef", "namespace_thoth_1_1_n_json.html#a4c2f6be770513bd17a5941df621b70d5", null ],
-    [ "Thoth::NJson::Key", "namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474", null ],
-    [ "Thoth::NJson::Keys", "namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085", null ],
     [ "Thoth::NJson::Null", "namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2", null ],
     [ "Thoth::NJson::Number", "namespace_thoth_1_1_n_json.html#a3eaca3486f92043f1be722e646e8d452", null ],
     [ "Thoth::NJson::Object", "namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978", null ],

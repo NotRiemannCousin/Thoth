@@ -12,6 +12,8 @@ var struct_thoth_1_1_dsa_1_1_linear_map =
     [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#ae1144b2d9ee57f59ffbd8393b3c4b8cb", null ],
     [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#a36758133eb0e5d90fec743bf479606eb", null ],
     [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#af27e6ac7991d37cb821cd62a340556f4", null ],
+    [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#a7684912199446cde281f2f839448c6fa", null ],
+    [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#affb6ad7d177cc48d67af00a281510f79", null ],
     [ "LinearMap", "struct_thoth_1_1_dsa_1_1_linear_map.html#ab9febc54b646523e7177dcc9cdc4794c", null ],
     [ "begin", "struct_thoth_1_1_dsa_1_1_linear_map.html#a8668d28a98c4aae2436ffd972693455a", null ],
     [ "begin", "struct_thoth_1_1_dsa_1_1_linear_map.html#ac539a271d22c961ca9ca2fe6ada14f28", null ],

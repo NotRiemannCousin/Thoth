@@ -248,49 +248,49 @@ requires std::constructible_from&lt;std::string, T&gt;</td></tr>
 <tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Get Functions</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Will get the direct child of this element with a given key/index. </p>
 </div></td></tr>
-<tr class="memitem:a3bc8231b5f102cb8d819a2f90ca9502e" id="r_a3bc8231b5f102cb8d819a2f90ca9502e"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3bc8231b5f102cb8d819a2f90ca9502e">Get</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key)</td></tr>
-<tr class="memdesc:a3bc8231b5f102cb8d819a2f90ca9502e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
-<tr class="memitem:af77b135d1eda8d0b0ea10c5844573fcb" id="r_af77b135d1eda8d0b0ea10c5844573fcb"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#af77b135d1eda8d0b0ea10c5844573fcb">Get</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) const</td></tr>
-<tr class="memdesc:af77b135d1eda8d0b0ea10c5844573fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.     <br /></td></tr>
-<tr class="memitem:acdb998caee0442e99d4cf62ea456c0ba" id="r_acdb998caee0442e99d4cf62ea456c0ba"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#acdb998caee0442e99d4cf62ea456c0ba">GetCopy</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) const</td></tr>
-<tr class="memdesc:acdb998caee0442e99d4cf62ea456c0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
-<tr class="memitem:a2e93a24e40ad959895c9a6b0623e7a0b" id="r_a2e93a24e40ad959895c9a6b0623e7a0b"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2e93a24e40ad959895c9a6b0623e7a0b">GetAndMove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) &amp;&amp;</td></tr>
-<tr class="memdesc:a2e93a24e40ad959895c9a6b0623e7a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return (with move) the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
-<tr class="memitem:ac9e277cbc57e4ecdf34a8bb1a4dfa3e3" id="r_ac9e277cbc57e4ecdf34a8bb1a4dfa3e3"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac9e277cbc57e4ecdf34a8bb1a4dfa3e3">GetCopyOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) const</td></tr>
-<tr class="memdesc:ac9e277cbc57e4ecdf34a8bb1a4dfa3e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, null otherwise.  <br /></td></tr>
-<tr class="memitem:ad648da36ac5ed975e690bca5735c9f82" id="r_ad648da36ac5ed975e690bca5735c9f82"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad648da36ac5ed975e690bca5735c9f82">GetAndMoveOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) &amp;&amp;</td></tr>
-<tr class="memdesc:ad648da36ac5ed975e690bca5735c9f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, null otherwise.  <br /></td></tr>
-<tr class="memitem:adbffc171c8c3c59888d4f8521a19a7f8" id="r_adbffc171c8c3c59888d4f8521a19a7f8"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#adbffc171c8c3c59888d4f8521a19a7f8">GetOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key)</td></tr>
-<tr class="memdesc:adbffc171c8c3c59888d4f8521a19a7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
-<tr class="memitem:aa9d8a96fe1eb704522300a28c48caa15" id="r_aa9d8a96fe1eb704522300a28c48caa15"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa9d8a96fe1eb704522300a28c48caa15">GetOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) const</td></tr>
-<tr class="memdesc:aa9d8a96fe1eb704522300a28c48caa15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.     <br /></td></tr>
-<tr class="memitem:ac28fbbe961f147b1f0bd268ab8ca0f62" id="r_ac28fbbe961f147b1f0bd268ab8ca0f62"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac28fbbe961f147b1f0bd268ab8ca0f62">GetCopyOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) const</td></tr>
-<tr class="memdesc:ac28fbbe961f147b1f0bd268ab8ca0f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
-<tr class="memitem:a83c70c6d983a65de534350fddb768328" id="r_a83c70c6d983a65de534350fddb768328"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a83c70c6d983a65de534350fddb768328">GetAndMoveOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a> key) &amp;&amp;</td></tr>
-<tr class="memdesc:a83c70c6d983a65de534350fddb768328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
+<tr class="memitem:a20b1d11ec2f831d39bfe891542231692" id="r_a20b1d11ec2f831d39bfe891542231692"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a20b1d11ec2f831d39bfe891542231692">Get</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key)</td></tr>
+<tr class="memdesc:a20b1d11ec2f831d39bfe891542231692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
+<tr class="memitem:a99c8496f81b13281605acf7af32ccc22" id="r_a99c8496f81b13281605acf7af32ccc22"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a99c8496f81b13281605acf7af32ccc22">Get</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) const</td></tr>
+<tr class="memdesc:a99c8496f81b13281605acf7af32ccc22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.     <br /></td></tr>
+<tr class="memitem:a3ee1c18501a1128147153ac28a2e0117" id="r_a3ee1c18501a1128147153ac28a2e0117"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3ee1c18501a1128147153ac28a2e0117">GetCopy</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) const</td></tr>
+<tr class="memdesc:a3ee1c18501a1128147153ac28a2e0117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
+<tr class="memitem:a0f4115b584028de29bce43acd7906c4b" id="r_a0f4115b584028de29bce43acd7906c4b"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0f4115b584028de29bce43acd7906c4b">GetAndMove</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) &amp;&amp;</td></tr>
+<tr class="memdesc:a0f4115b584028de29bce43acd7906c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return (with move) the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, std::nullopt otherwise.  <br /></td></tr>
+<tr class="memitem:a1dd7ec03a6fb7cc5871732ada71053b5" id="r_a1dd7ec03a6fb7cc5871732ada71053b5"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1dd7ec03a6fb7cc5871732ada71053b5">GetCopyOrNull</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) const</td></tr>
+<tr class="memdesc:a1dd7ec03a6fb7cc5871732ada71053b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, null otherwise.  <br /></td></tr>
+<tr class="memitem:a1a156a4af94c773902091e6ba4ba86a4" id="r_a1a156a4af94c773902091e6ba4ba86a4"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1a156a4af94c773902091e6ba4ba86a4">GetAndMoveOrNull</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) &amp;&amp;</td></tr>
+<tr class="memdesc:a1a156a4af94c773902091e6ba4ba86a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, null otherwise.  <br /></td></tr>
+<tr class="memitem:a5c0abdaa52cc6e9d39be88c555ddcad4" id="r_a5c0abdaa52cc6e9d39be88c555ddcad4"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5c0abdaa52cc6e9d39be88c555ddcad4">GetOrError</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key)</td></tr>
+<tr class="memdesc:a5c0abdaa52cc6e9d39be88c555ddcad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
+<tr class="memitem:a358540db2a35f99f2a40471d91959678" id="r_a358540db2a35f99f2a40471d91959678"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a358540db2a35f99f2a40471d91959678">GetOrError</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) const</td></tr>
+<tr class="memdesc:a358540db2a35f99f2a40471d91959678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a ref of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.     <br /></td></tr>
+<tr class="memitem:a61bc34a2fc369e454601e192ac197540" id="r_a61bc34a2fc369e454601e192ac197540"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a61bc34a2fc369e454601e192ac197540">GetCopyOrError</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) const</td></tr>
+<tr class="memdesc:a61bc34a2fc369e454601e192ac197540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
+<tr class="memitem:aa991a37a7f3ad228378c7317b3672f1f" id="r_aa991a37a7f3ad228378c7317b3672f1f"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa991a37a7f3ad228378c7317b3672f1f">GetAndMoveOrError</a> (<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a> key) &amp;&amp;</td></tr>
+<tr class="memdesc:aa991a37a7f3ad228378c7317b3672f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the element with this index/key if this is an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> or <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> otherwise.  <br /></td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Find Functions</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Will find a nested child in the tree. Something like <span class="tt">["data"][-1]["contents"][0]["name"]</span>. </p>
 </div></td></tr>
-<tr class="memitem:a382a858d198eddc12eb7da82c3e29b0a" id="r_a382a858d198eddc12eb7da82c3e29b0a"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a382a858d198eddc12eb7da82c3e29b0a">Find</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys)</td></tr>
-<tr class="memdesc:a382a858d198eddc12eb7da82c3e29b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get, std::nullopt at the first fail.  <br /></td></tr>
-<tr class="memitem:aa477a1126f75df53c5e40336aa9c2a28" id="r_aa477a1126f75df53c5e40336aa9c2a28"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa477a1126f75df53c5e40336aa9c2a28">Find</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) const</td></tr>
-<tr class="memdesc:aa477a1126f75df53c5e40336aa9c2a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get, std::nullopt at the first fail.     <br /></td></tr>
-<tr class="memitem:a91f4806c36a62a1acb19e64d811c5aeb" id="r_a91f4806c36a62a1acb19e64d811c5aeb"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a91f4806c36a62a1acb19e64d811c5aeb">FindCopy</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) const</td></tr>
-<tr class="memdesc:a91f4806c36a62a1acb19e64d811c5aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy, std::nullopt at the first fail.  <br /></td></tr>
-<tr class="memitem:ace53bce069600c9e91516c8d54dec3b9" id="r_ace53bce069600c9e91516c8d54dec3b9"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ace53bce069600c9e91516c8d54dec3b9">FindAndMove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) &amp;&amp;</td></tr>
-<tr class="memdesc:ace53bce069600c9e91516c8d54dec3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetAndMove, std::nullopt at the first fail.  <br /></td></tr>
-<tr class="memitem:a113bf6a34262f6e00b807880a63f22b8" id="r_a113bf6a34262f6e00b807880a63f22b8"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a113bf6a34262f6e00b807880a63f22b8">FindCopyOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) const</td></tr>
-<tr class="memdesc:a113bf6a34262f6e00b807880a63f22b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy. Return null at the first fail.  <br /></td></tr>
-<tr class="memitem:a5c984bd05a4e2c957b188b3f9caea517" id="r_a5c984bd05a4e2c957b188b3f9caea517"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5c984bd05a4e2c957b188b3f9caea517">FindAndMoveOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) &amp;&amp;</td></tr>
-<tr class="memdesc:a5c984bd05a4e2c957b188b3f9caea517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetAndMove. Return null at the first fail.  <br /></td></tr>
-<tr class="memitem:ab32a523588740bb952f620e56444f706" id="r_ab32a523588740bb952f620e56444f706"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab32a523588740bb952f620e56444f706">FindOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys)</td></tr>
-<tr class="memdesc:ab32a523588740bb952f620e56444f706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
-<tr class="memitem:a6cbca120c159eba310bb2eb47e835610" id="r_a6cbca120c159eba310bb2eb47e835610"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6cbca120c159eba310bb2eb47e835610">FindOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) const</td></tr>
-<tr class="memdesc:a6cbca120c159eba310bb2eb47e835610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.     <br /></td></tr>
-<tr class="memitem:a095c936ce48b713ba1b812a50baabfe5" id="r_a095c936ce48b713ba1b812a50baabfe5"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a095c936ce48b713ba1b812a50baabfe5">FindCopyOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) const</td></tr>
-<tr class="memdesc:a095c936ce48b713ba1b812a50baabfe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
-<tr class="memitem:a7ab0e34be372fdac4d90303e37aedb92" id="r_a7ab0e34be372fdac4d90303e37aedb92"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7ab0e34be372fdac4d90303e37aedb92">FindAndMoveOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a> keys) &amp;&amp;</td></tr>
-<tr class="memdesc:a7ab0e34be372fdac4d90303e37aedb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Find. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
+<tr class="memitem:ae0918e27274b0f163c2ff1a652cfc733" id="r_ae0918e27274b0f163c2ff1a652cfc733"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae0918e27274b0f163c2ff1a652cfc733">Find</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys)</td></tr>
+<tr class="memdesc:ae0918e27274b0f163c2ff1a652cfc733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get, std::nullopt at the first fail.  <br /></td></tr>
+<tr class="memitem:ad29edb88ef73c60f498824fd4539ac05" id="r_ad29edb88ef73c60f498824fd4539ac05"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad29edb88ef73c60f498824fd4539ac05">Find</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) const</td></tr>
+<tr class="memdesc:ad29edb88ef73c60f498824fd4539ac05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get, std::nullopt at the first fail.     <br /></td></tr>
+<tr class="memitem:a81b63a0ef2b94ca180d64c15ea4c947c" id="r_a81b63a0ef2b94ca180d64c15ea4c947c"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a81b63a0ef2b94ca180d64c15ea4c947c">FindCopy</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) const</td></tr>
+<tr class="memdesc:a81b63a0ef2b94ca180d64c15ea4c947c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy, std::nullopt at the first fail.  <br /></td></tr>
+<tr class="memitem:a37c263c95201138f16ad5fe316a8609b" id="r_a37c263c95201138f16ad5fe316a8609b"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a37c263c95201138f16ad5fe316a8609b">FindAndMove</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) &amp;&amp;</td></tr>
+<tr class="memdesc:a37c263c95201138f16ad5fe316a8609b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetAndMove, std::nullopt at the first fail.  <br /></td></tr>
+<tr class="memitem:a8d15fefb2e6a6df825ba15f28d8f4091" id="r_a8d15fefb2e6a6df825ba15f28d8f4091"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8d15fefb2e6a6df825ba15f28d8f4091">FindCopyOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) const</td></tr>
+<tr class="memdesc:a8d15fefb2e6a6df825ba15f28d8f4091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy. Return null at the first fail.  <br /></td></tr>
+<tr class="memitem:a4611b0ccbfec7ce6d59f4f1e92ac1b35" id="r_a4611b0ccbfec7ce6d59f4f1e92ac1b35"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4611b0ccbfec7ce6d59f4f1e92ac1b35">FindAndMoveOrNull</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) &amp;&amp;</td></tr>
+<tr class="memdesc:a4611b0ccbfec7ce6d59f4f1e92ac1b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetAndMove. Return null at the first fail.  <br /></td></tr>
+<tr class="memitem:a8cb07aa9f28ab79b80fe9b6638ab3f54" id="r_a8cb07aa9f28ab79b80fe9b6638ab3f54"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8cb07aa9f28ab79b80fe9b6638ab3f54">FindOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys)</td></tr>
+<tr class="memdesc:a8cb07aa9f28ab79b80fe9b6638ab3f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
+<tr class="memitem:a6a0efdd194f5b0459b5f8dc4a5444ab6" id="r_a6a0efdd194f5b0459b5f8dc4a5444ab6"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6a0efdd194f5b0459b5f8dc4a5444ab6">FindOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) const</td></tr>
+<tr class="memdesc:a6a0efdd194f5b0459b5f8dc4a5444ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Get. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.     <br /></td></tr>
+<tr class="memitem:a753bf4b0706646a91661672f5e8798ac" id="r_a753bf4b0706646a91661672f5e8798ac"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a753bf4b0706646a91661672f5e8798ac">FindCopyOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) const</td></tr>
+<tr class="memdesc:a753bf4b0706646a91661672f5e8798ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to GetCopy. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
+<tr class="memitem:a40b2a3e8454c3ca1a9ae564472b3ee65" id="r_a40b2a3e8454c3ca1a9ae564472b3ee65"><td class="memItemLeft"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a>&#160;</td><td class="memItemRight"><a class="el" href="#a40b2a3e8454c3ca1a9ae564472b3ee65">FindAndMoveOrError</a> (<a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a> keys) &amp;&amp;</td></tr>
+<tr class="memdesc:a40b2a3e8454c3ca1a9ae564472b3ee65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as successive calls to Find. Return <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> at the first fail.  <br /></td></tr>
 <tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Search Functions</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Will pick the fist element that satisfies the given predicate. </p>
 </div></td></tr>
@@ -1143,8 +1143,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a382a858d198eddc12eb7da82c3e29b0a" name="a382a858d198eddc12eb7da82c3e29b0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a382a858d198eddc12eb7da82c3e29b0a">&#9670;&#160;</a></span>Find() <span class="overload">[1/2]</span></h2>
+<a id="ae0918e27274b0f163c2ff1a652cfc733" name="ae0918e27274b0f163c2ff1a652cfc733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0918e27274b0f163c2ff1a652cfc733">&#9670;&#160;</a></span>Find() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1152,7 +1152,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a> Thoth::NJson::Json::Find </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1162,8 +1162,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aa477a1126f75df53c5e40336aa9c2a28" name="aa477a1126f75df53c5e40336aa9c2a28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa477a1126f75df53c5e40336aa9c2a28">&#9670;&#160;</a></span>Find() <span class="overload">[2/2]</span></h2>
+<a id="ad29edb88ef73c60f498824fd4539ac05" name="ad29edb88ef73c60f498824fd4539ac05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29edb88ef73c60f498824fd4539ac05">&#9670;&#160;</a></span>Find() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1174,7 +1174,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a> Thoth::NJson::Json::Find </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1189,8 +1189,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ace53bce069600c9e91516c8d54dec3b9" name="ace53bce069600c9e91516c8d54dec3b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace53bce069600c9e91516c8d54dec3b9">&#9670;&#160;</a></span>FindAndMove()</h2>
+<a id="a37c263c95201138f16ad5fe316a8609b" name="a37c263c95201138f16ad5fe316a8609b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c263c95201138f16ad5fe316a8609b">&#9670;&#160;</a></span>FindAndMove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1198,7 +1198,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a> Thoth::NJson::Json::FindAndMove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1208,8 +1208,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a7ab0e34be372fdac4d90303e37aedb92" name="a7ab0e34be372fdac4d90303e37aedb92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ab0e34be372fdac4d90303e37aedb92">&#9670;&#160;</a></span>FindAndMoveOrError()</h2>
+<a id="a40b2a3e8454c3ca1a9ae564472b3ee65" name="a40b2a3e8454c3ca1a9ae564472b3ee65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b2a3e8454c3ca1a9ae564472b3ee65">&#9670;&#160;</a></span>FindAndMoveOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1217,7 +1217,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a> Thoth::NJson::Json::FindAndMoveOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1227,8 +1227,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a5c984bd05a4e2c957b188b3f9caea517" name="a5c984bd05a4e2c957b188b3f9caea517"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c984bd05a4e2c957b188b3f9caea517">&#9670;&#160;</a></span>FindAndMoveOrNull()</h2>
+<a id="a4611b0ccbfec7ce6d59f4f1e92ac1b35" name="a4611b0ccbfec7ce6d59f4f1e92ac1b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4611b0ccbfec7ce6d59f4f1e92ac1b35">&#9670;&#160;</a></span>FindAndMoveOrNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1236,7 +1236,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a> Thoth::NJson::Json::FindAndMoveOrNull </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1246,8 +1246,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a91f4806c36a62a1acb19e64d811c5aeb" name="a91f4806c36a62a1acb19e64d811c5aeb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91f4806c36a62a1acb19e64d811c5aeb">&#9670;&#160;</a></span>FindCopy()</h2>
+<a id="a81b63a0ef2b94ca180d64c15ea4c947c" name="a81b63a0ef2b94ca180d64c15ea4c947c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81b63a0ef2b94ca180d64c15ea4c947c">&#9670;&#160;</a></span>FindCopy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1258,7 +1258,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a> Thoth::NJson::Json::FindCopy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1273,8 +1273,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a095c936ce48b713ba1b812a50baabfe5" name="a095c936ce48b713ba1b812a50baabfe5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a095c936ce48b713ba1b812a50baabfe5">&#9670;&#160;</a></span>FindCopyOrError()</h2>
+<a id="a753bf4b0706646a91661672f5e8798ac" name="a753bf4b0706646a91661672f5e8798ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753bf4b0706646a91661672f5e8798ac">&#9670;&#160;</a></span>FindCopyOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1285,7 +1285,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a> Thoth::NJson::Json::FindCopyOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1300,8 +1300,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a113bf6a34262f6e00b807880a63f22b8" name="a113bf6a34262f6e00b807880a63f22b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a113bf6a34262f6e00b807880a63f22b8">&#9670;&#160;</a></span>FindCopyOrNull()</h2>
+<a id="a8d15fefb2e6a6df825ba15f28d8f4091" name="a8d15fefb2e6a6df825ba15f28d8f4091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d15fefb2e6a6df825ba15f28d8f4091">&#9670;&#160;</a></span>FindCopyOrNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1312,7 +1312,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a> Thoth::NJson::Json::FindCopyOrNull </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1327,8 +1327,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ab32a523588740bb952f620e56444f706" name="ab32a523588740bb952f620e56444f706"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab32a523588740bb952f620e56444f706">&#9670;&#160;</a></span>FindOrError() <span class="overload">[1/2]</span></h2>
+<a id="a8cb07aa9f28ab79b80fe9b6638ab3f54" name="a8cb07aa9f28ab79b80fe9b6638ab3f54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb07aa9f28ab79b80fe9b6638ab3f54">&#9670;&#160;</a></span>FindOrError() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1336,7 +1336,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a> Thoth::NJson::Json::FindOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1346,8 +1346,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a6cbca120c159eba310bb2eb47e835610" name="a6cbca120c159eba310bb2eb47e835610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6cbca120c159eba310bb2eb47e835610">&#9670;&#160;</a></span>FindOrError() <span class="overload">[2/2]</span></h2>
+<a id="a6a0efdd194f5b0459b5f8dc4a5444ab6" name="a6a0efdd194f5b0459b5f8dc4a5444ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a0efdd194f5b0459b5f8dc4a5444ab6">&#9670;&#160;</a></span>FindOrError() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1358,7 +1358,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a> Thoth::NJson::Json::FindOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a81bcb32efb6d9c74b56472f509b23085">Keys</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#a4311863180d6e9effeb96b6148a69ce3">KeysView</a></td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1373,8 +1373,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a3bc8231b5f102cb8d819a2f90ca9502e" name="a3bc8231b5f102cb8d819a2f90ca9502e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bc8231b5f102cb8d819a2f90ca9502e">&#9670;&#160;</a></span>Get() <span class="overload">[1/2]</span></h2>
+<a id="a20b1d11ec2f831d39bfe891542231692" name="a20b1d11ec2f831d39bfe891542231692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b1d11ec2f831d39bfe891542231692">&#9670;&#160;</a></span>Get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1382,7 +1382,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8">OptRefValWrapper</a> Thoth::NJson::Json::Get </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1392,8 +1392,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="af77b135d1eda8d0b0ea10c5844573fcb" name="af77b135d1eda8d0b0ea10c5844573fcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af77b135d1eda8d0b0ea10c5844573fcb">&#9670;&#160;</a></span>Get() <span class="overload">[2/2]</span></h2>
+<a id="a99c8496f81b13281605acf7af32ccc22" name="a99c8496f81b13281605acf7af32ccc22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c8496f81b13281605acf7af32ccc22">&#9670;&#160;</a></span>Get() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1404,7 +1404,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a46af4abf9de16f61293a99604c452afb">OptCRefValWrapper</a> Thoth::NJson::Json::Get </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1419,8 +1419,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a2e93a24e40ad959895c9a6b0623e7a0b" name="a2e93a24e40ad959895c9a6b0623e7a0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e93a24e40ad959895c9a6b0623e7a0b">&#9670;&#160;</a></span>GetAndMove()</h2>
+<a id="a0f4115b584028de29bce43acd7906c4b" name="a0f4115b584028de29bce43acd7906c4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4115b584028de29bce43acd7906c4b">&#9670;&#160;</a></span>GetAndMove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1428,7 +1428,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a> Thoth::NJson::Json::GetAndMove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1438,8 +1438,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a83c70c6d983a65de534350fddb768328" name="a83c70c6d983a65de534350fddb768328"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83c70c6d983a65de534350fddb768328">&#9670;&#160;</a></span>GetAndMoveOrError()</h2>
+<a id="aa991a37a7f3ad228378c7317b3672f1f" name="aa991a37a7f3ad228378c7317b3672f1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa991a37a7f3ad228378c7317b3672f1f">&#9670;&#160;</a></span>GetAndMoveOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1447,7 +1447,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a> Thoth::NJson::Json::GetAndMoveOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1457,8 +1457,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ad648da36ac5ed975e690bca5735c9f82" name="ad648da36ac5ed975e690bca5735c9f82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad648da36ac5ed975e690bca5735c9f82">&#9670;&#160;</a></span>GetAndMoveOrNull()</h2>
+<a id="a1a156a4af94c773902091e6ba4ba86a4" name="a1a156a4af94c773902091e6ba4ba86a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a156a4af94c773902091e6ba4ba86a4">&#9670;&#160;</a></span>GetAndMoveOrNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1466,7 +1466,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a> Thoth::NJson::Json::GetAndMoveOrNull </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> &amp;&amp;</td>
         </tr>
       </table>
@@ -1476,8 +1476,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="acdb998caee0442e99d4cf62ea456c0ba" name="acdb998caee0442e99d4cf62ea456c0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdb998caee0442e99d4cf62ea456c0ba">&#9670;&#160;</a></span>GetCopy()</h2>
+<a id="a3ee1c18501a1128147153ac28a2e0117" name="a3ee1c18501a1128147153ac28a2e0117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ee1c18501a1128147153ac28a2e0117">&#9670;&#160;</a></span>GetCopy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1488,7 +1488,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8">OptValWrapper</a> Thoth::NJson::Json::GetCopy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1503,8 +1503,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ac28fbbe961f147b1f0bd268ab8ca0f62" name="ac28fbbe961f147b1f0bd268ab8ca0f62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac28fbbe961f147b1f0bd268ab8ca0f62">&#9670;&#160;</a></span>GetCopyOrError()</h2>
+<a id="a61bc34a2fc369e454601e192ac197540" name="a61bc34a2fc369e454601e192ac197540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bc34a2fc369e454601e192ac197540">&#9670;&#160;</a></span>GetCopyOrError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1515,7 +1515,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a7f7b2a89bb73a1737031de1c234927ac">ExpValWrapper</a> Thoth::NJson::Json::GetCopyOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1530,8 +1530,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ac9e277cbc57e4ecdf34a8bb1a4dfa3e3" name="ac9e277cbc57e4ecdf34a8bb1a4dfa3e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9e277cbc57e4ecdf34a8bb1a4dfa3e3">&#9670;&#160;</a></span>GetCopyOrNull()</h2>
+<a id="a1dd7ec03a6fb7cc5871732ada71053b5" name="a1dd7ec03a6fb7cc5871732ada71053b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd7ec03a6fb7cc5871732ada71053b5">&#9670;&#160;</a></span>GetCopyOrNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1542,7 +1542,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece">ValWrapper</a> Thoth::NJson::Json::GetCopyOrNull </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1557,8 +1557,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="adbffc171c8c3c59888d4f8521a19a7f8" name="adbffc171c8c3c59888d4f8521a19a7f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbffc171c8c3c59888d4f8521a19a7f8">&#9670;&#160;</a></span>GetOrError() <span class="overload">[1/2]</span></h2>
+<a id="a5c0abdaa52cc6e9d39be88c555ddcad4" name="a5c0abdaa52cc6e9d39be88c555ddcad4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c0abdaa52cc6e9d39be88c555ddcad4">&#9670;&#160;</a></span>GetOrError() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1566,7 +1566,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#ab65e6842c3e010e694fd345612908afd">ExpRefValWrapper</a> Thoth::NJson::Json::GetOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1576,8 +1576,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aa9d8a96fe1eb704522300a28c48caa15" name="aa9d8a96fe1eb704522300a28c48caa15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9d8a96fe1eb704522300a28c48caa15">&#9670;&#160;</a></span>GetOrError() <span class="overload">[2/2]</span></h2>
+<a id="a358540db2a35f99f2a40471d91959678" name="a358540db2a35f99f2a40471d91959678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358540db2a35f99f2a40471d91959678">&#9670;&#160;</a></span>GetOrError() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1588,7 +1588,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="namespace_thoth_1_1_n_json.html#a13b0d6f3c078962874ca7b1de378d518">ExpCRefValWrapper</a> Thoth::NJson::Json::GetOrError </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_thoth_1_1_n_json.html#ac13bf329f6dfb030f6421344e37d1474">Key</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html">KeyView</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>

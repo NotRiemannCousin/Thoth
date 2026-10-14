@@ -35,6 +35,7 @@ var hierarchy =
     [ "Thoth::NJson::Json", "struct_thoth_1_1_n_json_1_1_json.html", null ],
     [ "Thoth::NJson::JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", null ],
     [ "Thoth::NJson::JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", null ],
+    [ "Thoth::NJson::JsonKeyCompare", "struct_thoth_1_1_n_json_1_1_json_key_compare.html", null ],
     [ "Thoth::NJson::JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", null ],
     [ "Thoth::NJson::JsonParseError", "struct_thoth_1_1_n_json_1_1_json_parse_error.html", null ],
     [ "Thoth::NJson::JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", null ],
@@ -88,6 +89,8 @@ var hierarchy =
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy&lt; IsConst, Ts &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html", null ],
     [ "std::variant", null, [
+      [ "Thoth::NJson::Key", "struct_thoth_1_1_n_json_1_1_key.html", null ],
+      [ "Thoth::NJson::KeyView", "struct_thoth_1_1_n_json_1_1_key_view.html", null ],
       [ "Thoth::NJson::Number", "struct_thoth_1_1_n_json_1_1_number.html", null ]
     ] ],
     [ "Thoth::Http::NHeaders::Weighted&lt; T &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html", null ]

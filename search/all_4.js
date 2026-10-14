@@ -75,7 +75,7 @@ var searchData=
   ['currentpath_72',['currentPath',['../struct_thoth_1_1_n_json_1_1_json_find_error.html#ad6ff58b5053383ab5fcf928bcf654667',1,'Thoth::NJson::JsonFindError']]],
   ['customization_73',['Customization',['../md_docs_2doxygen_2docs_2customization.html',1,'']]],
   ['customization_2emd_74',['customization.md',['../customization_8md.html',1,'']]],
-  ['customizations_75',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md15',1,'']]],
+  ['customizations_75',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md14',1,'']]],
   ['customizing_76',['Customizing',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md22',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md24',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md26',1,'Customizing'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md28',1,'Customizing']]],
   ['cvalwrapper_77',['CValWrapper',['../namespace_thoth_1_1_n_json.html#ac57d563496ec52612186beead7849446',1,'Thoth::NJson']]]
 ];
