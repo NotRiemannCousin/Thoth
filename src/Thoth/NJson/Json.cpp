@@ -348,12 +348,15 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
     if (*input.data() != '{')
         return false;
 
+    std::vector<std::pair<JsonObjKey, Json>> childs;
+    childs.reserve(16);
+
     while (*input.data() != '}') {
         input.remove_prefix(1);
 
         ADVANCE_SPACES();
 
-        if (json.Size() == 0 && *input.data() == '}')
+        if (childs.empty() && *input.data() == '}')
             break;
 
         String key;
@@ -368,16 +371,17 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
 
         ADVANCE_SPACES();
 
-        auto [newItem, _]{ json.m_pairs.try_emplace(key.AsOwned(), NullV ) };
+        childs.emplace_back(std::move(key.AsOwned()), NullV);
+        auto& newItem{ childs.back().second };
 
         bool success{};
         switch (*input.data()) {
-            CASE_OPEN_STRING   success = ReadString(input, newItem->second, info); break;
-            CASE_OPEN_NUMBER   success = ReadNumber(input, newItem->second);       break;
-            CASE_OPEN_OBJECT   success = ReadObject(input, newItem->second, info); break;
-            CASE_OPEN_BOOLEAN  success = ReadBool(  input, newItem->second);       break;
-            CASE_OPEN_NULLABLE success = ReadNull(  input, newItem->second);       break;
-            CASE_OPEN_ARRAY    success = ReadArray( input, newItem->second, info); break;
+            CASE_OPEN_STRING   success = ReadString(input, newItem, info); break;
+            CASE_OPEN_NUMBER   success = ReadNumber(input, newItem);       break;
+            CASE_OPEN_OBJECT   success = ReadObject(input, newItem, info); break;
+            CASE_OPEN_BOOLEAN  success = ReadBool(  input, newItem);       break;
+            CASE_OPEN_NULLABLE success = ReadNull(  input, newItem);       break;
+            CASE_OPEN_ARRAY    success = ReadArray( input, newItem, info); break;
             default: return false;
         }
         if (!success)
@@ -389,6 +393,8 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
             return false;
     }
     input.remove_prefix(1);
+
+    json.m_pairs.insert_range(childs | std::views::reverse);
 
     val = std::move(json);
     return true;

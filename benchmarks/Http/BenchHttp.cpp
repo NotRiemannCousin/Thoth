@@ -94,22 +94,30 @@ namespace ThothHttp {
         return std::format("https://{}:{}{}", kHost, kPort, kPath);
     }
 
+    // Symmetric with curl (VERIFYPEER 0) and httplib (verification off): the
+    // local benchmark server uses a self-signed certificate.
+    static ClientOptions LocalOpts() {
+        ClientOptions opts{};
+        opts.ignoreCertificateErrors = true;
+        return opts;
+    }
+
     static bool GetWarm() {
         auto req{ GetRequest::FromUrl(BaseUrl()) };        if (!req) return false;
-        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
+        auto resp{ Client::Send(std::move(*req), LocalOpts()) };        return resp.has_value();
     }
 
     static bool GetCold() {
         auto req{ GetRequest::FromUrl(BaseUrl()) };        if (!req) return false;
         // Força fechar a conexão para evitar o pool automático e testar Handshake
         req->headers.Add("connection", "close");
-        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
+        auto resp{ Client::Send(std::move(*req), LocalOpts()) };        return resp.has_value();
     }
 
     static bool PostWarm(std::string_view body) {
         std::string url = std::format("https://{}:{}{}", kHost, kPort, kPostPath);
         auto req{ PostRequest::FromUrl(url, std::string(body)) };        if (!req) return false;
-        auto resp{ Client::Send(std::move(*req)) };        return resp.has_value();
+        auto resp{ Client::Send(std::move(*req), LocalOpts()) };        return resp.has_value();
     }
 }
 

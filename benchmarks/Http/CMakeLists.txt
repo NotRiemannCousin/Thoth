@@ -4,7 +4,7 @@ set(BENCH_HTTP_PATH "/dashboard/"      CACHE STRING "Path to benchmark HTTP")
 
 add_executable(BenchHttp BenchHttp.cpp)
 
-thoth_bench_target(BenchHttp)
+ThothBenchTarget(BenchHttp)
 
 target_compile_definitions(BenchHttp PRIVATE
         BENCH_HTTP_HOST=\"${BENCH_HTTP_HOST}\"

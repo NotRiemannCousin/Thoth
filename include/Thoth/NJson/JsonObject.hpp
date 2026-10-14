@@ -1,10 +1,9 @@
 #pragma once
+#include <flat_map>
 #include <optional>
 #include <format>
 #include <string>
 #include <vector>
-
-#include <Thoth/Dsa/LinearMap.hpp>
 
 
 namespace Thoth::NJson {
@@ -16,7 +15,7 @@ namespace Thoth::NJson {
 
         using JsonPair    = std::pair<JsonObjKey, Json>;
         using JsonPairRef = std::pair<JsonObjKeyRef, JsonValRef>;
-        using MapType     = Dsa::LinearMap<JsonObjKey, Json>;
+        using MapType     = std::flat_map<JsonObjKey, Json, std::less<>>;
 
         using IterType   = decltype(MapType{}.begin());
         using CIterType  = decltype(MapType{}.cbegin());

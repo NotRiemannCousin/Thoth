@@ -3,8 +3,8 @@
 #include <format>
 #include <vector>
 #include <string>
+#include <flat_map>
 
-#include <Thoth/Dsa/LinearMap.hpp>
 #include <Thoth/ThothError.hpp>
 
 namespace Thoth::Http{
@@ -17,8 +17,7 @@ namespace Thoth::Http{
         using QueryValues   = std::vector<QueryValue>;
 
         using QueryPair     = std::pair<QueryKey, QueryValues>;
-        // using MapType       = std::map<QueryKey, QueryValues, std::less<>>;
-        using MapType       = Dsa::LinearMap<QueryKey, QueryValues>;
+        using MapType       = std::flat_map<QueryKey, QueryValues, std::less<>>;
 
         using IterType      = decltype(MapType().begin());
         using CIterType     = decltype(MapType().cbegin());
