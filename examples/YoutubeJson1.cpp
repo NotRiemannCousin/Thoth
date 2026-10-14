@@ -12,7 +12,7 @@ std::expected<void, Thoth::ThothError> PrintInfo(std::string_view id) {
     namespace NHttp = Thoth::Http;
     namespace Utils = Thoth::Utils;
 
-    using Thoth::NJson::Key;
+    using Thoth::NJson::KeyView;
 
     using Thoth::NJson::Json;
     using Thoth::NJson::Array;
@@ -25,13 +25,13 @@ std::expected<void, Thoth::ThothError> PrintInfo(std::string_view id) {
 
     using std::operator ""s;
 
-    static std::array<Key, 8> musicTabKeys{ "contents", "singleColumnBrowseResultsRenderer", "tabs",
+    static std::array<KeyView, 8> musicTabKeys{ "contents", "singleColumnBrowseResultsRenderer", "tabs",
                 0, "tabRenderer", "content", "sectionListRenderer", "contents" };
-    static std::array<Key, 7> tabTitleKeys{ "musicCarouselShelfRenderer", "header",
+    static std::array<KeyView, 7> tabTitleKeys{ "musicCarouselShelfRenderer", "header",
                 "musicCarouselShelfBasicHeaderRenderer", "title", "runs", 0, "text" };
-    static std::array<Key, 5> albumNameKeys{ "musicTwoRowItemRenderer", "title", "runs", 0, "text" };
-    static std::array<Key, 2> tabContentKeys{ "musicCarouselShelfRenderer", "contents" };
-    static std::array<Key, 4> moreContentButtonKeys{ "musicCarouselShelfRenderer", "header",
+    static std::array<KeyView, 5> albumNameKeys{ "musicTwoRowItemRenderer", "title", "runs", 0, "text" };
+    static std::array<KeyView, 2> tabContentKeys{ "musicCarouselShelfRenderer", "contents" };
+    static std::array<KeyView, 4> moreContentButtonKeys{ "musicCarouselShelfRenderer", "header",
                 "musicCarouselShelfBasicHeaderRenderer", "moreContentButton" };
 #pragma endregion
 

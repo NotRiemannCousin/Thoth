@@ -28,11 +28,14 @@
  */
 
 
+// #include <mimalloc-new-delete.h>
+
 #include <benchmark/benchmark.h>
 
 // ── Thoth ─────────────────────────────────────────────────────────────
 #include <Thoth/NJson/Json.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
+
 
 // ── nlohmann ──────────────────────────────────────────────────────────
 #include <nlohmann/json.hpp>
@@ -244,9 +247,14 @@ static void BM_Thoth_PathTraversal_Nested(benchmark::State& state) {
     auto parsed{ Thoth::NJson::Json::Parse(Dataset::Get().nested) };
     if (!parsed) { state.SkipWithError("parse failed"); return; }
 
-    std::vector<Thoth::NJson::Key> keys(10, "child");
-    keys.emplace_back("meta");
-    keys.emplace_back("tag");
+    static constexpr auto keys{ std::invoke([] {
+        std::array<Thoth::NJson::KeyView, 12> arr{};
+        for (int i{}; i < 10; ++i)
+            arr[i] = "child";
+        arr[10] = "meta";
+        arr[11] = "tag";
+        return arr;
+    }) };
 
     for (auto _ : state) {
         auto tag{ parsed->Find(keys) };
@@ -594,12 +602,14 @@ static void BM_Simdjson_PathTraversal_Nested(benchmark::State& state) {
 //  RAPIDJSON
 // ======================================================================
 
+static constexpr unsigned kRapidJsonFlags = rapidjson::kParseValidateEncodingFlag | rapidjson::kParseFullPrecisionFlag;
+
 template<DS ds>
 static void BM_Rapidjson_Parse(benchmark::State& state) {
     const std::string& src{ Pick(ds) };
     for (auto _ : state) {
         rapidjson::Document doc;
-        doc.Parse(src.data(), src.size());
+        doc.Parse<kRapidJsonFlags>(src.data(), src.size());
         benchmark::DoNotOptimize(doc);
     }
     state.SetBytesProcessed(
@@ -607,7 +617,6 @@ static void BM_Rapidjson_Parse(benchmark::State& state) {
     state.SetLabel(DSName(ds));
 }
 
-// In-situ parse: RapidJSON modifies the input buffer in place (faster)
 template<DS ds>
 static void BM_Rapidjson_Parse_InSitu(benchmark::State& state) {
     const std::string& src{ Pick(ds) };
@@ -615,7 +624,7 @@ static void BM_Rapidjson_Parse_InSitu(benchmark::State& state) {
 
     for (auto _ : state) {
         rapidjson::Document doc;
-        doc.ParseInsitu(mutable_src.data());
+        doc.ParseInsitu<kRapidJsonFlags>(mutable_src.data());
         benchmark::DoNotOptimize(doc);
         mutable_src = src;
     }
@@ -628,7 +637,7 @@ template<DS ds>
 static void BM_Rapidjson_Stringify(benchmark::State& state) {
     const std::string& src{ Pick(ds) };
     rapidjson::Document doc;
-    doc.Parse(src.data(), src.size());
+    doc.Parse<kRapidJsonFlags>(src.data(), src.size());
 
     for (auto _ : state) {
         rapidjson::StringBuffer buf;
@@ -641,7 +650,7 @@ static void BM_Rapidjson_Stringify(benchmark::State& state) {
 
 static void BM_Rapidjson_KeyAccess_Medium(benchmark::State& state) {
     rapidjson::Document doc;
-    doc.Parse(Dataset::Get().medium.data(), Dataset::Get().medium.size());
+    doc.Parse<kRapidJsonFlags>(Dataset::Get().medium.data(), Dataset::Get().medium.size());
 
     for (auto _ : state) {
         const auto& total{ doc["total"] };
@@ -655,7 +664,7 @@ static void BM_Rapidjson_KeyAccess_Medium(benchmark::State& state) {
 
 static void BM_Rapidjson_ArrayIteration_Array(benchmark::State& state) {
     rapidjson::Document doc;
-    doc.Parse(Dataset::Get().array.data(), Dataset::Get().array.size());
+    doc.Parse<kRapidJsonFlags>(Dataset::Get().array.data(), Dataset::Get().array.size());
 
     for (auto _ : state) {
         std::size_t count{};
@@ -669,7 +678,7 @@ static void BM_Rapidjson_ArrayIteration_Array(benchmark::State& state) {
 
 static void BM_Rapidjson_ArrayIteration_Large(benchmark::State& state) {
     rapidjson::Document doc;
-    doc.Parse(Dataset::Get().large.data(), Dataset::Get().large.size());
+    doc.Parse<kRapidJsonFlags>(Dataset::Get().large.data(), Dataset::Get().large.size());
 
     for (auto _ : state) {
         std::size_t count{};
@@ -735,7 +744,7 @@ static void BM_Rapidjson_RoundTrip_Medium(benchmark::State& state) {
     const std::string& src{ Dataset::Get().medium };
     for (auto _ : state) {
         rapidjson::Document doc;
-        doc.Parse(src.data(), src.size());
+        doc.Parse<kRapidJsonFlags>(src.data(), src.size());
         doc["page"] = 2;
         rapidjson::StringBuffer buf;
         rapidjson::Writer<rapidjson::StringBuffer> writer{ buf };
@@ -748,7 +757,7 @@ static void BM_Rapidjson_RoundTrip_Medium(benchmark::State& state) {
 
 static void BM_Rapidjson_PathTraversal_Nested(benchmark::State& state) {
     rapidjson::Document doc;
-    doc.Parse(Dataset::Get().nested.data(), Dataset::Get().nested.size());
+    doc.Parse<kRapidJsonFlags>(Dataset::Get().nested.data(), Dataset::Get().nested.size());
 
     for (auto _ : state) {
         const rapidjson::Value* cur{ &doc };
@@ -770,7 +779,7 @@ static void BM_Rapidjson_PathTraversal_Nested(benchmark::State& state) {
 
 static void BM_Rapidjson_TypeChecking(benchmark::State& state) {
     rapidjson::Document doc;
-    doc.Parse(Dataset::Get().medium.data(), Dataset::Get().medium.size());
+    doc.Parse<kRapidJsonFlags>(Dataset::Get().medium.data(), Dataset::Get().medium.size());
     const auto& users = doc["users"].GetArray();
 
     for (auto _ : state) {

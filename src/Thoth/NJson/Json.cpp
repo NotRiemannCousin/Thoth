@@ -4,6 +4,10 @@
 #include <bitset>
 #include <execution>
 #include <expected>
+#include <charconv>
+#include <cstdint>
+#include <cstring>
+#include <bit>
 
 #include <Thoth/String/UnicodeViewer.hpp>
 #include <Thoth/ThothError.hpp>
@@ -218,6 +222,8 @@ static bool DecodeUtf16(std::string_view& s, std::string& out) {
     uint16_t h;
     if (!readU(h)) return false;
 
+    if (0xDC00 <= h && h <= 0xDFFF) return false; // lone low surrogate
+
     uint32_t code{ h };
 
     // surrogate?
@@ -253,103 +259,241 @@ static bool DecodeUtf16(std::string_view& s, std::string& out) {
 }
 
 
+// SWAR things. I really need <simd> now.
+static constexpr uint64_t kSwarOnes{ 0x0101010101010101ULL };
+static constexpr uint64_t kSwarHigh{ 0x8080808080808080ULL };
+
 static bool details_::ReadString(std::string_view& input, auto& val, const BufferInfo& info) {
-    if (*input.data() != '"')
+    if (input.empty() || input.front() != '"')
         return false;
-    input.remove_prefix(1);
 
-    const auto start{ input.cbegin() };
+    const char* const start{ input.data() + 1 };
+    const char* const end  { input.data() + input.size() };
+    const char*       p    { start };
 
+    bool     hasEscape{};
+    uint64_t seen{};      // OR of every byte scanned. Bit 7 set means at least one non-ASCII byte.
 
-    size_t iterations{ 1 };
-    for (;; iterations++) {
-        ADVANCE_IF(*ptr != '\"' && *ptr != '\\');
+    for (;;) {
+        // Fast path: skip 8 bytes per step while none of them is '"', '\\' or a control char (< 0x20).
+        while (end - p >= 8) {
+            uint64_t w;
+            std::memcpy(&w, p, sizeof w);
 
-        if (input.empty()) [[unlikely]]
+            const uint64_t quote    { w ^ (kSwarOnes * '"' ) };
+            const uint64_t backslash{ w ^ (kSwarOnes * '\\') };
+            const uint64_t special  { ((quote     - kSwarOnes) & ~quote    )
+                                    | ((backslash - kSwarOnes) & ~backslash)
+                                    | ((w - kSwarOnes * 0x20 ) & ~w        ) };
+            const uint64_t hits{ special & kSwarHigh };
+            if (hits) {
+                // The lowest flagged byte is always a real special one (false positives only come after a real hit),
+                // so jump straight to it and let the slow path below handle it.
+                if constexpr (std::endian::native == std::endian::little) {
+                    const unsigned idx{ static_cast<unsigned>(std::countr_zero(hits)) >> 3 };
+                    seen |= w & ((uint64_t{ 1 } << (idx * 8)) - 1); // The clean bytes skipped, still counted for non-ASCII.
+                    p += idx;
+                }
+                break;
+            }
+
+            seen |= w;
+            p += 8;
+        }
+
+        // Slow path: one byte (also handles the tail of the buffer), then try the fast path again.
+        if (p == end) [[unlikely]]
             return false;
 
-        if (*input.data() == '"')
+        const auto c{ static_cast<unsigned char>(*p) };
+        if (c == '"')
             break;
 
-        if (input.size() <= 2) // ignoring \*
+        if (c == '\\') {
+            if (end - p < 2) [[unlikely]]
+                return false;
+            hasEscape = true;
+            ++p; // Skip the escaped char, it will be validated by the decoder below. Every '\\' is followed by a char.
+        } else if (c < 0x20) {
             return false;
-        input.remove_prefix(2);
-        // It doesn't matter which char is, discard the '\\' and what goes after it. The check will performed after.
+        } else {
+            seen |= c;
+        }
+        ++p;
     }
-    std::string_view strRef{ &*start, &*input.begin() };
-    input.remove_prefix(1);
 
-    // Well, it doesn't make sense to check for all chars because just std::strings can have UTF-8 chars.
-    // Moreover, now the cache will not blame on me again.
-    if (std::ranges::any_of(strRef, [](const auto c){ return c & 0x80; }) &&
-        !Thoth::String::Utf8View::IsValid(std::bit_cast<std::u8string_view>(strRef)))
+    const std::string_view raw{ start, static_cast<size_t>(p - start) };
+    input.remove_prefix(static_cast<size_t>(p - input.data()) + 1);
+
+    if ((seen & kSwarHigh) && !Thoth::String::Utf8View::IsValid(std::bit_cast<std::u8string_view>(raw)))
         return false;
 
-    if (iterations == 1) {
-        val = String::FromRef({strRef, info.buffer});
+    if (!hasEscape) {
+        if constexpr (std::same_as<std::remove_cvref_t<decltype(val)>, std::string>)
+            val = std::string{ raw };
+        else
+            val = String::FromRef({raw, info.buffer});
         return true;
     }
 
     std::string str;
-    str.reserve(strRef.size());
+    str.reserve(raw.size());
 
-    while (true) {
-        const size_t pos{ strRef.find('\\') };
+    std::string_view rest{ raw };
+    for (size_t pos; (pos = rest.find('\\')) != std::string_view::npos; ) {
+        str.append(rest.data(), pos);
+        rest.remove_prefix(pos + 1);
 
-        if (pos == std::string::npos)
-            break;
-
-        str.append_range(std::string_view{ strRef.data(), pos });
-        strRef.remove_prefix(pos + 1);
-
-        switch (*strRef.data()) {
-            case 'u' : if (!DecodeUtf16(strRef, str)) return false; break;
-            case '\\': str.push_back('\\'); strRef.remove_prefix(1);  break;
-            case '"' : str.push_back('\"'); strRef.remove_prefix(1);  break;
-            case 'n' : str.push_back('\n'); strRef.remove_prefix(1);  break;
-            case 'r' : str.push_back('\r'); strRef.remove_prefix(1);  break;
-            case 't' : str.push_back('\t'); strRef.remove_prefix(1);  break;
+        switch (rest.front()) { // Not empty: the scan above never leaves a '\\' as the last char.
+            case 'u' : if (!DecodeUtf16(rest, str)) return false; continue; // It consumes its own chars.
+            case '"' : str.push_back('"');  break;
+            case '\\': str.push_back('\\'); break;
+            case '/' : str.push_back('/');  break;
+            case 'b' : str.push_back('\b'); break;
+            case 'f' : str.push_back('\f'); break;
+            case 'n' : str.push_back('\n'); break;
+            case 'r' : str.push_back('\r'); break;
+            case 't' : str.push_back('\t'); break;
 
             default: return false;
         }
+        rest.remove_prefix(1);
     }
-    str.append_range(strRef);
+    str.append(rest.data(), rest.size());
 
-    val = String::FromOwned(std::move(str));
+    if constexpr (std::same_as<std::remove_cvref_t<decltype(val)>, std::string>)
+        val = std::move(str);
+    else
+        val = String::FromOwned(std::move(str));
     return true;
 }
+
+// Exactly representable powers of ten (10^0 .. 10^22), for the fast double path.
+static constexpr double kPow10[]{
+    1e0,  1e1,  1e2,  1e3,  1e4,  1e5,  1e6,  1e7,  1e8,  1e9,  1e10, 1e11,
+    1e12, 1e13, 1e14, 1e15, 1e16, 1e17, 1e18, 1e19, 1e20, 1e21, 1e22
+};
+
 static bool details_::ReadNumber(std::string_view& input, auto& val) {
-    const auto openValNumber{ input.data() };
-    constexpr auto validChars{ []{
-        std::bitset<256> res{};
+    const char* const first{ input.data() };
+    const char* const end  { first + input.size() };
+    const char*       p    { first };
 
-        for (const char c : std::string_view{ "0123456789.-eE" })
-            res.set(c);
+    const auto isDigit{ [](const char c) { return static_cast<unsigned>(c - '0') < 10u; } };
 
-        return res;
-    }() };
+    const bool negative{ p != end && *p == '-' };
+    if (negative)
+        ++p;
 
-    ADVANCE_IF_RAW(validChars[*ptr], );
+    if (p == end || !isDigit(*p))
+        return false;
 
+    uint64_t mantissa{};
+    int      digits{};
 
-    const auto closeValNumber{ input.data() };
+    if (*p == '0') {
+        ++p;
+        digits = 1;
+    } else {
+        do {
+            mantissa = mantissa * 10 + static_cast<uint64_t>(*p - '0');
+            ++digits;
+            ++p;
+        } while (p != end && isDigit(*p));
+    }
 
-    auto parsed{ Number::TryParse({ openValNumber, closeValNumber }) };
-    if (!parsed) return false;
+    bool isFloat{};
+    int  fracDigits{};
+    if (p != end && *p == '.') {
+        ++p;
+        if (p == end || !isDigit(*p))
+            return false;
+        do {
+            mantissa = mantissa * 10 + static_cast<uint64_t>(*p - '0');
+            ++digits;
+            ++fracDigits;
+            ++p;
+        } while (p != end && isDigit(*p));
+        isFloat = true;
+    }
 
-    val = *parsed;
-    return true;
+    int exp10{};
+    if (p != end && (*p == 'e' || *p == 'E')) {
+        ++p;
+        bool expNegative{};
+        if (p != end && (*p == '+' || *p == '-')) {
+            expNegative = *p == '-';
+            ++p;
+        }
+        if (p == end || !isDigit(*p))
+            return false;
+        int e{};
+        do {
+            if (e < 100000) // Saturate, it only has to stay far outside the fast path range.
+                e = e * 10 + (*p - '0');
+            ++p;
+        } while (p != end && isDigit(*p));
+        exp10   = expNegative ? -e : e;
+        isFloat = true;
+    }
+
+    // Anything number-like left here is malformed: "01", "1.2.3", "1-2", "1e5e"...
+    if (p != end && (isDigit(*p) || *p == '.' || *p == '-' || *p == '+' || *p == 'e' || *p == 'E'))
+        return false;
+
+    const char* const last{ p };
+    input.remove_prefix(static_cast<size_t>(last - first));
+
+    const auto fromDouble{ [&] {
+        double d;
+        const auto [ptr, ec]{ std::from_chars(first, last, d) };
+        if (ec != std::errc{} || ptr != last)
+            return false;
+        val = Number{ d };
+        return true;
+    } };
+
+    if (isFloat) {
+        const int e10{ exp10 - fracDigits };
+        if (digits <= 19 && mantissa <= (1ULL << 53) && e10 >= -22 && e10 <= 22) {
+            const double m{ static_cast<double>(mantissa) };
+            const double d{ e10 < 0 ? m / kPow10[-e10] : m * kPow10[e10] };
+            val = Number{ negative ? -d : d };
+            return true;
+        }
+        return fromDouble();
+    }
+
+    if (negative) {
+        if (digits <= 19 && mantissa <= (1ULL << 63)) {
+            val = Number{ static_cast<int64_t>(0 - mantissa) };
+            return true;
+        }
+        return fromDouble();
+    }
+
+    if (digits <= 19) {
+        val = Number{ mantissa };
+        return true;
+    }
+
+    uint64_t u;
+    const auto [ptr, ec]{ std::from_chars(first, last, u) };
+    if (ec == std::errc{} && ptr == last) {
+        val = Number{ u };
+        return true;
+    }
+    return fromDouble();
 }
-static bool details_::ReadObject(std::string_view& input, auto& val, const BufferInfo& info) {
-    JsonObject json;
 
+static bool details_::ReadObject(std::string_view& input, auto& val, const BufferInfo& info) {
     ADVANCE_SPACES();
 
     if (*input.data() != '{')
         return false;
 
     std::vector<std::pair<JsonObjKey, Json>> childs;
-    childs.reserve(16);
+    childs.reserve(8);
 
     while (*input.data() != '}') {
         input.remove_prefix(1);
@@ -359,7 +503,7 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
         if (childs.empty() && *input.data() == '}')
             break;
 
-        String key;
+        std::string key;
         if (!ReadString(input, key, info))
             return false;
 
@@ -371,7 +515,7 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
 
         ADVANCE_SPACES();
 
-        childs.emplace_back(std::move(key.AsOwned()), NullV);
+        childs.emplace_back(std::move(key), NullJ);
         auto& newItem{ childs.back().second };
 
         bool success{};
@@ -394,9 +538,7 @@ static bool details_::ReadObject(std::string_view& input, auto& val, const Buffe
     }
     input.remove_prefix(1);
 
-    json.m_pairs.insert_range(childs | std::views::reverse);
-
-    val = std::move(json);
+    val = JsonObject{ JsonObject::MapType{ std::move(childs) } };
     return true;
 }
 static bool details_::ReadBool(std::string_view& input, auto& val) {
@@ -422,6 +564,7 @@ static bool details_::ReadArray(std::string_view& input, auto& val, const Buffer
         return false;
 
     Array array{};
+    array.reserve(8);
 
     while (*input.data() != ']') {
         input.remove_prefix(1);
@@ -447,7 +590,7 @@ static bool details_::ReadArray(std::string_view& input, auto& val, const Buffer
 
         ADVANCE_SPACES();
 
-        if(*input.data() != ',' &&  *input.data() != ']')
+        if (*input.data() != ',' && *input.data() != ']')
             return false;
     }
     input.remove_prefix(1);
@@ -567,49 +710,49 @@ constexpr auto resolveKeys{ Hermes::Utils::Overloaded{
 
 #pragma region Get Functions
 
-OptRefValWrapper Json::Get(const Key key) {
+OptRefValWrapper Json::Get(const KeyView key) {
     OptRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-OptCRefValWrapper Json::Get(const Key key) const {
+OptCRefValWrapper Json::Get(const KeyView key) const {
     OptCRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-OptValWrapper Json::GetCopy(const Key key) const {
+OptValWrapper Json::GetCopy(const KeyView key) const {
     OptCRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(*curr, std::nullopt);
 }
-OptValWrapper Json::GetAndMove(const Key key) && {
+OptValWrapper Json::GetAndMove(const KeyView key) && {
     OptRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(std::move(**curr), std::nullopt);
 }
 
 
-ValWrapper Json::GetCopyOrNull(const Key key) const {
+ValWrapper Json::GetCopyOrNull(const KeyView key) const {
     OptCRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(**curr, NullJ);
 }
-ValWrapper Json::GetAndMoveOrNull(const Key key) && {
+ValWrapper Json::GetAndMoveOrNull(const KeyView key) && {
     OptRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(std::move(**curr), NullJ);
 }
 
 
-#define KEY_NOT_FOUND ThothUnex{ JsonGetError{ key } }
+#define KEY_NOT_FOUND ThothUnex{ JsonGetError{ Key{ key } } }
 
-ExpRefValWrapper Json::GetOrError(const Key key) {
+ExpRefValWrapper Json::GetOrError(const KeyView key) {
     OptRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
-ExpCRefValWrapper Json::GetOrError(const Key key) const {
+ExpCRefValWrapper Json::GetOrError(const KeyView key) const {
     OptCRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
-ExpValWrapper Json::GetCopyOrError(const Key key) const {
+ExpValWrapper Json::GetCopyOrError(const KeyView key) const {
     OptCRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(**curr, KEY_NOT_FOUND);
 }
-ExpValWrapper Json::GetAndMoveOrError(const Key key) && {
+ExpValWrapper Json::GetAndMoveOrError(const KeyView key) && {
     OptRefValWrapper curr{ this };
     RESOLVE_KEY_AND_RETURN(std::move(**curr), KEY_NOT_FOUND);
 }
@@ -619,62 +762,65 @@ ExpValWrapper Json::GetAndMoveOrError(const Key key) && {
 
 #pragma region Find Functions
 
-OptRefValWrapper Json::Find(const Keys keys) {
+OptRefValWrapper Json::Find(const KeysView keys) {
     OptRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-OptCRefValWrapper Json::Find(const Keys keys) const {
+OptCRefValWrapper Json::Find(const KeysView keys) const {
     OptCRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(curr, std::nullopt);
 }
-OptValWrapper Json::FindCopy(const Keys keys) const {
+OptValWrapper Json::FindCopy(const KeysView keys) const {
     OptCRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(**curr, std::nullopt);
 }
-OptValWrapper Json::FindAndMove(const Keys keys) && {
+OptValWrapper Json::FindAndMove(const KeysView keys) && {
     OptRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(std::move(**curr), std::nullopt);
 }
 
 
-ValWrapper Json::FindCopyOrNull(const Keys keys) const {
+ValWrapper Json::FindCopyOrNull(const KeysView keys) const {
     OptCRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(**curr, NullJ);
 }
-ValWrapper Json::FindAndMoveOrNull(const Keys keys) && {
+ValWrapper Json::FindAndMoveOrNull(const KeysView keys) && {
     OptRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(std::move(**curr), NullJ);
 }
 
 
-#define KEY_NOT_FOUND ThothUnex{ JsonFindError{ key, keys | std::ranges::to<std::vector>() } }
+#define KEY_NOT_FOUND ThothUnex{ JsonFindError{ \
+    Key{ key }, \
+    keys | std::views::transform([](const auto& k) { return Key{ k }; }) | std::ranges::to<std::vector>() \
+} }
 
-ExpRefValWrapper Json::FindOrError(const Keys keys) {
+ExpRefValWrapper Json::FindOrError(const KeysView keys) {
     OptRefValWrapper curr{ this };
     auto sla{ keys | std::ranges::to<std::vector>() };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
 
-ExpCRefValWrapper Json::FindOrError(const Keys keys) const {
+ExpCRefValWrapper Json::FindOrError(const KeysView keys) const {
     OptCRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(*curr, KEY_NOT_FOUND);
 }
 
-ExpValWrapper Json::FindCopyOrError(const Keys keys) const {
+ExpValWrapper Json::FindCopyOrError(const KeysView keys) const {
     OptCRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(**curr, KEY_NOT_FOUND);
 }
 
-ExpValWrapper Json::FindAndMoveOrError(const Keys keys) && {
+ExpValWrapper Json::FindAndMoveOrError(const KeysView keys) && {
     OptRefValWrapper curr{ this };
     for (const auto& key : keys)
         RESOLVE_KEY_AND_RETURN(std::move(**curr), KEY_NOT_FOUND);

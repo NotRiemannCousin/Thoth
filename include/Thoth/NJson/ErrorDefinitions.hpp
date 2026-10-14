@@ -1,5 +1,6 @@
 #pragma once
 #include <Thoth/NJson/Definitions.hpp>
+#include <Thoth/NJson/Keys.hpp>
 
 namespace Thoth::NJson {
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.

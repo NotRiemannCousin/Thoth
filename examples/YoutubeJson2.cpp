@@ -13,7 +13,7 @@ std::expected<void, Thoth::ThothError> MakeRequest() {
 
     using Json = NJson::Json;
 
-    static const std::array<NJson::Key, 8> contentKeys{
+    static const std::array<NJson::KeyView, 8> contentKeys{
         "contents",
         "twoColumnBrowseResultsRenderer",
         "tabs",
@@ -24,7 +24,7 @@ std::expected<void, Thoth::ThothError> MakeRequest() {
         "contents",
     };
 
-    static const std::array<NJson::Key, 4> albumNameKey{ "richItemRenderer","content", "playlistRenderer", "title" };
+    static const std::array<NJson::KeyView, 4> albumNameKey{ "richItemRenderer","content", "playlistRenderer", "title" };
 
 
 

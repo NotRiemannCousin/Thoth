@@ -341,50 +341,40 @@ struct JsonFindTest : testing::Test {
 };
  
 TEST_F(JsonFindTest, Find_TwoLevels_Succeeds) {
-    const std::array keys{ Key{ std::string("data") }, Key{ std::string("users") } };
+    const std::array keys{ KeyView{ "data" }, KeyView{ "users" } };
     auto result{ root.Find(keys) };
     ASSERT_TRUE(result);
     EXPECT_TRUE((*result)->IsOf<Array>());
 }
  
 TEST_F(JsonFindTest, Find_ThreeLevels_Succeeds) {
-    const std::array keys{
-        Key{ std::string("data") },
-        Key{ std::string("users") },
-        Key{},
-        Key{ std::string("name") }
-    };
+    const std::array<KeyView, 4> keys{ "data", "users", {}, "name" };
     auto result{ root.Find(keys) };
     ASSERT_TRUE(result);
     EXPECT_EQ((*result)->As<String>().AsCopy(), "Alice");
 }
  
 TEST_F(JsonFindTest, Find_InvalidPath_ReturnsNullopt) {
-    const std::array keys{ Key{ std::string("data") }, Key{ std::string("ghost") } };
+    const std::array<KeyView, 2> keys{ "data", "ghost" };
     auto result{ root.Find(keys) };
     EXPECT_FALSE(result);
 }
  
 TEST_F(JsonFindTest, FindOrError_ValidPath_HasValue) {
-    const std::array keys{
-        Key{ std::string("data") },
-        Key{ std::string("users") },
-        Key{ 1 },
-        Key{ std::string("name") }
-    };
+    const std::array<KeyView, 4> keys{ "data", "users", 1, "name" };
     auto result{ root.FindOrError(keys) };
     ASSERT_TRUE(result);
     EXPECT_EQ((*result)->As<String>().AsCopy(), "Bob");
 }
  
 TEST_F(JsonFindTest, FindOrError_InvalidPath_HasError) {
-    const std::array keys{ Key{ std::string("data") }, Key{ std::string("nope") } };
+    const std::array<KeyView, 2> keys{ "data", "nope" };
     auto result{ root.FindOrError(keys) };
     EXPECT_FALSE(result);
 }
  
 TEST_F(JsonFindTest, FindCopyOrNull_InvalidPath_ReturnsNull) {
-    const std::array keys{ Key{ std::string("no") }, Key{ std::string("way") } };
+    const std::array<KeyView, 2> keys{ "no", "way" };
     auto result{ root.FindCopyOrNull(keys) };
     EXPECT_TRUE(result.IsOf<Null>());
 }

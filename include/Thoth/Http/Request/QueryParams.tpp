@@ -1,22 +1,5 @@
 #pragma once
 #include <ranges>
-#include <Hermes/Utils/Hash.hpp>
-
-template<class K, class V, class ...Params>
-    requires requires(const K& k){ std::hash<K>{}(k); } && requires(const V& v){ std::hash<V>{}(v); }
-struct std::hash<std::flat_map<K, V, Params...>> {
-    size_t operator()(const std::flat_map<K, V, Params...>& m) const noexcept {
-        using Hermes::Utils::HashCombine;
-        size_t seed{ 1469598103934665603ULL };
-
-        for (const auto& [f, s] : m) {
-            HashCombine(seed, std::hash<K>{}(f));
-            HashCombine(seed, std::hash<V>{}(s));
-        }
-        HashCombine(seed, std::hash<size_t>{}(m.size()));
-        return seed;
-    }
-};
 
 namespace std {
     template<>

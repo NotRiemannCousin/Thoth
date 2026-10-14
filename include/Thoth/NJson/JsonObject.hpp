@@ -1,21 +1,33 @@
 #pragma once
-#include <flat_map>
 #include <optional>
 #include <format>
 #include <string>
 #include <vector>
 
+#include <Thoth/Dsa/LinearMap.hpp>
 
 namespace Thoth::NJson {
     using JsonObjKey    = std::string;
     using JsonObjKeyRef = std::string_view;
+
+    struct JsonKeyCompare {
+        using is_transparent = void;
+
+        constexpr bool operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept;
+    };
+
+    constexpr bool JsonKeyCompare::operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept {
+        if (a.size() != b.size())
+            return a.size() < b.size();
+        return a < b;
+    }
 
     struct JsonObject {
         using JsonValRef = Json&;
 
         using JsonPair    = std::pair<JsonObjKey, Json>;
         using JsonPairRef = std::pair<JsonObjKeyRef, JsonValRef>;
-        using MapType     = std::flat_map<JsonObjKey, Json, std::less<>>;
+        using MapType     = Dsa::LinearMap<JsonObjKey, Json, JsonKeyCompare>;
 
         using IterType   = decltype(MapType{}.begin());
         using CIterType  = decltype(MapType{}.cbegin());

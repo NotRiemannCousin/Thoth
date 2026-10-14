@@ -9,6 +9,7 @@
 #include <span>
 
 #include <Thoth/NJson/Definitions.hpp>
+#include <Thoth/NJson/Keys.hpp>
 #include <Thoth/ThothError.hpp>
 
 namespace Thoth::NJson {
@@ -137,29 +138,29 @@ namespace Thoth::NJson {
         //! Will get the direct child of this element with a given key/index.
 
         //! @brief Return a ref of the element with this index/key if this is an Object or Array, std::nullopt otherwise.
-        OptRefValWrapper Get(Key key);
+        OptRefValWrapper Get(KeyView key);
         //! @copybrief Get
-        [[nodiscard]] OptCRefValWrapper Get(Key key) const;
+        [[nodiscard]] OptCRefValWrapper Get(KeyView key) const;
         //! @brief Return a copy of the element with this index/key if this is an Object or Array, std::nullopt otherwise.
-        [[nodiscard]] OptValWrapper GetCopy(Key key) const;
+        [[nodiscard]] OptValWrapper GetCopy(KeyView key) const;
         //! @brief Return (with move) the element with this index/key if this is an Object or Array, std::nullopt otherwise.
-        OptValWrapper GetAndMove(Key key) &&;
+        OptValWrapper GetAndMove(KeyView key) &&;
 
 
         //! @brief Return a copy of the element with this index/key if this is an Object or Array, null otherwise.
-        [[nodiscard]] ValWrapper GetCopyOrNull(Key key) const;
+        [[nodiscard]] ValWrapper GetCopyOrNull(KeyView key) const;
         //! @brief Move the element with this index/key if this is an Object or Array, null otherwise.
-        ValWrapper GetAndMoveOrNull(Key key) &&;
+        ValWrapper GetAndMoveOrNull(KeyView key) &&;
 
 
         //! @brief Return a ref of the element with this index/key if this is an Object or Array, ThothError otherwise.
-        ExpRefValWrapper GetOrError(Key key);
+        ExpRefValWrapper GetOrError(KeyView key);
         //! @copybrief GetOrError
-        [[nodiscard]] ExpCRefValWrapper GetOrError(Key key) const;
+        [[nodiscard]] ExpCRefValWrapper GetOrError(KeyView key) const;
         //! @brief Return a copy of the element with this index/key if this is an Object or Array, ThothError otherwise.
-        [[nodiscard]] ExpValWrapper GetCopyOrError(Key key) const;
+        [[nodiscard]] ExpValWrapper GetCopyOrError(KeyView key) const;
         //! @brief Move the element with this index/key if this is an Object or Array. Return ThothError otherwise.
-        ExpValWrapper GetAndMoveOrError(Key key) &&;
+        ExpValWrapper GetAndMoveOrError(KeyView key) &&;
 
         //! @}
 
@@ -171,29 +172,29 @@ namespace Thoth::NJson {
         //! Will find a nested child in the tree. Something like `["data"][-1]["contents"][0]["name"]`.
 
         //! @brief Same as successive calls to Get, std::nullopt at the first fail.
-        OptRefValWrapper Find(Keys keys);
+        OptRefValWrapper Find(KeysView keys);
         //! @copybrief Find
-        [[nodiscard]] OptCRefValWrapper Find(Keys keys) const;
+        [[nodiscard]] OptCRefValWrapper Find(KeysView keys) const;
         //! @brief Same as successive calls to GetCopy, std::nullopt at the first fail.
-        [[nodiscard]] OptValWrapper FindCopy(Keys keys) const;
+        [[nodiscard]] OptValWrapper FindCopy(KeysView keys) const;
         //! @brief Same as successive calls to GetAndMove, std::nullopt at the first fail.
-        OptValWrapper FindAndMove(Keys keys) &&;
+        OptValWrapper FindAndMove(KeysView keys) &&;
 
 
         //! @brief Same as successive calls to GetCopy. Return null at the first fail.
-        [[nodiscard]] ValWrapper FindCopyOrNull(Keys keys) const;
+        [[nodiscard]] ValWrapper FindCopyOrNull(KeysView keys) const;
         //! @brief Same as successive calls to GetAndMove. Return null at the first fail.
-        ValWrapper FindAndMoveOrNull(Keys keys) &&;
+        ValWrapper FindAndMoveOrNull(KeysView keys) &&;
 
 
         //! @brief Same as successive calls to Get. Return ThothError at the first fail.
-        ExpRefValWrapper FindOrError(Keys keys);
+        ExpRefValWrapper FindOrError(KeysView keys);
         //! @copybrief FindOrError
-        [[nodiscard]] ExpCRefValWrapper FindOrError(Keys keys) const;
+        [[nodiscard]] ExpCRefValWrapper FindOrError(KeysView keys) const;
         //! @brief Same as successive calls to GetCopy. Return ThothError at the first fail.
-        [[nodiscard]] ExpValWrapper FindCopyOrError(Keys keys) const;
+        [[nodiscard]] ExpValWrapper FindCopyOrError(KeysView keys) const;
         //! @brief Same as successive calls to Find. Return ThothError at the first fail.
-        ExpValWrapper FindAndMoveOrError(Keys keys) &&;
+        ExpValWrapper FindAndMoveOrError(KeysView keys) &&;
 
         //! @}
 #pragma endregion

@@ -68,7 +68,4 @@ namespace Thoth::NJson {
 
     using JsonObjKey    = std::string;
     using JsonObjKeyRef = std::string_view;
-
-    using Key  = std::variant<int, JsonObjKey>;
-    using Keys = std::span<const Key>;
 }
