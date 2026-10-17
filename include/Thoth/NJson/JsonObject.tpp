@@ -6,6 +6,12 @@
 
 
 namespace Thoth::NJson {
+    constexpr std::strong_ordering JsonKeyCompare::operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept {
+        if (const auto c{ a.size() <=> b.size() }; c != 0)
+            return c;
+        return a.compare(b) <=> 0;
+    }
+
 
     // template<class ... T>
     //     requires (sizeof...(T) != 0) &&

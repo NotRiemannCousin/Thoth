@@ -64,117 +64,29 @@
 </div>
 
 <script>
-    const S_INITIAL_RAW_TEXT = `Running C:\\\\Users\\\\MARCE\\\\CLionProjects\\\\Thoth\\\\cmake-build-release-msvc\\\\bin\\\\Release\\\\BenchJson.exe
-Run on (16 X 2894 MHz CPU s)
-CPU Caches:
-  L1 Data 32 KiB (x8)
-  L1 Instruction 32 KiB (x8)
-  L2 Unified 512 KiB (x8)
-  L3 Unified 4096 KiB (x2)
---------------------------------------------------------------------------------------------
-Benchmark                                  Time             CPU   Iterations UserCounters...
---------------------------------------------------------------------------------------------
-Parse/Thoth/Small                       7577 ns         7324 ns        74667 bytes_per_second=20.1824Mi/s small
-Parse/Thoth/Medium                    270240 ns       263672 ns         3200 bytes_per_second=37.7423Mi/s medium
-Parse/Thoth/Large                   76445645 ns     75284091 ns           11 bytes_per_second=79.1797Mi/s large
-Parse/Thoth/Nested                     56912 ns        55804 ns        11200 bytes_per_second=19.5337Mi/s nested
-Parse/Thoth/Numbers                   325102 ns       306920 ns         2240 bytes_per_second=24.5752Mi/s numbers
-Parse/Thoth/Array                     889899 ns       889369 ns          896 bytes_per_second=19.3562Mi/s array
-Parse/Thoth/Strings                    83678 ns        83705 ns         8960 bytes_per_second=39.0788Mi/s strings
-Parse/Thoth/RawStrings                 52191 ns        51562 ns        10000 bytes_per_second=85.8191Mi/s raw_strings
-Parse/Thoth/Twitter                 19431103 ns     19003378 ns           37 bytes_per_second=31.6922Mi/s twitter
-Parse/Nlohmann/Small                   12902 ns        12835 ns        56000 bytes_per_second=11.5171Mi/s small
-Parse/Nlohmann/Medium                 433169 ns       433243 ns         1659 bytes_per_second=22.97Mi/s medium
-Parse/Nlohmann/Large               158378980 ns    150000000 ns            5 bytes_per_second=39.7398Mi/s large
-Parse/Nlohmann/Nested                  77952 ns        77424 ns         7467 bytes_per_second=14.079Mi/s nested
-Parse/Nlohmann/Numbers                530932 ns       531250 ns         1000 bytes_per_second=14.1979Mi/s numbers
-Parse/Nlohmann/Array                 1118359 ns      1088170 ns          560 bytes_per_second=15.8199Mi/s array
-Parse/Nlohmann/Strings                129719 ns       125552 ns         4978 bytes_per_second=26.0537Mi/s strings
-Parse/Nlohmann/RawStrings             112642 ns       111607 ns         5600 bytes_per_second=39.6484Mi/s raw_strings
-Parse/Nlohmann/Twitter              23323843 ns     21354167 ns           30 bytes_per_second=28.2034Mi/s twitter
-Parse/Simdjson/Small                     307 ns          301 ns      2488889 bytes_per_second=490.542Mi/s small
-Parse/Simdjson/Medium                   8089 ns         7847 ns        89600 bytes_per_second=1.23842Gi/s medium
-Parse/Simdjson/Large                 3577967 ns      3599877 ns          204 bytes_per_second=1.61707Gi/s large
-Parse/Simdjson/Nested                   1367 ns         1287 ns       497778 bytes_per_second=846.99Mi/s nested
-Parse/Simdjson/Numbers                  5834 ns         5859 ns       112000 bytes_per_second=1.2571Gi/s numbers
-Parse/Simdjson/Array                   16304 ns        16044 ns        44800 bytes_per_second=1.04786Gi/s array
-Parse/Simdjson/Strings                  2359 ns         2246 ns       320000 bytes_per_second=1.42222Gi/s strings
-Parse/Simdjson/RawStrings               2997 ns         2965 ns       263529 bytes_per_second=1.45766Gi/s raw_strings
-Parse/Simdjson/Twitter                516692 ns       502232 ns         1120 bytes_per_second=1.17106Gi/s twitter
-Parse/Rapidjson/Small                   3649 ns         3610 ns       194783 bytes_per_second=40.9497Mi/s small
-Parse/Rapidjson/Medium                 85998 ns        83705 ns         8960 bytes_per_second=118.888Mi/s medium
-Parse/Rapidjson/Large               50985336 ns     49715909 ns           11 bytes_per_second=119.901Mi/s large
-Parse/Rapidjson/Nested                 14039 ns       14125 ns        49778 bytes_per_second=77.1705Mi/s nested
-Parse/Rapidjson/Numbers                69379 ns        65569 ns        11200 bytes_per_second=115.033Mi/s numbers
-Parse/Rapidjson/Array                 165738 ns       164958 ns         4073 bytes_per_second=104.358Mi/s array
-Parse/Rapidjson/Strings                30485 ns        29157 ns        23579 bytes_per_second=112.188Mi/s strings
-Parse/Rapidjson/RawStrings             38011 ns        37667 ns        18667 bytes_per_second=117.479Mi/s raw_strings
-Parse/Rapidjson/Twitter              5439559 ns      5312500 ns          100 bytes_per_second=113.367Mi/s twitter
-Parse/Thoth/Medium/NoCopy             252375 ns       249051 ns         2635 bytes_per_second=39.958Mi/s medium/nocopy
-Parse/Thoth/Large/NoCopy            70289127 ns     66761364 ns           11 bytes_per_second=89.2877Mi/s large/nocopy
-Parse/Simdjson_DOM/Medium              17916 ns        17578 ns        37333 bytes_per_second=566.13Mi/s medium/dom
-Parse/Simdjson_DOM/Large             6751016 ns      6770833 ns           90 bytes_per_second=880.389Mi/s large/dom
-Parse/Rapidjson/Medium/InSitu          75871 ns        75335 ns        11200 bytes_per_second=132.098Mi/s medium/insitu
-Parse/Rapidjson/Large/InSitu        33166800 ns     33482143 ns           21 bytes_per_second=178.034Mi/s large/insitu
-Stringify/Thoth/Small                   5310 ns         5022 ns       112000 small
-Stringify/Thoth/Medium                203001 ns       190438 ns         3446 medium
-Stringify/Thoth/Large               63963982 ns     63920455 ns           11 large
-Stringify/Nlohmann/Small                3952 ns         4011 ns       194783 small
-Stringify/Nlohmann/Medium             134971 ns       131830 ns         4978 medium
-Stringify/Nlohmann/Large            85705929 ns     84821429 ns            7 large
-Stringify/Rapidjson/Small               1699 ns         1573 ns       407273 small
-Stringify/Rapidjson/Medium             74421 ns        71498 ns         8960 medium
-Stringify/Rapidjson/Large           51826486 ns     51339286 ns           14 large
-KeyAccess/Thoth/Medium                   298 ns          283 ns      2488889
-KeyAccess/Nlohmann/Medium                232 ns          230 ns      2986667
-KeyAccess/Simdjson_DOM/Medium            103 ns         99.4 ns      8960000
-KeyAccess/Rapidjson/Medium               113 ns          112 ns      6400000
-ArrayIteration/Thoth/Array             21886 ns        21973 ns        32000
-ArrayIteration/Nlohmann/Array          13381 ns        13114 ns        56000
-ArrayIteration/Simdjson_DOM/Array       8631 ns         8196 ns        89600
-ArrayIteration/Rapidjson/Array          8692 ns         8161 ns        74667
-ArrayIteration/Thoth/Large           2108843 ns      2083333 ns          345
-ArrayIteration/Nlohmann/Large        2503083 ns      2343750 ns          280
-ArrayIteration/Simdjson_DOM/Large     900246 ns       878906 ns         1120
-ArrayIteration/Rapidjson/Large        624885 ns       599888 ns         1120
-Build/Object/Thoth                      5885 ns         5859 ns       112000
-Build/Object/Nlohmann                   8491 ns         8545 ns        89600
-Build/Object/Rapidjson                  1707 ns         1709 ns       448000
-Build/Array/Thoth/10                   13249 ns        12556 ns        56000
-Build/Array/Thoth/16                   20067 ns        19671 ns        37333
-Build/Array/Thoth/64                   83796 ns        80218 ns         8960
-Build/Array/Thoth/256                 357170 ns       358943 ns         2133
-Build/Array/Thoth/1000               1390006 ns      1411898 ns          498
-Build/Array/Nlohmann/10                15689 ns        14648 ns        44800
-Build/Array/Nlohmann/16                25483 ns        24588 ns        29867
-Build/Array/Nlohmann/64               104244 ns       104627 ns         7467
-Build/Array/Nlohmann/256              394735 ns       376607 ns         1867
-Build/Array/Nlohmann/1000            1449435 ns      1349147 ns          498
-Build/Array/Rapidjson/10                3068 ns         3069 ns       224000
-Build/Array/Rapidjson/16                4306 ns         4147 ns       154483
-Build/Array/Rapidjson/64               15152 ns        15381 ns       49778
-Build/Array/Rapidjson/256              57845 ns        54408 ns        11200
-Build/Array/Rapidjson/1000            232484 ns       234375 ns         3200
-TypeChecking/Thoth/Medium               65.6 ns         62.8 ns     11200000
-TypeChecking/Nlohmann/Medium             398 ns          401 ns      1792000
-TypeChecking/Rapidjson/Medium           67.3 ns         64.5 ns      8960000
-PathTraversal/Thoth/Nested              1077 ns         1088 ns       746667
-PathTraversal/Nlohmann/Nested           1373 ns         1367 ns       560000
-PathTraversal/Simdjson_DOM/Nested        553 ns          558 ns      1120000
-PathTraversal/Rapidjson/Nested           536 ns          502 ns      1120000
-RoundTrip/Thoth/Medium                527314 ns       525890 ns         1545 bytes_per_second=18.9233Mi/s
-RoundTrip/Nlohmann/Medium             549271 ns       544085 ns         1120 bytes_per_second=18.2905Mi/s
-RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 bytes_per_second=61.7643Mi/s`;
+    function S_LibBase(lib) {
+        const m = lib.match(/^(.*?)\s*\((.+)\)$/);
+        return m ? m[1].trim() : lib;
+    }
 
-    const LIB_COLORS = {
-        'Thoth': '#5C88F2',
-        'Thoth (NoCopy)': '#8EAFF2',
-        'Nlohmann': '#F25C5C',
-        'Simdjson': '#43C88D',
-        'Simdjson (DOM)': '#7AE2B1',
-        'Rapidjson': '#A16DF2',
-        'Rapidjson (InSitu)': '#C3A3F2'
-    };
+    const g_colorCache = {};
+
+    function S_LibColor(lib) {
+        if (g_colorCache[lib]) return g_colorCache[lib];
+        const base = S_LibBase(lib);
+        let h = 0;
+        for (let i = 0; i < base.length; i++) h = (h * 31 + base.charCodeAt(i)) % 360;
+        // Variantes usam o mesmo matiz da lib base, só com luminosidade diferente
+        const color = (base === lib) ? `hsl(${h}, 70%, 55%)` : `hsl(${h}, 65%, 68%)`;
+        g_colorCache[lib] = color;
+        return color;
+    }
+
+    function S_SortLibs(libs) {
+        const bases = libs.filter(l => S_LibBase(l) === l).sort((a, b) => a.localeCompare(b));
+        const variants = libs.filter(l => S_LibBase(l) !== l).sort((a, b) => a.localeCompare(b));
+        return [...bases, ...variants];
+    }
 
     const METRICS = [
         { id: 'mb_s', label: 'Taxa (MiB/s)' },
@@ -185,12 +97,13 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     let g_state = {
         runs: [],
-        activeRunId: 'default',
+        activeRunId: null,
         metric: 'mb_s',
         viewMode: 'current',
         hiddenLibs: {},
         hiddenTests: {},
-        logScales: {}
+        logScales: {},
+        collapsedRows: {}
     };
 
     let g_charts = {};
@@ -212,28 +125,25 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     const S_STAT_SUFFIX = /_(mean|median|stddev|cv)$/;
 
+    // Canonical benchmark name:
+    //   Suite/Library/Variant/Test
+    // Examples:
+    //   Parse/Simdjson/DOM/Medium
+    //   Parse/Rapidjson/InSitu/Large
+    //   Build/Boost/Base/Object
+    // The parser deliberately knows nothing about specific libraries or variants.
     function S_ParseName(rawName) {
-        const nameParts = rawName.split('/');
-        if (nameParts.length < 3) return null;
+        const parts = rawName.split('/');
+        if (parts.length < 4) return null;
 
-        let suite = nameParts[0];
-        let lib = '';
-        let testName = '';
+        const suite = parts[0];
+        const library = parts[1];
+        const variant = parts[2];
+        const test = parts.slice(3).join('/');
+        if (!suite || !library || !variant || !test) return null;
 
-        if (suite === 'Build') {
-            testName = nameParts[1];
-            lib = nameParts[2];
-            if (nameParts.length > 3) testName += '/' + nameParts.slice(3).join('/');
-        } else {
-            lib = nameParts[1];
-            testName = nameParts.slice(2).join('/');
-        }
-
-        if (lib === 'Simdjson_DOM') lib = 'Simdjson (DOM)';
-        if (testName.includes('NoCopy')) { lib += ' (NoCopy)'; testName = testName.replace('/NoCopy', ''); }
-        if (testName.includes('InSitu')) { lib += ' (InSitu)'; testName = testName.replace('/InSitu', ''); }
-
-        return { suite, lib, test: testName };
+        const lib = variant === 'Base' ? library : `${library} (${variant})`;
+        return { suite, library, variant, lib, test };
     }
 
     function S_ParseBytesPerSecond(parts) {
@@ -357,14 +267,12 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
         let saved = null;
         try { saved = JSON.parse(localStorage.getItem('benchJson_runs')); } catch (e) {}
 
-        const defaultRun = { id: 'default', name: 'Teste Base (Local)', data: S_ParseBenchmarkText(S_INITIAL_RAW_TEXT), createdAt: 0 };
-
-        g_state.runs = (saved && Array.isArray(saved) && saved.length > 0) ? [defaultRun, ...saved] : [defaultRun];
-        g_state.activeRunId = g_state.runs[g_state.runs.length - 1].id;
+        g_state.runs = (saved && Array.isArray(saved)) ? saved : [];
+        g_state.activeRunId = g_state.runs.length ? g_state.runs[g_state.runs.length - 1].id : null;
     }
 
     function S_SaveState() {
-        localStorage.setItem('benchJson_runs', JSON.stringify(g_state.runs.filter(r => r.id !== 'default')));
+        localStorage.setItem('benchJson_runs', JSON.stringify(g_state.runs));
     }
 
     function S_SetViewMode(mode) { g_state.viewMode = mode; S_UpdateUI(); }
@@ -389,9 +297,9 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
     }
 
     function S_HandleDeleteRun() {
-        if (g_state.activeRunId === 'default') return;
+        if (!g_state.activeRunId) return;
         g_state.runs = g_state.runs.filter(r => r.id !== g_state.activeRunId);
-        g_state.activeRunId = g_state.runs[g_state.runs.length - 1].id;
+        g_state.activeRunId = g_state.runs.length ? g_state.runs[g_state.runs.length - 1].id : null;
         S_SaveState();
         S_UpdateUI();
     }
@@ -417,7 +325,7 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     function S_HandleRenameRun() {
         const newName = document.getElementById('editNameInput').value.trim();
-        if (!newName || g_state.activeRunId === 'default') return S_ToggleEditName(false);
+        if (!newName || !g_state.activeRunId) return S_ToggleEditName(false);
 
         const run = g_state.runs.find(r => r.id === g_state.activeRunId);
         if (run) run.name = newName;
@@ -444,6 +352,11 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     function S_ToggleLogScale(suite) {
         g_state.logScales[suite] = !g_state.logScales[suite];
+        S_UpdateUI();
+    }
+
+    function S_ToggleCollapse(suite) {
+        g_state.collapsedRows[suite] = !g_state.collapsedRows[suite];
         S_UpdateUI();
     }
 
@@ -476,13 +389,14 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
     function S_BuildCardHeader(suite, index, isLog) {
         const metricLabel = METRICS.find(m => m.id === g_state.metric).label;
         const canLog = g_state.metric === 'time' || g_state.metric === 'cpu';
+        const isCollapsed = !!g_state.collapsedRows[suite];
         return `
             <div class="mb-4 flex justify-between items-start gap-2">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-800 select-none">${index + 1}. ${suite}</h2>
+                <div class="cursor-pointer hover:opacity-75 transition-opacity" onclick="S_ToggleCollapse('${suite}')" title="Clique para contrair/expandir">
+                    <h2 class="text-xl font-bold text-slate-800 select-none flex items-center gap-2">${index + 1}. ${suite} <span class="text-sm text-slate-400">${isCollapsed ? '▼' : '▲'}</span></h2>
                     <p class="text-slate-500 mt-1 text-sm">Baseado em ${metricLabel}</p>
                 </div>
-                ${canLog ? `
+                ${!isCollapsed && canLog ? `
                     <button onclick="S_ToggleLogScale('${suite}')" class="shrink-0 text-xs font-bold px-3 py-1.5 rounded-md border ${isLog ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}">
                         ${isLog ? 'Escala Log' : 'Linear'}
                     </button>
@@ -508,7 +422,7 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
             <div class="flex flex-wrap justify-center gap-3 mb-2">
                 ${libs.map(lib => `
                     <div onclick="S_ToggleLibVisibility('${suite}-${lib}')" class="flex items-center cursor-pointer text-xs transition-opacity hover:opacity-80">
-                        <span class="w-3 h-3 rounded-full mr-1.5 opacity-${g_state.hiddenLibs[`${suite}-${lib}`] ? '30' : '100'}" style="background-color: ${LIB_COLORS[lib] || '#cbd5e1'}"></span>
+                        <span class="w-3 h-3 rounded-full mr-1.5 opacity-${g_state.hiddenLibs[`${suite}-${lib}`] ? '30' : '100'}" style="background-color: ${S_LibColor(lib)}"></span>
                         <span class="${g_state.hiddenLibs[`${suite}-${lib}`] ? 'line-through text-slate-400' : 'text-slate-700'}">${lib}</span>
                     </div>
                 `).join('')}
@@ -523,8 +437,9 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     function S_SuiteInfo(latestRun) {
         // Retorna, por suíte: dados, libs ativas, lista de testes e testes visíveis
+        if (!latestRun) return [];
         const suites = Array.from(new Set(latestRun.data.map(d => d.suite)));
-        const allLibs = Array.from(new Set(latestRun.data.map(d => d.lib)));
+        const allLibs = S_SortLibs(Array.from(new Set(latestRun.data.map(d => d.lib))));
         return suites.map(suite => {
             const suiteData = latestRun.data.filter(d => d.suite === suite);
             const hasMetric = suiteData.some(d => d[g_state.metric] != null && !isNaN(d[g_state.metric]));
@@ -548,20 +463,26 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
 
     function S_RenderCurrentView(activeRun) {
         const container = document.getElementById('currentViewContainer');
+        if (!activeRun || activeRun.data.length === 0) {
+            container.innerHTML = '<div class="lg:col-span-2 text-center py-12 text-slate-500">Nenhum teste carregado. Cole o output do benchmark no painel acima e clique em "Guardar Teste".</div>';
+            return;
+        }
         const infos = S_SuiteInfo(activeRun);
         const chartJobs = [];
 
         container.innerHTML = infos.map((info, index) => {
+            const isCollapsed = !!g_state.collapsedRows[info.suite];
             const chartId = `chart_${info.suite.replace(/[^a-zA-Z0-9]/g, '_')}`;
-            chartJobs.push({ chartId, ...info });
+            if (!isCollapsed) chartJobs.push({ chartId, ...info });
             return `
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 ${info.small ? '' : 'lg:col-span-2'}">
                     ${S_BuildCardHeader(info.suite, index, info.isLog)}
+                    ${isCollapsed ? '' : `
                     ${S_BuildTestChips(info.suite, info.allTests)}
                     ${S_BuildLegend(info.suite, info.libs)}
                     <div class="min-h-[350px] relative">
                         <canvas id="${chartId}"></canvas>
-                    </div>
+                    </div>`}
                 </div>`;
         }).join('') || '<div class="lg:col-span-2 text-center py-12 text-slate-500">Não há dados disponíveis para esta métrica.</div>';
 
@@ -573,7 +494,7 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
                     label: lib,
                     data: entries.map(e => e && e[g_state.metric] != null ? e[g_state.metric] : null),
                     meta: entries.map(e => e && e.stat ? `${e.stat === 'median' ? 'mediana' : 'média'}${e.cv != null ? ', cv ' + e.cv.toFixed(1) + '%' : ''}` : ''),
-                    backgroundColor: LIB_COLORS[lib] || '#cbd5e1',
+                    backgroundColor: S_LibColor(lib),
                     hidden: !!g_state.hiddenLibs[`${suite}-${lib}`],
                     borderRadius: 4,
                     borderSkipped: false
@@ -596,13 +517,14 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
         });
     }
 
+
     // ---- Modo: Evolução Histórica ----
 
     function S_RenderHistoryView() {
         const container = document.getElementById('historyViewContainer');
         const latestRun = g_state.runs[g_state.runs.length - 1];
         if (!latestRun) {
-            container.innerHTML = '<div class="lg:col-span-2 text-center py-12 text-slate-500">Sem dados.</div>';
+            container.innerHTML = '<div class="lg:col-span-2 text-center py-12 text-slate-500">Nenhum teste no histórico. Cole o output do benchmark no painel acima e clique em "Guardar Teste".</div>';
             return;
         }
 
@@ -611,7 +533,8 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
         const labels = g_state.runs.map(r => r.name);
 
         container.innerHTML = infos.map((info, index) => {
-            const cells = info.visibleTests.map(test => {
+            const isCollapsed = !!g_state.collapsedRows[info.suite];
+            const cells = isCollapsed ? '' : info.visibleTests.map(test => {
                 const chartId = `hist_${info.suite.replace(/[^a-zA-Z0-9]/g, '_')}_${test.replace(/[^a-zA-Z0-9]/g, '_')}`;
                 chartJobs.push({ chartId, suite: info.suite, test, libs: info.libs, isLog: info.isLog });
                 return `
@@ -624,13 +547,14 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
             }).join('');
 
             return `
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 ${info.small ? '' : 'lg:col-span-2'}">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     ${S_BuildCardHeader(info.suite, index, info.isLog)}
+                    ${isCollapsed ? '' : `
                     ${S_BuildTestChips(info.suite, info.allTests)}
                     ${S_BuildLegend(info.suite, info.libs)}
                     ${info.visibleTests.length
                 ? `<div class="grid ${info.small ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'} gap-6">${cells}</div>`
-                : '<p class="text-center text-sm text-slate-400 py-6">Todos os testes estão ocultos. Clique nos chips acima para reexibir.</p>'}
+                : '<p class="text-center text-sm text-slate-400 py-6">Todos os testes estão ocultos. Clique nos chips acima para reexibir.</p>'}`}
                 </div>`;
         }).join('') || '<div class="lg:col-span-2 text-center py-12 text-slate-500">Não há dados no histórico.</div>';
 
@@ -642,8 +566,8 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
                     label: lib,
                     data: entries.map(e => e && e[g_state.metric] != null ? e[g_state.metric] : null),
                     meta: entries.map(e => e && e.stat ? `${e.stat === 'median' ? 'mediana' : 'média'}${e.cv != null ? ', cv ' + e.cv.toFixed(1) + '%' : ''}` : ''),
-                    borderColor: LIB_COLORS[lib] || '#cbd5e1',
-                    backgroundColor: LIB_COLORS[lib] || '#cbd5e1',
+                    borderColor: S_LibColor(lib),
+                    backgroundColor: S_LibColor(lib),
                     tension: 0.2,
                     borderWidth: 2,
                     pointRadius: 3,
@@ -668,8 +592,9 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
         });
     }
 
+
     function S_UpdateUI() {
-        const activeRun = g_state.runs.find(r => r.id === g_state.activeRunId) || g_state.runs[0];
+        const activeRun = g_state.runs.find(r => r.id === g_state.activeRunId) || g_state.runs[g_state.runs.length - 1] || null;
 
         document.getElementById('btnViewCurrent').className = `px-4 py-2 rounded-md font-medium text-sm transition-all ${g_state.viewMode === 'current' ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-800'}`;
         document.getElementById('btnViewHistory').className = `px-4 py-2 rounded-md font-medium text-sm transition-all ${g_state.viewMode === 'history' ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-800'}`;
@@ -678,7 +603,7 @@ RoundTrip/Rapidjson/Medium            166662 ns       161122 ns         4073 byt
             g_state.runs.map(r => `<option value="${r.id}" ${r.id === g_state.activeRunId ? 'selected' : ''}>${r.name}</option>`).join('');
 
         document.getElementById('runSelectionPanel').classList.toggle('hidden', g_state.viewMode !== 'current');
-        document.getElementById('runActions').classList.toggle('hidden', g_state.activeRunId === 'default');
+        document.getElementById('runActions').classList.toggle('hidden', g_state.runs.length === 0);
 
         document.getElementById('metricSelector').innerHTML = METRICS.map(m => `
             <button onclick="S_SetMetric('${m.id}')" class="px-5 py-2.5 rounded-lg font-medium transition-all shadow-sm ${g_state.metric === m.id ? 'bg-blue-600 text-white shadow-blue-500/30' : 'bg-white text-slate-600 hover:bg-slate-100'}">

@@ -5,6 +5,9 @@
 #include <concepts>
 #include <functional>
 #include <compare>
+#include <cstddef>
+#include <ranges>
+#include <type_traits>
 
 namespace Thoth::Dsa {
 
@@ -27,16 +30,23 @@ namespace Thoth::Dsa {
 
     private:
         container_type m_data;
-        [[no_unique_address]] key_compare m_compare; // Otimização para comparadores sem estado (stateless)
+        [[no_unique_address]] key_compare m_compare;
+
+        template<class A, class B>
+        static constexpr bool is_three_way_v =
+            std::same_as<std::invoke_result_t<const key_compare&, const A&, const B&>, std::strong_ordering>;
+
+        template<class A, class B>
+        constexpr std::strong_ordering compare_keys(const A& a, const B& b) const;
+
+        template<class A, class B>
+        constexpr bool key_less(const A& a, const B& b) const;
 
         template<class LookupKeyT>
-        constexpr iterator find_position(const LookupKeyT& key);
+        constexpr std::pair<iterator, bool> find_position(const LookupKeyT& key);
 
         template<class LookupKeyT>
-        constexpr const_iterator find_position(const LookupKeyT& key) const;
-
-        template<class LookupKeyT>
-        constexpr bool is_equivalent(const_iterator it, const LookupKeyT& key) const;
+        constexpr std::pair<const_iterator, bool> find_position(const LookupKeyT& key) const;
 
     public:
         constexpr LinearMap() = default;

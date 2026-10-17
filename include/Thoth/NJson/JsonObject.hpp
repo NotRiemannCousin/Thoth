@@ -1,5 +1,6 @@
 #pragma once
 #include <optional>
+#include <compare>
 #include <format>
 #include <string>
 #include <vector>
@@ -13,14 +14,8 @@ namespace Thoth::NJson {
     struct JsonKeyCompare {
         using is_transparent = void;
 
-        constexpr bool operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept;
+        constexpr std::strong_ordering operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept;
     };
-
-    constexpr bool JsonKeyCompare::operator()(JsonObjKeyRef a, JsonObjKeyRef b) const noexcept {
-        if (a.size() != b.size())
-            return a.size() < b.size();
-        return a < b;
-    }
 
     struct JsonObject {
         using JsonValRef = Json&;

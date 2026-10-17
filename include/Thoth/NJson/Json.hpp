@@ -9,6 +9,7 @@
 #include <span>
 
 #include <Thoth/NJson/Definitions.hpp>
+#include <Thoth/NJson/Range.hpp>
 #include <Thoth/NJson/Keys.hpp>
 #include <Thoth/ThothError.hpp>
 
@@ -242,6 +243,63 @@ namespace Thoth::NJson {
 #pragma endregion
 
 
+#pragma region Range Interface
+        //! @{
+        //! @name Range Interface
+        //! Every Json models the STL range concepts over its direct children:
+        //! - @c Array values iterate their elements;
+        //! - @c Object values iterate their values, in storage order (keys are skipped);
+        //! - every other type (null, string, number, bool) is an empty sequence.
+        //!
+        //! @c begin()/@c end() return the same iterator type and the iterators are bidirectional,
+        //! so a Json always models @c std::ranges::forward_range, @c std::ranges::bidirectional_range,
+        //! @c std::ranges::common_range and @c std::ranges::sized_range — mutable and const alike.
+        //! When the keys are needed, @see Items() pairs each child with its @ref KeyView; for a
+        //! guaranteed index, compose with @c std::views::enumerate.
+
+        using iterator       = JsonIterator<false>;
+        using const_iterator = JsonIterator<true>;
+        using value_type     = Json;
+
+        //! @brief Iterator to the first child. Scalar values yield @c begin() == @c end().
+        iterator begin();
+        //! @brief Iterator to one-past-the-last child.
+        iterator end();
+        //! @copydoc begin
+        [[nodiscard]] const_iterator begin() const;
+        //! @copydoc end
+        [[nodiscard]] const_iterator end() const;
+        //! @brief Const iterator to the first child, even when this Json is mutable.
+        [[nodiscard]] const_iterator cbegin() const;
+        //! @brief Const iterator to one-past-the-last child, even when this Json is mutable.
+        [[nodiscard]] const_iterator cend() const;
+
+        //! @brief True when this value has no children (scalars are always empty).
+        [[nodiscard]] bool Empty() const;
+        //! @brief STL spelling of Empty(), kept so @c std::ranges::empty works on a Json.
+        [[nodiscard]] bool empty() const;
+
+        //! @brief Number of children: elements of an Array, entries of an Object, 0 for scalars.
+        [[nodiscard]] size_t Size() const;
+        //! @brief STL spelling of Size(), kept so @c std::ranges::size works on a Json.
+        [[nodiscard]] size_t size() const;
+
+        //! @brief A @c std::ranges view of @c std::pair<KeyView, Json&> pairing each child with its
+        //!        key: the array index for Array values, the entry key for Object values.
+        //! @details Useful when the keys are needed, e.g.
+        //!          @c for (const auto& [key, child] : json.Items()), or composing with
+        //!          @c std::views::keys / @c std::views::values.
+        //! @note The view references this Json, it does not extend its lifetime.
+        [[nodiscard]] JsonItemsView<false> Items();
+        //! @copydoc Items
+        [[nodiscard]] JsonItemsView<true> Items() const;
+
+        //! @}
+#pragma endregion
+
+
+#pragma region Visit
+
         //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         constexpr decltype(auto) Visit(Callable&& callable);
@@ -249,6 +307,9 @@ namespace Thoth::NJson {
         //! @brief convenient call to std::visit() on m_value.
         template<class Callable>
         [[nodiscard]] constexpr decltype(auto) Visit(Callable&& callable) const;
+
+#pragma endregion
+
     private:
         Value m_value;
     };

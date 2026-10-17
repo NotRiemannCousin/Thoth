@@ -164,7 +164,7 @@ namespace Thoth::NJson {
 
 #pragma endregion
 
-
+#pragma region Visit
 
     template<class Callable>
     constexpr decltype(auto) Json::Visit(Callable&& callable) {
@@ -176,80 +176,112 @@ namespace Thoth::NJson {
         return std::visit(std::forward<Callable>(callable), m_value);
     }
 
+#pragma endregion
 
 #pragma region Search Functions
-#pragma push_macro("RETURN_IF_MATCH")
-#undef RETURN_IF_MATCH
-#define RETURN_IF_MATCH(declaration, expr) {                   \
-    if (IsOf<Array>()) {                                       \
-        for (declaration : As<Array>())                        \
-            if (std::invoke(pred, obj))                        \
-                return expr;                                   \
-    }                                                          \
-    if (IsOf<Object>()) {                                      \
-        for (declaration : *As<Object>() | std::views::values) \
-            if (std::invoke(pred, obj))                        \
-                return expr;                                   \
-    }                                                          \
-}
-
 
     template<class Pred> requires std::predicate<Pred, Json>
     OptRefValWrapper Json::Search(Pred&& pred) {
-        RETURN_IF_MATCH(auto &obj, &obj);
-        return std::nullopt;
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return std::nullopt;
+
+        return &*match;
     }
+
     template<class Pred> requires std::predicate<Pred, Json>
     [[nodiscard]] OptCRefValWrapper Json::Search(Pred&& pred) const {
-        RETURN_IF_MATCH(const auto &obj, &obj);
-        return std::nullopt;
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return std::nullopt;
+
+        return &*match;
     }
+
     template<class Pred> requires std::predicate<Pred, Json>
-    OptValWrapper Json::SearchCopy(Pred &&pred) const {
-        RETURN_IF_MATCH(const auto &obj, obj);
-        return std::nullopt;
+    [[nodiscard]] OptValWrapper Json::SearchCopy(Pred&& pred) const {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return std::nullopt;
+
+        return *match;
     }
+
     template<class Pred> requires std::predicate<Pred, Json>
-    OptValWrapper Json::SearchAndMove(Pred &&pred) && {
-        RETURN_IF_MATCH(auto &obj, std::move(obj));
-        return std::nullopt;
+    OptValWrapper Json::SearchAndMove(Pred&& pred) && {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return std::nullopt;
+
+        return std::move(*match);
     }
 
 
     template<class Pred> requires std::predicate<Pred, Json>
-    ValWrapper Json::SearchCopyOrNull(Pred &&pred) const {
-        RETURN_IF_MATCH(auto &obj, obj);
-        return NullJ;
+    [[nodiscard]] ValWrapper Json::SearchCopyOrNull(Pred&& pred) const {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return NullJ;
+
+        return *match;
     }
+
     template<class Pred> requires std::predicate<Pred, Json>
-    ValWrapper Json::SearchAndMoveOrNull(Pred &&pred) {
-        RETURN_IF_MATCH(auto &obj, std::move(obj));
-        return NullJ;
+    ValWrapper Json::SearchAndMoveOrNull(Pred&& pred) {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return NullJ;
+
+        return std::move(*match);
     }
 
 
     template<class Pred> requires std::predicate<Pred, Json>
-    ExpRefValWrapper Json::SearchOrError(Pred &&pred) {
-        RETURN_IF_MATCH(auto &obj, &obj);
-        return ThothUnex{{  JsonSearchError{}  }};
-    }
-    template<class Pred> requires std::predicate<Pred, Json>
-    ExpCRefValWrapper Json::SearchOrError(Pred &&pred) const {
-        RETURN_IF_MATCH(auto &obj, &obj);
-        return ThothUnex{{  JsonSearchError{}  }};
-    }
-    template<class Pred> requires std::predicate<Pred, Json>
-    ExpValWrapper Json::SearchCopyOrError(Pred &&pred) const {
-        RETURN_IF_MATCH(auto &obj, obj);
-        return ThothUnex{{  JsonSearchError{}  }};
-    }
-    template<class Pred> requires std::predicate<Pred, Json>
-    ExpValWrapper Json::SearchAndMoveOrError(Pred &&pred) && {
-        RETURN_IF_MATCH(auto &obj, std::move(obj));
-        return ThothUnex{{  JsonSearchError{}  }};
+    ExpRefValWrapper Json::SearchOrError(Pred&& pred) {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return ThothUnex{{  JsonSearchError{}  }};
+
+        return &*match;
     }
 
-#pragma pop_macro("RETURN_IF_MATCH")
+    template<class Pred> requires std::predicate<Pred, Json>
+    [[nodiscard]] ExpCRefValWrapper Json::SearchOrError(Pred&& pred) const {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return ThothUnex{{  JsonSearchError{}  }};
+
+        return &*match;
+    }
+
+    template<class Pred> requires std::predicate<Pred, Json>
+    [[nodiscard]] ExpValWrapper Json::SearchCopyOrError(Pred&& pred) const {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return ThothUnex{{  JsonSearchError{}  }};
+
+        return *match;
+    }
+
+    template<class Pred> requires std::predicate<Pred, Json>
+    ExpValWrapper Json::SearchAndMoveOrError(Pred&& pred) && {
+        const auto match{ std::ranges::find_if(*this, std::forward<Pred>(pred)) };
+
+        if (match == end())
+            return ThothUnex{{  JsonSearchError{}  }};
+
+        return std::move(*match);
+    }
+
 #pragma endregion
 
     namespace detail {

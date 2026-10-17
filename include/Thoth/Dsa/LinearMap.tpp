@@ -12,11 +12,13 @@ namespace Thoth::Dsa {
     template<class KeyT, class ValT, class Pred> requires strong_order_relation<KeyT, Pred>
     constexpr LinearMap<KeyT, ValT, Pred>::LinearMap(container_type&& init, const key_compare& comp)
         : m_data{ std::move(init) }, m_compare{ comp }{
-        if (!std::ranges::is_sorted(m_data, m_compare, &value_type::first))
-            std::ranges::stable_sort(m_data, m_compare, &value_type::first);
+        const auto less{ [this](const auto& a, const auto& b) { return key_less(a, b); } };
+
+        if (!std::ranges::is_sorted(m_data, less, &value_type::first))
+            std::ranges::stable_sort(m_data, less, &value_type::first);
 
         const auto key_equiv{ [this](const KeyT& a, const KeyT& b) {
-            return !std::invoke(m_compare, a, b) && !std::invoke(m_compare, b, a);
+            return compare_keys(a, b) == 0;
         } };
 
         auto [firstToErase, last]{ std::ranges::unique(m_data, key_equiv, &value_type::first) };
@@ -51,40 +53,65 @@ namespace Thoth::Dsa {
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
-    template<class LookupKeyT>
-    typename LinearMap<KeyT, ValT, Pred>::iterator
-    constexpr LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) {
-        if (m_data.size() < 16) {
-            for (auto it{ m_data.begin() }; it != m_data.end(); ++it)
-                if (!std::invoke(m_compare, it->first, key))
-                    return it;
-
-            return m_data.end();
+    template<class A, class B>
+    constexpr std::strong_ordering LinearMap<KeyT, ValT, Pred>::compare_keys(const A& a, const B& b) const {
+        if constexpr (is_three_way_v<A, B>) {
+            return std::invoke(m_compare, a, b);
+        } else {
+            if (std::invoke(m_compare, a, b)) return std::strong_ordering::less;
+            if (std::invoke(m_compare, b, a)) return std::strong_ordering::greater;
+            return std::strong_ordering::equal;
         }
-        return std::ranges::lower_bound(m_data, key, m_compare, &value_type::first);
+    }
+
+    template<class KeyT, class ValT, class Pred>
+        requires strong_order_relation<KeyT, Pred>
+    template<class A, class B>
+    constexpr bool LinearMap<KeyT, ValT, Pred>::key_less(const A& a, const B& b) const {
+        if constexpr (is_three_way_v<A, B>)
+            return std::invoke(m_compare, a, b) < 0;
+        else
+            return static_cast<bool>(std::invoke(m_compare, a, b));
     }
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
-    typename LinearMap<KeyT, ValT, Pred>::const_iterator
-    constexpr LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) const {
-        if (m_data.size() < 16) {
-            for (auto it{ m_data.begin() }; it != m_data.end(); ++it)
-                if (!std::invoke(m_compare, it->first, key))
-                    return it;
+    constexpr std::pair<typename LinearMap<KeyT, ValT, Pred>::const_iterator, bool>
+    LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) const {
+        const auto first{ m_data.begin() };
+        const auto last { m_data.end() };
 
-            return m_data.end();
+        if (m_data.size() < 16) {
+            // Ordenado: para na primeira chave que não é menor. 1 comparação por elemento.
+            for (auto it{ first }; it != last; ++it) {
+                const auto c{ compare_keys(it->first, key) };
+                if (c >= 0)
+                    return { it, c == 0 };
+            }
+            return { last, false };
         }
-        return std::ranges::lower_bound(m_data, key, m_compare, &value_type::first);
+
+        // Busca binária com saída antecipada (chaves únicas): 1 comparação por passo.
+        size_type lo{ 0 };
+        size_type hi{ m_data.size() };
+        while (lo < hi) {
+            const size_type mid{ lo + (hi - lo) / 2 };
+            const auto c{ compare_keys(m_data[mid].first, key) };
+            if (c == 0) return { first + static_cast<std::ptrdiff_t>(mid), true };
+            if (c < 0)  lo = mid + 1;
+            else        hi = mid;
+        }
+        return { first + static_cast<std::ptrdiff_t>(lo), false };
     }
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
-    constexpr bool LinearMap<KeyT, ValT, Pred>::is_equivalent(const_iterator it, const LookupKeyT& key) const {
-        if (it == m_data.end()) return false;
-        return !std::invoke(m_compare, key, it->first);
+    constexpr std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
+    LinearMap<KeyT, ValT, Pred>::find_position(const LookupKeyT& key) {
+        const auto [cit, found]{ std::as_const(*this).find_position(key) };
+        return { m_data.begin() + (cit - m_data.cbegin()), found };
     }
 
     template<class KeyT, class ValT, class Pred> requires strong_order_relation<KeyT, Pred>
@@ -110,9 +137,9 @@ namespace Thoth::Dsa {
     template<class LookupKeyT, class MappedT>
     constexpr std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
     LinearMap<KeyT, ValT, Pred>::try_emplace(LookupKeyT&& key, MappedT&& val) {
-        iterator it{ find_position(key) };
+        auto [it, found]{ find_position(key) };
 
-        if (is_equivalent(it, key)) {
+        if (found) {
             return {it, false};
         }
 
@@ -125,9 +152,9 @@ namespace Thoth::Dsa {
     template<class LookupKeyT, class MappedT>
     constexpr std::pair<typename LinearMap<KeyT, ValT, Pred>::iterator, bool>
     LinearMap<KeyT, ValT, Pred>::insert_or_assign(LookupKeyT&& key, MappedT&& val) {
-        iterator it{ find_position(key) };
+        auto [it, found]{ find_position(key) };
 
-        if (is_equivalent(it, key)) {
+        if (found) {
             it->second = std::forward<MappedT>(val);
             return {it, false};
         }
@@ -140,9 +167,9 @@ namespace Thoth::Dsa {
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
     constexpr bool LinearMap<KeyT, ValT, Pred>::erase(const LookupKeyT& key) {
-        auto it{ find_position(key) };
+        auto [it, found]{ find_position(key) };
 
-        if (!is_equivalent(it, key)) return false;
+        if (!found) return false;
 
         m_data.erase(it);
         return true;
@@ -157,21 +184,21 @@ namespace Thoth::Dsa {
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
     constexpr typename LinearMap<KeyT, ValT, Pred>::iterator LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) {
-        iterator it{ find_position(key) };
-        return is_equivalent(it, key) ? it : m_data.end();
+        auto [it, found]{ find_position(key) };
+        return found ? it : m_data.end();
     }
 
     template<class KeyT, class ValT, class Pred>
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
     constexpr typename LinearMap<KeyT, ValT, Pred>::const_iterator LinearMap<KeyT, ValT, Pred>::find(const LookupKeyT& key) const {
-        const_iterator it{ find_position(key) };
-        return is_equivalent(it, key) ? it : m_data.end();
+        auto [it, found]{ find_position(key) };
+        return found ? it : m_data.end();
     }
 
     template<class KeyT, class ValT, class Pred> requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
-    constexpr bool LinearMap<KeyT, ValT, Pred>::exists(const LookupKeyT& key) const { return is_equivalent(find_position(key), key); }
+    constexpr bool LinearMap<KeyT, ValT, Pred>::exists(const LookupKeyT& key) const { return find_position(key).second; }
     template<class KeyT, class ValT, class Pred> requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
     constexpr bool LinearMap<KeyT, ValT, Pred>::contains(const LookupKeyT& key) const { return exists(key); }
@@ -180,9 +207,9 @@ namespace Thoth::Dsa {
         requires strong_order_relation<KeyT, Pred>
     template<class LookupKeyT>
     ValT& LinearMap<KeyT, ValT, Pred>::operator[](LookupKeyT&& key) {
-        auto it{ find_position(key) };
+        auto [it, found]{ find_position(key) };
 
-        if (is_equivalent(it, key))
+        if (found)
             return it->second;
 
         auto newIt{ m_data.emplace(it, KeyT{std::forward<LookupKeyT>(key)}, mapped_type{}) };

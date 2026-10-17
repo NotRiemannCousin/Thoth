@@ -161,6 +161,73 @@ bool Json::operator==(const Json& other) const {
         }, m_value);
 }
 
+#pragma region Range Interface
+
+    Json::iterator Json::begin() {
+        return iterator{ this, false };
+    }
+
+    Json::iterator Json::end() {
+        return iterator{ this, true };
+    }
+
+    Json::const_iterator Json::begin() const {
+        return const_iterator{ this, false };
+    }
+
+    Json::const_iterator Json::end() const {
+        return const_iterator{ this, true };
+    }
+
+    Json::const_iterator Json::cbegin() const {
+        return begin();
+    }
+
+    Json::const_iterator Json::cend() const {
+        return end();
+    }
+
+
+    bool Json::Empty() const {
+        return std::visit(Hermes::Utils::Overloaded{
+            [](const Array& arr) -> bool { return arr.empty(); },
+            [](const Object& obj) -> bool { return obj->Empty(); },
+            [](const auto&) -> bool { return true; }
+        }, m_value);
+    }
+
+    bool Json::empty() const {
+        return Empty();
+    }
+
+    size_t Json::Size() const {
+        return std::visit(Hermes::Utils::Overloaded{
+            [](const Array& arr) -> size_t { return arr.size(); },
+            [](const Object& obj) -> size_t {
+                // Prefers the object's own size when it has one, falls back to a ranges count.
+                if constexpr (requires { obj->Size(); })
+                    return obj->Size();
+                else
+                    return static_cast<size_t>(std::ranges::distance(*obj));
+            },
+            [](const auto&) -> size_t { return size_t{ 0 }; }
+        }, m_value);
+    }
+
+    size_t Json::size() const {
+        return Size();
+    }
+
+
+    JsonItemsView<false> Json::Items() {
+        return JsonItemsView<false>{ this };
+    }
+
+    JsonItemsView<true> Json::Items() const {
+        return JsonItemsView<true>{ this };
+    }
+
+#pragma endregion
 
 #pragma region I hate to love c preprocessor
 // This section is dedicated to this cursed amazing feature that deserves
@@ -828,3 +895,24 @@ ExpValWrapper Json::FindAndMoveOrError(const KeysView keys) && {
 
 
 #pragma endregion
+
+
+
+
+static_assert(std::ranges::input_range<Json>);
+static_assert(std::ranges::forward_range<Json>);
+static_assert(std::ranges::bidirectional_range<Json>);
+static_assert(std::ranges::common_range<Json>);
+static_assert(std::ranges::sized_range<Json>);
+
+static_assert(std::ranges::input_range<const Json>);
+static_assert(std::ranges::forward_range<const Json>);
+static_assert(std::ranges::bidirectional_range<const Json>);
+static_assert(std::ranges::common_range<const Json>);
+static_assert(std::ranges::sized_range<const Json>);
+
+static_assert(std::ranges::view<JsonItemsView<true>>);
+static_assert(std::ranges::input_range<JsonItemsView<true>>);
+static_assert(std::ranges::common_range<JsonItemsView<true>>);
+static_assert(std::ranges::sized_range<JsonItemsView<true>>);
+static_assert(std::ranges::borrowed_range<JsonItemsView<true>>);
