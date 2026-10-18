@@ -10,7 +10,8 @@
 namespace bj = boost::json;
 
 static constexpr bj::parse_options kParseOpts{
-    .allow_comments      = false,
+    .numbers               = bj::number_precision::precise,
+    .allow_comments        = false,
     .allow_trailing_commas = false,
 };
 
@@ -235,22 +236,6 @@ static void BM_Boost_PathTraversal_Nested(benchmark::State& state) {
 //  Registration
 // ======================================================================
 
-#define BENCH_PARSE_DS(lib, DS_ENUM) \
-    BENCHMARK_TEMPLATE(BM_##lib##_Parse, DS::DS_ENUM)->Name(BENCH_NAME(Parse, lib, Base, DS_ENUM))
-
-#define BENCH_PARSE_ALL(lib)         \
-    BENCH_PARSE_DS(lib, Small);      \
-    BENCH_PARSE_DS(lib, Medium);     \
-    BENCH_PARSE_DS(lib, Large);      \
-    BENCH_PARSE_DS(lib, Nested);     \
-    BENCH_PARSE_DS(lib, Numbers);    \
-    BENCH_PARSE_DS(lib, Array);      \
-    BENCH_PARSE_DS(lib, Strings);    \
-    BENCH_PARSE_DS(lib, RawStrings); \
-    BENCH_PARSE_DS(lib, Twitter);
-
-#define BENCH_STR_DS(lib, DS_ENUM) \
-    BENCHMARK_TEMPLATE(BM_##lib##_Stringify, DS::DS_ENUM)->Name(BENCH_NAME(Stringify, lib, Base, DS_ENUM))
 
 BENCH_PARSE_ALL(Boost);
 

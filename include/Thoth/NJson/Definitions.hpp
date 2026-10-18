@@ -35,12 +35,12 @@ namespace Thoth::NJson {
             std::shared_ptr<std::string> buffer;
         };
 
-        static bool ReadString(std::string_view& input, auto& val, const BufferInfo& info);
-        static bool ReadNumber(std::string_view& input, auto& val);
-        static bool ReadObject(std::string_view& input, auto& val, const BufferInfo& info);
-        static bool ReadBool  (std::string_view& input, auto& val);
-        static bool ReadNull  (std::string_view& input, auto& val);
-        static bool ReadArray (std::string_view& input, auto& val, const BufferInfo& info);
+        bool ReadString(std::string_view& input, auto& val, const BufferInfo& info);
+        bool ReadNumber(std::string_view& input, auto& val);
+        bool ReadObject(std::string_view& input, auto& val, const BufferInfo& info);
+        bool ReadBool  (std::string_view& input, auto& val);
+        bool ReadNull  (std::string_view& input, auto& val);
+        bool ReadArray (std::string_view& input, auto& val, const BufferInfo& info);
     }
 
 

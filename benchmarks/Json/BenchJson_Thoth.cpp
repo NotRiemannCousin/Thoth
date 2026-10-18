@@ -239,27 +239,6 @@ static void BM_Thoth_RoundTrip_Medium(benchmark::State& state) {
 }
 
 // ======================================================================
-//  Registration macros (shared definitions, also used by other TUs)
-// ======================================================================
-
-#define BENCH_PARSE_DS(lib, DS_ENUM) \
-    BENCHMARK_TEMPLATE(BM_##lib##_Parse, DS::DS_ENUM)->Name(BENCH_NAME(Parse, lib, Base, DS_ENUM))
-
-#define BENCH_PARSE_ALL(lib)         \
-    BENCH_PARSE_DS(lib, Small);      \
-    BENCH_PARSE_DS(lib, Medium);     \
-    BENCH_PARSE_DS(lib, Large);      \
-    BENCH_PARSE_DS(lib, Nested);     \
-    BENCH_PARSE_DS(lib, Numbers);    \
-    BENCH_PARSE_DS(lib, Array);      \
-    BENCH_PARSE_DS(lib, Strings);    \
-    BENCH_PARSE_DS(lib, RawStrings); \
-    BENCH_PARSE_DS(lib, Twitter);
-
-#define BENCH_STR_DS(lib, DS_ENUM) \
-    BENCHMARK_TEMPLATE(BM_##lib##_Stringify, DS::DS_ENUM)->Name(BENCH_NAME(Stringify, lib, Base, DS_ENUM))
-
-// ======================================================================
 //  THOTH — Registration
 // ======================================================================
 
@@ -271,27 +250,19 @@ BENCHMARK_TEMPLATE(BM_Thoth_Parse_NoCopy, DS::Large) ->Name(BENCH_NAME(Parse, Th
 BENCHMARK_TEMPLATE(BM_Thoth_Parse_Mimalloc, DS::Medium)->Name(BENCH_NAME(Parse, Thoth, Mimalloc, Medium));
 BENCHMARK_TEMPLATE(BM_Thoth_Parse_Mimalloc, DS::Large) ->Name(BENCH_NAME(Parse, Thoth, Mimalloc, Large));
 
-// Stringify
 BENCH_STR_DS(Thoth, Small);  BENCH_STR_DS(Thoth, Medium); BENCH_STR_DS(Thoth, Large);
 
-// Key Access
 BENCHMARK(BM_Thoth_KeyAccess_Medium)->Name(BENCH_NAME(KeyAccess, Thoth, Base, Medium));
 
-// Array Iteration
 BENCHMARK(BM_Thoth_ArrayIteration_Array)->Name(BENCH_NAME(ArrayIteration, Thoth, Base, Array));
 BENCHMARK(BM_Thoth_ArrayIteration_Large)->Name(BENCH_NAME(ArrayIteration, Thoth, Base, Large));
 
-// Build Object
 BENCHMARK(BM_Thoth_BuildObject)->Name(BENCH_NAME(Build, Thoth, Base, Object));
 
-// Build Array
 BENCHMARK(BM_Thoth_BuildArray)->Name(BENCH_NAME(Build, Thoth, Base, Array))->RangeMultiplier(4)->Range(10, 1000);
 
-// Type Checking
 BENCHMARK(BM_Thoth_TypeChecking)->Name(BENCH_NAME(TypeChecking, Thoth, Base, Medium));
 
-// Path Traversal
 BENCHMARK(BM_Thoth_PathTraversal_Nested)->Name(BENCH_NAME(PathTraversal, Thoth, Base, Nested));
 
-// Round-trip
 BENCHMARK(BM_Thoth_RoundTrip_Medium)->Name(BENCH_NAME(RoundTrip, Thoth, Base, Medium));
