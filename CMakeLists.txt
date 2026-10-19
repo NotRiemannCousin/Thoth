@@ -59,10 +59,11 @@ target_sources(Thoth PRIVATE
         src/Thoth/Utils/Env.cpp
 
         src/Thoth/NJson/Json.cpp
-        src/Thoth/NJson/JsonParse.cpp
         src/Thoth/NJson/JsonObject.cpp
-        src/Thoth/NJson/StringRef.cpp
+        src/Thoth/NJson/JsonParse.cpp
         src/Thoth/NJson/Number.cpp
+        src/Thoth/NJson/StringOwn.cpp
+        src/Thoth/NJson/StringRef.cpp
 
         src/Thoth/Http/Url/Url.cpp
         src/Thoth/Http/Request/QueryParams.cpp

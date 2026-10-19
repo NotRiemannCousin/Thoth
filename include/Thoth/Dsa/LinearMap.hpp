@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include <utility>
 #include <concepts>
 #include <functional>
@@ -16,14 +17,16 @@ namespace Thoth::Dsa {
            requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::same_as<std::strong_ordering>; }
         || requires(Relation r, Key a, Key b) { { std::invoke(r, a, b) } -> std::convertible_to<bool>; };
 
-    template<class KeyT, class ValT, class Pred = std::less<>>
+    template<class KeyT, class ValT, class Pred = std::less<>,
+             class Alloc = std::allocator<std::pair<KeyT, ValT>>>
         requires strong_order_relation<KeyT, Pred>
     struct LinearMap {
         using key_type       = KeyT;
         using mapped_type    = ValT;
         using value_type     = std::pair<KeyT, ValT>;
         using key_compare    = Pred;
-        using container_type = std::vector<value_type>;
+        using allocator_type = Alloc;
+        using container_type = std::vector<value_type, Alloc>;
         using iterator       = container_type::iterator;
         using const_iterator = container_type::const_iterator;
         using size_type      = container_type::size_type;
@@ -53,16 +56,23 @@ namespace Thoth::Dsa {
         constexpr LinearMap(const LinearMap&) = default;
         constexpr LinearMap(LinearMap&&) = default;
 
-        constexpr explicit LinearMap(const key_compare& comp);
+        constexpr explicit LinearMap(const key_compare& comp, const Alloc& alloc = Alloc{});
+        constexpr explicit LinearMap(const Alloc& alloc);
 
         constexpr LinearMap(container_type&& init, const key_compare& comp = key_compare{});
         template<std::ranges::input_range R>
-        constexpr LinearMap(std::from_range_t, R&& rg, const key_compare& comp = key_compare{})
+        constexpr LinearMap(std::from_range_t, R&& rg, const key_compare& comp = key_compare{}, const Alloc& alloc = Alloc{})
             requires std::convertible_to<std::ranges::range_reference_t<R>, value_type>;
-        constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare{});
+        template<std::ranges::input_range R>
+        constexpr LinearMap(std::from_range_t, R&& rg, const Alloc& alloc)
+            requires std::convertible_to<std::ranges::range_reference_t<R>, value_type>;
+        constexpr LinearMap(std::initializer_list<value_type> init, const key_compare& comp = key_compare{}, const Alloc& alloc = Alloc{});
+        constexpr LinearMap(std::initializer_list<value_type> init, const Alloc& alloc);
 
         constexpr LinearMap& operator=(const LinearMap&) = default;
         constexpr LinearMap& operator=(LinearMap&&) noexcept = default;
+
+        [[nodiscard]] constexpr allocator_type get_allocator() const noexcept;
 
         constexpr bool operator==(const LinearMap& other) const;
 

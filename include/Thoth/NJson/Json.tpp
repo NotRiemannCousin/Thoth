@@ -446,7 +446,7 @@ namespace Thoth::NJson {
                     // ReSharper disable once CppPassValueParameterByConstReference
                     [&](const String::RefType ref) {
                         *it++ = '"';
-                        it = std::ranges::copy(ref.str, it).out; // TODO: StringRef must be a range
+                        it = std::ranges::copy(ref.AsStringView(), it).out; // TODO: StringRef must be a range
                         *it++ = '"';
                     },
                     [&](const String::OwnType& own) {

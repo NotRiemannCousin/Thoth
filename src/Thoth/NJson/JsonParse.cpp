@@ -548,12 +548,16 @@ std::expected<Json, ThothError> Json::ParseText(std::string_view input, bool cop
     details_::BufferInfo info{};
 
     if (copyData) {
-        info.buffer = std::make_shared<std::string>(input);
-        info.bufferView = *info.buffer;
+        auto buffer{ std::make_shared_for_overwrite<char[]>(input.size()) };
+        if (!input.empty())
+            std::memcpy(buffer.get(), input.data(), input.size());
+        info.buffer = std::shared_ptr<const char[]>{ std::move(buffer) }; // char[] -> const char[]
+        info.bufferView = std::string_view{ info.buffer.get(), input.size() };
         input = info.bufferView;
-    }
-    else
+    } else {
+        info.buffer = std::shared_ptr<const char[]>{ input.data(), [](const char*) noexcept {} };
         info.bufferView = input;
+    }
 
     const auto error{ [&]() -> std::unexpected<ThothError>{
         if (input.empty())

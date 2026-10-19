@@ -119,7 +119,19 @@ namespace Thoth::Dsa {
     template<class RefT, class OwnT>
         requires std::constructible_from<OwnT, RefT>
     constexpr bool operator==(const Cow<RefT, OwnT>& left, const Cow<RefT, OwnT>& right) {
-        return left.AsRef() == right.AsRef();
+        return left.Visit([&]<typename T0>(const T0& l) {
+            return right.Visit([&]<typename T1>(const T1& r) -> bool {
+                using L = std::remove_cvref_t<T0>;
+                using R = std::remove_cvref_t<T1>;
+
+                if constexpr (std::same_as<L, R>)
+                    return l == r;
+                else if constexpr (std::same_as<L, RefT>)
+                    return l == RefT{ r };
+                else
+                    return RefT{ l } == r;
+            });
+        });
     }
 }
 

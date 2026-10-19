@@ -9,8 +9,9 @@
 #include <span>
 
 #include <Thoth/Dsa/Cow.hpp>
-#include <Thoth/NJson/StringRef.hpp>
 #include <Thoth/NJson/Number.hpp>
+#include <Thoth/NJson/StringRef.hpp>
+#include <Thoth/NJson/StringOwn.hpp>
 
 
 namespace Thoth {
@@ -21,18 +22,17 @@ namespace Thoth::NJson {
         struct JsonObject;
     struct Json;
 
-
-    using Null   = std::monostate;                   // null
-    using String = Dsa::Cow<StringRef, std::string>; // string
-    using Number = Number;                           // number
-    using Bool   = bool;                             // bool
-    using Object = std::unique_ptr<JsonObject>;      // {Object}
-    using Array  = std::vector<Json>;                // [Array]
+    using Null   = std::monostate;                 // null
+    using String = Dsa::Cow<StringRef, StringOwn>; // "string"
+    using Number = Number;                         // number
+    using Bool   = bool;                           // bool
+    using Object = std::unique_ptr<JsonObject>;    // {Object}
+    using Array  = std::vector<Json>;              // [Array]
 
     namespace details_ {
         struct BufferInfo {
             std::string_view bufferView;
-            std::shared_ptr<std::string> buffer;
+            std::shared_ptr<const char[]> buffer;
         };
 
         bool ReadString(std::string_view& input, auto& val, const BufferInfo& info);

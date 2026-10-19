@@ -14,8 +14,7 @@
 #include <Thoth/ThothError.hpp>
 
 namespace Thoth::NJson {
-
-    struct Json{
+    struct Json {
         using Value = std::variant<Null, String, Number, Bool, Object, Array>;
         using PredicatePointer = bool(*)(const Json&);
 
