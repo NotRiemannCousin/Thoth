@@ -24,17 +24,17 @@ namespace Thoth::NJson {
 
 #pragma region JsonIterator
 
-    //! @brief Bidirectional iterator over the children of a @ref Json.
+    //! @brief Bidirectional iterator over the children of a @ref Json. It is designed to work only with @c Object and
+    //! @c Array.
     //!
-    //! For @c Array values yields each element; for @c Object values yields each
-    //! child value (keys are skipped — see @ref Json::Items for paired iteration).
-    //! Every other type (@ref Null, @ref String, @ref Number, @ref Bool) has zero
-    //! children, so every @ref Json is uniformly iterable.
+    //! It @c IsItems is true, it yields all `(KeyView key, Json value)` pairs, with `KeyView` being the array indices
+    //! or object key strings. Otherwise, it yields only the @ref Json values.
     //!
-    //! @tparam IsConst     When true children are read-only.
-    //! @tparam IsItems     When true @c operator* yields `std::pair<KeyView, Json&>`
-    //!                     (array index, or object entry key) instead of just @ref Json&.
-    template<bool IsConst, bool IsItems = false>
+    //! @note Despites being useless, for API simplicity this type always works with `(KeyView key, StateIter it)` and
+    //! select IsItems will only change dereferencialization.
+    //!
+    //! @see Json::Items.
+    template<bool IsConst, bool IsItems = true>
     struct JsonIterator {
         template<bool, bool>
         friend struct JsonIterator;
@@ -49,27 +49,17 @@ namespace Thoth::NJson {
         using iterator_concept  = std::bidirectional_iterator_tag;
         using iterator_category = iterator_concept;
 
-        using pointer = std::conditional_t<IsItems, void, JsonPtr>;
+        using ObjectIter = std::conditional_t<IsConst, JsonObject::CIterType, JsonObject::IterType>;
+        using ArrayIter  = std::conditional_t<IsConst, Array::const_iterator, Array::iterator>;
 
-        // -- Internal states -------------------------------------------------
+        using ArrayProxyIter = std::pair<std::size_t, ArrayIter>;
 
-        struct Scalar  {};  // empty sequence (null, string, number, bool)
-        struct ObjectState {
-            std::conditional_t<IsConst, JsonObject::CIterType, JsonObject::IterType> iter;
-        };
-        struct ArrayState {
-            std::conditional_t<IsConst, Array::const_iterator, Array::iterator> iter;
-            std::ptrdiff_t index;
-        };
-
-        using State = std::variant<Scalar, ObjectState, ArrayState>;
+        using State = std::variant<ObjectIter, ArrayProxyIter>;
 
         constexpr JsonIterator() = default;
 
-        //! @brief Creates an iterator over the children of @p parent.
-        //! @param parent Json whose children will be walked. Scalars yield an empty sequence.
-        //! @param atEnd  Builds the one-past-the-last iterator when true.
-        explicit JsonIterator(JsonPtr parent, bool atEnd = false);
+        constexpr explicit JsonIterator(ObjectIter it);
+        constexpr explicit JsonIterator(ArrayIter it, std::size_t index);
 
         //! @brief Allows a mutable iterator to decay into a const one.
         template<bool WasConst>
@@ -77,8 +67,6 @@ namespace Thoth::NJson {
         JsonIterator(const JsonIterator<WasConst, IsItems>& other);
 
         [[nodiscard]] reference operator*() const;
-
-        [[nodiscard]] JsonPtr operator->() const requires (!IsItems);
 
         JsonIterator& operator++();
         [[nodiscard]] JsonIterator operator++(int);
@@ -92,45 +80,37 @@ namespace Thoth::NJson {
         State m_state{};
     };
 
-    //! @brief Iterator yielding `std::pair<KeyView, Json&>`.
-    template<bool IsConst>
-    using JsonItemsIterator = JsonIterator<IsConst, true>;
 
 #pragma endregion
 
 #pragma region JsonItemsView
 
-    //! @brief A @c std::ranges view of `std::pair<KeyView, Json&>` over the children of a Json.
+    //! @brief A @c std::ranges view yielding `(KeyView, Json&)` pairs over the children of a @ref Json.
     //!
-    //! Pairs each child with its array index (for @c Array values) or entry key
-    //! (for @c Object values). Scalars and null yield an empty view. String keys are
-    //! @c string_views into the parent, valid while the parent keeps its entries.
+    //! Pairs each child with its array index or object key. Scalars and null yield an empty view. It models
+    //! @c std::ranges::view_interface. String keys are @c string_view objects tied to the parent's lifetime.
     //!
-    //! Models @c std::ranges::view_interface (and therefore @c forward_range,
-    //! @c common_range and @c sized_range). Not a proxy-iterator design: each
-    //! @c operator* builds a fresh pair, so only single-pass traversal is guaranteed
-    //! for the const view; the mutable view is bidirectional.
-    //!
-    //! @note References its parent; does NOT extend the parent's lifetime.
+    //! @note This view holds a non-owning reference to its parent. The parent must outlive the view.
     template<bool IsConst>
     class JsonItemsView : public std::ranges::view_interface<JsonItemsView<IsConst>> {
         template<bool>
         friend class JsonItemsView;
 
     public:
-        using JsonPtr    = std::conditional_t<IsConst, const Json*, Json*>;
-        using iterator   = JsonItemsIterator<IsConst>;
-        using const_iterator = JsonItemsIterator<true>;
+        using iterator       = JsonIterator<IsConst>;
+        using const_iterator = JsonIterator<true>;
+
+        using JsonPtr = typename iterator::JsonPtr;
 
         constexpr JsonItemsView() = default;
 
         //! @brief Views (key, child) pairs of @p parent. Scalars/null → empty view.
-        constexpr explicit JsonItemsView(JsonPtr parent) noexcept : m_parent{ parent } {}
+        constexpr explicit JsonItemsView(JsonPtr parent) noexcept;
 
         //! @brief Mutable → const decay.
         template<bool WasConst>
             requires IsConst && (!WasConst)
-        JsonItemsView(const JsonItemsView<WasConst>& other) noexcept : m_parent{ other.m_parent } {}
+        JsonItemsView(const JsonItemsView<WasConst>& other) noexcept;
 
         [[nodiscard]] iterator begin() const;
         [[nodiscard]] iterator end() const;
@@ -144,9 +124,6 @@ namespace Thoth::NJson {
 
 #pragma endregion
 
-}  // namespace Thoth::NJson
-
-template<bool IsConst>
-inline constexpr bool std::ranges::enable_borrowed_range<Thoth::NJson::JsonItemsView<IsConst>> = true;
+}
 
 #include <Thoth/NJson/Range.tpp>

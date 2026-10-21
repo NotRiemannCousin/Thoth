@@ -35,3 +35,6 @@ target_link_libraries(BodyToFile1 PUBLIC Thoth)
 target_link_libraries(BodyToFile2 PUBLIC Thoth)
 
 target_link_libraries(Localhost PUBLIC Thoth)
+
+
+add_subdirectory(Comparison)

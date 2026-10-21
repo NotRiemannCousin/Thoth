@@ -120,5 +120,3 @@ struct Thoth::Utils::Scanner<Thoth::Http::NHeaders::Cookie> {
         return cookie;
     }
 };
-
-static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::Cookie>);

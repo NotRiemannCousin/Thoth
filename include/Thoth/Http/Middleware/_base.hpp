@@ -40,7 +40,6 @@ namespace Thoth::Http {
     //!
     //! Given this constraint you can chain multiple middlewares because the return handler connects with the input
     //! from another.
-    // TODO: Add example
     //!
     //! It verifies the handler-to-handler transformation:
     //! - Type-preserving: `InMethod` matches `OutMethod` (e.g., FollowRedirects).

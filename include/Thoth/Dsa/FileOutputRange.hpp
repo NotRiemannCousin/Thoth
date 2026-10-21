@@ -65,9 +65,8 @@ namespace Thoth::Dsa {
 
     using TextFileOutputRange = FileOutputRange<>;
     using BinFileOutputRange  = FileOutputRange<std::byte>;
-
-
-    static_assert(std::ranges::range<TextFileOutputRange>);
 }
 
 #include <Thoth/Dsa/FileOutputRange.tpp>
+
+static_assert(std::ranges::range<Thoth::Dsa::TextFileOutputRange> && "TextFileOutputRange is not a range");

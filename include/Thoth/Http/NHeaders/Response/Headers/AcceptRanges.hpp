@@ -13,3 +13,5 @@ namespace Thoth::Http::NHeaders {
 }
 
 #include <Thoth/Http/NHeaders/Response/Headers/AcceptRanges.tpp>
+
+static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::AcceptRanges>);

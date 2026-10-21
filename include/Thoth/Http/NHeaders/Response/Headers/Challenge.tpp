@@ -107,5 +107,3 @@ struct std::formatter<Thoth::Http::NHeaders::Challenge> {
         return out;
     }
 };
-
-static_assert(Thoth::Utils::Serializable<Thoth::Http::NHeaders::Challenge>);

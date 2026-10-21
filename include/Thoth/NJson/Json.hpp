@@ -5,6 +5,8 @@
 #include <string>
 #include <optional>
 #include <expected>
+#include <algorithm>
+#include <functional>
 #include <concepts>
 #include <span>
 
@@ -204,37 +206,45 @@ namespace Thoth::NJson {
         //! @name Search Functions
         //! Will pick the fist element that satisfies the given predicate.
 
-        //! @brief Will search the childs for the first element that matches the predicate and return it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and return it, or
+        //! std::nullopt if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         OptRefValWrapper Search(Pred&& pred);
         //! @copybrief Search
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] OptCRefValWrapper Search(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and clone it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or
+        //! std::nullopt if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] OptValWrapper SearchCopy(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt
+        //! if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         OptValWrapper SearchAndMove(Pred&& pred) &&;
 
-        //! @brief Will search the childs for the first element that matches the predicate and clone it, or ThothError if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or ThothError
+        //! if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] ValWrapper SearchCopyOrNull(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and move it, or ThothError if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or ThothError
+        //! if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         ValWrapper SearchAndMoveOrNull(Pred&& pred);
 
 
-        //! @brief Will search the childs for the first element that matches the predicate and return it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and return it, or
+        //! std::nullopt if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         ExpRefValWrapper SearchOrError(Pred&& pred);
         //! @copybrief SearchOrError
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] ExpCRefValWrapper SearchOrError(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and clone it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and clone it, or std::nullopt
+        //! if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         [[nodiscard]] ExpValWrapper SearchCopyOrError(Pred&& pred) const;
-        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt if no matches.
+        //! @brief Will search the childs for the first element that matches the predicate and move it, or std::nullopt
+        //! if no matches.
         template<class Pred = PredicatePointer> requires std::predicate<Pred, Json>
         ExpValWrapper SearchAndMoveOrError(Pred&& pred) &&;
 
@@ -256,8 +266,8 @@ namespace Thoth::NJson {
         //! When the keys are needed, @see Items() pairs each child with its @ref KeyView; for a
         //! guaranteed index, compose with @c std::views::enumerate.
 
-        using iterator       = JsonIterator<false>;
-        using const_iterator = JsonIterator<true>;
+        using iterator       = JsonIterator<false, false>;
+        using const_iterator = JsonIterator<true , false>;
         using value_type     = Json;
 
         //! @brief Iterator to the first child. Scalar values yield @c begin() == @c end().
@@ -319,3 +329,7 @@ namespace Thoth::NJson {
 
 
 #include <Thoth/NJson/Json.tpp>
+
+static_assert(std::ranges::range<Thoth::NJson::Json               > && "Json is not a range"         );
+static_assert(std::ranges::range<Thoth::NJson::JsonObject         > && "JsonObject is not a range"   );
+static_assert(std::ranges::range<Thoth::NJson::JsonItemsView<true>> && "JsonItemsView is not a range");

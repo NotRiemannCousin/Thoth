@@ -1,89 +1,49 @@
-// Implementation of JsonIterator / JsonItemsView (see Range.hpp)
+#pragma once
 
 namespace Thoth::NJson {
 
 #pragma region JsonIterator
 
     template<bool IsConst, bool IsItems>
-    JsonIterator<IsConst, IsItems>::JsonIterator(JsonPtr parent, const bool atEnd) {
-        if (parent == nullptr)
-            return;
+    constexpr JsonIterator<IsConst, IsItems>::JsonIterator(ObjectIter it) : m_state{ it } {}
 
-        if (parent->template IsOf<Array>()) {
-            // ArrayState tracks both the iterator and the logical index (needed
-            // for IsItems=true, ignored otherwise). As<Array>() returns a const ref
-            // when parent is const Json*, via deducing-this.
-            auto& arr{ parent->template As<Array>() };
-            m_state = atEnd
-                ? ArrayState{ arr.end(), static_cast<std::ptrdiff_t>(arr.size()) }
-                : ArrayState{ arr.begin(), std::ptrdiff_t{ 0 } };
-        }
-        else if (parent->template IsOf<Object>()) {
-            auto& obj{ *parent->template As<Object>() };
-            m_state = atEnd
-                ? ObjectState{ std::ranges::end(obj) }
-                : ObjectState{ std::ranges::begin(obj) };
-        }
-        // else: scalar → monostate (empty range)
-    }
+    template<bool IsConst, bool IsItems>
+    constexpr JsonIterator<IsConst, IsItems>::JsonIterator(ArrayIter it, std::size_t index)
+        : m_state{ std::in_place_type<ArrayProxyIter>, index, it } {}
 
     template<bool IsConst, bool IsItems>
     template<bool WasConst>
         requires IsConst && (!WasConst)
     JsonIterator<IsConst, IsItems>::JsonIterator(const JsonIterator<WasConst, IsItems>& other) {
-        // Converting from mutable to const changes the iterator variant member
-        // types, so we rebuild via visit.
         m_state = std::visit([](const auto& s) -> State {
-            using S = std::remove_cvref_t<decltype(s)>;
-            if constexpr (std::same_as<S, Scalar>)
-                return Scalar{};
-            else if constexpr (std::same_as<S, ObjectState>)
-                return ObjectState{ s.iter };
-            else
-                return ArrayState{ s.iter, s.index };
+            return State{ s };
         }, other.m_state);
     }
 
     template<bool IsConst, bool IsItems>
     auto JsonIterator<IsConst, IsItems>::operator*() const -> reference {
-        assert(!std::holds_alternative<Scalar>(m_state) && "Dereferencing end() of empty range");
-
-        return std::visit([]<class S>(const S& s) -> reference {
-            using S_t = std::remove_cvref_t<S>;
-
-            if constexpr (std::same_as<S_t, ArrayState>) {
-                if constexpr (IsItems)
-                    return { KeyView{ static_cast<int>(s.index) }, s.iter[0] };
-                else
-                    return s.iter[0];
-            }
-            else {  // ObjectState
-                if constexpr (IsItems)
-                    return { KeyView{ s.iter->first }, s.iter->second };
-                else
-                    return s.iter->second;
+        return std::visit([](const auto& s) -> reference {
+            using S_t = std::remove_cvref_t<decltype(s)>;
+            if constexpr (std::same_as<S_t, ObjectIter>) {
+                if constexpr (IsItems) return { KeyView{ s->first }, s->second };
+                else                   return s->second;
+            } else {
+                if constexpr (IsItems) return { KeyView{ static_cast<int>(s.first) }, *s.second };
+                else                   return *s.second;
             }
         }, m_state);
     }
 
     template<bool IsConst, bool IsItems>
-    auto JsonIterator<IsConst, IsItems>::operator->() const -> JsonPtr
-        requires (!IsItems)
-    {
-        return &**this;
-    }
-
-    template<bool IsConst, bool IsItems>
     JsonIterator<IsConst, IsItems>& JsonIterator<IsConst, IsItems>::operator++() {
-        std::visit([]<class S>(S& s) {
-            using S_t = std::remove_cvref_t<S>;
-            if constexpr (std::same_as<S_t, ArrayState>) {
-                ++s.iter; ++s.index;
+        std::visit([](auto& s) {
+            using S_t = std::remove_cvref_t<decltype(s)>;
+            if constexpr (std::same_as<S_t, ObjectIter>) {
+                ++s;
+            } else {
+                ++s.first;
+                ++s.second;
             }
-            else if constexpr (std::same_as<S_t, ObjectState>) {
-                ++s.iter;
-            }
-            // Scalar: no-op (empty range, ++ on end stays stable).
         }, m_state);
         return *this;
     }
@@ -97,13 +57,13 @@ namespace Thoth::NJson {
 
     template<bool IsConst, bool IsItems>
     JsonIterator<IsConst, IsItems>& JsonIterator<IsConst, IsItems>::operator--() {
-        std::visit([]<class S>(S& s) {
-            using S_t = std::remove_cvref_t<S>;
-            if constexpr (std::same_as<S_t, ArrayState>) {
-                --s.iter; --s.index;
-            }
-            else if constexpr (std::same_as<S_t, ObjectState>) {
-                --s.iter;
+        std::visit([](auto& s) {
+            using S_t = std::remove_cvref_t<decltype(s)>;
+            if constexpr (std::same_as<S_t, ObjectIter>) {
+                --s;
+            } else {
+                --s.first;
+                --s.second;
             }
         }, m_state);
         return *this;
@@ -121,13 +81,35 @@ namespace Thoth::NJson {
 #pragma region JsonItemsView
 
     template<bool IsConst>
+    constexpr JsonItemsView<IsConst>::JsonItemsView(JsonPtr parent) noexcept : m_parent{ parent } {}
+
+    template<bool IsConst>
+    template<bool WasConst>
+        requires IsConst && (!WasConst)
+    JsonItemsView<IsConst>::JsonItemsView(const JsonItemsView<WasConst>& other) noexcept : m_parent{ other.m_parent } {}
+
+    template<bool IsConst>
     auto JsonItemsView<IsConst>::begin() const -> iterator {
-        return iterator{ m_parent, false };
+        if (!m_parent) return {};
+
+        if (auto obj{ m_parent->template EnsureRef<Object>() })
+            return iterator{ (**obj)->begin() };
+        if (auto arr{ m_parent->template EnsureRef<Array>() })
+            return iterator{ (*arr)->begin(), 0 };
+
+        return {};
     }
 
     template<bool IsConst>
     auto JsonItemsView<IsConst>::end() const -> iterator {
-        return iterator{ m_parent, true };
+        if (!m_parent) return {};
+
+        if (auto obj{ m_parent->template EnsureRef<Object>() })
+            return iterator{ (**obj)->end() };
+        if (auto arr{ m_parent->template EnsureRef<Array>() })
+            return iterator{ (*arr)->end(), (*arr)->size() };
+
+        return {};
     }
 
     template<bool IsConst>
@@ -142,4 +124,7 @@ namespace Thoth::NJson {
 
 #pragma endregion
 
-}  // namespace Thoth::NJson
+}
+
+template<bool IsConst>
+inline constexpr bool std::ranges::enable_borrowed_range<Thoth::NJson::JsonItemsView<IsConst>> = true;

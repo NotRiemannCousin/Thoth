@@ -118,3 +118,5 @@ namespace Thoth::Dsa {
 }
 
 #include <Thoth/Dsa/LinearMap.tpp>
+
+static_assert(std::ranges::range<Thoth::Dsa::LinearMap<int, int>> && "LinearMap is not a range");

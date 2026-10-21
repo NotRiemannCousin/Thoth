@@ -44,7 +44,7 @@ namespace Thoth::Http::NHeaders {
         auto Transform(Fn&& fn) const -> Weighted<std::invoke_result_t<Fn, const T&>>
             requires Utils::Serializable<std::invoke_result_t<Fn, const T&>>;
 
-        //! @brief Curried form of `Transform` for use in a monadic pipeline.
+        //! @brief Curried form of `Transform` for use in monadic pipelines.
         template<class Fn>
         static auto H_Transform(Fn fn);
     };

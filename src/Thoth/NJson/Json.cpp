@@ -169,19 +169,39 @@ bool Json::operator==(const Json& other) const {
 #pragma region Range Interface
 
     Json::iterator Json::begin() {
-        return iterator{ this, false };
+        if (auto obj{ EnsureMut<Object>() })
+            return iterator{ (**obj)->begin() };
+        if (auto arr{ EnsureMut<Array>() })
+            return iterator{ (*arr)->begin(), 0 };
+
+        return {};
     }
 
     Json::iterator Json::end() {
-        return iterator{ this, true };
+        if (auto obj{ EnsureMut<Object>() })
+            return iterator{ (**obj)->end() };
+        if (auto arr{ EnsureMut<Array>() })
+            return iterator{ (*arr)->end(), (*arr)->size() };
+
+        return {};
     }
 
     Json::const_iterator Json::begin() const {
-        return const_iterator{ this, false };
+        if (auto obj{ EnsureRef<Object>() })
+            return const_iterator{ (**obj)->begin() };
+        if (auto arr{ EnsureRef<Array>() })
+            return const_iterator{ (*arr)->begin(), 0 };
+
+        return {};
     }
 
     Json::const_iterator Json::end() const {
-        return const_iterator{ this, true };
+        if (auto obj{ EnsureRef<Object>() })
+            return const_iterator{ (**obj)->end() };
+        if (auto arr{ EnsureRef<Array>() })
+            return const_iterator{ (*arr)->end(), (*arr)->size() };
+
+        return {};
     }
 
     Json::const_iterator Json::cbegin() const {
