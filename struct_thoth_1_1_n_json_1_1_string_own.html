@@ -1,0 +1,1132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: Thoth::NJson::StringOwn Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-msc.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1_1_n_json_1_1_string_own.html','','struct_thoth_1_1_n_json_1_1_string_own-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Thoth::NJson::StringOwn Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Managed owned string wrapper designed to fit in 8 bytes (pointer size) with deep-copy semantics required by Copy-On-Write structures.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_string_own_8hpp_source.html">StringOwn.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a61e0e03b5041c09b2b20f9e4d4bb4c2d" id="r_a61e0e03b5041c09b2b20f9e4d4bb4c2d"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">value_type</a> = char</td></tr>
+<tr class="memitem:a83b9adcf07aee57a564b568313e1a6a1" id="r_a83b9adcf07aee57a564b568313e1a6a1"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a83b9adcf07aee57a564b568313e1a6a1">size_type</a> = std::string_view::size_type</td></tr>
+<tr class="memitem:acd55e6c4190f6edd0a4c5708f0a1d98d" id="r_acd55e6c4190f6edd0a4c5708f0a1d98d"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#acd55e6c4190f6edd0a4c5708f0a1d98d">difference_type</a> = std::string_view::difference_type</td></tr>
+<tr class="memitem:a2792d1860ec75388be6d814549c7c148" id="r_a2792d1860ec75388be6d814549c7c148"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a2792d1860ec75388be6d814549c7c148">pointer</a> = std::string_view::pointer</td></tr>
+<tr class="memitem:a904b73a6653f48959eeca0527fdcb80b" id="r_a904b73a6653f48959eeca0527fdcb80b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a904b73a6653f48959eeca0527fdcb80b">const_pointer</a> = std::string_view::const_pointer</td></tr>
+<tr class="memitem:acb71b06d9c5ac2b927da8657476a4e45" id="r_acb71b06d9c5ac2b927da8657476a4e45"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#acb71b06d9c5ac2b927da8657476a4e45">reference</a> = <a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">value_type</a>&amp;</td></tr>
+<tr class="memitem:a5760bebad2b20b56717e8e3796bf30b8" id="r_a5760bebad2b20b56717e8e3796bf30b8"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5760bebad2b20b56717e8e3796bf30b8">const_reference</a> = const <a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">value_type</a>&amp;</td></tr>
+<tr class="memitem:a6b54ccb2567a2b04406b097e6c1bac09" id="r_a6b54ccb2567a2b04406b097e6c1bac09"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6b54ccb2567a2b04406b097e6c1bac09">iterator</a> = std::string_view::iterator</td></tr>
+<tr class="memitem:afcc4f975459244b77809798094d5f0f1" id="r_afcc4f975459244b77809798094d5f0f1"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#afcc4f975459244b77809798094d5f0f1">const_iterator</a> = std::string_view::const_iterator</td></tr>
+<tr class="memitem:aeddbde089fd2f0b25bf42677b0d37a07" id="r_aeddbde089fd2f0b25bf42677b0d37a07"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aeddbde089fd2f0b25bf42677b0d37a07">reverse_iterator</a> = std::string_view::reverse_iterator</td></tr>
+<tr class="memitem:aaca04121e6e5ff7357ed5011be081590" id="r_aaca04121e6e5ff7357ed5011be081590"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aaca04121e6e5ff7357ed5011be081590">const_reverse_iterator</a> = std::string_view::const_reverse_iterator</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab74918c84fd36c98ca8a4ba6f3f4debc" id="r_ab74918c84fd36c98ca8a4ba6f3f4debc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> () noexcept=default</td></tr>
+<tr class="memitem:a08f1e94aec9745c7526796cff5d16a33" id="r_a08f1e94aec9745c7526796cff5d16a33"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a08f1e94aec9745c7526796cff5d16a33">StringOwn</a> (std::string str)</td></tr>
+<tr class="memitem:ac394c34e130b3cd32b1e0408b06bff1d" id="r_ac394c34e130b3cd32b1e0408b06bff1d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac394c34e130b3cd32b1e0408b06bff1d">StringOwn</a> (std::string_view str)</td></tr>
+<tr class="memitem:a44623c7246bdeffa67644047906fb8f4" id="r_a44623c7246bdeffa67644047906fb8f4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a44623c7246bdeffa67644047906fb8f4">StringOwn</a> (const char *str)</td></tr>
+<tr class="memitem:aac2b4725e1c7221c8ca7ccfa86fb23d9" id="r_aac2b4725e1c7221c8ca7ccfa86fb23d9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aac2b4725e1c7221c8ca7ccfa86fb23d9">StringOwn</a> (const <a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a> &amp;ref)</td></tr>
+<tr class="memitem:a0eb81d655d8fbcfb26902363c0dfcb4d" id="r_a0eb81d655d8fbcfb26902363c0dfcb4d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0eb81d655d8fbcfb26902363c0dfcb4d">StringOwn</a> (const StringOwn &amp;other)</td></tr>
+<tr class="memitem:a106abb7363b3a352ecca980a151e55e6" id="r_a106abb7363b3a352ecca980a151e55e6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a106abb7363b3a352ecca980a151e55e6">StringOwn</a> (StringOwn &amp;&amp;other) noexcept=default</td></tr>
+<tr class="memitem:a1f3100d4f03250eb9e26bbde3ab86eab" id="r_a1f3100d4f03250eb9e26bbde3ab86eab"><td class="memItemLeft"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1f3100d4f03250eb9e26bbde3ab86eab">operator=</a> (const <a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;other)</td></tr>
+<tr class="memitem:ab6c8136cb01133be77fa57ad44111baf" id="r_ab6c8136cb01133be77fa57ad44111baf"><td class="memItemLeft"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab6c8136cb01133be77fa57ad44111baf">operator=</a> (<a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&amp;other) noexcept=default</td></tr>
+<tr class="memitem:a9b0e9b4efbb7288f3c15e74142891266" id="r_a9b0e9b4efbb7288f3c15e74142891266"><td class="memItemLeft"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9b0e9b4efbb7288f3c15e74142891266">operator=</a> (std::string str)</td></tr>
+<tr class="memitem:a2235062985a0dbf3c8fd8a585f616adf" id="r_a2235062985a0dbf3c8fd8a585f616adf"><td class="memItemLeft"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2235062985a0dbf3c8fd8a585f616adf">operator=</a> (std::string_view str)</td></tr>
+<tr class="memitem:a9335cd5d17daa6be25b7be53ab105ce4" id="r_a9335cd5d17daa6be25b7be53ab105ce4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9335cd5d17daa6be25b7be53ab105ce4">operator std::string_view</a> () const noexcept</td></tr>
+<tr class="memitem:a02d73d8058e1e2c1bc570683633c7af1" id="r_a02d73d8058e1e2c1bc570683633c7af1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a02d73d8058e1e2c1bc570683633c7af1">operator std::string</a> () const noexcept</td></tr>
+<tr class="memitem:a518595355c256e62ac1b59826e08fc06" id="r_a518595355c256e62ac1b59826e08fc06"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a518595355c256e62ac1b59826e08fc06">view</a> () const noexcept</td></tr>
+<tr class="memitem:ad5fd5e494ae80c7197caaab40b9fc2f8" id="r_ad5fd5e494ae80c7197caaab40b9fc2f8"><td class="memItemLeft">const std::string &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad5fd5e494ae80c7197caaab40b9fc2f8">string</a> () const noexcept</td></tr>
+<tr class="memitem:a8ba8e3b44c7c32a5ab0b59038cd11aeb" id="r_a8ba8e3b44c7c32a5ab0b59038cd11aeb"><td class="memItemLeft">std::string &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8ba8e3b44c7c32a5ab0b59038cd11aeb">string</a> () noexcept</td></tr>
+<tr class="memitem:a7ea62148f4ff8b388497328137a92e8d" id="r_a7ea62148f4ff8b388497328137a92e8d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7ea62148f4ff8b388497328137a92e8d">operator==</a> (const <a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;other) const noexcept</td></tr>
+<tr class="memitem:ac6cf89447ced098d8105e1660c87bbed" id="r_ac6cf89447ced098d8105e1660c87bbed"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac6cf89447ced098d8105e1660c87bbed">operator==</a> (std::string_view other) const noexcept</td></tr>
+<tr class="memitem:aa6d86edfbce100efcdd049d2c67c76e2" id="r_aa6d86edfbce100efcdd049d2c67c76e2"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#aa6d86edfbce100efcdd049d2c67c76e2">begin</a> () const noexcept</td></tr>
+<tr class="memitem:ae9b38fb098880cdedfe0d5e37e43bd1c" id="r_ae9b38fb098880cdedfe0d5e37e43bd1c"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ae9b38fb098880cdedfe0d5e37e43bd1c">end</a> () const noexcept</td></tr>
+<tr class="memitem:adbb29375384f9bc9c88390f6aa0a5825" id="r_adbb29375384f9bc9c88390f6aa0a5825"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#adbb29375384f9bc9c88390f6aa0a5825">cbegin</a> () const noexcept</td></tr>
+<tr class="memitem:a70143ac63b557132ae19ba0136e0c7e4" id="r_a70143ac63b557132ae19ba0136e0c7e4"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a70143ac63b557132ae19ba0136e0c7e4">cend</a> () const noexcept</td></tr>
+<tr class="memitem:afefe4c983c47673f3e62becdfecf8165" id="r_afefe4c983c47673f3e62becdfecf8165"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#afefe4c983c47673f3e62becdfecf8165">rbegin</a> () const noexcept</td></tr>
+<tr class="memitem:ad09c495ee9f6be692eb4cce58ddbeae4" id="r_ad09c495ee9f6be692eb4cce58ddbeae4"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ad09c495ee9f6be692eb4cce58ddbeae4">rend</a> () const noexcept</td></tr>
+<tr class="memitem:af405101ac11908820e8052682ea11a15" id="r_af405101ac11908820e8052682ea11a15"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#af405101ac11908820e8052682ea11a15">size</a> () const noexcept</td></tr>
+<tr class="memitem:aa0bc333acb735f2fa6bfcb4592ae6119" id="r_aa0bc333acb735f2fa6bfcb4592ae6119"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#aa0bc333acb735f2fa6bfcb4592ae6119">empty</a> () const noexcept</td></tr>
+<tr class="memitem:afa53609e0a6e2ab5479d21c9520e20f0" id="r_afa53609e0a6e2ab5479d21c9520e20f0"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#afa53609e0a6e2ab5479d21c9520e20f0">data</a> () const noexcept</td></tr>
+<tr class="memitem:a7c23cda0eab0a8e11f272d101231e5a6" id="r_a7c23cda0eab0a8e11f272d101231e5a6"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a7c23cda0eab0a8e11f272d101231e5a6">front</a> () const noexcept</td></tr>
+<tr class="memitem:a96bc44de9ea63d7490e4f7d87abdbac2" id="r_a96bc44de9ea63d7490e4f7d87abdbac2"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a96bc44de9ea63d7490e4f7d87abdbac2">back</a> () const noexcept</td></tr>
+<tr class="memitem:a9740820843ea2ba25cfb475d8e4da50b" id="r_a9740820843ea2ba25cfb475d8e4da50b"><td class="memTemplParams" colspan="2">template&lt;typename Index&gt; </td></tr>
+<tr class="memitem:a9740820843ea2ba25cfb475d8e4da50b template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a9740820843ea2ba25cfb475d8e4da50b">operator[]</a> (Index idx) const noexcept</td></tr>
+<tr class="memitem:a018d3caad1066dc9be4aa9d9a33a929e" id="r_a018d3caad1066dc9be4aa9d9a33a929e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a018d3caad1066dc9be4aa9d9a33a929e">contains</a> (std::string_view sv) const noexcept</td></tr>
+<tr class="memitem:ae4d0454e047c26f386d03bf05ab348eb" id="r_ae4d0454e047c26f386d03bf05ab348eb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae4d0454e047c26f386d03bf05ab348eb">contains</a> (char c) const noexcept</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Managed owned string wrapper designed to fit in 8 bytes (pointer size) with deep-copy semantics required by Copy-On-Write structures. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="afcc4f975459244b77809798094d5f0f1" name="afcc4f975459244b77809798094d5f0f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcc4f975459244b77809798094d5f0f1">&#9670;&#160;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#afcc4f975459244b77809798094d5f0f1">Thoth::NJson::StringOwn::const_iterator</a> = std::string_view::const_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a904b73a6653f48959eeca0527fdcb80b" name="a904b73a6653f48959eeca0527fdcb80b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a904b73a6653f48959eeca0527fdcb80b">&#9670;&#160;</a></span>const_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a904b73a6653f48959eeca0527fdcb80b">Thoth::NJson::StringOwn::const_pointer</a> = std::string_view::const_pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5760bebad2b20b56717e8e3796bf30b8" name="a5760bebad2b20b56717e8e3796bf30b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5760bebad2b20b56717e8e3796bf30b8">&#9670;&#160;</a></span>const_reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a5760bebad2b20b56717e8e3796bf30b8">Thoth::NJson::StringOwn::const_reference</a> = const <a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">value_type</a>&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaca04121e6e5ff7357ed5011be081590" name="aaca04121e6e5ff7357ed5011be081590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca04121e6e5ff7357ed5011be081590">&#9670;&#160;</a></span>const_reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aaca04121e6e5ff7357ed5011be081590">Thoth::NJson::StringOwn::const_reverse_iterator</a> = std::string_view::const_reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd55e6c4190f6edd0a4c5708f0a1d98d" name="acd55e6c4190f6edd0a4c5708f0a1d98d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd55e6c4190f6edd0a4c5708f0a1d98d">&#9670;&#160;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#acd55e6c4190f6edd0a4c5708f0a1d98d">Thoth::NJson::StringOwn::difference_type</a> = std::string_view::difference_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b54ccb2567a2b04406b097e6c1bac09" name="a6b54ccb2567a2b04406b097e6c1bac09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b54ccb2567a2b04406b097e6c1bac09">&#9670;&#160;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a6b54ccb2567a2b04406b097e6c1bac09">Thoth::NJson::StringOwn::iterator</a> = std::string_view::iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2792d1860ec75388be6d814549c7c148" name="a2792d1860ec75388be6d814549c7c148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2792d1860ec75388be6d814549c7c148">&#9670;&#160;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a2792d1860ec75388be6d814549c7c148">Thoth::NJson::StringOwn::pointer</a> = std::string_view::pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb71b06d9c5ac2b927da8657476a4e45" name="acb71b06d9c5ac2b927da8657476a4e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb71b06d9c5ac2b927da8657476a4e45">&#9670;&#160;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#acb71b06d9c5ac2b927da8657476a4e45">Thoth::NJson::StringOwn::reference</a> = <a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">value_type</a>&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeddbde089fd2f0b25bf42677b0d37a07" name="aeddbde089fd2f0b25bf42677b0d37a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeddbde089fd2f0b25bf42677b0d37a07">&#9670;&#160;</a></span>reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aeddbde089fd2f0b25bf42677b0d37a07">Thoth::NJson::StringOwn::reverse_iterator</a> = std::string_view::reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83b9adcf07aee57a564b568313e1a6a1" name="a83b9adcf07aee57a564b568313e1a6a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83b9adcf07aee57a564b568313e1a6a1">&#9670;&#160;</a></span>size_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a83b9adcf07aee57a564b568313e1a6a1">Thoth::NJson::StringOwn::size_type</a> = std::string_view::size_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a61e0e03b5041c09b2b20f9e4d4bb4c2d" name="a61e0e03b5041c09b2b20f9e4d4bb4c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a61e0e03b5041c09b2b20f9e4d4bb4c2d">Thoth::NJson::StringOwn::value_type</a> = char</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab74918c84fd36c98ca8a4ba6f3f4debc" name="ab74918c84fd36c98ca8a4ba6f3f4debc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab74918c84fd36c98ca8a4ba6f3f4debc">&#9670;&#160;</a></span>StringOwn() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08f1e94aec9745c7526796cff5d16a33" name="a08f1e94aec9745c7526796cff5d16a33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f1e94aec9745c7526796cff5d16a33">&#9670;&#160;</a></span>StringOwn() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac394c34e130b3cd32b1e0408b06bff1d" name="ac394c34e130b3cd32b1e0408b06bff1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac394c34e130b3cd32b1e0408b06bff1d">&#9670;&#160;</a></span>StringOwn() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44623c7246bdeffa67644047906fb8f4" name="a44623c7246bdeffa67644047906fb8f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44623c7246bdeffa67644047906fb8f4">&#9670;&#160;</a></span>StringOwn() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac2b4725e1c7221c8ca7ccfa86fb23d9" name="aac2b4725e1c7221c8ca7ccfa86fb23d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac2b4725e1c7221c8ca7ccfa86fb23d9">&#9670;&#160;</a></span>StringOwn() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ref</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0eb81d655d8fbcfb26902363c0dfcb4d" name="a0eb81d655d8fbcfb26902363c0dfcb4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eb81d655d8fbcfb26902363c0dfcb4d">&#9670;&#160;</a></span>StringOwn() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">const StringOwn &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a106abb7363b3a352ecca980a151e55e6" name="a106abb7363b3a352ecca980a151e55e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106abb7363b3a352ecca980a151e55e6">&#9670;&#160;</a></span>StringOwn() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::StringOwn </td>
+          <td>(</td>
+          <td class="paramtype">StringOwn &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a96bc44de9ea63d7490e4f7d87abdbac2" name="a96bc44de9ea63d7490e4f7d87abdbac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96bc44de9ea63d7490e4f7d87abdbac2">&#9670;&#160;</a></span>back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::back </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6d86edfbce100efcdd049d2c67c76e2" name="aa6d86edfbce100efcdd049d2c67c76e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6d86edfbce100efcdd049d2c67c76e2">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbb29375384f9bc9c88390f6aa0a5825" name="adbb29375384f9bc9c88390f6aa0a5825"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbb29375384f9bc9c88390f6aa0a5825">&#9670;&#160;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::cbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70143ac63b557132ae19ba0136e0c7e4" name="a70143ac63b557132ae19ba0136e0c7e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70143ac63b557132ae19ba0136e0c7e4">&#9670;&#160;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::cend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4d0454e047c26f386d03bf05ab348eb" name="ae4d0454e047c26f386d03bf05ab348eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4d0454e047c26f386d03bf05ab348eb">&#9670;&#160;</a></span>contains() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::StringOwn::contains </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>c</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a018d3caad1066dc9be4aa9d9a33a929e" name="a018d3caad1066dc9be4aa9d9a33a929e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a018d3caad1066dc9be4aa9d9a33a929e">&#9670;&#160;</a></span>contains() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::StringOwn::contains </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>sv</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa53609e0a6e2ab5479d21c9520e20f0" name="afa53609e0a6e2ab5479d21c9520e20f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa53609e0a6e2ab5479d21c9520e20f0">&#9670;&#160;</a></span>data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0bc333acb735f2fa6bfcb4592ae6119" name="aa0bc333acb735f2fa6bfcb4592ae6119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0bc333acb735f2fa6bfcb4592ae6119">&#9670;&#160;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae9b38fb098880cdedfe0d5e37e43bd1c" name="ae9b38fb098880cdedfe0d5e37e43bd1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9b38fb098880cdedfe0d5e37e43bd1c">&#9670;&#160;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c23cda0eab0a8e11f272d101231e5a6" name="a7c23cda0eab0a8e11f272d101231e5a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c23cda0eab0a8e11f272d101231e5a6">&#9670;&#160;</a></span>front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::front </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02d73d8058e1e2c1bc570683633c7af1" name="a02d73d8058e1e2c1bc570683633c7af1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02d73d8058e1e2c1bc570683633c7af1">&#9670;&#160;</a></span>operator std::string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::operator std::string </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9335cd5d17daa6be25b7be53ab105ce4" name="a9335cd5d17daa6be25b7be53ab105ce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9335cd5d17daa6be25b7be53ab105ce4">&#9670;&#160;</a></span>operator std::string_view()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thoth::NJson::StringOwn::operator std::string_view </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f3100d4f03250eb9e26bbde3ab86eab" name="a1f3100d4f03250eb9e26bbde3ab86eab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3100d4f03250eb9e26bbde3ab86eab">&#9670;&#160;</a></span>operator=() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp; Thoth::NJson::StringOwn::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b0e9b4efbb7288f3c15e74142891266" name="a9b0e9b4efbb7288f3c15e74142891266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b0e9b4efbb7288f3c15e74142891266">&#9670;&#160;</a></span>operator=() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp; Thoth::NJson::StringOwn::operator= </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2235062985a0dbf3c8fd8a585f616adf" name="a2235062985a0dbf3c8fd8a585f616adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2235062985a0dbf3c8fd8a585f616adf">&#9670;&#160;</a></span>operator=() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp; Thoth::NJson::StringOwn::operator= </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6c8136cb01133be77fa57ad44111baf" name="ab6c8136cb01133be77fa57ad44111baf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6c8136cb01133be77fa57ad44111baf">&#9670;&#160;</a></span>operator=() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp; Thoth::NJson::StringOwn::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ea62148f4ff8b388497328137a92e8d" name="a7ea62148f4ff8b388497328137a92e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea62148f4ff8b388497328137a92e8d">&#9670;&#160;</a></span>operator==() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::StringOwn::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ab74918c84fd36c98ca8a4ba6f3f4debc">StringOwn</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6cf89447ced098d8105e1660c87bbed" name="ac6cf89447ced098d8105e1660c87bbed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6cf89447ced098d8105e1660c87bbed">&#9670;&#160;</a></span>operator==() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::StringOwn::operator== </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9740820843ea2ba25cfb475d8e4da50b" name="a9740820843ea2ba25cfb475d8e4da50b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9740820843ea2ba25cfb475d8e4da50b">&#9670;&#160;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">Index</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afefe4c983c47673f3e62becdfecf8165" name="afefe4c983c47673f3e62becdfecf8165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefe4c983c47673f3e62becdfecf8165">&#9670;&#160;</a></span>rbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::rbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad09c495ee9f6be692eb4cce58ddbeae4" name="ad09c495ee9f6be692eb4cce58ddbeae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09c495ee9f6be692eb4cce58ddbeae4">&#9670;&#160;</a></span>rend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::rend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af405101ac11908820e8052682ea11a15" name="af405101ac11908820e8052682ea11a15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af405101ac11908820e8052682ea11a15">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Thoth::NJson::StringOwn::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5fd5e494ae80c7197caaab40b9fc2f8" name="ad5fd5e494ae80c7197caaab40b9fc2f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5fd5e494ae80c7197caaab40b9fc2f8">&#9670;&#160;</a></span>string() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; <a class="el" href="#a02d73d8058e1e2c1bc570683633c7af1">Thoth::NJson::StringOwn::string</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ba8e3b44c7c32a5ab0b59038cd11aeb" name="a8ba8e3b44c7c32a5ab0b59038cd11aeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba8e3b44c7c32a5ab0b59038cd11aeb">&#9670;&#160;</a></span>string() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; <a class="el" href="#a02d73d8058e1e2c1bc570683633c7af1">Thoth::NJson::StringOwn::string</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a518595355c256e62ac1b59826e08fc06" name="a518595355c256e62ac1b59826e08fc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a518595355c256e62ac1b59826e08fc06">&#9670;&#160;</a></span>view()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::NJson::StringOwn::view </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/Thoth/NJson/<a class="el" href="_string_own_8hpp_source.html">StringOwn.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_thoth.html">Thoth</a></li><li class="navelem"><a href="namespace_thoth_1_1_n_json.html">NJson</a></li><li class="navelem"><a href="struct_thoth_1_1_n_json_1_1_string_own.html">StringOwn</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

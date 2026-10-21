@@ -18,6 +18,6 @@ var _n_json_2_definitions_8hpp =
     [ "Thoth::NJson::OptRefValWrapper", "namespace_thoth_1_1_n_json.html#a31bb38f76dcd25d0b1daae548cc69cc8", null ],
     [ "Thoth::NJson::OptValWrapper", "namespace_thoth_1_1_n_json.html#a7890352fd8d847b4dca9a633f05e47c8", null ],
     [ "Thoth::NJson::RefValWrapper", "namespace_thoth_1_1_n_json.html#a98685e1be27c4ed0dddeab78245fdf7b", null ],
-    [ "Thoth::NJson::String", "namespace_thoth_1_1_n_json.html#a8cc73e4a9a5d840836c4d2dd35d94913", null ],
+    [ "Thoth::NJson::String", "namespace_thoth_1_1_n_json.html#aece0af53e2312d16ad5c6b0a0f263be1", null ],
     [ "Thoth::NJson::ValWrapper", "namespace_thoth_1_1_n_json.html#ac15505580aa03906767a0c723a345ece", null ]
 ];

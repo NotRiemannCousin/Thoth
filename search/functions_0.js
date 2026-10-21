@@ -18,9 +18,10 @@ var searchData=
   ['asmov_15',['AsMov',['../struct_thoth_1_1_n_json_1_1_json.html#ae1ca9efea2cc9fe0f9bed6ba3e6d3e81',1,'Thoth::NJson::Json']]],
   ['asmut_16',['AsMut',['../struct_thoth_1_1_n_json_1_1_json.html#aeb82e8e0dde421697d36eb3d4a09631d',1,'Thoth::NJson::Json']]],
   ['asowned_17',['AsOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa55b58778db1c48185913fbca3a99d53',1,'Thoth::Dsa::Cow']]],
-  ['asref_18',['AsRef',['../struct_thoth_1_1_dsa_1_1_cow.html#af4a1287733d359cf7f33bb3eae31921b',1,'Thoth::Dsa::Cow::AsRef()'],['../struct_thoth_1_1_n_json_1_1_json.html#a83434f4f8326a422576b57991e3047ca',1,'Thoth::NJson::Json::AsRef() const &amp;']]],
-  ['astype_19',['AsType',['../struct_thoth_1_1_n_json_1_1_json.html#a5ba143a8fe3321e3fa63c02fe753f17d',1,'Thoth::NJson::Json']]],
-  ['asui64_20',['AsUI64',['../struct_thoth_1_1_n_json_1_1_number.html#a244b1896270670069469b73749e439d3',1,'Thoth::NJson::Number']]],
-  ['asview_21',['AsView',['../namespace_thoth_1_1_string.html#ada98282df1b1a587235090c3ab3e8688',1,'Thoth::String']]],
-  ['authorization_22',['Authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]]
+  ['asref_18',['AsRef',['../struct_thoth_1_1_dsa_1_1_cow.html#af4a1287733d359cf7f33bb3eae31921b',1,'Thoth::Dsa::Cow::AsRef()'],['../struct_thoth_1_1_n_json_1_1_json.html#a83434f4f8326a422576b57991e3047ca',1,'Thoth::NJson::Json::AsRef()']]],
+  ['asstringview_19',['AsStringView',['../struct_thoth_1_1_n_json_1_1_string_ref.html#a5ea45224f612012d93cb27d9c8db143f',1,'Thoth::NJson::StringRef']]],
+  ['astype_20',['AsType',['../struct_thoth_1_1_n_json_1_1_json.html#a5ba143a8fe3321e3fa63c02fe753f17d',1,'Thoth::NJson::Json']]],
+  ['asui64_21',['AsUI64',['../struct_thoth_1_1_n_json_1_1_number.html#a244b1896270670069469b73749e439d3',1,'Thoth::NJson::Number']]],
+  ['asview_22',['AsView',['../namespace_thoth_1_1_string.html#ada98282df1b1a587235090c3ab3e8688',1,'Thoth::String']]],
+  ['authorization_23',['Authorization',['../struct_thoth_1_1_http_1_1_request_headers.html#abdd489dc6cd71b302b5a445d9393b038',1,'Thoth::Http::RequestHeaders::Authorization()'],['../struct_thoth_1_1_http_1_1_request_headers.html#ac20f0ff943b5d4028f930793c9d53130',1,'Thoth::Http::RequestHeaders::Authorization() const']]]
 ];

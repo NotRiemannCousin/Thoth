@@ -35,12 +35,13 @@ var hierarchy =
     [ "Thoth::NJson::Json", "struct_thoth_1_1_n_json_1_1_json.html", null ],
     [ "Thoth::NJson::JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", null ],
     [ "Thoth::NJson::JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", null ],
+    [ "Thoth::NJson::JsonIterator&lt; IsConst, IsItems &gt;", "struct_thoth_1_1_n_json_1_1_json_iterator.html", null ],
     [ "Thoth::NJson::JsonKeyCompare", "struct_thoth_1_1_n_json_1_1_json_key_compare.html", null ],
     [ "Thoth::NJson::JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", null ],
     [ "Thoth::NJson::JsonParseError", "struct_thoth_1_1_n_json_1_1_json_parse_error.html", null ],
     [ "Thoth::NJson::JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", null ],
     [ "Thoth::NJson::JsonWrongTypeError", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html", null ],
-    [ "Thoth::Dsa::LinearMap&lt; KeyT, ValT, Pred &gt;", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
+    [ "Thoth::Dsa::LinearMap&lt; KeyT, ValT, Pred, Alloc &gt;", "struct_thoth_1_1_dsa_1_1_linear_map.html", null ],
     [ "Thoth::Http::NHeaders::LinkHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_link_header.html", null ],
     [ "Thoth::Http::NHeaders::ListProxy&lt; IsConst, Ts &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html", null ],
     [ "Thoth::Http::NHeaders::MimeTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html", null ],
@@ -78,6 +79,7 @@ var hierarchy =
     [ "Thoth::Http::Server", "struct_thoth_1_1_http_1_1_server.html", null ],
     [ "Thoth::Http::ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ],
     [ "Thoth::Utils::SharedInputView&lt; Range &gt;", "struct_thoth_1_1_utils_1_1_shared_input_view.html", null ],
+    [ "Thoth::NJson::StringOwn", "struct_thoth_1_1_n_json_1_1_string_own.html", null ],
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],
     [ "Thoth::Http::NHeaders::SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", null ],
     [ "ThothErrorBase", null, [
@@ -92,6 +94,9 @@ var hierarchy =
       [ "Thoth::NJson::Key", "struct_thoth_1_1_n_json_1_1_key.html", null ],
       [ "Thoth::NJson::KeyView", "struct_thoth_1_1_n_json_1_1_key_view.html", null ],
       [ "Thoth::NJson::Number", "struct_thoth_1_1_n_json_1_1_number.html", null ]
+    ] ],
+    [ "std::ranges::view_interface", null, [
+      [ "Thoth::NJson::JsonItemsView< IsConst >", "class_thoth_1_1_n_json_1_1_json_items_view.html", null ]
     ] ],
     [ "Thoth::Http::NHeaders::Weighted&lt; T &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html", null ]
 ];

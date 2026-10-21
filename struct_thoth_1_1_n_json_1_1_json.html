@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a6216b284b3013155228c9fcef781c917" id="r_a6216b284b3013155228c9fcef781c917"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6216b284b3013155228c9fcef781c917">Value</a> = std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a8cc73e4a9a5d840836c4d2dd35d94913">String</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>&gt;</td></tr>
+<tr class="memitem:a6216b284b3013155228c9fcef781c917" id="r_a6216b284b3013155228c9fcef781c917"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6216b284b3013155228c9fcef781c917">Value</a> = std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aece0af53e2312d16ad5c6b0a0f263be1">String</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>&gt;</td></tr>
 <tr class="memitem:ae7eeb915ba5e7f2b445e5c3857bbfdff" id="r_ae7eeb915ba5e7f2b445e5c3857bbfdff"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ae7eeb915ba5e7f2b445e5c3857bbfdff">PredicatePointer</a> = bool(*)(const <a class="el" href="#a859d311ffeef32bdb46e8091e7925145">Json</a>&amp;)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -345,8 +345,73 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab4fbd2c8e21e0ec38c995c561ad2d815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.  <br /></td></tr>
 <tr class="memitem:a71d3a56622a826ed004bac65156daf4b" id="r_a71d3a56622a826ed004bac65156daf4b"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#a859d311ffeef32bdb46e8091e7925145">Json</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a71d3a56622a826ed004bac65156daf4b">ParseText</a> (std::string_view input, bool copyData=true, bool checkFinal=true)</td></tr>
 <tr class="memdesc:a71d3a56622a826ed004bac65156daf4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse the <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> from a string.     <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
+Range Interface</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>Every <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> models the STL range concepts over its direct children:</p><ul>
+<li><code><a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a></code> values iterate their elements;</li>
+<li><code><a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a></code> values iterate their values, in storage order (keys are skipped);</li>
+<li>every other type (null, string, number, bool) is an empty sequence.</li>
+</ul>
+<p><code><a class="el" href="#a247242bee575594bdd828e59001fee69" title="Iterator to the first child. Scalar values yield begin() == end().">begin()</a>/<code><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1" title="Iterator to one-past-the-last child.">end()</a></code> return</code> the same iterator type and the iterators are bidirectional, so a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> always models <code>std::ranges::forward_range</code>, <code>std::ranges::bidirectional_range</code>, <code>std::ranges::common_range</code> and <code>std::ranges::sized_range</code> — mutable and const alike. When the keys are needed, </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab465a50c2c259c344e7ff053feecaf00" title="A std::ranges view of std::pair&lt;KeyView, Json&amp;&gt; pairing each child with its key: the array index for ...">Items()</a> pairs each child with its <a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html" title="KeyView">KeyView</a>; for a guaranteed index, compose with <code>std::views::enumerate</code>. </dd></dl>
+</td></tr>
+<tr class="memitem:a38bce07e2d472d9b1d07e1f972aab687" id="r_a38bce07e2d472d9b1d07e1f972aab687"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">iterator</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator</a>&lt;false, false&gt;</td></tr>
+<tr class="memitem:a97b8e78965b6c5e6f408a962580959d2" id="r_a97b8e78965b6c5e6f408a962580959d2"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator</a>&lt;true , false&gt;</td></tr>
+<tr class="memitem:a73e0b0ab614e1a9814bbaa22e0401c67" id="r_a73e0b0ab614e1a9814bbaa22e0401c67"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a73e0b0ab614e1a9814bbaa22e0401c67">value_type</a> = <a class="el" href="#a859d311ffeef32bdb46e8091e7925145">Json</a></td></tr>
+<tr class="memitem:a247242bee575594bdd828e59001fee69" id="r_a247242bee575594bdd828e59001fee69"><td class="memItemLeft"><a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a247242bee575594bdd828e59001fee69">begin</a> ()</td></tr>
+<tr class="memdesc:a247242bee575594bdd828e59001fee69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator to the first child. Scalar values yield <code><a class="el" href="#a247242bee575594bdd828e59001fee69" title="Iterator to the first child. Scalar values yield begin() == end().">begin()</a></code> == <code><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1" title="Iterator to one-past-the-last child.">end()</a></code>.  <br /></td></tr>
+<tr class="memitem:a9c5615e1a41ee445b096af651a0ff9a1" id="r_a9c5615e1a41ee445b096af651a0ff9a1"><td class="memItemLeft"><a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1">end</a> ()</td></tr>
+<tr class="memdesc:a9c5615e1a41ee445b096af651a0ff9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator to one-past-the-last child.  <br /></td></tr>
+<tr class="memitem:a4a6e65bed7361e9fb9dafac50d6773be" id="r_a4a6e65bed7361e9fb9dafac50d6773be"><td class="memItemLeft"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4a6e65bed7361e9fb9dafac50d6773be">begin</a> () const</td></tr>
+<tr class="memdesc:a4a6e65bed7361e9fb9dafac50d6773be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator to the first child. Scalar values yield <code><a class="el" href="#a247242bee575594bdd828e59001fee69" title="Iterator to the first child. Scalar values yield begin() == end().">begin()</a></code> == <code><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1" title="Iterator to one-past-the-last child.">end()</a></code>.     <br /></td></tr>
+<tr class="memitem:ad841b4e0abd7e78440e178519269ade8" id="r_ad841b4e0abd7e78440e178519269ade8"><td class="memItemLeft"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad841b4e0abd7e78440e178519269ade8">end</a> () const</td></tr>
+<tr class="memdesc:ad841b4e0abd7e78440e178519269ade8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator to one-past-the-last child.     <br /></td></tr>
+<tr class="memitem:a585a6c3aafe972a24dc560f69c58d2a1" id="r_a585a6c3aafe972a24dc560f69c58d2a1"><td class="memItemLeft"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a585a6c3aafe972a24dc560f69c58d2a1">cbegin</a> () const</td></tr>
+<tr class="memdesc:a585a6c3aafe972a24dc560f69c58d2a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const iterator to the first child, even when this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> is mutable.  <br /></td></tr>
+<tr class="memitem:aace3df0763b8eda3737c5b8ecf94be30" id="r_aace3df0763b8eda3737c5b8ecf94be30"><td class="memItemLeft"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#aace3df0763b8eda3737c5b8ecf94be30">cend</a> () const</td></tr>
+<tr class="memdesc:aace3df0763b8eda3737c5b8ecf94be30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const iterator to one-past-the-last child, even when this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> is mutable.  <br /></td></tr>
+<tr class="memitem:aa95b11946fba07d634b40f6d97dee737" id="r_aa95b11946fba07d634b40f6d97dee737"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa95b11946fba07d634b40f6d97dee737">Empty</a> () const</td></tr>
+<tr class="memdesc:aa95b11946fba07d634b40f6d97dee737"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when this value has no children (scalars are always empty).  <br /></td></tr>
+<tr class="memitem:a4ab31002906968a5df900c6d54010190" id="r_a4ab31002906968a5df900c6d54010190"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4ab31002906968a5df900c6d54010190">empty</a> () const</td></tr>
+<tr class="memdesc:a4ab31002906968a5df900c6d54010190"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL spelling of <a class="el" href="#aa95b11946fba07d634b40f6d97dee737" title="True when this value has no children (scalars are always empty).">Empty()</a>, kept so <code>std::ranges::empty</code> works on a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>.  <br /></td></tr>
+<tr class="memitem:a6d77d92ff502cf39a0b27f58e2e8c737" id="r_a6d77d92ff502cf39a0b27f58e2e8c737"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a6d77d92ff502cf39a0b27f58e2e8c737">Size</a> () const</td></tr>
+<tr class="memdesc:a6d77d92ff502cf39a0b27f58e2e8c737"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_number.html" title="JSON number type — holds int64_t, uint64_t, or double.">Number</a> of children: elements of an <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, entries of an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, 0 for scalars.  <br /></td></tr>
+<tr class="memitem:af09f82247cfc699ce68f4a664543003a" id="r_af09f82247cfc699ce68f4a664543003a"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#af09f82247cfc699ce68f4a664543003a">size</a> () const</td></tr>
+<tr class="memdesc:af09f82247cfc699ce68f4a664543003a"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL spelling of <a class="el" href="#a6d77d92ff502cf39a0b27f58e2e8c737" title="Number of children: elements of an Array, entries of an Object, 0 for scalars.">Size()</a>, kept so <code>std::ranges::size</code> works on a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>.  <br /></td></tr>
+<tr class="memitem:ab465a50c2c259c344e7ff053feecaf00" id="r_ab465a50c2c259c344e7ff053feecaf00"><td class="memItemLeft"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">JsonItemsView</a>&lt; false &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab465a50c2c259c344e7ff053feecaf00">Items</a> ()</td></tr>
+<tr class="memdesc:ab465a50c2c259c344e7ff053feecaf00"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>std::ranges</code> view of <code>std::pair&lt;KeyView, Json&amp;&gt;</code> pairing each child with its key: the array index for <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a> values, the entry key for <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> values.  <br /></td></tr>
+<tr class="memitem:ac97876da1738a2fe84c36a655ff73567" id="r_ac97876da1738a2fe84c36a655ff73567"><td class="memItemLeft"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">JsonItemsView</a>&lt; true &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac97876da1738a2fe84c36a655ff73567">Items</a> () const</td></tr>
+<tr class="memdesc:ac97876da1738a2fe84c36a655ff73567"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>std::ranges</code> view of <code>std::pair&lt;KeyView, Json&amp;&gt;</code> pairing each child with its key: the array index for <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a> values, the entry key for <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> values.     <br /></td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a97b8e78965b6c5e6f408a962580959d2" name="a97b8e78965b6c5e6f408a962580959d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b8e78965b6c5e6f408a962580959d2">&#9670;&#160;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">Thoth::NJson::Json::const_iterator</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator</a>&lt;true , false&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38bce07e2d472d9b1d07e1f972aab687" name="a38bce07e2d472d9b1d07e1f972aab687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38bce07e2d472d9b1d07e1f972aab687">&#9670;&#160;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">Thoth::NJson::Json::iterator</a> = <a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator</a>&lt;false, false&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae7eeb915ba5e7f2b445e5c3857bbfdff" name="ae7eeb915ba5e7f2b445e5c3857bbfdff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7eeb915ba5e7f2b445e5c3857bbfdff">&#9670;&#160;</a></span>PredicatePointer</h2>
 
@@ -368,7 +433,21 @@ Static Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a6216b284b3013155228c9fcef781c917">Thoth::NJson::Json::Value</a> = std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a8cc73e4a9a5d840836c4d2dd35d94913">String</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a6216b284b3013155228c9fcef781c917">Thoth::NJson::Json::Value</a> = std::variant&lt;<a class="el" href="namespace_thoth_1_1_n_json.html#abf10755d507fcae5a8816ddcccdb7dc2">Null</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aece0af53e2312d16ad5c6b0a0f263be1">String</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a6c8928fb6fad08b675a0986f1963e3be">Bool</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a73e0b0ab614e1a9814bbaa22e0401c67" name="a73e0b0ab614e1a9814bbaa22e0401c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e0b0ab614e1a9814bbaa22e0401c67">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a73e0b0ab614e1a9814bbaa22e0401c67">Thoth::NJson::Json::value_type</a> = <a class="el" href="#a859d311ffeef32bdb46e8091e7925145">Json</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -762,6 +841,206 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a247242bee575594bdd828e59001fee69" name="a247242bee575594bdd828e59001fee69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a247242bee575594bdd828e59001fee69">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">iterator</a> Thoth::NJson::Json::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Iterator to the first child. Scalar values yield <code><a class="el" href="#a247242bee575594bdd828e59001fee69" title="Iterator to the first child. Scalar values yield begin() == end().">begin()</a></code> == <code><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1" title="Iterator to one-past-the-last child.">end()</a></code>. </p>
+
+</div>
+</div>
+<a id="a4a6e65bed7361e9fb9dafac50d6773be" name="a4a6e65bed7361e9fb9dafac50d6773be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6e65bed7361e9fb9dafac50d6773be">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a> Thoth::NJson::Json::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Iterator to the first child. Scalar values yield <code><a class="el" href="#a247242bee575594bdd828e59001fee69" title="Iterator to the first child. Scalar values yield begin() == end().">begin()</a></code> == <code><a class="el" href="#a9c5615e1a41ee445b096af651a0ff9a1" title="Iterator to one-past-the-last child.">end()</a></code>.    </p>
+
+</div>
+</div>
+<a id="a585a6c3aafe972a24dc560f69c58d2a1" name="a585a6c3aafe972a24dc560f69c58d2a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a585a6c3aafe972a24dc560f69c58d2a1">&#9670;&#160;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a> Thoth::NJson::Json::cbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Const iterator to the first child, even when this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> is mutable. </p>
+
+</div>
+</div>
+<a id="aace3df0763b8eda3737c5b8ecf94be30" name="aace3df0763b8eda3737c5b8ecf94be30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aace3df0763b8eda3737c5b8ecf94be30">&#9670;&#160;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a> Thoth::NJson::Json::cend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Const iterator to one-past-the-last child, even when this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a> is mutable. </p>
+
+</div>
+</div>
+<a id="aa95b11946fba07d634b40f6d97dee737" name="aa95b11946fba07d634b40f6d97dee737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa95b11946fba07d634b40f6d97dee737">&#9670;&#160;</a></span>Empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::Json::Empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when this value has no children (scalars are always empty). </p>
+
+</div>
+</div>
+<a id="a4ab31002906968a5df900c6d54010190" name="a4ab31002906968a5df900c6d54010190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab31002906968a5df900c6d54010190">&#9670;&#160;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::NJson::Json::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL spelling of <a class="el" href="#aa95b11946fba07d634b40f6d97dee737" title="True when this value has no children (scalars are always empty).">Empty()</a>, kept so <code>std::ranges::empty</code> works on a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>. </p>
+
+</div>
+</div>
+<a id="a9c5615e1a41ee445b096af651a0ff9a1" name="a9c5615e1a41ee445b096af651a0ff9a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c5615e1a41ee445b096af651a0ff9a1">&#9670;&#160;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a38bce07e2d472d9b1d07e1f972aab687">iterator</a> Thoth::NJson::Json::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Iterator to one-past-the-last child. </p>
+
+</div>
+</div>
+<a id="ad841b4e0abd7e78440e178519269ade8" name="ad841b4e0abd7e78440e178519269ade8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad841b4e0abd7e78440e178519269ade8">&#9670;&#160;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a97b8e78965b6c5e6f408a962580959d2">const_iterator</a> Thoth::NJson::Json::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Iterator to one-past-the-last child.    </p>
 
 </div>
 </div>
@@ -1657,6 +1936,62 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="ab465a50c2c259c344e7ff053feecaf00" name="ab465a50c2c259c344e7ff053feecaf00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab465a50c2c259c344e7ff053feecaf00">&#9670;&#160;</a></span>Items() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">JsonItemsView</a>&lt; false &gt; Thoth::NJson::Json::Items </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A <code>std::ranges</code> view of <code>std::pair&lt;KeyView, Json&amp;&gt;</code> pairing each child with its key: the array index for <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a> values, the entry key for <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> values. </p>
+<p>Useful when the keys are needed, e.g. <code>for</code> (const auto&amp; [key, child] : json.Items()), or composing with <code>std::views::keys</code> / <code>std::views::values</code>. </p><dl class="section note"><dt>Note</dt><dd>The view references this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, it does not extend its lifetime. </dd></dl>
+
+</div>
+</div>
+<a id="ac97876da1738a2fe84c36a655ff73567" name="ac97876da1738a2fe84c36a655ff73567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac97876da1738a2fe84c36a655ff73567">&#9670;&#160;</a></span>Items() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">JsonItemsView</a>&lt; true &gt; Thoth::NJson::Json::Items </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A <code>std::ranges</code> view of <code>std::pair&lt;KeyView, Json&amp;&gt;</code> pairing each child with its key: the array index for <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a> values, the entry key for <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> values.    </p>
+<p>Useful when the keys are needed, e.g. <code>for</code> (const auto&amp; [key, child] : json.Items()), or composing with <code>std::views::keys</code> / <code>std::views::values</code>. </p><dl class="section note"><dt>Note</dt><dd>The view references this <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>, it does not extend its lifetime.    </dd></dl>
+
+</div>
+</div>
 <a id="a321e7e7036f5269b74ec34d24ef59694" name="a321e7e7036f5269b74ec34d24ef59694"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a321e7e7036f5269b74ec34d24ef59694">&#9670;&#160;</a></span>operator const Value &amp;()</h2>
 
@@ -2269,6 +2604,60 @@ requires std::predicate&lt;Pred, <a class="el" href="#a859d311ffeef32bdb46e8091e
 </div><div class="memdoc">
 
 <p>Will search the childs for the first element that matches the predicate and return it, or std::nullopt if no matches.    </p>
+
+</div>
+</div>
+<a id="a6d77d92ff502cf39a0b27f58e2e8c737" name="a6d77d92ff502cf39a0b27f58e2e8c737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d77d92ff502cf39a0b27f58e2e8c737">&#9670;&#160;</a></span>Size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Thoth::NJson::Json::Size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_thoth_1_1_n_json_1_1_number.html" title="JSON number type — holds int64_t, uint64_t, or double.">Number</a> of children: elements of an <a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a>, entries of an <a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a>, 0 for scalars. </p>
+
+</div>
+</div>
+<a id="af09f82247cfc699ce68f4a664543003a" name="af09f82247cfc699ce68f4a664543003a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af09f82247cfc699ce68f4a664543003a">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Thoth::NJson::Json::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL spelling of <a class="el" href="#a6d77d92ff502cf39a0b27f58e2e8c737" title="Number of children: elements of an Array, entries of an Object, 0 for scalars.">Size()</a>, kept so <code>std::ranges::size</code> works on a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>. </p>
 
 </div>
 </div>

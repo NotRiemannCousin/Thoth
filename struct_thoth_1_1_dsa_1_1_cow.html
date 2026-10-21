@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div><!--header-->
 <div class="contents">
 
-<p>Like Rust's <span class="tt">cow</span> (copy on write).  
+<p>A Copy-On-Write (COW) smart wrapper, inspired by Rust's <span class="tt">std::borrow::Cow</span>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_cow_8hpp_source.html">Cow.hpp</a>&gt;</code></p>
@@ -175,6 +175,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4defdeec6ead86eead015f50ef4a2911" id="r_a4defdeec6ead86eead015f50ef4a2911"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a4defdeec6ead86eead015f50ef4a2911">Cow</a> (const Cow &amp;other)</td></tr>
 <tr class="memitem:a9eed698e1161a2ff5acd52312808c2f8" id="r_a9eed698e1161a2ff5acd52312808c2f8"><td class="memItemLeft">constexpr <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9eed698e1161a2ff5acd52312808c2f8">operator=</a> (<a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;&amp;other) noexcept=default</td></tr>
 <tr class="memitem:a686777716a365a069715cf4c100e583a" id="r_a686777716a365a069715cf4c100e583a"><td class="memItemLeft">constexpr <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a686777716a365a069715cf4c100e583a">operator=</a> (const <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;other)</td></tr>
+<tr class="memitem:ab30c023f00b71089c772e4fc043e03a7" id="r_ab30c023f00b71089c772e4fc043e03a7"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ab30c023f00b71089c772e4fc043e03a7">operator RefT</a> () const</td></tr>
 <tr class="memitem:a909fc9d98d629c17fec5406447f6db62" id="r_a909fc9d98d629c17fec5406447f6db62"><td class="memItemLeft">constexpr <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a909fc9d98d629c17fec5406447f6db62">SetRef</a> (RefT ref)</td></tr>
 <tr class="memdesc:a909fc9d98d629c17fec5406447f6db62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value to a new RefT.  <br /></td></tr>
 <tr class="memitem:acb0e510c1feac8c24a974fdf95d14b09" id="r_acb0e510c1feac8c24a974fdf95d14b09"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#acb0e510c1feac8c24a974fdf95d14b09">IsRef</a> () const</td></tr>
@@ -195,11 +196,29 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ace70b0c18cb82119bc5d37d3dc377b40" id="r_ace70b0c18cb82119bc5d37d3dc377b40"><td class="memTemplParams" colspan="2">template&lt;class Callable&gt; </td></tr>
 <tr class="memitem:ace70b0c18cb82119bc5d37d3dc377b40 template"><td class="memItemLeft">constexpr decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#ace70b0c18cb82119bc5d37d3dc377b40">Visit</a> (Callable &amp;&amp;callable) const</td></tr>
 <tr class="memdesc:ace70b0c18cb82119bc5d37d3dc377b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">convenient call to std::visit() on m_value.  <br /></td></tr>
+<tr class="memitem:ace09959da8b9a9c61b551acfa0ec74ce" id="r_ace09959da8b9a9c61b551acfa0ec74ce"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ace09959da8b9a9c61b551acfa0ec74ce">begin</a> () const</td></tr>
+<tr class="memitem:adc5e65a6c656148bbaaebd38d9772481" id="r_adc5e65a6c656148bbaaebd38d9772481"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#adc5e65a6c656148bbaaebd38d9772481">end</a> () const</td></tr>
+<tr class="memitem:ae7104560fd2293b99303f673f7b79c14" id="r_ae7104560fd2293b99303f673f7b79c14"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ae7104560fd2293b99303f673f7b79c14">cbegin</a> () const</td></tr>
+<tr class="memitem:ab384f70d0879d19ad7efbdf37a2192f0" id="r_ab384f70d0879d19ad7efbdf37a2192f0"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ab384f70d0879d19ad7efbdf37a2192f0">cend</a> () const</td></tr>
+<tr class="memitem:a7068265d4001c25a706dce09d610263e" id="r_a7068265d4001c25a706dce09d610263e"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a7068265d4001c25a706dce09d610263e">rbegin</a> () const</td></tr>
+<tr class="memitem:a34adf831d28766cf2234da727d622c8c" id="r_a34adf831d28766cf2234da727d622c8c"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a34adf831d28766cf2234da727d622c8c">rend</a> () const</td></tr>
+<tr class="memitem:a72b0fe9cd40ac495d5d07d151c655272" id="r_a72b0fe9cd40ac495d5d07d151c655272"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a72b0fe9cd40ac495d5d07d151c655272">size</a> () const</td></tr>
+<tr class="memitem:a70995eec9f8bbb3d010f624eb8ea9ad3" id="r_a70995eec9f8bbb3d010f624eb8ea9ad3"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a70995eec9f8bbb3d010f624eb8ea9ad3">ssize</a> () const</td></tr>
+<tr class="memitem:a4c992b4646386edee231950c41239865" id="r_a4c992b4646386edee231950c41239865"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a4c992b4646386edee231950c41239865">empty</a> () const</td></tr>
+<tr class="memitem:a3a6ae09de7ffc2714c039094d21bfdf6" id="r_a3a6ae09de7ffc2714c039094d21bfdf6"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a3a6ae09de7ffc2714c039094d21bfdf6">data</a> () const</td></tr>
+<tr class="memitem:a50ec6e41151f53e4c78af6633bc275fc" id="r_a50ec6e41151f53e4c78af6633bc275fc"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a50ec6e41151f53e4c78af6633bc275fc">front</a> () const</td></tr>
+<tr class="memitem:a55a2ac17dc81d41ecfacf2a50af8aa58" id="r_a55a2ac17dc81d41ecfacf2a50af8aa58"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a55a2ac17dc81d41ecfacf2a50af8aa58">back</a> () const</td></tr>
+<tr class="memitem:af5bb6258f41bbb3914756918efc6290b" id="r_af5bb6258f41bbb3914756918efc6290b"><td class="memTemplParams" colspan="2">template&lt;typename Index&gt; <br />
+requires requires(RefT r, Index i) { r[i]; }</td></tr>
+<tr class="memitem:af5bb6258f41bbb3914756918efc6290b template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#af5bb6258f41bbb3914756918efc6290b">operator[]</a> (Index idx) const</td></tr>
+<tr class="memitem:a8d12ca3f73bda89cea98a4450e342fab" id="r_a8d12ca3f73bda89cea98a4450e342fab"><td class="memTemplParams" colspan="2">template&lt;typename U&gt; <br />
+requires requires(RefT r, U v) { r.contains(v); }</td></tr>
+<tr class="memitem:a8d12ca3f73bda89cea98a4450e342fab template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a8d12ca3f73bda89cea98a4450e342fab">contains</a> (const U &amp;val) const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a91a9ba64be3a64b2a117141f914bc45f" id="r_a91a9ba64be3a64b2a117141f914bc45f"><td class="memItemLeft">static constexpr <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a>&#160;</td><td class="memItemRight"><a class="el" href="#a91a9ba64be3a64b2a117141f914bc45f">FromRef</a> (RefT ref)</td></tr>
-<tr class="memdesc:a91a9ba64be3a64b2a117141f914bc45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html" title="Like Rust&#39;s cow (copy on write).">Cow</a> from a RefT.  <br /></td></tr>
+<tr class="memdesc:a91a9ba64be3a64b2a117141f914bc45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html" title="A Copy-On-Write (COW) smart wrapper, inspired by Rust&#39;s std::borrow::Cow.">Cow</a> from a RefT.  <br /></td></tr>
 <tr class="memitem:ae636d2382a0a39023b00e27770ecca27" id="r_ae636d2382a0a39023b00e27770ecca27"><td class="memItemLeft">static constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ae636d2382a0a39023b00e27770ecca27">IsRefType</a> (const <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a> &amp;cow)</td></tr>
 <tr class="memdesc:ae636d2382a0a39023b00e27770ecca27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the value is a RefT or OwnT.  <br /></td></tr>
 <tr class="memitem:aa4ebfff5b87fde48bfd2f89c13d48d86" id="r_aa4ebfff5b87fde48bfd2f89c13d48d86"><td class="memItemLeft">static constexpr <a class="el" href="#a5a0d09ba553fc9e5b8467dccfaa4a076">Cow</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa4ebfff5b87fde48bfd2f89c13d48d86">FromOwned</a> (const OwnT &amp;own)</td></tr>
@@ -209,9 +228,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class RefT, class OwnT&gt;<br />
-requires std::constructible_from&lt;OwnT, RefT&gt;<br />
-struct Thoth::Dsa::Cow&lt; RefT, OwnT &gt;</div><p>Like Rust's <span class="tt">cow</span> (copy on write). </p>
-<p>The value can a RefT or a OwnT. RefT are lightweight objects designed to reference external buffers, while OwnT are objects that stores it own data so they can be heavy to create and copy. Editing the <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html" title="Like Rust&#39;s cow (copy on write).">Cow</a> triggers transform the RefT in OwnT. You need to be able to construct OwnT from RefT and RefT from OwnT. </p>
+requires std::constructible_from&lt;OwnT, RefT&gt; &amp;&amp; std::constructible_from&lt;RefT, const OwnT&amp;&gt;<br />
+struct Thoth::Dsa::Cow&lt; RefT, OwnT &gt;</div><p>A Copy-On-Write (COW) smart wrapper, inspired by Rust's <span class="tt">std::borrow::Cow</span>. </p>
+<p>Encapsulates either a borrowed reference (<code>RefT</code>) or an owned value (<code>OwnT</code>). It optimizes memory and performance by favoring lightweight references, only allocating/copying to an owned type when mutation is explicitly required via <code><a class="el" href="#aa55b58778db1c48185913fbca3a99d53" title="Converts the RefT type to a OwnT.">AsOwned()</a></code>.</p>
+<dl class="section note"><dt>Note</dt><dd>Requires bidirectional convertibility, <code>OwnT</code> from <code>RefT</code>, and <code>RefT</code> from <span class="tt">const OwnT&amp;</span>. </dd></dl>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a02d916000dcc9a47883580b3e39842d4" name="a02d916000dcc9a47883580b3e39842d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a02d916000dcc9a47883580b3e39842d4">&#9670;&#160;</a></span>OwnType</h2>
@@ -458,6 +478,225 @@ template&lt;class RefT, class OwnT&gt; </div>
 
 </div>
 </div>
+<a id="a55a2ac17dc81d41ecfacf2a50af8aa58" name="a55a2ac17dc81d41ecfacf2a50af8aa58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a2ac17dc81d41ecfacf2a50af8aa58">&#9670;&#160;</a></span>back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::back </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace09959da8b9a9c61b551acfa0ec74ce" name="ace09959da8b9a9c61b551acfa0ec74ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace09959da8b9a9c61b551acfa0ec74ce">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7104560fd2293b99303f673f7b79c14" name="ae7104560fd2293b99303f673f7b79c14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7104560fd2293b99303f673f7b79c14">&#9670;&#160;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::cbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab384f70d0879d19ad7efbdf37a2192f0" name="ab384f70d0879d19ad7efbdf37a2192f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab384f70d0879d19ad7efbdf37a2192f0">&#9670;&#160;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::cend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d12ca3f73bda89cea98a4450e342fab" name="a8d12ca3f73bda89cea98a4450e342fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d12ca3f73bda89cea98a4450e342fab">&#9670;&#160;</a></span>contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<div class="memtemplate">
+template&lt;typename U&gt; <br />
+requires requires(RefT r, U v) { r.contains(v); }</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::contains </td>
+          <td>(</td>
+          <td class="paramtype">const U &amp;</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a6ae09de7ffc2714c039094d21bfdf6" name="a3a6ae09de7ffc2714c039094d21bfdf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a6ae09de7ffc2714c039094d21bfdf6">&#9670;&#160;</a></span>data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c992b4646386edee231950c41239865" name="a4c992b4646386edee231950c41239865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c992b4646386edee231950c41239865">&#9670;&#160;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc5e65a6c656148bbaaebd38d9772481" name="adc5e65a6c656148bbaaebd38d9772481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5e65a6c656148bbaaebd38d9772481">&#9670;&#160;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa4ebfff5b87fde48bfd2f89c13d48d86" name="aa4ebfff5b87fde48bfd2f89c13d48d86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4ebfff5b87fde48bfd2f89c13d48d86">&#9670;&#160;</a></span>FromOwned() <span class="overload">[1/2]</span></h2>
 
@@ -541,7 +780,34 @@ template&lt;class RefT, class OwnT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html" title="Like Rust&#39;s cow (copy on write).">Cow</a> from a RefT. </p>
+<p>Constructs a <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html" title="A Copy-On-Write (COW) smart wrapper, inspired by Rust&#39;s std::borrow::Cow.">Cow</a> from a RefT. </p>
+
+</div>
+</div>
+<a id="a50ec6e41151f53e4c78af6633bc275fc" name="a50ec6e41151f53e4c78af6633bc275fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50ec6e41151f53e4c78af6633bc275fc">&#9670;&#160;</a></span>front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::front </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -603,6 +869,33 @@ template&lt;class RefT, class OwnT&gt; </div>
 
 </div>
 </div>
+<a id="ab30c023f00b71089c772e4fc043e03a7" name="ab30c023f00b71089c772e4fc043e03a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab30c023f00b71089c772e4fc043e03a7">&#9670;&#160;</a></span>operator RefT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::operator RefT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a686777716a365a069715cf4c100e583a" name="a686777716a365a069715cf4c100e583a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a686777716a365a069715cf4c100e583a">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
@@ -651,6 +944,90 @@ template&lt;class RefT, class OwnT&gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5bb6258f41bbb3914756918efc6290b" name="af5bb6258f41bbb3914756918efc6290b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5bb6258f41bbb3914756918efc6290b">&#9670;&#160;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<div class="memtemplate">
+template&lt;typename Index&gt; <br />
+requires requires(RefT r, Index i) { r[i]; }</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">Index</td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7068265d4001c25a706dce09d610263e" name="a7068265d4001c25a706dce09d610263e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7068265d4001c25a706dce09d610263e">&#9670;&#160;</a></span>rbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34adf831d28766cf2234da727d622c8c" name="a34adf831d28766cf2234da727d622c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34adf831d28766cf2234da727d622c8c">&#9670;&#160;</a></span>rend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -741,6 +1118,60 @@ template&lt;class RefT, class OwnT&gt; </div>
 </div><div class="memdoc">
 
 <p>Sets the value to a new RefT. </p>
+
+</div>
+</div>
+<a id="a72b0fe9cd40ac495d5d07d151c655272" name="a72b0fe9cd40ac495d5d07d151c655272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b0fe9cd40ac495d5d07d151c655272">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70995eec9f8bbb3d010f624eb8ea9ad3" name="a70995eec9f8bbb3d010f624eb8ea9ad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70995eec9f8bbb3d010f624eb8ea9ad3">&#9670;&#160;</a></span>ssize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class RefT, class OwnT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Thoth::Dsa::Cow</a>&lt; RefT, OwnT &gt;::ssize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

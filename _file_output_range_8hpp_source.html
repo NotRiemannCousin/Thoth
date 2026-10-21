@@ -230,12 +230,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_file_output_r
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">   66</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">TextFileOutputRange</a> = <a class="code hl_struct" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange&lt;&gt;</a>;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">   67</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">BinFileOutputRange</a>  = <a class="code hl_struct" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange&lt;std::byte&gt;</a>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">static_assert</span>(std::ranges::range&lt;TextFileOutputRange&gt;);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#include &lt;Thoth/Dsa/FileOutputRange.tpp&gt;</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#include &lt;Thoth/Dsa/FileOutputRange.tpp&gt;</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">static_assert</span>(std::ranges::range&lt;Thoth::Dsa::TextFileOutputRange&gt; &amp;&amp; <span class="stringliteral">&quot;TextFileOutputRange is not a range&quot;</span>);</div>
 <div class="ttc" id="a_file_output_range_8hpp_html"><div class="ttname"><a href="_file_output_range_8hpp.html">FileOutputRange.hpp</a></div></div>
 <div class="ttc" id="a_headers_8hpp_html"><div class="ttname"><a href="_headers_8hpp.html">Headers.hpp</a></div></div>
 <div class="ttc" id="anamespace_thoth_1_1_dsa_html"><div class="ttname"><a href="namespace_thoth_1_1_dsa.html">Thoth::Dsa</a></div><div class="ttdef"><b>Definition</b> Cow.hpp:5</div></div>

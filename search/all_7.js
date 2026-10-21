@@ -7,7 +7,7 @@ var searchData=
   ['fileoutputrange_2ehpp_4',['FileOutputRange.hpp',['../_file_output_range_8hpp.html',1,'']]],
   ['fileoutputrange_3c_20std_3a_3abyte_20_3e_5',['FileOutputRange&lt; std::byte &gt;',['../struct_thoth_1_1_dsa_1_1_file_output_range.html',1,'Thoth::Dsa']]],
   ['find_6',['Find',['../struct_thoth_1_1_n_json_1_1_json.html#ae0918e27274b0f163c2ff1a652cfc733',1,'Thoth::NJson::Json::Find(KeysView keys)'],['../struct_thoth_1_1_n_json_1_1_json.html#ad29edb88ef73c60f498824fd4539ac05',1,'Thoth::NJson::Json::Find(KeysView keys) const']]],
-  ['find_7',['find',['../struct_thoth_1_1_dsa_1_1_linear_map.html#ab070446f83dd254cd2283cef5eb2cb33',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a1e60c41e85fb01d0614a8f1dc86e93c7',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key) const']]],
+  ['find_7',['find',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a767800235acf284cf0f6e0b4efa201ef',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key)'],['../struct_thoth_1_1_dsa_1_1_linear_map.html#a114deb03d50428d20cc1dc777dc03890',1,'Thoth::Dsa::LinearMap::find(const LookupKeyT &amp;key) const']]],
   ['findandmove_8',['FindAndMove',['../struct_thoth_1_1_n_json_1_1_json.html#a37c263c95201138f16ad5fe316a8609b',1,'Thoth::NJson::Json']]],
   ['findandmoveorerror_9',['FindAndMoveOrError',['../struct_thoth_1_1_n_json_1_1_json.html#a40b2a3e8454c3ca1a9ae564472b3ee65',1,'Thoth::NJson::Json']]],
   ['findandmoveornull_10',['FindAndMoveOrNull',['../struct_thoth_1_1_n_json_1_1_json.html#a4611b0ccbfec7ce6d59f4f1e92ac1b35',1,'Thoth::NJson::Json']]],
@@ -37,10 +37,11 @@ var searchData=
   ['freeweightedheader_34',['FreeWeightedHeader',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa6066766f1c4d6b8ec3230a86e846ae7',1,'Thoth::Http::NHeaders']]],
   ['from_35',['From',['../struct_thoth_1_1_http_1_1_request_headers.html#a4ca085ca46b3bd1a2098bda19d8dc1e3',1,'Thoth::Http::RequestHeaders::From()'],['../struct_thoth_1_1_http_1_1_request_headers.html#a51bf3712dd9a8c1bda4676184c69061b',1,'Thoth::Http::RequestHeaders::From() const']]],
   ['fromerror_36',['FromError',['../struct_thoth_1_1_thoth_error.html#ab8f3e5b91a093ab186ad3cdd214a104a',1,'Thoth::ThothError']]],
-  ['fromowned_37',['FromOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)']]],
+  ['fromowned_37',['FromOwned',['../struct_thoth_1_1_dsa_1_1_cow.html#aa4ebfff5b87fde48bfd2f89c13d48d86',1,'Thoth::Dsa::Cow::FromOwned(const OwnT &amp;own)'],['../struct_thoth_1_1_dsa_1_1_cow.html#a23c41e93ec0a196ff2573392b9d03cc5',1,'Thoth::Dsa::Cow::FromOwned(OwnT &amp;&amp;own)'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#aba4f2eeeeb0493e031ef3f4fc3d875e6',1,'Thoth::NJson::StringRef::FromOwned()']]],
   ['fromref_38',['FromRef',['../struct_thoth_1_1_dsa_1_1_cow.html#a91a9ba64be3a64b2a117141f914bc45f',1,'Thoth::Dsa::Cow']]],
   ['fromurl_39',['FromUrl',['../struct_thoth_1_1_http_1_1_request.html#a3d1a24385157aa6982c6ddd4b2c6df02',1,'Thoth::Http::Request::FromUrl()'],['../struct_thoth_1_1_http_1_1_url.html#ab8ac57ef6798e29d6d7f3f2724121e38',1,'Thoth::Http::Url::FromUrl()']]],
-  ['full_20width_40',['Full Width',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md18',1,'']]],
-  ['functional_20expressive_20c_2026_20webdev_20library_41',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
-  ['functional_2ehpp_42',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
+  ['front_40',['front',['../struct_thoth_1_1_dsa_1_1_cow.html#a50ec6e41151f53e4c78af6633bc275fc',1,'Thoth::Dsa::Cow::front()'],['../struct_thoth_1_1_n_json_1_1_string_own.html#a7c23cda0eab0a8e11f272d101231e5a6',1,'Thoth::NJson::StringOwn::front()'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#af4f0b95285773eb2d537a97c5d49e07c',1,'Thoth::NJson::StringRef::front()']]],
+  ['full_20width_41',['Full Width',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md21',1,'']]],
+  ['functional_20expressive_20c_2026_20webdev_20library_42',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md25',1,'']]],
+  ['functional_2ehpp_43',['Functional.hpp',['../_functional_8hpp.html',1,'']]]
 ];

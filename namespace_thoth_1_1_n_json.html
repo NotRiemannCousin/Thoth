@@ -161,6 +161,10 @@ Classes</h2></td></tr>
 <tr class="memitem:Json" id="r_Json"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a></td></tr>
 <tr class="memitem:JsonFindError" id="r_JsonFindError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_find_error.html">JsonFindError</a></td></tr>
 <tr class="memitem:JsonGetError" id="r_JsonGetError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_get_error.html">JsonGetError</a></td></tr>
+<tr class="memitem:JsonItemsView" id="r_JsonItemsView"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">JsonItemsView</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>std::ranges</code> view yielding <span class="tt">(<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html" title="A non-owning variant representing a JSON object key (string_view) or an array index (int).">KeyView</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>&amp;)</span> pairs over the children of a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html" title="Json">Json</a>.  <a href="class_thoth_1_1_n_json_1_1_json_items_view.html#details">More...</a><br /></td></tr>
+<tr class="memitem:JsonIterator" id="r_JsonIterator"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bidirectional iterator over the children of a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html" title="Json">Json</a>. It is designed to work only with <code><a class="el" href="#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a></code> and <code><a class="el" href="#aeb59b7b82b690b536fbffa02762111bc">Array</a></code>.  <a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#details">More...</a><br /></td></tr>
 <tr class="memitem:JsonKeyCompare" id="r_JsonKeyCompare"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_key_compare.html">JsonKeyCompare</a></td></tr>
 <tr class="memitem:JsonObject" id="r_JsonObject"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a></td></tr>
 <tr class="memitem:JsonParseError" id="r_JsonParseError"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_parse_error.html">JsonParseError</a></td></tr>
@@ -172,12 +176,14 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A non-owning variant representing a JSON object key (string_view) or an array index (int).  <a href="struct_thoth_1_1_n_json_1_1_key_view.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Number" id="r_Number"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_number.html">Number</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON number type — holds <code>int64_t</code>, <code>uint64_t</code>, or <code>double</code>.  <a href="struct_thoth_1_1_n_json_1_1_number.html#details">More...</a><br /></td></tr>
+<tr class="memitem:StringOwn" id="r_StringOwn"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_string_own.html">StringOwn</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Managed owned string wrapper designed to fit in 8 bytes (pointer size) with deep-copy semantics required by Copy-On-Write structures.  <a href="struct_thoth_1_1_n_json_1_1_string_own.html#details">More...</a><br /></td></tr>
 <tr class="memitem:StringRef" id="r_StringRef"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:abf10755d507fcae5a8816ddcccdb7dc2" id="r_abf10755d507fcae5a8816ddcccdb7dc2"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abf10755d507fcae5a8816ddcccdb7dc2">Null</a> = std::monostate</td></tr>
-<tr class="memitem:a8cc73e4a9a5d840836c4d2dd35d94913" id="r_a8cc73e4a9a5d840836c4d2dd35d94913"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8cc73e4a9a5d840836c4d2dd35d94913">String</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Dsa::Cow</a>&lt;<a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a>, std::string&gt;</td></tr>
+<tr class="memitem:aece0af53e2312d16ad5c6b0a0f263be1" id="r_aece0af53e2312d16ad5c6b0a0f263be1"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aece0af53e2312d16ad5c6b0a0f263be1">String</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Dsa::Cow</a>&lt;<a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_string_own.html">StringOwn</a>&gt;</td></tr>
 <tr class="memitem:a3eaca3486f92043f1be722e646e8d452" id="r_a3eaca3486f92043f1be722e646e8d452"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3eaca3486f92043f1be722e646e8d452">Number</a> = Number</td></tr>
 <tr class="memitem:a6c8928fb6fad08b675a0986f1963e3be" id="r_a6c8928fb6fad08b675a0986f1963e3be"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6c8928fb6fad08b675a0986f1963e3be">Bool</a> = bool</td></tr>
 <tr class="memitem:a20f2e587af5cd96bb9e3579c7bfbc978" id="r_a20f2e587af5cd96bb9e3579c7bfbc978"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a> = std::unique_ptr&lt;<a class="el" href="struct_thoth_1_1_n_json_1_1_json_object.html">JsonObject</a>&gt;</td></tr>
@@ -491,14 +497,14 @@ requires (std::constructible_from&lt;<a class="el" href="struct_thoth_1_1_n_json
 
 </div>
 </div>
-<a id="a8cc73e4a9a5d840836c4d2dd35d94913" name="a8cc73e4a9a5d840836c4d2dd35d94913"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cc73e4a9a5d840836c4d2dd35d94913">&#9670;&#160;</a></span>String</h2>
+<a id="aece0af53e2312d16ad5c6b0a0f263be1" name="aece0af53e2312d16ad5c6b0a0f263be1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece0af53e2312d16ad5c6b0a0f263be1">&#9670;&#160;</a></span>String</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a8cc73e4a9a5d840836c4d2dd35d94913">Thoth::NJson::String</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Dsa::Cow</a>&lt;<a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a>, std::string&gt;</td>
+          <td class="memname">using <a class="el" href="#aece0af53e2312d16ad5c6b0a0f263be1">Thoth::NJson::String</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Dsa::Cow</a>&lt;<a class="el" href="struct_thoth_1_1_n_json_1_1_string_ref.html">StringRef</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_string_own.html">StringOwn</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

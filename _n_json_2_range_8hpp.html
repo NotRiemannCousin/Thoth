@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Http/NHeaders/Request/Headers/Range.hpp File Reference</title>
+<title>Thoth: include/Thoth/NJson/Range.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('_range_8hpp.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_n_json_2_range_8hpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -155,39 +155,41 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_range_8hpp.ht
   <div class="headertitle"><div class="title">Range.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;optional&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;ranges&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
-<code>#include &lt;Thoth/Http/NHeaders/Request/Headers/Range.tpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="_n_json_2_definitions_8hpp_source.html">Thoth/NJson/Definitions.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_json_object_8hpp_source.html">Thoth/NJson/JsonObject.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_keys_8hpp_source.html">Thoth/NJson/Keys.hpp</a>&gt;</code><br />
+<code>#include &lt;Thoth/NJson/Range.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Range.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_range_8hpp__incl.svg" width="410" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_n_json_2_range_8hpp__incl.svg" width="2932" height="271"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_range_8hpp__dep__incl.svg" width="938" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_n_json_2_range_8hpp__dep__incl.svg" width="938" height="491"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
-<p><a href="_range_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="_n_json_2_range_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3ANHeaders_3A_3APrefixedRange" id="r_Thoth_3A_3AHttp_3A_3ANHeaders_3A_3APrefixedRange"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">Thoth::Http::NHeaders::PrefixedRange</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A byte range with an explicit starting offset (RFC 9110 §14.2).  <a href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3ANHeaders_3A_3ASuffixedRange" id="r_Thoth_3A_3AHttp_3A_3ANHeaders_3A_3ASuffixedRange"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html">Thoth::Http::NHeaders::SuffixedRange</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A suffix byte range requesting the last <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#a1161220e331314c0f1f7f930e3458347" title="Number of bytes requested from the end of the representation.">last</a></span> bytes (RFC 9110 §14.2).  <a href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Thoth_3A_3ANJson_3A_3AJsonIterator_3C_20IsConst_2C_20IsItems_20_3E" id="r_Thoth_3A_3ANJson_3A_3AJsonIterator_3C_20IsConst_2C_20IsItems_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">Thoth::NJson::JsonIterator&lt; IsConst, IsItems &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bidirectional iterator over the children of a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html" title="Json">Json</a>. It is designed to work only with <code><a class="el" href="namespace_thoth_1_1_n_json.html#a20f2e587af5cd96bb9e3579c7bfbc978">Object</a></code> and <code><a class="el" href="namespace_thoth_1_1_n_json.html#aeb59b7b82b690b536fbffa02762111bc">Array</a></code>.  <a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Thoth_3A_3ANJson_3A_3AJsonItemsView_3C_20IsConst_20_3E" id="r_Thoth_3A_3ANJson_3A_3AJsonItemsView_3C_20IsConst_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView&lt; IsConst &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>std::ranges</code> view yielding <span class="tt">(<a class="el" href="struct_thoth_1_1_n_json_1_1_key_view.html" title="A non-owning variant representing a JSON object key (string_view) or an array index (int).">KeyView</a>, <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>&amp;)</span> pairs over the children of a <a class="el" href="struct_thoth_1_1_n_json_1_1_json.html" title="Json">Json</a>.  <a href="class_thoth_1_1_n_json_1_1_json_items_view.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp" id="r_Thoth_3A_3AHttp"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3ANHeaders" id="r_Thoth_3A_3AHttp_3A_3ANHeaders"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">Thoth::Http::NHeaders</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a3b28677257936fc2dbe1189cafac2a00" id="r_a3b28677257936fc2dbe1189cafac2a00"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00">Thoth::Http::NHeaders::Range</a> = std::variant&lt;<a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html">PrefixedRange</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html">SuffixedRange</a>&gt;</td></tr>
-<tr class="memdesc:a3b28677257936fc2dbe1189cafac2a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">The supported byte-range forms of the HTTP <span class="tt"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html#a3b28677257936fc2dbe1189cafac2a00" title="The supported byte-range forms of the HTTP Range header (RFC 9110 §14.2).">Range</a></span> header (RFC 9110 §14.2).  <br /></td></tr>
+<tr class="memitem:Thoth_3A_3ANJson" id="r_Thoth_3A_3ANJson"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -202,7 +204,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_608161aafd2af5389d03134ffea49c9f.html">NHeaders</a></li><li class="navelem"><a href="dir_aa9962a625d7ca55c0c71bbe22fd63de.html">Request</a></li><li class="navelem"><a href="dir_c4fcd4f0f5a9ca0420f7c58416f9cc5e.html">Headers</a></li><li class="navelem"><a href="_range_8hpp.html">Range.hpp</a></li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_0548d2bb7dd208758f91f985569944be.html">NJson</a></li><li class="navelem"><a href="_n_json_2_range_8hpp.html">Range.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

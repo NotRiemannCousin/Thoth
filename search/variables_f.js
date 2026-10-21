@@ -7,7 +7,6 @@ var searchData=
   ['start_4',['start',['../struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html#a2de46acb65e19ca115105de6e61cc35c',1,'Thoth::Http::NHeaders::PrefixedRange']]],
   ['status_5',['status',['../struct_thoth_1_1_http_1_1_response_head.html#a1771892d996918d81f19c1177b74fbc0',1,'Thoth::Http::ResponseHead']]],
   ['statusmessage_6',['statusMessage',['../struct_thoth_1_1_http_1_1_response_head.html#a6acd1d6217337a45c6fa0e94792e7306',1,'Thoth::Http::ResponseHead']]],
-  ['str_7',['str',['../struct_thoth_1_1_n_json_1_1_string_ref.html#a9a50b1c6eb0a946b052e60dd390c7494',1,'Thoth::NJson::StringRef']]],
-  ['stream_8',['stream',['../struct_thoth_1_1_dsa_1_1_file_output_iterator.html#a25d98e1a9df07d37baaaa77c78179553',1,'Thoth::Dsa::FileOutputIterator']]],
-  ['subtype_9',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html#abc941bacbdc576f2ff2bc7be8e5f30ee',1,'Thoth::Http::NHeaders::MimeTypeHeader']]]
+  ['stream_7',['stream',['../struct_thoth_1_1_dsa_1_1_file_output_iterator.html#a25d98e1a9df07d37baaaa77c78179553',1,'Thoth::Dsa::FileOutputIterator']]],
+  ['subtype_8',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html#abc941bacbdc576f2ff2bc7be8e5f30ee',1,'Thoth::Http::NHeaders::MimeTypeHeader']]]
 ];

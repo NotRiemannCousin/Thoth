@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/NJson/Range.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-msc.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_n_json_2_range_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Range.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_n_json_2_range_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;ranges&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;variant&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="_n_json_2_definitions_8hpp.html">Thoth/NJson/Definitions.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="_json_object_8hpp.html">Thoth/NJson/JsonObject.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="_keys_8hpp.html">Thoth/NJson/Keys.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma region Concepts</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> IsConst&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">concept </span>ArrayChildren = <span class="keyword">requires</span> { <span class="keyword">typename</span> std::conditional_t&lt;IsConst, Array::const_iterator, Array::iterator&gt;; };</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#pragma region JsonIterator</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> IsConst, <span class="keywordtype">bool</span> IsItems = true&gt;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">   38</a></span>    <span class="keyword">struct </span><a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span>, <span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">   40</a></span>        <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6d7cae3c2b269bb622168d93aebb4b02">   42</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6d7cae3c2b269bb622168d93aebb4b02">JsonPtr</a> = std::conditional_t&lt;IsConst, const Json*, Json*&gt;;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad9909a1b5e266b5b024971f92bd3c2f3">   43</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad9909a1b5e266b5b024971f92bd3c2f3">JsonRef</a> = std::conditional_t&lt;IsConst, const Json&amp;, Json&amp;&gt;;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9bdc0dd6bc8bf9ec2606f505914848ee">   45</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9bdc0dd6bc8bf9ec2606f505914848ee">reference</a>  = std::conditional_t&lt;IsItems, std::pair&lt;KeyView, JsonRef&gt;, <a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad9909a1b5e266b5b024971f92bd3c2f3">JsonRef</a>&gt;;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6122075c6cbfb316dfa5cbd992f8652e">   46</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6122075c6cbfb316dfa5cbd992f8652e">value_type</a> = std::conditional_t&lt;IsItems, std::pair&lt;KeyView, Json   &gt;, <a class="code hl_struct" href="struct_thoth_1_1_n_json_1_1_json.html">Json</a>   &gt;;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a3a8296d279e93c0803265b31f5d4bdfd">   48</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a3a8296d279e93c0803265b31f5d4bdfd">difference_type</a>   = std::ptrdiff_t;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6a1ca905bec1e6a9ce5b4887b4387fb4">   49</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6a1ca905bec1e6a9ce5b4887b4387fb4">iterator_concept</a>  = std::bidirectional_iterator_tag;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad5fda463de9107d096f4eee903b14733">   50</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad5fda463de9107d096f4eee903b14733">iterator_category</a> = <a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6a1ca905bec1e6a9ce5b4887b4387fb4">iterator_concept</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aef4bd6ba2d820ad453bc87886116ce71">   52</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aef4bd6ba2d820ad453bc87886116ce71">ObjectIter</a> = std::conditional_t&lt;IsConst, JsonObject::CIterType, JsonObject::IterType&gt;;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad3ab3f37ca2a515a743c7df66d873ccb">   53</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad3ab3f37ca2a515a743c7df66d873ccb">ArrayIter</a>  = std::conditional_t&lt;IsConst, Array::const_iterator, Array::iterator&gt;;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a043a8051c9e5665d768a659978215254">   55</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a043a8051c9e5665d768a659978215254">ArrayProxyIter</a> = std::pair&lt;std::size_t, ArrayIter&gt;;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aab70b3f6a62c0908f97e68d32190da0d">   57</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aab70b3f6a62c0908f97e68d32190da0d">State</a> = std::variant&lt;ObjectIter, ArrayProxyIter&gt;;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9425929f3fd86c4853617ecf3a09c7f5">   59</a></span>        <span class="keyword">constexpr</span> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9425929f3fd86c4853617ecf3a09c7f5">JsonIterator</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a301a3a830cf0d22077057b1f8833b285">   61</a></span>        <span class="keyword">constexpr</span> <span class="keyword">explicit</span> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a301a3a830cf0d22077057b1f8833b285">JsonIterator</a>(<a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aef4bd6ba2d820ad453bc87886116ce71">ObjectIter</a> it);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a2cdb5faa7a816cbf1ec19d045656cbef">   62</a></span>        <span class="keyword">constexpr</span> <span class="keyword">explicit</span> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a2cdb5faa7a816cbf1ec19d045656cbef">JsonIterator</a>(<a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad3ab3f37ca2a515a743c7df66d873ccb">ArrayIter</a> it, std::size_t index);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> WasConst&gt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">requires</span> IsConst &amp;&amp; (!WasConst)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a0dade5e20d8aee9a8ed0215eb91d8950">   67</a></span>        <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a0dade5e20d8aee9a8ed0215eb91d8950">JsonIterator</a>(<span class="keyword">const</span> <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator&lt;WasConst, IsItems&gt;</a>&amp; other);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6b6bc52cacbae90e1b641328fe5457c4">   69</a></span>        [[nodiscard]] <a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9bdc0dd6bc8bf9ec2606f505914848ee">reference</a> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6b6bc52cacbae90e1b641328fe5457c4">operator*</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a448dd5e90511a190fb5bc4e2b0799e7a">   71</a></span>        <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a>&amp; <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a448dd5e90511a190fb5bc4e2b0799e7a">operator++</a>();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aecc31001857eac19d0b9b5dfe448c892">   72</a></span>        [[nodiscard]] <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aecc31001857eac19d0b9b5dfe448c892">operator++</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#abaf9b565c2cad0def3f8a25735d07d7b">   74</a></span>        <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a>&amp; <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#abaf9b565c2cad0def3f8a25735d07d7b">operator--</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aa0b15bb7e806a5534da49e0c78f3ac44">   75</a></span>        [[nodiscard]] <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aa0b15bb7e806a5534da49e0c78f3ac44">operator--</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a7acf31d51d6ee20c8c865eaf916dbd10">   77</a></span>        [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a7acf31d51d6ee20c8c865eaf916dbd10">operator==</a>(<span class="keyword">const</span> <a class="code hl_friend" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">JsonIterator</a>&amp;) <span class="keyword">const</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aab70b3f6a62c0908f97e68d32190da0d">State</a> m_state{};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    };</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#pragma region JsonItemsView</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> IsConst&gt;</div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="};">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html">   95</a></span>    <span class="keyword">class </span><a class="code hl_friend" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a0906b611d1fd18b37a820dd38f07f36c">JsonItemsView</a> : <span class="keyword">public</span> std::ranges::view_interface&lt;JsonItemsView&lt;IsConst&gt;&gt; {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span>&gt;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a0906b611d1fd18b37a820dd38f07f36c">   97</a></span>        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_friend" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a0906b611d1fd18b37a820dd38f07f36c">JsonItemsView</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a61b437fd720444cc212cb7787b65751a">  100</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a61b437fd720444cc212cb7787b65751a">iterator</a>       = <a class="code hl_struct" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator&lt;IsConst&gt;</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#adbd36c933606dac2e4e93d2f1eb48428">  101</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#adbd36c933606dac2e4e93d2f1eb48428">const_iterator</a> = <a class="code hl_struct" href="struct_thoth_1_1_n_json_1_1_json_iterator.html">JsonIterator&lt;true&gt;</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#acf3a295665de09c023b65356accb3c42">  103</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#acf3a295665de09c023b65356accb3c42">JsonPtr</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6d7cae3c2b269bb622168d93aebb4b02">iterator::JsonPtr</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a8b9810a367800a7311891b165cc9bf59">  105</a></span>        <span class="keyword">constexpr</span> <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a8b9810a367800a7311891b165cc9bf59">JsonItemsView</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a465128bfba688a1554cd1c55a764572e">  108</a></span>        <span class="keyword">constexpr</span> <span class="keyword">explicit</span> <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a465128bfba688a1554cd1c55a764572e">JsonItemsView</a>(<a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#acf3a295665de09c023b65356accb3c42">JsonPtr</a> parent) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> WasConst&gt;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keyword">requires</span> IsConst &amp;&amp; (!WasConst)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a6678c26f547d7d8b7efb0375fed51228">  113</a></span>        <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a6678c26f547d7d8b7efb0375fed51228">JsonItemsView</a>(<span class="keyword">const</span> <a class="code hl_friend" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a0906b611d1fd18b37a820dd38f07f36c">JsonItemsView&lt;WasConst&gt;</a>&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a9c02017fc243df1f9019267d2a2594f2">  115</a></span>        [[nodiscard]] <a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a9c02017fc243df1f9019267d2a2594f2">begin</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#ae2f84a10dcbf23a048ed4ff705f6191c">  116</a></span>        [[nodiscard]] <a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#ae2f84a10dcbf23a048ed4ff705f6191c">end</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a079409b89fe9de5fa4fa8724d08aaa3b">  118</a></span>        [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a079409b89fe9de5fa4fa8724d08aaa3b">empty</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a63ebc8b2e850913c613cc92418704dff">  119</a></span>        [[nodiscard]] std::size_t <a class="code hl_function" href="class_thoth_1_1_n_json_1_1_json_items_view.html#a63ebc8b2e850913c613cc92418704dff">size</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <a class="code hl_typedef" href="class_thoth_1_1_n_json_1_1_json_items_view.html#acf3a295665de09c023b65356accb3c42">JsonPtr</a> m_parent{};</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    };</div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#include &lt;Thoth/NJson/Range.tpp&gt;</span></div>
+<div class="ttc" id="a_json_object_8hpp_html"><div class="ttname"><a href="_json_object_8hpp.html">JsonObject.hpp</a></div></div>
+<div class="ttc" id="a_keys_8hpp_html"><div class="ttname"><a href="_keys_8hpp.html">Keys.hpp</a></div></div>
+<div class="ttc" id="a_n_json_2_definitions_8hpp_html"><div class="ttname"><a href="_n_json_2_definitions_8hpp.html">Definitions.hpp</a></div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a079409b89fe9de5fa4fa8724d08aaa3b"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a079409b89fe9de5fa4fa8724d08aaa3b">Thoth::NJson::JsonItemsView::empty</a></div><div class="ttdeci">bool empty() const</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a0906b611d1fd18b37a820dd38f07f36c"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a0906b611d1fd18b37a820dd38f07f36c">Thoth::NJson::JsonItemsView::JsonItemsView</a></div><div class="ttdeci">friend class JsonItemsView</div><div class="ttdef"><b>Definition</b> Range.hpp:97</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a465128bfba688a1554cd1c55a764572e"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a465128bfba688a1554cd1c55a764572e">Thoth::NJson::JsonItemsView::JsonItemsView</a></div><div class="ttdeci">constexpr JsonItemsView(JsonPtr parent) noexcept</div><div class="ttdoc">Views (key, child) pairs of parent. Scalars/null → empty view.</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a61b437fd720444cc212cb7787b65751a"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a61b437fd720444cc212cb7787b65751a">Thoth::NJson::JsonItemsView::iterator</a></div><div class="ttdeci">JsonIterator&lt; IsConst &gt; iterator</div><div class="ttdef"><b>Definition</b> Range.hpp:100</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a63ebc8b2e850913c613cc92418704dff"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a63ebc8b2e850913c613cc92418704dff">Thoth::NJson::JsonItemsView::size</a></div><div class="ttdeci">std::size_t size() const</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a6678c26f547d7d8b7efb0375fed51228"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a6678c26f547d7d8b7efb0375fed51228">Thoth::NJson::JsonItemsView::JsonItemsView</a></div><div class="ttdeci">&amp;&amp;!WasConst JsonItemsView(const JsonItemsView&lt; WasConst &gt; &amp;other) noexcept</div><div class="ttdoc">Mutable → const decay.</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a8b9810a367800a7311891b165cc9bf59"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a8b9810a367800a7311891b165cc9bf59">Thoth::NJson::JsonItemsView::JsonItemsView</a></div><div class="ttdeci">constexpr JsonItemsView()=default</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_a9c02017fc243df1f9019267d2a2594f2"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#a9c02017fc243df1f9019267d2a2594f2">Thoth::NJson::JsonItemsView::begin</a></div><div class="ttdeci">iterator begin() const</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_acf3a295665de09c023b65356accb3c42"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#acf3a295665de09c023b65356accb3c42">Thoth::NJson::JsonItemsView::JsonPtr</a></div><div class="ttdeci">typename iterator::JsonPtr JsonPtr</div><div class="ttdef"><b>Definition</b> Range.hpp:103</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_adbd36c933606dac2e4e93d2f1eb48428"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#adbd36c933606dac2e4e93d2f1eb48428">Thoth::NJson::JsonItemsView::const_iterator</a></div><div class="ttdeci">JsonIterator&lt; true &gt; const_iterator</div><div class="ttdef"><b>Definition</b> Range.hpp:101</div></div>
+<div class="ttc" id="aclass_thoth_1_1_n_json_1_1_json_items_view_html_ae2f84a10dcbf23a048ed4ff705f6191c"><div class="ttname"><a href="class_thoth_1_1_n_json_1_1_json_items_view.html#ae2f84a10dcbf23a048ed4ff705f6191c">Thoth::NJson::JsonItemsView::end</a></div><div class="ttdeci">iterator end() const</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:21</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_html"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json.html">Thoth::NJson::Json</a></div><div class="ttdef"><b>Definition</b> Json.hpp:19</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html">Thoth::NJson::JsonIterator</a></div><div class="ttdoc">Bidirectional iterator over the children of a Json. It is designed to work only with Object and Array...</div><div class="ttdef"><b>Definition</b> Range.hpp:38</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a043a8051c9e5665d768a659978215254"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a043a8051c9e5665d768a659978215254">Thoth::NJson::JsonIterator&lt; false, false &gt;::ArrayProxyIter</a></div><div class="ttdeci">std::pair&lt; std::size_t, ArrayIter &gt; ArrayProxyIter</div><div class="ttdef"><b>Definition</b> Range.hpp:55</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a0dade5e20d8aee9a8ed0215eb91d8950"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a0dade5e20d8aee9a8ed0215eb91d8950">Thoth::NJson::JsonIterator::JsonIterator</a></div><div class="ttdeci">&amp;&amp;!WasConst JsonIterator(const JsonIterator&lt; WasConst, IsItems &gt; &amp;other)</div><div class="ttdoc">Allows a mutable iterator to decay into a const one.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a2cdb5faa7a816cbf1ec19d045656cbef"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a2cdb5faa7a816cbf1ec19d045656cbef">Thoth::NJson::JsonIterator::JsonIterator</a></div><div class="ttdeci">constexpr JsonIterator(ArrayIter it, std::size_t index)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a301a3a830cf0d22077057b1f8833b285"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a301a3a830cf0d22077057b1f8833b285">Thoth::NJson::JsonIterator::JsonIterator</a></div><div class="ttdeci">constexpr JsonIterator(ObjectIter it)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a3a8296d279e93c0803265b31f5d4bdfd"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a3a8296d279e93c0803265b31f5d4bdfd">Thoth::NJson::JsonIterator&lt; false, false &gt;::difference_type</a></div><div class="ttdeci">std::ptrdiff_t difference_type</div><div class="ttdef"><b>Definition</b> Range.hpp:48</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a448dd5e90511a190fb5bc4e2b0799e7a"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a448dd5e90511a190fb5bc4e2b0799e7a">Thoth::NJson::JsonIterator::operator++</a></div><div class="ttdeci">JsonIterator &amp; operator++()</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a6122075c6cbfb316dfa5cbd992f8652e"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6122075c6cbfb316dfa5cbd992f8652e">Thoth::NJson::JsonIterator&lt; false, false &gt;::value_type</a></div><div class="ttdeci">std::conditional_t&lt; IsItems, std::pair&lt; KeyView, Json &gt;, Json &gt; value_type</div><div class="ttdef"><b>Definition</b> Range.hpp:46</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a6a1ca905bec1e6a9ce5b4887b4387fb4"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6a1ca905bec1e6a9ce5b4887b4387fb4">Thoth::NJson::JsonIterator&lt; false, false &gt;::iterator_concept</a></div><div class="ttdeci">std::bidirectional_iterator_tag iterator_concept</div><div class="ttdef"><b>Definition</b> Range.hpp:49</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a6b6bc52cacbae90e1b641328fe5457c4"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6b6bc52cacbae90e1b641328fe5457c4">Thoth::NJson::JsonIterator::operator*</a></div><div class="ttdeci">reference operator*() const</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a6d7cae3c2b269bb622168d93aebb4b02"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a6d7cae3c2b269bb622168d93aebb4b02">Thoth::NJson::JsonIterator&lt; false, false &gt;::JsonPtr</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, const Json *, Json * &gt; JsonPtr</div><div class="ttdef"><b>Definition</b> Range.hpp:42</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a7acf31d51d6ee20c8c865eaf916dbd10"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a7acf31d51d6ee20c8c865eaf916dbd10">Thoth::NJson::JsonIterator::operator==</a></div><div class="ttdeci">bool operator==(const JsonIterator &amp;) const =default</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a90b0a3c9936bf9e83425a9219b6f54de"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a90b0a3c9936bf9e83425a9219b6f54de">Thoth::NJson::JsonIterator::JsonIterator</a></div><div class="ttdeci">friend struct JsonIterator</div><div class="ttdef"><b>Definition</b> Range.hpp:40</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a9425929f3fd86c4853617ecf3a09c7f5"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9425929f3fd86c4853617ecf3a09c7f5">Thoth::NJson::JsonIterator::JsonIterator</a></div><div class="ttdeci">constexpr JsonIterator()=default</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_a9bdc0dd6bc8bf9ec2606f505914848ee"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#a9bdc0dd6bc8bf9ec2606f505914848ee">Thoth::NJson::JsonIterator&lt; false, false &gt;::reference</a></div><div class="ttdeci">std::conditional_t&lt; IsItems, std::pair&lt; KeyView, JsonRef &gt;, JsonRef &gt; reference</div><div class="ttdef"><b>Definition</b> Range.hpp:45</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_aa0b15bb7e806a5534da49e0c78f3ac44"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aa0b15bb7e806a5534da49e0c78f3ac44">Thoth::NJson::JsonIterator::operator--</a></div><div class="ttdeci">JsonIterator operator--(int)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_aab70b3f6a62c0908f97e68d32190da0d"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aab70b3f6a62c0908f97e68d32190da0d">Thoth::NJson::JsonIterator&lt; false, false &gt;::State</a></div><div class="ttdeci">std::variant&lt; ObjectIter, ArrayProxyIter &gt; State</div><div class="ttdef"><b>Definition</b> Range.hpp:57</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_abaf9b565c2cad0def3f8a25735d07d7b"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#abaf9b565c2cad0def3f8a25735d07d7b">Thoth::NJson::JsonIterator::operator--</a></div><div class="ttdeci">JsonIterator &amp; operator--()</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_ad3ab3f37ca2a515a743c7df66d873ccb"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad3ab3f37ca2a515a743c7df66d873ccb">Thoth::NJson::JsonIterator&lt; false, false &gt;::ArrayIter</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, Array::const_iterator, Array::iterator &gt; ArrayIter</div><div class="ttdef"><b>Definition</b> Range.hpp:53</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_ad5fda463de9107d096f4eee903b14733"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad5fda463de9107d096f4eee903b14733">Thoth::NJson::JsonIterator&lt; false, false &gt;::iterator_category</a></div><div class="ttdeci">iterator_concept iterator_category</div><div class="ttdef"><b>Definition</b> Range.hpp:50</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_ad9909a1b5e266b5b024971f92bd3c2f3"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#ad9909a1b5e266b5b024971f92bd3c2f3">Thoth::NJson::JsonIterator&lt; false, false &gt;::JsonRef</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, const Json &amp;, Json &amp; &gt; JsonRef</div><div class="ttdef"><b>Definition</b> Range.hpp:43</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_aecc31001857eac19d0b9b5dfe448c892"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aecc31001857eac19d0b9b5dfe448c892">Thoth::NJson::JsonIterator::operator++</a></div><div class="ttdeci">JsonIterator operator++(int)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_iterator_html_aef4bd6ba2d820ad453bc87886116ce71"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json_iterator.html#aef4bd6ba2d820ad453bc87886116ce71">Thoth::NJson::JsonIterator&lt; false, false &gt;::ObjectIter</a></div><div class="ttdeci">std::conditional_t&lt; IsConst, JsonObject::CIterType, JsonObject::IterType &gt; ObjectIter</div><div class="ttdef"><b>Definition</b> Range.hpp:52</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_0548d2bb7dd208758f91f985569944be.html">NJson</a></li><li class="navelem"><a href="_n_json_2_range_8hpp.html">Range.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

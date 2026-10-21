@@ -2,11 +2,14 @@ var searchData=
 [
   ['citertype_0',['CIterType',['../struct_thoth_1_1_http_1_1_headers.html#a852a4171401a49de51c90f8849baf8e4',1,'Thoth::Http::Headers::CIterType'],['../struct_thoth_1_1_http_1_1_query_params.html#a5eec083e14212fa41016a6d6b87a0eb0',1,'Thoth::Http::QueryParams::CIterType'],['../struct_thoth_1_1_n_json_1_1_json_object.html#aa950006c25e1a9a6051ed7cbdf28a542',1,'Thoth::NJson::JsonObject::CIterType']]],
   ['connectionerrorenum_1',['ConnectionErrorEnum',['../namespace_thoth_1_1_http.html#abd9e07cde439bfb5e723d453ba619b87',1,'Thoth::Http']]],
-  ['const_5fiterator_2',['const_iterator',['../struct_thoth_1_1_dsa_1_1_linear_map.html#afe35b97b5f0a9bd19fb321e4a2302e15',1,'Thoth::Dsa::LinearMap']]],
-  ['constheaderref_3',['ConstHeaderRef',['../struct_thoth_1_1_http_1_1_headers.html#acf040a380dfbe6a8fddddc159f5d81d8',1,'Thoth::Http::Headers']]],
-  ['container_5ftype_4',['container_type',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a79bf7933bafb944337caf032cf692414',1,'Thoth::Dsa::LinearMap']]],
-  ['contentdisposition_5',['ContentDisposition',['../namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a',1,'Thoth::Http::NHeaders']]],
-  ['crefvalwrapper_6',['CRefValWrapper',['../namespace_thoth_1_1_n_json.html#aeef9b8b707b08438a70ed85b014a9679',1,'Thoth::NJson']]],
-  ['critertype_7',['CRIterType',['../struct_thoth_1_1_http_1_1_headers.html#ad34d9d68c729570507a91be613d97e14',1,'Thoth::Http::Headers']]],
-  ['cvalwrapper_8',['CValWrapper',['../namespace_thoth_1_1_n_json.html#ac57d563496ec52612186beead7849446',1,'Thoth::NJson']]]
+  ['const_5fiterator_2',['const_iterator',['../struct_thoth_1_1_dsa_1_1_linear_map.html#aea212a366ca32972207acbfe57b989f7',1,'Thoth::Dsa::LinearMap::const_iterator'],['../struct_thoth_1_1_n_json_1_1_json.html#a97b8e78965b6c5e6f408a962580959d2',1,'Thoth::NJson::Json::const_iterator'],['../class_thoth_1_1_n_json_1_1_json_items_view.html#adbd36c933606dac2e4e93d2f1eb48428',1,'Thoth::NJson::JsonItemsView::const_iterator'],['../struct_thoth_1_1_n_json_1_1_string_own.html#afcc4f975459244b77809798094d5f0f1',1,'Thoth::NJson::StringOwn::const_iterator'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#aeceeb8322814a2dcb3c6a086ed3815a7',1,'Thoth::NJson::StringRef::const_iterator']]],
+  ['const_5fpointer_3',['const_pointer',['../struct_thoth_1_1_n_json_1_1_string_own.html#a904b73a6653f48959eeca0527fdcb80b',1,'Thoth::NJson::StringOwn::const_pointer'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a4709de8d4d9fea768c3f173802defb30',1,'Thoth::NJson::StringRef::const_pointer']]],
+  ['const_5freference_4',['const_reference',['../struct_thoth_1_1_n_json_1_1_string_own.html#a5760bebad2b20b56717e8e3796bf30b8',1,'Thoth::NJson::StringOwn::const_reference'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a4d5ac1d99586691cfcd76b309c38f20d',1,'Thoth::NJson::StringRef::const_reference']]],
+  ['const_5freverse_5fiterator_5',['const_reverse_iterator',['../struct_thoth_1_1_n_json_1_1_string_own.html#aaca04121e6e5ff7357ed5011be081590',1,'Thoth::NJson::StringOwn::const_reverse_iterator'],['../struct_thoth_1_1_n_json_1_1_string_ref.html#a8f84010bf6a473a1b8dd9b29fd314716',1,'Thoth::NJson::StringRef::const_reverse_iterator']]],
+  ['constheaderref_6',['ConstHeaderRef',['../struct_thoth_1_1_http_1_1_headers.html#acf040a380dfbe6a8fddddc159f5d81d8',1,'Thoth::Http::Headers']]],
+  ['container_5ftype_7',['container_type',['../struct_thoth_1_1_dsa_1_1_linear_map.html#a4926aba5b4b7f18ccd74cd0c541ccef9',1,'Thoth::Dsa::LinearMap']]],
+  ['contentdisposition_8',['ContentDisposition',['../namespace_thoth_1_1_http_1_1_n_headers.html#a81907a4519a8bcb9b4b9daf5ad8f525a',1,'Thoth::Http::NHeaders']]],
+  ['crefvalwrapper_9',['CRefValWrapper',['../namespace_thoth_1_1_n_json.html#aeef9b8b707b08438a70ed85b014a9679',1,'Thoth::NJson']]],
+  ['critertype_10',['CRIterType',['../struct_thoth_1_1_http_1_1_headers.html#ad34d9d68c729570507a91be613d97e14',1,'Thoth::Http::Headers']]],
+  ['cvalwrapper_11',['CValWrapper',['../namespace_thoth_1_1_n_json.html#ac57d563496ec52612186beead7849446',1,'Thoth::NJson']]]
 ];
