@@ -181,8 +181,14 @@ Public Member Functions</h2></td></tr>
 requires IsConst</td></tr>
 <tr class="memitem:a6678c26f547d7d8b7efb0375fed51228 template"><td class="memItemLeft">&amp;&amp;!WasConst&#160;</td><td class="memItemRight"><a class="el" href="#a6678c26f547d7d8b7efb0375fed51228">JsonItemsView</a> (const JsonItemsView&lt; WasConst &gt; &amp;other) noexcept</td></tr>
 <tr class="memdesc:a6678c26f547d7d8b7efb0375fed51228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutable → const decay.  <br /></td></tr>
-<tr class="memitem:a9c02017fc243df1f9019267d2a2594f2" id="r_a9c02017fc243df1f9019267d2a2594f2"><td class="memItemLeft"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9c02017fc243df1f9019267d2a2594f2">begin</a> () const</td></tr>
-<tr class="memitem:ae2f84a10dcbf23a048ed4ff705f6191c" id="r_ae2f84a10dcbf23a048ed4ff705f6191c"><td class="memItemLeft"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae2f84a10dcbf23a048ed4ff705f6191c">end</a> () const</td></tr>
+<tr class="memitem:ac84bd1e10afe7b6c94790d4ee9d87fb1" id="r_ac84bd1e10afe7b6c94790d4ee9d87fb1"><td class="memTemplParams" colspan="2">template&lt;class = void&gt; <br />
+requires (!IsConst)</td></tr>
+<tr class="memitem:ac84bd1e10afe7b6c94790d4ee9d87fb1 template"><td class="memItemLeft"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac84bd1e10afe7b6c94790d4ee9d87fb1">begin</a> () noexcept</td></tr>
+<tr class="memitem:a83c977c7f624ce03080990289ff5e1b1" id="r_a83c977c7f624ce03080990289ff5e1b1"><td class="memTemplParams" colspan="2">template&lt;class = void&gt; <br />
+requires (!IsConst)</td></tr>
+<tr class="memitem:a83c977c7f624ce03080990289ff5e1b1 template"><td class="memItemLeft"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a83c977c7f624ce03080990289ff5e1b1">end</a> () noexcept</td></tr>
+<tr class="memitem:a18354f8409a24edbfba07d95232732e5" id="r_a18354f8409a24edbfba07d95232732e5"><td class="memItemLeft"><a class="el" href="#adbd36c933606dac2e4e93d2f1eb48428">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#a18354f8409a24edbfba07d95232732e5">begin</a> () const noexcept</td></tr>
+<tr class="memitem:abba556d07741d983bab3ab32d1e8faa8" id="r_abba556d07741d983bab3ab32d1e8faa8"><td class="memItemLeft"><a class="el" href="#adbd36c933606dac2e4e93d2f1eb48428">const_iterator</a>&#160;</td><td class="memItemRight"><a class="el" href="#abba556d07741d983bab3ab32d1e8faa8">end</a> () const noexcept</td></tr>
 <tr class="memitem:a079409b89fe9de5fa4fa8724d08aaa3b" id="r_a079409b89fe9de5fa4fa8724d08aaa3b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a079409b89fe9de5fa4fa8724d08aaa3b">empty</a> () const</td></tr>
 <tr class="memitem:a63ebc8b2e850913c613cc92418704dff" id="r_a63ebc8b2e850913c613cc92418704dff"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#a63ebc8b2e850913c613cc92418704dff">size</a> () const</td></tr>
 </table><table class="memberdecls">
@@ -335,8 +341,8 @@ requires IsConst</div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a9c02017fc243df1f9019267d2a2594f2" name="a9c02017fc243df1f9019267d2a2594f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c02017fc243df1f9019267d2a2594f2">&#9670;&#160;</a></span>begin()</h2>
+<a id="a18354f8409a24edbfba07d95232732e5" name="a18354f8409a24edbfba07d95232732e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18354f8409a24edbfba07d95232732e5">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -347,7 +353,7 @@ template&lt;bool IsConst&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::begin </td>
+          <td class="memname"><a class="el" href="#adbd36c933606dac2e4e93d2f1eb48428">const_iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::begin </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -355,7 +361,37 @@ template&lt;bool IsConst&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac84bd1e10afe7b6c94790d4ee9d87fb1" name="ac84bd1e10afe7b6c94790d4ee9d87fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84bd1e10afe7b6c94790d4ee9d87fb1">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst&gt; </div>
+<div class="memtemplate">
+template&lt;class = void&gt; <br />
+requires (!IsConst)</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -389,8 +425,8 @@ template&lt;bool IsConst&gt; </div>
 
 </div>
 </div>
-<a id="ae2f84a10dcbf23a048ed4ff705f6191c" name="ae2f84a10dcbf23a048ed4ff705f6191c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2f84a10dcbf23a048ed4ff705f6191c">&#9670;&#160;</a></span>end()</h2>
+<a id="abba556d07741d983bab3ab32d1e8faa8" name="abba556d07741d983bab3ab32d1e8faa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abba556d07741d983bab3ab32d1e8faa8">&#9670;&#160;</a></span>end() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -401,7 +437,7 @@ template&lt;bool IsConst&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::end </td>
+          <td class="memname"><a class="el" href="#adbd36c933606dac2e4e93d2f1eb48428">const_iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::end </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -409,7 +445,37 @@ template&lt;bool IsConst&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83c977c7f624ce03080990289ff5e1b1" name="a83c977c7f624ce03080990289ff5e1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c977c7f624ce03080990289ff5e1b1">&#9670;&#160;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst&gt; </div>
+<div class="memtemplate">
+template&lt;class = void&gt; <br />
+requires (!IsConst)</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a61b437fd720444cc212cb7787b65751a">iterator</a> <a class="el" href="class_thoth_1_1_n_json_1_1_json_items_view.html">Thoth::NJson::JsonItemsView</a>&lt; IsConst &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

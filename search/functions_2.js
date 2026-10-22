@@ -27,5 +27,7 @@ var searchData=
   ['copypath_24',['CopyPath',['../struct_thoth_1_1_http_1_1_url.html#ac7e21b2726352f4ec8ebd2c8afd4dbb7',1,'Thoth::Http::Url']]],
   ['copyquery_25',['CopyQuery',['../struct_thoth_1_1_http_1_1_url.html#a8881229438a9a65df344735c982f31c8',1,'Thoth::Http::Url']]],
   ['copyscheme_26',['CopyScheme',['../struct_thoth_1_1_http_1_1_url.html#aa6a94b21656f9e0da6c22fa93279732b',1,'Thoth::Http::Url']]],
-  ['cow_27',['Cow',['../struct_thoth_1_1_dsa_1_1_cow.html#a5a0d09ba553fc9e5b8467dccfaa4a076',1,'Thoth::Dsa::Cow::Cow()=default'],['../struct_thoth_1_1_dsa_1_1_cow.html#a93b808bb33964adf66c85e17ca71ce7b',1,'Thoth::Dsa::Cow::Cow(RefT) noexcept'],['../struct_thoth_1_1_dsa_1_1_cow.html#a4a51f0d4eb0895e2b2f3415eb3245332',1,'Thoth::Dsa::Cow::Cow(Cow &amp;&amp;) noexcept=default'],['../struct_thoth_1_1_dsa_1_1_cow.html#a4defdeec6ead86eead015f50ef4a2911',1,'Thoth::Dsa::Cow::Cow(const Cow &amp;other)']]]
+  ['cow_27',['Cow',['../struct_thoth_1_1_dsa_1_1_cow.html#a5a0d09ba553fc9e5b8467dccfaa4a076',1,'Thoth::Dsa::Cow::Cow()=default'],['../struct_thoth_1_1_dsa_1_1_cow.html#a93b808bb33964adf66c85e17ca71ce7b',1,'Thoth::Dsa::Cow::Cow(RefT) noexcept'],['../struct_thoth_1_1_dsa_1_1_cow.html#a4a51f0d4eb0895e2b2f3415eb3245332',1,'Thoth::Dsa::Cow::Cow(Cow &amp;&amp;) noexcept=default'],['../struct_thoth_1_1_dsa_1_1_cow.html#a4defdeec6ead86eead015f50ef4a2911',1,'Thoth::Dsa::Cow::Cow(const Cow &amp;other)']]],
+  ['crbegin_28',['crbegin',['../struct_thoth_1_1_n_json_1_1_string_own.html#aad2c1b2cd2bf57fe38f89049070c8deb',1,'Thoth::NJson::StringOwn']]],
+  ['crend_29',['crend',['../struct_thoth_1_1_n_json_1_1_string_own.html#ac60c4e2dcc404a873d0fe2e109b06ef0',1,'Thoth::NJson::StringOwn']]]
 ];
