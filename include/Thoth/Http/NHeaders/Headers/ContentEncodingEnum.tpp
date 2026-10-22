@@ -35,13 +35,15 @@ struct std::formatter<Thoth::Http::NHeaders::ContentEncodingEnum> {
     auto format(const Thoth::Http::NHeaders::ContentEncodingEnum contentEncoding, auto& ctx) const {
         using Thoth::Http::NHeaders::ContentEncodingEnum;
 
-        if (contentEncoding == ContentEncodingEnum::Gzip    ) std::format_to(ctx.out(), "gzip"    );
-        if (contentEncoding == ContentEncodingEnum::Compress) std::format_to(ctx.out(), "compress");
-        if (contentEncoding == ContentEncodingEnum::Deflate ) std::format_to(ctx.out(), "deflate" );
-        if (contentEncoding == ContentEncodingEnum::Br      ) std::format_to(ctx.out(), "br"      );
-        if (contentEncoding == ContentEncodingEnum::Zstd    ) std::format_to(ctx.out(), "zstd"    );
-        if (contentEncoding == ContentEncodingEnum::Dcb     ) std::format_to(ctx.out(), "dcb"     );
-        if (contentEncoding == ContentEncodingEnum::Dcz     ) std::format_to(ctx.out(), "dcz"     );
+        switch (contentEncoding) {
+            case ContentEncodingEnum::Gzip    : return std::format_to(ctx.out(), "gzip"    );
+            case ContentEncodingEnum::Compress: return std::format_to(ctx.out(), "compress");
+            case ContentEncodingEnum::Deflate : return std::format_to(ctx.out(), "deflate" );
+            case ContentEncodingEnum::Br      : return std::format_to(ctx.out(), "br"      );
+            case ContentEncodingEnum::Zstd    : return std::format_to(ctx.out(), "zstd"    );
+            case ContentEncodingEnum::Dcb     : return std::format_to(ctx.out(), "dcb"     );
+            case ContentEncodingEnum::Dcz     : return std::format_to(ctx.out(), "dcz"     );
+        }
 
         return ctx.out();
     }

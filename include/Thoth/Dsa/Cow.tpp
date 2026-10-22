@@ -277,8 +277,6 @@ struct std::formatter<Thoth::Dsa::Cow<RefT, OwnT>>{
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
     auto format(const Thoth::Dsa::Cow<RefT, OwnT> &cow, auto& ctx) const {
-        cow.Visit([&](auto val){ std::format_to(ctx.out(), "{}", val); });
-
-        return ctx.out();
+        return std::format_to(ctx.out(), "{}", cow.AsRef());
     }
 };

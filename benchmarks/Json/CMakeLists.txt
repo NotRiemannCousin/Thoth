@@ -25,6 +25,10 @@ CPMAddPackage(
         GIT_TAG v3.5.3
 )
 
+if(MSVC)
+    target_compile_options(BenchJson PRIVATE /Zc:preprocessor)
+endif()
+
 target_link_libraries(BenchJson PRIVATE
         nlohmann_json::nlohmann_json
         simdjson::simdjson

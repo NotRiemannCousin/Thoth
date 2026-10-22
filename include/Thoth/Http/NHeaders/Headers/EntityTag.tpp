@@ -41,9 +41,6 @@ struct std::formatter<Thoth::Http::NHeaders::EntityTag> {
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
     auto format(const Thoth::Http::NHeaders::EntityTag& entityTag, auto& ctx) const {
-
-        std::format_to(ctx.out(), "{}\"{}\"", entityTag.isWeak ? "W/" : "", entityTag.tag);
-
-        return ctx.out();
+        return std::format_to(ctx.out(), "{}\"{}\"", entityTag.isWeak ? "W/" : "", entityTag.tag);
     }
 };

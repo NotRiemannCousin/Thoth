@@ -68,17 +68,16 @@ struct std::formatter<Thoth::Http::NHeaders::Range> {
     auto format(const Thoth::Http::NHeaders::Range range, auto& ctx) const {
         using namespace Thoth::Http::NHeaders;
 
-        std::visit(
+        return std::visit(
             Hermes::Utils::Overloaded{
-                [&](SuffixedRange sfxRange) { std::format_to(ctx.out(), "bytes=-{}", sfxRange.last); },
+                [&](SuffixedRange sfxRange) { return std::format_to(ctx.out(), "bytes=-{}", sfxRange.last); },
                 [&](PrefixedRange pfxRange) {
-                    if (pfxRange.end) std::format_to(ctx.out(), "bytes={}-{}", pfxRange.start, *pfxRange.end);
-                    else              std::format_to(ctx.out(), "bytes={}-"  , pfxRange.start);
+                    return pfxRange.end
+                        ? std::format_to(ctx.out(), "bytes={}-{}", pfxRange.start, *pfxRange.end)
+                        : std::format_to(ctx.out(), "bytes={}-"  , pfxRange.start);
                 }
             },
             range
         );
-
-        return ctx.out();
     }
 };

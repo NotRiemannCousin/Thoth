@@ -97,11 +97,9 @@ struct std::formatter<Thoth::Http::NHeaders::Challenge> {
         bool first{ true };
 
         for (const auto& [key, value] : c.params) {
-            if (key == "token68") {
-                out = std::format_to(out, "{}{}", first ? " " : ", ", value);
-            } else {
-                out = std::format_to(out, "{}{}=\"{}\"", first ? " " : ", ", key, value);
-            }
+                out = key == "token68"
+                        ? std::format_to(out, "{}{}", first ? " " : ", ", value)
+                        : std::format_to(out, "{}{}=\"{}\"", first ? " " : ", ", key, value);
             first = false;
         }
         return out;

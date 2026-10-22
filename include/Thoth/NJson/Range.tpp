@@ -89,24 +89,50 @@ namespace Thoth::NJson {
     JsonItemsView<IsConst>::JsonItemsView(const JsonItemsView<WasConst>& other) noexcept : m_parent{ other.m_parent } {}
 
     template<bool IsConst>
-    auto JsonItemsView<IsConst>::begin() const -> iterator {
+    template<class>
+    auto JsonItemsView<IsConst>::begin() noexcept -> iterator requires (!IsConst) {
         if (!m_parent) return {};
 
-        if (auto obj{ m_parent->template EnsureRef<Object>() })
+        if (auto obj{ m_parent->template Ensure<Object>() })
             return iterator{ (**obj)->begin() };
-        if (auto arr{ m_parent->template EnsureRef<Array>() })
+        if (auto arr{ m_parent->template Ensure<Array>() })
             return iterator{ (*arr)->begin(), 0 };
 
         return {};
     }
 
     template<bool IsConst>
-    auto JsonItemsView<IsConst>::end() const -> iterator {
+    template<class>
+    auto JsonItemsView<IsConst>::end() noexcept -> iterator requires (!IsConst) {
         if (!m_parent) return {};
 
-        if (auto obj{ m_parent->template EnsureRef<Object>() })
+        if (auto obj{ m_parent->template Ensure<Object>() })
             return iterator{ (**obj)->end() };
-        if (auto arr{ m_parent->template EnsureRef<Array>() })
+        if (auto arr{ m_parent->template Ensure<Array>() })
+            return iterator{ (*arr)->end(), (*arr)->size() };
+
+        return {};
+    }
+
+    template<bool IsConst>
+    auto JsonItemsView<IsConst>::begin() const noexcept -> const_iterator {
+        if (!m_parent) return {};
+
+        if (auto obj{ m_parent->template Ensure<Object>() })
+            return const_iterator{ (**obj)->begin() };
+        if (auto arr{ m_parent->template Ensure<Array>() })
+            return const_iterator{ (*arr)->begin(), 0 };
+
+        return {};
+    }
+
+    template<bool IsConst>
+    auto JsonItemsView<IsConst>::end() const noexcept -> const_iterator {
+        if (!m_parent) return {};
+
+        if (auto obj{ m_parent->template Ensure<Object>() })
+            return iterator{ (**obj)->end() };
+        if (auto arr{ m_parent->template Ensure<Array>() })
             return iterator{ (*arr)->end(), (*arr)->size() };
 
         return {};

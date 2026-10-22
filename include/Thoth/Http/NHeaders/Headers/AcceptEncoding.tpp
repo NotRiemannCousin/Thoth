@@ -36,15 +36,17 @@ struct std::formatter<Thoth::Http::NHeaders::AcceptEncodingEnum> {
     auto format(const Thoth::Http::NHeaders::AcceptEncodingEnum acceptEncoding, auto& ctx) const {
         using Thoth::Http::NHeaders::AcceptEncodingEnum;
 
-        if (acceptEncoding == AcceptEncodingEnum::Gzip    ) std::format_to(ctx.out(), "gzip"    );
-        if (acceptEncoding == AcceptEncodingEnum::Compress) std::format_to(ctx.out(), "compress");
-        if (acceptEncoding == AcceptEncodingEnum::Deflate ) std::format_to(ctx.out(), "deflate" );
-        if (acceptEncoding == AcceptEncodingEnum::Br      ) std::format_to(ctx.out(), "br"      );
-        if (acceptEncoding == AcceptEncodingEnum::Zstd    ) std::format_to(ctx.out(), "zstd"    );
-        if (acceptEncoding == AcceptEncodingEnum::Dcb     ) std::format_to(ctx.out(), "dcb"     );
-        if (acceptEncoding == AcceptEncodingEnum::Dcz     ) std::format_to(ctx.out(), "dcz"     );
-        if (acceptEncoding == AcceptEncodingEnum::Identity) std::format_to(ctx.out(), "identity");
-        if (acceptEncoding == AcceptEncodingEnum::Wildcard) std::format_to(ctx.out(), "*"       );
+        switch (acceptEncoding) {
+            case AcceptEncodingEnum::Gzip    : return std::format_to(ctx.out(), "gzip"    );
+            case AcceptEncodingEnum::Compress: return std::format_to(ctx.out(), "compress");
+            case AcceptEncodingEnum::Deflate : return std::format_to(ctx.out(), "deflate" );
+            case AcceptEncodingEnum::Br      : return std::format_to(ctx.out(), "br"      );
+            case AcceptEncodingEnum::Zstd    : return std::format_to(ctx.out(), "zstd"    );
+            case AcceptEncodingEnum::Dcb     : return std::format_to(ctx.out(), "dcb"     );
+            case AcceptEncodingEnum::Dcz     : return std::format_to(ctx.out(), "dcz"     );
+            case AcceptEncodingEnum::Identity: return std::format_to(ctx.out(), "identity");
+            case AcceptEncodingEnum::Wildcard: return std::format_to(ctx.out(), "*"       );
+        }
 
         return ctx.out();
     }

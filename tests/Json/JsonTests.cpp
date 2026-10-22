@@ -1,9 +1,16 @@
 #include <gtest/gtest.h>
 #include <Thoth/NJson/Json.hpp>
 #include <Thoth/NJson/JsonObject.hpp>
+
+#include <algorithm>
+#include <ranges>
+#include <string>
+#include <vector>
  
 
 using namespace Thoth::NJson;
+namespace vs = std::views;
+namespace rg = std::ranges;
  
 #pragma region Helpers
 
@@ -142,19 +149,19 @@ TEST_F(JsonParseTest, Parse_SimpleString_Succeeds) {
     const auto r{ Json::Parse(R"("hello")") };
     ASSERT_TRUE(r);
     EXPECT_TRUE(r->IsOf<String>());
-    EXPECT_EQ(r->As<String>().AsCopy(), "hello");
+    EXPECT_EQ(r->As<String>().AsCopy().view(), "hello");
 }
  
 TEST_F(JsonParseTest, Parse_EmptyString_Succeeds) {
     const auto r{ Json::Parse(R"("")") };
     ASSERT_TRUE(r);
-    EXPECT_EQ(r->As<String>().AsCopy(), "");
+    EXPECT_EQ(r->As<String>().AsCopy().view(), "");
 }
  
 TEST_F(JsonParseTest, Parse_StringWithEscapes_Succeeds) {
     const auto r{ Json::Parse(R"("line1\nline2")") };
     ASSERT_TRUE(r);
-    EXPECT_EQ(r->As<String>().AsCopy(), "line1\nline2");
+    EXPECT_EQ(r->As<String>().AsCopy().view(), "line1\nline2");
 }
  
 TEST_F(JsonParseTest, Parse_EmptyArray_Succeeds) {
@@ -351,7 +358,7 @@ TEST_F(JsonFindTest, Find_ThreeLevels_Succeeds) {
     const std::array<KeyView, 4> keys{ "data", "users", {}, "name" };
     auto result{ root.Find(keys) };
     ASSERT_TRUE(result);
-    EXPECT_EQ((*result)->As<String>().AsCopy(), "Alice");
+    EXPECT_EQ((*result)->As<String>().AsCopy().view(), "Alice");
 }
  
 TEST_F(JsonFindTest, Find_InvalidPath_ReturnsNullopt) {
@@ -364,7 +371,7 @@ TEST_F(JsonFindTest, FindOrError_ValidPath_HasValue) {
     const std::array<KeyView, 4> keys{ "data", "users", 1, "name" };
     auto result{ root.FindOrError(keys) };
     ASSERT_TRUE(result);
-    EXPECT_EQ((*result)->As<String>().AsCopy(), "Bob");
+    EXPECT_EQ((*result)->As<String>().AsCopy().view(), "Bob");
 }
  
 TEST_F(JsonFindTest, FindOrError_InvalidPath_HasError) {
@@ -394,7 +401,7 @@ struct JsonSearchTest : testing::Test {
 TEST_F(JsonSearchTest, Search_Array_MatchFound_ReturnsPtrToElement) {
     auto pred{ [](const Json& j) { return j.IsOf<String>(); } };    auto result{ arr.Search(pred) };
     ASSERT_TRUE(result);
-    EXPECT_EQ((*result)->As<String>().AsCopy(), "find-me");
+    EXPECT_EQ((*result)->As<String>().AsCopy().view(), "find-me");
 }
  
 TEST_F(JsonSearchTest, Search_Array_NoMatch_ReturnsNullopt) {
@@ -405,7 +412,7 @@ TEST_F(JsonSearchTest, Search_Array_NoMatch_ReturnsNullopt) {
 TEST_F(JsonSearchTest, Search_Object_MatchFound) {
     auto pred{ [](const Json& j) { return j.IsOf<String>(); } };    auto result{ obj.Search(pred) };
     ASSERT_TRUE(result);
-    EXPECT_EQ((*result)->As<String>().AsCopy(), "target");
+    EXPECT_EQ((*result)->As<String>().AsCopy().view(), "target");
 }
  
 TEST_F(JsonSearchTest, SearchCopy_ReturnsIndependentCopy) {
@@ -678,12 +685,306 @@ TEST_F(JsonObjectTest, IterateKeys_AllKeysPresent) {
 TEST_F(JsonObjectTest, GetCopy_ReturnsValue) {
     const auto copy{ obj.GetCopy("key2") };
     ASSERT_TRUE(copy);
-    EXPECT_EQ(copy->As<String>().AsCopy(), "value");
+    EXPECT_EQ(copy->As<String>().AsCopy().view(), "value");
 }
  
 TEST_F(JsonObjectTest, GetCopyOrNull_Missing_IsNull) {
     const auto result{ obj.GetCopyOrNull("nope") };
     EXPECT_TRUE(result.IsOf<Null>());
+}
+
+#pragma endregion
+
+
+#pragma region Range Interface (Array)
+
+struct JsonArrayRangeTest : testing::Test {
+    Json arr{ ParseOk("[10, 20, 30, 40]") };
+};
+
+TEST_F(JsonArrayRangeTest, RangeFor_IteratesElementsInOrder) {
+    std::vector<double> values;
+    for (const auto& child : arr)
+        values.push_back(child.As<Number>().AsFloat());
+    ASSERT_EQ(values.size(), 4u);
+    EXPECT_DOUBLE_EQ(values[0], 10.0);
+    EXPECT_DOUBLE_EQ(values[1], 20.0);
+    EXPECT_DOUBLE_EQ(values[2], 30.0);
+    EXPECT_DOUBLE_EQ(values[3], 40.0);
+}
+
+TEST_F(JsonArrayRangeTest, BeginEnd_SameType) {
+    static_assert(std::is_same_v<decltype(arr.begin()), decltype(arr.end())>);
+}
+
+TEST_F(JsonArrayRangeTest, CBeginCEnd_ConstIteration) {
+    const Json& carr = arr;
+    std::vector<double> values;
+    for (const auto it : carr)
+        values.push_back(it.As<Number>().AsFloat());
+    ASSERT_EQ(values.size(), 4u);
+    EXPECT_DOUBLE_EQ(values[0], 10.0);
+}
+
+TEST_F(JsonArrayRangeTest, RangesDistance_MatchesSize) {
+    EXPECT_EQ(rg::distance(arr), 4);
+}
+
+TEST_F(JsonArrayRangeTest, RangesForEach_TransformsAll) {
+    std::vector<int64_t> values;
+    rg::for_each(arr, [&](const Json& child) {
+        values.push_back(*child.As<Number>().AsI64());
+    });
+    ASSERT_EQ(values.size(), 4u);
+    EXPECT_EQ(values[0], 10);
+    EXPECT_EQ(values[3], 40);
+}
+
+TEST_F(JsonArrayRangeTest, RangesFindIf_FindsMatchingElement) {
+    const auto pred{ [](const Json& j) {
+        return j.IsOf<Number>() && *j.As<Number>().AsI64() == 30;
+    } };
+    const auto it{ rg::find_if(arr, pred) };
+    EXPECT_NE(it, arr.end());
+}
+
+TEST_F(JsonArrayRangeTest, RangesFindIf_NoMatch_ReturnsEnd) {
+    const auto pred{ [](const Json& j) { return j.IsOf<Bool>(); } };
+    const auto it{ rg::find_if(arr, pred) };
+    EXPECT_EQ(it, arr.end());
+}
+
+TEST_F(JsonArrayRangeTest, RangesAnyOf_TrueWhenMatchExists) {
+    const auto pred{ [](const Json& j) { return j.IsOf<Number>(); } };
+    EXPECT_TRUE(rg::any_of(arr, pred));
+}
+
+TEST_F(JsonArrayRangeTest, RangesAllOf_FalseWhenNotAllMatch) {
+    const auto pred{ [](const Json& j) { return j.IsOf<Number>(); } };
+    EXPECT_TRUE(rg::all_of(arr, pred));
+}
+
+TEST_F(JsonArrayRangeTest, RangesReverse) {
+    std::vector<double> values;
+    for (const auto& child : arr | vs::reverse)
+        values.push_back(child.As<Number>().AsFloat());
+
+    ASSERT_EQ(values.size(), 4u);
+    EXPECT_DOUBLE_EQ(values[0], 40.0);
+    EXPECT_DOUBLE_EQ(values[1], 30.0);
+    EXPECT_DOUBLE_EQ(values[2], 20.0);
+    EXPECT_DOUBLE_EQ(values[3], 10.0);
+}
+
+#pragma endregion
+
+
+#pragma region Range Interface (Object)
+
+struct JsonObjectRangeTest : testing::Test {
+    Json obj{ ParseOk(R"({"a":1,"b":2,"c":3})") };
+};
+
+TEST_F(JsonObjectRangeTest, RangeFor_IteratesValuesInOrder) {
+    std::vector<double> values;
+    for (const auto& child : obj)
+        values.push_back(child.As<Number>().AsFloat());
+    ASSERT_EQ(values.size(), 3u);
+    EXPECT_DOUBLE_EQ(values[0], 1.0);
+    EXPECT_DOUBLE_EQ(values[1], 2.0);
+    EXPECT_DOUBLE_EQ(values[2], 3.0);
+}
+
+TEST_F(JsonObjectRangeTest, RangesDistance_MatchesSize) {
+    EXPECT_EQ(rg::distance(obj), 3);
+}
+
+TEST_F(JsonObjectRangeTest, RangesTransform_CollectsValues) {
+    std::vector<int64_t> values;
+    for (const auto& child : obj)
+        values.push_back(*child.As<Number>().AsI64());
+    EXPECT_EQ(values.size(), 3u);
+}
+
+#pragma endregion
+
+
+#pragma region Items()
+
+struct JsonItemsTest : testing::Test {
+    Json arr{ ParseOk("[10, 20, 30]") };
+    Json obj{ ParseOk(R"({"alpha":1,"beta":2})") };
+};
+
+TEST_F(JsonItemsTest, ItemsArray_YieldsIndexAndValue) {
+    std::vector<int> indices;
+    std::vector<double> values;
+    for (const auto& [key, child] : arr.Items()) {
+        ASSERT_TRUE(key.IsInt());
+        indices.push_back(std::get<int>(key));
+        values.push_back(child.As<Number>().AsFloat());
+    }
+    ASSERT_EQ(indices.size(), 3u);
+    EXPECT_EQ(indices[0], 0);
+    EXPECT_EQ(indices[1], 1);
+    EXPECT_EQ(indices[2], 2);
+    EXPECT_DOUBLE_EQ(values[0], 10.0);
+    EXPECT_DOUBLE_EQ(values[1], 20.0);
+    EXPECT_DOUBLE_EQ(values[2], 30.0);
+}
+
+TEST_F(JsonItemsTest, ItemsObject_YieldsStringKeyAndValue) {
+    std::vector<std::string> keys;
+    std::vector<double> values;
+
+    for (const auto& [key, child] : obj.Items()) {
+        ASSERT_TRUE(key.IsString());
+        keys.push_back(std::string{ std::get<std::string_view>(key) });
+        values.push_back(child.As<Number>().AsFloat());
+    }
+
+    ASSERT_EQ(keys.size(), 2u);
+    EXPECT_EQ(keys[0], "beta"); // size 4 x size 5, finally the "beta" wins.
+    EXPECT_EQ(keys[1], "alpha");
+    EXPECT_DOUBLE_EQ(values[0], 2.0);
+    EXPECT_DOUBLE_EQ(values[1], 1.0);
+}
+
+
+TEST_F(JsonItemsTest, ItemsArray_RangesDistance_MatchesSize) {
+    EXPECT_EQ(rg::distance(arr.Items()), 3);
+}
+
+TEST_F(JsonItemsTest, ItemsObject_RangesDistance_MatchesSize) {
+    EXPECT_EQ(rg::distance(obj.Items()), 2);
+}
+
+TEST_F(JsonItemsTest, ItemsConstObject_YieldsConstPairs) {
+    const auto& cobj = obj;
+    std::vector<std::string> keys;
+    for (const auto& [key, child] : cobj.Items()) {
+        ASSERT_TRUE(key.IsString());
+        keys.push_back(std::string{ std::get<std::string_view>(key) });
+    }
+    EXPECT_EQ(keys.size(), 2u);
+}
+
+TEST_F(JsonItemsTest, ItemsScalar_Empty) {
+    Json scalar{ 42 };
+    EXPECT_EQ(scalar.Items().size(), 0u);
+    EXPECT_TRUE(scalar.Items().empty());
+}
+
+
+TEST_F(JsonItemsTest, ItemsArray_Reverse) {
+    std::vector<int> indices;
+    std::vector<double> values;
+    for (const auto& [key, child] : arr.Items() | vs::reverse) {
+        ASSERT_TRUE(key.IsInt());
+        indices.push_back(std::get<int>(key));
+        values.push_back(child.As<Number>().AsFloat());
+    }
+    ASSERT_EQ(indices.size(), 3u);
+    EXPECT_EQ(indices[0], 2);
+    EXPECT_EQ(indices[1], 1);
+    EXPECT_EQ(indices[2], 0);
+    EXPECT_DOUBLE_EQ(values[0], 30.0);
+    EXPECT_DOUBLE_EQ(values[1], 20.0);
+    EXPECT_DOUBLE_EQ(values[2], 10.0);
+}
+
+#pragma endregion
+
+
+#pragma region Empty / Size
+
+struct JsonEmptySizeTest : testing::Test {
+    Json emptyArr{ ParseOk("[]") };
+    Json nonEmptyArr{ ParseOk("[1, 2]") };
+    Json emptyObj{ ParseOk("{}") };
+    Json nonEmptyObj{ ParseOk(R"({"a":1})") };
+    Json scalar{ 42 };
+    Json nullJ{};
+};
+
+TEST_F(JsonEmptySizeTest, EmptyArray_EmptyTrue) {
+    EXPECT_TRUE(emptyArr.Empty());
+    EXPECT_TRUE(emptyArr.empty());
+}
+
+TEST_F(JsonEmptySizeTest, EmptyArray_SizeZero) {
+    EXPECT_EQ(emptyArr.Size(), 0u);
+    EXPECT_EQ(emptyArr.size(), 0u);
+}
+
+TEST_F(JsonEmptySizeTest, NonEmptyArray_EmptyFalse) {
+    EXPECT_FALSE(nonEmptyArr.Empty());
+}
+
+TEST_F(JsonEmptySizeTest, NonEmptyArray_SizeCorrect) {
+    EXPECT_EQ(nonEmptyArr.Size(), 2u);
+    EXPECT_EQ(nonEmptyArr.size(), 2u);
+}
+
+TEST_F(JsonEmptySizeTest, EmptyObject_EmptyTrue) {
+    EXPECT_TRUE(emptyObj.Empty());
+    EXPECT_TRUE(emptyObj.empty());
+}
+
+TEST_F(JsonEmptySizeTest, EmptyObject_SizeZero) {
+    EXPECT_EQ(emptyObj.Size(), 0u);
+    EXPECT_EQ(emptyObj.size(), 0u);
+}
+
+TEST_F(JsonEmptySizeTest, NonEmptyObject_SizeCorrect) {
+    EXPECT_EQ(nonEmptyObj.Size(), 1u);
+}
+
+TEST_F(JsonEmptySizeTest, Scalar_EmptyTrue_SizeZero) {
+    EXPECT_TRUE(scalar.Empty());
+    EXPECT_EQ(scalar.Size(), 0u);
+}
+
+TEST_F(JsonEmptySizeTest, Null_EmptyTrue_SizeZero) {
+    EXPECT_TRUE(nullJ.Empty());
+    EXPECT_EQ(nullJ.Size(), 0u);
+}
+
+TEST_F(JsonEmptySizeTest, EmptyArray_BeginEqualsEnd) {
+    EXPECT_EQ(emptyArr.begin(), emptyArr.end());
+}
+
+TEST_F(JsonEmptySizeTest, Scalar_BeginEqualsEnd) {
+    EXPECT_EQ(scalar.begin(), scalar.end());
+}
+
+#pragma endregion
+
+
+#pragma region Range Interface Concepts
+
+TEST(JsonRangeConcepts, JsonModelsRange) {
+    static_assert(rg::range<Json>);
+}
+
+TEST(JsonRangeConcepts, JsonModelsForwardRange) {
+    static_assert(rg::forward_range<Json>);
+}
+
+TEST(JsonRangeConcepts, JsonModelsBidirectionalRange) {
+    static_assert(rg::bidirectional_range<Json>);
+}
+
+TEST(JsonRangeConcepts, JsonModelsCommonRange) {
+    static_assert(rg::common_range<Json>);
+}
+
+TEST(JsonRangeConcepts, JsonModelsSizedRange) {
+    static_assert(rg::sized_range<Json>);
+}
+
+TEST(JsonRangeConcepts, ConstJsonModelsRange) {
+    static_assert(rg::range<const Json>);
 }
 
 #pragma endregion

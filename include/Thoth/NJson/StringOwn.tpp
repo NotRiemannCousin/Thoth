@@ -1,4 +1,5 @@
 #pragma once
+#include <format>
 
 namespace Thoth::NJson {
 
@@ -24,19 +25,27 @@ namespace Thoth::NJson {
 
 #pragma region Range Interface
 
+    inline auto StringOwn::begin()  noexcept { return view().begin(); }
+    inline auto StringOwn::end()    noexcept { return view().end();   }
+    inline auto StringOwn::rbegin() noexcept { return view().rbegin(); }
+    inline auto StringOwn::rend()   noexcept { return view().rend();   }
+
     inline auto StringOwn::begin()  const noexcept { return view().begin();  }
     inline auto StringOwn::end()    const noexcept { return view().end();    }
-    inline auto StringOwn::cbegin() const noexcept { return view().cbegin(); }
-    inline auto StringOwn::cend()   const noexcept { return view().cend();   }
     inline auto StringOwn::rbegin() const noexcept { return view().rbegin(); }
     inline auto StringOwn::rend()   const noexcept { return view().rend();   }
 
-    inline auto StringOwn::size()   const noexcept { return view().size();   }
-    inline auto StringOwn::empty()  const noexcept { return view().empty();  }
-    inline auto StringOwn::data()   const noexcept { return view().data();   }
+    inline auto StringOwn::cbegin()  const noexcept { return view().cbegin();  }
+    inline auto StringOwn::cend()    const noexcept { return view().cend();    }
+    inline auto StringOwn::crbegin() const noexcept { return view().crbegin(); }
+    inline auto StringOwn::crend()   const noexcept { return view().crend();   }
 
-    inline auto StringOwn::front()  const noexcept { return view().front();  }
-    inline auto StringOwn::back()   const noexcept { return view().back();   }
+    inline auto StringOwn::size()  const noexcept { return view().size();   }
+    inline auto StringOwn::empty() const noexcept { return view().empty();  }
+    inline auto StringOwn::data()  const noexcept { return view().data();   }
+
+    inline auto StringOwn::front() const noexcept { return view().front();  }
+    inline auto StringOwn::back()  const noexcept { return view().back();   }
 
     template <typename Index>
     auto StringOwn::operator[](Index idx) const noexcept { return view()[idx]; }
@@ -51,3 +60,14 @@ namespace Thoth::NJson {
 #pragma endregion
 
 }
+
+template<>
+struct std::formatter<Thoth::NJson::StringOwn>{
+    static constexpr auto parse(auto& ctx) {
+        return std::formatter<std::string>{}.parse(ctx);
+    }
+
+    auto format(const Thoth::NJson::StringOwn& own, auto& ctx) const {
+        return std::formatter<std::string>{}.format(static_cast<string>(own), ctx);
+    }
+};

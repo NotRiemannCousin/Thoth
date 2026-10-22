@@ -20,9 +20,7 @@ namespace std {
         }
 
         auto format(const Thoth::Http::Url &url, auto& ctx) const {
-            format_to(ctx.out(), "{}", url.m_rawUrl);
-
-            return ctx.out();
+            return format_to(ctx.out(), "{}", url.m_rawUrl);
         }
     };
 

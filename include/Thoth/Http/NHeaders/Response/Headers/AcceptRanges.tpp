@@ -35,8 +35,10 @@ struct std::formatter<Thoth::Http::NHeaders::AcceptRanges> {
     auto format(const Thoth::Http::NHeaders::AcceptRanges acceptRanges, auto& ctx) const {
         using Thoth::Http::NHeaders::AcceptRanges;
 
-        if (acceptRanges == AcceptRanges::None ) std::format_to(ctx.out(), "none" );
-        if (acceptRanges == AcceptRanges::Bytes) std::format_to(ctx.out(), "bytes");
+        switch (acceptRanges) {
+            case AcceptRanges::None : return std::format_to(ctx.out(), "none" );
+            case AcceptRanges::Bytes: return std::format_to(ctx.out(), "bytes");
+        }
 
         return ctx.out();
     }

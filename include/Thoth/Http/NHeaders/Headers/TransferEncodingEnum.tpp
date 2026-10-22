@@ -30,10 +30,12 @@ struct std::formatter<Thoth::Http::NHeaders::TransferEncodingEnum> {
     auto format(const Thoth::Http::NHeaders::TransferEncodingEnum transfer, auto& ctx) const {
         using Thoth::Http::NHeaders::TransferEncodingEnum;
 
-        if (transfer == TransferEncodingEnum::Chunked ) std::format_to(ctx.out(), "chunked" );
-        if (transfer == TransferEncodingEnum::Compress) std::format_to(ctx.out(), "compress");
-        if (transfer == TransferEncodingEnum::Gzip    ) std::format_to(ctx.out(), "gzip"    );
-        if (transfer == TransferEncodingEnum::Deflate ) std::format_to(ctx.out(), "deflate" );
+        switch (transfer) {
+            case TransferEncodingEnum::Chunked : return std::format_to(ctx.out(), "chunked" );
+            case TransferEncodingEnum::Compress: return std::format_to(ctx.out(), "compress");
+            case TransferEncodingEnum::Gzip    : return std::format_to(ctx.out(), "gzip"    );
+            case TransferEncodingEnum::Deflate : return std::format_to(ctx.out(), "deflate" );
+        }
 
         return ctx.out();
     }

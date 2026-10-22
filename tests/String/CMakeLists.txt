@@ -1,5 +1,6 @@
 add_project_test(
-        ThothStringTests
-        StringRefTests.cpp
-        UnicodeViewerTests.cpp
+	        ThothStringTests
+	        StringRefTests.cpp
+	        StringOwnTests.cpp
+	        UnicodeViewerTests.cpp
 )

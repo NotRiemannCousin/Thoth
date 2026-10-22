@@ -27,10 +27,11 @@ struct std::formatter<Thoth::Http::NHeaders::Upgrade> {
 
     auto format(const Thoth::Http::NHeaders::Upgrade& upgrade, auto& ctx) const {
         using Thoth::Http::NHeaders::Upgrade;
+        auto out{ ctx.out() };
 
-        std::format_to(ctx.out(), "{}", upgrade.protocol);
-        if (upgrade.version) std::format_to(ctx.out(), "/{}", *upgrade.version);
+        out = std::format_to(out, "{}", upgrade.protocol);
+        if (upgrade.version) out = std::format_to(out, "/{}", *upgrade.version);
 
-        return ctx.out();
+        return out;
     }
 };

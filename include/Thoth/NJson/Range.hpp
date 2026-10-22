@@ -112,8 +112,10 @@ namespace Thoth::NJson {
             requires IsConst && (!WasConst)
         JsonItemsView(const JsonItemsView<WasConst>& other) noexcept;
 
-        [[nodiscard]] iterator begin() const;
-        [[nodiscard]] iterator end() const;
+        template<class=void> [[nodiscard]] iterator begin() noexcept requires (!IsConst);
+        template<class=void> [[nodiscard]] iterator end() noexcept requires (!IsConst);
+        [[nodiscard]] const_iterator begin() const noexcept;
+        [[nodiscard]] const_iterator end() const noexcept;
 
         [[nodiscard]] bool empty() const;
         [[nodiscard]] std::size_t size() const;

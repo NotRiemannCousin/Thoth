@@ -50,19 +50,27 @@ namespace Thoth::NJson {
 
 #pragma region Range Interface
 
+        [[nodiscard]] auto begin()  noexcept;
+        [[nodiscard]] auto end()    noexcept;
+        [[nodiscard]] auto rbegin() noexcept;
+        [[nodiscard]] auto rend()   noexcept;
+
         [[nodiscard]] auto begin()  const noexcept;
         [[nodiscard]] auto end()    const noexcept;
-        [[nodiscard]] auto cbegin() const noexcept;
-        [[nodiscard]] auto cend()   const noexcept;
         [[nodiscard]] auto rbegin() const noexcept;
         [[nodiscard]] auto rend()   const noexcept;
 
-        [[nodiscard]] auto size()   const noexcept;
-        [[nodiscard]] auto empty()  const noexcept;
-        [[nodiscard]] auto data()   const noexcept;
+        [[nodiscard]] auto cbegin()  const noexcept;
+        [[nodiscard]] auto cend()    const noexcept;
+        [[nodiscard]] auto crbegin() const noexcept;
+        [[nodiscard]] auto crend()   const noexcept;
 
-        [[nodiscard]] auto front()  const noexcept;
-        [[nodiscard]] auto back()   const noexcept;
+        [[nodiscard]] auto size()  const noexcept;
+        [[nodiscard]] auto empty() const noexcept;
+        [[nodiscard]] auto data()  const noexcept;
+
+        [[nodiscard]] auto front() const noexcept;
+        [[nodiscard]] auto back()  const noexcept;
 
         template <typename Index>
         [[nodiscard]] auto operator[](Index idx) const noexcept;

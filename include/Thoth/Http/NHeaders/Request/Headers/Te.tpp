@@ -37,10 +37,12 @@ struct std::formatter<Thoth::Http::NHeaders::TeEnum> {
     auto format(const Thoth::Http::NHeaders::TeEnum te, auto& ctx) const {
         using Thoth::Http::NHeaders::TeEnum;
 
-        if (te == TeEnum::Compress) std::format_to(ctx.out(), "compress");
-        if (te == TeEnum::Deflate ) std::format_to(ctx.out(), "deflate" );
-        if (te == TeEnum::Gzip    ) std::format_to(ctx.out(), "gzip"    );
-        if (te == TeEnum::Trailers) std::format_to(ctx.out(), "trailers");
+        switch (te) {
+            case TeEnum::Compress: return std::format_to(ctx.out(), "compress");
+            case TeEnum::Deflate : return std::format_to(ctx.out(), "deflate" );
+            case TeEnum::Gzip    : return std::format_to(ctx.out(), "gzip"    );
+            case TeEnum::Trailers: return std::format_to(ctx.out(), "trailers");
+        }
 
         return ctx.out();
     }

@@ -121,9 +121,11 @@ struct std::formatter<T>{
     static constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
     auto format(const T& headers, auto& ctx) const {
-        for (const auto& p : headers.m_headers)
-            format_to(ctx.out(), "{}: {}\r\n", p.first, p.second);
+        auto out{ ctx.out() };
 
-        return ctx.out();
+        for (const auto& p : headers.m_headers)
+            out = format_to(out, "{}: {}\r\n", p.first, p.second);
+
+        return out;
     }
 };

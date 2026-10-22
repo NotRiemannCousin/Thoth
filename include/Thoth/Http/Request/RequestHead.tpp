@@ -9,9 +9,11 @@ struct std::formatter<Thoth::Http::RequestHead> {
         using Thoth::Http::details_::k_crlf;
         const auto query{ head.url.GetQuery() };
 
-        auto it{ std::format_to(ctx.out(), "{}", head.url.GetPathOrSep()) };
-        if (!query.empty()) it = std::format_to(it, "?{}", query);
+        auto out{ ctx.out() };
 
-        return std::format_to(it, " {}\r\n{}\r\n", head.version, head.headers);
+        out = std::format_to(out, "{}", head.url.GetPathOrSep());
+        if (!query.empty()) out = std::format_to(out, "?{}", query);
+
+        return std::format_to(out, " {}\r\n{}\r\n", head.version, head.headers);
     }
 };
