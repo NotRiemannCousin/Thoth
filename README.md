@@ -26,7 +26,7 @@ include(CPM.cmake)
 CPMAddPackage(
         NAME Thoth
         GITHUB_REPOSITORY NotRiemannCousin/Thoth
-        GIT_TAG v0.4.3
+        GIT_TAG v0.5.0
 )
 
 target_link_libraries(your_target PRIVATE Thoth)

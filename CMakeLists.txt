@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29.1)
 project(
         Thoth
-        VERSION 0.4.3
+        VERSION 0.5.0
         DESCRIPTION "A simple functional webdev library"
         LANGUAGES CXX
 )
