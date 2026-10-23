@@ -6,10 +6,10 @@
 
 static std::expected<void, Thoth::ThothError> SaveImage(const std::string_view url) {
     namespace NHttp = Thoth::Http;
-    using     FileT = Thoth::Dsa::BinFileOutputRange;
+    using Thoth::Http::FileBody;
 
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAsAndParse<FileT>(FileT::H_AsBody({ "./output.jpg" })))
+            .and_then(NHttp::Client::H_SendAsAndParse<FileBody>(FileBody::H_AsBody({ "./output.jpg" })))
             .transform([](auto){});
 }
 

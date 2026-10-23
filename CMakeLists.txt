@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29.1)
 project(
         Thoth
-        VERSION 0.5.0
+        VERSION 0.6.0
         DESCRIPTION "A simple functional webdev library"
         LANGUAGES CXX
 )
@@ -20,11 +20,12 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 #endregion
 
 #region options
-option(THOTH_BUILD_TESTS      "Build Thoth tests"             ${PROJECT_IS_TOP_LEVEL})
-option(THOTH_BUILD_EXAMPLES   "Build Thoth examples"          ${PROJECT_IS_TOP_LEVEL})
-option(THOTH_INSTALL          "Generate the install target."  ${PROJECT_IS_TOP_LEVEL})
-option(THOTH_BUILD_BENCHMARKS "Build Thoth benchmarks"        OFF)
-option(THOTH_BUILD_DOCS       "Build Doxygen documentation"   OFF)
+option(THOTH_BUILD_TESTS            "Build Thoth tests"                 ${PROJECT_IS_TOP_LEVEL})
+option(THOTH_BUILD_EXAMPLES         "Build Thoth examples"              ${PROJECT_IS_TOP_LEVEL})
+option(THOTH_INSTALL                "Generate the install target."      ${PROJECT_IS_TOP_LEVEL})
+option(THOTH_BUILD_COMP_EXAMPLE     "Build comparison with other libs"  OFF)
+option(THOTH_BUILD_BENCHMARKS       "Build Thoth benchmarks"            OFF)
+option(THOTH_BUILD_DOCS             "Build Doxygen documentation"       OFF)
 #endregion
 
 #region top-level compiler options
@@ -83,6 +84,8 @@ target_sources(Thoth PRIVATE
 
         src/Thoth/Http/Middleware/Decompress.cpp
         src/Thoth/Http/Middleware/Retry.cpp
+
+        src/Thoth/Http/Server.cpp
         PUBLIC
         FILE_SET headers
         TYPE HEADERS
@@ -94,10 +97,12 @@ target_sources(Thoth PRIVATE
 #region linking
 CPMFindPackage(
         NAME                    Hermes
-        VERSION                 0.6.2
+        VERSION                 0.6.7
         GITHUB_REPOSITORY       NotRiemannCousin/Hermes
-        GIT_TAG                 v0.6.2
+        GIT_TAG                 v0.6.7
         OPTIONS                 "HERMES_INSTALL ${THOTH_INSTALL}"
+                                "HERMES_ENABLE_ASYNC"
+                                "HERMES_ENABLE_NATIVE_SCHEDULER"
         FIND_PACKAGE_ARGUMENTS  "CONFIG"
 )
 

@@ -2,30 +2,19 @@
 
 namespace Thoth::Http {
 
-    template<WritableBodyConcept Body>
-        requires requires(Body b){ { b.push_back({}) }; }
-    auto GetInserterIterator(Body& body) {
-        return std::back_inserter(body);
-    }
-
-    template<WritableBodyConcept Body>
-    auto GetInserterIterator(Body& body) {
-        return std::ranges::begin(body);
-    }
-
-    template<MethodConcept Method, WritableBodyConcept Body>
+    template<MethodConcept Method, BodyConcept Body>
     template<class>
         requires std::same_as<Body, std::string>
     std::expected<NJson::Json, ThothError> Response<Method, Body>::AsJson() const {
         return NJson::Json::Parse(body);
     }
 
-    template<MethodConcept Method, WritableBodyConcept Body>
+    template<MethodConcept Method, BodyConcept Body>
     bool Response<Method, Body>::Successful() const {
-        return GetStatusType(status) == StatusTypeEnum::SUCCESSFUL;
+        return GetStatusType(status) == StatusTypeEnum::Successful;
     }
 
-    template<MethodConcept Method, WritableBodyConcept Body>
+    template<MethodConcept Method, BodyConcept Body>
     std::expected<Response<Method, Body>, ThothError> Response<Method, Body>::EnsureSuccess(Response &&response) {
         if (response.Successful())
             return std::move(response);
@@ -37,17 +26,22 @@ namespace Thoth::Http {
         };
     }
 
-    template<MethodConcept Method, WritableBodyConcept Body>
+    template<MethodConcept Method, BodyConcept Body>
     Body Response<Method, Body>::MoveBody() && {
         return std::move(body);
     }
 
+    template<BodyConcept TargetBody, MethodConcept Method>
+    struct IntoPayload<TargetBody, Response<Method, TargetBody>> {
+        Response<Method, TargetBody> val;
 
-    namespace details_ {
-        template<class Stream>
-        using ResponseParseStage = ParseStage<Stream, ResponseHead>;
+        IntoPayload(Response<Method, TargetBody> r) : val{ std::move(r) } {}
 
-        template<class Stream, WritableBodyConcept Body>
-        using ResponseParseCompleteStage = ParseCompleteStage<Stream, ResponseHead, Body>;
-    }
+        operator IntoResponsePayload<TargetBody>() && {
+            return IntoResponsePayload<TargetBody>{
+                std::move(static_cast<ResponseHead&&>(val)),
+                std::move(val.body)
+            };
+        }
+    };
 }

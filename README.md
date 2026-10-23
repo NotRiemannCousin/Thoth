@@ -13,7 +13,6 @@ strong type safety and compile-time checks without sacrificing usability or eleg
 [//]: # (utilizes coroutines and functional programming concepts to offer a natural and expressive API)
 [//]: # (for tasks.)
 
-> Server side connections are under development, only client connections are availabe.
 > CMake says C++23 but is because MSVC is lazy, the target is C++26.
 
 ## Installation
@@ -26,7 +25,7 @@ include(CPM.cmake)
 CPMAddPackage(
         NAME Thoth
         GITHUB_REPOSITORY NotRiemannCousin/Thoth
-        GIT_TAG v0.5.0
+        GIT_TAG v0.6.0
 )
 
 target_link_libraries(your_target PRIVATE Thoth)
@@ -40,20 +39,88 @@ target_link_libraries(your_target PRIVATE Thoth)
 
 > *Maybe, someday, who knows.*
 
-## Middlewares
+## Server
 
-Client requests can be wrapped with composable middlewares. Each one takes a handler
-(`Request<Method, Body> -> ExpResponse<Method, Body>`, the same shape as `Client::H_Send()`) and
-returns a new handler, so they nest around the base send call:
+A Thoth server is a `Server<Router, Hermes::AsyncListenerSocket>`. The class itself manages the connection lifetime, the
+accepted hosts, the communication limits. The socket gives you things like execution context + endpoint management and
+the Router gives you the route registration, middlewares, fallbacks, etc.
 
 ```cpp
-NHttp::GetRequest::FromUrl(url)
-    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))
+#include <print>
+#include <thread>
+
+#include <stdexec/execution.hpp>
+
+#include <Thoth/Http/Server/Server.hpp>
+
+int main() {
+    Hermes::FastIoLoop ioLoop{ std::thread::hardware_concurrency() };
+
+    Hermes::DefaultSocketData<Hermes::FastIoLoop> listenData{{ Hermes::IpAddress::LoopbackIpv4(), 8080 }};
+    listenData.executionContext = &ioLoop;
+
+    Thoth::Http::Server server{ std::move(listenData) };
+
+    // The default Host policy only knows "localhost", curl poking 127.0.0.1 would eat a 400 before any route.
+    server.hosts.allowed.push_back("127.0.0.1");
+
+    // The following functions are the behavior of the default router, you can customize it with your own.
+
+    // With ResponseEntry, returning a string becomes a 200 with Content-Type text/plain.
+    server->Route("/", [](Thoth::Http::GetRequest&) -> Thoth::Http::GetResponseEntry {
+        return "hello from Thoth";
+    });
+
+    // JSON responses are automatically serialized with Content-Type application/json.
+    server->Route("/json", [](Thoth::Http::GetRequest&) -> Thoth::Http::GetResponseEntry {
+        return Thoth::NJson::Json{{ { "hello", "hello from Thoth" } }};
+    });
+
+    // Bodies round-trip, strings, bytes, JSON and files.
+    server->Route("/echo", [](Thoth::Http::PostRequest& request) -> Thoth::Http::PostResponseEntry {
+        return std::move(request.body);
+    });
+
+    // One path, one callback per method (404 and 405 are set by the BasicRouter).
+    server->Match("/res",
+        [](Thoth::Http::PutRequest&)    -> Thoth::Http::ResponseEntry<Thoth::Http::PutMethod>    { return "put"; },
+        [](Thoth::Http::DeleteRequest&) -> Thoth::Http::ResponseEntry<Thoth::Http::DeleteMethod> { return "deleted"; });
+
+    std::println("listening on http://127.0.0.1:8080, press Enter to stop");
+    std::jthread stopper{ [&server] {
+        std::string line;
+        std::getline(std::cin, line);
+        server.Stop();
+    } };
+
+    // Run() is a sender: it completes on listener error or when Stop() cancels it.
+    stdexec::sync_wait(server.Run() | stdexec::upon_stopped([] { return 0; }));
+}
 ```
 
-Available today: `FollowRedirects` (307/308), `FollowSeeOther` (303), `Retry` (idempotent methods only, exponentialbackoff with configurable support to `Retry-After` header), and `Decompress` (gzip/deflate). You can define your ownmiddlewares too.
+With BasicRouter, routes can carry middlewares through `Use(...)`. A middleware call must return `std::optional<T>` or
+`std::expected<T, IntoResponsePayload>`. If a route declares a parameter `T` it will see the middleware as required and
+will fail the request if it fails (`std::expected` with the given response from the payload, `std::optional` with
+`400 BAD REQUEST`). If it declares `std::optional<T>` the middleware can fail because it will be passed as
+`std::nullopt`,
+The server is also exception safe, handlers can throw a `StatusCodeEnum` to answer it directly.
 
-## Examples
+```cpp
+struct Session { std::string user; };
+
+server->Route("/who", Thoth::Http::Use(
+        [](const auto&) -> std::expected<Session, Thoth::Http::StatusCodeEnum> {
+            return Session{ "thoth" };
+        }),
+    [](const Thoth::Http::GetRequest&, Session who) -> Thoth::Http::GetResponseEntry {
+        return std::format("user:{}", who.user);
+    });
+```
+
+## Client
+
+The client has a very straightforward functional API:
+
 ```cpp
 #include <print>
 #include <Thoth/Http/Client/Client.hpp>
@@ -107,7 +174,8 @@ int main() {
     } };
 
 
-    
+
+
     GetMembers(4001234)
             .transform(std::views::transform(getName))
             .transform(printNames)
@@ -116,6 +184,28 @@ int main() {
     return 0;
 }
 ```
+
+## Middlewares
+
+Client requests can be wrapped with composable middlewares. Each one takes a handler
+(`Request<Method, Body> -> ExpResponse<Method, Body>`, the same shape as `Client::H_Send()`) and
+returns a new handler, so they nest around the base send call:
+
+```cpp
+NHttp::GetRequest::FromUrl(url)
+    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))
+```
+
+Available today: `FollowRedirects` (307/308), `FollowSeeOther` (303), `Retry` (idempotent methods only, exponential backoff with configurable support to `Retry-After` header), and `Decompress` (gzip/deflate). You can define your ownmiddlewares too.
+
+## Examples
+
+Ready examples in the `examples/` directory:
+
+- `BasicServer`: the server above, whole and minimal.
+- `PostMortemServer`: a "simple" textboard.
+- `Localhost`, `BodyToFile1/2`, `Request1/2` and the JSON ones: client-side usage.
+- `Comparison`: comparison against other libraries (needs `-DTHOTH_BUILD_COMP_EXAMPLE=ON`).
 
 ## Requirements
 

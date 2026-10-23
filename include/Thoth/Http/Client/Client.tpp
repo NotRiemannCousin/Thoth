@@ -1,9 +1,13 @@
 #pragma once
-#include <Thoth/Http/_base/Http1.hpp>
+#include <Thoth/Http/_base/Transport/Http1.hpp>
 #include <Thoth/Http/Response/Response.hpp>
 #include <Thoth/ThothError.hpp>
 #include <Hermes/Utils/Overloads.hpp>
+#include <exec/task.hpp>
+#include <stdexec/execution.hpp>
 #include <string_view>
+#include <type_traits>
+#include <variant>
 
 #include <Thoth/Http/Client/ClientJanitor.hpp>
 
@@ -23,6 +27,32 @@
 #pragma warning(disable: 4455)
 
 namespace Thoth::Http {
+    namespace details_ {
+
+        template<class T>
+        std::expected<T, ThothError> AwaitAsExpected(exec::task<T> task) {
+            try {
+                const auto done{ stdexec::sync_wait(std::move(task)) };
+                if (!done) // Cancellation: unreachable on the sync path (no stop source) - defensive.
+                    return std::unexpected{ ThothError{ ConnectionErrorEnum::ConnectionClosed } };
+
+                if constexpr (!std::is_void_v<T>)
+                    return std::get<0>(std::move(*done));
+                else
+                    return {};
+            }
+            catch (const Hermes::TransferError& err) {          // async transport (co_await-ed sender)
+                return std::unexpected{ ThothError{ err.error } };
+            } catch (const Hermes::ConnectionResultOper& err) { // legacy sync op-state rethrow, kept defensive
+                return std::unexpected{ ThothError{ err.error() } };
+            } catch (const ThothError& err) {                   // parse / framing / EOF
+                return std::unexpected{ err };
+            } catch (...) {                                     // last resort: the API never throws out
+                return std::unexpected{ ThothError{ GenericError{ "Unknown transport failure" } } };
+            }
+        }
+    }
+
     template<MethodConcept Method, BodyConcept Body>
         requires std::default_initializable<Body>
     auto Client::Send(Request<Method, Body> request, ClientOptions opts) -> ExpResponse<Method, Body> {
@@ -38,7 +68,7 @@ namespace Thoth::Http {
     }
 
 
-    template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody>
+    template<MethodConcept Method, OutgoingBodyConcept RequestBody, IncomingBodyConcept ResponseBody>
         requires std::default_initializable<ResponseBody>
     auto Client::SendAs(Request<Method, RequestBody> request, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
         return SendAsAndParse<Method, RequestBody, ResponseBody>(
@@ -47,7 +77,7 @@ namespace Thoth::Http {
     }
 
 
-    template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F>
+    template<MethodConcept Method, OutgoingBodyConcept RequestBody, IncomingBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     auto Client::SendAsAndParse(
         Request<Method, RequestBody> request, F&& bodyFactory, ClientOptions opts) -> ExpResponse<Method, ResponseBody> {
@@ -124,7 +154,7 @@ namespace Thoth::Http {
                 auto& [sock, response]{ val };
 
 
-                const auto defaultConnValue{ response.version == VersionEnum::HTTP1_0 ? "close" : "keep-alive" };
+                const auto defaultConnValue{ response.version == VersionEnum::Http1_0 ? "close" : "keep-alive" };
                 static constexpr auto isCloseValue{ [](std::string_view val) {
                     return std::ranges::equal(val, std::string_view{ "close" }, &String::CaseInsensitiveCompare);
                 } };
@@ -163,19 +193,11 @@ namespace Thoth::Http {
             const auto sendRequest{ [&]() -> std::expected<SocketPtr, ThothError> {
                 request.headers.Add("host", hostname);
 
-                details_::Http1::PrepareBodyHeaders(request.headers, request.body);
-
-                const ClientConnection::SendOptions transferOptions{ .deadline = requestDeadline };
-
-                auto headRes{
-                    details_::Http1::SendMessageHead<Method, RequestHead>(*infoPtr, request, transferOptions)
-                };
-                ASSERT_OR_RET_ERROR(headRes, headRes.error());
-
-                auto bodyRes{ details_::Http1::SendBody(*infoPtr, request.body, transferOptions) };
-                ASSERT_OR_RET_ERROR(bodyRes, bodyRes.error());
-
-                return std::move(infoPtr);
+                return std::visit([&](auto& sock) {
+                    return details_::AwaitAsExpected(
+                                Transport::Http1::WriteRequest(sock, request, requestDeadline))
+                            .transform([&] { return std::move(infoPtr); });
+                }, infoPtr->socket);
             } };
 
 #pragma endregion
@@ -210,45 +232,49 @@ namespace Thoth::Http {
         };
     }
 
-    template<WritableBodyConcept ResponseBody>
+    template<IncomingBodyConcept ResponseBody>
     constexpr auto Client::H_SendAs(ClientOptions opts) {
-        return [opts]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+        return [opts]<MethodConcept Method, OutgoingBodyConcept RequestBody>(Request<Method, RequestBody> request) {
             return SendAs<Method, RequestBody, ResponseBody>(request, opts);
         };
     }
 
-    template<WritableBodyConcept ResponseBody, class F>
+    template<IncomingBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     auto Client::H_SendAsAndParse(F&& bodyFactory, ClientOptions opts) {
-        return [factory{ std::forward<F>(bodyFactory) }, opts]<MethodConcept Method, ReadableBodyConcept RequestBody>(Request<Method, RequestBody> request) {
+        return [factory{ std::forward<F>(bodyFactory) }, opts]<MethodConcept Method, OutgoingBodyConcept RequestBody>(Request<Method, RequestBody> request) {
             return SendAsAndParse<Method, RequestBody, ResponseBody>(std::move(request), std::move(factory), opts);
         };
     }
 
 
-    template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
+    template<MethodConcept Method, IncomingBodyConcept ResponseBody, class F>
         requires ResponseBodyFactoryConcept<F, ResponseBody>
     std::expected<std::pair<Client::SocketPtr, Response<Method, ResponseBody>>, ThothError> Client::ParseHttp1_(
         SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline,
         std::size_t maxBodyLength) {
-        const auto forwardBoth{ [&infoPtr](Response<Method, ResponseBody>&& response) {
-            return std::pair<SocketPtr, Response<Method, ResponseBody>>{ std::move(infoPtr), std::move(response) };
-        } };
 
-        auto createResponse{[bFactory = std::forward<F>(bodyFactory), deadline, maxBodyLength]<typename T>(T&& sock) mutable {
-            using Socket = std::remove_cvref_t<T>;
-            typename Socket::RecvOptions recvOptions{};
-            recvOptions.deadline = deadline;
+        return std::visit([&]<class Socket>(Socket& sock)
+            -> std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> {
+            ExchangeBuffer window{};
+            ReadContext<Socket> context{ .source = sock, .buffer = window, .deadline = std::move(deadline) };
+            context.limits.maxBodyBytes = maxBodyLength;
 
-            return details_::Http1::BuildResponse<Method, ResponseBody>(
-                sock.template RecvStream<char>(recvOptions),
-                std::forward<F>(bFactory),
-                maxBodyLength
-            );
-        } };
+            auto responseRes{ details_::AwaitAsExpected(
+                Transport::Http1::ReadResponse<Socket, ResponseBody>(context, std::forward<F>(bodyFactory))) };
 
-        return std::visit(createResponse, infoPtr->socket)
-                .transform(forwardBoth);
+            if (!responseRes)
+                return std::unexpected{ responseRes.error() };
+
+            Response<Method, ResponseBody> response{
+                std::move(responseRes->first), std::move(responseRes->second) };
+
+            if (!window.Available().empty())
+                infoPtr = nullptr;
+
+            return std::pair<SocketPtr, Response<Method, ResponseBody>>{
+                std::move(infoPtr), std::move(response) };
+        }, infoPtr->socket);
     }
 }
 

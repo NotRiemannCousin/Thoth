@@ -38,15 +38,31 @@ namespace Thoth::Http::NHeaders {
     //! auto json{ MimeTypes::appJson.WithParam("charset", "utf-8") };
     //! @endcode
     struct MimeTypes {
-        MimeTypes() = delete;
-        inline static const MimeType textPlain      { MimeTypeHeader{ "text"       , "plain"        } };
-        inline static const MimeType textHtml       { MimeTypeHeader{ "text"       , "html"         } };
-        inline static const MimeType appJson        { MimeTypeHeader{ "application", "json"         } };
-        inline static const MimeType appXml         { MimeTypeHeader{ "application", "xml"          } };
-        inline static const MimeType appOctetStream { MimeTypeHeader{ "application", "octet-stream" } };
-        inline static const MimeType imagePng       { MimeTypeHeader{ "image"      , "png"          } };
-        inline static const MimeType imageJpeg      { MimeTypeHeader{ "image"      , "jpeg"         } };
-        inline static const MimeType multipartForm  { MimeTypeHeader{ "multipart"  , "form-data"    } };
+        MimeTypes() = delete; // MimeTypes acts like a sealed namespace.
+        // Text & Web
+        inline static const MimeType textPlain          { MimeTypeHeader{ "text",        "plain"      } };
+        inline static const MimeType textHtml           { MimeTypeHeader{ "text",        "html"       } };
+        inline static const MimeType textCss            { MimeTypeHeader{ "text",        "css"        } };
+        inline static const MimeType textCsv            { MimeTypeHeader{ "text",        "csv"        } };
+        inline static const MimeType textJavascript     { MimeTypeHeader{ "text",        "javascript" } };
+
+        // Application & Forms
+        inline static const MimeType appJson            { MimeTypeHeader{ "application", "json"                  } };
+        inline static const MimeType appXml             { MimeTypeHeader{ "application", "xml"                   } };
+        inline static const MimeType appFormUrlEncoded  { MimeTypeHeader{ "application", "x-www-form-urlencoded" } };
+        inline static const MimeType appOctetStream     { MimeTypeHeader{ "application", "octet-stream"          } };
+        inline static const MimeType appPdf             { MimeTypeHeader{ "application", "pdf"                   } };
+        inline static const MimeType appZip             { MimeTypeHeader{ "application", "zip"                   } };
+
+        // Multipart
+        inline static const MimeType multipartForm      { MimeTypeHeader{ "multipart",   "form-data" } };
+
+        // Images
+        inline static const MimeType imagePng           { MimeTypeHeader{ "image",       "png"     } };
+        inline static const MimeType imageJpeg          { MimeTypeHeader{ "image",       "jpeg"    } };
+        inline static const MimeType imageGif           { MimeTypeHeader{ "image",       "gif"     } };
+        inline static const MimeType imageWebp          { MimeTypeHeader{ "image",       "webp"    } };
+        inline static const MimeType imageSvg           { MimeTypeHeader{ "image",       "svg+xml" } };
     };
 
 }

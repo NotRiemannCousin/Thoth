@@ -1,0 +1,10 @@
+<form class="side-box new-post" data-api="/api/posts">
+  <h3>+ New Post</h3>
+  <input type="text" name="title" placeholder="Post title..." maxlength="100" required>
+  <input type="text" name="tags" data-list list="existing-tags" placeholder="Comma-separated tags (up to 5)..." required>
+  <datalist id="existing-tags">
+    %%{0}%%
+  </datalist>
+  <textarea name="content" placeholder="Write your message..." maxlength="2000" required></textarea>
+  <button type="submit">POST</button>
+</form>

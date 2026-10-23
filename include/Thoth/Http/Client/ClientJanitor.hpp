@@ -4,7 +4,6 @@
 #include <thread>
 
 #include <Thoth/Http/Client/Definitions.hpp>
-#include <Thoth/Http/_base.hpp>
 
 namespace Thoth::Http {
     //! @brief Manages a pool of reusable HTTP sockets to optimize consecutive calls.

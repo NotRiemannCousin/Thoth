@@ -75,7 +75,7 @@ namespace Thoth::Http {
         explicit Headers(const MapType& initAs);
 
         Headers(std::initializer_list<HeaderPair> init);
-        Headers(std::initializer_list<std::initializer_list<HeaderPair>>) = delete;
+        Headers(std::initializer_list<std::initializer_list<HeaderPair>>) = delete; // Removing ambiguous call.
 
 
         //! @brief Tries to parse the headers from the raw TCP std::string.

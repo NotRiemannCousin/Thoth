@@ -27,7 +27,7 @@ namespace Thoth::Http {
         //!
         //! @tparam Method The HTTP method used for the request and present in the response.
         //! @tparam Body The body type of the response (e.g., String, Json, etc.).
-        template<class Method,  WritableBodyConcept Body>
+        template<class Method,  IncomingBodyConcept Body>
         using ExpResponse = std::expected<Response<Method, Body>, ThothError>;
 
         using SocketPtr = std::shared_ptr<ClientConnection>;
@@ -64,7 +64,7 @@ namespace Thoth::Http {
         static auto SendAndParse(Request<Method, Body> request, F&& bodyFactory, ClientOptions opts = {}) -> ExpResponse<Method, Body>;
 
         //! @brief Sends synced (thread blocking) requests.
-        template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody>
+        template<MethodConcept Method, OutgoingBodyConcept RequestBody, IncomingBodyConcept ResponseBody>
             requires std::default_initializable<ResponseBody>
         static auto SendAs(Request<Method, RequestBody> request, ClientOptions opts = {}) -> ExpResponse<Method, ResponseBody>;
 
@@ -82,7 +82,7 @@ namespace Thoth::Http {
         //!   where the JSON parser needs configuration based on headers.
         //!
         //! **Input Requirements:**
-        //! - `ResponseBody`: Must satisfy `WritableBodyConcept`.
+        //! - `ResponseBody`: Must satisfy `IncomingBodyConcept`.
         //! - `F`: Must satisfy `ResponseBodyFactoryConcept<F, ResponseBody>`.
         //!
         //! @tparam Method The HTTP method type.
@@ -93,7 +93,7 @@ namespace Thoth::Http {
         //! @param bodyFactory A callable `F(const ResponseHead&)` returning `std::expected<ResponseBody, ThothError>`.
         //! @param opts Connection Options.
         //! @return `ExpResponse<Method, ResponseBody>` containing the response.
-        template<MethodConcept Method, ReadableBodyConcept RequestBody, WritableBodyConcept ResponseBody, class F>
+        template<MethodConcept Method, OutgoingBodyConcept RequestBody, IncomingBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
         static auto SendAsAndParse(Request<Method, RequestBody> request, F&& bodyFactory, ClientOptions opts = {}) -> ExpResponse<Method, ResponseBody>;
 
@@ -104,26 +104,26 @@ namespace Thoth::Http {
         static auto H_SendAndParse(F&& bodyFactory, ClientOptions opts = {});
 
         //! @hof{SendAs}
-        template<WritableBodyConcept ResponseBody>
+        template<IncomingBodyConcept ResponseBody>
         static constexpr auto H_SendAs(ClientOptions opts = {});
 
         //! @hof{SendAsAndParse}
-        template<WritableBodyConcept ResponseBody, class F>
+        template<IncomingBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
         static auto H_SendAsAndParse(F&& bodyFactory, ClientOptions opts = {});
 
     private:
         // I will do it when... Idk
-        // template<MethodConcept Method, WritableBodyConcept ResponseBody>
+        // template<MethodConcept Method, IncomingBodyConcept ResponseBody>
         // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> 1RawSend_(Request<Method> request);
 
-        template<MethodConcept Method, WritableBodyConcept ResponseBody, class F>
+        template<MethodConcept Method, IncomingBodyConcept ResponseBody, class F>
             requires ResponseBodyFactoryConcept<F, ResponseBody>
         static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> ParseHttp1_(
             SocketPtr infoPtr, F&& bodyFactory, std::optional<ClientConnection::Deadline> deadline,
             std::size_t maxBodyLength);
 
-        // template<MethodConcept Method, WritableBodyConcept ResponseBody>
+        // template<MethodConcept Method, IncomingBodyConcept ResponseBody>
         // static std::expected<std::pair<SocketPtr, Response<Method, ResponseBody>>, ThothError> request();
         //
         // template<MethodConcept Method>

@@ -1,7 +1,9 @@
 add_project_test(
         ThothHttpTests
         ClientTests.cpp
+        ServerTests.cpp
         HeadersTests.cpp
+        HttpTests.cpp
         TypedHeaderTests.cpp
         UrlTests.cpp
 )

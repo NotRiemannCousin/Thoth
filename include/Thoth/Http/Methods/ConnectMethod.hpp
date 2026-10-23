@@ -14,7 +14,7 @@
 //         }
 //
 //         static WebResultOper ValidateResponse(StatusCodeEnum statusCode, std::string_view body, const Url&, const Headers&) {
-//             if (GetStatusType(statusCode) == StatusTypeEnum::SUCCESSFUL)
+//             if (GetStatusType(statusCode) == StatusTypeEnum::Successful)
 //                 return {};
 //
 //             if ((statusCode == StatusCodeEnum::NoContent || statusCode == StatusCodeEnum::NotModified) && !body.empty())

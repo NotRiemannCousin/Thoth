@@ -3,7 +3,7 @@
 #include <Hermes/Utils/Overloads.hpp>
 #include <Thoth/Http/Client/Client.hpp>
 #include <Thoth/Http/Request/Request.hpp>
-#include <Thoth/Http/_base/Http1.hpp>
+#include <Thoth/Http/_base/Transport/Http1.hpp>
 #include <Thoth/Utils/Ranges/SharedInputView.hpp>
 
 #include <chrono>
@@ -69,7 +69,7 @@ TEST_F(ClientTest, Send_ExampleCom_ExpiredRequestTimeout_ReturnsSendTimeout) {
     EXPECT_EQ(result.error(), ConnectionErrorEnum::SendTimeout);
 }
 
-TEST_F(ClientTest, Httpbin_DelayedResponse_RequestTimeout_ReturnsParseError) {
+TEST_F(ClientTest, Httpbin_DelayedResponse_RequestTimeout_ReturnsReceiveTimeout) {
     auto request{ GetRequest::FromUrl(k_slowResponseUrl) };
     ASSERT_TRUE(request.has_value());
 
@@ -81,7 +81,7 @@ TEST_F(ClientTest, Httpbin_DelayedResponse_RequestTimeout_ReturnsParseError) {
         GTEST_SKIP() << "httpbin.org is unavailable";
 
     ASSERT_FALSE(result.has_value());
-    EXPECT_EQ(result.error(), MessageParseErrorEnum::InvalidStartLine);
+    EXPECT_EQ(result.error(), ConnectionErrorEnum::ReceiveTimeout);
 }
 
 TEST_F(ClientTest, Request_ExplicitPort_IsPreservedInAuthority) {
@@ -96,11 +96,11 @@ TEST_F(ClientTest, Request_ExplicitPort_IsPreservedInAuthority) {
 
 TEST_F(ClientTest, PrepareBodyHeaders_SizedBody_UsesContentLength) {
     Headers headers{
-        { "content-length",    "999"    },
+        { "content-length",    "999"     },
         { "transfer-encoding", "chunked" }
     };
 
-    details_::Http1::PrepareBodyHeaders(headers, std::string{ "body" });
+    Transport::Http1::PrepareBodyHeaders(headers, std::string{ "body" });
 
     EXPECT_TRUE(headers.Exists("content-length", "4"));
     EXPECT_FALSE(headers.Exists("transfer-encoding"));

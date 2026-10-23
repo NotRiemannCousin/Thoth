@@ -78,10 +78,6 @@ Json::Json(const Json& other)      : m_value{ CloneValue(other.m_value) } {
     DEBUG_PRINT("JsonVal => const JsonVal& other");
 }
 
-Json::Json(bool b) : m_value{ b } {
-    DEBUG_PRINT("JsonVal => bool b");
-}
-
 
 
 
@@ -140,11 +136,6 @@ Json& Json::operator=(const Json& other) {
     m_value = CloneValue(other.m_value);
     DEBUG_PRINT("JsonVal operator => const JsonVal& other");
 
-    return *this;
-}
-
-Json& Json::operator=(bool other) {
-    m_value = other;
     return *this;
 }
 
@@ -310,7 +301,7 @@ OptCRefValWrapper Json::Get(const KeyView key) const {
 }
 OptValWrapper Json::GetCopy(const KeyView key) const {
     OptCRefValWrapper curr{ this };
-    RESOLVE_KEY_AND_RETURN(*curr, std::nullopt);
+    RESOLVE_KEY_AND_RETURN(**curr, std::nullopt);
 }
 OptValWrapper Json::GetAndMove(const KeyView key) && {
     OptRefValWrapper curr{ this };

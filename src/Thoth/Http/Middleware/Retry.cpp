@@ -1,4 +1,4 @@
-#include <Thoth/Http/Middleware/Retry.hpp>
+#include <Thoth/Http/Client/Middleware/Retry.hpp>
 #include <algorithm>
 
 namespace Thoth::Http::details_ {

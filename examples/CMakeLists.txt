@@ -37,4 +37,6 @@ target_link_libraries(BodyToFile2 PUBLIC Thoth)
 target_link_libraries(Localhost PUBLIC Thoth)
 
 
-add_subdirectory(Comparison)
+add_subdirectory(BasicServer)
+add_subdirectory(PostMortemServer)
+add_subdirectory_if(THOTH_BUILD_COMP_EXAMPLE Comparison)

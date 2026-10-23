@@ -40,8 +40,8 @@ namespace Thoth::Http::NHeaders {
         using ValueType    = std::conditional_t<IsConst, const HeaderPair*, HeaderPair*>;
         using ValuesType   = std::vector<ValueType>;
 
-        MultiValueProxy(MultiValueProxy&&) = delete;
-        MultiValueProxy(const MultiValueProxy&) = delete;
+        MultiValueProxy(MultiValueProxy&&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
+        MultiValueProxy(const MultiValueProxy&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
 
         //! @brief Creates a proxy for `key` in `headers`.
         MultiValueProxy(std::string_view key, HeaderType& headers, PatternType inPattern = {});
@@ -58,6 +58,10 @@ namespace Thoth::Http::NHeaders {
         //! @return The parsed values, or `InvalidHeaderFormat` when a present value is invalid.
         //! @note Consumes the proxy.
         std::expected<Type, InvalidHeaderFormat> GetWithDefault(Type defaultValue) &&;
+
+        //! @brief Returns whether the header is set.
+        //! @note Consumes the proxy.
+        bool IsSetted() const;
 
         //! @brief Replaces the header with the serialized values from `newValue`.
         template<std::ranges::range R>

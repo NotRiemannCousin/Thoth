@@ -1,7 +1,5 @@
 #pragma once
 #include <expected>
-#include <Thoth/Http/NHeaders/_base.hpp>
-#include <Thoth/Http/NHeaders/Headers.hpp>
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 namespace Thoth::Http::NHeaders {
@@ -33,8 +31,8 @@ namespace Thoth::Http::NHeaders {
         using Type        = std::conditional_t<k_single, typename First<Ts...>::Type, std::variant<Ts...>>;
 #endif
 
-        ValueProxy(ValueProxy&&) = delete;
-        ValueProxy(const ValueProxy&) = delete;
+        ValueProxy(ValueProxy&&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
+        ValueProxy(const ValueProxy&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
 
         //! @brief Creates a proxy for `key` in `headers`.
         ValueProxy(std::string_view key, HeaderType& headers, PatternType inPattern = {});
@@ -51,6 +49,10 @@ namespace Thoth::Http::NHeaders {
         //! @return The parsed value, or `InvalidHeaderFormat` when a present value is invalid.
         //! @note Consumes the proxy.
         std::expected<Type, InvalidHeaderFormat> GetWithDefault(Type defaultValue) &&;
+
+        //! @brief Returns whether the header is set.
+        //! @note Consumes the proxy.
+        bool IsSetted() const;
 
         //! @brief Replaces the header with `newValue`.
         template<class T>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POST /mortem</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">POST <span>/mortem</span></a></h1>
+    <p class="subtitle">thoth/0.6 • in-memory board</p>
+  </header>
+
+  <main class="layout">
+    <section class="feed">
+      %%{0}%%
+    </section>
+
+    <aside class="sidebar">
+      %%{1}%%
+
+      %%{2}%%
+
+      <div class="side-box">
+        <h3>Tags</h3>
+        <div class="tags">
+          <a class="tag%%{3}%%" href="/">all</a>
+          %%{4}%%
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Notices: the server fills it for what is wrong with a page URL, app.js for what the API answered. It only
+       opens when it has text. -->
+  <dialog id="notice">
+    <p id="notice-text">%%{5}%%</p>
+    <form method="dialog">
+      <button type="submit">OK</button>
+    </form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>

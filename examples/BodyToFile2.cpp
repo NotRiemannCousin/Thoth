@@ -6,10 +6,10 @@
 
 static std::expected<void, Thoth::ThothError> SavePdf(const std::string_view url) {
     namespace NHttp = Thoth::Http;
-    using     FileT = Thoth::Dsa::BinFileOutputRange;
+    using Thoth::Http::FileBody;
 
     return NHttp::GetRequest::FromUrl(url)
-            .and_then(NHttp::Client::H_SendAsAndParse<FileT>(FileT::H_AsBody({ "./pg-17-never-forget.pdf" })))
+            .and_then(NHttp::Client::H_SendAsAndParse<FileBody>(FileBody::H_AsBody({ "./pg-17-never-forget.pdf" })))
             .transform([](auto){});
 }
 

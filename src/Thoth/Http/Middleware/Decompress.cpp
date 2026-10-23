@@ -1,4 +1,4 @@
-#include <Thoth/Http/Middleware/Decompress.hpp>
+#include <Thoth/Http/Client/Middleware/Decompress.hpp>
 #include <zlib.h>
 #include <array>
 

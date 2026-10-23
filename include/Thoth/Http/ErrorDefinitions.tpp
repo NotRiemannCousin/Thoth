@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 #include <format>
 
 template<>
@@ -13,7 +14,7 @@ struct std::formatter<Thoth::Http::UrlParseErrorEnum> {
             "HostIsRequired: no host found in URL",
             "InvalidPort: make sure that the port is a integer between 0 a 65535"
         };
-        return std::format_to(ctx.out(), "{}", desc[to_underlying(err)]);
+        return std::format_to(ctx.out(), "{}", desc[std::to_underlying(err)]);
     }
 };
 
@@ -26,9 +27,10 @@ struct std::formatter<Thoth::Http::MessageParseErrorEnum> {
             "InvalidStartLine: unknown error, probably a invalid character",
             "InvalidVersion: uses 1.0 or 1.1 (2.0 and 3.0 in the future)",
             "InvalidHeaders: error while parsing headers, maybe invalid values for defined headers or invalid chars",
+            "HeadersTooLarge: headers are too large",
             "VersionNeedsContentLength: HTTP 1.0 needs the use of content-length"
         };
 
-        return std::format_to(ctx.out(), "{}", desc[to_underlying(err)]);
+        return std::format_to(ctx.out(), "{}", desc[std::to_underlying(err)]);
     }
 };

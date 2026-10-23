@@ -58,10 +58,10 @@ namespace Thoth::String {
         //! @}
     };
 
-    char ToLower(unsigned char c);
-    char ToUpper(unsigned char c);
+    char ToLower(char c);
+    char ToUpper(char c);
 
-    bool CaseInsensitiveCompare(unsigned char c1, unsigned char c2);
+    bool CaseInsensitiveCompare(char c1, char c2);
 
     std::string_view AsView(std::string_view str);
 
@@ -86,6 +86,12 @@ namespace Thoth::String {
 
 
     bool IsVisible(char c);
+
+
+    //! @brief ASCII case-insensitive comparison for header tokens (Connection values and the Host policy are
+    //! the users today).
+    template<class R1, class R2>
+    bool TokenEquals(const R1& a, const R2& b);
 }
 
 #include <Thoth/String/Utils.tpp>

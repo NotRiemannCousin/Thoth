@@ -112,6 +112,11 @@ namespace Thoth::Http::NHeaders {
         return result;
     }
 
+    template<bool IsConst, Utils::Serializable ... Ts>
+    bool MultiValueProxy<IsConst, Ts...>::IsSetted() const {
+        return m_headers.Exists(m_key);
+    }
+
 
     template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<std::ranges::range R>

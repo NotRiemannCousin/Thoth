@@ -1,5 +1,7 @@
 #include <Thoth/NJson/Number.hpp>
 
+#include <Thoth/ThothError.hpp>
+
 using Thoth::NJson::Number;
 
 std::optional<Number> Number::TryParse(const std::string_view str) noexcept {
@@ -70,6 +72,17 @@ std::optional<uint64_t> Number::AsUI64() const noexcept {
             return static_cast<uint64_t>(v);
         }
     }, static_cast<const std::variant<int64_t, uint64_t, double>&>(*this));
+}
+
+
+std::expected<int64_t, Thoth::ThothError> Number::ExpectI64() const noexcept {
+    if (const auto val{ AsI64() }) return *val;
+    return std::unexpected{ GenericError{ "Number cannot be represented as int64_t" } };
+}
+
+std::expected<uint64_t, Thoth::ThothError> Number::ExpectUI64() const noexcept {
+    if (const auto val{ AsUI64() }) return *val;
+    return std::unexpected{ GenericError{ "Number cannot be represented as uint64_t" } };
 }
 
 

@@ -6,12 +6,12 @@ namespace NHttp = Thoth::Http;
 
 void PrintResponse(const Thoth::Http::GetResponse& response) {
     std::print(
-        "status: {} {}\n"
+        "status: {}\n"
         "headers:\n"
         "{}\n"
         "body:\n"
         "{}",
-        static_cast<int>(response.status), response.statusMessage, response.headers, response.body
+        response.status, response.headers, response.body
     );
 }
 

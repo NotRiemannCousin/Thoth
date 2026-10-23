@@ -33,7 +33,8 @@ namespace Thoth::NJson {
         Json(Json&& other) noexcept;
         Json(const Json& other);
 
-        Json(bool other);
+        template<std::same_as<bool> T>
+        Json(T other);
         template<class T>
             requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
         Json(T other);
@@ -52,7 +53,9 @@ namespace Thoth::NJson {
         Json& operator=(Json&& other) noexcept;
         Json& operator=(const Json& other);
 
-        Json& operator=(bool other);
+        template<std::same_as<bool> T>
+        Json& operator=(T other);
+
         template<class T>
             requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
         Json& operator=(T other);

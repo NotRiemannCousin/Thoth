@@ -1,11 +1,12 @@
 #pragma once
+
 #include <functional>
 #include <expected>
 #include <concepts>
 #include <ranges>
 #include <algorithm>
 
-
+/*
 namespace Thoth::Utils {
 
     //! @brief If the template parameter is a value, then returns it. If is a type then construct and returns it.
@@ -27,481 +28,6 @@ namespace Thoth::Utils {
     constexpr auto ConstFn(Ret (Class::*ptr)(Args...) const) { return std::mem_fn(ptr); }
     template<class Ret, class Class, class... Args>
     constexpr auto MutFn(Ret (Class::*ptr)(Args...))         { return std::mem_fn(ptr); }
-
-#pragma endregion
-
-
-#pragma region ValueOr
-
-    //! @brief Monad friendly function to transform std::expected<std::optional<T>, Err> into std::expected<T, Err> with a given Err.
-    template<class Opt, class Err>
-    constexpr std::expected<typename std::remove_cvref_t<Opt>::value_type, Err> ValueOr(Opt&& val, Err&& err) {
-        if (val) {
-            if constexpr (std::is_rvalue_reference_v<Opt>)
-                return std::move(*val);
-            else
-                return *val;
-        }
-        return std::unexpected{ std::forward<Err>(err) };
-    }
-
-    //! @hof{ValueOr}
-    template<class Opt, class Err>
-    constexpr auto ValueOrHof(Err&& err) {
-        using OptT = std::optional<Opt>&&;
-        using ValT = typename std::remove_cvref_t<OptT>::value_type;
-
-        return [err = std::forward<Err>(err)](OptT val) -> std::expected<ValT, Err> {
-            if (val) {
-                if constexpr (std::is_rvalue_reference_v<OptT>)
-                    return std::move(*val);
-                else
-                    return *val;
-            }
-            return std::unexpected{ err };
-        };
-    }
-
-#pragma endregion
-
-
-#pragma region CallIfError/Not
-
-    template<bool Negate, class Pred, class Trans, class Val>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr std::expected<Val, std::invoke_result_t<Trans, Val>>
-    CallIfErrorImpl(Pred&& pred, Trans&& trans, Val&& value) {
-        if (std::invoke(pred, value) ^ Negate)
-            return std::forward<Val>(value);
-        return std::unexpected{ std::invoke(trans, std::forward<Val>(value)) };
-    }
-
-    //! @brief In the std::expected<Val, Err> context, returns the value if the predicate match, or
-    //! the std::unexpected with transformation applied to the error otherwise.
-    template<class Pred, class Trans, class Val>
-    constexpr auto CallIfError(Pred&& pred, Trans&& trans, Val&& value) {
-        return CallIfErrorImpl<false>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value)
-        );
-    }
-
-    //! @copybrief CallIfError
-    template<auto Pred, class Trans, class Val>
-    constexpr auto CallIfError(Trans&& trans, Val&& val) {
-        return CallIfError(ToValue<Pred>(), std::forward<Trans>(trans), std::forward<Val>(val));
-    }
-
-    //! @copybrief CallIfError
-    template<auto Pred, auto Trans, class Val>
-    constexpr auto CallIfError(Val&& val) {
-        return CallIfError(ToValue<Pred>(), ToValue<Trans>(), std::forward<Val>(val));
-    }
-
-    //! @brief In the std::expected<Val, Err> context, returns the value if the predicate *doesn't* match, or
-    //! the std::unexpected with transformation applied to the error otherwise.
-    template<class Pred, class Trans, class Val>
-    constexpr auto CallIfErrorNot(Pred&& pred, Trans&& trans, Val&& value) {
-        return CallIfErrorImpl<true>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value)
-        );
-    }
-
-    //! @copybrief CallIfErrorNot
-    template<auto Pred, class Trans, class Val>
-    constexpr auto CallIfErrorNot(Trans&& trans, Val&& val) {
-        return CallIfErrorNot(ToValue<Pred>(), std::forward<Trans>(trans), std::forward<Val>(val));
-    }
-
-    //! @copybrief CallIfErrorNot
-    template<auto Pred, auto Trans, class Val>
-    constexpr auto CallIfErrorNot(Val&& val) {
-        return CallIfErrorNot(ToValue<Pred>(), ToValue<Trans>(), std::forward<Val>(val));
-    }
-
-    //! @hof{CallIfError}
-    template<class Pred, class Trans>
-    constexpr auto CallIfErrorHof(Pred&& pred, Trans&& trans) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans)](auto&& value) {
-            return CallIfError(pred, trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{CallIfError}
-    template<auto Pred, class Trans>
-    constexpr auto CallIfErrorHof(Trans&& trans) {
-        return [trans = std::forward<Trans>(trans)](auto&& value) {
-            return CallIfError(ToValue<Pred>(), trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{CallIfError}
-    template<auto Pred, auto Trans>
-    constexpr auto CallIfErrorHof() {
-        return CallIfErrorHof<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>());
-    }
-
-    //! @hof{CallIfErrorNot}
-    template<class Pred, class Trans>
-    constexpr auto CallIfErrorNotHof(Pred&& pred, Trans&& trans) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans)](auto&& value) {
-            return CallIfErrorNot(pred, trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{CallIfErrorNot}
-    template<auto Pred, class Trans>
-    constexpr auto CallIfErrorNotHof(Trans&& trans) {
-        return [trans = std::forward<Trans>(trans)](auto&& value) {
-            return CallIfErrorNot(ToValue<Pred>(), trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{CallIfErrorNot}
-    template<auto Pred, auto Trans>
-    constexpr auto CallIfErrorNotHof() {
-        return CallIfErrorNotHof<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>());
-    }
-
-#pragma endregion
-
-#pragma region ErrorIf/Not
-
-    template<bool Negate, class Pred, class Val>
-        requires std::predicate<Pred&, Val&>
-    constexpr bool TestIfImpl(Pred&& pred, Val& value) {
-        return std::invoke(pred, value) ^ Negate;
-    }
-
-    template<bool Negate, class Pred, class Val, class Err>
-        requires std::predicate<Pred&, Val&>
-    constexpr std::expected<Val, std::decay_t<Err>>
-    ErrorIfImpl(Pred&& pred, Val&& value, Err&& error) {
-        if (!TestIfImpl<Negate>(pred, value))
-            return std::forward<Val>(value);
-        return std::unexpected{ std::forward<Err>(error) };
-    }
-
-    //! @brief In a std::expected<Val, Err> context, transform an error into a value only if the predicate match.
-    template<class Pred, class Val, class Err>
-    constexpr auto ErrorIf(Pred&& pred, Val&& value, Err&& error) {
-        return ErrorIfImpl<false>(
-            std::forward<Pred>(pred),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief ErrorIf
-    template<auto Pred, class Val, class Err>
-    constexpr auto ErrorIf(Val&& value, Err&& error) {
-        return ErrorIf(ToValue<Pred>(), std::forward<Val>(value), std::forward<Err>(error));
-    }
-
-    //! @brief In a std::expected<Val, Err> context, transform an error into a value only if the predicate *doesn't* match.
-    template<class Pred, class Val, class Err>
-    constexpr auto ErrorIfNot(Pred&& pred, Val&& value, Err&& error) {
-        return ErrorIfImpl<true>(
-            std::forward<Pred>(pred),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief ErrorIfNot
-    template<auto Pred, class Val, class Err>
-    constexpr auto ErrorIfNot(Val&& value, Err&& error) {
-        return ErrorIf(ToValue<Pred>(), std::forward<Val>(value), std::forward<Err>(error));
-    }
-
-    //! @hof{ErrorIf}
-    template<class Pred, class Err>
-    constexpr auto ErrorIfHof(Pred&& pred, Err&& error) {
-        return [pred = std::forward<Pred>(pred),
-                error = std::forward<Err>(error)](auto&& value) {
-            return ErrorIf(pred, std::forward<decltype(value)>(value), error);
-        };
-    }
-
-    //! @hof{ErrorIf}
-    template<auto Pred, class Err>
-    constexpr auto ErrorIfHof(Err&& error) {
-        return [error = std::forward<Err>(error)](auto&& value) {
-            return ErrorIf(ToValue<Pred>(), std::forward<decltype(value)>(value), error);
-        };
-    }
-    //! @hof{ErrorIfNof}
-    template<class Pred, class Err>
-    constexpr auto ErrorIfNotHof(Pred&& pred, Err&& error) {
-        return [pred = std::forward<Pred>(pred),
-                error = std::forward<Err>(error)](auto&& value) {
-            return ErrorIfNot(pred, std::forward<decltype(value)>(value), error);
-        };
-    }
-    //! @hof{ErrorIfNot}
-    template<auto Pred, class Err>
-    constexpr auto ErrorIfNotHof(Err&& error) {
-        return [error = std::forward<Err>(error)](auto&& value) {
-            return ErrorIfNot(ToValue<Pred>(), std::forward<decltype(value)>(value), error);
-        };
-    }
-
-#pragma endregion
-
-
-#pragma region Transform{Opt,Exp}If/Not
-
-    template<bool Negate, class Pred, class Trans, class Val>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformOptIfImpl(Pred&& pred, Trans&& trans, Val&& value)
-        -> std::optional<std::invoke_result_t<Trans, Val>>
-    {
-        if (std::invoke(pred, value) ^ Negate)
-            return std::invoke(trans, std::forward<Val>(value));
-        return std::nullopt;
-    }
-
-    template<bool Negate, class Pred, class Trans, class Val, class Err>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformExpIfImpl(Pred&& pred, Trans&& trans, Val&& value, Err&& error)
-    -> std::expected<std::invoke_result_t<Trans, Val>, std::decay_t<Err>>
-    {
-        if (std::invoke(pred, value) ^ Negate)
-            return std::invoke(trans, std::forward<Val>(value));
-        return std::unexpected{ std::forward<Err>(error) };
-    }
-
-#pragma region std::optional
-
-    //! @brief In the std::optional<Val> context, returns the transformation applied to the value
-    //! if the predicate match, or std::nullopt otherwise.
-    template<class Pred, class Trans, class Val>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformOptIf(Pred&& pred, Trans&& trans, Val&& value) {
-        return TransformOptIfImpl<false>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value)
-        );
-    }
-
-    //! @copybrief TransformOptIf
-    template<auto Pred, class Trans, class Val>
-        requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformOptIf(Trans&& trans, Val&& value) {
-        return TransformOptIf<Pred>(ToValue<Pred>(), std::forward<Trans>(trans), std::forward<Val>(value));
-    }
-
-    //! @copybrief TransformOptIf
-    template<auto Pred, auto Trans, class Val>
-        requires std::invocable<decltype(Trans), Val>
-    constexpr auto TransformOptIf(Val&& value) {
-        return TransformOptIf<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>(), std::forward<Val>(value));
-    }
-
-    //! @brief In the std::optional<Val> context, returns the transformation applied to the value
-    //! if the predicate *doesn't* match, or std::nullopt otherwise.
-    template<class Pred, class Trans, class Val>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformOptIfNot(Pred&& pred, Trans&& trans, Val&& value) {
-        return TransformOptIfImpl<true>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value)
-        );
-    }
-
-    //! @copybrief TransformOptIfNot
-    template<auto Pred, class Trans, class Val>
-        requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformOptIfNot(Trans&& trans, Val&& value) {
-        return TransformOptIfNot<Pred>(ToValue<Pred>(), std::forward<Trans>(trans), std::forward<Val>(value));
-    }
-
-    //! @copybrief TransformOptIfNot
-    template<auto Pred, auto Trans, class Val>
-        requires std::invocable<decltype(Trans), Val>
-    constexpr auto TransformOptIfNot(Val&& value) {
-        return TransformOptIfNot<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>(), std::forward<Val>(value));
-    }
-
-    //! @hof{TransformOptIf}
-    template<class Pred, class Trans>
-        constexpr auto TransformOptIfHof(Pred&& pred, Trans&& trans) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans)](auto&& value) {
-            return TransformOptIf(pred, trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{TransformOptIf}
-    template<auto Pred, class Trans>
-        constexpr auto TransformOptIfHof(Trans&& trans) {
-        return [trans = std::forward<Trans>(trans)](auto&& value) {
-            return TransformOptIf<Pred>(ToValue<Pred>(), trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{TransformOptIf}
-    template<auto Pred, auto Trans>
-        constexpr auto TransformOptIfHof() {
-        return TransformOptIfHof<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>());
-    }
-
-    //! @hof{TransformOptIfNot}
-    template<class Pred, class Trans>
-        constexpr auto TransformOptIfNotHof(Pred&& pred, Trans&& trans) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans)](auto&& value) {
-            return TransformOptIfNot(pred, trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{TransformOptIfNot}
-    template<auto Pred, class Trans>
-        constexpr auto TransformOptIfNotHof(Trans&& trans) {
-        return [trans = std::forward<Trans>(trans)](auto&& value) {
-            return TransformOptIfNot<Pred>(ToValue<Pred>(), trans, std::forward<decltype(value)>(value));
-        };
-    }
-
-    //! @hof{TransformOptIfNot}
-    template<auto Pred, auto Trans>
-        constexpr auto TransformOptIfNotHof() {
-        return TransformOptIfNotHof<Pred, Trans>(ToValue<Pred>(), ToValue<Trans>());
-    }
-#pragma endregion
-
-#pragma region std::expected
-
-    //! @brief In the std::expected<Val, Err> context, returns the transformation applied to the value
-    //! if the predicate match, or std::unexpected{ error } otherwise.
-    template<class Pred, class Trans, class Val, class Err>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformExpIf(Pred&& pred, Trans&& trans, Val&& value, Err&& error) {
-        return TransformExpIfImpl<false>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief TransformExpIf
-    template<auto Pred, class Trans, class Val, class Err>
-        requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformExpIf(Trans&& trans, Val&& value, Err&& error) {
-        return TransformExpIfImpl<false>(
-            ToValue<Pred>(),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief TransformExpIf
-    template<auto Pred, auto Trans, class Val, class Err>
-        requires std::invocable<decltype(Trans), Val>
-    constexpr auto TransformExpIf(Val&& value, Err&& error) {
-        return TransformExpIfImpl<false>(
-            ToValue<Pred>(),
-            ToValue<Trans>(),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-    //! @brief In the std::expected<Val, Err> context, returns the transformation applied to the value
-    //! if the predicate *doesn't* match, or std::unexpected{ error } otherwise.
-    template<class Pred, class Trans, class Val, class Err>
-        requires std::predicate<Pred&, Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformExpIfNot(Pred&& pred, Trans&& trans, Val&& value, Err&& error) {
-        return TransformExpIfImpl<true>(
-            std::forward<Pred>(pred),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief TransformExpIfNot
-    template<auto Pred, class Trans, class Val, class Err>
-        requires std::predicate<decltype(Pred), Val&> && std::invocable<Trans, Val>
-    constexpr auto TransformExpIfNot(Trans&& trans, Val&& value, Err&& error) {
-        return TransformExpIfImpl<true>(
-            ToValue<Pred>(),
-            std::forward<Trans>(trans),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @copybrief TransformExpIfNot
-    template<auto Pred, auto Trans, class Val, class Err>
-        requires std::invocable<decltype(Trans), Val>
-    constexpr auto TransformExpIfNot(Val&& value, Err&& error) {
-        return TransformExpIfImpl<true>(
-            ToValue<Pred>(),
-            ToValue<Trans>(),
-            std::forward<Val>(value),
-            std::forward<Err>(error)
-        );
-    }
-
-    //! @hof{TransformExpIf}
-    template<class Pred, class Trans, class Err>
-    constexpr auto TransformExpIfHof(Pred&& pred, Trans&& trans, Err&& error) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans),
-                error = std::forward<Err>(error)](auto&& value) {
-            return TransformExpIf(pred, trans, std::forward<decltype(value)>(value), error);
-        };
-    }
-
-    //! @hof{TransformExpIf}
-    template<auto Pred, class Trans, class Err>
-        constexpr auto TransformExpIfHof(Trans&& trans, Err&& error) {
-        return [trans = std::forward<Trans>(trans),
-                error = std::forward<Err>(error)](auto&& value) {
-            return TransformExpIf(ToValue<Pred>(), trans, std::forward<decltype(value)>(value), error);
-        };
-    }
-
-    //! @hof{TransformExpIf}
-    template<auto Pred, auto Trans, class Err>
-    constexpr auto TransformExpIfHof(Err&& error) {
-        return TransformExpIfHof(ToValue<Pred>(), ToValue<Trans>(), std::forward<Err>(error));
-    }
-
-    //! @hof{TransformExpIfNot}
-    template<class Pred, class Trans, class Err>
-    constexpr auto TransformExpIfNotHof(Pred&& pred, Trans&& trans, Err&& error) {
-        return [pred = std::forward<Pred>(pred),
-                trans = std::forward<Trans>(trans),
-                error = std::forward<Err>(error)](auto&& value) {
-            return TransformExpIfNot(pred, trans, std::forward<decltype(value)>(value), error);
-        };
-    }
-
-    //! @hof{TransformExpIfNot}
-    template<auto Pred, class Trans, class Err>
-    constexpr auto TransformExpIfNotHof(Trans&& trans, Err&& error) {
-        return [trans = std::forward<Trans>(trans),
-                error = std::forward<Err>(error)](auto&& value) {
-            return TransformExpIfNot(ToValue<Pred>(), trans, std::forward<decltype(value)>(value), error);
-        };
-    }
-
-    //! @hof{TransformExpIfNot}
-    template<auto Pred, auto Trans, class Err>
-    constexpr auto TransformExpIfNotHof(Err&& error) {
-        return TransformExpIfNotHof(ToValue<Pred>(), ToValue<Trans>(), std::forward<Err>(error));
-    }
-#pragma endregion
 
 #pragma endregion
 
@@ -548,7 +74,7 @@ namespace Thoth::Utils {
 
     //! @hof{NulloptIf}
     template<class Pred>
-    constexpr auto NulloptIfHof(Pred&& pred) {
+    constexpr auto H_NulloptIf(Pred&& pred) {
         return [pred = std::forward<Pred>(pred)](auto&& value) {
             return NulloptIf(pred, std::forward<decltype(value)>(value));
         };
@@ -556,13 +82,13 @@ namespace Thoth::Utils {
 
     //! @hof{NulloptIf}
     template<auto Pred>
-    constexpr auto NulloptIfHof() {
+    constexpr auto H_NulloptIf() {
         return NulloptIfHof<Pred>(ToValue(Pred));
     }
 
     //! @hof{NulloptIfNot}
     template<class Pred>
-    constexpr auto NulloptIfNotHof(Pred&& pred) {
+    constexpr auto H_NulloptIfNot(Pred&& pred) {
         return [pred = std::forward<Pred>(pred)](auto&& value) {
             return NulloptIfNot(pred, std::forward<decltype(value)>(value));
         };
@@ -570,49 +96,10 @@ namespace Thoth::Utils {
 
     //! @hof{NulloptIfNot}
     template<auto Pred>
-    constexpr auto NulloptIfNotHof() {
+    constexpr auto H_NulloptIfNot() {
         return NulloptIfNotHof<Pred>(ToValue<Pred>());
     }
 
-#pragma endregion
-
-#pragma region WhileNotFail
-
-    //! @brief fast fail foldr
-    //!
-    //! F -> Exp -> Exp -> Exp
-    //! like reduce but with fast fail
-    template<std::ranges::input_range R, class F, class Acc,
-        class Exp = std::iter_value_t<R>, class Val = Exp::value_type, class Err = Exp::error_type>
-        requires std::same_as<Exp, std::expected<Val, Err>>
-            && std::invocable<F, Acc, Val> && std::same_as<Acc, std::invoke_result_t<F, Acc, Val>>
-    constexpr std::expected<std::remove_cvref_t<Acc>, std::remove_cvref_t<Err>>
-            FoldWhileSuccess(R&& range, F&& callable, Acc&& initial = {}) {
-
-        using AccT = std::remove_cvref_t<Acc>;
-        using ValT = std::remove_cvref_t<Val>;
-        using ErrT = std::remove_cvref_t<Err>;
-
-        AccT accumulator{ std::forward<Acc>(initial) };
-
-        for (auto&& val : range) {
-            if (!val)
-                return std::unexpected{ val.error() };
-
-            accumulator = std::invoke(callable, std::forward<Acc>(accumulator), *val);
-        }
-
-        return accumulator;
-    }
-
-    //! @hof{FoldWhileSuccess}
-    template<class F, class Exp>
-    constexpr auto FoldWhileSuccessHof(F&& callable, Exp&& reducer = {}) {
-        return [callable = std::forward<F>(callable), reducer = std::forward<Exp>(reducer)]
-        <std::ranges::input_range R>(R&& range){
-            return FoldWhileSuccess(std::forward<R>(range), std::forward<F>(callable), std::forward<Exp>(reducer));
-        };
-    }
 #pragma endregion
 
 #pragma region Self
@@ -625,7 +112,7 @@ namespace Thoth::Utils {
     }
 
     template<class F>
-    constexpr auto SelfHof(F&& callable) {
+    constexpr auto H_Self(F&& callable) {
         return [callable = std::forward<F>(callable)]<class T>(T&& val) {
             return Self(std::forward<F>(callable), std::forward<T>(val));
         };
@@ -662,3 +149,4 @@ namespace Thoth::Utils {
 
 #pragma endregion
 }
+*/

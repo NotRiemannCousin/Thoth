@@ -86,6 +86,11 @@ namespace Thoth::Http::NHeaders {
         return std::unexpected{ InvalidHeaderFormat{} };
     }
 
+    template<bool IsConst, Utils::Serializable ... Ts>
+    bool ValueProxy<IsConst, Ts...>::IsSetted() const {
+        return m_headers.Exists(m_key);
+    }
+
     template<bool IsConst, Utils::Serializable ...Ts> // NOLINT(*-unconventional-assign-operator)
     template<class T>
         requires (!IsConst)

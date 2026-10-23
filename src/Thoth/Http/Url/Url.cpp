@@ -231,7 +231,7 @@ std::string Url::CopyFragment() const noexcept {
 
 std::string_view Url::GetPathOrSep() const noexcept { return GetPath().empty() ? "/" : GetPath(); }
 
-Thoth::Http::QueryParams Url::GetQueryParams() const { return QueryParams::Parse(GetQuery()); }
+std::expected<Thoth::Http::QueryParams, Thoth::ThothError> Url::GetQueryParams() const { return QueryParams::Parse(GetQuery()); }
 
 std::string_view Url::GetUrlWithoutFragment() const noexcept {
     return string_view{ m_rawUrl }
@@ -658,6 +658,29 @@ std::expected<Url, Thoth::ThothError> Url::Resolve(std::string_view reference) c
 std::expected<Url, Thoth::ThothError> Url::ResolveRelative(const Url& url, std::string_view reference) {
     return url.Resolve(reference);
 }
+
+std::expected<Url, Thoth::ThothError> Url::FromOriginForm(std::string_view authority, std::string_view target,
+                                                          std::string_view scheme) {
+    if (target.empty() || target.front() != '/')
+        FAIL_WITH(IllFormed);
+    // Host comes straight from the wire, a '/', '?', '#' or '@' in it would silently shift the url boundaries.
+    if (authority.empty() || authority.find_first_of("/?#@ ") != std::string_view::npos)
+        FAIL_WITH(IllFormed);
+
+    std::string raw;
+    raw.reserve(scheme.size() + 3 + authority.size() + target.size());
+    raw.append(scheme).append("://").append(authority).append(target);
+    return FromUrl(std::move(raw));
+}
+
+
+const Url& Url::Placeholder() noexcept {
+    static const Url placeholder{ *FromUrl("http://thoth.invalid/") };
+    return placeholder;
+}
+
+bool Url::IsPlaceholder() const noexcept { return *this == Placeholder(); }
+
 
 std::string Url::Encode(std::string_view str) {
     string buffer;

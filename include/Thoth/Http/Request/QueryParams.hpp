@@ -30,9 +30,7 @@ namespace Thoth::Http{
 
 
         //! @brief Parse the query as it is.
-        static QueryParams Parse(std::string_view paramsStr);
-        //! @brief Tries to decode and then parse.
-        static std::expected<QueryParams, ThothError> ParseDecodified(std::string_view str);
+        static std::expected<QueryParams, ThothError> Parse(std::string_view paramsStr);
 
 
         //! @brief check if a key exists.
@@ -67,11 +65,48 @@ namespace Thoth::Http{
         //! @param value The value to be added.
         //! @return True if the key not exists, false otherwise.
         bool SetIfNull(QueryKeyRef key, QueryValueRef value);
-        //! @brief Get the reference of a key but don't create if it not exists.
-        //! @param key The key.
-        //! @return QueryValues* if the key exists, std::nullopt otherwise.
-        std::optional<QueryValues*> Get(QueryKeyRef key);
 
+#pragma region Getters
+
+
+
+        //! @brief Every value of a key.
+        //! @return The values if the key exists, std::nullopt otherwise.
+        std::optional<QueryValues*> Get(QueryKeyRef key);
+        //! @copydoc Get(QueryKeyRef key)
+        [[nodiscard]] std::optional<const QueryValues*> Get(QueryKeyRef key) const;
+
+        //! @brief Every value of a key, if at least one of them is not empty.
+        //! @brief The first value of a key if it exists.
+        std::optional<QueryValue*> GetFront(QueryKeyRef key);
+        //! @copydoc GetFront(QueryKeyRef key)
+        [[nodiscard]] std::optional<const QueryValue*> GetFront(QueryKeyRef key) const;
+
+        //! @return The values if the key exists and isn't empty, std::nullopt otherwise.
+        std::optional<QueryValues*> GetNonEmpty(QueryKeyRef key);
+        //! @copydoc GetNonEmpty(QueryKeyRef key)
+        [[nodiscard]] std::optional<const QueryValues*> GetNonEmpty(QueryKeyRef key) const;
+
+        //! @brief The first value of a key that is not empty.
+        std::optional<QueryValue*> GetFrontNonEmpty(QueryKeyRef key);
+        //! @copydoc GetFrontNonEmpty(QueryKeyRef key)
+        [[nodiscard]] std::optional<const QueryValue*> GetFrontNonEmpty(QueryKeyRef key) const;
+
+        //! @brief Every value of a key.
+        //! @return The values if the key exists, std::nullopt otherwise.
+        [[nodiscard]] std::optional<QueryValues> GetCopy(QueryKeyRef key) const;
+
+        //! @brief Every value of a key, if at least one of them is not empty.
+        //! @brief The first value of a key if it exists.
+        [[nodiscard]] std::optional<QueryValue> GetCopyFront(QueryKeyRef key) const;
+
+        //! @return The values if the key exists and isn't empty, std::nullopt otherwise.
+        [[nodiscard]] std::optional<QueryValues> GetCopyNonEmpty(QueryKeyRef key) const;
+
+        //! @brief The first value of a key that is not empty.
+        [[nodiscard]] std::optional<QueryValue> GetCopyFrontNonEmpty(QueryKeyRef key) const;
+
+#pragma endregion
 
         IterType begin();
         IterType end();

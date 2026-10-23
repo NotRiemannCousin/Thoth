@@ -2,11 +2,14 @@
 #include <charconv>
 #include <cmath>
 #include <cstdint>
+#include <expected>
 #include <format>
 #include <limits>
 #include <optional>
 #include <string_view>
 #include <variant>
+
+namespace Thoth { struct ThothError; }
 
 namespace Thoth::NJson {
 
@@ -38,6 +41,18 @@ namespace Thoth::NJson {
         //! Succeeds for @c uint64_t (exact), non-negative @c int64_t, and finite
         //! non-negative @c double values that equal their own @c floor() within @c uint64_t range.
         [[nodiscard]] std::optional<uint64_t> AsUI64() const noexcept;
+
+        //! @brief Returns the value as @c int64_t if losslessly representable.
+        //!
+        //! Succeeds for @c int64_t (exact), @c uint64_t ≤ @c INT64_MAX, and finite
+        //! @c double values that equal their own @c floor() within @c int64_t range.
+        [[nodiscard]] std::expected<int64_t, ThothError>  ExpectI64()  const noexcept;
+
+        //! @brief Returns the value as @c uint64_t if losslessly representable.
+        //!
+        //! Succeeds for @c uint64_t (exact), non-negative @c int64_t, and finite
+        //! non-negative @c double values that equal their own @c floor() within @c uint64_t range.
+        [[nodiscard]] std::expected<uint64_t, ThothError> ExpectUI64() const noexcept;
 
         //! @brief Returns the value as @c double. Always succeeds.
         //! @warning May lose precision for integers larger than 2⁵³.

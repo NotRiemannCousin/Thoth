@@ -6,7 +6,6 @@ struct std::formatter<Thoth::Http::RequestHead> {
     constexpr auto parse(auto& ctx) { return ctx.begin(); }
 
     auto format(const Thoth::Http::RequestHead& head, auto& ctx) const {
-        using Thoth::Http::details_::k_crlf;
         const auto query{ head.url.GetQuery() };
 
         auto out{ ctx.out() };

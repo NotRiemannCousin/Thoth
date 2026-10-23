@@ -135,30 +135,30 @@ TEST_F(QueryParamsTest, Iterator_CountMatchesSize) {
 
 TEST_F(QueryParamsTest, Parse_SimpleQueryString) {
     const auto p{ QueryParams::Parse("a=1&b=2") };
-    EXPECT_EQ(p.Size(), 2u);
-    EXPECT_TRUE(p.ValExists("a", "1"));
-    EXPECT_TRUE(p.ValExists("b", "2"));
+    EXPECT_EQ(p->Size(), 2u);
+    EXPECT_TRUE(p->ValExists("a", "1"));
+    EXPECT_TRUE(p->ValExists("b", "2"));
 }
 
 TEST_F(QueryParamsTest, Parse_MultipleValuesPerKey) {
     const auto p{ QueryParams::Parse("tag=cpp,test,gtest") };
     // single value "cpp,test,gtest"
-    EXPECT_TRUE(p.Exists("tag"));
+    EXPECT_TRUE(p->Exists("tag"));
 }
 
 TEST_F(QueryParamsTest, Parse_EmptyString_EmptyParams) {
     const auto p{ QueryParams::Parse("") };
-    EXPECT_TRUE(p.Empty());
+    EXPECT_TRUE(p->Empty());
 }
 
 TEST_F(QueryParamsTest, ParseDecodified_URLEncodedSpaces) {
-    const auto result{ QueryParams::ParseDecodified("name=John%20Doe") };
+    const auto result{ QueryParams::Parse("name=John%20Doe") };
     ASSERT_TRUE(result);
     EXPECT_TRUE(result->ValExists("name", "John Doe"));
 }
 
 TEST_F(QueryParamsTest, ParseDecodified_EncodedPlus) {
-    const auto result{ QueryParams::ParseDecodified("lang=C%2B%2B") };
+    const auto result{ QueryParams::Parse("lang=C%2B%2B") };
     ASSERT_TRUE(result);
     EXPECT_TRUE(result->ValExists("lang", "C++"));
 }
@@ -167,7 +167,7 @@ TEST_F(QueryParamsTest, Format_RoundTrip) {
     QueryParams tmp{{ { "x", { "1", "2" } }, { "y", { "a" } } }};
     const auto formatted{ std::format("{}", tmp) };
     const auto reparsed{ QueryParams::Parse(formatted) };
-    EXPECT_EQ(std::format("{}", reparsed), formatted);
+    EXPECT_EQ(std::format("{}", *reparsed), formatted);
 }
 
 #pragma endregion
@@ -410,8 +410,8 @@ TEST_F(UrlTest, Parse_QueryParams_HaveCorrectValues) {
     const auto r{ Url::FromUrl("https://example.com/search?id=1&type=json") };
     ASSERT_TRUE(r);
     const auto qp{ r->GetQueryParams() };
-    EXPECT_TRUE(qp.ValExists("id", "1"));
-    EXPECT_TRUE(qp.ValExists("type", "json"));
+    EXPECT_TRUE(qp->ValExists("id", "1"));
+    EXPECT_TRUE(qp->ValExists("type", "json"));
 }
 
 TEST_F(UrlTest, Parse_Userinfo_IsExtracted) {

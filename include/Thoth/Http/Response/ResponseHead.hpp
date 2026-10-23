@@ -3,14 +3,13 @@
 
 #include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
 #include <Thoth/Http/Response/StatusCodeEnum.hpp>
-#include <Thoth/Http/_base.hpp>
+#include <Thoth/Http/_base/VersionEnum.hpp>
 
 
 namespace Thoth::Http {
     struct ResponseHead {
-        VersionEnum     version{ VersionEnum::HTTP1_1 };
+        VersionEnum     version{ VersionEnum::Http1_1 };
         StatusCodeEnum  status{ StatusCodeEnum::Ok };
-        std::string     statusMessage{};
         ResponseHeaders headers{ Headers::DefaultHeaders() };
     };
 }

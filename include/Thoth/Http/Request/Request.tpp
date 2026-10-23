@@ -2,9 +2,15 @@
 #include <ranges>
 
 namespace Thoth::Http {
-    template<MethodConcept Method, ReadableBodyConcept Body>
+    template<MethodConcept Method, BodyConcept Body>
+    template<class> requires std::same_as<Body, std::string>
+    std::expected<NJson::Json, ThothError> Request<Method, Body>::AsJson() const {
+        return NJson::Json::Parse(body);
+    }
+
+    template<MethodConcept Method, BodyConcept Body>
     template<class T>
-        requires Hermes::ByteLike<std::ranges::range_value_t<T>>
+        requires Hermes::ByteLike<std::ranges::range_value_t<T>> && OutgoingBodyConcept<Body>
                 || (std::same_as<Body, std::string> && std::formattable<T, char>)
     std::expected<Request<Method, Body>, ThothError> Request<Method, Body>::FromUrl(const std::string_view url, T&& body, Headers headers) {
         static constexpr auto makeBody{ [](T&& body) {
@@ -20,14 +26,17 @@ namespace Thoth::Http {
                 });
     }
 
-    namespace details_ {
-        template<class Stream>
-        using RequestParseStage = ParseStage<Stream, RequestHead>;
+    template<BodyConcept TargetBody, MethodConcept Method>
+    struct IntoPayload<TargetBody, Request<Method, TargetBody>> {
+        Request<Method, TargetBody> val;
 
-        template<class Stream, WritableBodyConcept Body>
-        using RequestParseCompleteStage = ParseCompleteStage<Stream, RequestHead, Body>;
-    }
+        IntoPayload(Request<Method, TargetBody> r) : val{ std::move(r) } {}
 
-
-
+        operator IntoRequestPayload<TargetBody>() && {
+            return IntoRequestPayload<TargetBody>{
+                std::move(static_cast<RequestHead&&>(val)),
+                std::move(val.body)
+            };
+        }
+    };
 }

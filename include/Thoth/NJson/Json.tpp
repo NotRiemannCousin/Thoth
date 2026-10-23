@@ -16,6 +16,9 @@ namespace Thoth::NJson {
 
 #pragma region Construction and Assignment
 
+    template<std::same_as<bool> T>
+    Json::Json(T other) : m_value{ other } {}
+
     template<class T>
         requires std::floating_point<T> || std::integral<T> && (!std::same_as<T, bool>)
     Json::Json(T other) {
@@ -28,9 +31,15 @@ namespace Thoth::NJson {
     }
 
     template<class T>
-    requires std::constructible_from<std::string, T>
+        requires std::constructible_from<std::string, T>
     Json::Json(T&& other) {
         m_value = String::FromOwned(std::string{ std::forward<T>(other) });
+    }
+
+    template<std::same_as<bool> T>
+    Json& Json::operator=(T other) {
+        m_value = other;
+        return *this;
     }
 
     template<class T>
@@ -127,10 +136,10 @@ namespace Thoth::NJson {
     template<class T> RET_REF Json::Ensure() const& { CHECK_TYPE(&As<T>(), std::nullopt);          }
 
 
-    template<class T> RET_CPY Json::EnsureCpy() const& { CHECK_TYPE(&As<T>(), std::nullopt); }
-    template<class T> RET_MUT Json::EnsureMut() &      { return Ensure<T>();                 }
-    template<class T> RET_MOV Json::EnsureMov() &&     { return MOV_FROM(Ensure<T>());       }
-    template<class T> RET_REF Json::EnsureRef() const& { return Ensure<T>();                 }
+    template<class T> RET_CPY Json::EnsureCpy() const& { CHECK_TYPE(As<T>(), std::nullopt); }
+    template<class T> RET_MUT Json::EnsureMut() &      { return Ensure<T>();                }
+    template<class T> RET_MOV Json::EnsureMov() &&     { return MOV_FROM(Ensure<T>());      }
+    template<class T> RET_REF Json::EnsureRef() const& { return Ensure<T>();                }
 
 #pragma endregion
 

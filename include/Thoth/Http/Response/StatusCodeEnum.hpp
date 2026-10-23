@@ -1,9 +1,12 @@
 #pragma once
 #include <expected>
 #include <cstddef>
+#include <format>
+#include <string_view>
+#include <utility>
 
 namespace Thoth::Http {
-    enum class StatusCodeEnum {
+    enum class StatusCodeEnum : std::uint16_t {
         // Informational responses
         Continue                      = 100,
         SwitchingProtocols            = 101,
@@ -83,23 +86,21 @@ namespace Thoth::Http {
 
 
     enum class StatusTypeEnum {
-        INFORMATIONAL,
-        SUCCESSFUL,
-        REDIRECTION,
-        CLIENT_ERROR,
-        SERVER_ERROR
+        Informational,
+        Successful,
+        Redirection,
+        ClientError,
+        ServerError
     };
 
     //! @brief Check what type of code StatusCodeEnum is, the first digit of it's number.
     //!
-    //! 1XX => INFORMATIONAL
-    //! 2XX => SUCCESSFUL
-    //! 3XX => REDIRECTION
-    //! 4XX => CLIENT_ERROR
-    //! 5XX => SERVER_ERROR
-    constexpr StatusTypeEnum GetStatusType(StatusCodeEnum code) {
-        return static_cast<StatusTypeEnum>(static_cast<size_t>(code) / 100 - 1);
-    }
+    //! 1XX => Informational
+    //! 2XX => Successful
+    //! 3XX => Redirection
+    //! 4XX => ClientError
+    //! 5XX => ServerError
+    constexpr StatusTypeEnum GetStatusType(StatusCodeEnum code);
 
 
 
@@ -109,3 +110,5 @@ namespace Thoth::Http {
 
     using WebResultOper = WebResult<void>;
 }
+
+#include <Thoth/Http/Response/StatusCodeEnum.tpp>

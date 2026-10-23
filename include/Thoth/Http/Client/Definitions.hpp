@@ -1,8 +1,10 @@
 #pragma once
 #include <Hermes/Endpoint/IpEndpoint/IpAddress.hpp>
+#include <Thoth/Http/Request/Request.hpp>
+#include <Thoth/Http/Response/Response.hpp>
 
 namespace Thoth::Http {
-        template<MethodConcept Method, WritableBodyConcept ResponseBody>
+    template<MethodConcept Method, BodyConcept ResponseBody>
     struct Response;
 
 
@@ -107,7 +109,3 @@ namespace Thoth::Http {
 }
 
 #include <Thoth/Http/Client/Definitions.tpp>
-
-namespace Thoth::Http {
-    static_assert(ConnectionConcept<ClientConnection>);
-}

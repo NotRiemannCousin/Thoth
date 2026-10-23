@@ -1,6 +1,4 @@
 #pragma once
-#include <print>
-#include <Thoth/Http/NHeaders/Headers.hpp>
 #include <Thoth/Utils/Functional.hpp>
 
 namespace Thoth::Http::NHeaders {
@@ -81,6 +79,11 @@ namespace Thoth::Http::NHeaders {
         }
 
         return std::unexpected{ InvalidHeaderFormat{} };
+    }
+
+    template<bool IsConst, Utils::Serializable ... Ts>
+    bool ListProxy<IsConst, Ts...>::IsSetted() const {
+        return m_headers.Exists(m_key);
     }
 
 

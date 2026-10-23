@@ -1,25 +1,15 @@
 #pragma once
+#include <Thoth/Http/_base/BodyIo/_base/_pch.hpp>
+#include <Thoth/Http/_base/Payload/_base.hpp>
 #include <Thoth/Http/Response/ResponseHead.hpp>
 #include <Thoth/Http/Methods/PostMethod.hpp>
 #include <Thoth/Http/Methods/GetMethod.hpp>
-#include <Thoth/Http/_base.hpp>
 #include <Thoth/NJson/Json.hpp>
-#include <Thoth/Dsa/FileOutputRange.hpp>
 
-#include <Thoth/Http/NHeaders/Response/ResponseHeaders.hpp>
-
-
-namespace Thoth {
-    struct ThothError;
-}
+namespace Thoth { struct ThothError; }
 
 namespace Thoth::Http {
-
-    template<WritableBodyConcept Body>
-    auto GetInserterIterator(Body& body);
-
-
-    template<MethodConcept Method = GetMethod, WritableBodyConcept Body = std::string>
+    template<MethodConcept Method = GetMethod, BodyConcept Body = std::string>
     struct Response : ResponseHead {
         using MethodType = Method;
 
@@ -35,13 +25,18 @@ namespace Thoth::Http {
 
         static std::expected<Response, ThothError> EnsureSuccess(Response&& response);
 
-        // template<>
-        // static std::expected<Response, Response> SplitResult();
-
         //! @brief Monad friendly move of the body, discarding the rest of the response.
         //! Recommended check for Successful() before.
         [[nodiscard]] Body MoveBody() &&;
     };
+
+
+    template<class T>    constexpr bool IsResponse{ false };
+    template<class... T> constexpr bool IsResponse<Response<T...>>{ true };
+
+    template<class T>
+    concept ResponseConcept = IsResponse<T>;
+
 
     using GetResponse  = Response<>;
     using PostResponse = Response<PostMethod>;
@@ -49,14 +44,15 @@ namespace Thoth::Http {
     using GetBinResponse  = Response<GetMethod, std::vector<std::byte>>;
     using PostBinResponse = Response<PostMethod, std::vector<std::byte>>;
 
-    using GetFileResponse  = Response<GetMethod, Dsa::TextFileOutputRange>;
-    using PostFileResponse = Response<PostMethod, Dsa::TextFileOutputRange>;
+    using GetFileResponse  = Response<GetMethod, FileBody>;
+    using PostFileResponse = Response<PostMethod, FileBody>;
 
-    using GetFileBinResponse  = Response<GetMethod, Dsa::BinFileOutputRange>;
-    using PostFileBinResponse = Response<PostMethod, Dsa::BinFileOutputRange>;
+    using GetEmptyResponse  = Response<GetMethod, EmptyBody>;
+    using PostEmptyResponse = Response<PostMethod, EmptyBody>;
 }
 
 
 
 #include <Thoth/Http/Response/Response.tpp>
 
+static_assert(Thoth::Http::IntoResponsePayloadConcept<std::string, Thoth::Http::GetResponse>);

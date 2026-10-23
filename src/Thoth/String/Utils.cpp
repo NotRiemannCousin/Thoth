@@ -1,71 +1,69 @@
 #include <Thoth/String/Utils.hpp>
 
 
-char Thoth::String::ToLower(unsigned char c) {
-    return tolower(c);
+char Thoth::String::ToLower(const char c) {
+    return static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
 }
 
-char Thoth::String::ToUpper(unsigned char c) {
-    return toupper(c);
+char Thoth::String::ToUpper(const char c) {
+    return static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
 }
 
-bool Thoth::String::CaseInsensitiveCompare(unsigned char c1, unsigned char c2) {
-    return tolower(c1) == tolower(c2);
+bool Thoth::String::CaseInsensitiveCompare(const char c1, const char c2) {
+    return ToLower(c1) == ToLower(c2);
 }
 
-std::string_view Thoth::String::AsView(std::string_view str) {
+std::string_view Thoth::String::AsView(const std::string_view str) {
     return str;
 }
 
-void Thoth::String::Trim(std::string_view &str, std::string_view trim) {
+void Thoth::String::Trim(std::string_view &str, const std::string_view trim) {
     LeftTrim(str, trim);
     RightTrim(str, trim);
 }
 
-void Thoth::String::LeftTrim(std::string_view &str, std::string_view trim) {
+void Thoth::String::LeftTrim(std::string_view &str, const std::string_view trim) {
     while (!str.empty() && trim.contains(str.front()))
         str.remove_prefix(1);
 }
 
-void Thoth::String::RightTrim(std::string_view &str, std::string_view trim) {
+void Thoth::String::RightTrim(std::string_view &str, const std::string_view trim) {
     while (!str.empty() && trim.contains(str.back()))
         str.remove_suffix(1);
 }
 
 
 
-std::string_view Thoth::String::Trimmed(std::string_view str, std::string_view trim) {
+std::string_view Thoth::String::Trimmed(const std::string_view str, const std::string_view trim) {
     std::string_view s{ str };
-    Trim(s);
+    Trim(s, trim);
     // ReSharper disable once CppDFALocalValueEscapesFunction
     return s;
 }
 
-std::string_view Thoth::String::LeftTrimmed(std::string_view str, std::string_view trim) {
+std::string_view Thoth::String::LeftTrimmed(const std::string_view str, const std::string_view trim) {
     std::string_view s{ str };
-    LeftTrim(s);
-    // ReSharper disable once CppDFALocalValueEscapesFunction
+    LeftTrim(s, trim);
     return s;
 }
 
-std::string_view Thoth::String::RightTrimmed(std::string_view str, std::string_view trim) {
+std::string_view Thoth::String::RightTrimmed(const std::string_view str, const std::string_view trim) {
     std::string_view s{ str };
-    RightTrim(s);
-    // ReSharper disable once CppDFALocalValueEscapesFunction
+    RightTrim(s, trim);
     return s;
 }
 
 
-std::string Thoth::String::TrimmedStr(std::string_view str, std::string_view trim) {
-    return std::string{ Trimmed(str) };
+std::string Thoth::String::TrimmedStr(const std::string_view str, const std::string_view trim) {
+    return std::string{ Trimmed(str, trim) };
 }
 
-std::string Thoth::String::LeftTrimmedStr(std::string_view str, std::string_view trim) {
-    return std::string{ LeftTrimmed(str) };
+std::string Thoth::String::LeftTrimmedStr(const std::string_view str, const std::string_view trim) {
+    return std::string{ LeftTrimmed(str, trim) };
 }
 
-std::string Thoth::String::RightTrimmedStr(std::string_view str, std::string_view trim) {
-    return std::string{ RightTrimmed(str) };
+std::string Thoth::String::RightTrimmedStr(const std::string_view str, const std::string_view trim) {
+    return std::string{ RightTrimmed(str, trim) };
 }
 
 bool Thoth::String::IsVisible(char c) {

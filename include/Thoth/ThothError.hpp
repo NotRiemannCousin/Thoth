@@ -1,12 +1,15 @@
 #pragma once
 #include <Thoth/NJson/ErrorDefinitions.hpp>
 #include <Thoth/Http/ErrorDefinitions.hpp>
+#include <Thoth/Http/Response/StatusCodeEnum.hpp>
 #include <Hermes/_base/ConnectionErrorEnum.hpp>
 
 namespace Thoth {
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct GenericError {
         std::string error{};
+
+        constexpr bool operator==(const GenericError&) const = default;
     };
 
     using ThothErrorBase = std::variant<
@@ -18,6 +21,7 @@ namespace Thoth {
         Http::UrlParseErrorEnum,
         Http::ConnectionErrorEnum,
         Http::MessageParseErrorEnum,
+        Http::StatusCodeEnum,
         GenericError
     >;
 

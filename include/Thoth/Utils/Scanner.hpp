@@ -9,9 +9,9 @@
 namespace Thoth::Utils {
     template<class T>
     struct Scanner {
-        Scanner()                    = delete;
-        Scanner(Scanner&)            = delete;
-        Scanner& operator=(Scanner&) = delete;
+        Scanner()                    = delete; // Default Scanner is invalid.
+        Scanner(Scanner&)            = delete; // Default Scanner is invalid.
+        Scanner& operator=(Scanner&) = delete; // Default Scanner is invalid.
     };
 
     template<class T>

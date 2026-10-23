@@ -76,11 +76,11 @@ namespace Thoth::Http {
         // [[nodiscard]] std::optional<std::filesystem::path> GetPathAsFilePath() const;
 
         //! @brief return the "/{path}" (always shows "/").
-        [[nodiscard]] std::string_view GetPathOrSep()          const noexcept;
+        [[nodiscard]] std::string_view                       GetPathOrSep()          const noexcept;
         //! @brief Parses the query as QueryParams.
-        [[nodiscard]] QueryParams      GetQueryParams()        const;
+        [[nodiscard]] std::expected<QueryParams, ThothError> GetQueryParams()        const;
         //! @brief It... returns the URL without fragment. What did you expected?
-        [[nodiscard]] std::string_view GetUrlWithoutFragment() const noexcept;
+        [[nodiscard]] std::string_view                       GetUrlWithoutFragment() const noexcept;
 
         //! @brief Tries to convert the given string into URL.
         //! @param rawUrl the given URL.
@@ -99,6 +99,17 @@ namespace Thoth::Http {
 
         //! @brief Static version of @ref Resolve.
         static std::expected<Url, ThothError> ResolveRelative(const Url& url, std::string_view reference);
+
+        //! @brief Builds the Url of an origin-form request target (`/path?q`) under @p authority, one allocation, one parse.
+        static std::expected<Url, ThothError> FromOriginForm(std::string_view authority, std::string_view target,
+                                                              std::string_view scheme = "http");
+
+
+        //! @brief Valid, deterministic stand-in for "no URL yet" (`http://thoth.invalid/`, a reserved TLD that never resolves).
+        [[nodiscard]] static const Url& Placeholder() noexcept;
+        //! @brief True when this Url is the @ref Placeholder.
+        [[nodiscard]] bool IsPlaceholder() const noexcept;
+
 
         //! @brief Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">
         //! Percent-Encoding</a>.

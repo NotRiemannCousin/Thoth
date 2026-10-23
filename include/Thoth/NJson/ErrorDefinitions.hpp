@@ -7,21 +7,29 @@ namespace Thoth::NJson {
     struct JsonParseError {
         size_t idx;
         char c;
+
+        constexpr bool operator==(const JsonParseError&) const = default;
     };
 
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonGetError {
         Key key;
+
+        constexpr bool operator==(const JsonGetError&) const = default;
     };
 
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonFindError {
         Key key;
         std::vector<Key> currentPath;
+
+        constexpr bool operator==(const JsonFindError&) const = default;
     };
 
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
-    struct JsonSearchError { };
+    struct JsonSearchError {
+        constexpr bool operator==(const JsonSearchError&) const = default;
+    };
 
     //! @see Thoth::ThothError "ThothError" is the centralized error type of this library.
     struct JsonWrongTypeError {
@@ -30,6 +38,8 @@ namespace Thoth::NJson {
 
         size_t idxExpected{};
         size_t idxGot{};
+
+        constexpr bool operator==(const JsonWrongTypeError&) const = default;
     };
 
     // TODO: FUTURE: high obscure, change to some fancy way in the future, but that will do

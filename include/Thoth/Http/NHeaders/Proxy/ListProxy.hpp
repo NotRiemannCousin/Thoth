@@ -1,7 +1,6 @@
 #pragma once
 #include <expected>
 #include <Thoth/Http/NHeaders/_base.hpp>
-#include <Thoth/Http/NHeaders/Headers.hpp>
 #include <Thoth/Http/NHeaders/Proxy/_base.hpp>
 
 namespace Thoth::Http {
@@ -38,8 +37,8 @@ namespace Thoth::Http::NHeaders {
 
         using Type        = std::vector<ElemType>;
 
-        ListProxy(ListProxy&&) = delete;
-        ListProxy(const ListProxy&) = delete;
+        ListProxy(ListProxy&&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
+        ListProxy(const ListProxy&) = delete; // Proxies are short-lived accessors, every proxy use should be imediate.
 
         //! @brief Creates a proxy for `key` in `headers`.
         ListProxy(std::string_view key, HeaderType& headers, PatternType inPattern = {});
@@ -56,6 +55,10 @@ namespace Thoth::Http::NHeaders {
         //! @return The parsed list, or `InvalidHeaderFormat` when a present value is invalid.
         //! @note Consumes the proxy.
         std::expected<Type, InvalidHeaderFormat> GetWithDefault(Type defaultValue) &&;
+
+        //! @brief Returns whether the header is set.
+        //! @note Consumes the proxy.
+        bool IsSetted() const;
 
         //! @brief Replaces the header with the serialized values from `newValue`.
         template<std::ranges::range R>
