@@ -156,16 +156,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('concept_thoth_
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
+<p>A factory producing an incoming body before the first body byte is consumed, so the Server can refuse a body (factory error) without draining anything.  
+<a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_http_2__base_2_body_io_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
 <h2 id="header-conceptdef" class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">class</span> F, <span class="keyword">class</span> Body, <span class="keyword">class</span> Head&gt;</div>
-<div class="line">    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">BodyFactoryConcept</a> = <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_writable_body_concept.html">WritableBodyConcept&lt;Body&gt;</a> &amp;&amp;</div>
+<div class="line">    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">BodyFactoryConcept</a> = <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_incoming_body_concept.html">IncomingBodyConcept&lt;Body&gt;</a> &amp;&amp;</div>
 <div class="line">    <span class="keyword">requires</span> (F f, <span class="keyword">const</span> Head&amp; head) {</div>
 <div class="line">        { std::invoke(f, head) } -&gt; std::same_as&lt;std::expected&lt;Body, ThothError&gt;&gt;;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:40</div></div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_writable_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_writable_body_concept.html">Thoth::Http::WritableBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:29</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_factory_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_factory_concept.html">Thoth::Http::BodyFactoryConcept</a></div><div class="ttdoc">A factory producing an incoming body before the first body byte is consumed, so the Server can refuse...</div><div class="ttdef"><b>Definition</b> _base.hpp:106</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_incoming_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_incoming_body_concept.html">Thoth::Http::IncomingBodyConcept</a></div><div class="ttdoc">A body the transport pushes wire bytes into (Server request, Client response).</div><div class="ttdef"><b>Definition</b> _base.hpp:74</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A factory producing an incoming body before the first body byte is consumed, so the Server can refuse a body (factory error) without draining anything. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->

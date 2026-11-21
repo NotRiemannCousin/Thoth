@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['chunkedreadablebodyconcept_0',['ChunkedReadableBodyConcept',['../concept_thoth_1_1_http_1_1_chunked_readable_body_concept.html',1,'Thoth::Http']]],
-  ['connectionconcept_1',['ConnectionConcept',['../concept_thoth_1_1_http_1_1_connection_concept.html',1,'Thoth::Http']]]
+  ['basicroutermiddlewareconcept_0',['BasicRouterMiddlewareConcept',['../concept_thoth_1_1_http_1_1_basic_router_middleware_concept.html',1,'Thoth::Http']]],
+  ['bodyconcept_1',['BodyConcept',['../concept_thoth_1_1_http_1_1_body_concept.html',1,'Thoth::Http']]],
+  ['bodyfactoryconcept_2',['BodyFactoryConcept',['../concept_thoth_1_1_http_1_1_body_factory_concept.html',1,'Thoth::Http']]]
 ];

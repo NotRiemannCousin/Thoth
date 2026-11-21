@@ -155,11 +155,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_last_match_va
   <div class="headertitle"><div class="title">LastMatchVariant.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;variant&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for LastMatchVariant.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_last_match_variant_8hpp__incl.svg" width="178" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_last_match_variant_8hpp__incl.svg" width="287" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_last_match_variant_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -173,15 +175,18 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a8eba8227f6b7f39aa974bbacf254e456" id="r_a8eba8227f6b7f39aa974bbacf254e456"><td class="memTemplParams" colspan="2">template&lt;class T, class Variant&gt; </td></tr>
 <tr class="memitem:a8eba8227f6b7f39aa974bbacf254e456 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_utils.html#a8eba8227f6b7f39aa974bbacf254e456">Thoth::Utils::FirstConvertibleVariant</a> = std::variant_alternative_t&lt;<a class="el" href="namespace_thoth_1_1_utils.html#ac0bed69161d11188b6bb27443248178f">FindMatchIndex</a>&lt;T, Variant, std::is_convertible&gt;(), Variant&gt;</td></tr>
+<tr class="memdesc:a8eba8227f6b7f39aa974bbacf254e456"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first alternative of <span class="tt">Variant</span> that can be coverted from <span class="tt">T</span> (e.g. <span class="tt">const char*</span> converts to <span class="tt">std::string</span> in <span class="tt">std::variant&lt;int, std::string&gt;</span>).  <br /></td></tr>
 <tr class="memitem:a24b3eeb3011c910195246b4d2d55934b" id="r_a24b3eeb3011c910195246b4d2d55934b"><td class="memTemplParams" colspan="2">template&lt;class T, class Variant&gt; </td></tr>
 <tr class="memitem:a24b3eeb3011c910195246b4d2d55934b template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_utils.html#a24b3eeb3011c910195246b4d2d55934b">Thoth::Utils::FirstEqualVariant</a> = std::variant_alternative_t&lt;<a class="el" href="namespace_thoth_1_1_utils.html#ac0bed69161d11188b6bb27443248178f">FindMatchIndex</a>&lt;T, Variant, std::is_same&gt;(), Variant&gt;</td></tr>
+<tr class="memdesc:a24b3eeb3011c910195246b4d2d55934b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first alternative of <span class="tt">Variant</span> that is exactly <span class="tt">T</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa09a77fbefaf13e1d7850746b5dfe148" id="r_aa09a77fbefaf13e1d7850746b5dfe148"><td class="memTemplParams" colspan="2">template&lt;class T, class Variant, template&lt; class, class &gt; class Relation, std::size_t Index = 0&gt; </td></tr>
-<tr class="memitem:aa09a77fbefaf13e1d7850746b5dfe148 template"><td class="memItemLeft">consteval size_t&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_utils.html#aa09a77fbefaf13e1d7850746b5dfe148">Thoth::Utils::FindMatchIndexImpl</a> ()</td></tr>
+<tr class="memitem:a23e02fe39a280f7ad00d088ac51ee12c" id="r_a23e02fe39a280f7ad00d088ac51ee12c"><td class="memTemplParams" colspan="2">template&lt;class T, class Variant, template&lt; class, class &gt; class Relation, std::size_t Index = 0&gt; </td></tr>
+<tr class="memitem:a23e02fe39a280f7ad00d088ac51ee12c template"><td class="memItemLeft">consteval std::size_t&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_utils.html#a23e02fe39a280f7ad00d088ac51ee12c">Thoth::Utils::FindMatchIndexImpl</a> ()</td></tr>
 <tr class="memitem:ac0bed69161d11188b6bb27443248178f" id="r_ac0bed69161d11188b6bb27443248178f"><td class="memTemplParams" colspan="2">template&lt;class T, class Variant, template&lt; class, class &gt; class Relation&gt; </td></tr>
 <tr class="memitem:ac0bed69161d11188b6bb27443248178f template"><td class="memItemLeft">consteval std::size_t&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_utils.html#ac0bed69161d11188b6bb27443248178f">Thoth::Utils::FindMatchIndex</a> ()</td></tr>
+<tr class="memdesc:ac0bed69161d11188b6bb27443248178f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of the first alternative of <span class="tt">Variant</span> that satisfies the relation.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

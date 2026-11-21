@@ -156,44 +156,116 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 A functional, expressive, C++26 webdev library</h1>
 <p><img src="Thoth-logo.webp" alt="" title="Thoth, the Egyptian god of writing and wisdom" class="inline"/></p>
 <p><a class="el" href="namespace_thoth.html">Thoth</a> is a modern C++26 lib and webdev library for building both web servers and clients. Powered by the <a href="https://github.com/NotRiemannCousin/Hermes">Hermes</a> library, <a class="el" href="namespace_thoth.html">Thoth</a> is designed to harness the latest C++ features for creating robust, high-performance web applications. Inspired by the egyptian god of knowledge, magic and the moon, <a class="el" href="namespace_thoth.html">Thoth</a> embraces a philosophy of strong type safety and compile-time checks without sacrificing usability or elegance.</p>
 <blockquote class="doxtable">
-<p>Server side connections are under development, only client connections are availabe. CMake says C++23 but is because MSVC is lazy, the target is C++26. </p>
+<p>CMake says C++23 but is because MSVC is lazy, the target is C++26. </p>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 Installation</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Manual (CMake)</h2>
 <div class="fragment"><div class="line">include(CPM.cmake)</div>
 <div class="line"> </div>
 <div class="line">CPMAddPackage(</div>
 <div class="line">        NAME Thoth</div>
 <div class="line">        GITHUB_REPOSITORY NotRiemannCousin/Thoth</div>
-<div class="line">        GIT_TAG v0.5.0</div>
+<div class="line">        GIT_TAG v0.6.0</div>
 <div class="line">)</div>
 <div class="line"> </div>
 <div class="line">target_link_libraries(your_target PRIVATE Thoth)</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 pixi</h2>
 <blockquote class="doxtable">
 <p><em>Coming soon.</em> </p>
 </blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 vcpkg</h2>
 <blockquote class="doxtable">
 <p><em>Maybe, someday, who knows.</em> </p>
 </blockquote>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Middlewares</h1>
-<p>Client requests can be wrapped with composable middlewares. Each one takes a handler (<span class="tt">Request&lt;Method, Body&gt; -&gt; ExpResponse&lt;Method, Body&gt;</span>, the same shape as <span class="tt">Client::H_Send()</span>) and returns a new handler, so they nest around the base send call:</p>
-<div class="fragment"><div class="line">NHttp::GetRequest::FromUrl(url)</div>
-<div class="line">    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))</div>
-</div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponentialbackoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your ownmiddlewares too.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
-Examples</h1>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+Server</h1>
+<p>A <a class="el" href="namespace_thoth.html">Thoth</a> server is a <span class="tt">Server&lt;Router, Hermes::AsyncListenerSocket&gt;</span>. The class itself manages the connection lifetime, the accepted hosts, the communication limits. The socket gives you things like execution context + endpoint management and the Router gives you the route registration, middlewares, fallbacks, etc.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;print&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;stdexec/execution.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_server_8hpp.html">Thoth/Http/Server/Server.hpp</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    Hermes::FastIoLoop ioLoop{ std::thread::hardware_concurrency() };</div>
+<div class="line"> </div>
+<div class="line">    Hermes::DefaultSocketData&lt;Hermes::FastIoLoop&gt; listenData{{ Hermes::IpAddress::LoopbackIpv4(), 8080 }};</div>
+<div class="line">    listenData.executionContext = &amp;ioLoop;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a> server{ std::move(listenData) };</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// The default Host policy only knows &quot;localhost&quot;, curl poking 127.0.0.1 would eat a 400 before any route.</span></div>
+<div class="line">    server.<a class="code hl_variable" href="struct_thoth_1_1_http_1_1_server.html#a2c595b743c2bb709df57b5a989ebb555">hosts</a>.<a class="code hl_variable" href="struct_thoth_1_1_http_1_1_host_policy.html#a972f62bd3edb0b17591197774acc7732">allowed</a>.push_back(<span class="stringliteral">&quot;127.0.0.1&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// The following functions are the behavior of the default router, you can customize it with your own.</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// With ResponseEntry, returning a string becomes a 200 with Content-Type text/plain.</span></div>
+<div class="line">    server-&gt;Route(<span class="stringliteral">&quot;/&quot;</span>, [](<a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd">Thoth::Http::GetRequest</a>&amp;) -&gt; <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a88c07d1d9cf54c621831d0469c4eaa53">Thoth::Http::GetResponseEntry</a> {</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="stringliteral">&quot;hello from Thoth&quot;</span>;</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// JSON responses are automatically serialized with Content-Type application/json.</span></div>
+<div class="line">    server-&gt;Route(<span class="stringliteral">&quot;/json&quot;</span>, [](<a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd">Thoth::Http::GetRequest</a>&amp;) -&gt; <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a88c07d1d9cf54c621831d0469c4eaa53">Thoth::Http::GetResponseEntry</a> {</div>
+<div class="line">        <span class="keywordflow">return</span> <a class="code hl_struct" href="struct_thoth_1_1_n_json_1_1_json.html">Thoth::NJson::Json</a>{{ { <span class="stringliteral">&quot;hello&quot;</span>, <span class="stringliteral">&quot;hello from Thoth&quot;</span> } }};</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Bodies round-trip, strings, bytes, JSON and files.</span></div>
+<div class="line">    server-&gt;Route(<span class="stringliteral">&quot;/echo&quot;</span>, [](<a class="code hl_typedef" href="namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf">Thoth::Http::PostRequest</a>&amp; request) -&gt; <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a675bab51e11fc925443cd9faac41a08b">Thoth::Http::PostResponseEntry</a> {</div>
+<div class="line">        <span class="keywordflow">return</span> std::move(request.<a class="code hl_variable" href="struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143">body</a>);</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// One path, one callback per method (404 and 405 are set by the BasicRouter).</span></div>
+<div class="line">    server-&gt;Match(<span class="stringliteral">&quot;/res&quot;</span>,</div>
+<div class="line">        [](Thoth::Http::PutRequest&amp;)    -&gt; <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_response_entry.html">Thoth::Http::ResponseEntry&lt;Thoth::Http::PutMethod&gt;</a>    { <span class="keywordflow">return</span> <span class="stringliteral">&quot;put&quot;</span>; },</div>
+<div class="line">        [](Thoth::Http::DeleteRequest&amp;) -&gt; <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_response_entry.html">Thoth::Http::ResponseEntry&lt;Thoth::Http::DeleteMethod&gt;</a> { <span class="keywordflow">return</span> <span class="stringliteral">&quot;deleted&quot;</span>; });</div>
+<div class="line"> </div>
+<div class="line">    std::println(<span class="stringliteral">&quot;listening on http://127.0.0.1:8080, press Enter to stop&quot;</span>);</div>
+<div class="line">    std::jthread stopper{ [&amp;server] {</div>
+<div class="line">        std::string line;</div>
+<div class="line">        std::getline(std::cin, line);</div>
+<div class="line">        server.<a class="code hl_function" href="struct_thoth_1_1_http_1_1_server.html#a3a581e169066a13a6202b9aef3d273a9">Stop</a>();</div>
+<div class="line">    } };</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Run() is a sender: it completes on listener error or when Stop() cancels it.</span></div>
+<div class="line">    stdexec::sync_wait(server.<a class="code hl_function" href="struct_thoth_1_1_http_1_1_server.html#a78ee64b87864d268fd55df8d1fc8cf44">Run</a>() | stdexec::upon_stopped([] { return 0; }));</div>
+<div class="line">}</div>
+<div class="ttc" id="a_server_8hpp_html"><div class="ttname"><a href="_server_8hpp.html">Server.hpp</a></div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a38dd6dac102e86e63accba7e297c83dd"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd">Thoth::Http::GetRequest</a></div><div class="ttdeci">Request&lt;&gt; GetRequest</div><div class="ttdef"><b>Definition</b> Request.hpp:38</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a675bab51e11fc925443cd9faac41a08b"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a675bab51e11fc925443cd9faac41a08b">Thoth::Http::PostResponseEntry</a></div><div class="ttdeci">ResponseEntry&lt; PostMethod &gt; PostResponseEntry</div><div class="ttdef"><b>Definition</b> ResponseEntry.hpp:81</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a88c07d1d9cf54c621831d0469c4eaa53"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a88c07d1d9cf54c621831d0469c4eaa53">Thoth::Http::GetResponseEntry</a></div><div class="ttdeci">ResponseEntry&lt;&gt; GetResponseEntry</div><div class="ttdef"><b>Definition</b> ResponseEntry.hpp:80</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_aefa963698d745b6ca25fa35c2849cadf"><div class="ttname"><a href="namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf">Thoth::Http::PostRequest</a></div><div class="ttdeci">Request&lt; PostMethod &gt; PostRequest</div><div class="ttdef"><b>Definition</b> Request.hpp:39</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_host_policy_html_a972f62bd3edb0b17591197774acc7732"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_host_policy.html#a972f62bd3edb0b17591197774acc7732">Thoth::Http::HostPolicy::allowed</a></div><div class="ttdeci">std::vector&lt; std::string &gt; allowed</div><div class="ttdef"><b>Definition</b> Definitions.hpp:22</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_html_af1628c73ebfc2ae8ced1f932f0124143"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_request.html#af1628c73ebfc2ae8ced1f932f0124143">Thoth::Http::Request::body</a></div><div class="ttdeci">Body body</div><div class="ttdef"><b>Definition</b> Request.hpp:16</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_response_entry_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_response_entry.html">Thoth::Http::ResponseEntry</a></div><div class="ttdoc">Request&#39;s evil twin designed to help in conversions.</div><div class="ttdef"><b>Definition</b> ResponseEntry.hpp:50</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a></div><div class="ttdoc">The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...</div><div class="ttdef"><b>Definition</b> Server.hpp:27</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html_a2c595b743c2bb709df57b5a989ebb555"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html#a2c595b743c2bb709df57b5a989ebb555">Thoth::Http::Server::hosts</a></div><div class="ttdeci">HostPolicy hosts</div><div class="ttdef"><b>Definition</b> Server.hpp:69</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html_a3a581e169066a13a6202b9aef3d273a9"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html#a3a581e169066a13a6202b9aef3d273a9">Thoth::Http::Server::Stop</a></div><div class="ttdeci">void Stop(bool graceful=true, std::chrono::milliseconds deadline=std::chrono::seconds{ 30 }) const</div><div class="ttdoc">Request a graceful stop (idempotent). Does not block.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_server_html_a78ee64b87864d268fd55df8d1fc8cf44"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_server.html#a78ee64b87864d268fd55df8d1fc8cf44">Thoth::Http::Server::Run</a></div><div class="ttdeci">auto Run() const -&gt; stdexec::sender auto</div><div class="ttdoc">Start the accept loop. Returns a sender that completes when the server stops, it doesn&#39;t block.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_n_json_1_1_json_html"><div class="ttname"><a href="struct_thoth_1_1_n_json_1_1_json.html">Thoth::NJson::Json</a></div><div class="ttdef"><b>Definition</b> Json.hpp:19</div></div>
+</div><!-- fragment --><p>With BasicRouter, routes can carry middlewares through <span class="tt">Use(...)</span>. A middleware call must return <span class="tt">std::optional&lt;T&gt;</span> or <span class="tt">std::expected&lt;T, IntoResponsePayload&gt;</span>. If a route declares a parameter <span class="tt">T</span> it will see the middleware as required and will fail the request if it fails (<span class="tt">std::expected</span> with the given response from the payload, <span class="tt">std::optional</span> with <span class="tt">400 BAD REQUEST</span>). If it declares <span class="tt">std::optional&lt;T&gt;</span> the middleware can fail because it will be passed as <span class="tt">std::nullopt</span>, The server is also exception safe, handlers can throw a <span class="tt">StatusCodeEnum</span> to answer it directly.</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>Session { std::string user; };</div>
+<div class="line"> </div>
+<div class="line">server-&gt;Route(<span class="stringliteral">&quot;/who&quot;</span>, <a class="code hl_function" href="namespace_thoth_1_1_http.html#a7550281b3370448a0074975050e2d617">Thoth::Http::Use</a>(</div>
+<div class="line">        [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp;) -&gt; std::expected&lt;Session, Thoth::Http::StatusCodeEnum&gt; {</div>
+<div class="line">            <span class="keywordflow">return</span> Session{ <span class="stringliteral">&quot;thoth&quot;</span> };</div>
+<div class="line">        }),</div>
+<div class="line">    [](<span class="keyword">const</span> <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd">Thoth::Http::GetRequest</a>&amp;, Session who) -&gt; <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a88c07d1d9cf54c621831d0469c4eaa53">Thoth::Http::GetResponseEntry</a> {</div>
+<div class="line">        <span class="keywordflow">return</span> std::format(<span class="stringliteral">&quot;user:{}&quot;</span>, who.user);</div>
+<div class="line">    });</div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a7550281b3370448a0074975050e2d617"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a7550281b3370448a0074975050e2d617">Thoth::Http::Use</a></div><div class="ttdeci">auto Use(Mws &amp;&amp;... mws)</div><div class="ttdef"><b>Definition</b> BasicRouter.hpp:51</div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+Client</h1>
+<p>The client has a very straightforward functional API:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;print&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_client_2_client_8hpp.html">Thoth/Http/Client/Client.hpp</a>&gt;</span></div>
 <div class="line"> </div>
@@ -246,7 +318,8 @@ Examples</h1>
 <div class="line">    } };</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line">    </div>
+<div class="line"> </div>
+<div class="line"> </div>
 <div class="line">    GetMembers(4001234)</div>
 <div class="line">            .transform(std::views::transform(getName))</div>
 <div class="line">            .transform(printNames)</div>
@@ -255,11 +328,26 @@ Examples</h1>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 <div class="ttc" id="a_client_2_client_8hpp_html"><div class="ttname"><a href="_client_2_client_8hpp.html">Client.hpp</a></div></div>
-<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:4</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:8</div></div>
 <div class="ttc" id="anamespace_thoth_1_1_n_json_html"><div class="ttname"><a href="namespace_thoth_1_1_n_json.html">Thoth::NJson</a></div><div class="ttdef"><b>Definition</b> Definitions.hpp:21</div></div>
-<div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Env.hpp:5</div></div>
-<div class="ttc" id="astruct_thoth_1_1_thoth_error_html"><div class="ttname"><a href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a></div><div class="ttdef"><b>Definition</b> ThothError.hpp:25</div></div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Await.hpp:6</div></div>
+<div class="ttc" id="astruct_thoth_1_1_thoth_error_html"><div class="ttname"><a href="struct_thoth_1_1_thoth_error.html">Thoth::ThothError</a></div><div class="ttdef"><b>Definition</b> ThothError.hpp:29</div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+Middlewares</h1>
+<p>Client requests can be wrapped with composable middlewares. Each one takes a handler (<span class="tt">Request&lt;Method, Body&gt; -&gt; ExpResponse&lt;Method, Body&gt;</span>, the same shape as <span class="tt">Client::H_Send()</span>) and returns a new handler, so they nest around the base send call:</p>
+<div class="fragment"><div class="line">NHttp::GetRequest::FromUrl(url)</div>
+<div class="line">    .and_then(NHttp::FollowRedirects(NHttp::Retry(3, NHttp::Decompress(NHttp::Client::H_Send()))))</div>
+</div><!-- fragment --><p>Available today: <span class="tt">FollowRedirects</span> (307/308), <span class="tt">FollowSeeOther</span> (303), <span class="tt">Retry</span> (idempotent methods only, exponential backoff with configurable support to <span class="tt">Retry-After</span> header), and <span class="tt">Decompress</span> (gzip/deflate). You can define your ownmiddlewares too.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+Examples</h1>
+<p>Ready examples in the <span class="tt">examples/</span> directory:</p>
+<ul>
+<li><span class="tt">BasicServer</span>: the server above, whole and minimal.</li>
+<li><span class="tt">PostMortemServer</span>: a "simple" textboard.</li>
+<li><span class="tt">Localhost</span>, <span class="tt">BodyToFile1/2</span>, <span class="tt">Request1/2</span> and the JSON ones: client-side usage.</li>
+<li><span class="tt">Comparison</span>: comparison against other libraries (needs <span class="tt">-DTHOTH_BUILD_COMP_EXAMPLE=ON</span>).</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
 Requirements</h1>
 <ul>
 <li>Windows 10 or newer / Linux</li>

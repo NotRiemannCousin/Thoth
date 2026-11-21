@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: Thoth::Http::Server Struct Reference</title>
+<title>Thoth: Thoth::Http::Server&lt; Router, Socket &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -152,33 +152,448 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Thoth::Http::Server Struct Reference</div></div>
+  <div class="headertitle"><div class="title">Thoth::Http::Server&lt; Router, Socket &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
+<p>The server. Owns the routing, the listener configuration (imutable, keep it right from the start), and the accept loop definition.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_server_8hpp_source.html">Server.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae46b1e10d4987dfecf73f948f3704ba1" id="r_ae46b1e10d4987dfecf73f948f3704ba1"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ae46b1e10d4987dfecf73f948f3704ba1">Data</a> = typename Socket::DataType</td></tr>
+<tr class="memitem:a665865494a68d7aa5d510f719169a18e" id="r_a665865494a68d7aa5d510f719169a18e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a665865494a68d7aa5d510f719169a18e">ListenOptions</a> = typename Socket::ListenOptions</td></tr>
+<tr class="memitem:af5fc7018ccc9b27caf79a34b66b493ec" id="r_af5fc7018ccc9b27caf79a34b66b493ec"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#af5fc7018ccc9b27caf79a34b66b493ec">AcceptOptions</a> = typename Socket::AcceptOptions</td></tr>
+<tr class="memitem:a3a3f008052281b65b2b43cfa9edf65b7" id="r_a3a3f008052281b65b2b43cfa9edf65b7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3a3f008052281b65b2b43cfa9edf65b7">ServerSocket</a> = typename Socket::ServerSocketType</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab0db435244f26d08a26a4b48ee51d195" id="r_ab0db435244f26d08a26a4b48ee51d195"><td class="memTemplParams" colspan="2">template&lt;class BodyType, MethodConcept... RequestTypes&gt; <br />
-requires (sizeof...(RequestTypes) &gt; 0)</td></tr>
-<tr class="memitem:ab0db435244f26d08a26a4b48ee51d195 template"><td class="memItemLeft"><a class="el" href="namespace_thoth.html#a4c132a13d16342b33acb2e52b38ebc8d">ThothResult</a>&lt; std::variant&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; RequestTypes, BodyType &gt;... &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab0db435244f26d08a26a4b48ee51d195">Receive</a> (<a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a> &amp;conn)</td></tr>
+<tr class="memitem:a755942116dbc57ff2e555a56110880f1" id="r_a755942116dbc57ff2e555a56110880f1"><td class="memTemplParams" colspan="2">template&lt;class = void&gt; <br />
+requires std::default_initializable&lt;<a class="el" href="#a665865494a68d7aa5d510f719169a18e">ListenOptions</a>&gt;</td></tr>
+<tr class="memitem:a755942116dbc57ff2e555a56110880f1 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> (<a class="el" href="#ae46b1e10d4987dfecf73f948f3704ba1">Data</a> &amp;&amp;data, int backlog=SOMAXCONN)</td></tr>
+<tr class="memdesc:a755942116dbc57ff2e555a56110880f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a>. All information passed to the socket is imutable, so they must be correct at the instantion time.  <br /></td></tr>
+<tr class="memitem:a3ef3c170aaa554629bf33b64e2ef6946" id="r_a3ef3c170aaa554629bf33b64e2ef6946"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3ef3c170aaa554629bf33b64e2ef6946">Server</a> (<a class="el" href="#ae46b1e10d4987dfecf73f948f3704ba1">Data</a> &amp;&amp;data, <a class="el" href="#a665865494a68d7aa5d510f719169a18e">ListenOptions</a> options={}, int backlog=SOMAXCONN)</td></tr>
+<tr class="memdesc:a3ef3c170aaa554629bf33b64e2ef6946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a>. All information passed to the socket is imutable, so they must be correct at the instantion time.  <br /></td></tr>
+<tr class="memitem:a0ea15a737dfed345cfec6687a52da18e" id="r_a0ea15a737dfed345cfec6687a52da18e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0ea15a737dfed345cfec6687a52da18e">Server</a> (Server &amp;&amp;)=delete</td></tr>
+<tr class="memitem:a1716401ce33e32e0d90d97a0ba14568a" id="r_a1716401ce33e32e0d90d97a0ba14568a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1716401ce33e32e0d90d97a0ba14568a">Server</a> (const Server &amp;)=delete</td></tr>
+<tr class="memitem:a753a339acecd933aeb6b0a8c193705c9" id="r_a753a339acecd933aeb6b0a8c193705c9"><td class="memItemLeft"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a753a339acecd933aeb6b0a8c193705c9">operator=</a> (<a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp;&amp;)=delete</td></tr>
+<tr class="memitem:a5c623e18bb231e5cdbba451531d868c6" id="r_a5c623e18bb231e5cdbba451531d868c6"><td class="memItemLeft"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5c623e18bb231e5cdbba451531d868c6">operator=</a> (const <a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp;)=delete</td></tr>
+<tr class="memitem:a53b824017e630ff5732e2b13786beb32" id="r_a53b824017e630ff5732e2b13786beb32"><td class="memItemLeft">Router *&#160;</td><td class="memItemRight"><a class="el" href="#a53b824017e630ff5732e2b13786beb32">operator-&gt;</a> () noexcept</td></tr>
+<tr class="memdesc:a53b824017e630ff5732e2b13786beb32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct access to the router, so you can add specific behavior.  <br /></td></tr>
+<tr class="memitem:a9445d70874b14f8603b818256d7f2548" id="r_a9445d70874b14f8603b818256d7f2548"><td class="memItemLeft">const Router *&#160;</td><td class="memItemRight"><a class="el" href="#a9445d70874b14f8603b818256d7f2548">operator-&gt;</a> () const noexcept</td></tr>
+<tr class="memdesc:a9445d70874b14f8603b818256d7f2548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct access to the router, so you can access specific behavior.  <br /></td></tr>
+<tr class="memitem:a78ee64b87864d268fd55df8d1fc8cf44" id="r_a78ee64b87864d268fd55df8d1fc8cf44"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a78ee64b87864d268fd55df8d1fc8cf44">Run</a> () const -&gt; stdexec::sender auto</td></tr>
+<tr class="memdesc:a78ee64b87864d268fd55df8d1fc8cf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the accept loop. Returns a sender that completes when the server stops, it doesn't block.  <br /></td></tr>
+<tr class="memitem:a3a581e169066a13a6202b9aef3d273a9" id="r_a3a581e169066a13a6202b9aef3d273a9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3a581e169066a13a6202b9aef3d273a9">Stop</a> (bool graceful=true, std::chrono::milliseconds deadline=std::chrono::seconds{ 30 }) const</td></tr>
+<tr class="memdesc:a3a581e169066a13a6202b9aef3d273a9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> a graceful stop (idempotent). Does not block.  <br /></td></tr>
+<tr class="memitem:a5ddc56b1c800520c99cb6d5f6706c598" id="r_a5ddc56b1c800520c99cb6d5f6706c598"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5ddc56b1c800520c99cb6d5f6706c598">Running</a> () const noexcept</td></tr>
+<tr class="memdesc:a5ddc56b1c800520c99cb6d5f6706c598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the server is running.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:adb78e6ce775e15c382e3a78162028a3e" id="r_adb78e6ce775e15c382e3a78162028a3e"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_http_limits.html">HttpLimits</a>&#160;</td><td class="memItemRight"><a class="el" href="#adb78e6ce775e15c382e3a78162028a3e">limits</a> {}</td></tr>
+<tr class="memitem:a2c595b743c2bb709df57b5a989ebb555" id="r_a2c595b743c2bb709df57b5a989ebb555"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_host_policy.html">HostPolicy</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2c595b743c2bb709df57b5a989ebb555">hosts</a> {}</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ab0db435244f26d08a26a4b48ee51d195" name="ab0db435244f26d08a26a4b48ee51d195"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0db435244f26d08a26a4b48ee51d195">&#9670;&#160;</a></span>Receive()</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt;<br />
+struct Thoth::Http::Server&lt; Router, Socket &gt;</div><p>The server. Owns the routing, the listener configuration (imutable, keep it right from the start), and the accept loop definition. </p>
+<p>Not copyable, not movable. <span class="tt"><a class="el" href="#a78ee64b87864d268fd55df8d1fc8cf44" title="Start the accept loop. Returns a sender that completes when the server stops, it doesn&#39;t block.">Run()</a></span> is <span class="tt">const</span> and returns a sender, but you shouldn't call it twice. <span class="tt"><a class="el" href="#a3a581e169066a13a6202b9aef3d273a9" title="Request a graceful stop (idempotent). Does not block.">Stop()</a></span> is thread-safe and idempotent. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="af5fc7018ccc9b27caf79a34b66b493ec" name="af5fc7018ccc9b27caf79a34b66b493ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5fc7018ccc9b27caf79a34b66b493ec">&#9670;&#160;</a></span>AcceptOptions</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class BodyType, MethodConcept... RequestTypes&gt; <br />
-requires (sizeof...(RequestTypes) &gt; 0)</div>
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_thoth.html#a4c132a13d16342b33acb2e52b38ebc8d">ThothResult</a>&lt; std::variant&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; RequestTypes, BodyType &gt;... &gt; &gt; Thoth::Http::Server::Receive </td>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::AcceptOptions = typename Socket::AcceptOptions</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae46b1e10d4987dfecf73f948f3704ba1" name="ae46b1e10d4987dfecf73f948f3704ba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46b1e10d4987dfecf73f948f3704ba1">&#9670;&#160;</a></span>Data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Data = typename Socket::DataType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a665865494a68d7aa5d510f719169a18e" name="a665865494a68d7aa5d510f719169a18e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a665865494a68d7aa5d510f719169a18e">&#9670;&#160;</a></span>ListenOptions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::ListenOptions = typename Socket::ListenOptions</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a3f008052281b65b2b43cfa9edf65b7" name="a3a3f008052281b65b2b43cfa9edf65b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a3f008052281b65b2b43cfa9edf65b7">&#9670;&#160;</a></span>ServerSocket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::ServerSocket = typename Socket::ServerSocketType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a755942116dbc57ff2e555a56110880f1" name="a755942116dbc57ff2e555a56110880f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755942116dbc57ff2e555a56110880f1">&#9670;&#160;</a></span>Server() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<div class="memtemplate">
+template&lt;class = void&gt; <br />
+requires std::default_initializable&lt;<a class="el" href="#a665865494a68d7aa5d510f719169a18e">ListenOptions</a>&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Server </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>conn</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="#ae46b1e10d4987dfecf73f948f3704ba1">Data</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>backlog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">SOMAXCONN</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a>. All information passed to the socket is imutable, so they must be correct at the instantion time. </p>
+
+</div>
+</div>
+<a id="a3ef3c170aaa554629bf33b64e2ef6946" name="a3ef3c170aaa554629bf33b64e2ef6946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ef3c170aaa554629bf33b64e2ef6946">&#9670;&#160;</a></span>Server() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Server </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae46b1e10d4987dfecf73f948f3704ba1">Data</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a665865494a68d7aa5d510f719169a18e">ListenOptions</a></td>          <td class="paramname"><span class="paramname"><em>options</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>backlog</em></span><span class="paramdefsep"> = </span><span class="paramdefval">SOMAXCONN</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a>. All information passed to the socket is imutable, so they must be correct at the instantion time. </p>
+
+</div>
+</div>
+<a id="a0ea15a737dfed345cfec6687a52da18e" name="a0ea15a737dfed345cfec6687a52da18e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea15a737dfed345cfec6687a52da18e">&#9670;&#160;</a></span>Server() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Server </td>
+          <td>(</td>
+          <td class="paramtype">Server&lt; Router, Socket &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1716401ce33e32e0d90d97a0ba14568a" name="a1716401ce33e32e0d90d97a0ba14568a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1716401ce33e32e0d90d97a0ba14568a">&#9670;&#160;</a></span>Server() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Server </td>
+          <td>(</td>
+          <td class="paramtype">const Server&lt; Router, Socket &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a9445d70874b14f8603b818256d7f2548" name="a9445d70874b14f8603b818256d7f2548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9445d70874b14f8603b818256d7f2548">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const Router * <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Direct access to the router, so you can access specific behavior. </p>
+
+</div>
+</div>
+<a id="a53b824017e630ff5732e2b13786beb32" name="a53b824017e630ff5732e2b13786beb32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53b824017e630ff5732e2b13786beb32">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Router * <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Direct access to the router, so you can add specific behavior. </p>
+
+</div>
+</div>
+<a id="a5c623e18bb231e5cdbba451531d868c6" name="a5c623e18bb231e5cdbba451531d868c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c623e18bb231e5cdbba451531d868c6">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp; <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a>&lt; Router, Socket &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a753a339acecd933aeb6b0a8c193705c9" name="a753a339acecd933aeb6b0a8c193705c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753a339acecd933aeb6b0a8c193705c9">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a> &amp; <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a755942116dbc57ff2e555a56110880f1">Server</a>&lt; Router, Socket &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78ee64b87864d268fd55df8d1fc8cf44" name="a78ee64b87864d268fd55df8d1fc8cf44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78ee64b87864d268fd55df8d1fc8cf44">&#9670;&#160;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const -&gt;  stdexec::sender auto</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the accept loop. Returns a sender that completes when the server stops, it doesn't block. </p>
+<p>This sender doesn't produces a value, it just execute the server loop. Given that, the completition signatures are only <span class="tt">error(ThothError)</span> (listener failure) and <span class="tt">stopped()</span> (cancellation via <span class="tt"><a class="el" href="#a3a581e169066a13a6202b9aef3d273a9" title="Request a graceful stop (idempotent). Does not block.">Stop</a></span>). </p><dl class="section return"><dt>Returns</dt><dd>A sender with <span class="tt">error(ThothError)</span> and <span class="tt">stopped()</span> channels. </dd></dl>
+
+</div>
+</div>
+<a id="a5ddc56b1c800520c99cb6d5f6706c598" name="a5ddc56b1c800520c99cb6d5f6706c598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ddc56b1c800520c99cb6d5f6706c598">&#9670;&#160;</a></span>Running()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Running </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns if the server is running. </p>
+
+</div>
+</div>
+<a id="a3a581e169066a13a6202b9aef3d273a9" name="a3a581e169066a13a6202b9aef3d273a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a581e169066a13a6202b9aef3d273a9">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::Stop </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>graceful</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::milliseconds</td>          <td class="paramname"><span class="paramname"><em>deadline</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::chrono::seconds{&#160;30&#160;}</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a> a graceful stop (idempotent). Does not block. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a2c595b743c2bb709df57b5a989ebb555" name="a2c595b743c2bb709df57b5a989ebb555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c595b743c2bb709df57b5a989ebb555">&#9670;&#160;</a></span>hosts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_host_policy.html">HostPolicy</a> <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::hosts {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb78e6ce775e15c382e3a78162028a3e" name="adb78e6ce775e15c382e3a78162028a3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb78e6ce775e15c382e3a78162028a3e">&#9670;&#160;</a></span>limits</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Router = BasicRouter&lt;Hermes::RawTcpAsyncServer&gt;, Hermes::AsyncListenerSocketConcept Socket = Hermes::RawTcpAsyncListener&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_http_limits.html">HttpLimits</a> <a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a>&lt; Router, Socket &gt;::limits {}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -186,7 +601,7 @@ requires (sizeof...(RequestTypes) &gt; 0)</div>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Thoth/Http/<a class="el" href="_server_8hpp_source.html">Server.hpp</a></li>
+<li>include/Thoth/Http/Server/<a class="el" href="_server_8hpp_source.html">Server.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -160,19 +160,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespace_thot
 Classes</h2></td></tr>
 <tr class="memitem:Cow" id="r_Cow"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Copy-On-Write (COW) smart wrapper, inspired by Rust's <span class="tt">std::borrow::Cow</span>.  <a href="struct_thoth_1_1_dsa_1_1_cow.html#details">More...</a><br /></td></tr>
-<tr class="memitem:FileBuilderParams" id="r_FileBuilderParams"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_dsa_1_1_file_builder_params.html">FileBuilderParams</a></td></tr>
-<tr class="memitem:FileOutputIterator" id="r_FileOutputIterator"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_iterator.html">FileOutputIterator</a></td></tr>
-<tr class="memitem:FileOutputRange" id="r_FileOutputRange"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a></td></tr>
 <tr class="memitem:LinearMap" id="r_LinearMap"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_dsa_1_1_linear_map.html">LinearMap</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:strong_5Forder_5Frelation" id="r_strong_5Forder_5Frelation"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_dsa_1_1strong__order__relation.html">strong_order_relation</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a008726ede8dcaa66a9f3a8477361a169" id="r_a008726ede8dcaa66a9f3a8477361a169"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a008726ede8dcaa66a9f3a8477361a169">TextFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;&gt;</td></tr>
-<tr class="memitem:a3b69157e7b14586be23bb0af1edb71ec" id="r_a3b69157e7b14586be23bb0af1edb71ec"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3b69157e7b14586be23bb0af1edb71ec">BinFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;std::byte&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -180,35 +172,6 @@ Functions</h2></td></tr>
 requires std::constructible_from&lt;OwnT, RefT&gt;</td></tr>
 <tr class="memitem:a983986ed84e4da867e6e3fddc69b3fef template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a983986ed84e4da867e6e3fddc69b3fef">operator==</a> (const <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a>&lt; RefT, OwnT &gt; &amp;left, const <a class="el" href="struct_thoth_1_1_dsa_1_1_cow.html">Cow</a>&lt; RefT, OwnT &gt; &amp;right)</td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
-<a id="a3b69157e7b14586be23bb0af1edb71ec" name="a3b69157e7b14586be23bb0af1edb71ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b69157e7b14586be23bb0af1edb71ec">&#9670;&#160;</a></span>BinFileOutputRange</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a3b69157e7b14586be23bb0af1edb71ec">Thoth::Dsa::BinFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;std::byte&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a008726ede8dcaa66a9f3a8477361a169" name="a008726ede8dcaa66a9f3a8477361a169"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a008726ede8dcaa66a9f3a8477361a169">&#9670;&#160;</a></span>TextFileOutputRange</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a008726ede8dcaa66a9f3a8477361a169">Thoth::Dsa::TextFileOutputRange</a> = <a class="el" href="struct_thoth_1_1_dsa_1_1_file_output_range.html">FileOutputRange</a>&lt;&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a983986ed84e4da867e6e3fddc69b3fef" name="a983986ed84e4da867e6e3fddc69b3fef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a983986ed84e4da867e6e3fddc69b3fef">&#9670;&#160;</a></span>operator==()</h2>

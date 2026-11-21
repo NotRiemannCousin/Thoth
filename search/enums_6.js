@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['urlparseerrorenum_0',['UrlParseErrorEnum',['../namespace_thoth_1_1_http.html#a2bf11744ec8f13e9d75fe88e28f7326c',1,'Thoth::Http']]]
+  ['teenum_0',['TeEnum',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa777948ee8bbaee801f344e714eda63d',1,'Thoth::Http::NHeaders']]],
+  ['transferencodingenum_1',['TransferEncodingEnum',['../namespace_thoth_1_1_http_1_1_n_headers.html#aa8e89a2363af351f45e1f34e3374f90b',1,'Thoth::Http::NHeaders']]]
 ];

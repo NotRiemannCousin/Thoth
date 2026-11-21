@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contentencodingenum_0',['ContentEncodingEnum',['../namespace_thoth_1_1_http_1_1_n_headers.html#a44a91116d18b9c648a9a23c33e2271cc',1,'Thoth::Http::NHeaders']]]
+  ['bodydirection_0',['BodyDirection',['../namespace_thoth_1_1_http.html#ab9c4f059d915ec202397d13552f97328',1,'Thoth::Http']]]
 ];

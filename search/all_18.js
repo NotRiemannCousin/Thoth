@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['webdev_20library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
+  ['webdev_20library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md31',1,'']]],
   ['webresult_1',['WebResult',['../namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f',1,'Thoth::Http']]],
   ['webresultoper_2',['WebResultOper',['../namespace_thoth_1_1_http.html#a4060dc2e21c0dea1ca9e4ee9ef04cc97',1,'Thoth::Http']]],
   ['weighted_3',['Weighted',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
@@ -8,12 +8,20 @@ var searchData=
   ['weighted_3c_20acceptencodingenum_20_3e_5',['Weighted&lt; AcceptEncodingEnum &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
   ['weighted_3c_20std_3a_3astring_20_3e_6',['Weighted&lt; std::string &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
   ['weighted_3c_20teenum_20_3e_7',['Weighted&lt; TeEnum &gt;',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html',1,'Thoth::Http::NHeaders']]],
-  ['width_8',['Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'Choosing Sidebar Width'],['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md30',1,'Full Width']]],
+  ['width_8',['Width',['../md_docs_2doxygen_2docs_2tricks.html#tricks-sidebar',1,'Choosing Sidebar Width'],['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md12',1,'Full Width']]],
   ['wildcard_9',['Wildcard',['../namespace_thoth_1_1_http_1_1_n_headers.html#ad07c331becfced10cf81884b39bcc99dac4a0dbaac3bd0f3bf581ad822f5fb4b4',1,'Thoth::Http::NHeaders']]],
-  ['with_20graphviz_10',['Diagrams with Graphviz',['../md_docs_2doxygen_2docs_2tricks.html#tricks-graphviz',1,'']]],
-  ['withoutparam_11',['WithoutParam',['../namespace_thoth_1_1_http_1_1_n_headers.html#a47c86745888270f0d86f1e57143c1004',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) const &amp;'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a6ccc8d98b178c14b6e18de258b6092ab',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) &amp;&amp;']]],
-  ['withparam_12',['WithParam',['../namespace_thoth_1_1_http_1_1_n_headers.html#a7225381c6dbe796a28f4886c949bc489',1,'Thoth::Http::NHeaders::WithParam(std::string key, std::string val) const &amp;'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a45a468ef23f2e7fdfea2bade2f42281a',1,'Thoth::Http::NHeaders::WithParam(std::string key, std::string val) &amp;&amp;']]],
-  ['withweight_13',['WithWeight',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html#a41372dcbf86921c4572af7a74decc9a9',1,'Thoth::Http::NHeaders::Weighted']]],
-  ['writablebodyconcept_14',['WritableBodyConcept',['../concept_thoth_1_1_http_1_1_writable_body_concept.html',1,'Thoth::Http']]],
-  ['wwwauthenticate_15',['WwwAuthenticate',['../struct_thoth_1_1_http_1_1_response_headers.html#a01dbd1bd9e174fd597a30aa9c2f35080',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a379716fc3848bfcac20a38c7dc9be178',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate() const']]]
+  ['wire_10',['wire',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#autotoc_md0',1,'Reading from the wire'],['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#autotoc_md1',1,'Writing to the wire']]],
+  ['with_20graphviz_11',['Diagrams with Graphviz',['../md_docs_2doxygen_2docs_2tricks.html#tricks-graphviz',1,'']]],
+  ['withoutparam_12',['WithoutParam',['../namespace_thoth_1_1_http_1_1_n_headers.html#a47c86745888270f0d86f1e57143c1004',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) const &amp;'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a6ccc8d98b178c14b6e18de258b6092ab',1,'Thoth::Http::NHeaders::WithoutParam(std::string_view key) &amp;&amp;']]],
+  ['withparam_13',['WithParam',['../namespace_thoth_1_1_http_1_1_n_headers.html#a7225381c6dbe796a28f4886c949bc489',1,'Thoth::Http::NHeaders::WithParam(std::string key, std::string val) const &amp;'],['../namespace_thoth_1_1_http_1_1_n_headers.html#a45a468ef23f2e7fdfea2bade2f42281a',1,'Thoth::Http::NHeaders::WithParam(std::string key, std::string val) &amp;&amp;']]],
+  ['withweight_14',['WithWeight',['../struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html#a41372dcbf86921c4572af7a74decc9a9',1,'Thoth::Http::NHeaders::Weighted']]],
+  ['write_15',['Write',['../struct_thoth_1_1_http_1_1_body_io_3_01_any_body_3_01_dir_01_4_01_4.html#af1f04834b51c253d582ac67972dc560d',1,'Thoth::Http::BodyIo&lt; AnyBody&lt; Dir &gt; &gt;::Write()'],['../struct_thoth_1_1_http_1_1_any_body.html#af76ab7ab3b3550d36b60bb82eb5f1b2c',1,'Thoth::Http::AnyBody::Write()'],['../struct_thoth_1_1_http_1_1_body_io_3_01_r_01_4.html#a50ead08444236dc2cbeb45c0d2da8c92',1,'Thoth::Http::BodyIo&lt; R &gt;::Write()'],['../struct_thoth_1_1_http_1_1_body_io_3_01_empty_body_01_4.html#a49436c2314fca5440985bf2bd56a47dc',1,'Thoth::Http::BodyIo&lt; EmptyBody &gt;::Write()'],['../struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a90afb24735898355c77253d62d734b5c',1,'Thoth::Http::BodyIo&lt; FileBody &gt;::Write()'],['../struct_thoth_1_1_http_1_1_body_io_3_01std_1_1string_01_4.html#af32ec33b0b35bf9883861493ae38d50f',1,'Thoth::Http::BodyIo&lt; std::string &gt;::Write()']]],
+  ['writebody_16',['WriteBody',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#a61c8af01c69777b12e9b8eefd961d6d0',1,'Thoth::Http::Transport::Http1']]],
+  ['writerequest_17',['WriteRequest',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#a84e43eafedb372310f5db4e94769c7ae',1,'Thoth::Http::Transport::Http1']]],
+  ['writerequesthead_18',['WriteRequestHead',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#ac225b790eac7430d590455bc6c0472a0',1,'Thoth::Http::Transport::Http1']]],
+  ['writeresponse_19',['WriteResponse',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#a00456497e56096ba60ecd9f923c6eb4d',1,'Thoth::Http::Transport::Http1']]],
+  ['writeresponsehead_20',['WriteResponseHead',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#a88ca75637fb382b113828dbfe3f9dafc',1,'Thoth::Http::Transport::Http1']]],
+  ['writeresult_21',['WriteResult',['../namespace_thoth_1_1_http.html#ade524ee56bdf0842d029bac64dd005ec',1,'Thoth::Http']]],
+  ['writing_20to_20the_20wire_22',['Writing to the wire',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#autotoc_md1',1,'']]],
+  ['wwwauthenticate_23',['WwwAuthenticate',['../struct_thoth_1_1_http_1_1_response_headers.html#a01dbd1bd9e174fd597a30aa9c2f35080',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate()'],['../struct_thoth_1_1_http_1_1_response_headers.html#a379716fc3848bfcac20a38c7dc9be178',1,'Thoth::Http::ResponseHeaders::WwwAuthenticate() const']]]
 ];

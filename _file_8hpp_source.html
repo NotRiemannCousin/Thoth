@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/Http/_base/BodyIo/_base/File.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-msc.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_file_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">File.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_file_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="_mime_type_8hpp.html">Thoth/Http/NHeaders/Headers/MimeType.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="_http_2__base_2_body_io_2__base_8hpp.html">Thoth/Http/_base/BodyIo/_base.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_http.html">Thoth::Http</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_builder_params.html">   17</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_builder_params.html">FileBuilderParams</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a379f4fd87cb0db95a2f9a81fafa88fb4">   18</a></span>        std::filesystem::path <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a379f4fd87cb0db95a2f9a81fafa88fb4">path</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a3bfeb3e76f96af4e18e5fedf2836215f">   19</a></span>        std::optional&lt;std::vector&lt;NHeaders::MimeType&gt;&gt; <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a3bfeb3e76f96af4e18e5fedf2836215f">acceptedTypes</a>{};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a93c64cabd40de0cb811b7609b4e2bee9">   20</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_builder_params.html#a93c64cabd40de0cb811b7609b4e2bee9">maxSize</a>{ std::numeric_limits&lt;int&gt;::max() };</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_builder_params.html#ae5c97488bfb3eb05d0b44cd7783f2547">   21</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_builder_params.html#ae5c97488bfb3eb05d0b44cd7783f2547">mode</a>{};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    };</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html">   30</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html#ad1d7e59c989f92d09c756a152f606e02">   32</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="struct_thoth_1_1_http_1_1_file_body.html#ad1d7e59c989f92d09c756a152f606e02">BodyType</a> = std::expected&lt;FileBody, ThothError&gt;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html#a7e190f8be74415ae6a8b5ea91fdd9a61">   37</a></span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_file_body.html#a7e190f8be74415ae6a8b5ea91fdd9a61">H_AsBody</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_builder_params.html">FileBuilderParams</a>&amp; params);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html#a19604f41e604ad7213a90d180c3aad55">   38</a></span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_file_body.html#a19604f41e604ad7213a90d180c3aad55">H_AsBody</a>(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_builder_params.html">FileBuilderParams</a>&amp;&amp; params);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html#adf61772768789b89e74787e283cc261b">   40</a></span>        std::filesystem::path <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_body.html#adf61772768789b89e74787e283cc261b">path</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_file_body.html#a5afba9946859fb23b9c7364ef902d9ac">   41</a></span>        <span class="keywordtype">int</span>                   <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_file_body.html#a5afba9946859fb23b9c7364ef902d9ac">mode</a>{};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html">   45</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_thoth_1_1_http_1_1_body_io.html">BodyIo</a>&lt;<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt; {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#aed50c326c6df90a8ca5246e358119e9f">   48</a></span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#aed50c326c6df90a8ca5246e358119e9f">k_bounceBytes</a>{ 8 * 1024 };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">mutable</span> std::ifstream  m_in{};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        std::ofstream          m_out{};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        std::vector&lt;std::byte&gt; m_bounce{};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">bool</span>                   m_inOpened{};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordtype">bool</span>                   m_outOpened{};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordtype">bool</span> OpenOut(<span class="keyword">const</span> FileBody&amp; body);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49c2b759f7547890b8fe19e80a0bfff6">   64</a></span>        [[nodiscard]] std::optional&lt;std::uint64_t&gt; <a class="code hl_function" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49c2b759f7547890b8fe19e80a0bfff6">Size</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&amp; body) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a9bfa17d87266f0bd334695814f7cf54c">   67</a></span>        <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a3cd9420227dad12f70aa2212517e4bc5">ReadResult</a> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a9bfa17d87266f0bd334695814f7cf54c">Read</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&amp; body);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a90afb24735898355c77253d62d734b5c">   71</a></span>        <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#ade524ee56bdf0842d029bac64dd005ec">WriteResult</a> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a90afb24735898355c77253d62d734b5c">Write</a>(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&amp; body, std::span&lt;std::byte&gt; window);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49afe5c60b5fb66672d5517164c812cd">   75</a></span>        <a class="code hl_typedef" href="namespace_thoth_1_1_http.html#a351bedd3c9fa0d8f45c8663580d4af14">FinishResult</a> <a class="code hl_function" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49afe5c60b5fb66672d5517164c812cd">FinishWrite</a>(<a class="code hl_struct" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&amp; body);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#include &lt;Thoth/Http/_base/BodyIo/_base/File.tpp&gt;</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">static_assert</span>(<a class="code hl_concept" href="concept_thoth_1_1_http_1_1_symetric_body_concept.html">Thoth::Http::SymetricBodyConcept&lt;Thoth::Http::FileBody&gt;</a>);</div>
+<div class="ttc" id="a_http_2__base_2_body_io_2__base_8hpp_html"><div class="ttname"><a href="_http_2__base_2_body_io_2__base_8hpp.html">_base.hpp</a></div></div>
+<div class="ttc" id="a_mime_type_8hpp_html"><div class="ttname"><a href="_mime_type_8hpp.html">MimeType.hpp</a></div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_symetric_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_symetric_body_concept.html">Thoth::Http::SymetricBodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:86</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html"><div class="ttname"><a href="namespace_thoth_1_1_http.html">Thoth::Http</a></div><div class="ttdef"><b>Definition</b> _base.hpp:8</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a351bedd3c9fa0d8f45c8663580d4af14"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a351bedd3c9fa0d8f45c8663580d4af14">Thoth::Http::FinishResult</a></div><div class="ttdeci">std::expected&lt; void, ThothError &gt; FinishResult</div><div class="ttdoc">Outcome of BodyIo::FinishWrite, the commit/flush step of the incoming side.</div><div class="ttdef"><b>Definition</b> _base.hpp:20</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_a3cd9420227dad12f70aa2212517e4bc5"><div class="ttname"><a href="namespace_thoth_1_1_http.html#a3cd9420227dad12f70aa2212517e4bc5">Thoth::Http::ReadResult</a></div><div class="ttdeci">std::expected&lt; std::optional&lt; ByteView &gt;, ThothError &gt; ReadResult</div><div class="ttdoc">Outcome of BodyIo::Read, the next slice or nullopt once the body is drained.</div><div class="ttdef"><b>Definition</b> _base.hpp:16</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_http_html_ade524ee56bdf0842d029bac64dd005ec"><div class="ttname"><a href="namespace_thoth_1_1_http.html#ade524ee56bdf0842d029bac64dd005ec">Thoth::Http::WriteResult</a></div><div class="ttdeci">std::pair&lt; std::size_t, std::expected&lt; void, ThothError &gt; &gt; WriteResult</div><div class="ttdoc">Outcome of BodyIo::Write, bytes consumed plus status (same shape as Hermes::StreamByteOper).</div><div class="ttdef"><b>Definition</b> _base.hpp:18</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4_html_a49afe5c60b5fb66672d5517164c812cd"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49afe5c60b5fb66672d5517164c812cd">Thoth::Http::BodyIo&lt; FileBody &gt;::FinishWrite</a></div><div class="ttdeci">FinishResult FinishWrite(FileBody &amp;body)</div><div class="ttdoc">Flushes the incoming stream. A download that never received a byte still materializes the file here,...</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4_html_a49c2b759f7547890b8fe19e80a0bfff6"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a49c2b759f7547890b8fe19e80a0bfff6">Thoth::Http::BodyIo&lt; FileBody &gt;::Size</a></div><div class="ttdeci">std::optional&lt; std::uint64_t &gt; Size(const FileBody &amp;body) const</div><div class="ttdoc">File size from the filesystem. nullopt when the file cannot be stat&#39;ed, which makes the transport fal...</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4_html_a90afb24735898355c77253d62d734b5c"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a90afb24735898355c77253d62d734b5c">Thoth::Http::BodyIo&lt; FileBody &gt;::Write</a></div><div class="ttdeci">WriteResult Write(FileBody &amp;body, std::span&lt; std::byte &gt; window)</div><div class="ttdoc">Appends the whole window to the file. A file sink consumes everything or fails, there is no meaningfu...</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4_html_a9bfa17d87266f0bd334695814f7cf54c"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#a9bfa17d87266f0bd334695814f7cf54c">Thoth::Http::BodyIo&lt; FileBody &gt;::Read</a></div><div class="ttdeci">ReadResult Read(const FileBody &amp;body)</div><div class="ttdoc">Opens the file on the first Read and keeps it open between slices.</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4_html_aed50c326c6df90a8ca5246e358119e9f"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#aed50c326c6df90a8ca5246e358119e9f">Thoth::Http::BodyIo&lt; FileBody &gt;::k_bounceBytes</a></div><div class="ttdeci">static constexpr std::size_t k_bounceBytes</div><div class="ttdoc">Slice ceiling of the outgoing side / window buffer of the incoming one. One buffer,...</div><div class="ttdef"><b>Definition</b> File.hpp:48</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_body_io_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_body_io.html">Thoth::Http::BodyIo</a></div><div class="ttdoc">The I/O protocol of a body, specialized per body type (same model as std::formatter).</div><div class="ttdef"><b>Definition</b> _base.hpp:51</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html">Thoth::Http::FileBody</a></div><div class="ttdoc">A file on disk as a body, symmetric. The outgoing side serves it: Size comes from the filesystem meta...</div><div class="ttdef"><b>Definition</b> File.hpp:30</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html_a19604f41e604ad7213a90d180c3aad55"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html#a19604f41e604ad7213a90d180c3aad55">Thoth::Http::FileBody::H_AsBody</a></div><div class="ttdeci">static constexpr auto H_AsBody(FileBuilderParams &amp;&amp;params)</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html_a5afba9946859fb23b9c7364ef902d9ac"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html#a5afba9946859fb23b9c7364ef902d9ac">Thoth::Http::FileBody::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> File.hpp:41</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html_a7e190f8be74415ae6a8b5ea91fdd9a61"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html#a7e190f8be74415ae6a8b5ea91fdd9a61">Thoth::Http::FileBody::H_AsBody</a></div><div class="ttdeci">static constexpr auto H_AsBody(const FileBuilderParams &amp;params)</div><div class="ttdoc">The download factory (a BodyFactory): validates the response head (declared length against FileBuilde...</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html_ad1d7e59c989f92d09c756a152f606e02"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html#ad1d7e59c989f92d09c756a152f606e02">Thoth::Http::FileBody::BodyType</a></div><div class="ttdeci">std::expected&lt; FileBody, ThothError &gt; BodyType</div><div class="ttdoc">The factory result, the alias every BodyFactoryConcept consumer looks for.</div><div class="ttdef"><b>Definition</b> File.hpp:32</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_body_html_adf61772768789b89e74787e283cc261b"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_body.html#adf61772768789b89e74787e283cc261b">Thoth::Http::FileBody::path</a></div><div class="ttdeci">std::filesystem::path path</div><div class="ttdef"><b>Definition</b> File.hpp:40</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_builder_params_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_builder_params.html">Thoth::Http::FileBuilderParams</a></div><div class="ttdoc">Builder knobs of the download factory (FileBody::H_AsBody): where to write, which content types to ac...</div><div class="ttdef"><b>Definition</b> File.hpp:17</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_builder_params_html_a379f4fd87cb0db95a2f9a81fafa88fb4"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_builder_params.html#a379f4fd87cb0db95a2f9a81fafa88fb4">Thoth::Http::FileBuilderParams::path</a></div><div class="ttdeci">std::filesystem::path path</div><div class="ttdef"><b>Definition</b> File.hpp:18</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_builder_params_html_a3bfeb3e76f96af4e18e5fedf2836215f"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_builder_params.html#a3bfeb3e76f96af4e18e5fedf2836215f">Thoth::Http::FileBuilderParams::acceptedTypes</a></div><div class="ttdeci">std::optional&lt; std::vector&lt; NHeaders::MimeType &gt; &gt; acceptedTypes</div><div class="ttdef"><b>Definition</b> File.hpp:19</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_builder_params_html_a93c64cabd40de0cb811b7609b4e2bee9"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_builder_params.html#a93c64cabd40de0cb811b7609b4e2bee9">Thoth::Http::FileBuilderParams::maxSize</a></div><div class="ttdeci">int maxSize</div><div class="ttdef"><b>Definition</b> File.hpp:20</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_file_builder_params_html_ae5c97488bfb3eb05d0b44cd7783f2547"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_file_builder_params.html#ae5c97488bfb3eb05d0b44cd7783f2547">Thoth::Http::FileBuilderParams::mode</a></div><div class="ttdeci">int mode</div><div class="ttdef"><b>Definition</b> File.hpp:21</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_6d460459f27754ca35b4b479a204ef1f.html">_base</a></li><li class="navelem"><a href="dir_31a7f07fd5417c2f38dbf19ff95b157a.html">BodyIo</a></li><li class="navelem"><a href="dir_e9e8d0705622c08465b41451592efb80.html">_base</a></li><li class="navelem"><a href="_file_8hpp.html">File.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

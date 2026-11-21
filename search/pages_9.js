@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['library_0',['A functional, expressive, C++26 webdev library',['../index.html#autotoc_md1',1,'']]],
-  ['linking_1',['Paragraph Linking',['../md_docs_2doxygen_2docs_2extensions.html#extension-para',1,'']]]
+  ['images_0',['Bordered Images',['../md_docs_2doxygen_2docs_2tricks.html#autotoc_md14',1,'']]],
+  ['installation_1',['Installation',['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md18',1,'Installation'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md20',1,'Installation'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md22',1,'Installation'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md24',1,'Installation'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md26',1,'Installation'],['../md_docs_2doxygen_2docs_2extensions.html#autotoc_md28',1,'Installation'],['../index.html#autotoc_md32',1,'Installation']]],
+  ['interactive_20toc_2',['Interactive TOC',['../md_docs_2doxygen_2docs_2extensions.html#extension-toc',1,'']]]
 ];

@@ -183,6 +183,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6c1dc1bbc799d692ddc5df433be9d9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the header and reports absence, emptiness or invalid format.  <br /></td></tr>
 <tr class="memitem:a8f164ec7e05f57c620aa1ca9c7ecbbc0" id="r_a8f164ec7e05f57c620aa1ca9c7ecbbc0"><td class="memItemLeft">std::expected&lt; <a class="el" href="#a1af4520a712232c44fc8710ddec62b68">Type</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8f164ec7e05f57c620aa1ca9c7ecbbc0">GetWithDefault</a> (<a class="el" href="#a1af4520a712232c44fc8710ddec62b68">Type</a> defaultValue) &amp;&amp;</td></tr>
 <tr class="memdesc:a8f164ec7e05f57c620aa1ca9c7ecbbc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the header, using <span class="tt">defaultValue</span> when it is absent or empty.  <br /></td></tr>
+<tr class="memitem:ad2721433c27003bf22793edc30ed3aad" id="r_ad2721433c27003bf22793edc30ed3aad"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad2721433c27003bf22793edc30ed3aad">IsSetted</a> () const</td></tr>
+<tr class="memdesc:ad2721433c27003bf22793edc30ed3aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the header is set.  <br /></td></tr>
 <tr class="memitem:a4c3c6f7a02e4f8f0d345088ca45623fc" id="r_a4c3c6f7a02e4f8f0d345088ca45623fc"><td class="memTemplParams" colspan="2">template&lt;class T&gt; <br />
 requires (!IsConst)</td></tr>
 <tr class="memitem:a4c3c6f7a02e4f8f0d345088ca45623fc template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4c3c6f7a02e4f8f0d345088ca45623fc">operator=</a> (const T &amp;newValue) &amp;&amp;</td></tr>
@@ -419,6 +421,28 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
 
 <p>Parses the header, using <span class="tt">defaultValue</span> when it is absent or empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>The parsed value, or <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a></span> when a present value is invalid. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
+</div>
+</div>
+<a id="ad2721433c27003bf22793edc30ed3aad" name="ad2721433c27003bf22793edc30ed3aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2721433c27003bf22793edc30ed3aad">&#9670;&#160;</a></span>IsSetted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html">Thoth::Http::NHeaders::ValueProxy</a>&lt; IsConst, Ts &gt;::IsSetted </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the header is set. </p>
 <dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
 
 </div>

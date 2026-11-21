@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['samesite_0',['sameSite',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#a7934260b06bad988877bc6752404f67b',1,'Thoth::Http::NHeaders::Cookie']]],
-  ['scheme_1',['scheme',['../struct_thoth_1_1_http_1_1_client_connection_key.html#ad33591ace356466a49419d0a241a393f',1,'Thoth::Http::ClientConnectionKey::scheme'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html#ae58a98256ffd42fd1ef95d67f77297b8',1,'Thoth::Http::NHeaders::Challenge::scheme']]],
-  ['secure_2',['secure',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#a4b074ab729f28b9ba5b979ae01667f56',1,'Thoth::Http::NHeaders::Cookie']]],
-  ['socket_3',['socket',['../struct_thoth_1_1_http_1_1_client_connection.html#a62fcf594beaa0a20cf6f6144f7e4c3d1',1,'Thoth::Http::ClientConnection::socket'],['../struct_thoth_1_1_http_1_1_server_connection.html#ae244cfafc4ba96f03dfb1f6b18089c4a',1,'Thoth::Http::ServerConnection::socket']]],
-  ['start_4',['start',['../struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html#a2de46acb65e19ca115105de6e61cc35c',1,'Thoth::Http::NHeaders::PrefixedRange']]],
-  ['status_5',['status',['../struct_thoth_1_1_http_1_1_response_head.html#a1771892d996918d81f19c1177b74fbc0',1,'Thoth::Http::ResponseHead']]],
-  ['statusmessage_6',['statusMessage',['../struct_thoth_1_1_http_1_1_response_head.html#a6acd1d6217337a45c6fa0e94792e7306',1,'Thoth::Http::ResponseHead']]],
-  ['stream_7',['stream',['../struct_thoth_1_1_dsa_1_1_file_output_iterator.html#a25d98e1a9df07d37baaaa77c78179553',1,'Thoth::Dsa::FileOutputIterator']]],
-  ['subtype_8',['subtype',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_type_header.html#abc941bacbdc576f2ff2bc7be8e5f30ee',1,'Thoth::Http::NHeaders::MimeTypeHeader']]]
+  ['readidx_0',['readIdx',['../struct_thoth_1_1_http_1_1_exchange_buffer.html#a1da120afa32143af699245eebc1e56f7',1,'Thoth::Http::ExchangeBuffer']]],
+  ['requestmutualauth_1',['requestMutualAuth',['../struct_thoth_1_1_http_1_1_client_options.html#a18e477ebecf36dd59b21f27154db504f',1,'Thoth::Http::ClientOptions']]],
+  ['requesttimeout_2',['requestTimeout',['../struct_thoth_1_1_http_1_1_client_options.html#aa3023f155e7fa39b305b7388c3d8912a',1,'Thoth::Http::ClientOptions']]]
 ];

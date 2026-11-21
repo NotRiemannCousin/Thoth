@@ -1,19 +1,23 @@
 <map id="Thoth::Http::ResponseHead" name="Thoth::Http::ResponseHead">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,282,205,307"/>
-<area shape="rect" id="Node000002" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="292,5,459,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,268,131,222,161,164,200,105,225,78,252,55,290,36,293,41,255,60,228,82,205,109,165,167,136,224,118,270"/>
-<area shape="rect" id="Node000003" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="282,70,469,125"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,269,174,202,211,165,252,134,280,119,283,124,255,138,214,169,178,206,125,272"/>
-<area shape="rect" id="Node000004" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="280,149,471,203"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="138,272,190,242,252,212,281,201,283,206,254,217,193,247,140,277"/>
-<area shape="rect" id="Node000005" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="253,227,497,282"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="205,277,253,270,254,275,206,283"/>
-<area shape="rect" id="Node000006" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="273,306,478,361"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="209,307,273,316,272,321,208,312"/>
-<area shape="rect" id="Node000007" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="256,385,495,439"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="141,312,193,340,254,370,287,382,285,387,252,374,191,345,138,316"/>
-<area shape="rect" id="Node000008" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="254,463,497,518"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="125,317,178,382,215,418,255,448,278,461,275,466,252,453,211,422,175,386,121,320"/>
-<area shape="rect" id="Node000009" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="292,543,459,583"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="118,319,137,364,166,421,205,478,229,505,255,527,293,546,290,551,252,532,225,508,201,482,161,424,132,367,113,321"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,358,205,386"/>
+<area shape="rect" id="Node000002" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="276,5,441,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,342,125,283,152,207,171,168,193,129,220,92,251,60,277,45,274,49,254,64,224,96,198,132,176,170,157,210,130,285,115,343"/>
+<area shape="rect" id="Node000003" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="266,74,451,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,343,136,300,166,247,204,193,251,146,270,134,267,138,254,150,208,197,170,250,141,302,120,345"/>
+<area shape="rect" id="Node000004" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="263,160,454,221"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="126,344,180,288,214,258,251,231,274,220,271,224,254,235,218,262,184,292,130,347"/>
+<area shape="rect" id="Node000005" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="265,245,452,290"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="146,348,252,300,286,289,282,292,254,305,149,353"/>
+<area shape="rect" id="Node000006" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="262,315,454,359"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="219,354,264,349,259,352,221,358"/>
+<area shape="rect" id="Node000007" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="255,384,462,429"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="219,385,257,391,252,393,221,390"/>
+<area shape="rect" id="Node000008" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="253,453,464,498"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="147,390,254,439,287,452,282,453,252,443,148,396"/>
+<area shape="rect" id="Node000009" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="276,523,441,567"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="127,395,182,452,217,482,254,508,279,522,274,523,251,513,214,486,179,456,127,400"/>
+<area shape="rect" id="Node000010" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="260,592,456,637"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="119,397,142,439,172,487,209,536,254,578,275,591,269,591,251,582,205,539,167,490,137,441,119,403"/>
+<area shape="rect" id="Node000011" href="$struct_thoth_1_1_http_1_1_response.html" title=" " alt="" coords="276,661,441,706"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="114,398,133,453,161,519,201,588,226,619,254,647,278,664,272,663,251,651,222,623,197,591,157,522,128,455,113,403"/>
 </map>

@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['idx_0',['idx',['../struct_thoth_1_1_n_json_1_1_json_parse_error.html#a48e36a04a7a6d04f6c0efcd419055195',1,'Thoth::NJson::JsonParseError']]],
-  ['idxexpected_1',['idxExpected',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a5c19de2235d64ce45df6070a7f35966f',1,'Thoth::NJson::JsonWrongTypeError']]],
-  ['idxgot_2',['idxGot',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a9b3d0deef619aeffd7c24293a85d9712',1,'Thoth::NJson::JsonWrongTypeError']]],
-  ['ignorecertificateerrors_3',['ignoreCertificateErrors',['../struct_thoth_1_1_http_1_1_client_options.html#a8e4f006c329b8b820a6a67ca18b95040',1,'Thoth::Http::ClientOptions']]],
-  ['imagejpeg_4',['imageJpeg',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a962ba790e016b284bde2bd4fe3b229ae',1,'Thoth::Http::NHeaders::MimeTypes']]],
-  ['imagepng_5',['imagePng',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a7ab7aa1eca27e8b5eb289b1c44b769e8',1,'Thoth::Http::NHeaders::MimeTypes']]],
-  ['indexof_6',['IndexOf',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a8f8cf6825d417bad8f3586d57be94d93',1,'Thoth::NJson::JsonWrongTypeError']]],
-  ['isweak_7',['isWeak',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html#aa31da502a6e8cfa66b3fdda55cf665cd',1,'Thoth::Http::NHeaders::EntityTag']]]
+  ['handshaketimeout_0',['handshakeTimeout',['../struct_thoth_1_1_http_1_1_client_options.html#a2ad5c299780dccefee2a0f1e327dc6da',1,'Thoth::Http::ClientOptions']]],
+  ['head_1',['head',['../struct_thoth_1_1_http_1_1_exchange.html#a9082e405da9d001d5620c9f7ee6fd5ab',1,'Thoth::Http::Exchange']]],
+  ['headers_2',['headers',['../struct_thoth_1_1_http_1_1_request_head.html#af1902368b69df67e8edf659654524af3',1,'Thoth::Http::RequestHead::headers'],['../struct_thoth_1_1_http_1_1_response_head.html#a9f2476f1208473fa57eb6bdf84329ed1',1,'Thoth::Http::ResponseHead::headers']]],
+  ['headertimeout_3',['headerTimeout',['../struct_thoth_1_1_http_1_1_http_limits.html#ac47e57f37646b5c43bf1436bcbc76a8b',1,'Thoth::Http::HttpLimits']]],
+  ['host_4',['host',['../struct_thoth_1_1_http_1_1_authority.html#aff590335dc0632ddda19752c2d5eaa82',1,'Thoth::Http::Authority::host'],['../struct_thoth_1_1_http_1_1_authority_view.html#a0ef365572ee42b781cff7862da06a43b',1,'Thoth::Http::AuthorityView::host']]],
+  ['hostname_5',['hostname',['../struct_thoth_1_1_http_1_1_client_connection_key.html#a2206e1b8f463e30469e667f3de56d8c6',1,'Thoth::Http::ClientConnectionKey']]],
+  ['hosts_6',['hosts',['../struct_thoth_1_1_http_1_1_server.html#a2c595b743c2bb709df57b5a989ebb555',1,'Thoth::Http::Server']]],
+  ['httponly_7',['httpOnly',['../struct_thoth_1_1_http_1_1_n_headers_1_1_cookie.html#a4f308750987e07a5ddb4ff5b867e70a2',1,'Thoth::Http::NHeaders::Cookie']]]
 ];

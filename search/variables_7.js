@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['json_0',['Json',['../struct_thoth_1_1_n_json_1_1_json_object.html#a0203945ddf877d034636db2c3a268e4d',1,'Thoth::NJson::JsonObject']]]
+  ['idx_0',['idx',['../struct_thoth_1_1_n_json_1_1_json_parse_error.html#a48e36a04a7a6d04f6c0efcd419055195',1,'Thoth::NJson::JsonParseError']]],
+  ['idxexpected_1',['idxExpected',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a5c19de2235d64ce45df6070a7f35966f',1,'Thoth::NJson::JsonWrongTypeError']]],
+  ['idxgot_2',['idxGot',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a9b3d0deef619aeffd7c24293a85d9712',1,'Thoth::NJson::JsonWrongTypeError']]],
+  ['ignorecertificateerrors_3',['ignoreCertificateErrors',['../struct_thoth_1_1_http_1_1_client_options.html#a8e4f006c329b8b820a6a67ca18b95040',1,'Thoth::Http::ClientOptions']]],
+  ['imagegif_4',['imageGif',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#ab3b31da7092150e7f833aaeba2fefef0',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['imagejpeg_5',['imageJpeg',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a962ba790e016b284bde2bd4fe3b229ae',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['imagepng_6',['imagePng',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a7ab7aa1eca27e8b5eb289b1c44b769e8',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['imagesvg_7',['imageSvg',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#aa85de0e598866d31ecc7e119f724a7c3',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['imagewebp_8',['imageWebp',['../struct_thoth_1_1_http_1_1_n_headers_1_1_mime_types.html#a1f4a1e2b3dc8d50bc98e17711ca61109',1,'Thoth::Http::NHeaders::MimeTypes']]],
+  ['indexof_9',['IndexOf',['../struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html#a8f8cf6825d417bad8f3586d57be94d93',1,'Thoth::NJson::JsonWrongTypeError']]],
+  ['isexpected_10',['IsExpected',['../namespace_thoth_1_1_utils.html#a29b8fce642622b5c697fadbe6a3ba6f4',1,'Thoth::Utils']]],
+  ['isexpected_3c_20std_3a_3aexpected_3c_20t_2c_20e_20_3e_20_3e_11',['IsExpected&lt; std::expected&lt; T, E &gt; &gt;',['../namespace_thoth_1_1_utils.html#a3b90ed9fd010f43f2addc2d168f1a540',1,'Thoth::Utils']]],
+  ['isoptional_12',['IsOptional',['../namespace_thoth_1_1_utils.html#ad95a5908136272577b11b22c396e30de',1,'Thoth::Utils']]],
+  ['isoptional_3c_20std_3a_3aoptional_3c_20t_20_3e_20_3e_13',['IsOptional&lt; std::optional&lt; T &gt; &gt;',['../namespace_thoth_1_1_utils.html#ae2187602a1e77ce59c817acde8966599',1,'Thoth::Utils']]],
+  ['isrequest_14',['IsRequest',['../namespace_thoth_1_1_http.html#ad4e83fcce544d2cabced4201577a65f5',1,'Thoth::Http']]],
+  ['isrequest_3c_20request_3c_20t_2e_2e_2e_20_3e_20_3e_15',['IsRequest&lt; Request&lt; T... &gt; &gt;',['../namespace_thoth_1_1_http.html#ae99fcdd4f38e79b0d81059de7a4ce61b',1,'Thoth::Http']]],
+  ['isrequestentry_16',['IsRequestEntry',['../namespace_thoth_1_1_http.html#a3f16b5eccf3e7557cb2aeda2102d7997',1,'Thoth::Http']]],
+  ['isrequestentry_3c_20requestentry_3c_20t_2e_2e_2e_20_3e_20_3e_17',['IsRequestEntry&lt; RequestEntry&lt; T... &gt; &gt;',['../namespace_thoth_1_1_http.html#a80c1243679331be4341ca05f1f9b6925',1,'Thoth::Http']]],
+  ['isresponse_18',['IsResponse',['../namespace_thoth_1_1_http.html#a3e3ed415f30754c79e3c02b0fe12bb5c',1,'Thoth::Http']]],
+  ['isresponse_3c_20response_3c_20t_2e_2e_2e_20_3e_20_3e_19',['IsResponse&lt; Response&lt; T... &gt; &gt;',['../namespace_thoth_1_1_http.html#a057eaaeee6bf327d2762dd2015a4e4dd',1,'Thoth::Http']]],
+  ['isresponseentry_20',['IsResponseEntry',['../namespace_thoth_1_1_http.html#a071e90fd4b0e917a595aeedbaf863f81',1,'Thoth::Http']]],
+  ['isresponseentry_3c_20responseentry_3c_20t_2e_2e_2e_20_3e_20_3e_21',['IsResponseEntry&lt; ResponseEntry&lt; T... &gt; &gt;',['../namespace_thoth_1_1_http.html#aaa1083a69bdb1c97d7537fe60f38a5b2',1,'Thoth::Http']]],
+  ['isvariant_22',['IsVariant',['../namespace_thoth_1_1_utils.html#aab6f9966a4f7aa1d180d51e3592ee223',1,'Thoth::Utils']]],
+  ['isvariant_3c_20std_3a_3avariant_3c_20ts_2e_2e_2e_20_3e_20_3e_23',['IsVariant&lt; std::variant&lt; Ts... &gt; &gt;',['../namespace_thoth_1_1_utils.html#a364fd83f326cc780e2906a16743bcfd2',1,'Thoth::Utils']]],
+  ['isweak_24',['isWeak',['../struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html#aa31da502a6e8cfa66b3fdda55cf665cd',1,'Thoth::Http::NHeaders::EntityTag']]]
 ];

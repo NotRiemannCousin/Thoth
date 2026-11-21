@@ -1,0 +1,25 @@
+var _utils_2_optional_8hpp =
+[
+    [ "Thoth::Utils::H_NulloptIf", "namespace_thoth_1_1_utils.html#aaf5b07ff633aa768d5ab50a8cf66ba77", null ],
+    [ "Thoth::Utils::H_NulloptIf", "namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3", null ],
+    [ "Thoth::Utils::H_NulloptIfNot", "namespace_thoth_1_1_utils.html#a08c8bf8ea56586793a4db49169039a1d", null ],
+    [ "Thoth::Utils::H_NulloptIfNot", "namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e", null ],
+    [ "Thoth::Utils::H_TransformOptIf", "namespace_thoth_1_1_utils.html#a9292d3c313a32e0a19cb64226b76e357", null ],
+    [ "Thoth::Utils::H_TransformOptIf", "namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca", null ],
+    [ "Thoth::Utils::H_TransformOptIf", "namespace_thoth_1_1_utils.html#ad6302cacb3ff3e63fb77003c7cb896a4", null ],
+    [ "Thoth::Utils::H_TransformOptIfNot", "namespace_thoth_1_1_utils.html#a1d38057e69465fa25e7bb304836eaab7", null ],
+    [ "Thoth::Utils::H_TransformOptIfNot", "namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952", null ],
+    [ "Thoth::Utils::H_TransformOptIfNot", "namespace_thoth_1_1_utils.html#ab6f27ba7b5c97b197a3470a89b437c60", null ],
+    [ "Thoth::Utils::NulloptIf", "namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec", null ],
+    [ "Thoth::Utils::NulloptIf", "namespace_thoth_1_1_utils.html#a05d0a37546a30efa72b5e0fafd9f7628", null ],
+    [ "Thoth::Utils::NulloptIfImpl", "namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95", null ],
+    [ "Thoth::Utils::NulloptIfNot", "namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24", null ],
+    [ "Thoth::Utils::NulloptIfNot", "namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c", null ],
+    [ "Thoth::Utils::TransformOptIf", "namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131", null ],
+    [ "Thoth::Utils::TransformOptIf", "namespace_thoth_1_1_utils.html#a01c3d551fcd86f7a49de5b3a7d98da94", null ],
+    [ "Thoth::Utils::TransformOptIf", "namespace_thoth_1_1_utils.html#ae58476c2299cf7b7aaff41d64b61982f", null ],
+    [ "Thoth::Utils::TransformOptIfImpl", "namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c", null ],
+    [ "Thoth::Utils::TransformOptIfNot", "namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae", null ],
+    [ "Thoth::Utils::TransformOptIfNot", "namespace_thoth_1_1_utils.html#a17246145332b0877e644f133e1ee01ed", null ],
+    [ "Thoth::Utils::TransformOptIfNot", "namespace_thoth_1_1_utils.html#a45cef67486148ac506cf2cb48f8eefaa", null ]
+];

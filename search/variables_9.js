@@ -1,5 +1,28 @@
 var searchData=
 [
-  ['last_0',['last',['../struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html#a1161220e331314c0f1f7f930e3458347',1,'Thoth::Http::NHeaders::SuffixedRange']]],
-  ['lastused_1',['lastUsed',['../struct_thoth_1_1_http_1_1_client_connection.html#a1efa5466132346bbbf1951e7fd928416',1,'Thoth::Http::ClientConnection']]]
+  ['k_5falpha_0',['k_alpha',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9f24dbcbd1b338d13c66455f53b2a1cb',1,'Thoth::String::CharSequences']]],
+  ['k_5falphalower_1',['k_alphaLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#a93358c7ae3ff9acf7cfbf381e8b4ade3',1,'Thoth::String::CharSequences']]],
+  ['k_5falphanumeric_2',['k_alphanumeric',['../struct_thoth_1_1_string_1_1_char_sequences.html#a6f0824272ab7685c591a125a204b2945',1,'Thoth::String::CharSequences']]],
+  ['k_5falphaupper_3',['k_alphaUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9847c1cef95d180caefc73a84efb58ec',1,'Thoth::String::CharSequences']]],
+  ['k_5fbase64_4',['k_base64',['../struct_thoth_1_1_string_1_1_char_sequences.html#a446d206700ef3f1fa8d824ef7400476a',1,'Thoth::String::CharSequences']]],
+  ['k_5fbase64padding_5',['k_base64Padding',['../struct_thoth_1_1_string_1_1_char_sequences.html#a0ce391a1dff11bbe91044894bfac4414',1,'Thoth::String::CharSequences']]],
+  ['k_5fbase64url_6',['k_base64Url',['../struct_thoth_1_1_string_1_1_char_sequences.html#a3c3ee8d34e0cebfd1b11343bd739d1e7',1,'Thoth::String::CharSequences']]],
+  ['k_5fbouncebytes_7',['k_bounceBytes',['../struct_thoth_1_1_http_1_1_body_io_3_01_r_01_4.html#ae2cb5fda64342ba5ee0b49b168f99814',1,'Thoth::Http::BodyIo&lt; R &gt;::k_bounceBytes'],['../struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html#aed50c326c6df90a8ca5246e358119e9f',1,'Thoth::Http::BodyIo&lt; FileBody &gt;::k_bounceBytes']]],
+  ['k_5fcapacity_8',['k_capacity',['../struct_thoth_1_1_http_1_1_exchange_buffer.html#a754d31bad8d451854cd06aae34699d6b',1,'Thoth::Http::ExchangeBuffer']]],
+  ['k_5fcount_9',['k_count',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a8b654297f8963d590631f44b7fef182b',1,'Thoth::Http::NHeaders::ListProxy::k_count'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a6624f90926f81b4a5632a7623838292e',1,'Thoth::Http::NHeaders::MultiValueProxy::k_count'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#ad26c6cf16939cd9ddd3047adca27805d',1,'Thoth::Http::NHeaders::ValueProxy::k_count']]],
+  ['k_5fdelimiters_10',['k_delimiters',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#acc84aaf03d0a35a696eedbb8d6886978',1,'Thoth::String::CharSequences::Http']]],
+  ['k_5fdigits_11',['k_digits',['../struct_thoth_1_1_string_1_1_char_sequences.html#aa03f18fae4d3db1db65daf3c9763da65',1,'Thoth::String::CharSequences']]],
+  ['k_5fhex_12',['k_hex',['../struct_thoth_1_1_string_1_1_char_sequences.html#a5b765f414d50d232b3d6a506b4589ad7',1,'Thoth::String::CharSequences']]],
+  ['k_5fhexlower_13',['k_hexLower',['../struct_thoth_1_1_string_1_1_char_sequences.html#aee3c05a9a285b93be7986d4f758b54aa',1,'Thoth::String::CharSequences']]],
+  ['k_5fhexupper_14',['k_hexUpper',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9d781f0b4fd432b906c5dbeebe9efb7c',1,'Thoth::String::CharSequences']]],
+  ['k_5flinearwhitespace_15',['k_linearWhitespace',['../struct_thoth_1_1_string_1_1_char_sequences.html#afc1c516322206649ecb63bf6949cfa2b',1,'Thoth::String::CharSequences']]],
+  ['k_5fnewlines_16',['k_newlines',['../struct_thoth_1_1_string_1_1_char_sequences.html#a3435ffdb9a457cae45ed62d3554bdac8',1,'Thoth::String::CharSequences']]],
+  ['k_5fnonprintable_17',['k_nonPrintable',['../struct_thoth_1_1_string_1_1_char_sequences.html#a9543e5b1f4e6b9841cea1b2c1ac769e6',1,'Thoth::String::CharSequences']]],
+  ['k_5fpunctuation_18',['k_punctuation',['../struct_thoth_1_1_string_1_1_char_sequences.html#a057544c4985668a83d918471bfaa2502',1,'Thoth::String::CharSequences']]],
+  ['k_5fsingle_19',['k_single',['../struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ae10d0a6eae41ce91fb90b8e9d297aa30',1,'Thoth::Http::NHeaders::ListProxy::k_single'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html#a536236f8045fc94e973e0fe216e74bb2',1,'Thoth::Http::NHeaders::MultiValueProxy::k_single'],['../struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy.html#a2eee651840ee44b9c21d149f14c0c8e5',1,'Thoth::Http::NHeaders::ValueProxy::k_single']]],
+  ['k_5ftchar_20',['k_tchar',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a2cecfa163158715b5e19508a4db5ea18',1,'Thoth::String::CharSequences::Http']]],
+  ['k_5furl_21',['k_url',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a63038d05f9e315e0bb67e2ab229b8cb6',1,'Thoth::String::CharSequences::Http']]],
+  ['k_5fwhitespace_22',['k_whitespace',['../struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html#a167d7f57bf68c60accefead3067c8cff',1,'Thoth::String::CharSequences::Http::k_whitespace'],['../struct_thoth_1_1_string_1_1_char_sequences.html#a67d2c32490bb9911901a7ea2ecf76ea9',1,'Thoth::String::CharSequences::k_whitespace']]],
+  ['keepaliveidle_23',['keepAliveIdle',['../struct_thoth_1_1_http_1_1_http_limits.html#a19b6db266a5930e9e30932820df9731d',1,'Thoth::Http::HttpLimits']]],
+  ['key_24',['key',['../struct_thoth_1_1_n_json_1_1_json_get_error.html#a814067f068c9337faa4820782b9f1825',1,'Thoth::NJson::JsonGetError::key'],['../struct_thoth_1_1_n_json_1_1_json_find_error.html#a149f00058632e2a3d25132ffe4de886c',1,'Thoth::NJson::JsonFindError::key']]]
 ];

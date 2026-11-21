@@ -159,11 +159,30 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespace_thot
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:NHeaders" id="r_NHeaders"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_n_headers.html">NHeaders</a></td></tr>
+<tr class="memitem:Transport" id="r_Transport"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_transport.html">Transport</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:AnyBody" id="r_AnyBody"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A type-erased body (still fixed with its <a class="el" href="#ab9c4f059d915ec202397d13552f97328" title="BodyDirection">BodyDirection</a>, <a class="el" href="#ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e" title="BodyDirection::Both">BodyDirection::Both</a> can convert to any <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html" title="A type-erased body (still fixed with its BodyDirection, BodyDirection::Both can convert to any AnyBod...">AnyBody</a>).  <a href="struct_thoth_1_1_http_1_1_any_body.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Authority" id="r_Authority"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_authority.html">Authority</a></td></tr>
 <tr class="memitem:AuthorityView" id="r_AuthorityView"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_authority_view.html">AuthorityView</a></td></tr>
+<tr class="memitem:BasicRouter" id="r_BasicRouter"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_basic_router.html">BasicRouter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple router.  <a href="struct_thoth_1_1_http_1_1_basic_router.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BasicRouterMiddlewareTraits" id="r_BasicRouterMiddlewareTraits"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_basic_router_middleware_traits.html">BasicRouterMiddlewareTraits</a></td></tr>
+<tr class="memitem:BasicRouterMiddlewareTraits_3C_20T_2C_20Socket_20_3E" id="r_BasicRouterMiddlewareTraits_3C_20T_2C_20Socket_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_basic_router_middleware_traits_3_01_t_00_01_socket_01_4.html">BasicRouterMiddlewareTraits&lt; T, Socket &gt;</a></td></tr>
+<tr class="memitem:BodyInfoBehavior" id="r_BodyInfoBehavior"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_info_behavior.html">BodyInfoBehavior</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Customization point that teaches the <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="The I/O protocol of a body, specialized per body type (same model as std::formatter).">BodyIo</a> how to fill a range. You need to implement the "Write" and "FinishWrite" methods, just like the <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="The I/O protocol of a body, specialized per body type (same model as std::formatter).">BodyIo</a>, but both return void (a range sink always consumes the whole window).  <a href="struct_thoth_1_1_http_1_1_body_info_behavior.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BodyIo" id="r_BodyIo"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io.html">BodyIo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The I/O protocol of a body, specialized per body type (same model as <span class="tt">std::formatter</span>).  <a href="struct_thoth_1_1_http_1_1_body_io.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BodyIo_3C_20AnyBody_3C_20Dir_20_3E_20_3E" id="r_BodyIo_3C_20AnyBody_3C_20Dir_20_3E_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io_3_01_any_body_3_01_dir_01_4_01_4.html">BodyIo&lt; AnyBody&lt; Dir &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="BodyIo">BodyIo</a> bound to an erased body, the specialization that keeps the CPO link alive.  <a href="struct_thoth_1_1_http_1_1_body_io_3_01_any_body_3_01_dir_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BodyIo_3C_20EmptyBody_20_3E" id="r_BodyIo_3C_20EmptyBody_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io_3_01_empty_body_01_4.html">BodyIo&lt; EmptyBody &gt;</a></td></tr>
+<tr class="memitem:BodyIo_3C_20FileBody_20_3E" id="r_BodyIo_3C_20FileBody_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html">BodyIo&lt; FileBody &gt;</a></td></tr>
+<tr class="memitem:BodyIo_3C_20R_20_3E" id="r_BodyIo_3C_20R_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io_3_01_r_01_4.html">BodyIo&lt; R &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Symmetric in-memory body over any range of bytes (<span class="tt">std::vector&lt;std::byte&gt;</span>, <span class="tt">std::deque&lt;char&gt;</span>, a vector of chunks...). The outgoing side needs a range that is const iterable, the incoming side needs a <a class="el" href="struct_thoth_1_1_http_1_1_body_info_behavior.html" title="BodyInfoBehavior">BodyInfoBehavior</a> for the range (growable value ranges have one out of the box).  <a href="struct_thoth_1_1_http_1_1_body_io_3_01_r_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BodyIo_3C_20std_3A_3Astring_20_3E" id="r_BodyIo_3C_20std_3A_3Astring_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_body_io_3_01std_1_1string_01_4.html">BodyIo&lt; std::string &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Symmetric in-memory text body. The whole payload is materialized, Read hands the remaining bytes out as a single zero-copy slice over the string storage and Write appends received bytes at the end.  <a href="struct_thoth_1_1_http_1_1_body_io_3_01std_1_1string_01_4.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Client" id="r_Client"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_client.html">Client</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that transforms requests with a given method AndParse their responses, monad friendly.  <a href="struct_thoth_1_1_http_1_1_client.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ClientConnection" id="r_ClientConnection"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_client_connection.html">ClientConnection</a></td></tr>
@@ -174,79 +193,188 @@ Classes</h2></td></tr>
 <tr class="memitem:ClientOptions" id="r_ClientOptions"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_client_options.html">ClientOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration options for HTTP exchanges performed by <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Client">Client</a>.  <a href="struct_thoth_1_1_http_1_1_client_options.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DeleteMethod" id="r_DeleteMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_delete_method.html">DeleteMethod</a></td></tr>
+<tr class="memitem:EmptyBody" id="r_EmptyBody"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A body with a known empty payload. <span class="tt">Size</span> reports zero (a valid <span class="tt">Content-Length: 0</span>, not the unknown of <span class="tt">nullopt</span>), Read ends immediately and the incoming side accepts and drops whatever arrives.  <a href="struct_thoth_1_1_http_1_1_empty_body.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Exchange" id="r_Exchange"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_exchange.html">Exchange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One live request handed to the Router, the <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a> side of an exchange.  <a href="struct_thoth_1_1_http_1_1_exchange.html#details">More...</a><br /></td></tr>
+<tr class="memitem:ExchangeBuffer" id="r_ExchangeBuffer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_exchange_buffer.html">ExchangeBuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size sliding window that accumulates intermediate Recvs between parse steps (head lines, chunk frames, body slices).  <a href="struct_thoth_1_1_http_1_1_exchange_buffer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FileBody" id="r_FileBody"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A file on disk as a body, symmetric. The outgoing side serves it: <span class="tt">Size</span> comes from the filesystem metadata (no byte is read) and Read hands out slices through an internal bounce buffer, so a multi-gigabyte upload never gets materialized. The incoming side downloads into it: Write appends whole windows to the file and FinishWrite flushes (the RAII close on destruction stays as the failure-path backstop, where flushing would be wrong anyway). The stream is always binary, bytes are bytes and no EOL magic is welcome on the wire.  <a href="struct_thoth_1_1_http_1_1_file_body.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FileBuilderParams" id="r_FileBuilderParams"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_file_builder_params.html">FileBuilderParams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builder knobs of the download factory (<a class="el" href="struct_thoth_1_1_http_1_1_file_body.html#a7e190f8be74415ae6a8b5ea91fdd9a61" title="FileBody::H_AsBody">FileBody::H_AsBody</a>): where to write, which content types to accept and the response size ceiling. The checks run against the response head, before any body byte is consumed, so a refused download never drains the stream.  <a href="struct_thoth_1_1_http_1_1_file_builder_params.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FramingEmpty" id="r_FramingEmpty"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_framing_empty.html">FramingEmpty</a></td></tr>
+<tr class="memitem:FramingSized" id="r_FramingSized"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_framing_sized.html">FramingSized</a></td></tr>
+<tr class="memitem:FramingStreamed" id="r_FramingStreamed"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_framing_streamed.html">FramingStreamed</a></td></tr>
 <tr class="memitem:GetMethod" id="r_GetMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a></td></tr>
 <tr class="memitem:Headers" id="r_Headers"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_headers.html">Headers</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the common header fields of an HTTP message.  <a href="struct_thoth_1_1_http_1_1_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:HeadMethod" id="r_HeadMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a></td></tr>
+<tr class="memitem:HostPolicy" id="r_HostPolicy"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_host_policy.html">HostPolicy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls which <span class="tt"><a class="el" href="#a923afcf85ecdad1fd277e5701e93a57a">Host</a></span> values the server accepts.  <a href="struct_thoth_1_1_http_1_1_host_policy.html#details">More...</a><br /></td></tr>
+<tr class="memitem:HttpLimits" id="r_HttpLimits"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_http_limits.html">HttpLimits</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-exchange ceilings and deadlines shared by <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Client">Client</a> and <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="Server">Server</a>, independent of the HTTP flavour (1.x today, 2/3 reuse the same struct).  <a href="struct_thoth_1_1_http_1_1_http_limits.html#details">More...</a><br /></td></tr>
+<tr class="memitem:IntoPayload" id="r_IntoPayload"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload.html">IntoPayload</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPO detailed in <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html" title="RequestEntry">RequestEntry</a> and <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html" title="ResponseEntry">ResponseEntry</a>.  <a href="struct_thoth_1_1_http_1_1_into_payload.html#details">More...</a><br /></td></tr>
+<tr class="memitem:IntoPayload_3C_20std_3A_3Astring_2C_20T_20_3E" id="r_IntoPayload_3C_20std_3A_3Astring_2C_20T_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01std_1_1string_00_01_t_01_4.html">IntoPayload&lt; std::string, T &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20std_3A_3Avector_3C_20std_3A_3Abyte_20_3E_2C_20R_20_3E" id="r_IntoPayload_3C_20std_3A_3Avector_3C_20std_3A_3Abyte_20_3E_2C_20R_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01std_1_1vector_3_01std_1_1byte_01_4_00_01_r_01_4.html">IntoPayload&lt; std::vector&lt; std::byte &gt;, R &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20NJson_3A_3AJson_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20NJson_3A_3AJson_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_n_json_1_1_json_01_4.html">IntoPayload&lt; TargetBody, NJson::Json &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20NJson_3A_3AJsonObject_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20NJson_3A_3AJsonObject_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_n_json_1_1_json_object_01_4.html">IntoPayload&lt; TargetBody, NJson::JsonObject &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20StatusCodeEnum_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20StatusCodeEnum_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_status_code_enum_01_4.html">IntoPayload&lt; TargetBody, StatusCodeEnum &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20std_3A_3Aexpected_3C_20T_2C_20E_20_3E_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20std_3A_3Aexpected_3C_20T_2C_20E_20_3E_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1expected_3_01_t_00_01_e_01_4_01_4.html">IntoPayload&lt; TargetBody, std::expected&lt; T, E &gt; &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20std_3A_3Amonostate_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20std_3A_3Amonostate_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1monostate_01_4.html">IntoPayload&lt; TargetBody, std::monostate &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20std_3A_3Aoptional_3C_20T_20_3E_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20std_3A_3Aoptional_3C_20T_20_3E_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1optional_3_01_t_01_4_01_4.html">IntoPayload&lt; TargetBody, std::optional&lt; T &gt; &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20std_3A_3Apair_3C_20StatusCodeEnum_2C_20T_20_3E_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20std_3A_3Apair_3C_20StatusCodeEnum_2C_20T_20_3E_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1pair_3_01_status_code_enum_00_01_t_01_4_01_4.html">IntoPayload&lt; TargetBody, std::pair&lt; StatusCodeEnum, T &gt; &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20std_3A_3Avariant_3C_20Ts_2E_2E_2E_20_3E_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20std_3A_3Avariant_3C_20Ts_2E_2E_2E_20_3E_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1variant_3_01_ts_8_8_8_01_4_01_4.html">IntoPayload&lt; TargetBody, std::variant&lt; Ts... &gt; &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20ThothError_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20ThothError_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_thoth_error_01_4.html">IntoPayload&lt; TargetBody, ThothError &gt;</a></td></tr>
+<tr class="memitem:IntoPayload_3C_20TargetBody_2C_20Url_20_3E" id="r_IntoPayload_3C_20TargetBody_2C_20Url_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_url_01_4.html">IntoPayload&lt; TargetBody, Url &gt;</a></td></tr>
 <tr class="memitem:OptionsMethod" id="r_OptionsMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_options_method.html">OptionsMethod</a></td></tr>
 <tr class="memitem:PatchMethod" id="r_PatchMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_patch_method.html">PatchMethod</a></td></tr>
 <tr class="memitem:PostMethod" id="r_PostMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a></td></tr>
 <tr class="memitem:PutMethod" id="r_PutMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_put_method.html">PutMethod</a></td></tr>
 <tr class="memitem:QueryParams" id="r_QueryParams"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a></td></tr>
+<tr class="memitem:ReadContext" id="r_ReadContext"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_read_context.html">ReadContext</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Everything the Http1 read coroutines need besides the message itself, the transfer source, the intermediate-recv window, the ceilings and the exchange deadline. Handed down through the whole Read* family so no function ever opens its own recv loop (leftovers from one stage flow into the next one through <a class="el" href="struct_thoth_1_1_http_1_1_exchange_buffer.html" title="ExchangeBuffer">ExchangeBuffer</a>).  <a href="struct_thoth_1_1_http_1_1_read_context.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Request" id="r_Request"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a></td></tr>
+<tr class="memitem:RequestEntry" id="r_RequestEntry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>'s evil twin designed to help in conversions.  <a href="struct_thoth_1_1_http_1_1_request_entry.html#details">More...</a><br /></td></tr>
 <tr class="memitem:RequestHead" id="r_RequestHead"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a></td></tr>
 <tr class="memitem:RequestHeaders" id="r_RequestHeaders"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_request_headers.html">RequestHeaders</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the request-specific HTTP header fields.  <a href="struct_thoth_1_1_http_1_1_request_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Response" id="r_Response"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a></td></tr>
+<tr class="memitem:ResponseEntry" id="r_ResponseEntry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>'s evil twin designed to help in conversions.  <a href="struct_thoth_1_1_http_1_1_response_entry.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ResponseHead" id="r_ResponseHead"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a></td></tr>
 <tr class="memitem:ResponseHeaders" id="r_ResponseHeaders"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_response_headers.html">ResponseHeaders</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the response-specific HTTP header fields.  <a href="struct_thoth_1_1_http_1_1_response_headers.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Server" id="r_Server"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Server</a></td></tr>
-<tr class="memitem:ServerConnection" id="r_ServerConnection"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">ServerConnection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The server. Owns the routing, the listener configuration (imutable, keep it right from the start), and the accept loop definition.  <a href="struct_thoth_1_1_http_1_1_server.html#details">More...</a><br /></td></tr>
 <tr class="memitem:TraceMethod" id="r_TraceMethod"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_trace_method.html">TraceMethod</a></td></tr>
 <tr class="memitem:Url" id="r_Url"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_url.html">Url</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A subset of URL as defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC 3986</a>.  <a href="struct_thoth_1_1_http_1_1_url.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
+<tr class="memitem:AsyncSocketConcept" id="r_AsyncSocketConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_async_socket_concept.html">AsyncSocketConcept</a></td></tr>
+<tr class="memitem:BasicRouterMiddlewareConcept" id="r_BasicRouterMiddlewareConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_basic_router_middleware_concept.html">BasicRouterMiddlewareConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a Middleware function. <br /></td></tr>
 <tr class="memitem:BodyConcept" id="r_BodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_body_concept.html">BodyConcept</a></td></tr>
 <tr class="memitem:BodyFactoryConcept" id="r_BodyFactoryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_body_factory_concept.html">BodyFactoryConcept</a></td></tr>
-<tr class="memitem:ChunkedReadableBodyConcept" id="r_ChunkedReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_chunked_readable_body_concept.html">ChunkedReadableBodyConcept</a></td></tr>
-<tr class="memitem:ConnectionConcept" id="r_ConnectionConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_connection_concept.html">ConnectionConcept</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for any synchronous <a class="el" href="namespace_hermes.html">Hermes</a> socket (Client or Server-side) over which <a class="el" href="namespace_thoth.html">Thoth</a>'s wire algorithms can operate. <a class="el" href="namespace_hermes.html">Hermes</a>' ClientSocket and ServerSocket are already structurally identical on this transfer surface — this concept simply formalizes it on <a class="el" href="namespace_thoth.html">Thoth</a>'s side, so HTTP algorithms don't need to know whether they are talking to a client or server socket. <br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A factory producing an incoming body before the first body byte is consumed, so the Server can refuse a body (factory error) without draining anything. <br /></td></tr>
+<tr class="memitem:ChunkValueRange" id="r_ChunkValueRange"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_chunk_value_range.html">ChunkValueRange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range yielding byte-like slices. <br /></td></tr>
+<tr class="memitem:ClientMiddlewareConcept" id="r_ClientMiddlewareConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_client_middleware_concept.html">ClientMiddlewareConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a factory that takes an inner <a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html" title="Thoth::Http::HandlerConcept">handler</a> and returns a new wrapped handler. <br /></td></tr>
+<tr class="memitem:CommonSocketConcept" id="r_CommonSocketConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_common_socket_concept.html">CommonSocketConcept</a></td></tr>
+<tr class="memitem:DefaultBodyConcept" id="r_DefaultBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_default_body_concept.html">DefaultBodyConcept</a></td></tr>
+<tr class="memitem:DefaultIncomingBodyConcept" id="r_DefaultIncomingBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_default_incoming_body_concept.html">DefaultIncomingBodyConcept</a></td></tr>
+<tr class="memitem:DefaultOutgoingBodyConcept" id="r_DefaultOutgoingBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_default_outgoing_body_concept.html">DefaultOutgoingBodyConcept</a></td></tr>
+<tr class="memitem:DefaultSymetricBodyConcept" id="r_DefaultSymetricBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_default_symetric_body_concept.html">DefaultSymetricBodyConcept</a></td></tr>
+<tr class="memitem:DirectValueRange" id="r_DirectValueRange"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_direct_value_range.html">DirectValueRange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range yielding byte-like elements directly. <br /></td></tr>
 <tr class="memitem:HandlerConcept" id="r_HandlerConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html">HandlerConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a callable that processes a request and produces a response. Matches the signature <span class="tt">[](Request&lt;Method, Body&gt;) -&gt; Client::ExpResponse&lt;Method, Body&gt;</span>. <br /></td></tr>
+<tr class="memitem:HasBodyInfoBehaviorConcept" id="r_HasBodyInfoBehaviorConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_has_body_info_behavior_concept.html">HasBodyInfoBehaviorConcept</a></td></tr>
 <tr class="memitem:IdempotentMethod" id="r_IdempotentMethod"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_idempotent_method.html">IdempotentMethod</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains <span class="tt">M</span> to methods that are safe to send more than once. <br /></td></tr>
+<tr class="memitem:IncomingBodyConcept" id="r_IncomingBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_incoming_body_concept.html">IncomingBodyConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A body the transport pushes wire bytes into (Server request, Client response). <br /></td></tr>
+<tr class="memitem:IntoPayloadConcept" id="r_IntoPayloadConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_into_payload_concept.html">IntoPayloadConcept</a></td></tr>
+<tr class="memitem:IntoRequestPayloadConcept" id="r_IntoRequestPayloadConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_into_request_payload_concept.html">IntoRequestPayloadConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A source that has an IntoRequest specialization producing exactly <code class="param">Body</code>. <br /></td></tr>
+<tr class="memitem:IntoResponsePayloadConcept" id="r_IntoResponsePayloadConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_into_response_payload_concept.html">IntoResponsePayloadConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A source that has an IntoResponse specialization producing exactly <code class="param">Body</code>. <br /></td></tr>
 <tr class="memitem:MethodConcept" id="r_MethodConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP methods requirements following <a href="https://datatracker.ietf.org/doc/html/rfc9110#method.extensibility">RFC9110</a>. <br /></td></tr>
-<tr class="memitem:MiddlewareConcept" id="r_MiddlewareConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html">MiddlewareConcept</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a factory that takes an inner <a class="el" href="concept_thoth_1_1_http_1_1_handler_concept.html" title="Thoth::Http::HandlerConcept">handler</a> and returns a new wrapped handler. <br /></td></tr>
-<tr class="memitem:ReadableBodyConcept" id="r_ReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_readable_body_concept.html">ReadableBodyConcept</a></td></tr>
+<tr class="memitem:OutgoingBodyConcept" id="r_OutgoingBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_outgoing_body_concept.html">OutgoingBodyConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A body the transport pulls slices from on its way out (Client request, Server response). <br /></td></tr>
+<tr class="memitem:RangeBody" id="r_RangeBody"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_range_body.html">RangeBody</a></td></tr>
+<tr class="memitem:RequestBodyFactoryConcept" id="r_RequestBodyFactoryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_request_body_factory_concept.html">RequestBodyFactoryConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body factory runs before any body byte is consumed. <br /></td></tr>
+<tr class="memitem:RequestConcept" id="r_RequestConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_request_concept.html">RequestConcept</a></td></tr>
+<tr class="memitem:RequestEntryConcept" id="r_RequestEntryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_request_entry_concept.html">RequestEntryConcept</a></td></tr>
 <tr class="memitem:ResponseBodyFactoryConcept" id="r_ResponseBodyFactoryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_response_body_factory_concept.html">ResponseBodyFactoryConcept</a></td></tr>
-<tr class="memitem:SizedReadableBodyConcept" id="r_SizedReadableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_sized_readable_body_concept.html">SizedReadableBodyConcept</a></td></tr>
-<tr class="memitem:WritableBodyConcept" id="r_WritableBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_writable_body_concept.html">WritableBodyConcept</a></td></tr>
+<tr class="memitem:ResponseConcept" id="r_ResponseConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_response_concept.html">ResponseConcept</a></td></tr>
+<tr class="memitem:ResponseEntryConcept" id="r_ResponseEntryConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_response_entry_concept.html">ResponseEntryConcept</a></td></tr>
+<tr class="memitem:RouterForConcept" id="r_RouterForConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_router_for_concept.html">RouterForConcept</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Router decides what to do with an already-received exchange. <br /></td></tr>
+<tr class="memitem:SymetricBodyConcept" id="r_SymetricBodyConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_symetric_body_concept.html">SymetricBodyConcept</a></td></tr>
+<tr class="memitem:SymetricPayloadConcept" id="r_SymetricPayloadConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_symetric_payload_concept.html">SymetricPayloadConcept</a></td></tr>
+<tr class="memitem:SyncSocketConcept" id="r_SyncSocketConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_sync_socket_concept.html">SyncSocketConcept</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:abd9e07cde439bfb5e723d453ba619b87" id="r_abd9e07cde439bfb5e723d453ba619b87"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd9e07cde439bfb5e723d453ba619b87">ConnectionErrorEnum</a> = Hermes::ConnectionErrorEnum</td></tr>
+<tr class="memitem:adda30b4bbfc98aceb62445406a854d2e" id="r_adda30b4bbfc98aceb62445406a854d2e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#adda30b4bbfc98aceb62445406a854d2e">ByteView</a> = std::span&lt;const std::byte&gt;</td></tr>
+<tr class="memdesc:adda30b4bbfc98aceb62445406a854d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A read-only view over one body slice, the currency of the <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="BodyIo">BodyIo</a> read side.  <br /></td></tr>
+<tr class="memitem:a3cd9420227dad12f70aa2212517e4bc5" id="r_a3cd9420227dad12f70aa2212517e4bc5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3cd9420227dad12f70aa2212517e4bc5">ReadResult</a> = std::expected&lt;std::optional&lt;<a class="el" href="#adda30b4bbfc98aceb62445406a854d2e">ByteView</a>&gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;</td></tr>
+<tr class="memdesc:a3cd9420227dad12f70aa2212517e4bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of BodyIo::Read, the next slice or <span class="tt">nullopt</span> once the body is drained.  <br /></td></tr>
+<tr class="memitem:ade524ee56bdf0842d029bac64dd005ec" id="r_ade524ee56bdf0842d029bac64dd005ec"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ade524ee56bdf0842d029bac64dd005ec">WriteResult</a> = std::pair&lt;std::size_t, std::expected&lt;void, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;&gt;</td></tr>
+<tr class="memdesc:ade524ee56bdf0842d029bac64dd005ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of BodyIo::Write, bytes consumed plus status (same shape as <span class="tt">Hermes::StreamByteOper</span>).  <br /></td></tr>
+<tr class="memitem:a351bedd3c9fa0d8f45c8663580d4af14" id="r_a351bedd3c9fa0d8f45c8663580d4af14"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a351bedd3c9fa0d8f45c8663580d4af14">FinishResult</a> = std::expected&lt;void, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;</td></tr>
+<tr class="memdesc:a351bedd3c9fa0d8f45c8663580d4af14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of BodyIo::FinishWrite, the commit/flush step of the incoming side.  <br /></td></tr>
+<tr class="memitem:a3768f5f28d2880ea7a6c5bc13727c0bb" id="r_a3768f5f28d2880ea7a6c5bc13727c0bb"><td class="memTemplParams" colspan="2">template&lt;class Body&gt; </td></tr>
+<tr class="memitem:a3768f5f28d2880ea7a6c5bc13727c0bb template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3768f5f28d2880ea7a6c5bc13727c0bb">BodyIoFor</a> = <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html">BodyIo</a>&lt;std::remove_cvref_t&lt;Body&gt;&gt;</td></tr>
+<tr class="memdesc:a3768f5f28d2880ea7a6c5bc13727c0bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized alias to <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="The I/O protocol of a body, specialized per body type (same model as std::formatter).">BodyIo</a>.  <br /></td></tr>
+<tr class="memitem:a988e30f9f0859329e048f9eb0d24f141" id="r_a988e30f9f0859329e048f9eb0d24f141"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a988e30f9f0859329e048f9eb0d24f141">AnyBodyIn</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328aefeb369cccbd560588a756610865664c">BodyDirection::In</a>&gt;</td></tr>
+<tr class="memitem:a8449200ee924e31c92dfc0c21f255a43" id="r_a8449200ee924e31c92dfc0c21f255a43"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8449200ee924e31c92dfc0c21f255a43">AnyBodyOut</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328a7c147cda9e49590f6abe83d118b7353b">BodyDirection::Out</a>&gt;</td></tr>
+<tr class="memitem:aa3004f1f4cc0d3d8d92bc898c3bc0015" id="r_aa3004f1f4cc0d3d8d92bc898c3bc0015"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa3004f1f4cc0d3d8d92bc898c3bc0015">AnyBodyBoth</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e">BodyDirection::Both</a>&gt;</td></tr>
+<tr class="memitem:ad8d9bf8ce9469f8d8f30241986b74952" id="r_ad8d9bf8ce9469f8d8f30241986b74952"><td class="memTemplParams" colspan="2">template&lt;BodyConcept TargetBody&gt; </td></tr>
+<tr class="memitem:ad8d9bf8ce9469f8d8f30241986b74952 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ad8d9bf8ce9469f8d8f30241986b74952">IntoRequestPayload</a> = std::pair&lt;<a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a>, TargetBody&gt;</td></tr>
+<tr class="memitem:a68e5dd491d95e41e2411a8edc05fcb5c" id="r_a68e5dd491d95e41e2411a8edc05fcb5c"><td class="memTemplParams" colspan="2">template&lt;BodyConcept TargetBody&gt; </td></tr>
+<tr class="memitem:a68e5dd491d95e41e2411a8edc05fcb5c template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a68e5dd491d95e41e2411a8edc05fcb5c">IntoResponsePayload</a> = std::pair&lt;<a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a>, TargetBody&gt;</td></tr>
+<tr class="memitem:a408b39ccfa3420f3fdefbf9895b74997" id="r_a408b39ccfa3420f3fdefbf9895b74997"><td class="memTemplParams" colspan="2">template&lt;BodyConcept TargetBody, class Source&gt; </td></tr>
+<tr class="memitem:a408b39ccfa3420f3fdefbf9895b74997 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a408b39ccfa3420f3fdefbf9895b74997">IntoPayloadFor</a> = <a class="el" href="struct_thoth_1_1_http_1_1_into_payload.html">IntoPayload</a>&lt;TargetBody, std::decay_t&lt;Source&gt;&gt;</td></tr>
+<tr class="memdesc:a408b39ccfa3420f3fdefbf9895b74997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalized alias to <a class="el" href="struct_thoth_1_1_http_1_1_into_payload.html" title="CPO detailed in RequestEntry and ResponseEntry.">IntoPayload</a>.  <br /></td></tr>
+<tr class="memitem:a8753fb903ecc15190b503dedfc908ed0" id="r_a8753fb903ecc15190b503dedfc908ed0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8753fb903ecc15190b503dedfc908ed0">ExchangeDeadline</a> = Hermes::DeadlineTimepoint</td></tr>
+<tr class="memdesc:a8753fb903ecc15190b503dedfc908ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to represent deadlines in this lib.  <br /></td></tr>
 <tr class="memitem:a5f6110120451f946ba71306abcb08600" id="r_a5f6110120451f946ba71306abcb08600"><td class="memTemplParams" colspan="2">template&lt;MethodConcept M&gt; </td></tr>
 <tr class="memitem:a5f6110120451f946ba71306abcb08600 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5f6110120451f946ba71306abcb08600">SeeOtherMethod</a> = std::conditional_t&lt;std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt; || std::same_as&lt;M, <a class="el" href="struct_thoth_1_1_http_1_1_head_method.html">HeadMethod</a>&gt;, M, <a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>&gt;</td></tr>
 <tr class="memdesc:a5f6110120451f946ba71306abcb08600"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP method a request is left with after a <span class="tt">303 See Other</span> (RFC 9110 §15.4.4):  <br /></td></tr>
+<tr class="memitem:abd9e07cde439bfb5e723d453ba619b87" id="r_abd9e07cde439bfb5e723d453ba619b87"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd9e07cde439bfb5e723d453ba619b87">ConnectionErrorEnum</a> = Hermes::ConnectionErrorEnum</td></tr>
 <tr class="memitem:a38dd6dac102e86e63accba7e297c83dd" id="r_a38dd6dac102e86e63accba7e297c83dd"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a38dd6dac102e86e63accba7e297c83dd">GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="memitem:aefa963698d745b6ca25fa35c2849cadf" id="r_aefa963698d745b6ca25fa35c2849cadf"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aefa963698d745b6ca25fa35c2849cadf">PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
 <tr class="memitem:a953aa84d429692d59ede836e38f2d90c" id="r_a953aa84d429692d59ede836e38f2d90c"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a953aa84d429692d59ede836e38f2d90c">GetBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
 <tr class="memitem:a17a1d35cbb78e22310bd4bf478581063" id="r_a17a1d35cbb78e22310bd4bf478581063"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a17a1d35cbb78e22310bd4bf478581063">PostBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
+<tr class="memitem:ab31581ee2e761445b2a541fbac41d759" id="r_ab31581ee2e761445b2a541fbac41d759"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ab31581ee2e761445b2a541fbac41d759">GetEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+<tr class="memitem:a5f50a37e3af2a610336af1e923182081" id="r_a5f50a37e3af2a610336af1e923182081"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5f50a37e3af2a610336af1e923182081">PostEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+<tr class="memitem:a0aa3ca77097f615cf94900a78d419ec7" id="r_a0aa3ca77097f615cf94900a78d419ec7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0aa3ca77097f615cf94900a78d419ec7">GetRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;&gt;</td></tr>
+<tr class="memitem:adfaeef9ec678bf1b6c21e03b70a97fa4" id="r_adfaeef9ec678bf1b6c21e03b70a97fa4"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#adfaeef9ec678bf1b6c21e03b70a97fa4">PostRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
+<tr class="memitem:a7478ec9c2604639e696f76caab7dbc6e" id="r_a7478ec9c2604639e696f76caab7dbc6e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a7478ec9c2604639e696f76caab7dbc6e">GetBinRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
+<tr class="memitem:a0ca7db74c1f9f270066afba6000eec73" id="r_a0ca7db74c1f9f270066afba6000eec73"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0ca7db74c1f9f270066afba6000eec73">PostBinRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
 <tr class="memitem:a751fd40f9427cdaf49cf73299039168c" id="r_a751fd40f9427cdaf49cf73299039168c"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a751fd40f9427cdaf49cf73299039168c">GetResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;&gt;</td></tr>
 <tr class="memitem:a406725da08567057c843e7aca9772dd7" id="r_a406725da08567057c843e7aca9772dd7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a406725da08567057c843e7aca9772dd7">PostResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
 <tr class="memitem:a5a11f91ee917968ff96b6abf4d684139" id="r_a5a11f91ee917968ff96b6abf4d684139"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5a11f91ee917968ff96b6abf4d684139">GetBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
 <tr class="memitem:a0fc5aead40764f2e0eb5becb8c78fd85" id="r_a0fc5aead40764f2e0eb5becb8c78fd85"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0fc5aead40764f2e0eb5becb8c78fd85">PostBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
-<tr class="memitem:a89cafead9e28447c71d458a53be6419e" id="r_a89cafead9e28447c71d458a53be6419e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a89cafead9e28447c71d458a53be6419e">GetFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">Dsa::TextFileOutputRange</a>&gt;</td></tr>
-<tr class="memitem:abbc435da6152754f918ab209154301a7" id="r_abbc435da6152754f918ab209154301a7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abbc435da6152754f918ab209154301a7">PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">Dsa::TextFileOutputRange</a>&gt;</td></tr>
-<tr class="memitem:a7a62bd895aa29b1c2b8c2520fceb2b8a" id="r_a7a62bd895aa29b1c2b8c2520fceb2b8a"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a7a62bd895aa29b1c2b8c2520fceb2b8a">GetFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">Dsa::BinFileOutputRange</a>&gt;</td></tr>
-<tr class="memitem:a7eaf9c34d8b4b60a674c811cdf6138ea" id="r_a7eaf9c34d8b4b60a674c811cdf6138ea"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a7eaf9c34d8b4b60a674c811cdf6138ea">PostFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">Dsa::BinFileOutputRange</a>&gt;</td></tr>
+<tr class="memitem:a8add514f5e895491c9090e9782286ca5" id="r_a8add514f5e895491c9090e9782286ca5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8add514f5e895491c9090e9782286ca5">GetFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td></tr>
+<tr class="memitem:ae51be41cb0d86e6b82a50a87fac65d92" id="r_ae51be41cb0d86e6b82a50a87fac65d92"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ae51be41cb0d86e6b82a50a87fac65d92">PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td></tr>
+<tr class="memitem:a4f93e0027db63c56b86a61b02d808393" id="r_a4f93e0027db63c56b86a61b02d808393"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4f93e0027db63c56b86a61b02d808393">GetEmptyResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+<tr class="memitem:ac612cde0d741d9b6cfe212d9ad1e5b17" id="r_ac612cde0d741d9b6cfe212d9ad1e5b17"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac612cde0d741d9b6cfe212d9ad1e5b17">PostEmptyResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+<tr class="memitem:a88c07d1d9cf54c621831d0469c4eaa53" id="r_a88c07d1d9cf54c621831d0469c4eaa53"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a88c07d1d9cf54c621831d0469c4eaa53">GetResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;&gt;</td></tr>
+<tr class="memitem:a675bab51e11fc925443cd9faac41a08b" id="r_a675bab51e11fc925443cd9faac41a08b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a675bab51e11fc925443cd9faac41a08b">PostResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
+<tr class="memitem:aa5d1be2756abe11cce975f060c28c8b6" id="r_aa5d1be2756abe11cce975f060c28c8b6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa5d1be2756abe11cce975f060c28c8b6">GetBinResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
+<tr class="memitem:a4d133b5ceb567a64cc0028fec9e7dab6" id="r_a4d133b5ceb567a64cc0028fec9e7dab6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4d133b5ceb567a64cc0028fec9e7dab6">PostBinResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
+<tr class="memitem:a690f6669e7900992d21a8c459249d378" id="r_a690f6669e7900992d21a8c459249d378"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a690f6669e7900992d21a8c459249d378">GetFileResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td></tr>
+<tr class="memitem:a9b3b15a89bcce40c7e0040443c305238" id="r_a9b3b15a89bcce40c7e0040443c305238"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a9b3b15a89bcce40c7e0040443c305238">PostFileResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td></tr>
 <tr class="memitem:ab310f97c18cb1f367e7fa8137beebc1f" id="r_ab310f97c18cb1f367e7fa8137beebc1f"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:ab310f97c18cb1f367e7fa8137beebc1f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a> = std::expected&lt;T, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a>&gt;</td></tr>
+<tr class="memitem:ab310f97c18cb1f367e7fa8137beebc1f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a> = std::expected&lt;T, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a>&gt;</td></tr>
 <tr class="memitem:a4060dc2e21c0dea1ca9e4ee9ef04cc97" id="r_a4060dc2e21c0dea1ca9e4ee9ef04cc97"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4060dc2e21c0dea1ca9e4ee9ef04cc97">WebResultOper</a> = <a class="el" href="#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt;void&gt;</td></tr>
+<tr class="memitem:a3fd53ccfe9f52f26a8cf9b7b15a5b270" id="r_a3fd53ccfe9f52f26a8cf9b7b15a5b270"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fd53ccfe9f52f26a8cf9b7b15a5b270">BodyFraming</a> = std::variant&lt;<a class="el" href="struct_thoth_1_1_http_1_1_framing_empty.html">FramingEmpty</a>, <a class="el" href="struct_thoth_1_1_http_1_1_framing_sized.html">FramingSized</a>, <a class="el" href="struct_thoth_1_1_http_1_1_framing_streamed.html">FramingStreamed</a>&gt;</td></tr>
+<tr class="memitem:a8c45322a118ee15c1bd4cb201d312836" id="r_a8c45322a118ee15c1bd4cb201d312836"><td class="memTemplParams" colspan="2">template&lt;class... Mws&gt; </td></tr>
+<tr class="memitem:a8c45322a118ee15c1bd4cb201d312836 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8c45322a118ee15c1bd4cb201d312836">MiddlewarePack</a> = std::tuple&lt;Mws...&gt;</td></tr>
 <tr class="memitem:a923afcf85ecdad1fd277e5701e93a57a" id="r_a923afcf85ecdad1fd277e5701e93a57a"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923afcf85ecdad1fd277e5701e93a57a">Host</a> = std::variant&lt;std::string, Hermes::IpAddress&gt;</td></tr>
 <tr class="memitem:a81b60dcfe24209c22282f216128242e3" id="r_a81b60dcfe24209c22282f216128242e3"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a81b60dcfe24209c22282f216128242e3">HostView</a> = std::variant&lt;std::string_view, Hermes::IpAddress&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aafd3ae972536eae8c855e484175fa0db" id="r_aafd3ae972536eae8c855e484175fa0db"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> : uint8_t { <a class="el" href="#aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab">HTTP1_0</a>
-, <a class="el" href="#aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b">HTTP1_1</a>
-, <a class="el" href="#aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a">HTTP2</a>
-, <a class="el" href="#aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738">HTTP3</a>
+<tr class="memitem:ab9c4f059d915ec202397d13552f97328" id="r_ab9c4f059d915ec202397d13552f97328"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#ab9c4f059d915ec202397d13552f97328">BodyDirection</a> : std::uint8_t { <a class="el" href="#ab9c4f059d915ec202397d13552f97328aefeb369cccbd560588a756610865664c">In</a>
+, <a class="el" href="#ab9c4f059d915ec202397d13552f97328a7c147cda9e49590f6abe83d118b7353b">Out</a>
+, <a class="el" href="#ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e">Both</a>
+ }</td></tr>
+<tr class="memdesc:ab9c4f059d915ec202397d13552f97328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which sides of an exchange a body can feed, the minimum <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="BodyIo">BodyIo</a> surface an erased body promises.  <a href="#ab9c4f059d915ec202397d13552f97328">More...</a><br /></td></tr>
+<tr class="memitem:a72faa013ee37fee0d5979ca7ccde3bbd" id="r_a72faa013ee37fee0d5979ca7ccde3bbd"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbd">VersionEnum</a> : std::uint8_t { <a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbdaa820a7cca3410e94af1e51058023680a">Http1_0</a>
+, <a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbda2c494112f4c9bef921aacd3650fd34ea">Http1_1</a>
+, <a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbdab354a53a47e18f05f6cc27c7259e0791">Http2</a>
+, <a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbda19a76329e8cb1f096b70e38f1e41cb6f">Http3</a>
  }</td></tr>
 <tr class="memitem:a2bf11744ec8f13e9d75fe88e28f7326c" id="r_a2bf11744ec8f13e9d75fe88e28f7326c"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a2bf11744ec8f13e9d75fe88e28f7326c">UrlParseErrorEnum</a> { <br />
 &#160;&#160;<a class="el" href="#a2bf11744ec8f13e9d75fe88e28f7326cac01c34aaeac473342fc7a51889740d05">EmptyUrl</a>
@@ -266,101 +394,101 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a8e58d1d4b4fcb6af2eee47c9a3a12388ab679137a1826d6d3552abb5782846cd3">VersionNeedsContentLength</a>
 <br />
  }</td></tr>
-<tr class="memitem:a6a0a61c5077e5cb3aaa952aba4b824c7" id="r_a6a0a61c5077e5cb3aaa952aba4b824c7"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> { <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe">Continue</a> = 100
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a548c5a637eddf65132b21411aeafc6a1">SwitchingProtocols</a> = 101
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ac317875c5106cf167e792bb3ad70fc26">ProcessingDeprecated</a> = 102
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a7ff9f49506fe347fab32eb5ff72feda9">EarlyHints</a> = 103
+<tr class="memitem:abe0a39d144f57bf42563f8b605077e80" id="r_abe0a39d144f57bf42563f8b605077e80"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> : std::uint16_t { <br />
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa0bfb8e59e6c13fc8d990781f77694fe">Continue</a> = 100
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a548c5a637eddf65132b21411aeafc6a1">SwitchingProtocols</a> = 101
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ac317875c5106cf167e792bb3ad70fc26">ProcessingDeprecated</a> = 102
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a7ff9f49506fe347fab32eb5ff72feda9">EarlyHints</a> = 103
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa60852f204ed8028c1c58808b746d115">Ok</a> = 200
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a0eceeb45861f9585dd7a97a3e36f85c6">Created</a> = 201
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a382ab522931673c11e398ead1b7b1678">Accepted</a> = 202
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a2d0ea43e788b779c0aec92366b711c2f">NonAuthoritativeInformation</a> = 203
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa60852f204ed8028c1c58808b746d115">Ok</a> = 200
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a0eceeb45861f9585dd7a97a3e36f85c6">Created</a> = 201
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a382ab522931673c11e398ead1b7b1678">Accepted</a> = 202
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a2d0ea43e788b779c0aec92366b711c2f">NonAuthoritativeInformation</a> = 203
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7acd447f1ec89f564ebac583d60087df12">NoContent</a> = 204
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a4e9202c31896211f63be5b7345a897ed">ResetContent</a> = 205
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a750de7eda10d780b3bbaefb57128c24b">PartialContent</a> = 206
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a0790a60654c0b2939299af967571e59b">MultiStatus</a> = 207
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80acd447f1ec89f564ebac583d60087df12">NoContent</a> = 204
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a4e9202c31896211f63be5b7345a897ed">ResetContent</a> = 205
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a750de7eda10d780b3bbaefb57128c24b">PartialContent</a> = 206
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a0790a60654c0b2939299af967571e59b">MultiStatus</a> = 207
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ac549fc73e09b412a8451b1648820acf2">AlreadyReported</a> = 208
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa4c48828448423a78809163e3574a553">ImUsed</a> = 226
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa589749d075c3423333bdc93e3b4e774">MultipleChoices</a> = 300
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a32638c25f4c913fce6214c2c4afff9dc">MovedPermanently</a> = 301
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80ac549fc73e09b412a8451b1648820acf2">AlreadyReported</a> = 208
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa4c48828448423a78809163e3574a553">ImUsed</a> = 226
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa589749d075c3423333bdc93e3b4e774">MultipleChoices</a> = 300
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a32638c25f4c913fce6214c2c4afff9dc">MovedPermanently</a> = 301
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a5d695cc28c6a7ea955162fbdd0ae42b9">Found</a> = 302
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a7843649eb3841f496a79303fd815029e">SeeOther</a> = 303
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ac169e6d9a1b9442001384de8dcf49ab9">NotModified</a> = 304
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9">UseProxyDeprecated</a> = 305
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a5d695cc28c6a7ea955162fbdd0ae42b9">Found</a> = 302
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a7843649eb3841f496a79303fd815029e">SeeOther</a> = 303
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ac169e6d9a1b9442001384de8dcf49ab9">NotModified</a> = 304
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80af5405ebf52b9b3ac8f24acc2edda2bc9">UseProxyDeprecated</a> = 305
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a92e592d90b9548016776a6fb68dccded">Unused</a> = 306
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a1b73a351faf2b550d06fae9cc6e0a894">TemporaryRedirect</a> = 307
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ac13fb7996808b1abe56e3ae4da84fb4a">PermanentRedirect</a> = 308
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a9edf8fbf00a57d95a0af4923c9a1ec6f">BadRequest</a> = 400
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a92e592d90b9548016776a6fb68dccded">Unused</a> = 306
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a1b73a351faf2b550d06fae9cc6e0a894">TemporaryRedirect</a> = 307
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ac13fb7996808b1abe56e3ae4da84fb4a">PermanentRedirect</a> = 308
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a9edf8fbf00a57d95a0af4923c9a1ec6f">BadRequest</a> = 400
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ae06d1ba70f1331e9f9a113cc2f887d3f">Unauthorized</a> = 401
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a4c99006c75b53fe48865cdfa0ac065ba">PaymentRequired</a> = 402
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a722969577a96ca3953e84e3d949dee81">Forbidden</a> = 403
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a38c300f4fc9ce8a77aad4a30de05cad8">NotFound</a> = 404
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80ae06d1ba70f1331e9f9a113cc2f887d3f">Unauthorized</a> = 401
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a4c99006c75b53fe48865cdfa0ac065ba">PaymentRequired</a> = 402
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a722969577a96ca3953e84e3d949dee81">Forbidden</a> = 403
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a38c300f4fc9ce8a77aad4a30de05cad8">NotFound</a> = 404
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a8ba68fee5542f5fd071aed140c39bd8e">MethodNotAllowed</a> = 405
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7af83a928e6a3f3b502ffadd2a414ce48c">NotAcceptable</a> = 406
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a59a2898a8bf9da75a5855e76110f06f2">ProxyAuthenticationRequired</a> = 407
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a3632c2e4e6225d4d9fcd2a6fd2c65048">RequestTimeout</a> = 408
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a8ba68fee5542f5fd071aed140c39bd8e">MethodNotAllowed</a> = 405
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80af83a928e6a3f3b502ffadd2a414ce48c">NotAcceptable</a> = 406
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a59a2898a8bf9da75a5855e76110f06f2">ProxyAuthenticationRequired</a> = 407
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a3632c2e4e6225d4d9fcd2a6fd2c65048">RequestTimeout</a> = 408
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7af1d4ac54357cc0932f385d56814ba7e4">Conflict</a> = 409
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a0b497b33b1a05057bc1634e607170bf6">Gone</a> = 410
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a8282fb93cb1cf45b135ea191668ca583">LengthRequired</a> = 411
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a3542a02d18f11f46d53990d91752a6d4">PreconditionFailed</a> = 412
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80af1d4ac54357cc0932f385d56814ba7e4">Conflict</a> = 409
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a0b497b33b1a05057bc1634e607170bf6">Gone</a> = 410
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a8282fb93cb1cf45b135ea191668ca583">LengthRequired</a> = 411
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a3542a02d18f11f46d53990d91752a6d4">PreconditionFailed</a> = 412
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a803014593faac0203dbc82819b510e06">ContentTooLarge</a> = 413
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7af72866c1bbf28a47b9bb1c8846e03313">UriTooLong</a> = 414
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa3219a6843adbb23de79b4df9c307f5d">UnsupportedMediaType</a> = 415
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a9283ef01c36e7e4793b3e1395d764dfe">RangeNotSatisfiable</a> = 416
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a803014593faac0203dbc82819b510e06">ContentTooLarge</a> = 413
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80af72866c1bbf28a47b9bb1c8846e03313">UriTooLong</a> = 414
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa3219a6843adbb23de79b4df9c307f5d">UnsupportedMediaType</a> = 415
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a9283ef01c36e7e4793b3e1395d764dfe">RangeNotSatisfiable</a> = 416
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a6af78095a2be4a230ba87f03dd131830">ExpectationFailed</a> = 417
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a5ddbdcff68f084fdfef3c4988c92dbc0">ImATeapot</a> = 418
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ac110d06054539d0031cbefdf78d1fdd6">MisdirectedRequest</a> = 421
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ae805bd51ab7638a29ea9c6ee60749132">UnprocessableContent</a> = 422
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a6af78095a2be4a230ba87f03dd131830">ExpectationFailed</a> = 417
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a5ddbdcff68f084fdfef3c4988c92dbc0">ImATeapot</a> = 418
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ac110d06054539d0031cbefdf78d1fdd6">MisdirectedRequest</a> = 421
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ae805bd51ab7638a29ea9c6ee60749132">UnprocessableContent</a> = 422
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ad0f2e5376298c880665077b565ffd7dd">Locked</a> = 423
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a3e30483e6f8d532c08ac164aebf039fd">FailedDependency</a> = 424
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a747ad809d11c9136e4b62d49964c11c8">TooEarlyExperimental</a> = 425
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ae0eaea96be1ec038b859e02cc5330827">UpgradeRequired</a> = 426
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80ad0f2e5376298c880665077b565ffd7dd">Locked</a> = 423
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a3e30483e6f8d532c08ac164aebf039fd">FailedDependency</a> = 424
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a747ad809d11c9136e4b62d49964c11c8">TooEarlyExperimental</a> = 425
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ae0eaea96be1ec038b859e02cc5330827">UpgradeRequired</a> = 426
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a4dd7ee1fe9fa9f29e190b416122146df">PreconditionRequired</a> = 428
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ab00b00233255c3551697fe613001265d">TooManyRequests</a> = 429
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a01d50823ab04e988e893bc17c2d55f24">RequestHeaderFieldsTooLarge</a> = 431
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7af7c925b24caa71cd7097be57c4de6130">UnavailableForLegalReasons</a> = 451
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80a4dd7ee1fe9fa9f29e190b416122146df">PreconditionRequired</a> = 428
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80ab00b00233255c3551697fe613001265d">TooManyRequests</a> = 429
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a01d50823ab04e988e893bc17c2d55f24">RequestHeaderFieldsTooLarge</a> = 431
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80af7c925b24caa71cd7097be57c4de6130">UnavailableForLegalReasons</a> = 451
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aecbf01325f1c744e9d7bb586ac2eb5ed">InternalServerError</a> = 500
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a997ca4ce119685f40f03a9a8a6c5346e">NotImplemented</a> = 501
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a0e7c9ad08be0653518bf456c9994ace5">BadGateway</a> = 502
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a2a4581043d849bcb0e4747970ef1489b">ServiceUnavailable</a> = 503
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80aecbf01325f1c744e9d7bb586ac2eb5ed">InternalServerError</a> = 500
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a997ca4ce119685f40f03a9a8a6c5346e">NotImplemented</a> = 501
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a0e7c9ad08be0653518bf456c9994ace5">BadGateway</a> = 502
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a2a4581043d849bcb0e4747970ef1489b">ServiceUnavailable</a> = 503
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7ada405cbc74723dfdda615e3f679ef2be">GatewayTimeout</a> = 504
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a56a7a02e415f5bf106088218f646c04f">HttpVersionNotSupported</a> = 505
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a0af1f043b1bc6980b5cffce0d83f4736">VariantAlsoNegotiates</a> = 506
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aead0064570e2f25592cd76e0e69565a5">InsufficientStorage</a> = 507
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80ada405cbc74723dfdda615e3f679ef2be">GatewayTimeout</a> = 504
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a56a7a02e415f5bf106088218f646c04f">HttpVersionNotSupported</a> = 505
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a0af1f043b1bc6980b5cffce0d83f4736">VariantAlsoNegotiates</a> = 506
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80aead0064570e2f25592cd76e0e69565a5">InsufficientStorage</a> = 507
 , <br />
-&#160;&#160;<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7aa2d07eb3939ad55d4acd3ed81291c61a">LoopDetected</a> = 508
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a8eff020959c41ba903e16d966855ce03">NotExtended</a> = 510
-, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7a52066ff32b30f46d30b87007cacf8f79">NetworkAuthenticationRequired</a> = 511
+&#160;&#160;<a class="el" href="#abe0a39d144f57bf42563f8b605077e80aa2d07eb3939ad55d4acd3ed81291c61a">LoopDetected</a> = 508
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a8eff020959c41ba903e16d966855ce03">NotExtended</a> = 510
+, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80a52066ff32b30f46d30b87007cacf8f79">NetworkAuthenticationRequired</a> = 511
 <br />
  }</td></tr>
 <tr class="memitem:a6c950c34bcd876414d00b8c445bb877d" id="r_a6c950c34bcd876414d00b8c445bb877d"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a> { <br />
-&#160;&#160;<a class="el" href="#a6c950c34bcd876414d00b8c445bb877dad32528aaa543f441670938e1f8bb2b68">INFORMATIONAL</a>
-, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877dadd1dab546c7769f17e9d4e8e4f2f1bf4">SUCCESSFUL</a>
-, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877da7c8bc648d02ae1448f155449e5c114f3">REDIRECTION</a>
-, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877daac9eb3124d6b6c4075ae1b44d23e8224">CLIENT_ERROR</a>
+&#160;&#160;<a class="el" href="#a6c950c34bcd876414d00b8c445bb877da5391f9a882a54c787b206138ed6d28b0">Informational</a>
+, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877da30ae8fff8898dc197acd49d9c0797d20">Successful</a>
+, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877da1b6498e23a3c43775699129e7ebfcfeb">Redirection</a>
+, <a class="el" href="#a6c950c34bcd876414d00b8c445bb877daa4097a97f20ebb7212625084936abcee">ClientError</a>
 , <br />
-&#160;&#160;<a class="el" href="#a6c950c34bcd876414d00b8c445bb877da3fd4acc4cfaa41114f84707b95f05f31">SERVER_ERROR</a>
+&#160;&#160;<a class="el" href="#a6c950c34bcd876414d00b8c445bb877da7d65c64901711bc2cd2a33ff2641fbe9">ServerError</a>
 <br />
  }</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7bedc663bde5f4726625099926f81fe8" id="r_a7bedc663bde5f4726625099926f81fe8"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a7bedc663bde5f4726625099926f81fe8">VersionToString</a> (<a class="el" href="#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a> version)</td></tr>
-<tr class="memdesc:a7bedc663bde5f4726625099926f81fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
+<tr class="memitem:abc2a90c8a8f3befce01ced480228c678" id="r_abc2a90c8a8f3befce01ced480228c678"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#abc2a90c8a8f3befce01ced480228c678">VersionToString</a> (<a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbd">VersionEnum</a> version)</td></tr>
+<tr class="memdesc:abc2a90c8a8f3befce01ced480228c678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exactly what you think it is.  <br /></td></tr>
 <tr class="memitem:ac59f07d152364c628f6e962657e16b54" id="r_ac59f07d152364c628f6e962657e16b54"><td class="memTemplParams" colspan="2">template&lt;class Next&gt; </td></tr>
 <tr class="memitem:ac59f07d152364c628f6e962657e16b54 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ac59f07d152364c628f6e962657e16b54">Decompress</a> (Next next)</td></tr>
 <tr class="memdesc:ac59f07d152364c628f6e962657e16b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a handler to reverse <span class="tt">Content-Encoding</span> on the response body (RFC 9110 §8.4). Undoes codings in reverse application order.  <br /></td></tr>
@@ -375,13 +503,125 @@ Functions</h2></td></tr>
 <tr class="memdesc:a23b2757dac6ce482d589521d7b1b633c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retries <span class="tt">next</span> up to <span class="tt">attempts</span> times with exponential backoff.  <br /></td></tr>
 <tr class="memitem:aea21005cb51e392f6670bd5e199a2a1c" id="r_aea21005cb51e392f6670bd5e199a2a1c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aea21005cb51e392f6670bd5e199a2a1c">InsensitiveCmp</a> (std::string_view elem1, std::string_view elem2)</td></tr>
 <tr class="memitem:a82e39416186b866106d46b2a4d8cc6f3" id="r_a82e39416186b866106d46b2a4d8cc6f3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a82e39416186b866106d46b2a4d8cc6f3">IsSingleValue</a> (std::string_view key)</td></tr>
-<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1" id="r_a5379080d14ac2dfa264229cc182c7dc1"><td class="memTemplParams" colspan="2">template&lt;WritableBodyConcept Body&gt; </td></tr>
-<tr class="memitem:a5379080d14ac2dfa264229cc182c7dc1 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a5379080d14ac2dfa264229cc182c7dc1">GetInserterIterator</a> (Body &amp;body)</td></tr>
-<tr class="memitem:a82a2512e3a342947a207d53e49974abc" id="r_a82a2512e3a342947a207d53e49974abc"><td class="memItemLeft">constexpr <a class="el" href="#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a>&#160;</td><td class="memItemRight"><a class="el" href="#a82a2512e3a342947a207d53e49974abc">GetStatusType</a> (<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> code)</td></tr>
-<tr class="memdesc:a82a2512e3a342947a207d53e49974abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check what type of code <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> is, the first digit of it's number.  <br /></td></tr>
+<tr class="memitem:a82a2512e3a342947a207d53e49974abc" id="r_a82a2512e3a342947a207d53e49974abc"><td class="memItemLeft">constexpr <a class="el" href="#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a>&#160;</td><td class="memItemRight"><a class="el" href="#a82a2512e3a342947a207d53e49974abc">GetStatusType</a> (<a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> code)</td></tr>
+<tr class="memdesc:a82a2512e3a342947a207d53e49974abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check what type of code <a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> is, the first digit of it's number.  <br /></td></tr>
+<tr class="memitem:aa25edaf9e5cb133868bbae13f3e14b38" id="r_aa25edaf9e5cb133868bbae13f3e14b38"><td class="memTemplParams" colspan="2">template&lt;CommonSocketConcept Socket&gt; </td></tr>
+<tr class="memitem:aa25edaf9e5cb133868bbae13f3e14b38 template"><td class="memItemLeft">exec::task&lt; <a class="el" href="struct_thoth_1_1_http_1_1_exchange.html">Exchange</a>&lt; Socket &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa25edaf9e5cb133868bbae13f3e14b38">ReceiveHead</a> (<a class="el" href="struct_thoth_1_1_http_1_1_read_context.html">ReadContext</a>&lt; Socket &gt; &amp;context, const <a class="el" href="struct_thoth_1_1_http_1_1_host_policy.html">HostPolicy</a> &amp;hosts)</td></tr>
+<tr class="memdesc:aa25edaf9e5cb133868bbae13f3e14b38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads one request head and validates it, producing a live <a class="el" href="struct_thoth_1_1_http_1_1_exchange.html" title="Exchange">Exchange</a> for the Router or the <a class="el" href="struct_thoth_1_1_thoth_error.html" title="ThothError">ThothError</a> that explains the refusal.  <br /></td></tr>
+<tr class="memitem:a7550281b3370448a0074975050e2d617" id="r_a7550281b3370448a0074975050e2d617"><td class="memTemplParams" colspan="2">template&lt;class... Mws&gt; </td></tr>
+<tr class="memitem:a7550281b3370448a0074975050e2d617 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a7550281b3370448a0074975050e2d617">Use</a> (Mws &amp;&amp;... mws)</td></tr>
 <tr class="memitem:a2b28c97564db3adc49d3439fc450b2ab" id="r_a2b28c97564db3adc49d3439fc450b2ab"><td class="memItemLeft">std::optional&lt; std::uint16_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2b28c97564db3adc49d3439fc450b2ab">GetDefaultPort</a> (std::string_view scheme) noexcept</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad4e83fcce544d2cabced4201577a65f5" id="r_ad4e83fcce544d2cabced4201577a65f5"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:ad4e83fcce544d2cabced4201577a65f5 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ad4e83fcce544d2cabced4201577a65f5">IsRequest</a> { false }</td></tr>
+<tr class="memitem:ae99fcdd4f38e79b0d81059de7a4ce61b" id="r_ae99fcdd4f38e79b0d81059de7a4ce61b"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
+<tr class="memitem:ae99fcdd4f38e79b0d81059de7a4ce61b template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ae99fcdd4f38e79b0d81059de7a4ce61b">IsRequest&lt; Request&lt; T... &gt; &gt;</a> { true }</td></tr>
+<tr class="memitem:a3f16b5eccf3e7557cb2aeda2102d7997" id="r_a3f16b5eccf3e7557cb2aeda2102d7997"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a3f16b5eccf3e7557cb2aeda2102d7997 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a3f16b5eccf3e7557cb2aeda2102d7997">IsRequestEntry</a> { false }</td></tr>
+<tr class="memitem:a80c1243679331be4341ca05f1f9b6925" id="r_a80c1243679331be4341ca05f1f9b6925"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
+<tr class="memitem:a80c1243679331be4341ca05f1f9b6925 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a80c1243679331be4341ca05f1f9b6925">IsRequestEntry&lt; RequestEntry&lt; T... &gt; &gt;</a> { true }</td></tr>
+<tr class="memitem:a3e3ed415f30754c79e3c02b0fe12bb5c" id="r_a3e3ed415f30754c79e3c02b0fe12bb5c"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a3e3ed415f30754c79e3c02b0fe12bb5c template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a3e3ed415f30754c79e3c02b0fe12bb5c">IsResponse</a> { false }</td></tr>
+<tr class="memitem:a057eaaeee6bf327d2762dd2015a4e4dd" id="r_a057eaaeee6bf327d2762dd2015a4e4dd"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
+<tr class="memitem:a057eaaeee6bf327d2762dd2015a4e4dd template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a057eaaeee6bf327d2762dd2015a4e4dd">IsResponse&lt; Response&lt; T... &gt; &gt;</a> { true }</td></tr>
+<tr class="memitem:a071e90fd4b0e917a595aeedbaf863f81" id="r_a071e90fd4b0e917a595aeedbaf863f81"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a071e90fd4b0e917a595aeedbaf863f81 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a071e90fd4b0e917a595aeedbaf863f81">IsResponseEntry</a> { false }</td></tr>
+<tr class="memitem:aaa1083a69bdb1c97d7537fe60f38a5b2" id="r_aaa1083a69bdb1c97d7537fe60f38a5b2"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
+<tr class="memitem:aaa1083a69bdb1c97d7537fe60f38a5b2 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#aaa1083a69bdb1c97d7537fe60f38a5b2">IsResponseEntry&lt; ResponseEntry&lt; T... &gt; &gt;</a> { true }</td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="aa3004f1f4cc0d3d8d92bc898c3bc0015" name="aa3004f1f4cc0d3d8d92bc898c3bc0015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3004f1f4cc0d3d8d92bc898c3bc0015">&#9670;&#160;</a></span>AnyBodyBoth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aa3004f1f4cc0d3d8d92bc898c3bc0015">Thoth::Http::AnyBodyBoth</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e">BodyDirection::Both</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a988e30f9f0859329e048f9eb0d24f141" name="a988e30f9f0859329e048f9eb0d24f141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a988e30f9f0859329e048f9eb0d24f141">&#9670;&#160;</a></span>AnyBodyIn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a988e30f9f0859329e048f9eb0d24f141">Thoth::Http::AnyBodyIn</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328aefeb369cccbd560588a756610865664c">BodyDirection::In</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8449200ee924e31c92dfc0c21f255a43" name="a8449200ee924e31c92dfc0c21f255a43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8449200ee924e31c92dfc0c21f255a43">&#9670;&#160;</a></span>AnyBodyOut</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8449200ee924e31c92dfc0c21f255a43">Thoth::Http::AnyBodyOut</a> = <a class="el" href="struct_thoth_1_1_http_1_1_any_body.html">AnyBody</a>&lt;<a class="el" href="#ab9c4f059d915ec202397d13552f97328a7c147cda9e49590f6abe83d118b7353b">BodyDirection::Out</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fd53ccfe9f52f26a8cf9b7b15a5b270" name="a3fd53ccfe9f52f26a8cf9b7b15a5b270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd53ccfe9f52f26a8cf9b7b15a5b270">&#9670;&#160;</a></span>BodyFraming</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a3fd53ccfe9f52f26a8cf9b7b15a5b270">Thoth::Http::BodyFraming</a> = std::variant&lt;<a class="el" href="struct_thoth_1_1_http_1_1_framing_empty.html">FramingEmpty</a>, <a class="el" href="struct_thoth_1_1_http_1_1_framing_sized.html">FramingSized</a>, <a class="el" href="struct_thoth_1_1_http_1_1_framing_streamed.html">FramingStreamed</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3768f5f28d2880ea7a6c5bc13727c0bb" name="a3768f5f28d2880ea7a6c5bc13727c0bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3768f5f28d2880ea7a6c5bc13727c0bb">&#9670;&#160;</a></span>BodyIoFor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Body&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a3768f5f28d2880ea7a6c5bc13727c0bb">Thoth::Http::BodyIoFor</a> = <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html">BodyIo</a>&lt;std::remove_cvref_t&lt;Body&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Normalized alias to <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="The I/O protocol of a body, specialized per body type (same model as std::formatter).">BodyIo</a>. </p>
+
+</div>
+</div>
+<a id="adda30b4bbfc98aceb62445406a854d2e" name="adda30b4bbfc98aceb62445406a854d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adda30b4bbfc98aceb62445406a854d2e">&#9670;&#160;</a></span>ByteView</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#adda30b4bbfc98aceb62445406a854d2e">Thoth::Http::ByteView</a> = std::span&lt;const std::byte&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A read-only view over one body slice, the currency of the <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="BodyIo">BodyIo</a> read side. </p>
+
+</div>
+</div>
 <a id="abd9e07cde439bfb5e723d453ba619b87" name="abd9e07cde439bfb5e723d453ba619b87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd9e07cde439bfb5e723d453ba619b87">&#9670;&#160;</a></span>ConnectionErrorEnum</h2>
 
@@ -397,6 +637,38 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a8753fb903ecc15190b503dedfc908ed0" name="a8753fb903ecc15190b503dedfc908ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8753fb903ecc15190b503dedfc908ed0">&#9670;&#160;</a></span>ExchangeDeadline</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8753fb903ecc15190b503dedfc908ed0">Thoth::Http::ExchangeDeadline</a> = Hermes::DeadlineTimepoint</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to represent deadlines in this lib. </p>
+
+</div>
+</div>
+<a id="a351bedd3c9fa0d8f45c8663580d4af14" name="a351bedd3c9fa0d8f45c8663580d4af14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a351bedd3c9fa0d8f45c8663580d4af14">&#9670;&#160;</a></span>FinishResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a351bedd3c9fa0d8f45c8663580d4af14">Thoth::Http::FinishResult</a> = std::expected&lt;void, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Outcome of BodyIo::FinishWrite, the commit/flush step of the incoming side. </p>
+
+</div>
+</div>
 <a id="a953aa84d429692d59ede836e38f2d90c" name="a953aa84d429692d59ede836e38f2d90c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a953aa84d429692d59ede836e38f2d90c">&#9670;&#160;</a></span>GetBinRequest</h2>
 
@@ -405,6 +677,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="#a953aa84d429692d59ede836e38f2d90c">Thoth::Http::GetBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7478ec9c2604639e696f76caab7dbc6e" name="a7478ec9c2604639e696f76caab7dbc6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7478ec9c2604639e696f76caab7dbc6e">&#9670;&#160;</a></span>GetBinRequestEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a7478ec9c2604639e696f76caab7dbc6e">Thoth::Http::GetBinRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -425,28 +711,70 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a62bd895aa29b1c2b8c2520fceb2b8a" name="a7a62bd895aa29b1c2b8c2520fceb2b8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a62bd895aa29b1c2b8c2520fceb2b8a">&#9670;&#160;</a></span>GetFileBinResponse</h2>
+<a id="aa5d1be2756abe11cce975f060c28c8b6" name="aa5d1be2756abe11cce975f060c28c8b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d1be2756abe11cce975f060c28c8b6">&#9670;&#160;</a></span>GetBinResponseEntry</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a7a62bd895aa29b1c2b8c2520fceb2b8a">Thoth::Http::GetFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">Dsa::BinFileOutputRange</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#aa5d1be2756abe11cce975f060c28c8b6">Thoth::Http::GetBinResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a89cafead9e28447c71d458a53be6419e" name="a89cafead9e28447c71d458a53be6419e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89cafead9e28447c71d458a53be6419e">&#9670;&#160;</a></span>GetFileResponse</h2>
+<a id="ab31581ee2e761445b2a541fbac41d759" name="ab31581ee2e761445b2a541fbac41d759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab31581ee2e761445b2a541fbac41d759">&#9670;&#160;</a></span>GetEmptyRequest</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a89cafead9e28447c71d458a53be6419e">Thoth::Http::GetFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">Dsa::TextFileOutputRange</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#ab31581ee2e761445b2a541fbac41d759">Thoth::Http::GetEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f93e0027db63c56b86a61b02d808393" name="a4f93e0027db63c56b86a61b02d808393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f93e0027db63c56b86a61b02d808393">&#9670;&#160;</a></span>GetEmptyResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4f93e0027db63c56b86a61b02d808393">Thoth::Http::GetEmptyResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8add514f5e895491c9090e9782286ca5" name="a8add514f5e895491c9090e9782286ca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8add514f5e895491c9090e9782286ca5">&#9670;&#160;</a></span>GetFileResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8add514f5e895491c9090e9782286ca5">Thoth::Http::GetFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a690f6669e7900992d21a8c459249d378" name="a690f6669e7900992d21a8c459249d378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690f6669e7900992d21a8c459249d378">&#9670;&#160;</a></span>GetFileResponseEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a690f6669e7900992d21a8c459249d378">Thoth::Http::GetFileResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -467,6 +795,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0aa3ca77097f615cf94900a78d419ec7" name="a0aa3ca77097f615cf94900a78d419ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa3ca77097f615cf94900a78d419ec7">&#9670;&#160;</a></span>GetRequestEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0aa3ca77097f615cf94900a78d419ec7">Thoth::Http::GetRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a751fd40f9427cdaf49cf73299039168c" name="a751fd40f9427cdaf49cf73299039168c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a751fd40f9427cdaf49cf73299039168c">&#9670;&#160;</a></span>GetResponse</h2>
 
@@ -475,6 +817,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="#a751fd40f9427cdaf49cf73299039168c">Thoth::Http::GetResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88c07d1d9cf54c621831d0469c4eaa53" name="a88c07d1d9cf54c621831d0469c4eaa53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c07d1d9cf54c621831d0469c4eaa53">&#9670;&#160;</a></span>GetResponseEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a88c07d1d9cf54c621831d0469c4eaa53">Thoth::Http::GetResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -509,6 +865,72 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a408b39ccfa3420f3fdefbf9895b74997" name="a408b39ccfa3420f3fdefbf9895b74997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a408b39ccfa3420f3fdefbf9895b74997">&#9670;&#160;</a></span>IntoPayloadFor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BodyConcept TargetBody, class Source&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a408b39ccfa3420f3fdefbf9895b74997">Thoth::Http::IntoPayloadFor</a> = <a class="el" href="struct_thoth_1_1_http_1_1_into_payload.html">IntoPayload</a>&lt;TargetBody, std::decay_t&lt;Source&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Normalized alias to <a class="el" href="struct_thoth_1_1_http_1_1_into_payload.html" title="CPO detailed in RequestEntry and ResponseEntry.">IntoPayload</a>. </p>
+
+</div>
+</div>
+<a id="ad8d9bf8ce9469f8d8f30241986b74952" name="ad8d9bf8ce9469f8d8f30241986b74952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d9bf8ce9469f8d8f30241986b74952">&#9670;&#160;</a></span>IntoRequestPayload</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BodyConcept TargetBody&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ad8d9bf8ce9469f8d8f30241986b74952">Thoth::Http::IntoRequestPayload</a> = std::pair&lt;<a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a>, TargetBody&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68e5dd491d95e41e2411a8edc05fcb5c" name="a68e5dd491d95e41e2411a8edc05fcb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e5dd491d95e41e2411a8edc05fcb5c">&#9670;&#160;</a></span>IntoResponsePayload</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BodyConcept TargetBody&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a68e5dd491d95e41e2411a8edc05fcb5c">Thoth::Http::IntoResponsePayload</a> = std::pair&lt;<a class="el" href="struct_thoth_1_1_http_1_1_response_head.html">ResponseHead</a>, TargetBody&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c45322a118ee15c1bd4cb201d312836" name="a8c45322a118ee15c1bd4cb201d312836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c45322a118ee15c1bd4cb201d312836">&#9670;&#160;</a></span>MiddlewarePack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Mws&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8c45322a118ee15c1bd4cb201d312836">Thoth::Http::MiddlewarePack</a> = std::tuple&lt;Mws...&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a17a1d35cbb78e22310bd4bf478581063" name="a17a1d35cbb78e22310bd4bf478581063"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17a1d35cbb78e22310bd4bf478581063">&#9670;&#160;</a></span>PostBinRequest</h2>
 
@@ -517,6 +939,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="#a17a1d35cbb78e22310bd4bf478581063">Thoth::Http::PostBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ca7db74c1f9f270066afba6000eec73" name="a0ca7db74c1f9f270066afba6000eec73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca7db74c1f9f270066afba6000eec73">&#9670;&#160;</a></span>PostBinRequestEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0ca7db74c1f9f270066afba6000eec73">Thoth::Http::PostBinRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -537,28 +973,70 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7eaf9c34d8b4b60a674c811cdf6138ea" name="a7eaf9c34d8b4b60a674c811cdf6138ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7eaf9c34d8b4b60a674c811cdf6138ea">&#9670;&#160;</a></span>PostFileBinResponse</h2>
+<a id="a4d133b5ceb567a64cc0028fec9e7dab6" name="a4d133b5ceb567a64cc0028fec9e7dab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d133b5ceb567a64cc0028fec9e7dab6">&#9670;&#160;</a></span>PostBinResponseEntry</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a7eaf9c34d8b4b60a674c811cdf6138ea">Thoth::Http::PostFileBinResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a3b69157e7b14586be23bb0af1edb71ec">Dsa::BinFileOutputRange</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a4d133b5ceb567a64cc0028fec9e7dab6">Thoth::Http::PostBinResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="abbc435da6152754f918ab209154301a7" name="abbc435da6152754f918ab209154301a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbc435da6152754f918ab209154301a7">&#9670;&#160;</a></span>PostFileResponse</h2>
+<a id="a5f50a37e3af2a610336af1e923182081" name="a5f50a37e3af2a610336af1e923182081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f50a37e3af2a610336af1e923182081">&#9670;&#160;</a></span>PostEmptyRequest</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#abbc435da6152754f918ab209154301a7">Thoth::Http::PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="namespace_thoth_1_1_dsa.html#a008726ede8dcaa66a9f3a8477361a169">Dsa::TextFileOutputRange</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a5f50a37e3af2a610336af1e923182081">Thoth::Http::PostEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac612cde0d741d9b6cfe212d9ad1e5b17" name="ac612cde0d741d9b6cfe212d9ad1e5b17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac612cde0d741d9b6cfe212d9ad1e5b17">&#9670;&#160;</a></span>PostEmptyResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ac612cde0d741d9b6cfe212d9ad1e5b17">Thoth::Http::PostEmptyResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae51be41cb0d86e6b82a50a87fac65d92" name="ae51be41cb0d86e6b82a50a87fac65d92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51be41cb0d86e6b82a50a87fac65d92">&#9670;&#160;</a></span>PostFileResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ae51be41cb0d86e6b82a50a87fac65d92">Thoth::Http::PostFileResponse</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b3b15a89bcce40c7e0040443c305238" name="a9b3b15a89bcce40c7e0040443c305238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b3b15a89bcce40c7e0040443c305238">&#9670;&#160;</a></span>PostFileResponseEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a9b3b15a89bcce40c7e0040443c305238">Thoth::Http::PostFileResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_file_body.html">FileBody</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -579,6 +1057,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="adfaeef9ec678bf1b6c21e03b70a97fa4" name="adfaeef9ec678bf1b6c21e03b70a97fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfaeef9ec678bf1b6c21e03b70a97fa4">&#9670;&#160;</a></span>PostRequestEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#adfaeef9ec678bf1b6c21e03b70a97fa4">Thoth::Http::PostRequestEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a406725da08567057c843e7aca9772dd7" name="a406725da08567057c843e7aca9772dd7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a406725da08567057c843e7aca9772dd7">&#9670;&#160;</a></span>PostResponse</h2>
 
@@ -590,6 +1082,36 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a675bab51e11fc925443cd9faac41a08b" name="a675bab51e11fc925443cd9faac41a08b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675bab51e11fc925443cd9faac41a08b">&#9670;&#160;</a></span>PostResponseEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a675bab51e11fc925443cd9faac41a08b">Thoth::Http::PostResponseEntry</a> = <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cd9420227dad12f70aa2212517e4bc5" name="a3cd9420227dad12f70aa2212517e4bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd9420227dad12f70aa2212517e4bc5">&#9670;&#160;</a></span>ReadResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a3cd9420227dad12f70aa2212517e4bc5">Thoth::Http::ReadResult</a> = std::expected&lt;std::optional&lt;<a class="el" href="#adda30b4bbfc98aceb62445406a854d2e">ByteView</a>&gt;, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Outcome of BodyIo::Read, the next slice or <span class="tt">nullopt</span> once the body is drained. </p>
 
 </div>
 </div>
@@ -625,7 +1147,7 @@ template&lt;MethodConcept M&gt; </div>
 template&lt;class T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#ab310f97c18cb1f367e7fa8137beebc1f">Thoth::Http::WebResult</a> = std::expected&lt;T, <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#ab310f97c18cb1f367e7fa8137beebc1f">Thoth::Http::WebResult</a> = std::expected&lt;T, <a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -646,7 +1168,53 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
+<a id="ade524ee56bdf0842d029bac64dd005ec" name="ade524ee56bdf0842d029bac64dd005ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade524ee56bdf0842d029bac64dd005ec">&#9670;&#160;</a></span>WriteResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ade524ee56bdf0842d029bac64dd005ec">Thoth::Http::WriteResult</a> = std::pair&lt;std::size_t, std::expected&lt;void, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a>&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Outcome of BodyIo::Write, bytes consumed plus status (same shape as <span class="tt">Hermes::StreamByteOper</span>). </p>
+
+</div>
+</div>
 <a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ab9c4f059d915ec202397d13552f97328" name="ab9c4f059d915ec202397d13552f97328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9c4f059d915ec202397d13552f97328">&#9670;&#160;</a></span>BodyDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ab9c4f059d915ec202397d13552f97328">Thoth::Http::BodyDirection</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Which sides of an exchange a body can feed, the minimum <a class="el" href="struct_thoth_1_1_http_1_1_body_io.html" title="BodyIo">BodyIo</a> surface an erased body promises. </p>
+<p><span class="tt">In</span> = the transport pushes wire bytes in (<span class="tt">Write</span> + <span class="tt">FinishWrite</span>, the <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a> request side). <span class="tt">Out</span> = the transport pulls slices out (<span class="tt">Size</span> + <span class="tt">Read</span>, the <a class="el" href="struct_thoth_1_1_http_1_1_server.html" title="The server. Owns the routing, the listener configuration (imutable, keep it right from the start),...">Server</a> response side). <span class="tt">Both</span> = the body models both directions at once (symmetric bodies, a proxy pipe, an echo buffer). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab9c4f059d915ec202397d13552f97328aefeb369cccbd560588a756610865664c" name="ab9c4f059d915ec202397d13552f97328aefeb369cccbd560588a756610865664c"></a>In&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab9c4f059d915ec202397d13552f97328a7c147cda9e49590f6abe83d118b7353b" name="ab9c4f059d915ec202397d13552f97328a7c147cda9e49590f6abe83d118b7353b"></a>Out&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e" name="ab9c4f059d915ec202397d13552f97328a130c5b3473c57faa76e2a1c54e26f88e"></a>Both&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="a8e58d1d4b4fcb6af2eee47c9a3a12388" name="a8e58d1d4b4fcb6af2eee47c9a3a12388"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e58d1d4b4fcb6af2eee47c9a3a12388">&#9670;&#160;</a></span>MessageParseErrorEnum</h2>
 
@@ -677,8 +1245,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a6a0a61c5077e5cb3aaa952aba4b824c7" name="a6a0a61c5077e5cb3aaa952aba4b824c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a0a61c5077e5cb3aaa952aba4b824c7">&#9670;&#160;</a></span>StatusCodeEnum</h2>
+<a id="abe0a39d144f57bf42563f8b605077e80" name="abe0a39d144f57bf42563f8b605077e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0a39d144f57bf42563f8b605077e80">&#9670;&#160;</a></span>StatusCodeEnum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -687,7 +1255,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">Thoth::Http::StatusCodeEnum</a></td>
+          <td class="memname">enum class <a class="el" href="#abe0a39d144f57bf42563f8b605077e80">Thoth::Http::StatusCodeEnum</a> : std::uint16_t</td>
         </tr>
       </table>
   </td>
@@ -697,69 +1265,69 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="3">Enumerator</th></tr><tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa0bfb8e59e6c13fc8d990781f77694fe"></a>Continue&#160;</td><td class="fieldinit">100&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a548c5a637eddf65132b21411aeafc6a1" name="a6a0a61c5077e5cb3aaa952aba4b824c7a548c5a637eddf65132b21411aeafc6a1"></a>SwitchingProtocols&#160;</td><td class="fieldinit">101&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ac317875c5106cf167e792bb3ad70fc26" name="a6a0a61c5077e5cb3aaa952aba4b824c7ac317875c5106cf167e792bb3ad70fc26"></a>ProcessingDeprecated&#160;</td><td class="fieldinit">102&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a7ff9f49506fe347fab32eb5ff72feda9" name="a6a0a61c5077e5cb3aaa952aba4b824c7a7ff9f49506fe347fab32eb5ff72feda9"></a>EarlyHints&#160;</td><td class="fieldinit">103&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa60852f204ed8028c1c58808b746d115" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa60852f204ed8028c1c58808b746d115"></a>Ok&#160;</td><td class="fieldinit">200&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a0eceeb45861f9585dd7a97a3e36f85c6" name="a6a0a61c5077e5cb3aaa952aba4b824c7a0eceeb45861f9585dd7a97a3e36f85c6"></a>Created&#160;</td><td class="fieldinit">201&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a382ab522931673c11e398ead1b7b1678" name="a6a0a61c5077e5cb3aaa952aba4b824c7a382ab522931673c11e398ead1b7b1678"></a>Accepted&#160;</td><td class="fieldinit">202&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a2d0ea43e788b779c0aec92366b711c2f" name="a6a0a61c5077e5cb3aaa952aba4b824c7a2d0ea43e788b779c0aec92366b711c2f"></a>NonAuthoritativeInformation&#160;</td><td class="fieldinit">203&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7acd447f1ec89f564ebac583d60087df12" name="a6a0a61c5077e5cb3aaa952aba4b824c7acd447f1ec89f564ebac583d60087df12"></a>NoContent&#160;</td><td class="fieldinit">204&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a4e9202c31896211f63be5b7345a897ed" name="a6a0a61c5077e5cb3aaa952aba4b824c7a4e9202c31896211f63be5b7345a897ed"></a>ResetContent&#160;</td><td class="fieldinit">205&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a750de7eda10d780b3bbaefb57128c24b" name="a6a0a61c5077e5cb3aaa952aba4b824c7a750de7eda10d780b3bbaefb57128c24b"></a>PartialContent&#160;</td><td class="fieldinit">206&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a0790a60654c0b2939299af967571e59b" name="a6a0a61c5077e5cb3aaa952aba4b824c7a0790a60654c0b2939299af967571e59b"></a>MultiStatus&#160;</td><td class="fieldinit">207&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ac549fc73e09b412a8451b1648820acf2" name="a6a0a61c5077e5cb3aaa952aba4b824c7ac549fc73e09b412a8451b1648820acf2"></a>AlreadyReported&#160;</td><td class="fieldinit">208&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa4c48828448423a78809163e3574a553" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa4c48828448423a78809163e3574a553"></a>ImUsed&#160;</td><td class="fieldinit">226&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa589749d075c3423333bdc93e3b4e774" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa589749d075c3423333bdc93e3b4e774"></a>MultipleChoices&#160;</td><td class="fieldinit">300&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a32638c25f4c913fce6214c2c4afff9dc" name="a6a0a61c5077e5cb3aaa952aba4b824c7a32638c25f4c913fce6214c2c4afff9dc"></a>MovedPermanently&#160;</td><td class="fieldinit">301&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a5d695cc28c6a7ea955162fbdd0ae42b9" name="a6a0a61c5077e5cb3aaa952aba4b824c7a5d695cc28c6a7ea955162fbdd0ae42b9"></a>Found&#160;</td><td class="fieldinit">302&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a7843649eb3841f496a79303fd815029e" name="a6a0a61c5077e5cb3aaa952aba4b824c7a7843649eb3841f496a79303fd815029e"></a>SeeOther&#160;</td><td class="fieldinit">303&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ac169e6d9a1b9442001384de8dcf49ab9" name="a6a0a61c5077e5cb3aaa952aba4b824c7ac169e6d9a1b9442001384de8dcf49ab9"></a>NotModified&#160;</td><td class="fieldinit">304&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9" name="a6a0a61c5077e5cb3aaa952aba4b824c7af5405ebf52b9b3ac8f24acc2edda2bc9"></a>UseProxyDeprecated&#160;</td><td class="fieldinit">305&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a92e592d90b9548016776a6fb68dccded" name="a6a0a61c5077e5cb3aaa952aba4b824c7a92e592d90b9548016776a6fb68dccded"></a>Unused&#160;</td><td class="fieldinit">306&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a1b73a351faf2b550d06fae9cc6e0a894" name="a6a0a61c5077e5cb3aaa952aba4b824c7a1b73a351faf2b550d06fae9cc6e0a894"></a>TemporaryRedirect&#160;</td><td class="fieldinit">307&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ac13fb7996808b1abe56e3ae4da84fb4a" name="a6a0a61c5077e5cb3aaa952aba4b824c7ac13fb7996808b1abe56e3ae4da84fb4a"></a>PermanentRedirect&#160;</td><td class="fieldinit">308&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a9edf8fbf00a57d95a0af4923c9a1ec6f" name="a6a0a61c5077e5cb3aaa952aba4b824c7a9edf8fbf00a57d95a0af4923c9a1ec6f"></a>BadRequest&#160;</td><td class="fieldinit">400&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ae06d1ba70f1331e9f9a113cc2f887d3f" name="a6a0a61c5077e5cb3aaa952aba4b824c7ae06d1ba70f1331e9f9a113cc2f887d3f"></a>Unauthorized&#160;</td><td class="fieldinit">401&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a4c99006c75b53fe48865cdfa0ac065ba" name="a6a0a61c5077e5cb3aaa952aba4b824c7a4c99006c75b53fe48865cdfa0ac065ba"></a>PaymentRequired&#160;</td><td class="fieldinit">402&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a722969577a96ca3953e84e3d949dee81" name="a6a0a61c5077e5cb3aaa952aba4b824c7a722969577a96ca3953e84e3d949dee81"></a>Forbidden&#160;</td><td class="fieldinit">403&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a38c300f4fc9ce8a77aad4a30de05cad8" name="a6a0a61c5077e5cb3aaa952aba4b824c7a38c300f4fc9ce8a77aad4a30de05cad8"></a>NotFound&#160;</td><td class="fieldinit">404&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a8ba68fee5542f5fd071aed140c39bd8e" name="a6a0a61c5077e5cb3aaa952aba4b824c7a8ba68fee5542f5fd071aed140c39bd8e"></a>MethodNotAllowed&#160;</td><td class="fieldinit">405&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7af83a928e6a3f3b502ffadd2a414ce48c" name="a6a0a61c5077e5cb3aaa952aba4b824c7af83a928e6a3f3b502ffadd2a414ce48c"></a>NotAcceptable&#160;</td><td class="fieldinit">406&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a59a2898a8bf9da75a5855e76110f06f2" name="a6a0a61c5077e5cb3aaa952aba4b824c7a59a2898a8bf9da75a5855e76110f06f2"></a>ProxyAuthenticationRequired&#160;</td><td class="fieldinit">407&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a3632c2e4e6225d4d9fcd2a6fd2c65048" name="a6a0a61c5077e5cb3aaa952aba4b824c7a3632c2e4e6225d4d9fcd2a6fd2c65048"></a>RequestTimeout&#160;</td><td class="fieldinit">408&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7af1d4ac54357cc0932f385d56814ba7e4" name="a6a0a61c5077e5cb3aaa952aba4b824c7af1d4ac54357cc0932f385d56814ba7e4"></a>Conflict&#160;</td><td class="fieldinit">409&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a0b497b33b1a05057bc1634e607170bf6" name="a6a0a61c5077e5cb3aaa952aba4b824c7a0b497b33b1a05057bc1634e607170bf6"></a>Gone&#160;</td><td class="fieldinit">410&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a8282fb93cb1cf45b135ea191668ca583" name="a6a0a61c5077e5cb3aaa952aba4b824c7a8282fb93cb1cf45b135ea191668ca583"></a>LengthRequired&#160;</td><td class="fieldinit">411&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a3542a02d18f11f46d53990d91752a6d4" name="a6a0a61c5077e5cb3aaa952aba4b824c7a3542a02d18f11f46d53990d91752a6d4"></a>PreconditionFailed&#160;</td><td class="fieldinit">412&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a803014593faac0203dbc82819b510e06" name="a6a0a61c5077e5cb3aaa952aba4b824c7a803014593faac0203dbc82819b510e06"></a>ContentTooLarge&#160;</td><td class="fieldinit">413&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7af72866c1bbf28a47b9bb1c8846e03313" name="a6a0a61c5077e5cb3aaa952aba4b824c7af72866c1bbf28a47b9bb1c8846e03313"></a>UriTooLong&#160;</td><td class="fieldinit">414&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa3219a6843adbb23de79b4df9c307f5d" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa3219a6843adbb23de79b4df9c307f5d"></a>UnsupportedMediaType&#160;</td><td class="fieldinit">415&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a9283ef01c36e7e4793b3e1395d764dfe" name="a6a0a61c5077e5cb3aaa952aba4b824c7a9283ef01c36e7e4793b3e1395d764dfe"></a>RangeNotSatisfiable&#160;</td><td class="fieldinit">416&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a6af78095a2be4a230ba87f03dd131830" name="a6a0a61c5077e5cb3aaa952aba4b824c7a6af78095a2be4a230ba87f03dd131830"></a>ExpectationFailed&#160;</td><td class="fieldinit">417&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a5ddbdcff68f084fdfef3c4988c92dbc0" name="a6a0a61c5077e5cb3aaa952aba4b824c7a5ddbdcff68f084fdfef3c4988c92dbc0"></a>ImATeapot&#160;</td><td class="fieldinit">418&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ac110d06054539d0031cbefdf78d1fdd6" name="a6a0a61c5077e5cb3aaa952aba4b824c7ac110d06054539d0031cbefdf78d1fdd6"></a>MisdirectedRequest&#160;</td><td class="fieldinit">421&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ae805bd51ab7638a29ea9c6ee60749132" name="a6a0a61c5077e5cb3aaa952aba4b824c7ae805bd51ab7638a29ea9c6ee60749132"></a>UnprocessableContent&#160;</td><td class="fieldinit">422&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ad0f2e5376298c880665077b565ffd7dd" name="a6a0a61c5077e5cb3aaa952aba4b824c7ad0f2e5376298c880665077b565ffd7dd"></a>Locked&#160;</td><td class="fieldinit">423&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a3e30483e6f8d532c08ac164aebf039fd" name="a6a0a61c5077e5cb3aaa952aba4b824c7a3e30483e6f8d532c08ac164aebf039fd"></a>FailedDependency&#160;</td><td class="fieldinit">424&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a747ad809d11c9136e4b62d49964c11c8" name="a6a0a61c5077e5cb3aaa952aba4b824c7a747ad809d11c9136e4b62d49964c11c8"></a>TooEarlyExperimental&#160;</td><td class="fieldinit">425&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ae0eaea96be1ec038b859e02cc5330827" name="a6a0a61c5077e5cb3aaa952aba4b824c7ae0eaea96be1ec038b859e02cc5330827"></a>UpgradeRequired&#160;</td><td class="fieldinit">426&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a4dd7ee1fe9fa9f29e190b416122146df" name="a6a0a61c5077e5cb3aaa952aba4b824c7a4dd7ee1fe9fa9f29e190b416122146df"></a>PreconditionRequired&#160;</td><td class="fieldinit">428&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ab00b00233255c3551697fe613001265d" name="a6a0a61c5077e5cb3aaa952aba4b824c7ab00b00233255c3551697fe613001265d"></a>TooManyRequests&#160;</td><td class="fieldinit">429&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a01d50823ab04e988e893bc17c2d55f24" name="a6a0a61c5077e5cb3aaa952aba4b824c7a01d50823ab04e988e893bc17c2d55f24"></a>RequestHeaderFieldsTooLarge&#160;</td><td class="fieldinit">431&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7af7c925b24caa71cd7097be57c4de6130" name="a6a0a61c5077e5cb3aaa952aba4b824c7af7c925b24caa71cd7097be57c4de6130"></a>UnavailableForLegalReasons&#160;</td><td class="fieldinit">451&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aecbf01325f1c744e9d7bb586ac2eb5ed" name="a6a0a61c5077e5cb3aaa952aba4b824c7aecbf01325f1c744e9d7bb586ac2eb5ed"></a>InternalServerError&#160;</td><td class="fieldinit">500&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a997ca4ce119685f40f03a9a8a6c5346e" name="a6a0a61c5077e5cb3aaa952aba4b824c7a997ca4ce119685f40f03a9a8a6c5346e"></a>NotImplemented&#160;</td><td class="fieldinit">501&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a0e7c9ad08be0653518bf456c9994ace5" name="a6a0a61c5077e5cb3aaa952aba4b824c7a0e7c9ad08be0653518bf456c9994ace5"></a>BadGateway&#160;</td><td class="fieldinit">502&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a2a4581043d849bcb0e4747970ef1489b" name="a6a0a61c5077e5cb3aaa952aba4b824c7a2a4581043d849bcb0e4747970ef1489b"></a>ServiceUnavailable&#160;</td><td class="fieldinit">503&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7ada405cbc74723dfdda615e3f679ef2be" name="a6a0a61c5077e5cb3aaa952aba4b824c7ada405cbc74723dfdda615e3f679ef2be"></a>GatewayTimeout&#160;</td><td class="fieldinit">504&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a56a7a02e415f5bf106088218f646c04f" name="a6a0a61c5077e5cb3aaa952aba4b824c7a56a7a02e415f5bf106088218f646c04f"></a>HttpVersionNotSupported&#160;</td><td class="fieldinit">505&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a0af1f043b1bc6980b5cffce0d83f4736" name="a6a0a61c5077e5cb3aaa952aba4b824c7a0af1f043b1bc6980b5cffce0d83f4736"></a>VariantAlsoNegotiates&#160;</td><td class="fieldinit">506&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aead0064570e2f25592cd76e0e69565a5" name="a6a0a61c5077e5cb3aaa952aba4b824c7aead0064570e2f25592cd76e0e69565a5"></a>InsufficientStorage&#160;</td><td class="fieldinit">507&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7aa2d07eb3939ad55d4acd3ed81291c61a" name="a6a0a61c5077e5cb3aaa952aba4b824c7aa2d07eb3939ad55d4acd3ed81291c61a"></a>LoopDetected&#160;</td><td class="fieldinit">508&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a8eff020959c41ba903e16d966855ce03" name="a6a0a61c5077e5cb3aaa952aba4b824c7a8eff020959c41ba903e16d966855ce03"></a>NotExtended&#160;</td><td class="fieldinit">510&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6a0a61c5077e5cb3aaa952aba4b824c7a52066ff32b30f46d30b87007cacf8f79" name="a6a0a61c5077e5cb3aaa952aba4b824c7a52066ff32b30f46d30b87007cacf8f79"></a>NetworkAuthenticationRequired&#160;</td><td class="fieldinit">511&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="3">Enumerator</th></tr><tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa0bfb8e59e6c13fc8d990781f77694fe" name="abe0a39d144f57bf42563f8b605077e80aa0bfb8e59e6c13fc8d990781f77694fe"></a>Continue&#160;</td><td class="fieldinit">100&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a548c5a637eddf65132b21411aeafc6a1" name="abe0a39d144f57bf42563f8b605077e80a548c5a637eddf65132b21411aeafc6a1"></a>SwitchingProtocols&#160;</td><td class="fieldinit">101&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ac317875c5106cf167e792bb3ad70fc26" name="abe0a39d144f57bf42563f8b605077e80ac317875c5106cf167e792bb3ad70fc26"></a>ProcessingDeprecated&#160;</td><td class="fieldinit">102&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a7ff9f49506fe347fab32eb5ff72feda9" name="abe0a39d144f57bf42563f8b605077e80a7ff9f49506fe347fab32eb5ff72feda9"></a>EarlyHints&#160;</td><td class="fieldinit">103&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa60852f204ed8028c1c58808b746d115" name="abe0a39d144f57bf42563f8b605077e80aa60852f204ed8028c1c58808b746d115"></a>Ok&#160;</td><td class="fieldinit">200&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a0eceeb45861f9585dd7a97a3e36f85c6" name="abe0a39d144f57bf42563f8b605077e80a0eceeb45861f9585dd7a97a3e36f85c6"></a>Created&#160;</td><td class="fieldinit">201&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a382ab522931673c11e398ead1b7b1678" name="abe0a39d144f57bf42563f8b605077e80a382ab522931673c11e398ead1b7b1678"></a>Accepted&#160;</td><td class="fieldinit">202&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a2d0ea43e788b779c0aec92366b711c2f" name="abe0a39d144f57bf42563f8b605077e80a2d0ea43e788b779c0aec92366b711c2f"></a>NonAuthoritativeInformation&#160;</td><td class="fieldinit">203&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80acd447f1ec89f564ebac583d60087df12" name="abe0a39d144f57bf42563f8b605077e80acd447f1ec89f564ebac583d60087df12"></a>NoContent&#160;</td><td class="fieldinit">204&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a4e9202c31896211f63be5b7345a897ed" name="abe0a39d144f57bf42563f8b605077e80a4e9202c31896211f63be5b7345a897ed"></a>ResetContent&#160;</td><td class="fieldinit">205&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a750de7eda10d780b3bbaefb57128c24b" name="abe0a39d144f57bf42563f8b605077e80a750de7eda10d780b3bbaefb57128c24b"></a>PartialContent&#160;</td><td class="fieldinit">206&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a0790a60654c0b2939299af967571e59b" name="abe0a39d144f57bf42563f8b605077e80a0790a60654c0b2939299af967571e59b"></a>MultiStatus&#160;</td><td class="fieldinit">207&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ac549fc73e09b412a8451b1648820acf2" name="abe0a39d144f57bf42563f8b605077e80ac549fc73e09b412a8451b1648820acf2"></a>AlreadyReported&#160;</td><td class="fieldinit">208&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa4c48828448423a78809163e3574a553" name="abe0a39d144f57bf42563f8b605077e80aa4c48828448423a78809163e3574a553"></a>ImUsed&#160;</td><td class="fieldinit">226&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa589749d075c3423333bdc93e3b4e774" name="abe0a39d144f57bf42563f8b605077e80aa589749d075c3423333bdc93e3b4e774"></a>MultipleChoices&#160;</td><td class="fieldinit">300&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a32638c25f4c913fce6214c2c4afff9dc" name="abe0a39d144f57bf42563f8b605077e80a32638c25f4c913fce6214c2c4afff9dc"></a>MovedPermanently&#160;</td><td class="fieldinit">301&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a5d695cc28c6a7ea955162fbdd0ae42b9" name="abe0a39d144f57bf42563f8b605077e80a5d695cc28c6a7ea955162fbdd0ae42b9"></a>Found&#160;</td><td class="fieldinit">302&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a7843649eb3841f496a79303fd815029e" name="abe0a39d144f57bf42563f8b605077e80a7843649eb3841f496a79303fd815029e"></a>SeeOther&#160;</td><td class="fieldinit">303&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ac169e6d9a1b9442001384de8dcf49ab9" name="abe0a39d144f57bf42563f8b605077e80ac169e6d9a1b9442001384de8dcf49ab9"></a>NotModified&#160;</td><td class="fieldinit">304&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80af5405ebf52b9b3ac8f24acc2edda2bc9" name="abe0a39d144f57bf42563f8b605077e80af5405ebf52b9b3ac8f24acc2edda2bc9"></a>UseProxyDeprecated&#160;</td><td class="fieldinit">305&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a92e592d90b9548016776a6fb68dccded" name="abe0a39d144f57bf42563f8b605077e80a92e592d90b9548016776a6fb68dccded"></a>Unused&#160;</td><td class="fieldinit">306&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a1b73a351faf2b550d06fae9cc6e0a894" name="abe0a39d144f57bf42563f8b605077e80a1b73a351faf2b550d06fae9cc6e0a894"></a>TemporaryRedirect&#160;</td><td class="fieldinit">307&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ac13fb7996808b1abe56e3ae4da84fb4a" name="abe0a39d144f57bf42563f8b605077e80ac13fb7996808b1abe56e3ae4da84fb4a"></a>PermanentRedirect&#160;</td><td class="fieldinit">308&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a9edf8fbf00a57d95a0af4923c9a1ec6f" name="abe0a39d144f57bf42563f8b605077e80a9edf8fbf00a57d95a0af4923c9a1ec6f"></a>BadRequest&#160;</td><td class="fieldinit">400&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ae06d1ba70f1331e9f9a113cc2f887d3f" name="abe0a39d144f57bf42563f8b605077e80ae06d1ba70f1331e9f9a113cc2f887d3f"></a>Unauthorized&#160;</td><td class="fieldinit">401&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a4c99006c75b53fe48865cdfa0ac065ba" name="abe0a39d144f57bf42563f8b605077e80a4c99006c75b53fe48865cdfa0ac065ba"></a>PaymentRequired&#160;</td><td class="fieldinit">402&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a722969577a96ca3953e84e3d949dee81" name="abe0a39d144f57bf42563f8b605077e80a722969577a96ca3953e84e3d949dee81"></a>Forbidden&#160;</td><td class="fieldinit">403&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a38c300f4fc9ce8a77aad4a30de05cad8" name="abe0a39d144f57bf42563f8b605077e80a38c300f4fc9ce8a77aad4a30de05cad8"></a>NotFound&#160;</td><td class="fieldinit">404&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a8ba68fee5542f5fd071aed140c39bd8e" name="abe0a39d144f57bf42563f8b605077e80a8ba68fee5542f5fd071aed140c39bd8e"></a>MethodNotAllowed&#160;</td><td class="fieldinit">405&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80af83a928e6a3f3b502ffadd2a414ce48c" name="abe0a39d144f57bf42563f8b605077e80af83a928e6a3f3b502ffadd2a414ce48c"></a>NotAcceptable&#160;</td><td class="fieldinit">406&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a59a2898a8bf9da75a5855e76110f06f2" name="abe0a39d144f57bf42563f8b605077e80a59a2898a8bf9da75a5855e76110f06f2"></a>ProxyAuthenticationRequired&#160;</td><td class="fieldinit">407&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a3632c2e4e6225d4d9fcd2a6fd2c65048" name="abe0a39d144f57bf42563f8b605077e80a3632c2e4e6225d4d9fcd2a6fd2c65048"></a>RequestTimeout&#160;</td><td class="fieldinit">408&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80af1d4ac54357cc0932f385d56814ba7e4" name="abe0a39d144f57bf42563f8b605077e80af1d4ac54357cc0932f385d56814ba7e4"></a>Conflict&#160;</td><td class="fieldinit">409&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a0b497b33b1a05057bc1634e607170bf6" name="abe0a39d144f57bf42563f8b605077e80a0b497b33b1a05057bc1634e607170bf6"></a>Gone&#160;</td><td class="fieldinit">410&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a8282fb93cb1cf45b135ea191668ca583" name="abe0a39d144f57bf42563f8b605077e80a8282fb93cb1cf45b135ea191668ca583"></a>LengthRequired&#160;</td><td class="fieldinit">411&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a3542a02d18f11f46d53990d91752a6d4" name="abe0a39d144f57bf42563f8b605077e80a3542a02d18f11f46d53990d91752a6d4"></a>PreconditionFailed&#160;</td><td class="fieldinit">412&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a803014593faac0203dbc82819b510e06" name="abe0a39d144f57bf42563f8b605077e80a803014593faac0203dbc82819b510e06"></a>ContentTooLarge&#160;</td><td class="fieldinit">413&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80af72866c1bbf28a47b9bb1c8846e03313" name="abe0a39d144f57bf42563f8b605077e80af72866c1bbf28a47b9bb1c8846e03313"></a>UriTooLong&#160;</td><td class="fieldinit">414&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa3219a6843adbb23de79b4df9c307f5d" name="abe0a39d144f57bf42563f8b605077e80aa3219a6843adbb23de79b4df9c307f5d"></a>UnsupportedMediaType&#160;</td><td class="fieldinit">415&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a9283ef01c36e7e4793b3e1395d764dfe" name="abe0a39d144f57bf42563f8b605077e80a9283ef01c36e7e4793b3e1395d764dfe"></a>RangeNotSatisfiable&#160;</td><td class="fieldinit">416&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a6af78095a2be4a230ba87f03dd131830" name="abe0a39d144f57bf42563f8b605077e80a6af78095a2be4a230ba87f03dd131830"></a>ExpectationFailed&#160;</td><td class="fieldinit">417&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a5ddbdcff68f084fdfef3c4988c92dbc0" name="abe0a39d144f57bf42563f8b605077e80a5ddbdcff68f084fdfef3c4988c92dbc0"></a>ImATeapot&#160;</td><td class="fieldinit">418&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ac110d06054539d0031cbefdf78d1fdd6" name="abe0a39d144f57bf42563f8b605077e80ac110d06054539d0031cbefdf78d1fdd6"></a>MisdirectedRequest&#160;</td><td class="fieldinit">421&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ae805bd51ab7638a29ea9c6ee60749132" name="abe0a39d144f57bf42563f8b605077e80ae805bd51ab7638a29ea9c6ee60749132"></a>UnprocessableContent&#160;</td><td class="fieldinit">422&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ad0f2e5376298c880665077b565ffd7dd" name="abe0a39d144f57bf42563f8b605077e80ad0f2e5376298c880665077b565ffd7dd"></a>Locked&#160;</td><td class="fieldinit">423&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a3e30483e6f8d532c08ac164aebf039fd" name="abe0a39d144f57bf42563f8b605077e80a3e30483e6f8d532c08ac164aebf039fd"></a>FailedDependency&#160;</td><td class="fieldinit">424&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a747ad809d11c9136e4b62d49964c11c8" name="abe0a39d144f57bf42563f8b605077e80a747ad809d11c9136e4b62d49964c11c8"></a>TooEarlyExperimental&#160;</td><td class="fieldinit">425&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ae0eaea96be1ec038b859e02cc5330827" name="abe0a39d144f57bf42563f8b605077e80ae0eaea96be1ec038b859e02cc5330827"></a>UpgradeRequired&#160;</td><td class="fieldinit">426&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a4dd7ee1fe9fa9f29e190b416122146df" name="abe0a39d144f57bf42563f8b605077e80a4dd7ee1fe9fa9f29e190b416122146df"></a>PreconditionRequired&#160;</td><td class="fieldinit">428&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ab00b00233255c3551697fe613001265d" name="abe0a39d144f57bf42563f8b605077e80ab00b00233255c3551697fe613001265d"></a>TooManyRequests&#160;</td><td class="fieldinit">429&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a01d50823ab04e988e893bc17c2d55f24" name="abe0a39d144f57bf42563f8b605077e80a01d50823ab04e988e893bc17c2d55f24"></a>RequestHeaderFieldsTooLarge&#160;</td><td class="fieldinit">431&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80af7c925b24caa71cd7097be57c4de6130" name="abe0a39d144f57bf42563f8b605077e80af7c925b24caa71cd7097be57c4de6130"></a>UnavailableForLegalReasons&#160;</td><td class="fieldinit">451&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aecbf01325f1c744e9d7bb586ac2eb5ed" name="abe0a39d144f57bf42563f8b605077e80aecbf01325f1c744e9d7bb586ac2eb5ed"></a>InternalServerError&#160;</td><td class="fieldinit">500&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a997ca4ce119685f40f03a9a8a6c5346e" name="abe0a39d144f57bf42563f8b605077e80a997ca4ce119685f40f03a9a8a6c5346e"></a>NotImplemented&#160;</td><td class="fieldinit">501&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a0e7c9ad08be0653518bf456c9994ace5" name="abe0a39d144f57bf42563f8b605077e80a0e7c9ad08be0653518bf456c9994ace5"></a>BadGateway&#160;</td><td class="fieldinit">502&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a2a4581043d849bcb0e4747970ef1489b" name="abe0a39d144f57bf42563f8b605077e80a2a4581043d849bcb0e4747970ef1489b"></a>ServiceUnavailable&#160;</td><td class="fieldinit">503&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80ada405cbc74723dfdda615e3f679ef2be" name="abe0a39d144f57bf42563f8b605077e80ada405cbc74723dfdda615e3f679ef2be"></a>GatewayTimeout&#160;</td><td class="fieldinit">504&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a56a7a02e415f5bf106088218f646c04f" name="abe0a39d144f57bf42563f8b605077e80a56a7a02e415f5bf106088218f646c04f"></a>HttpVersionNotSupported&#160;</td><td class="fieldinit">505&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a0af1f043b1bc6980b5cffce0d83f4736" name="abe0a39d144f57bf42563f8b605077e80a0af1f043b1bc6980b5cffce0d83f4736"></a>VariantAlsoNegotiates&#160;</td><td class="fieldinit">506&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aead0064570e2f25592cd76e0e69565a5" name="abe0a39d144f57bf42563f8b605077e80aead0064570e2f25592cd76e0e69565a5"></a>InsufficientStorage&#160;</td><td class="fieldinit">507&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80aa2d07eb3939ad55d4acd3ed81291c61a" name="abe0a39d144f57bf42563f8b605077e80aa2d07eb3939ad55d4acd3ed81291c61a"></a>LoopDetected&#160;</td><td class="fieldinit">508&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a8eff020959c41ba903e16d966855ce03" name="abe0a39d144f57bf42563f8b605077e80a8eff020959c41ba903e16d966855ce03"></a>NotExtended&#160;</td><td class="fieldinit">510&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abe0a39d144f57bf42563f8b605077e80a52066ff32b30f46d30b87007cacf8f79" name="abe0a39d144f57bf42563f8b605077e80a52066ff32b30f46d30b87007cacf8f79"></a>NetworkAuthenticationRequired&#160;</td><td class="fieldinit">511&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -784,11 +1352,11 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877dad32528aaa543f441670938e1f8bb2b68" name="a6c950c34bcd876414d00b8c445bb877dad32528aaa543f441670938e1f8bb2b68"></a>INFORMATIONAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877dadd1dab546c7769f17e9d4e8e4f2f1bf4" name="a6c950c34bcd876414d00b8c445bb877dadd1dab546c7769f17e9d4e8e4f2f1bf4"></a>SUCCESSFUL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da7c8bc648d02ae1448f155449e5c114f3" name="a6c950c34bcd876414d00b8c445bb877da7c8bc648d02ae1448f155449e5c114f3"></a>REDIRECTION&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877daac9eb3124d6b6c4075ae1b44d23e8224" name="a6c950c34bcd876414d00b8c445bb877daac9eb3124d6b6c4075ae1b44d23e8224"></a>CLIENT_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da3fd4acc4cfaa41114f84707b95f05f31" name="a6c950c34bcd876414d00b8c445bb877da3fd4acc4cfaa41114f84707b95f05f31"></a>SERVER_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da5391f9a882a54c787b206138ed6d28b0" name="a6c950c34bcd876414d00b8c445bb877da5391f9a882a54c787b206138ed6d28b0"></a>Informational&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da30ae8fff8898dc197acd49d9c0797d20" name="a6c950c34bcd876414d00b8c445bb877da30ae8fff8898dc197acd49d9c0797d20"></a>Successful&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da1b6498e23a3c43775699129e7ebfcfeb" name="a6c950c34bcd876414d00b8c445bb877da1b6498e23a3c43775699129e7ebfcfeb"></a>Redirection&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877daa4097a97f20ebb7212625084936abcee" name="a6c950c34bcd876414d00b8c445bb877daa4097a97f20ebb7212625084936abcee"></a>ClientError&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6c950c34bcd876414d00b8c445bb877da7d65c64901711bc2cd2a33ff2641fbe9" name="a6c950c34bcd876414d00b8c445bb877da7d65c64901711bc2cd2a33ff2641fbe9"></a>ServerError&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -823,8 +1391,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aafd3ae972536eae8c855e484175fa0db" name="aafd3ae972536eae8c855e484175fa0db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafd3ae972536eae8c855e484175fa0db">&#9670;&#160;</a></span>VersionEnum</h2>
+<a id="a72faa013ee37fee0d5979ca7ccde3bbd" name="a72faa013ee37fee0d5979ca7ccde3bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72faa013ee37fee0d5979ca7ccde3bbd">&#9670;&#160;</a></span>VersionEnum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -833,7 +1401,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="#aafd3ae972536eae8c855e484175fa0db">Thoth::Http::VersionEnum</a> : uint8_t</td>
+          <td class="memname">enum class <a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbd">Thoth::Http::VersionEnum</a> : std::uint8_t</td>
         </tr>
       </table>
   </td>
@@ -843,10 +1411,10 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab" name="aafd3ae972536eae8c855e484175fa0dba0ddb6aeadb13ebd570463e41253ab8ab"></a>HTTP1_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b" name="aafd3ae972536eae8c855e484175fa0dba5d11af175e78f15ff7768b17ae71868b"></a>HTTP1_1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a" name="aafd3ae972536eae8c855e484175fa0dbae911468ee8681ba1862cf34bc5e85a8a"></a>HTTP2&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738" name="aafd3ae972536eae8c855e484175fa0dbacdb4b571517d156a0211d74976eaa738"></a>HTTP3&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a72faa013ee37fee0d5979ca7ccde3bbdaa820a7cca3410e94af1e51058023680a" name="a72faa013ee37fee0d5979ca7ccde3bbdaa820a7cca3410e94af1e51058023680a"></a>Http1_0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72faa013ee37fee0d5979ca7ccde3bbda2c494112f4c9bef921aacd3650fd34ea" name="a72faa013ee37fee0d5979ca7ccde3bbda2c494112f4c9bef921aacd3650fd34ea"></a>Http1_1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72faa013ee37fee0d5979ca7ccde3bbdab354a53a47e18f05f6cc27c7259e0791" name="a72faa013ee37fee0d5979ca7ccde3bbdab354a53a47e18f05f6cc27c7259e0791"></a>Http2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a72faa013ee37fee0d5979ca7ccde3bbda19a76329e8cb1f096b70e38f1e41cb6f" name="a72faa013ee37fee0d5979ca7ccde3bbda19a76329e8cb1f096b70e38f1e41cb6f"></a>Http3&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -912,7 +1480,7 @@ template&lt;class Next&gt; </div>
 </ul>
 <dl class="section see"><dt>See also</dt><dd>docs/pages/Middleware.md for behavior details and composition order. </dd>
 <dd>
-<a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">Thoth::Http::StatusCodeEnum</a> for more info.</dd></dl>
+<a class="el" href="#abe0a39d144f57bf42563f8b605077e80">Thoth::Http::StatusCodeEnum</a> for more info.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Next</td><td>Inner handler. </td></tr>
@@ -993,25 +1561,6 @@ template&lt;class Next&gt; </div>
 
 </div>
 </div>
-<a id="a5379080d14ac2dfa264229cc182c7dc1" name="a5379080d14ac2dfa264229cc182c7dc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5379080d14ac2dfa264229cc182c7dc1">&#9670;&#160;</a></span>GetInserterIterator()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;WritableBodyConcept Body&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">auto Thoth::Http::GetInserterIterator </td>
-          <td>(</td>
-          <td class="paramtype">Body &amp;</td>          <td class="paramname"><span class="paramname"><em>body</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a82a2512e3a342947a207d53e49974abc" name="a82a2512e3a342947a207d53e49974abc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a82a2512e3a342947a207d53e49974abc">&#9670;&#160;</a></span>GetStatusType()</h2>
 
@@ -1024,7 +1573,7 @@ template&lt;WritableBodyConcept Body&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a> Thoth::Http::GetStatusType </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a></td>          <td class="paramname"><span class="paramname"><em>code</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a></td>          <td class="paramname"><span class="paramname"><em>code</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1035,8 +1584,8 @@ template&lt;WritableBodyConcept Body&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Check what type of code <a class="el" href="#a6a0a61c5077e5cb3aaa952aba4b824c7">StatusCodeEnum</a> is, the first digit of it's number. </p>
-<p>1XX =&gt; INFORMATIONAL 2XX =&gt; SUCCESSFUL 3XX =&gt; REDIRECTION 4XX =&gt; CLIENT_ERROR 5XX =&gt; SERVER_ERROR </p>
+<p>Check what type of code <a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> is, the first digit of it's number. </p>
+<p>1XX =&gt; Informational 2XX =&gt; Successful 3XX =&gt; Redirection 4XX =&gt; ClientError 5XX =&gt; ServerError </p>
 
 </div>
 </div>
@@ -1075,6 +1624,32 @@ template&lt;WritableBodyConcept Body&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa25edaf9e5cb133868bbae13f3e14b38" name="aa25edaf9e5cb133868bbae13f3e14b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa25edaf9e5cb133868bbae13f3e14b38">&#9670;&#160;</a></span>ReceiveHead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;CommonSocketConcept Socket&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">exec::task&lt; <a class="el" href="struct_thoth_1_1_http_1_1_exchange.html">Exchange</a>&lt; Socket &gt; &gt; Thoth::Http::ReceiveHead </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_thoth_1_1_http_1_1_read_context.html">ReadContext</a>&lt; Socket &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_thoth_1_1_http_1_1_host_policy.html">HostPolicy</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>hosts</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads one request head and validates it, producing a live <a class="el" href="struct_thoth_1_1_http_1_1_exchange.html" title="Exchange">Exchange</a> for the Router or the <a class="el" href="struct_thoth_1_1_thoth_error.html" title="ThothError">ThothError</a> that explains the refusal. </p>
+<p>The framing is computed here, once, so nobody re-parses headers to reason about the body later. A refused head is thrown as a plain <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> carrying the <span class="tt"><a class="el" href="#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a></span> to answer with (413 for an oversized <span class="tt">Content-Length</span>, 400 for a <span class="tt"><a class="el" href="#a923afcf85ecdad1fd277e5701e93a57a">Host</a></span> outside the policy), which is everything the caller needs to answer, no intermediate error type between the head and the wire. Anything the transport throws collapses into the same shape, a <span class="tt"><a class="el" href="#abd9e07cde439bfb5e723d453ba619b87">ConnectionErrorEnum</a></span> inside means the socket itself died mid-read and there is nobody left to answer. </p>
 
 </div>
 </div>
@@ -1136,22 +1711,242 @@ template&lt;class Next&gt; </div>
 
 </div>
 </div>
-<a id="a7bedc663bde5f4726625099926f81fe8" name="a7bedc663bde5f4726625099926f81fe8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bedc663bde5f4726625099926f81fe8">&#9670;&#160;</a></span>VersionToString()</h2>
+<a id="a7550281b3370448a0074975050e2d617" name="a7550281b3370448a0074975050e2d617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7550281b3370448a0074975050e2d617">&#9670;&#160;</a></span>Use()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;class... Mws&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string_view Thoth::Http::VersionToString </td>
+          <td class="memname">auto Thoth::Http::Use </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#aafd3ae972536eae8c855e484175fa0db">VersionEnum</a></td>          <td class="paramname"><span class="paramname"><em>version</em></span></td><td>)</td>
+          <td class="paramtype">Mws &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>mws</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a id="abc2a90c8a8f3befce01ced480228c678" name="abc2a90c8a8f3befce01ced480228c678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2a90c8a8f3befce01ced480228c678">&#9670;&#160;</a></span>VersionToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view Thoth::Http::VersionToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a72faa013ee37fee0d5979ca7ccde3bbd">VersionEnum</a></td>          <td class="paramname"><span class="paramname"><em>version</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 <p>Exactly what you think it is. </p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ad4e83fcce544d2cabced4201577a65f5" name="ad4e83fcce544d2cabced4201577a65f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e83fcce544d2cabced4201577a65f5">&#9670;&#160;</a></span>IsRequest</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::IsRequest { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae99fcdd4f38e79b0d81059de7a4ce61b" name="ae99fcdd4f38e79b0d81059de7a4ce61b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99fcdd4f38e79b0d81059de7a4ce61b">&#9670;&#160;</a></span>IsRequest&lt; Request&lt; T... &gt; &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="#ad4e83fcce544d2cabced4201577a65f5">Thoth::Http::IsRequest</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt; T... &gt; &gt; { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f16b5eccf3e7557cb2aeda2102d7997" name="a3f16b5eccf3e7557cb2aeda2102d7997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f16b5eccf3e7557cb2aeda2102d7997">&#9670;&#160;</a></span>IsRequestEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::IsRequestEntry { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80c1243679331be4341ca05f1f9b6925" name="a80c1243679331be4341ca05f1f9b6925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80c1243679331be4341ca05f1f9b6925">&#9670;&#160;</a></span>IsRequestEntry&lt; RequestEntry&lt; T... &gt; &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="#a3f16b5eccf3e7557cb2aeda2102d7997">Thoth::Http::IsRequestEntry</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_request_entry.html">RequestEntry</a>&lt; T... &gt; &gt; { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e3ed415f30754c79e3c02b0fe12bb5c" name="a3e3ed415f30754c79e3c02b0fe12bb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e3ed415f30754c79e3c02b0fe12bb5c">&#9670;&#160;</a></span>IsResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::IsResponse { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a057eaaeee6bf327d2762dd2015a4e4dd" name="a057eaaeee6bf327d2762dd2015a4e4dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a057eaaeee6bf327d2762dd2015a4e4dd">&#9670;&#160;</a></span>IsResponse&lt; Response&lt; T... &gt; &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="#a3e3ed415f30754c79e3c02b0fe12bb5c">Thoth::Http::IsResponse</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response.html">Response</a>&lt; T... &gt; &gt; { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a071e90fd4b0e917a595aeedbaf863f81" name="a071e90fd4b0e917a595aeedbaf863f81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071e90fd4b0e917a595aeedbaf863f81">&#9670;&#160;</a></span>IsResponseEntry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::IsResponseEntry { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa1083a69bdb1c97d7537fe60f38a5b2" name="aaa1083a69bdb1c97d7537fe60f38a5b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1083a69bdb1c97d7537fe60f38a5b2">&#9670;&#160;</a></span>IsResponseEntry&lt; ResponseEntry&lt; T... &gt; &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="#a071e90fd4b0e917a595aeedbaf863f81">Thoth::Http::IsResponseEntry</a>&lt; <a class="el" href="struct_thoth_1_1_http_1_1_response_entry.html">ResponseEntry</a>&lt; T... &gt; &gt; { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

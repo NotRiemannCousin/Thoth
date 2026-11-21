@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/Http/Response/StatusCodeEnum.hpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-msc.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_response_2_status_code_enum_8hpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">StatusCodeEnum.hpp File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;expected&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;Thoth/Http/Response/StatusCodeEnum.tpp&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for StatusCodeEnum.hpp:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_response_2_status_code_enum_8hpp__incl.svg" width="666" height="148"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_response_2_status_code_enum_8hpp__dep__incl.svg" width="3899" height="1252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<p><a href="_response_2_status_code_enum_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
+<tr class="memitem:Thoth_3A_3AHttp" id="r_Thoth_3A_3AHttp"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ab310f97c18cb1f367e7fa8137beebc1f" id="r_ab310f97c18cb1f367e7fa8137beebc1f"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:ab310f97c18cb1f367e7fa8137beebc1f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">Thoth::Http::WebResult</a> = std::expected&lt;T, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a>&gt;</td></tr>
+<tr class="memitem:a4060dc2e21c0dea1ca9e4ee9ef04cc97" id="r_a4060dc2e21c0dea1ca9e4ee9ef04cc97"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a4060dc2e21c0dea1ca9e4ee9ef04cc97">Thoth::Http::WebResultOper</a> = <a class="el" href="namespace_thoth_1_1_http.html#ab310f97c18cb1f367e7fa8137beebc1f">WebResult</a>&lt;void&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:abe0a39d144f57bf42563f8b605077e80" id="r_abe0a39d144f57bf42563f8b605077e80"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80">Thoth::Http::StatusCodeEnum</a> : std::uint16_t { <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa0bfb8e59e6c13fc8d990781f77694fe">Thoth::Http::Continue</a> = 100
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a548c5a637eddf65132b21411aeafc6a1">Thoth::Http::SwitchingProtocols</a> = 101
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ac317875c5106cf167e792bb3ad70fc26">Thoth::Http::ProcessingDeprecated</a> = 102
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a7ff9f49506fe347fab32eb5ff72feda9">Thoth::Http::EarlyHints</a> = 103
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa60852f204ed8028c1c58808b746d115">Thoth::Http::Ok</a> = 200
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a0eceeb45861f9585dd7a97a3e36f85c6">Thoth::Http::Created</a> = 201
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a382ab522931673c11e398ead1b7b1678">Thoth::Http::Accepted</a> = 202
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a2d0ea43e788b779c0aec92366b711c2f">Thoth::Http::NonAuthoritativeInformation</a> = 203
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80acd447f1ec89f564ebac583d60087df12">Thoth::Http::NoContent</a> = 204
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a4e9202c31896211f63be5b7345a897ed">Thoth::Http::ResetContent</a> = 205
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a750de7eda10d780b3bbaefb57128c24b">Thoth::Http::PartialContent</a> = 206
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a0790a60654c0b2939299af967571e59b">Thoth::Http::MultiStatus</a> = 207
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ac549fc73e09b412a8451b1648820acf2">Thoth::Http::AlreadyReported</a> = 208
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa4c48828448423a78809163e3574a553">Thoth::Http::ImUsed</a> = 226
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa589749d075c3423333bdc93e3b4e774">Thoth::Http::MultipleChoices</a> = 300
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a32638c25f4c913fce6214c2c4afff9dc">Thoth::Http::MovedPermanently</a> = 301
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a5d695cc28c6a7ea955162fbdd0ae42b9">Thoth::Http::Found</a> = 302
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a7843649eb3841f496a79303fd815029e">Thoth::Http::SeeOther</a> = 303
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ac169e6d9a1b9442001384de8dcf49ab9">Thoth::Http::NotModified</a> = 304
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80af5405ebf52b9b3ac8f24acc2edda2bc9">Thoth::Http::UseProxyDeprecated</a> = 305
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a92e592d90b9548016776a6fb68dccded">Thoth::Http::Unused</a> = 306
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a1b73a351faf2b550d06fae9cc6e0a894">Thoth::Http::TemporaryRedirect</a> = 307
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ac13fb7996808b1abe56e3ae4da84fb4a">Thoth::Http::PermanentRedirect</a> = 308
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a9edf8fbf00a57d95a0af4923c9a1ec6f">Thoth::Http::BadRequest</a> = 400
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ae06d1ba70f1331e9f9a113cc2f887d3f">Thoth::Http::Unauthorized</a> = 401
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a4c99006c75b53fe48865cdfa0ac065ba">Thoth::Http::PaymentRequired</a> = 402
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a722969577a96ca3953e84e3d949dee81">Thoth::Http::Forbidden</a> = 403
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a38c300f4fc9ce8a77aad4a30de05cad8">Thoth::Http::NotFound</a> = 404
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a8ba68fee5542f5fd071aed140c39bd8e">Thoth::Http::MethodNotAllowed</a> = 405
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80af83a928e6a3f3b502ffadd2a414ce48c">Thoth::Http::NotAcceptable</a> = 406
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a59a2898a8bf9da75a5855e76110f06f2">Thoth::Http::ProxyAuthenticationRequired</a> = 407
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a3632c2e4e6225d4d9fcd2a6fd2c65048">Thoth::Http::RequestTimeout</a> = 408
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80af1d4ac54357cc0932f385d56814ba7e4">Thoth::Http::Conflict</a> = 409
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a0b497b33b1a05057bc1634e607170bf6">Thoth::Http::Gone</a> = 410
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a8282fb93cb1cf45b135ea191668ca583">Thoth::Http::LengthRequired</a> = 411
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a3542a02d18f11f46d53990d91752a6d4">Thoth::Http::PreconditionFailed</a> = 412
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a803014593faac0203dbc82819b510e06">Thoth::Http::ContentTooLarge</a> = 413
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80af72866c1bbf28a47b9bb1c8846e03313">Thoth::Http::UriTooLong</a> = 414
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa3219a6843adbb23de79b4df9c307f5d">Thoth::Http::UnsupportedMediaType</a> = 415
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a9283ef01c36e7e4793b3e1395d764dfe">Thoth::Http::RangeNotSatisfiable</a> = 416
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a6af78095a2be4a230ba87f03dd131830">Thoth::Http::ExpectationFailed</a> = 417
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a5ddbdcff68f084fdfef3c4988c92dbc0">Thoth::Http::ImATeapot</a> = 418
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ac110d06054539d0031cbefdf78d1fdd6">Thoth::Http::MisdirectedRequest</a> = 421
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ae805bd51ab7638a29ea9c6ee60749132">Thoth::Http::UnprocessableContent</a> = 422
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ad0f2e5376298c880665077b565ffd7dd">Thoth::Http::Locked</a> = 423
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a3e30483e6f8d532c08ac164aebf039fd">Thoth::Http::FailedDependency</a> = 424
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a747ad809d11c9136e4b62d49964c11c8">Thoth::Http::TooEarlyExperimental</a> = 425
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ae0eaea96be1ec038b859e02cc5330827">Thoth::Http::UpgradeRequired</a> = 426
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a4dd7ee1fe9fa9f29e190b416122146df">Thoth::Http::PreconditionRequired</a> = 428
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ab00b00233255c3551697fe613001265d">Thoth::Http::TooManyRequests</a> = 429
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a01d50823ab04e988e893bc17c2d55f24">Thoth::Http::RequestHeaderFieldsTooLarge</a> = 431
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80af7c925b24caa71cd7097be57c4de6130">Thoth::Http::UnavailableForLegalReasons</a> = 451
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aecbf01325f1c744e9d7bb586ac2eb5ed">Thoth::Http::InternalServerError</a> = 500
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a997ca4ce119685f40f03a9a8a6c5346e">Thoth::Http::NotImplemented</a> = 501
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a0e7c9ad08be0653518bf456c9994ace5">Thoth::Http::BadGateway</a> = 502
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a2a4581043d849bcb0e4747970ef1489b">Thoth::Http::ServiceUnavailable</a> = 503
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80ada405cbc74723dfdda615e3f679ef2be">Thoth::Http::GatewayTimeout</a> = 504
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a56a7a02e415f5bf106088218f646c04f">Thoth::Http::HttpVersionNotSupported</a> = 505
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a0af1f043b1bc6980b5cffce0d83f4736">Thoth::Http::VariantAlsoNegotiates</a> = 506
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aead0064570e2f25592cd76e0e69565a5">Thoth::Http::InsufficientStorage</a> = 507
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80aa2d07eb3939ad55d4acd3ed81291c61a">Thoth::Http::LoopDetected</a> = 508
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a8eff020959c41ba903e16d966855ce03">Thoth::Http::NotExtended</a> = 510
+, <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80a52066ff32b30f46d30b87007cacf8f79">Thoth::Http::NetworkAuthenticationRequired</a> = 511
+<br />
+ }</td></tr>
+<tr class="memitem:a6c950c34bcd876414d00b8c445bb877d" id="r_a6c950c34bcd876414d00b8c445bb877d"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877d">Thoth::Http::StatusTypeEnum</a> { <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da5391f9a882a54c787b206138ed6d28b0">Thoth::Http::Informational</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da30ae8fff8898dc197acd49d9c0797d20">Thoth::Http::Successful</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da1b6498e23a3c43775699129e7ebfcfeb">Thoth::Http::Redirection</a>
+, <a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877daa4097a97f20ebb7212625084936abcee">Thoth::Http::ClientError</a>
+, <br />
+&#160;&#160;<a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877da7d65c64901711bc2cd2a33ff2641fbe9">Thoth::Http::ServerError</a>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a82a2512e3a342947a207d53e49974abc" id="r_a82a2512e3a342947a207d53e49974abc"><td class="memItemLeft">constexpr <a class="el" href="namespace_thoth_1_1_http.html#a6c950c34bcd876414d00b8c445bb877d">StatusTypeEnum</a>&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a82a2512e3a342947a207d53e49974abc">Thoth::Http::GetStatusType</a> (<a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> code)</td></tr>
+<tr class="memdesc:a82a2512e3a342947a207d53e49974abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check what type of code <a class="el" href="namespace_thoth_1_1_http.html#abe0a39d144f57bf42563f8b605077e80">StatusCodeEnum</a> is, the first digit of it's number.  <br /></td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_2b930848939edf81047ea3b73a2c6d36.html">Response</a></li><li class="navelem"><a href="_response_2_status_code_enum_8hpp.html">StatusCodeEnum.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

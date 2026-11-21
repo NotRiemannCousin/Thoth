@@ -156,22 +156,22 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_request_8hpp.
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;Hermes/Socket/Sync/ClientSocket.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="__base_2_body_io_2__base_2__pch_8hpp_source.html">Thoth/Http/_base/BodyIo/_base/_pch.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2__base_2_payload_2__base_8hpp_source.html">Thoth/Http/_base/Payload/_base.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_request_head_8hpp_source.html">Thoth/Http/Request/RequestHead.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">Thoth/Http/_base.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_url_8hpp_source.html">Thoth/Http/Url/Url.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_get_method_8hpp_source.html">Thoth/Http/Methods/GetMethod.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_post_method_8hpp_source.html">Thoth/Http/Methods/PostMethod.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_request_headers_8hpp_source.html">Thoth/Http/NHeaders/Request/RequestHeaders.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_n_json_2_json_8hpp_source.html">Thoth/NJson/Json.hpp</a>&gt;</code><br />
 <code>#include &lt;Thoth/Http/Request/Request.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Request.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_request_8hpp__incl.svg" width="2648" height="814"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_request_8hpp__incl.svg" width="4194" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_request_8hpp__dep__incl.svg" width="938" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_request_8hpp__dep__incl.svg" width="1411" height="460"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_request_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -185,12 +185,25 @@ Namespaces</h2></td></tr>
 <tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
 <tr class="memitem:Thoth_3A_3AHttp" id="r_Thoth_3A_3AHttp"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:Thoth_3A_3AHttp_3A_3ARequestConcept" id="r_Thoth_3A_3AHttp_3A_3ARequestConcept"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="concept_thoth_1_1_http_1_1_request_concept.html">Thoth::Http::RequestConcept</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a38dd6dac102e86e63accba7e297c83dd" id="r_a38dd6dac102e86e63accba7e297c83dd"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a38dd6dac102e86e63accba7e297c83dd">Thoth::Http::GetRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;&gt;</td></tr>
 <tr class="memitem:aefa963698d745b6ca25fa35c2849cadf" id="r_aefa963698d745b6ca25fa35c2849cadf"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#aefa963698d745b6ca25fa35c2849cadf">Thoth::Http::PostRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>&gt;</td></tr>
 <tr class="memitem:a953aa84d429692d59ede836e38f2d90c" id="r_a953aa84d429692d59ede836e38f2d90c"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a953aa84d429692d59ede836e38f2d90c">Thoth::Http::GetBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
 <tr class="memitem:a17a1d35cbb78e22310bd4bf478581063" id="r_a17a1d35cbb78e22310bd4bf478581063"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a17a1d35cbb78e22310bd4bf478581063">Thoth::Http::PostBinRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, std::vector&lt;std::byte&gt;&gt;</td></tr>
+<tr class="memitem:ab31581ee2e761445b2a541fbac41d759" id="r_ab31581ee2e761445b2a541fbac41d759"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#ab31581ee2e761445b2a541fbac41d759">Thoth::Http::GetEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_get_method.html">GetMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+<tr class="memitem:a5f50a37e3af2a610336af1e923182081" id="r_a5f50a37e3af2a610336af1e923182081"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#a5f50a37e3af2a610336af1e923182081">Thoth::Http::PostEmptyRequest</a> = <a class="el" href="struct_thoth_1_1_http_1_1_request.html">Request</a>&lt;<a class="el" href="struct_thoth_1_1_http_1_1_post_method.html">PostMethod</a>, <a class="el" href="struct_thoth_1_1_http_1_1_empty_body.html">EmptyBody</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad4e83fcce544d2cabced4201577a65f5" id="r_ad4e83fcce544d2cabced4201577a65f5"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:ad4e83fcce544d2cabced4201577a65f5 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#ad4e83fcce544d2cabced4201577a65f5">Thoth::Http::IsRequest</a> { false }</td></tr>
+<tr class="memitem:ae99fcdd4f38e79b0d81059de7a4ce61b" id="r_ae99fcdd4f38e79b0d81059de7a4ce61b"><td class="memTemplParams" colspan="2">template&lt;class... T&gt; </td></tr>
+<tr class="memitem:ae99fcdd4f38e79b0d81059de7a4ce61b template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html#ae99fcdd4f38e79b0d81059de7a4ce61b">Thoth::Http::IsRequest&lt; Request&lt; T... &gt; &gt;</a> { true }</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

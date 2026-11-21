@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_thoth_1
 <p>A subset of URL as defined in <a href="https://datatracker.ietf.org/doc/html/rfc3986">RFC 3986</a>.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_url_8hpp_source.html">Url.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_url_2_url_8hpp_source.html">Url.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -195,12 +195,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab279d17be28c63a6dfaaf26edf8c6d0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a copy of the URL Fragment.  <br /></td></tr>
 <tr class="memitem:a3c01fe96d7eeddd6dd6e165908d06456" id="r_a3c01fe96d7eeddd6dd6e165908d06456"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a3c01fe96d7eeddd6dd6e165908d06456">GetPathOrSep</a> () const noexcept</td></tr>
 <tr class="memdesc:a3c01fe96d7eeddd6dd6e165908d06456"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the "/{path}" (always shows "/").  <br /></td></tr>
-<tr class="memitem:aa1e288a779c54a13550cc435fe07a893" id="r_aa1e288a779c54a13550cc435fe07a893"><td class="memItemLeft"><a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa1e288a779c54a13550cc435fe07a893">GetQueryParams</a> () const</td></tr>
-<tr class="memdesc:aa1e288a779c54a13550cc435fe07a893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the query as <a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>.  <br /></td></tr>
+<tr class="memitem:a0348a6d474862ea17a25e5c4403dd67a" id="r_a0348a6d474862ea17a25e5c4403dd67a"><td class="memItemLeft">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0348a6d474862ea17a25e5c4403dd67a">GetQueryParams</a> () const</td></tr>
+<tr class="memdesc:a0348a6d474862ea17a25e5c4403dd67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the query as <a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>.  <br /></td></tr>
 <tr class="memitem:a67cf8cdf2471047268347e5c43ca532c" id="r_a67cf8cdf2471047268347e5c43ca532c"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a67cf8cdf2471047268347e5c43ca532c">GetUrlWithoutFragment</a> () const noexcept</td></tr>
 <tr class="memdesc:a67cf8cdf2471047268347e5c43ca532c"><td class="mdescLeft">&#160;</td><td class="mdescRight">It... returns the URL without fragment. What did you expected?  <br /></td></tr>
 <tr class="memitem:ab5c59439221c2311b82574fb52205767" id="r_ab5c59439221c2311b82574fb52205767"><td class="memItemLeft">std::expected&lt; <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab5c59439221c2311b82574fb52205767">Resolve</a> (std::string_view reference) const</td></tr>
 <tr class="memdesc:ab5c59439221c2311b82574fb52205767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves a URI reference against this URL as base, per RFC 3986 §5.2.2.  <br /></td></tr>
+<tr class="memitem:a84e9a259b333ea10f1d0a8cc5148f972" id="r_a84e9a259b333ea10f1d0a8cc5148f972"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a84e9a259b333ea10f1d0a8cc5148f972">IsPlaceholder</a> () const noexcept</td></tr>
+<tr class="memdesc:a84e9a259b333ea10f1d0a8cc5148f972"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when this <a class="el" href="struct_thoth_1_1_http_1_1_url.html" title="A subset of URL as defined in RFC 3986.">Url</a> is the <a class="el" href="#aa65ff6dcdecc01d026d771d61759faaf" title="Placeholder">Placeholder</a>.  <br /></td></tr>
 <tr class="memitem:a1d8750b8d017a21455881fbc2d08e5ec" id="r_a1d8750b8d017a21455881fbc2d08e5ec"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1d8750b8d017a21455881fbc2d08e5ec">operator==</a> (const <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a> &amp;other) const noexcept</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -209,6 +211,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab8ac57ef6798e29d6d7f3f2724121e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to convert the given string into URL.  <br /></td></tr>
 <tr class="memitem:a9493f840dbb211d280924f4545870c97" id="r_a9493f840dbb211d280924f4545870c97"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9493f840dbb211d280924f4545870c97">ResolveRelative</a> (const <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a> &amp;url, std::string_view reference)</td></tr>
 <tr class="memdesc:a9493f840dbb211d280924f4545870c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static version of <a class="el" href="#ab5c59439221c2311b82574fb52205767" title="Resolve">Resolve</a>.  <br /></td></tr>
+<tr class="memitem:a7d32fcaf4b87a895172722169a5b2664" id="r_a7d32fcaf4b87a895172722169a5b2664"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7d32fcaf4b87a895172722169a5b2664">FromOriginForm</a> (std::string_view authority, std::string_view target, std::string_view scheme=&quot;http&quot;)</td></tr>
+<tr class="memdesc:a7d32fcaf4b87a895172722169a5b2664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the <a class="el" href="struct_thoth_1_1_http_1_1_url.html" title="A subset of URL as defined in RFC 3986.">Url</a> of an origin-form request target (<span class="tt">/path?q</span>) under <code class="param">authority</code>, one allocation, one parse.  <br /></td></tr>
+<tr class="memitem:aa65ff6dcdecc01d026d771d61759faaf" id="r_aa65ff6dcdecc01d026d771d61759faaf"><td class="memItemLeft">static const <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa65ff6dcdecc01d026d771d61759faaf">Placeholder</a> () noexcept</td></tr>
+<tr class="memdesc:aa65ff6dcdecc01d026d771d61759faaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valid, deterministic stand-in for "no URL yet" (<span class="tt"><a href="http://thoth.invalid/">http://thoth.invalid/</a></span>, a reserved TLD that never resolves).  <br /></td></tr>
 <tr class="memitem:ace68089aab5879c69433c82d67734cb4" id="r_ace68089aab5879c69433c82d67734cb4"><td class="memItemLeft">static std::string&#160;</td><td class="memItemRight"><a class="el" href="#ace68089aab5879c69433c82d67734cb4">Encode</a> (std::string_view str)</td></tr>
 <tr class="memdesc:ace68089aab5879c69433c82d67734cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a text with <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">Percent-Encoding</a>.  <br /></td></tr>
 <tr class="memitem:acd4c7e663000c8cd19fe2ca8cde709c3" id="r_acd4c7e663000c8cd19fe2ca8cde709c3"><td class="memItemLeft">static std::expected&lt; std::string, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#acd4c7e663000c8cd19fe2ca8cde709c3">TryDecode</a> (std::string_view str)</td></tr>
@@ -488,6 +494,42 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a7d32fcaf4b87a895172722169a5b2664" name="a7d32fcaf4b87a895172722169a5b2664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d32fcaf4b87a895172722169a5b2664">&#9670;&#160;</a></span>FromOriginForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::expected&lt; <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt; Thoth::Http::Url::FromOriginForm </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>authority</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>scheme</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;http&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Builds the <a class="el" href="struct_thoth_1_1_http_1_1_url.html" title="A subset of URL as defined in RFC 3986.">Url</a> of an origin-form request target (<span class="tt">/path?q</span>) under <code class="param">authority</code>, one allocation, one parse. </p>
+
+</div>
+</div>
 <a id="ab8ac57ef6798e29d6d7f3f2724121e38" name="ab8ac57ef6798e29d6d7f3f2724121e38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8ac57ef6798e29d6d7f3f2724121e38">&#9670;&#160;</a></span>FromUrl()</h2>
 
@@ -657,8 +699,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1e288a779c54a13550cc435fe07a893" name="aa1e288a779c54a13550cc435fe07a893"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1e288a779c54a13550cc435fe07a893">&#9670;&#160;</a></span>GetQueryParams()</h2>
+<a id="a0348a6d474862ea17a25e5c4403dd67a" name="a0348a6d474862ea17a25e5c4403dd67a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0348a6d474862ea17a25e5c4403dd67a">&#9670;&#160;</a></span>GetQueryParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +709,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a> Thoth::Http::Url::GetQueryParams </td>
+          <td class="memname">std::expected&lt; <a class="el" href="struct_thoth_1_1_http_1_1_query_params.html">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt; Thoth::Http::Url::GetQueryParams </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -735,6 +777,33 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>It... returns the URL without fragment. What did you expected? </p>
+
+</div>
+</div>
+<a id="a84e9a259b333ea10f1d0a8cc5148f972" name="a84e9a259b333ea10f1d0a8cc5148f972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e9a259b333ea10f1d0a8cc5148f972">&#9670;&#160;</a></span>IsPlaceholder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thoth::Http::Url::IsPlaceholder </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when this <a class="el" href="struct_thoth_1_1_http_1_1_url.html" title="A subset of URL as defined in RFC 3986.">Url</a> is the <a class="el" href="#aa65ff6dcdecc01d026d771d61759faaf" title="Placeholder">Placeholder</a>. </p>
 
 </div>
 </div>
@@ -810,6 +879,33 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa65ff6dcdecc01d026d771d61759faaf" name="aa65ff6dcdecc01d026d771d61759faaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa65ff6dcdecc01d026d771d61759faaf">&#9670;&#160;</a></span>Placeholder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a6f03a908e9b0764eb74337ba13ac680b">Url</a> &amp; Thoth::Http::Url::Placeholder </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Valid, deterministic stand-in for "no URL yet" (<span class="tt"><a href="http://thoth.invalid/">http://thoth.invalid/</a></span>, a reserved TLD that never resolves). </p>
 
 </div>
 </div>
@@ -981,7 +1077,7 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Thoth/Http/Url/<a class="el" href="_url_8hpp_source.html">Url.hpp</a></li>
+<li>include/Thoth/Http/Url/<a class="el" href="_url_2_url_8hpp_source.html">Url.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -186,6 +186,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afdbe2718453e7b24f5df163c2edce932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all values and reports absence, emptiness or invalid format.  <br /></td></tr>
 <tr class="memitem:a2f97984dde70a9457b12582f29627604" id="r_a2f97984dde70a9457b12582f29627604"><td class="memItemLeft">std::expected&lt; <a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a>, <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2f97984dde70a9457b12582f29627604">GetWithDefault</a> (<a class="el" href="#a6e4d49fe34b56133819ba585a7a7ae82">Type</a> defaultValue) &amp;&amp;</td></tr>
 <tr class="memdesc:a2f97984dde70a9457b12582f29627604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all values, using <span class="tt">defaultValue</span> when the header is absent or empty.  <br /></td></tr>
+<tr class="memitem:a3a51e92f08b5bb1c01b02fef52f716ea" id="r_a3a51e92f08b5bb1c01b02fef52f716ea"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3a51e92f08b5bb1c01b02fef52f716ea">IsSetted</a> () const</td></tr>
+<tr class="memdesc:a3a51e92f08b5bb1c01b02fef52f716ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the header is set.  <br /></td></tr>
 <tr class="memitem:aec06cdc612276ce5b4eb8c87fd1df495" id="r_aec06cdc612276ce5b4eb8c87fd1df495"><td class="memTemplParams" colspan="2">template&lt;std::ranges::range R&gt; <br />
 requires (!IsConst &amp;&amp; std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, <a class="el" href="#a0a8be0a09dcd50a6df248d0114f099bf">ElemType</a>&gt;)</td></tr>
 <tr class="memitem:aec06cdc612276ce5b4eb8c87fd1df495 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aec06cdc612276ce5b4eb8c87fd1df495">operator=</a> (R &amp;&amp;newValue) &amp;&amp;</td></tr>
@@ -490,6 +492,28 @@ template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
 
 <p>Parses all values, using <span class="tt">defaultValue</span> when the header is absent or empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>The parsed values, or <span class="tt"><a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html">InvalidHeaderFormat</a></span> when a present value is invalid. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
+
+</div>
+</div>
+<a id="a3a51e92f08b5bb1c01b02fef52f716ea" name="a3a51e92f08b5bb1c01b02fef52f716ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a51e92f08b5bb1c01b02fef52f716ea">&#9670;&#160;</a></span>IsSetted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool IsConst, Utils::Serializable ... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy.html">Thoth::Http::NHeaders::MultiValueProxy</a>&lt; IsConst, Ts &gt;::IsSetted </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the header is set. </p>
 <dl class="section note"><dt>Note</dt><dd>Consumes the proxy. </dd></dl>
 
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['your_20customizations_0',['Share your customizations',['../md_docs_2doxygen_2docs_2customization.html#autotoc_md15',1,'']]]
+  ['x_20async_0',['Sync x Async',['../struct_thoth_1_1_http_1_1_transport_1_1_http1.html#autotoc_md2',1,'']]]
 ];

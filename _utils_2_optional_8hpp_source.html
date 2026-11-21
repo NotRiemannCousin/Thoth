@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Thoth" />
+<meta property="og:image" content="https://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta property="og:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="hhttps://github.com/NotRiemannCousin/Thoth/blob/master/images/Thoth-logo-55px.webp?raw=true" />
+<meta name="twitter:title" content="Thoth" />
+<meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
+<!-- END twitter metadata -->
+<title>Thoth: include/Thoth/Utils/Optional.hpp Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme-round.css" rel="stylesheet" type="text/css"/>
+<link href="theme-robot.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-msc.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/NotRiemannCousin/Thoth" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Thoth-logo.webp"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Thoth
+   </div>
+   <div id="projectbrief">A functional, expressive, asynchronous C++26 webdev library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_utils_2_optional_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Optional.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_utils_2_optional_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="_traits_8hpp.html">Thoth/Utils/Traits.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_thoth_1_1_utils.html">Thoth::Utils</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma region TransformOptIf</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> Negate, <span class="keyword">class</span> Pred, <span class="keyword">class</span> Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">requires</span> std::predicate&lt;Pred&amp;, Val&amp;&gt; &amp;&amp; std::invocable&lt;Trans, Val&gt;</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">   17</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl</a>(Pred&amp;&amp; pred, Trans&amp;&amp; trans, Val&amp;&amp; value)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            -&gt; std::optional&lt;std::remove_cvref_t&lt;std::invoke_result_t&lt;Trans, Val&gt;&gt;&gt; {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(std::invoke(pred, value)) != Negate)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keywordflow">return</span> std::invoke(std::forward&lt;Trans&gt;(trans), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">   28</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">TransformOptIf</a>(Pred&amp;&amp; pred, Trans&amp;&amp; trans, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;false&gt;</a>(</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            std::forward&lt;Pred&gt;(pred), std::forward&lt;Trans&gt;(trans), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a01c3d551fcd86f7a49de5b3a7d98da94">   35</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">TransformOptIf</a>(Trans&amp;&amp; trans, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;false&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Trans&gt;(trans), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">template</span>&lt;auto Pred, auto Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ae58476c2299cf7b7aaff41d64b61982f">   41</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">TransformOptIf</a>(Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;false&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Trans&gt;</a>(), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">   48</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">TransformOptIfNot</a>(Pred&amp;&amp; pred, Trans&amp;&amp; trans, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;true&gt;</a>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            std::forward&lt;Pred&gt;(pred), std::forward&lt;Trans&gt;(trans), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a17246145332b0877e644f133e1ee01ed">   55</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">TransformOptIfNot</a>(Trans&amp;&amp; trans, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;true&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Trans&gt;(trans), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">template</span>&lt;auto Pred, auto Trans, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a45cef67486148ac506cf2cb48f8eefaa">   61</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">TransformOptIfNot</a>(Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">TransformOptIfImpl&lt;true&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Trans&gt;</a>(), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Trans&gt;</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">   68</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">H_TransformOptIf</a>(Pred&amp;&amp; pred, Trans&amp;&amp; trans) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span> [pred = std::forward&lt;Pred&gt;(pred), trans = std::forward&lt;Trans&gt;(trans)]&lt;<span class="keyword">class </span>T&gt;(T&amp;&amp; value) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">TransformOptIf</a>(pred, trans, std::forward&lt;T&gt;(value));</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        };</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Trans&gt;</div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ad6302cacb3ff3e63fb77003c7cb896a4">   76</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">H_TransformOptIf</a>(Trans&amp;&amp; trans) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">H_TransformOptIf</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Trans&gt;(trans));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">template</span>&lt;auto Pred, auto Trans&gt;</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a9292d3c313a32e0a19cb64226b76e357">   82</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">H_TransformOptIf</a>() {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">H_TransformOptIf</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Trans&gt;</a>());</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Trans&gt;</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">   89</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">H_TransformOptIfNot</a>(Pred&amp;&amp; pred, Trans&amp;&amp; trans) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> [pred = std::forward&lt;Pred&gt;(pred), trans = std::forward&lt;Trans&gt;(trans)]&lt;<span class="keyword">class </span>T&gt;(T&amp;&amp; value) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">TransformOptIfNot</a>(pred, trans, std::forward&lt;T&gt;(value));</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        };</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Trans&gt;</div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ab6f27ba7b5c97b197a3470a89b437c60">   97</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">H_TransformOptIfNot</a>(Trans&amp;&amp; trans) {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">H_TransformOptIfNot</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Trans&gt;(trans));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">template</span>&lt;auto Pred, auto Trans&gt;</div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a1d38057e69465fa25e7bb304836eaab7">  103</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">H_TransformOptIfNot</a>() {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">H_TransformOptIfNot</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Trans&gt;</a>());</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#pragma region NulloptIf</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">template</span>&lt;<span class="keywordtype">bool</span> Negate, <span class="keyword">class</span> Pred, <span class="keyword">class</span> Val&gt;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keyword">requires</span> std::predicate&lt;Pred&amp;, Val&amp;&gt;</div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">  113</a></span>    <span class="keyword">constexpr</span> std::optional&lt;std::decay_t&lt;Val&gt;&gt; <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">NulloptIfImpl</a>(Pred&amp;&amp; pred, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">if</span> (<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(std::invoke(pred, value)) != Negate)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> std::forward&lt;Val&gt;(value);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">  123</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">NulloptIf</a>(Pred&amp;&amp; pred, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">NulloptIfImpl&lt;false&gt;</a>(std::forward&lt;Pred&gt;(pred), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a05d0a37546a30efa72b5e0fafd9f7628">  130</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">NulloptIf</a>(Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">NulloptIfImpl&lt;false&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
+</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24">  136</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24">NulloptIfNot</a>(Pred&amp;&amp; pred, Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">NulloptIfImpl&lt;true&gt;</a>(std::forward&lt;Pred&gt;(pred), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    }</div>
+</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">template</span>&lt;auto Pred, <span class="keyword">class</span> Val&gt;</div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a97fe76cfb28a8a19cd135ffca51b5b0c">  142</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24">NulloptIfNot</a>(Val&amp;&amp; value) {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">NulloptIfImpl&lt;true&gt;</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>(), std::forward&lt;Val&gt;(value));</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred&gt;</div>
+<div class="foldopen" id="foldopen00149" data-start="{" data-end="}">
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3">  149</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3">H_NulloptIf</a>(Pred&amp;&amp; pred) {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">return</span> [pred = std::forward&lt;Pred&gt;(pred)]&lt;<span class="keyword">class </span>T&gt;(T&amp;&amp; value) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">NulloptIf</a>(pred, std::forward&lt;T&gt;(value));</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        };</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
+</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">template</span>&lt;auto Pred&gt;</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#aaf5b07ff633aa768d5ab50a8cf66ba77">  157</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3">H_NulloptIf</a>() {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3">H_NulloptIf</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>());</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
+</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> Pred&gt;</div>
+<div class="foldopen" id="foldopen00163" data-start="{" data-end="}">
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e">  163</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e">H_NulloptIfNot</a>(Pred&amp;&amp; pred) {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">return</span> [pred = std::forward&lt;Pred&gt;(pred)]&lt;<span class="keyword">class </span>T&gt;(T&amp;&amp; value) {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24">NulloptIfNot</a>(pred, std::forward&lt;T&gt;(value));</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        };</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">template</span>&lt;auto Pred&gt;</div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="namespace_thoth_1_1_utils.html#a08c8bf8ea56586793a4db49169039a1d">  171</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e">H_NulloptIfNot</a>() {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e">H_NulloptIfNot</a>(<a class="code hl_function" href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">ToValue&lt;Pred&gt;</a>());</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>}</div>
+<div class="ttc" id="a_traits_8hpp_html"><div class="ttname"><a href="_traits_8hpp.html">Traits.hpp</a></div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html"><div class="ttname"><a href="namespace_thoth_1_1_utils.html">Thoth::Utils</a></div><div class="ttdef"><b>Definition</b> Await.hpp:6</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_a1b698f9e305ec3d41539545fe50cc2a4"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#a1b698f9e305ec3d41539545fe50cc2a4">Thoth::Utils::ToValue</a></div><div class="ttdeci">constexpr auto ToValue()</div><div class="ttdoc">Bridge between &quot;a type&quot; and &quot;a value&quot;: ToValue&lt;V&gt;() gives back the non-type argument V,...</div><div class="ttdef"><b>Definition</b> Traits.hpp:58</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_a3609cde50c5e14ac46284446cfdfadd3"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#a3609cde50c5e14ac46284446cfdfadd3">Thoth::Utils::H_NulloptIf</a></div><div class="ttdeci">constexpr auto H_NulloptIf(Pred &amp;&amp;pred)</div><div class="ttdoc">@hof{NulloptIf}</div><div class="ttdef"><b>Definition</b> Optional.hpp:149</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_a3b527dc42fa963351e49648d0f10eb5c"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#a3b527dc42fa963351e49648d0f10eb5c">Thoth::Utils::TransformOptIfImpl</a></div><div class="ttdeci">constexpr auto TransformOptIfImpl(Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value) -&gt; std::optional&lt; std::remove_cvref_t&lt; std::invoke_result_t&lt; Trans, Val &gt; &gt; &gt;</div><div class="ttdef"><b>Definition</b> Optional.hpp:17</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_a6a007fa9c99ad759fe848ea6ef79bdca"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#a6a007fa9c99ad759fe848ea6ef79bdca">Thoth::Utils::H_TransformOptIf</a></div><div class="ttdeci">constexpr auto H_TransformOptIf(Pred &amp;&amp;pred, Trans &amp;&amp;trans)</div><div class="ttdoc">@hof{TransformOptIf}</div><div class="ttdef"><b>Definition</b> Optional.hpp:68</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_a781bbee98cf7e48ce63f139e085e8a95"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#a781bbee98cf7e48ce63f139e085e8a95">Thoth::Utils::NulloptIfImpl</a></div><div class="ttdeci">constexpr std::optional&lt; std::decay_t&lt; Val &gt; &gt; NulloptIfImpl(Pred &amp;&amp;pred, Val &amp;&amp;value)</div><div class="ttdef"><b>Definition</b> Optional.hpp:113</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_ab1ea8ee75453c8414b3239edb79d6131"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#ab1ea8ee75453c8414b3239edb79d6131">Thoth::Utils::TransformOptIf</a></div><div class="ttdeci">constexpr auto TransformOptIf(Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</div><div class="ttdoc">Returns trans(value) when pred(value) is true, otherwise std::nullopt.</div><div class="ttdef"><b>Definition</b> Optional.hpp:28</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_aba220251e07b4bfc5ae30b2d113d122e"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#aba220251e07b4bfc5ae30b2d113d122e">Thoth::Utils::H_NulloptIfNot</a></div><div class="ttdeci">constexpr auto H_NulloptIfNot(Pred &amp;&amp;pred)</div><div class="ttdoc">@hof{NulloptIfNot}</div><div class="ttdef"><b>Definition</b> Optional.hpp:163</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_ad079821e8f047030dd050ca967c515ae"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#ad079821e8f047030dd050ca967c515ae">Thoth::Utils::TransformOptIfNot</a></div><div class="ttdeci">constexpr auto TransformOptIfNot(Pred &amp;&amp;pred, Trans &amp;&amp;trans, Val &amp;&amp;value)</div><div class="ttdoc">Returns trans(value) when pred(value) is false, otherwise std::nullopt.</div><div class="ttdef"><b>Definition</b> Optional.hpp:48</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_ad2de595d710856786b947b33869eecec"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#ad2de595d710856786b947b33869eecec">Thoth::Utils::NulloptIf</a></div><div class="ttdeci">constexpr auto NulloptIf(Pred &amp;&amp;pred, Val &amp;&amp;value)</div><div class="ttdoc">std::nullopt when pred(value) is true, the value itself otherwise.</div><div class="ttdef"><b>Definition</b> Optional.hpp:123</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_ae2116ada08bb9ad12296d31332d6ce24"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#ae2116ada08bb9ad12296d31332d6ce24">Thoth::Utils::NulloptIfNot</a></div><div class="ttdeci">constexpr auto NulloptIfNot(Pred &amp;&amp;pred, Val &amp;&amp;value)</div><div class="ttdoc">std::nullopt when pred(value) is false, the value itself otherwise.</div><div class="ttdef"><b>Definition</b> Optional.hpp:136</div></div>
+<div class="ttc" id="anamespace_thoth_1_1_utils_html_aec3babab2ac9494a473d1673fd022952"><div class="ttname"><a href="namespace_thoth_1_1_utils.html#aec3babab2ac9494a473d1673fd022952">Thoth::Utils::H_TransformOptIfNot</a></div><div class="ttdeci">constexpr auto H_TransformOptIfNot(Pred &amp;&amp;pred, Trans &amp;&amp;trans)</div><div class="ttdoc">@hof{TransformOptIfNot}</div><div class="ttdef"><b>Definition</b> Optional.hpp:89</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_2d830115d85308f46eeefe3ce749e641.html">Utils</a></li><li class="navelem"><a href="_utils_2_optional_8hpp.html">Optional.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

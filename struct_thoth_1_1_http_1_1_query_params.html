@@ -188,7 +188,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af695f15213008b4a1a5f59e7e4d9b72b" id="r_af695f15213008b4a1a5f59e7e4d9b72b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af695f15213008b4a1a5f59e7e4d9b72b">SetIfNull</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key, <a class="el" href="#a1e6e106cc156b28586c3f22877105e15">QueryValueRef</a> value)</td></tr>
 <tr class="memdesc:af695f15213008b4a1a5f59e7e4d9b72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">If key not exists, set it to value.  <br /></td></tr>
 <tr class="memitem:af99eb86020224614c691058d87ff8cd1" id="r_af99eb86020224614c691058d87ff8cd1"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af99eb86020224614c691058d87ff8cd1">Get</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key)</td></tr>
-<tr class="memdesc:af99eb86020224614c691058d87ff8cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of a key but don't create if it not exists.  <br /></td></tr>
+<tr class="memdesc:af99eb86020224614c691058d87ff8cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key.  <br /></td></tr>
+<tr class="memitem:a932b352f8e3ea729f6de80aa6dbf668d" id="r_a932b352f8e3ea729f6de80aa6dbf668d"><td class="memItemLeft">std::optional&lt; const <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a932b352f8e3ea729f6de80aa6dbf668d">Get</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a932b352f8e3ea729f6de80aa6dbf668d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key.     <br /></td></tr>
+<tr class="memitem:a08ed91676df24c6ed062c721284a26fc" id="r_a08ed91676df24c6ed062c721284a26fc"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a08ed91676df24c6ed062c721284a26fc">GetFront</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key)</td></tr>
+<tr class="memdesc:a08ed91676df24c6ed062c721284a26fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key, if at least one of them is not empty.  <br /></td></tr>
+<tr class="memitem:a0efaf88d235b1dffefce2486cba1cd38" id="r_a0efaf88d235b1dffefce2486cba1cd38"><td class="memItemLeft">std::optional&lt; const <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0efaf88d235b1dffefce2486cba1cd38">GetFront</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a0efaf88d235b1dffefce2486cba1cd38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key, if at least one of them is not empty.     <br /></td></tr>
+<tr class="memitem:a1626e91ecf19926b28e7e18377084238" id="r_a1626e91ecf19926b28e7e18377084238"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1626e91ecf19926b28e7e18377084238">GetNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key)</td></tr>
+<tr class="memitem:a67ad8d37698d922fe4edfb30c4ba7f9a" id="r_a67ad8d37698d922fe4edfb30c4ba7f9a"><td class="memItemLeft">std::optional&lt; const <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a67ad8d37698d922fe4edfb30c4ba7f9a">GetNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memitem:ae103c621a156e752af171740b1fde313" id="r_ae103c621a156e752af171740b1fde313"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae103c621a156e752af171740b1fde313">GetFrontNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key)</td></tr>
+<tr class="memdesc:ae103c621a156e752af171740b1fde313"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first value of a key that is not empty.  <br /></td></tr>
+<tr class="memitem:ad55ad222e858fdd8aee917b59219144d" id="r_ad55ad222e858fdd8aee917b59219144d"><td class="memItemLeft">std::optional&lt; const <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad55ad222e858fdd8aee917b59219144d">GetFrontNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:ad55ad222e858fdd8aee917b59219144d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first value of a key that is not empty.     <br /></td></tr>
+<tr class="memitem:aae5b577e187bbbfc54ec9b627e02fd89" id="r_aae5b577e187bbbfc54ec9b627e02fd89"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aae5b577e187bbbfc54ec9b627e02fd89">GetCopy</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:aae5b577e187bbbfc54ec9b627e02fd89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key.  <br /></td></tr>
+<tr class="memitem:a9e7f536f886dd5b0dc9380eb2c168dcb" id="r_a9e7f536f886dd5b0dc9380eb2c168dcb"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9e7f536f886dd5b0dc9380eb2c168dcb">GetCopyFront</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:a9e7f536f886dd5b0dc9380eb2c168dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every value of a key, if at least one of them is not empty.  <br /></td></tr>
+<tr class="memitem:a0e402c360ac1e7637793cdf86bf4288a" id="r_a0e402c360ac1e7637793cdf86bf4288a"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0e402c360ac1e7637793cdf86bf4288a">GetCopyNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memitem:af1946be0fc61456aba62d8f4c3d16bfc" id="r_af1946be0fc61456aba62d8f4c3d16bfc"><td class="memItemLeft">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af1946be0fc61456aba62d8f4c3d16bfc">GetCopyFrontNonEmpty</a> (<a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a> key) const</td></tr>
+<tr class="memdesc:af1946be0fc61456aba62d8f4c3d16bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first value of a key that is not empty.  <br /></td></tr>
 <tr class="memitem:a340d4fb49d2ac8c41a34259ecafce6f1" id="r_a340d4fb49d2ac8c41a34259ecafce6f1"><td class="memItemLeft"><a class="el" href="#a0238b0a1ae0b9fa1708b0aa3fe1a20fa">IterType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a340d4fb49d2ac8c41a34259ecafce6f1">begin</a> ()</td></tr>
 <tr class="memitem:a74e12ee568c11d8de090add89b40c171" id="r_a74e12ee568c11d8de090add89b40c171"><td class="memItemLeft"><a class="el" href="#a0238b0a1ae0b9fa1708b0aa3fe1a20fa">IterType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a74e12ee568c11d8de090add89b40c171">end</a> ()</td></tr>
 <tr class="memitem:a17ea5bf96f1ab529bf3fa7a6f4843577" id="r_a17ea5bf96f1ab529bf3fa7a6f4843577"><td class="memItemLeft"><a class="el" href="#a5eec083e14212fa41016a6d6b87a0eb0">CIterType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a17ea5bf96f1ab529bf3fa7a6f4843577">begin</a> () const</td></tr>
@@ -202,10 +221,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a3dd7376a5a5c1d07b71966183ed34bef" id="r_a3dd7376a5a5c1d07b71966183ed34bef"><td class="memItemLeft">static <a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3dd7376a5a5c1d07b71966183ed34bef">Parse</a> (std::string_view paramsStr)</td></tr>
-<tr class="memdesc:a3dd7376a5a5c1d07b71966183ed34bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the query as it is.  <br /></td></tr>
-<tr class="memitem:af8f1acbe41dbb3638045728941cae4d8" id="r_af8f1acbe41dbb3638045728941cae4d8"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af8f1acbe41dbb3638045728941cae4d8">ParseDecodified</a> (std::string_view str)</td></tr>
-<tr class="memdesc:af8f1acbe41dbb3638045728941cae4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to decode and then parse.  <br /></td></tr>
+<tr class="memitem:a53f5b52dea66fb9bf951061c0cdf1bd1" id="r_a53f5b52dea66fb9bf951061c0cdf1bd1"><td class="memItemLeft">static std::expected&lt; <a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a53f5b52dea66fb9bf951061c0cdf1bd1">Parse</a> (std::string_view paramsStr)</td></tr>
+<tr class="memdesc:a53f5b52dea66fb9bf951061c0cdf1bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse the query as it is.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -579,7 +596,7 @@ Friends</h2></td></tr>
 </div>
 </div>
 <a id="af99eb86020224614c691058d87ff8cd1" name="af99eb86020224614c691058d87ff8cd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af99eb86020224614c691058d87ff8cd1">&#9670;&#160;</a></span>Get()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af99eb86020224614c691058d87ff8cd1">&#9670;&#160;</a></span>Get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -593,14 +610,285 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the reference of a key but don't create if it not exists. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The key. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QueryValues* if the key exists, std::nullopt otherwise. </dd></dl>
+<p>Every value of a key. </p>
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a932b352f8e3ea729f6de80aa6dbf668d" name="a932b352f8e3ea729f6de80aa6dbf668d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a932b352f8e3ea729f6de80aa6dbf668d">&#9670;&#160;</a></span>Get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; const <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt; Thoth::Http::QueryParams::Get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Every value of a key.    </p>
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists, std::nullopt otherwise.    </dd></dl>
+
+</div>
+</div>
+<a id="aae5b577e187bbbfc54ec9b627e02fd89" name="aae5b577e187bbbfc54ec9b627e02fd89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5b577e187bbbfc54ec9b627e02fd89">&#9670;&#160;</a></span>GetCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> &gt; Thoth::Http::QueryParams::GetCopy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Every value of a key. </p>
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9e7f536f886dd5b0dc9380eb2c168dcb" name="a9e7f536f886dd5b0dc9380eb2c168dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e7f536f886dd5b0dc9380eb2c168dcb">&#9670;&#160;</a></span>GetCopyFront()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> &gt; Thoth::Http::QueryParams::GetCopyFront </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Every value of a key, if at least one of them is not empty. </p>
+<p>The first value of a key if it exists. </p>
+
+</div>
+</div>
+<a id="af1946be0fc61456aba62d8f4c3d16bfc" name="af1946be0fc61456aba62d8f4c3d16bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1946be0fc61456aba62d8f4c3d16bfc">&#9670;&#160;</a></span>GetCopyFrontNonEmpty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> &gt; Thoth::Http::QueryParams::GetCopyFrontNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The first value of a key that is not empty. </p>
+
+</div>
+</div>
+<a id="a0e402c360ac1e7637793cdf86bf4288a" name="a0e402c360ac1e7637793cdf86bf4288a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e402c360ac1e7637793cdf86bf4288a">&#9670;&#160;</a></span>GetCopyNonEmpty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> &gt; Thoth::Http::QueryParams::GetCopyNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists and isn't empty, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a08ed91676df24c6ed062c721284a26fc" name="a08ed91676df24c6ed062c721284a26fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ed91676df24c6ed062c721284a26fc">&#9670;&#160;</a></span>GetFront() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt; Thoth::Http::QueryParams::GetFront </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Every value of a key, if at least one of them is not empty. </p>
+<p>The first value of a key if it exists. </p>
+
+</div>
+</div>
+<a id="a0efaf88d235b1dffefce2486cba1cd38" name="a0efaf88d235b1dffefce2486cba1cd38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efaf88d235b1dffefce2486cba1cd38">&#9670;&#160;</a></span>GetFront() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; const <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt; Thoth::Http::QueryParams::GetFront </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Every value of a key, if at least one of them is not empty.    </p>
+<p>The first value of a key if it exists.    </p>
+
+</div>
+</div>
+<a id="ae103c621a156e752af171740b1fde313" name="ae103c621a156e752af171740b1fde313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae103c621a156e752af171740b1fde313">&#9670;&#160;</a></span>GetFrontNonEmpty() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt; Thoth::Http::QueryParams::GetFrontNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The first value of a key that is not empty. </p>
+
+</div>
+</div>
+<a id="ad55ad222e858fdd8aee917b59219144d" name="ad55ad222e858fdd8aee917b59219144d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad55ad222e858fdd8aee917b59219144d">&#9670;&#160;</a></span>GetFrontNonEmpty() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; const <a class="el" href="#a0dc0303dcc318126de3d207349bae5a5">QueryValue</a> * &gt; Thoth::Http::QueryParams::GetFrontNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The first value of a key that is not empty.    </p>
+
+</div>
+</div>
+<a id="a1626e91ecf19926b28e7e18377084238" name="a1626e91ecf19926b28e7e18377084238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1626e91ecf19926b28e7e18377084238">&#9670;&#160;</a></span>GetNonEmpty() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt; Thoth::Http::QueryParams::GetNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists and isn't empty, std::nullopt otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a67ad8d37698d922fe4edfb30c4ba7f9a" name="a67ad8d37698d922fe4edfb30c4ba7f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ad8d37698d922fe4edfb30c4ba7f9a">&#9670;&#160;</a></span>GetNonEmpty() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; const <a class="el" href="#a84daad9b3d157918711c0d70003c473f">QueryValues</a> * &gt; Thoth::Http::QueryParams::GetNonEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9e5d1fafaa9eeeafb0d8bde3b7eb29e">QueryKeyRef</a></td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="section return"><dt>Returns</dt><dd>The values if the key exists and isn't empty, std::nullopt otherwise.    </dd></dl>
 
 </div>
 </div>
@@ -640,8 +928,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a3dd7376a5a5c1d07b71966183ed34bef" name="a3dd7376a5a5c1d07b71966183ed34bef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3dd7376a5a5c1d07b71966183ed34bef">&#9670;&#160;</a></span>Parse()</h2>
+<a id="a53f5b52dea66fb9bf951061c0cdf1bd1" name="a53f5b52dea66fb9bf951061c0cdf1bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53f5b52dea66fb9bf951061c0cdf1bd1">&#9670;&#160;</a></span>Parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -650,7 +938,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a> Thoth::Http::QueryParams::Parse </td>
+          <td class="memname">std::expected&lt; <a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt; Thoth::Http::QueryParams::Parse </td>
           <td>(</td>
           <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>paramsStr</em></span></td><td>)</td>
           <td></td>
@@ -664,33 +952,6 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Parse the query as it is. </p>
-
-</div>
-</div>
-<a id="af8f1acbe41dbb3638045728941cae4d8" name="af8f1acbe41dbb3638045728941cae4d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8f1acbe41dbb3638045728941cae4d8">&#9670;&#160;</a></span>ParseDecodified()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::expected&lt; <a class="el" href="#ace2652e18c145b9e799aa804b31c6c75">QueryParams</a>, <a class="el" href="struct_thoth_1_1_thoth_error.html">ThothError</a> &gt; Thoth::Http::QueryParams::ParseDecodified </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Tries to decode and then parse. </p>
 
 </div>
 </div>

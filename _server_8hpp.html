@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Http/Server.hpp File Reference</title>
+<title>Thoth: include/Thoth/Http/Server/Server.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -155,24 +155,29 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_server_8hpp.h
   <div class="headertitle"><div class="title">Server.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;variant&gt;</code><br />
-<code>#include &lt;Hermes/Socket/Sync/ServerSocket.hpp&gt;</code><br />
-<code>#include &lt;<a class="el" href="_thoth_error_8hpp_source.html">Thoth/ThothError.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_request_8hpp_source.html">Thoth/Http/Request/Request.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_response_8hpp_source.html">Thoth/Http/Response/Response.hpp</a>&gt;</code><br />
-<code>#include &lt;Thoth/Http/Server.tpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;stop_token&gt;</code><br />
+<code>#include &lt;exec/async_scope.hpp&gt;</code><br />
+<code>#include &lt;exec/task.hpp&gt;</code><br />
+<code>#include &lt;Hermes/Socket/Async/AsyncListenerSocket.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="_router_8hpp_source.html">Thoth/Http/Server/Router.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_http_2_server_2_definitions_8hpp_source.html">Thoth/Http/Server/Definitions.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_basic_router_8hpp_source.html">Thoth/Http/Server/Routers/BasicRouter.hpp</a>&gt;</code><br />
+<code>#include &lt;Thoth/Http/Server/Server.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Server.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_server_8hpp__incl.svg" width="3084" height="887"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_server_8hpp__incl.svg" width="3942" height="856"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_server_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3AServerConnection" id="r_Thoth_3A_3AHttp_3A_3AServerConnection"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server_connection.html">Thoth::Http::ServerConnection</a></td></tr>
-<tr class="memitem:Thoth_3A_3AHttp_3A_3AServer" id="r_Thoth_3A_3AHttp_3A_3AServer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server</a></td></tr>
+<tr class="memitem:Thoth_3A_3AHttp_3A_3AServer_3C_20Router_2C_20Socket_20_3E" id="r_Thoth_3A_3AHttp_3A_3AServer_3C_20Router_2C_20Socket_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_server.html">Thoth::Http::Server&lt; Router, Socket &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The server. Owns the routing, the listener configuration (imutable, keep it right from the start), and the accept loop definition.  <a href="struct_thoth_1_1_http_1_1_server.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -192,7 +197,7 @@ Namespaces</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="_server_8hpp.html">Server.hpp</a></li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_9e750f353a5ebfa3df087a5332ab905d.html">Server</a></li><li class="navelem"><a href="_server_8hpp.html">Server.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

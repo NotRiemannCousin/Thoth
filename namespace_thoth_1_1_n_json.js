@@ -8,7 +8,7 @@ var namespace_thoth_1_1_n_json =
     [ "JsonKeyCompare", "struct_thoth_1_1_n_json_1_1_json_key_compare.html", "struct_thoth_1_1_n_json_1_1_json_key_compare" ],
     [ "JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", "struct_thoth_1_1_n_json_1_1_json_object" ],
     [ "JsonParseError", "struct_thoth_1_1_n_json_1_1_json_parse_error.html", "struct_thoth_1_1_n_json_1_1_json_parse_error" ],
-    [ "JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", null ],
+    [ "JsonSearchError", "struct_thoth_1_1_n_json_1_1_json_search_error.html", "struct_thoth_1_1_n_json_1_1_json_search_error" ],
     [ "JsonWrongTypeError", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error.html", "struct_thoth_1_1_n_json_1_1_json_wrong_type_error" ],
     [ "Key", "struct_thoth_1_1_n_json_1_1_key.html", "struct_thoth_1_1_n_json_1_1_key" ],
     [ "KeyView", "struct_thoth_1_1_n_json_1_1_key_view.html", "struct_thoth_1_1_n_json_1_1_key_view" ],

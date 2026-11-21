@@ -12,6 +12,7 @@ var struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy =
     [ "Get", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a5654955857b09a647bc8fe3c1ce73994", null ],
     [ "GetAsOpt", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a29e33fa3a9c2c636acbe9f1e728606be", null ],
     [ "GetWithDefault", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#ae303a64dab24f7325e36ba541ed1b135", null ],
+    [ "IsSetted", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a07aefd8e8250f15e21c773d20c407cf0", null ],
     [ "operator=", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a04dde8ccd58f2e5e98b822dc06f04d7e", null ],
     [ "Set", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a4b63234d1cde42b32186a4f43a76c3e5", null ],
     [ "TrySet", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy.html#a04c8847bca0f28c2d0f22c0dd6dcb034", null ]

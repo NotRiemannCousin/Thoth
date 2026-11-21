@@ -159,21 +159,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('concept_thoth_
 <p>Defines a callable that processes a request and produces a response. Matches the signature <span class="tt">[](Request&lt;Method, Body&gt;) -&gt; Client::ExpResponse&lt;Method, Body&gt;</span>.  
 <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_http_2_middleware_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_http_2_client_2_middleware_2__base_8hpp_source.html">_base.hpp</a>&gt;</code></p>
 <h2 id="header-conceptdef" class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">class</span> H, <span class="keyword">class</span> Method, <span class="keyword">class</span> Body&gt;</div>
 <div class="line">    <span class="keyword">concept </span><a class="code hl_concept" href="concept_thoth_1_1_http_1_1_handler_concept.html">HandlerConcept</a> = <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_method_concept.html">MethodConcept&lt;Method&gt;</a> &amp;&amp; <a class="code hl_concept" href="concept_thoth_1_1_http_1_1_body_concept.html">BodyConcept&lt;Body&gt;</a> &amp;&amp;</div>
 <div class="line">        <span class="keyword">requires</span>(H handler, <a class="code hl_struct" href="struct_thoth_1_1_http_1_1_request.html">Request&lt;Method, Body&gt;</a> request) {</div>
 <div class="line">            { handler(std::move(request)) } -&gt; std::same_as&lt;Client::ExpResponse&lt;Method, Body&gt;&gt;;</div>
 <div class="line">        }</div>
-<div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_concept.html">Thoth::Http::BodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:37</div></div>
+<div class="ttc" id="aconcept_thoth_1_1_http_1_1_body_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_body_concept.html">Thoth::Http::BodyConcept</a></div><div class="ttdef"><b>Definition</b> _base.hpp:83</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_handler_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_handler_concept.html">Thoth::Http::HandlerConcept</a></div><div class="ttdoc">Defines a callable that processes a request and produces a response. Matches the signature [](Request...</div><div class="ttdef"><b>Definition</b> _base.hpp:21</div></div>
 <div class="ttc" id="aconcept_thoth_1_1_http_1_1_method_concept_html"><div class="ttname"><a href="concept_thoth_1_1_http_1_1_method_concept.html">Thoth::Http::MethodConcept</a></div><div class="ttdoc">The HTTP methods requirements following RFC9110.</div><div class="ttdef"><b>Definition</b> MethodConcept.hpp:19</div></div>
-<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a></div><div class="ttdef"><b>Definition</b> Request.hpp:14</div></div>
+<div class="ttc" id="astruct_thoth_1_1_http_1_1_request_html"><div class="ttname"><a href="struct_thoth_1_1_http_1_1_request.html">Thoth::Http::Request</a></div><div class="ttdef"><b>Definition</b> Request.hpp:13</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines a callable that processes a request and produces a response. Matches the signature <span class="tt">[](Request&lt;Method, Body&gt;) -&gt; Client::ExpResponse&lt;Method, Body&gt;</span>. </p>
 <p>This is like <a class="el" href="struct_thoth_1_1_http_1_1_client.html#a8f477ad7128301089c7f36f72c77e6c6" title="Thoth::Http::Client::H_Send">Client::H_Send()</a>, you transfora a <a class="el" href="struct_thoth_1_1_http_1_1_request.html" title="Thoth::Http::Request">Request</a> into a <span class="tt">std::expected</span> <a class="el" href="struct_thoth_1_1_http_1_1_response.html" title="Thoth::Http::Response">Response</a>. The <a class="el" href="struct_thoth_1_1_http_1_1_client.html" title="Thoth::Http::Client">Client::Send</a> method family and the result type of these middlewares models it.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="concept_thoth_1_1_http_1_1_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">Thoth::Http::MiddlewareConcept</a> "MiddlewareConcept" to know more about middlewares. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="concept_thoth_1_1_http_1_1_client_middleware_concept.html" title="Defines a factory that takes an inner handler and returns a new wrapped handler.">Thoth::Http::ClientMiddlewareConcept</a> "ClientMiddlewareConcept" to know more about middlewares. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

@@ -3,6 +3,8 @@ var struct_thoth_1_1_n_json_1_1_number =
     [ "AsFloat", "struct_thoth_1_1_n_json_1_1_number.html#a89b68a6c50b934bf6c34299de8962c10", null ],
     [ "AsI64", "struct_thoth_1_1_n_json_1_1_number.html#a1e5ea807d8ce03497af8fd1f89f8662f", null ],
     [ "AsUI64", "struct_thoth_1_1_n_json_1_1_number.html#a244b1896270670069469b73749e439d3", null ],
+    [ "ExpectI64", "struct_thoth_1_1_n_json_1_1_number.html#aa89a18bb055ac561bf7ef55b85f1f10b", null ],
+    [ "ExpectUI64", "struct_thoth_1_1_n_json_1_1_number.html#a20f08c785a721777b68689f06ad02cd7", null ],
     [ "IsFloat", "struct_thoth_1_1_n_json_1_1_number.html#a45704474d50517575d5e02367a992e5f", null ],
     [ "IsIntegral", "struct_thoth_1_1_n_json_1_1_number.html#acc41b7efadb4a9ae06c33ad7258b7b0e", null ],
     [ "IsNegative", "struct_thoth_1_1_n_json_1_1_number.html#a2706142e1c92c9cdb6e8314e229fb8da", null ],

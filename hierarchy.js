@@ -1,7 +1,19 @@
 var hierarchy =
 [
+    [ "Thoth::Http::AnyBody&lt; Dir &gt;", "struct_thoth_1_1_http_1_1_any_body.html", null ],
     [ "Thoth::Http::Authority", "struct_thoth_1_1_http_1_1_authority.html", null ],
     [ "Thoth::Http::AuthorityView", "struct_thoth_1_1_http_1_1_authority_view.html", null ],
+    [ "Thoth::Http::BasicRouter&lt; Socket &gt;", "struct_thoth_1_1_http_1_1_basic_router.html", null ],
+    [ "Thoth::Http::BodyInfoBehavior&lt; T &gt;", "struct_thoth_1_1_http_1_1_body_info_behavior.html", null ],
+    [ "Thoth::Http::BodyIo&lt; Body &gt;", "struct_thoth_1_1_http_1_1_body_io.html", null ],
+    [ "Thoth::Http::BodyIo&lt; AnyBody&lt; Dir &gt; &gt;", "struct_thoth_1_1_http_1_1_body_io_3_01_any_body_3_01_dir_01_4_01_4.html", null ],
+    [ "Thoth::Http::BodyIo&lt; EmptyBody &gt;", "struct_thoth_1_1_http_1_1_body_io_3_01_empty_body_01_4.html", null ],
+    [ "Thoth::Http::BodyIo&lt; FileBody &gt;", "struct_thoth_1_1_http_1_1_body_io_3_01_file_body_01_4.html", null ],
+    [ "Thoth::Http::BodyIo&lt; R &gt;", "struct_thoth_1_1_http_1_1_body_io_3_01_r_01_4.html", null ],
+    [ "Thoth::Http::BodyIo&lt; std::string &gt;", "struct_thoth_1_1_http_1_1_body_io_3_01std_1_1string_01_4.html", null ],
+    [ "Thoth::Http::details_::BytesIntoPayload&lt; R &gt;", null, [
+      [ "Thoth::Http::IntoPayload< std::vector< std::byte >, R >", "struct_thoth_1_1_http_1_1_into_payload_3_01std_1_1vector_3_01std_1_1byte_01_4_00_01_r_01_4.html", null ]
+    ] ],
     [ "Thoth::Http::NHeaders::Challenge", "struct_thoth_1_1_http_1_1_n_headers_1_1_challenge.html", null ],
     [ "Thoth::String::CharSequences", "struct_thoth_1_1_string_1_1_char_sequences.html", null ],
     [ "Thoth::Http::Client", "struct_thoth_1_1_http_1_1_client.html", null ],
@@ -13,14 +25,23 @@ var hierarchy =
     [ "Thoth::Dsa::Cow&lt; RefT, OwnT &gt;", "struct_thoth_1_1_dsa_1_1_cow.html", null ],
     [ "Thoth::Http::DeleteMethod", "struct_thoth_1_1_http_1_1_delete_method.html", null ],
     [ "Thoth::Http::NHeaders::DispositionTypeHeader", "struct_thoth_1_1_http_1_1_n_headers_1_1_disposition_type_header.html", null ],
+    [ "Thoth::Http::EmptyBody", "struct_thoth_1_1_http_1_1_empty_body.html", null ],
     [ "Thoth::Http::NHeaders::EntityTag", "struct_thoth_1_1_http_1_1_n_headers_1_1_entity_tag.html", null ],
-    [ "Thoth::Dsa::FileBuilderParams", "struct_thoth_1_1_dsa_1_1_file_builder_params.html", null ],
-    [ "Thoth::Dsa::FileOutputIterator&lt; T &gt;", "struct_thoth_1_1_dsa_1_1_file_output_iterator.html", null ],
-    [ "Thoth::Dsa::FileOutputRange&lt; T &gt;", "struct_thoth_1_1_dsa_1_1_file_output_range.html", null ],
+    [ "Thoth::Http::Exchange&lt; Socket &gt;", "struct_thoth_1_1_http_1_1_exchange.html", null ],
+    [ "Thoth::Http::ExchangeBuffer", "struct_thoth_1_1_http_1_1_exchange_buffer.html", null ],
+    [ "std::false_type", null, [
+      [ "Thoth::Http::BasicRouterMiddlewareTraits< T, Socket >", "struct_thoth_1_1_http_1_1_basic_router_middleware_traits_3_01_t_00_01_socket_01_4.html", null ],
+      [ "Thoth::Http::BasicRouterMiddlewareTraits< class, class, class >", "struct_thoth_1_1_http_1_1_basic_router_middleware_traits.html", null ]
+    ] ],
+    [ "Thoth::Http::FileBody", "struct_thoth_1_1_http_1_1_file_body.html", null ],
+    [ "Thoth::Http::FileBuilderParams", "struct_thoth_1_1_http_1_1_file_builder_params.html", null ],
     [ "Thoth::Http::NHeaders::ListProxy&lt; IsConst, Ts &gt;::First&lt; F,... &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_list_proxy_1_1_first.html", null ],
     [ "Thoth::Http::NHeaders::MultiValueProxy&lt; IsConst, Ts &gt;::First&lt; F,... &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_multi_value_proxy_1_1_first.html", null ],
     [ "Thoth::Http::NHeaders::ValueProxy&lt; IsConst, Ts &gt;::First&lt; F,... &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_value_proxy_1_1_first.html", null ],
     [ "std::formatter&lt; std::monostate &gt;", "structstd_1_1formatter_3_01std_1_1monostate_01_4.html", null ],
+    [ "Thoth::Http::FramingEmpty", "struct_thoth_1_1_http_1_1_framing_empty.html", null ],
+    [ "Thoth::Http::FramingSized", "struct_thoth_1_1_http_1_1_framing_sized.html", null ],
+    [ "Thoth::Http::FramingStreamed", "struct_thoth_1_1_http_1_1_framing_streamed.html", null ],
     [ "Thoth::GenericError", "struct_thoth_1_1_generic_error.html", null ],
     [ "Thoth::Http::GetMethod", "struct_thoth_1_1_http_1_1_get_method.html", null ],
     [ "Thoth::Http::Headers", "struct_thoth_1_1_http_1_1_headers.html", [
@@ -28,13 +49,31 @@ var hierarchy =
       [ "Thoth::Http::ResponseHeaders", "struct_thoth_1_1_http_1_1_response_headers.html", null ]
     ] ],
     [ "Thoth::Http::HeadMethod", "struct_thoth_1_1_http_1_1_head_method.html", null ],
+    [ "Thoth::Http::HostPolicy", "struct_thoth_1_1_http_1_1_host_policy.html", null ],
     [ "Thoth::String::CharSequences::Http", "struct_thoth_1_1_string_1_1_char_sequences_1_1_http.html", null ],
+    [ "Thoth::Http::Transport::Http1", "struct_thoth_1_1_http_1_1_transport_1_1_http1.html", null ],
+    [ "Thoth::Http::HttpLimits", "struct_thoth_1_1_http_1_1_http_limits.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, Source &gt;", "struct_thoth_1_1_http_1_1_into_payload.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, StatusCodeEnum &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_status_code_enum_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, std::expected&lt; T, E &gt; &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1expected_3_01_t_00_01_e_01_4_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, std::monostate &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1monostate_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, std::optional&lt; T &gt; &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1optional_3_01_t_01_4_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, std::pair&lt; StatusCodeEnum, T &gt; &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1pair_3_01_status_code_enum_00_01_t_01_4_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, std::variant&lt; Ts... &gt; &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01std_1_1variant_3_01_ts_8_8_8_01_4_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, ThothError &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_thoth_error_01_4.html", null ],
+    [ "Thoth::Http::IntoPayload&lt; TargetBody, Url &gt;", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_url_01_4.html", null ],
     [ "Thoth::Http::NHeaders::InvalidHeaderFormat", "struct_thoth_1_1_http_1_1_n_headers_1_1_invalid_header_format.html", null ],
     [ "Thoth::String::UnicodeViewer&lt; CharT &gt;::Iterator", "struct_thoth_1_1_string_1_1_unicode_viewer_1_1_iterator.html", null ],
     [ "Thoth::Utils::SharedInputView&lt; Range &gt;::Iterator", "struct_thoth_1_1_utils_1_1_shared_input_view_1_1_iterator.html", null ],
     [ "Thoth::NJson::Json", "struct_thoth_1_1_n_json_1_1_json.html", null ],
     [ "Thoth::NJson::JsonFindError", "struct_thoth_1_1_n_json_1_1_json_find_error.html", null ],
     [ "Thoth::NJson::JsonGetError", "struct_thoth_1_1_n_json_1_1_json_get_error.html", null ],
+    [ "Thoth::Http::details_::JsonIntoPayload&lt; TargetBody, NJson::Json &gt;", null, [
+      [ "Thoth::Http::IntoPayload< TargetBody, NJson::Json >", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_n_json_1_1_json_01_4.html", null ]
+    ] ],
+    [ "Thoth::Http::details_::JsonIntoPayload&lt; TargetBody, NJson::JsonObject &gt;", null, [
+      [ "Thoth::Http::IntoPayload< TargetBody, NJson::JsonObject >", "struct_thoth_1_1_http_1_1_into_payload_3_01_target_body_00_01_n_json_1_1_json_object_01_4.html", null ]
+    ] ],
     [ "Thoth::NJson::JsonIterator&lt; IsConst, IsItems &gt;", "struct_thoth_1_1_n_json_1_1_json_iterator.html", null ],
     [ "Thoth::NJson::JsonKeyCompare", "struct_thoth_1_1_n_json_1_1_json_key_compare.html", null ],
     [ "Thoth::NJson::JsonObject", "struct_thoth_1_1_n_json_1_1_json_object.html", null ],
@@ -53,20 +92,33 @@ var hierarchy =
     [ "Thoth::Http::NHeaders::PrefixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_prefixed_range.html", null ],
     [ "Thoth::Http::PutMethod", "struct_thoth_1_1_http_1_1_put_method.html", null ],
     [ "Thoth::Http::QueryParams", "struct_thoth_1_1_http_1_1_query_params.html", null ],
+    [ "std::ranges::range_adaptor_closure", null, [
+      [ "Thoth::Utils::CollectFn", "struct_thoth_1_1_utils_1_1_collect_fn.html", null ],
+      [ "Thoth::Utils::PartitionExpectedFn", "struct_thoth_1_1_utils_1_1_partition_expected_fn.html", null ]
+    ] ],
+    [ "Thoth::Http::ReadContext&lt; SourceT &gt;", "struct_thoth_1_1_http_1_1_read_context.html", null ],
+    [ "Thoth::Http::RequestEntry&lt; Method, Body &gt;", "struct_thoth_1_1_http_1_1_request_entry.html", null ],
     [ "Thoth::Http::RequestHead", "struct_thoth_1_1_http_1_1_request_head.html", [
       [ "Thoth::Http::Request< PostMethod >", "struct_thoth_1_1_http_1_1_request.html", null ],
       [ "Thoth::Http::Request< GetMethod, std::vector< std::byte > >", "struct_thoth_1_1_http_1_1_request.html", null ],
       [ "Thoth::Http::Request< PostMethod, std::vector< std::byte > >", "struct_thoth_1_1_http_1_1_request.html", null ],
+      [ "Thoth::Http::Request< GetMethod, EmptyBody >", "struct_thoth_1_1_http_1_1_request.html", null ],
+      [ "Thoth::Http::Request< PostMethod, EmptyBody >", "struct_thoth_1_1_http_1_1_request.html", null ],
+      [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ],
+      [ "Thoth::Http::Request< GetMethod, std::string >", "struct_thoth_1_1_http_1_1_request.html", null ],
       [ "Thoth::Http::Request< Method, Body >", "struct_thoth_1_1_http_1_1_request.html", null ]
     ] ],
+    [ "Thoth::Http::ResponseEntry&lt; Method, Body &gt;", "struct_thoth_1_1_http_1_1_response_entry.html", null ],
     [ "Thoth::Http::ResponseHead", "struct_thoth_1_1_http_1_1_response_head.html", [
       [ "Thoth::Http::Response< PostMethod >", "struct_thoth_1_1_http_1_1_response.html", null ],
       [ "Thoth::Http::Response< GetMethod, std::vector< std::byte > >", "struct_thoth_1_1_http_1_1_response.html", null ],
       [ "Thoth::Http::Response< PostMethod, std::vector< std::byte > >", "struct_thoth_1_1_http_1_1_response.html", null ],
-      [ "Thoth::Http::Response< GetMethod, Dsa::TextFileOutputRange >", "struct_thoth_1_1_http_1_1_response.html", null ],
-      [ "Thoth::Http::Response< PostMethod, Dsa::TextFileOutputRange >", "struct_thoth_1_1_http_1_1_response.html", null ],
-      [ "Thoth::Http::Response< GetMethod, Dsa::BinFileOutputRange >", "struct_thoth_1_1_http_1_1_response.html", null ],
-      [ "Thoth::Http::Response< PostMethod, Dsa::BinFileOutputRange >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< GetMethod, FileBody >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< PostMethod, FileBody >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< GetMethod, EmptyBody >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< PostMethod, EmptyBody >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ],
+      [ "Thoth::Http::Response< GetMethod, std::string >", "struct_thoth_1_1_http_1_1_response.html", null ],
       [ "Thoth::Http::Response< Method, Body >", "struct_thoth_1_1_http_1_1_response.html", null ]
     ] ],
     [ "Thoth::Utils::Scanner&lt; T &gt;", "struct_thoth_1_1_utils_1_1_scanner.html", null ],
@@ -76,16 +128,21 @@ var hierarchy =
     [ "Thoth::Utils::Scanner&lt; std::string &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01std_1_1string_01_4.html", null ],
     [ "Thoth::Utils::Scanner&lt; T &gt;", "struct_thoth_1_1_utils_1_1_scanner_3_01_t_01_4.html", null ],
     [ "Thoth::Http::ClientConnection::SendOptions", "struct_thoth_1_1_http_1_1_client_connection_1_1_send_options.html", null ],
-    [ "Thoth::Http::Server", "struct_thoth_1_1_http_1_1_server.html", null ],
-    [ "Thoth::Http::ServerConnection", "struct_thoth_1_1_http_1_1_server_connection.html", null ],
+    [ "Thoth::Http::Server&lt; Router, Socket &gt;", "struct_thoth_1_1_http_1_1_server.html", null ],
     [ "Thoth::Utils::SharedInputView&lt; Range &gt;", "struct_thoth_1_1_utils_1_1_shared_input_view.html", null ],
     [ "Thoth::NJson::StringOwn", "struct_thoth_1_1_n_json_1_1_string_own.html", null ],
     [ "Thoth::NJson::StringRef", "struct_thoth_1_1_n_json_1_1_string_ref.html", null ],
     [ "Thoth::Http::NHeaders::SuffixedRange", "struct_thoth_1_1_http_1_1_n_headers_1_1_suffixed_range.html", null ],
+    [ "Thoth::Http::details_::TextIntoPayload&lt; T &gt;", null, [
+      [ "Thoth::Http::IntoPayload< std::string, T >", "struct_thoth_1_1_http_1_1_into_payload_3_01std_1_1string_00_01_t_01_4.html", null ]
+    ] ],
     [ "ThothErrorBase", null, [
       [ "Thoth::ThothError", "struct_thoth_1_1_thoth_error.html", null ]
     ] ],
     [ "Thoth::Http::TraceMethod", "struct_thoth_1_1_http_1_1_trace_method.html", null ],
+    [ "std::true_type", null, [
+      [ "Thoth::Http::BasicRouterMiddlewareTraits< T, Socket >", "struct_thoth_1_1_http_1_1_basic_router_middleware_traits_3_01_t_00_01_socket_01_4.html", null ]
+    ] ],
     [ "Thoth::String::UnicodeViewer&lt; CharT &gt;", "struct_thoth_1_1_string_1_1_unicode_viewer.html", null ],
     [ "Thoth::Http::NHeaders::Upgrade", "struct_thoth_1_1_http_1_1_n_headers_1_1_upgrade.html", null ],
     [ "Thoth::Http::Url", "struct_thoth_1_1_http_1_1_url.html", null ],
@@ -98,5 +155,6 @@ var hierarchy =
     [ "std::ranges::view_interface", null, [
       [ "Thoth::NJson::JsonItemsView< IsConst >", "class_thoth_1_1_n_json_1_1_json_items_view.html", null ]
     ] ],
-    [ "Thoth::Http::NHeaders::Weighted&lt; T &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html", null ]
+    [ "Thoth::Http::NHeaders::Weighted&lt; T &gt;", "struct_thoth_1_1_http_1_1_n_headers_1_1_weighted.html", null ],
+    [ "Body", "class_body.html", null ]
 ];

@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Thoth" />
 <meta name="twitter:description" content="A functional, expressive, asynchronous C++26 webdev library" />
 <!-- END twitter metadata -->
-<title>Thoth: include/Thoth/Http/_base/Http1.hpp File Reference</title>
+<title>Thoth: include/Thoth/Http/_base/Transport/Http1.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -155,25 +155,50 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http1_8hpp.ht
   <div class="headertitle"><div class="title">Http1.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="_http_2__base_8hpp_source.html">Thoth/Http/_base.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="_http_2__base_2_transport_2__base_8hpp_source.html">Thoth/Http/_base/Transport/_base.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_thoth_error_8hpp_source.html">Thoth/ThothError.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_headers_8hpp_source.html">Thoth/Http/NHeaders/Headers.hpp</a>&gt;</code><br />
-<code>#include &lt;charconv&gt;</code><br />
+<code>#include &lt;<a class="el" href="_request_head_8hpp_source.html">Thoth/Http/Request/RequestHead.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_response_head_8hpp_source.html">Thoth/Http/Response/ResponseHead.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_method_concept_8hpp_source.html">Thoth/Http/Methods/_base/MethodConcept.hpp</a>&gt;</code><br />
 <code>#include &lt;expected&gt;</code><br />
-<code>#include &lt;variant&gt;</code><br />
-<code>#include &lt;Thoth/Http/_base/Http1.tpp&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;exec/task.hpp&gt;</code><br />
+<code>#include &lt;Thoth/Http/_base/Transport/Http1.tpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Http1.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_http1_8hpp__incl.svg" width="3814" height="726"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_http1_8hpp__incl.svg" width="4034" height="502"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_http1_8hpp__dep__incl.svg" width="348" height="427"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_http1_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Thoth_3A_3AHttp_3A_3ATransport_3A_3AHttp1" id="r_Thoth_3A_3AHttp_3A_3ATransport_3A_3AHttp1"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_thoth_1_1_http_1_1_transport_1_1_http1.html">Thoth::Http::Transport::Http1</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that makes the HTTP/1.X communication. It transforms "bytes on the wire" into request/response pieces and back. It's just the act of send/receive data, no connection pooling, method resolution, routing, etc.  <a href="struct_thoth_1_1_http_1_1_transport_1_1_http1.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Thoth" id="r_Thoth"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth.html">Thoth</a></td></tr>
 <tr class="memitem:Thoth_3A_3AHttp" id="r_Thoth_3A_3AHttp"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http.html">Thoth::Http</a></td></tr>
+<tr class="memitem:Thoth_3A_3AHttp_3A_3ATransport" id="r_Thoth_3A_3AHttp_3A_3ATransport"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_transport.html">Thoth::Http::Transport</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ab5918e19be9ef02cb383ea8972a0e5e7" id="r_ab5918e19be9ef02cb383ea8972a0e5e7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_transport.html#ab5918e19be9ef02cb383ea8972a0e5e7">Thoth::Http::Transport::RequestPair</a> = std::pair&lt;std::string, <a class="el" href="struct_thoth_1_1_http_1_1_request_head.html">RequestHead</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1386bc2197733bc4875c28ac302c019d" id="r_a1386bc2197733bc4875c28ac302c019d"><td class="memTemplParams" colspan="2">template&lt;class HeadT&gt; </td></tr>
+<tr class="memitem:a1386bc2197733bc4875c28ac302c019d template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="namespace_thoth_1_1_http_1_1_transport.html#a1386bc2197733bc4875c28ac302c019d">Thoth::Http::Transport::HeadWantsKeepAlive</a> (const HeadT &amp;head)</td></tr>
+<tr class="memdesc:a1386bc2197733bc4875c28ac302c019d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The head's own opinion about the connection, the response and the house rules are decided elsewhere. HTTP/1.1 lives unless it says <span class="tt">close</span>, HTTP/1.0 dies unless it says <span class="tt">keep-alive</span>.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -188,7 +213,7 @@ Namespaces</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_6d460459f27754ca35b4b479a204ef1f.html">_base</a></li><li class="navelem"><a href="_http1_8hpp.html">Http1.hpp</a></li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_c6a74f695d865e6872ff805f8280c9af.html">Thoth</a></li><li class="navelem"><a href="dir_41cc9e0bb4f1115e1fe2e2758d2bc168.html">Http</a></li><li class="navelem"><a href="dir_6d460459f27754ca35b4b479a204ef1f.html">_base</a></li><li class="navelem"><a href="dir_a6ae2f7b77887834eccc69b7aa0f6411.html">Transport</a></li><li class="navelem"><a href="_http1_8hpp.html">Http1.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

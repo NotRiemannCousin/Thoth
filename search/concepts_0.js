@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bodyconcept_0',['BodyConcept',['../concept_thoth_1_1_http_1_1_body_concept.html',1,'Thoth::Http']]],
-  ['bodyfactoryconcept_1',['BodyFactoryConcept',['../concept_thoth_1_1_http_1_1_body_factory_concept.html',1,'Thoth::Http']]]
+  ['asyncsocketconcept_0',['AsyncSocketConcept',['../concept_thoth_1_1_http_1_1_async_socket_concept.html',1,'Thoth::Http']]],
+  ['awaitable_1',['Awaitable',['../concept_thoth_1_1_utils_1_1_awaitable.html',1,'Thoth::Utils']]]
 ];
